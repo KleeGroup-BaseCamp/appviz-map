@@ -10,9 +10,9 @@ const upperLeftPixel = (rows, columns, row, column) => {
 };
 
 const findHoveredElement = () => {
-  for (let layer of map.layers) {
+  for (let layer of map.layers.slice().reverse()) {
     for (let element of layer.elements) {
-      if (element.isHovered(mouseX, mouseY)) return element;
+      if (element.isHovered(mouseX, mouseY, layer)) return element;
     }
   }
   return null;
@@ -22,13 +22,15 @@ const handleHover = () => {
   let element = findHoveredElement();
 
   if (prevHoveredElement) {
-    prevHoveredElement.style.fill = [100, 203, 220];
-  }
-  if (element) {
-    element.style.fill = [255];
+    if (prevHoveredElement.level === 0) prevHoveredElement.style.fill = COLOR_1;
+    else prevHoveredElement.style.fill = COLOR_2;
     map.render();
   }
-  map.render();
+  if (element) {
+    element.style.fill = HOVER_COLOR;
+    map.render();
+  }
+
   prevHoveredElement = element;
 };
 

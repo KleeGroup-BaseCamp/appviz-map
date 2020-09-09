@@ -7,7 +7,7 @@ class Layer {
 
   render() {
     for (let element of this.elements) {
-      element.render(layer);
+      element.render(this);
     }
   }
   renderGrid(style = { stroke: 100, strokeWeight: 1 }) {

@@ -4,13 +4,15 @@ class Element {
     column,
     height,
     width,
-    style = { fill: [100, 203, 220], stroke: 255, strokeWeight: 2 }
+    style = { fill: COLOR_1, stroke: 255, strokeWeight: 2 },
+    level = 0
   ) {
     this.row = row;
     this.column = column;
     this.height = height;
     this.width = width;
     this.style = style; // To be infered later from its "type" or its layer
+    this.level = level;
   }
 
   render(layer) {
@@ -22,10 +24,15 @@ class Element {
       this.column
     );
     const { rowSize, columnSize } = tileSize(layer.rows, layer.columns);
-    rect(x, y, columnSize * this.width, rowSize * this.height);
+    rect(
+      x + this.level * 20,
+      y + this.level * 20,
+      columnSize * this.width - 2 * this.level * 20,
+      rowSize * this.height - 2 * this.level * 20
+    );
   }
 
-  isHovered(mouseX, mouseY) {
+  isHovered(mouseX, mouseY, layer) {
     const { x, y } = upperLeftPixel(
       layer.rows,
       layer.columns,
@@ -34,10 +41,10 @@ class Element {
     );
     const { rowSize, columnSize } = tileSize(layer.rows, layer.columns);
     return (
-      mouseX > x &&
-      mouseX < x + columnSize * this.width &&
-      mouseY > y &&
-      mouseY < y + rowSize * this.height
+      mouseX > x + this.level * 20 &&
+      mouseX < x + columnSize * this.width - this.level * 20 &&
+      mouseY > y + this.level * 20 &&
+      mouseY < y + rowSize * this.height - this.level * 20
     );
   }
 }
