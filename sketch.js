@@ -7,7 +7,6 @@ const map = new Map(null, null, null, [layer]);
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(30, 61, 116);
-  fill(100, 203, 220);
   map.render();
 }
 
@@ -16,8 +15,7 @@ function draw() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWifdth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight);
   background(30, 61, 116);
-  fill(100, 203, 220);
   map.render();
 }

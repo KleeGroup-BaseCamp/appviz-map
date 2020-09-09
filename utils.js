@@ -1,6 +1,7 @@
 const tileSize = (rows, columns) => {
   return { rowSize: windowHeight / rows, columnSize: windowWidth / columns };
 };
+
 const upperLeftPixel = (rows, columns, row, column) => {
   return {
     x: column * tileSize(rows, columns).columnSize,
@@ -11,21 +12,21 @@ const upperLeftPixel = (rows, columns, row, column) => {
 const findHoveredElement = () => {
   for (let layer of map.layers) {
     for (let element of layer.elements) {
-      if (element.isHovered(mouseX, mouseY)) return [element, layer];
+      if (element.isHovered(mouseX, mouseY)) return element;
     }
   }
-  return [null];
+  return null;
 };
 
 const handleHover = () => {
-  let [element, layer] = findHoveredElement();
-  if (prevHoveredElement.element) {
-    fill(100, 203, 220);
-    prevHoveredElement.element.render(prevHoveredElement.layer);
+  let element = findHoveredElement();
+
+  if (prevHoveredElement) {
+    prevHoveredElement.color = [100, 203, 220];
   }
   if (element) {
-    fill(255);
-    element.render(layer);
+    element.color = [255];
+    map.render();
   }
-  prevHoveredElement = { element, layer };
+  prevHoveredElement = element;
 };
