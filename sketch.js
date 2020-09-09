@@ -4,14 +4,16 @@ const COLOR_1 = [66, 116, 187];
 const COLOR_2 = [132, 207, 226];
 
 // Layers
-const layer1 = new Layer(4, 6, [
-  new Element(2, 0, 2, 3),
-  new Element(0, 2, 1, 1),
-]);
-const layer2 = new Layer(4, 6, [
-  new Element(2, 0, 1, 2, (style = { fill: COLOR_2 }), (level = 1)),
-  new Element(0, 2, 1, 1, (style = { fill: COLOR_2 }), (level = 1)),
-]);
+let layer1 = new Layer(4, 6);
+layer1.addElement(new Element(layer1, 2, 0, 2, 3));
+layer1.addElement(new Element(layer1, 0, 2, 1, 1));
+let layer2 = new Layer(4, 6);
+layer2.addElement(
+  new Element(layer2, 2, 0, 1, 2, (style = { fill: COLOR_2 }), (level = 1))
+);
+layer2.addElement(
+  new Element(layer2, 0, 2, 1, 1, (style = { fill: COLOR_2 }), (level = 1))
+);
 
 const map = new Map(null, null, null, [layer1, layer2]);
 

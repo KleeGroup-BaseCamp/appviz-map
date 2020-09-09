@@ -12,7 +12,7 @@ const upperLeftPixel = (rows, columns, row, column) => {
 const findHoveredElement = () => {
   for (let layer of map.layers.slice().reverse()) {
     for (let element of layer.elements) {
-      if (element.isHovered(mouseX, mouseY, layer)) return element;
+      if (element.isHovered(mouseX, mouseY)) return element;
     }
   }
   return null;

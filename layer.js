@@ -1,13 +1,17 @@
 class Layer {
-  constructor(rows, columns, elements) {
+  constructor(rows, columns) {
     this.rows = rows;
     this.columns = columns;
-    this.elements = elements;
+    this.elements = [];
+  }
+
+  addElement(element) {
+    this.elements.push(element);
   }
 
   render() {
     for (let element of this.elements) {
-      element.render(this);
+      element.render();
     }
   }
   renderGrid(style = { stroke: 100, strokeWeight: 1 }) {
