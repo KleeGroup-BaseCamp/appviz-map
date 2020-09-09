@@ -6,8 +6,8 @@ class Map {
 
   render() {
     for (let layer of this.layers) {
-      strokeWeight(2);
-      // layer.renderGrid(layer.rows, layer.columns); // Drawing grid for testing purposes only
+      // strokeWeight(2);
+      layer.renderGrid(); // Drawing grid for testing purposes only
       layer.render();
     }
   }

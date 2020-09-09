@@ -22,11 +22,18 @@ const handleHover = () => {
   let element = findHoveredElement();
 
   if (prevHoveredElement) {
-    prevHoveredElement.color = [100, 203, 220];
+    prevHoveredElement.style.fill = [100, 203, 220];
   }
   if (element) {
-    element.color = [255];
+    element.style.fill = [255];
     map.render();
   }
+  map.render();
   prevHoveredElement = element;
+};
+
+const applyStyle = (style) => {
+  if (style.stroke) stroke(style.stroke);
+  if (style.strokeWeight) strokeWeight(style.strokeWeight);
+  if (style.fill) fill(...style.fill);
 };

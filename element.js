@@ -1,15 +1,20 @@
 class Element {
-  constructor(row, column, height, width, color = [100, 203, 220]) {
+  constructor(
+    row,
+    column,
+    height,
+    width,
+    style = { fill: [100, 203, 220], stroke: 255, strokeWeight: 2 }
+  ) {
     this.row = row;
     this.column = column;
     this.height = height;
     this.width = width;
-    this.color = color; // To be infered later, along with other style propreties, from its "type" or its layer
+    this.style = style; // To be infered later from its "type" or its layer
   }
 
   render(layer) {
-    // Color should be dependent on context
-    fill(...this.color);
+    applyStyle(this.style);
     const { x, y } = upperLeftPixel(
       layer.rows,
       layer.columns,
