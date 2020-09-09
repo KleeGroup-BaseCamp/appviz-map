@@ -7,6 +7,7 @@ class Layer {
 
   addElement(element) {
     this.elements.push(element);
+    element.layer = this;
   }
 
   render() {
