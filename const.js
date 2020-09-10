@@ -8,3 +8,6 @@ const COLOR_2 = [198, 170, 255];
 const RECTANGLE = "rec";
 const HEXAGONE = "hex";
 const CIRCLE = "cir";
+
+// Padding
+const PADDING_1 = 15;

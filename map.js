@@ -1,6 +1,7 @@
 class Map {
-  constructor(state, config, notebook, layers = []) {
-    this.layers = layers; // Possibility to pass layers array directly (for testing purposes)
+  constructor(state, config, notebook) {
+    this.layers = initLayers();
+
     // Use (state, config, notebook) to get layers
   }
 
