@@ -1,17 +1,10 @@
 class Rectangle extends Element {
-  constructor({
-    column,
-    row,
-    numOfColumns,
-    numOfRows,
-    style = { fill: COLOR_1, stroke: 255, strokeWeight: 2 },
-  }) {
+  constructor({ column, row, numOfColumns, numOfRows }) {
     super({
       column,
       row,
       numOfColumns,
       numOfRows,
-      style,
     });
   }
 

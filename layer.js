@@ -26,4 +26,9 @@ class Layer {
       line(columnSize * (j + 1), 0, columnSize * (j + 1), windowHeight);
     }
   }
+  initStyle() {
+    for (let element of this.elements) {
+      element.initStyle();
+    }
+  }
 }

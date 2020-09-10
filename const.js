@@ -1,13 +1,7 @@
 // Colors
-const HOVER_COLOR = [132, 207, 226];
-const COLOR_1 = [66, 116, 187];
-const COLOR_2 = [198, 170, 255];
-
-// Shapes
-
-const RECTANGLE = "rec";
-const HEXAGONE = "hex";
-const CIRCLE = "cir";
-
-// Padding
-const PADDING_1 = 15;
+const HOVER_COLOR = [128, 255, 219];
+const COLORS = [
+  [0, 119, 182],
+  [0, 180, 216],
+  [144, 224, 239],
+];
