@@ -17,8 +17,8 @@ class Layer {
   }
   renderGrid(style = { stroke: 100, strokeWeight: 1 }) {
     applyStyle(style);
-    console.log(style.strokeWeight);
-    const { rowSize, columnSize } = tileSize(this.rows, this.columns);
+    const rowSize = windowHeight / this.rows;
+    const columnSize = windowWidth / this.columns;
     for (let i = 0; i < this.rows; i++) {
       line(0, rowSize * (i + 1), windowWidth, rowSize * (i + 1));
     }

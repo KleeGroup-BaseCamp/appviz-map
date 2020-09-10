@@ -15,16 +15,6 @@ class Rectangle extends Element {
     });
   }
 
-  getBoundingBox() {
-    const rowSize = windowHeight / this.layer.rows;
-    const columnSize = windowWidth / this.layer.columns;
-    const x = this.column * columnSize;
-    const y = this.row * rowSize;
-    const height = rowSize * this.numOfRows;
-    const width = columnSize * this.numOfColumns;
-    return { x, y, width, height };
-  }
-
   render() {
     applyStyle(this.style);
     const { x, y, width, height } = this.getBoundingBox();

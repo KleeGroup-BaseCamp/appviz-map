@@ -1,14 +1,3 @@
-const tileSize = (rows, columns) => {
-  return { rowSize: windowHeight / rows, columnSize: windowWidth / columns };
-};
-
-const upperLeftPixel = (rows, columns, row, column) => {
-  return {
-    x: column * tileSize(rows, columns).columnSize,
-    y: row * tileSize(rows, columns).rowSize,
-  };
-};
-
 const findHoveredElement = () => {
   for (let layer of map.layers.slice().reverse()) {
     for (let element of layer.elements) {
@@ -20,7 +9,6 @@ const findHoveredElement = () => {
 
 const handleHover = () => {
   let element = findHoveredElement();
-
   if (prevHoveredElement) {
     prevHoveredElement.style.fill = COLOR_1;
     map.render();
@@ -29,7 +17,6 @@ const handleHover = () => {
     element.style.fill = HOVER_COLOR;
     map.render();
   }
-
   prevHoveredElement = element;
 };
 
@@ -48,7 +35,6 @@ const initLayers = () => {
   layer1.addElement(
     new Hexagone({ column: 2, row: 1, numOfColumns: 2, numOfRows: 1 })
   );
-
   // let layer2 = new Layer(4, 6);
   return [layer1];
 };

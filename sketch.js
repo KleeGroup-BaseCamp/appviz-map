@@ -1,5 +1,4 @@
 const map = new Map(null, null, null);
-
 let prevHoveredElement = null;
 
 function setup() {
