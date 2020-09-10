@@ -1,54 +1,44 @@
 class Element {
-  constructor({
-    row,
-    column,
-    height,
-    width,
-    style = { fill: COLOR_1, stroke: 255, strokeWeight: 2 },
-    level = 0,
-    shape = RECTANGLE,
-  }) {
-    this.row = row;
+  constructor({ column, row, numOfColumns, numOfRows, style }) {
     this.column = column;
-    this.height = height;
-    this.width = width;
+    this.row = row;
+    this.numOfColumns = numOfColumns;
+    this.numOfRows = numOfRows;
     this.style = style; // To be infered later from its "type" or its layer
-    this.level = level;
-    this.shape = shape;
   }
 
-  render() {
-    applyStyle(this.style);
-    const { x, y } = upperLeftPixel(
-      this.layer.rows,
-      this.layer.columns,
-      this.row,
-      this.column
-    );
-    const { rowSize, columnSize } = tileSize(
-      this.layer.rows,
-      this.layer.columns
-    );
-    if (this.shape === RECTANGLE) {
-      rect(
-        x + this.level * 20,
-        y + this.level * 20,
-        columnSize * this.width - 2 * this.level * 20,
-        rowSize * this.height - 2 * this.level * 20
-      );
-    } else if (this.shape === HEXAGONE) {
-      // console.log("got here");
-      const param = (rowSize * this.height) / (2 * sqrt(3));
-      beginShape();
-      vertex(x + param, y);
-      vertex(x + columnSize * this.width - param, y);
-      vertex(x + columnSize * this.width, y + (rowSize * this.height) / 2);
-      vertex(x + columnSize * this.width - param, y + rowSize * this.height);
-      vertex(x + param, y + rowSize * this.height);
-      vertex(x, y + (rowSize * this.height) / 2);
-      endShape(CLOSE);
-    }
-  }
+  // render() {
+  //   applyStyle(this.style);
+  //   const { x, y } = upperLeftPixel(
+  //     this.layer.rows,
+  //     this.layer.columns,
+  //     this.row,
+  //     this.column
+  //   );
+  //   const { rowSize, columnSize } = tileSize(
+  //     this.layer.rows,
+  //     this.layer.columns
+  //   );
+  //   if (this.shape === RECTANGLE) {
+  //     rect(
+  //       x + this.level * 20,
+  //       y + this.level * 20,
+  //       columnSize * this.width - 2 * this.level * 20,
+  //       rowSize * this.height - 2 * this.level * 20
+  //     );
+  //   } else if (this.shape === HEXAGONE) {
+  //     // console.log("got here");
+  //     const param = (rowSize * this.height) / (2 * sqrt(3));
+  //     beginShape();
+  //     vertex(x + param, y);
+  //     vertex(x + columnSize * this.width - param, y);
+  //     vertex(x + columnSize * this.width, y + (rowSize * this.height) / 2);
+  //     vertex(x + columnSize * this.width - param, y + rowSize * this.height);
+  //     vertex(x + param, y + rowSize * this.height);
+  //     vertex(x, y + (rowSize * this.height) / 2);
+  //     endShape(CLOSE);
+  //   }
+  // }
 
   isHovered(mouseX, mouseY) {
     const { x, y } = upperLeftPixel(

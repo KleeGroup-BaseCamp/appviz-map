@@ -6,11 +6,14 @@ class Map {
   }
 
   render() {
+    background(30, 61, 116);
+    let level = 0;
     for (let layer of this.layers) {
       layer.renderGrid(); // Drawing grid for testing purposes only
     }
     for (let layer of this.layers) {
-      layer.render();
+      level += 1;
+      layer.render(level);
     }
   }
 }
