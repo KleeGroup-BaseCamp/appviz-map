@@ -18,7 +18,6 @@ class Element {
   }
 
   initStyle() {
-    console.log(COLORS[this.layer.level]);
     this.style = {
       fill: COLORS[this.layer.level],
       stroke: 255,
