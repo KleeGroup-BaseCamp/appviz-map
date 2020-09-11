@@ -20,8 +20,9 @@ class Layer {
     }
   }
 
-  renderGrid(style = { stroke: 100, strokeWeight: 1 }) {
-    applyStyle(style);
+  renderGrid() {
+    strokeWeight(1);
+    stroke(100);
     const rowSize = windowHeight / this.rows;
     const columnSize = windowWidth / this.columns;
     for (let i = 0; i < this.rows; i++) {

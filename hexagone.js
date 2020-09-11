@@ -9,7 +9,7 @@ class Hexagone extends Element {
   }
 
   render() {
-    applyStyle(this.style);
+    this.applyStyle(this.style);
     const { x, y, width, height } = this.getBoundingBox();
     const param = height / (2 * sqrt(3));
     beginShape();

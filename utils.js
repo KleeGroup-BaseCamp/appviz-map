@@ -1,9 +1,3 @@
-const applyStyle = (style) => {
-  if (style.stroke) stroke(style.stroke);
-  if (style.strokeWeight) strokeWeight(style.strokeWeight);
-  if (style.fill) fill(...style.fill);
-};
-
 //Temporary function for testing purposes only.
 const initLayers = () => {
   let layer1 = new Layer(4, 6);

@@ -11,7 +11,6 @@ function setup() {
       vizMap.render();
       loading = false;
     });
-  // console.log(vizMap);
   // frameRate(5);
 }
 

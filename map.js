@@ -36,7 +36,6 @@ class Map {
   }
 
   handleSelection() {
-    console.log(this.selected);
     if (this.selected) {
       this.layers.forEach((layer) => layer.initStyle());
       this.selected.style.fill = HOVER_COLOR;
