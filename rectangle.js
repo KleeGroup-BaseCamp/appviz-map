@@ -17,6 +17,9 @@ class Rectangle extends Element {
   contains(xx, yy) {
     const { x, y, width, height } = this.getBoundingBox();
 
-    return xx > x && xx < x + width && yy > y && yy < y + height;
+    return xx > x 
+    && xx < (x + width) 
+    && yy > y 
+    && yy < (y + height);
   }
 }
