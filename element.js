@@ -24,4 +24,12 @@ class Element {
       strokeWeight: 2,
     };
   }
+
+  render() {
+    //This method must ne overridden
+  }
+
+  contains(x, y) {
+    //This method must ne overridden
+  }
 }

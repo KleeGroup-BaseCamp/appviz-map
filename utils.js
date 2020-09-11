@@ -1,28 +1,3 @@
-const findHoveredElement = () => {
-  for (let layer of vizMap.layers.slice().reverse()) {
-    for (let element of layer.elements) {
-      if (element.isHovered(mouseX, mouseY)) return element;
-    }
-  }
-  return null;
-};
-
-const handleHover = () => {
-  let element = findHoveredElement();
-  if (prevHoveredElement) {
-    prevHoveredElement.style.fill = COLORS[prevHoveredElement.layer.level];
-    vizMap.render();
-  }
-  if (element) {
-    document.querySelector("main").style.cursor = "pointer";
-    element.style.fill = HOVER_COLOR;
-    vizMap.render();
-  } else {
-    document.querySelector("main").style.cursor = "default";
-  }
-  prevHoveredElement = element;
-};
-
 const applyStyle = (style) => {
   if (style.stroke) stroke(style.stroke);
   if (style.strokeWeight) strokeWeight(style.strokeWeight);

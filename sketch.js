@@ -1,5 +1,5 @@
 let vizMap;
-let prevHoveredElement = null;
+let prevHoveredElement;
 let loading = true;
 
 function setup() {
@@ -17,7 +17,9 @@ function setup() {
 
 function draw() {
   if (!loading) {
-    handleHover();
+    let element = vizMap.selectElement(mouseX, mouseY);
+    vizMap.handleSelection(element);
+    vizMap.render();
   }
 }
 

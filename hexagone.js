@@ -22,7 +22,7 @@ class Hexagone extends Element {
     endShape(CLOSE);
   }
 
-  isHovered(mouseX, mouseY) {
+  contains(xx, yy) {
     const { x, y, width, height } = this.getBoundingBox();
     const param = height / (2 * sqrt(3));
     const coefs = {
@@ -42,12 +42,12 @@ class Hexagone extends Element {
       y + height - coefs.bottomRight.a * (x + width - param);
 
     return (
-      mouseX * coefs.upperLeft.a + coefs.upperLeft.b < mouseY &&
-      mouseX * coefs.bottomLeft.a + coefs.bottomLeft.b > mouseY &&
-      mouseX * coefs.upperRight.a + coefs.upperRight.b < mouseY &&
-      mouseX * coefs.bottomRight.a + coefs.bottomRight.b > mouseY &&
-      mouseY > y &&
-      mouseY < y + height
+      xx * coefs.upperLeft.a + coefs.upperLeft.b < yy &&
+      xx * coefs.bottomLeft.a + coefs.bottomLeft.b > yy &&
+      xx * coefs.upperRight.a + coefs.upperRight.b < yy &&
+      xx * coefs.bottomRight.a + coefs.bottomRight.b > yy &&
+      yy > y &&
+      yy < y + height
     );
   }
 }
