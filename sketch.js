@@ -17,13 +17,12 @@ function setup() {
 
 function draw() {
   if (!loading) {
-    let element = vizMap.selectElement(mouseX, mouseY);
-    vizMap.handleSelection(element);
+    vizMap.selectElement(mouseX, mouseY);
+    vizMap.handleSelection();
     vizMap.render();
   }
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  vizMap.render();
 }

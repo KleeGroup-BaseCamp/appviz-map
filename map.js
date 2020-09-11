@@ -24,17 +24,22 @@ class Map {
   }
 
   selectElement(x, y) {
+    let elementFound = false;
     for (let layer of this.layers.slice().reverse()) {
       let element = layer.selectElement(x, y);
-      if (element) return element;
+      if (!elementFound && element) {
+        this.selected = element;
+        elementFound = true;
+      }
     }
-    return null;
+    if (!elementFound) this.selected = null;
   }
 
-  handleSelection(element) {
-    if (element) {
+  handleSelection() {
+    console.log(this.selected);
+    if (this.selected) {
       this.layers.forEach((layer) => layer.initStyle());
-      element.style.fill = HOVER_COLOR;
+      this.selected.style.fill = HOVER_COLOR;
       document.querySelector("main").style.cursor = "pointer";
     } else {
       this.layers.forEach((layer) => layer.initStyle());

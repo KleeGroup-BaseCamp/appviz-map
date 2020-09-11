@@ -25,6 +25,12 @@ class Element {
     };
   }
 
+  applyStyle(style) {
+    if (style.stroke) stroke(style.stroke);
+    if (style.strokeWeight) strokeWeight(style.strokeWeight);
+    if (style.fill) fill(...style.fill);
+  }
+
   render() {
     //This method must ne overridden
   }
