@@ -1,7 +1,6 @@
 class Map {
   constructor(state, config, notebook) {
     this.layers = initLayers(); // For testing purposes only
-    // Use (state, config, notebook) to get layers
     let level = 0;
     for (let layer of this.layers) {
       layer.level = level;

@@ -1,25 +1,20 @@
 let vizMap;
 let prevHoveredElement;
-let loading = true;
+let notebook;
+
+function preload() {
+  notebook = loadJSON("./notebook.json");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  fetch("./notebook.json")
-    .then((res) => res.json())
-    .then((notebook) => {
-      vizMap = new Map(null, null, notebook);
-      vizMap.render();
-      loading = false;
-    });
-  // frameRate(5);
+  vizMap = new Map(null, null, notebook.sketches);
 }
 
 function draw() {
-  if (!loading) {
-    vizMap.findElement(mouseX, mouseY);
-    vizMap.handleHover();
-    vizMap.render();
-  }
+  vizMap.findElement(mouseX, mouseY);
+  vizMap.handleHover();
+  vizMap.render();
 }
 
 function windowResized() {

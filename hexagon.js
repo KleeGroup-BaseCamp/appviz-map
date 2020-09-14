@@ -1,4 +1,4 @@
-class Hexagone extends Element {
+class Hexagon extends Element {
   constructor({ column, row, numOfColumns, numOfRows }) {
     super({
       column,
