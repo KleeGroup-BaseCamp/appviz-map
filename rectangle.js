@@ -10,13 +10,18 @@ class Rectangle extends Element {
 
   render() {
     this.applyStyle(this.style);
-    const { x, y, width, height } = this.getBoundingBox();
-    rect(x, y, width, height);
+    const { upperLeftX, upperLeftY, width, height } = this.getPixelProps();
+    rect(upperLeftX, upperLeftY, width, height);
   }
 
-  contains(xx, yy) {
-    const { x, y, width, height } = this.getBoundingBox();
+  contains(x, y) {
+    const { upperLeftX, upperLeftY, width, height } = this.getPixelProps();
 
-    return xx > x && xx < x + width && yy > y && yy < y + height;
+    return (
+      x > upperLeftX &&
+      x < upperLeftX + width &&
+      y > upperLeftY &&
+      y < upperLeftY + height
+    );
   }
 }

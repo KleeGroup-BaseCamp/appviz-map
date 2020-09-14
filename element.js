@@ -6,15 +6,15 @@ class Element {
     this.numOfRows = numOfRows;
   }
 
-  getBoundingBox() {
+  getPixelProps() {
     const padding = this.layer.level * 30;
     const rowSize = windowHeight / this.layer.rows;
     const columnSize = windowWidth / this.layer.columns;
-    const x = this.column * columnSize + padding;
-    const y = this.row * rowSize + padding;
+    const upperLeftX = this.column * columnSize + padding;
+    const upperLeftY = this.row * rowSize + padding;
     const height = rowSize * this.numOfRows - 2 * padding;
     const width = columnSize * this.numOfColumns - 2 * padding;
-    return { x, y, width, height };
+    return { upperLeftX, upperLeftY, width, height };
   }
 
   initStyle() {

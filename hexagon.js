@@ -8,46 +8,71 @@ class Hexagon extends Element {
     });
   }
 
+  getCircumcircle() {
+    const { upperLeftX, upperLeftY, width, height } = this.getPixelProps();
+    const circumcenterX = upperLeftX + width / 2;
+    const circumcenterY = upperLeftY + height / 2;
+    const circumradius = min(height, width / cos(30)) / 2;
+    return { circumcenterX, circumcenterY, circumradius };
+  }
+
   render() {
     this.applyStyle(this.style);
-    const { x, y, width, height } = this.getBoundingBox();
-    const param = height / (2 * sqrt(3));
+    const {
+      circumcenterX,
+      circumcenterY,
+      circumradius,
+    } = this.getCircumcircle();
+
     beginShape();
-    vertex(x + param, y);
-    vertex(x + width - param, y);
-    vertex(x + width, y + height / 2);
-    vertex(x + width - param, y + height);
-    vertex(x + param, y + height);
-    vertex(x, y + height / 2);
+    for (let i = 0; i < 6; i++) {
+      vertex(
+        circumcenterX + circumradius * cos(90 + 60 * i),
+        circumcenterY - circumradius * sin(90 + 60 * i)
+      );
+    }
     endShape(CLOSE);
   }
 
-  contains(xx, yy) {
-    const { x, y, width, height } = this.getBoundingBox();
-    const param = height / (2 * sqrt(3));
-    const coefs = {
-      upperLeft: {},
-      bottomLeft: {},
-      upperRight: {},
-      bottomRight: {},
-    };
-    coefs.upperLeft.a = -height / (param * 2);
-    coefs.upperLeft.b = y - coefs.upperLeft.a * (x + param);
-    coefs.bottomLeft.a = -coefs.upperLeft.a;
-    coefs.bottomLeft.b = y + height - coefs.bottomLeft.a * (x + param);
-    coefs.upperRight.a = coefs.bottomLeft.a;
-    coefs.upperRight.b = y - coefs.upperRight.a * (x + width - param);
-    coefs.bottomRight.a = coefs.upperLeft.a;
-    coefs.bottomRight.b =
-      y + height - coefs.bottomRight.a * (x + width - param);
+  contains(x, y) {
+    let contains = true;
+    const {
+      circumcenterX,
+      circumcenterY,
+      circumradius,
+    } = this.getCircumcircle();
+    for (let i = 0; i < 6; i++) {
+      contains = true;
+      let points = [
+        { x: circumcenterX, y: circumcenterY },
+        {
+          x: circumcenterX + circumradius * cos(30 + 60 * i),
+          y: circumcenterY - circumradius * sin(30 + 60 * i),
+        },
+        {
+          x: circumcenterX + circumradius * cos(90 + 60 * i),
+          y: circumcenterY - circumradius * sin(90 + 60 * i),
+        },
+      ];
 
-    return (
-      xx * coefs.upperLeft.a + coefs.upperLeft.b < yy &&
-      xx * coefs.bottomLeft.a + coefs.bottomLeft.b > yy &&
-      xx * coefs.upperRight.a + coefs.upperRight.b < yy &&
-      xx * coefs.bottomRight.a + coefs.bottomRight.b > yy &&
-      yy > y &&
-      yy < y + height
-    );
+      for (let j = 0; j < 3; j++) {
+        let a =
+          points[j].x != points[(j + 1) % 3].x
+            ? (points[j].y - points[(j + 1) % 3].y) /
+              (points[j].x - points[(j + 1) % 3].x)
+            : null;
+        let b = a ? points[j].y - a * points[j].x : points[j].x;
+
+        contains =
+          contains &&
+          (a
+            ? (y - a * x - b) *
+                (points[(j + 2) % 3].y - a * points[(j + 2) % 3].x - b) >
+              0
+            : (x - b) * (points[(j + 2) % 3].x - b) > 0);
+      }
+      if (contains) break;
+    }
+    return contains;
   }
 }

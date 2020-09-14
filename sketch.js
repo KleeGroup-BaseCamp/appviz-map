@@ -8,6 +8,7 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  angleMode(DEGREES);
   vizMap = new Map(null, null, notebook.sketches);
 }
 
