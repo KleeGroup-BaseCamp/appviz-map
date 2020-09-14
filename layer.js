@@ -14,7 +14,7 @@ class Layer {
     this.elements.forEach((element) => element.render());
   }
 
-  selectElement(x, y) {
+  findElement(x, y) {
     for (let element of this.elements) {
       if (element.contains(x, y)) return element;
     }

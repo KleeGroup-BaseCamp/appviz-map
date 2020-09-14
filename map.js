@@ -23,22 +23,22 @@ class Map {
     }
   }
 
-  selectElement(x, y) {
+  findElement(x, y) {
     let elementFound = false;
     for (let layer of this.layers.slice().reverse()) {
-      let element = layer.selectElement(x, y);
+      let element = layer.findElement(x, y);
       if (!elementFound && element) {
-        this.selected = element;
+        this.hoveredElement = element;
         elementFound = true;
       }
     }
-    if (!elementFound) this.selected = null;
+    if (!elementFound) this.hoveredElement = null;
   }
 
-  handleSelection() {
-    if (this.selected) {
+  handleHover() {
+    if (this.hoveredElement) {
       this.layers.forEach((layer) => layer.initStyle());
-      this.selected.style.fill = HOVER_COLOR;
+      this.hoveredElement.style.fill = HOVER_COLOR;
       document.querySelector("main").style.cursor = "pointer";
     } else {
       this.layers.forEach((layer) => layer.initStyle());

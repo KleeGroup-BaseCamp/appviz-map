@@ -16,8 +16,8 @@ function setup() {
 
 function draw() {
   if (!loading) {
-    vizMap.selectElement(mouseX, mouseY);
-    vizMap.handleSelection();
+    vizMap.findElement(mouseX, mouseY);
+    vizMap.handleHover();
     vizMap.render();
   }
 }
