@@ -1,5 +1,5 @@
 class Map {
-  #selected;
+  #selected = null;
   #layers = initLayers();
 
   constructor(state, config, notebook) {
@@ -48,12 +48,15 @@ class Map {
 
   /*
     Selects an element on the map
-    The previous selected element is unselected.  
+    The previous selected element is unselected.
+    Each element is responsible for its style
   */
   select(element) {
-    this.#layers.forEach((layer) => layer.initStyle());
+    if (this.#selected){
+      this.#selected.initStyle();
+    }
     if (element){
-      element.style.fill = HOVER_COLOR;
+      element.hover();
     }
     this.#selected = element;  
   }
