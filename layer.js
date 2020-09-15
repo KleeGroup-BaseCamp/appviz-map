@@ -5,10 +5,9 @@ class Layer {
     this.elements = [];
   }
 
-  withElement(element) {
+  addElement(element) {
     this.elements.push(element);
     element.layer = this;
-    return this;
   }
 
   render() {
