@@ -18,6 +18,7 @@ class Layer {
     for (let element of this.elements) {
       if (element.contains(x, y)) return element;
     }
+    return null;
   }
 
   renderGrid() {
