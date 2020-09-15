@@ -1,13 +1,14 @@
 class Element {
-  constructor({ column, row, numOfColumns, numOfRows }) {
+  constructor({ column, row, numOfColumns, numOfRows, title = "" }) {
     this.column = column;
     this.row = row;
     this.numOfColumns = numOfColumns;
     this.numOfRows = numOfRows;
+    this.title = title;
   }
 
   getPixelProps() {
-    const padding = this.layer.level * 30;
+    const padding = this.layer.level * 10 + 5;
     const rowSize = windowHeight / this.layer.rows;
     const columnSize = windowWidth / this.layer.columns;
     const upperLeftX = this.column * columnSize + padding;
@@ -36,10 +37,10 @@ class Element {
   }
 
   render() {
-    //This method must ne overridden
+    //This method must be overridden
   }
 
   contains(x, y) {
-    //This method must ne overridden
+    //This method must  be overridden
   }
 }
