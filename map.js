@@ -1,8 +1,8 @@
 class Map {
   constructor(state, config, notebook) {
-    this.layers = initLayers(); // For testing purposes only
+    // this.layers = initLayers(); // For testing purposes only
     let level = 0;
-    let domains = this.extractDomains(notebook);
+    this.layers = this.generateLayersFromDomains(this.extractDomains(notebook));
     for (let layer of this.layers) {
       layer.level = level;
       layer.initStyle();
@@ -12,9 +12,9 @@ class Map {
 
   render() {
     background(3, 4, 94);
-    for (let layer of this.layers) {
-      layer.renderGrid(); // Drawing grid for testing purposes only
-    }
+    // for (let layer of this.layers) {
+    //   layer.renderGrid(); // Drawing grid for testing purposes only
+    // }
     let level = 0;
     for (let layer of this.layers) {
       layer.level = level;
@@ -66,6 +66,54 @@ class Map {
         } else domains[domainName] = { tasks: [sketchName] };
       }
     });
+    console.log(domains);
     return domains;
+  }
+
+  generateLayersFromDomains(domains) {
+    const numOfDomains = Object.keys(domains).length;
+    const numOfRows = Math.ceil(numOfDomains / 3);
+    let layer1 = new Layer(numOfRows, 3);
+    let layer2 = new Layer(numOfRows * 5, 12);
+    Object.keys(domains).forEach((domain, domainIndex) => {
+      layer1.addElement(
+        new Rectangle({
+          column: domainIndex % 3,
+          row: numOfRows - (Math.floor(domainIndex / 3) + 1),
+          numOfColumns: 1,
+          numOfRows: 1,
+        })
+      );
+      if (domains[domain].objects) {
+        domains[domain].objects.forEach((object, objectIndex) => {
+          if (objectIndex < 4) {
+            layer2.addElement(
+              new Square({
+                column: (domainIndex % 3) * 4 + objectIndex,
+                row: numOfRows * 5 - 5 * (Math.floor(domainIndex / 3) + 1) + 1,
+                numOfColumns: 1,
+                numOfRows: 2,
+              })
+            );
+          }
+        });
+      }
+      if (domains[domain].tasks) {
+        domains[domain].tasks.forEach((object, taskIndex) => {
+          if (taskIndex < 4) {
+            layer2.addElement(
+              new Square({
+                column: (domainIndex % 3) * 4 + taskIndex,
+                row: numOfRows * 5 - 5 * (Math.floor(domainIndex / 3) + 1) + 3,
+                numOfColumns: 1,
+                numOfRows: 2,
+              })
+            );
+          }
+        });
+      }
+    });
+
+    return [layer1, layer2];
   }
 }
