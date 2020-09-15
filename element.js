@@ -1,9 +1,10 @@
 class Element {
-  constructor({ column, row, numOfColumns, numOfRows }) {
+  constructor({ column, row, numOfColumns, numOfRows, title = "" }) {
     this.column = column;
     this.row = row;
     this.numOfColumns = numOfColumns;
     this.numOfRows = numOfRows;
+    this.title = title;
   }
 
   getPixelProps() {

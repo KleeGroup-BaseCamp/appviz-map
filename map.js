@@ -66,47 +66,50 @@ class Map {
         } else domains[domainName] = { tasks: [sketchName] };
       }
     });
-    console.log(domains);
     return domains;
   }
 
   generateLayersFromDomains(domains) {
     const numOfDomains = Object.keys(domains).length;
-    const numOfRows = Math.ceil(numOfDomains / 3);
-    let layer1 = new Layer(numOfRows, 3);
-    let layer2 = new Layer(numOfRows * 5, 12);
+    const numOfRows = Math.ceil(numOfDomains / 3) * 5;
+    let layer1 = new Layer(numOfRows, 12);
+    let layer2 = new Layer(numOfRows, 12);
     Object.keys(domains).forEach((domain, domainIndex) => {
       layer1.addElement(
         new Rectangle({
-          column: domainIndex % 3,
-          row: numOfRows - (Math.floor(domainIndex / 3) + 1),
-          numOfColumns: 1,
-          numOfRows: 1,
+          column: (domainIndex % 3) * 4,
+          row: numOfRows - 5 * (Math.floor(domainIndex / 3) + 1),
+          numOfColumns: 4,
+          numOfRows: 5,
+          title: domain,
         })
       );
+
       if (domains[domain].objects) {
         domains[domain].objects.forEach((object, objectIndex) => {
           if (objectIndex < 4) {
             layer2.addElement(
               new Square({
                 column: (domainIndex % 3) * 4 + objectIndex,
-                row: numOfRows * 5 - 5 * (Math.floor(domainIndex / 3) + 1) + 1,
+                row: numOfRows - 5 * (Math.floor(domainIndex / 3) + 1) + 1,
                 numOfColumns: 1,
                 numOfRows: 2,
+                title: object,
               })
             );
           }
         });
       }
       if (domains[domain].tasks) {
-        domains[domain].tasks.forEach((object, taskIndex) => {
+        domains[domain].tasks.forEach((task, taskIndex) => {
           if (taskIndex < 4) {
             layer2.addElement(
               new Square({
                 column: (domainIndex % 3) * 4 + taskIndex,
-                row: numOfRows * 5 - 5 * (Math.floor(domainIndex / 3) + 1) + 3,
+                row: numOfRows - 5 * (Math.floor(domainIndex / 3) + 1) + 3,
                 numOfColumns: 1,
                 numOfRows: 2,
+                title: task,
               })
             );
           }

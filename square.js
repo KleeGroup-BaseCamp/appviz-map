@@ -1,10 +1,11 @@
 class Square extends Element {
-  constructor({ column, row, numOfColumns, numOfRows }) {
+  constructor({ column, row, numOfColumns, numOfRows, title }) {
     super({
       column,
       row,
       numOfColumns,
       numOfRows,
+      title,
     });
   }
 
@@ -30,6 +31,37 @@ class Square extends Element {
         boundingBoxUpperLeftY + (boundingBoxHeight - boundingBoxWidth) / 2;
     }
     square(squareUpperLeftX, squareUpperLeftY, sideLength);
+    // console.log(this.title, this.getMaxTextSize(sideLength));
+    rectMode(CENTER);
+    noStroke();
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textFont("Helvetica");
+    textSize(this.getMaxTextSize(sideLength));
+    text(
+      this.title,
+      squareUpperLeftX + sideLength / 2,
+      squareUpperLeftY + sideLength / 2,
+      sideLength,
+      sideLength
+    );
+
+    rectMode(CORNER);
+  }
+
+  getMaxTextSize(sideLength) {
+    if (!this.title) return 0;
+    let size = 1;
+    textSize(size);
+
+    while (textWidth(this.title) < sideLength) {
+      size++;
+      textSize(size);
+    }
+    if (this.title === "DtGroups") {
+      //   console.log(textWidth(this.title));
+    }
+    return size - 1;
   }
 
   contains(x, y) {
