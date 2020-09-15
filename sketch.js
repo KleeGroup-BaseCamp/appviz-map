@@ -1,5 +1,4 @@
 let vizMap;
-let prevHoveredElement;
 let notebook;
 
 function preload() {
@@ -13,9 +12,21 @@ function setup() {
 }
 
 function draw() {
-  vizMap.findElement(mouseX, mouseY);
-  vizMap.handleHover();
+  //---
+  let element = vizMap.findElement(mouseX, mouseY);
+  vizMap.select(element);
+
+  drawCursor(element!=null);
+  //----
   vizMap.render();
+}
+
+function drawCursor(isSelected) {
+  if (isSelected) {
+    document.querySelector("main").style.cursor = "pointer";
+  } else {
+    document.querySelector("main").style.cursor = "default";
+  }
 }
 
 function windowResized() {

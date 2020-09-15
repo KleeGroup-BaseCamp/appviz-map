@@ -1,49 +1,71 @@
 class Map {
+  #selected = null;
+  #layers = initLayers();
+
   constructor(state, config, notebook) {
     // this.layers = initLayers(); // For testing purposes only
     let level = 0;
-    this.layers = this.generateLayersFromDomains(this.extractDomains(notebook));
-    for (let layer of this.layers) {
+    this.#layers = this.generateLayersFromDomains(
+      this.extractDomains(notebook)
+    );
+    for (let layer of this.#layers) {
       layer.level = level;
       layer.initStyle();
-      level += 1;
+      level++;
     }
   }
 
   render() {
+    this.#renderBackground();
+    // this.#renderGrid();
+    this.#renderLayers();
+  }
+
+  #renderBackground() {
     background(3, 4, 94);
-    // for (let layer of this.layers) {
-    //   layer.renderGrid(); // Drawing grid for testing purposes only
-    // }
+  }
+
+  #renderLayers() {
     let level = 0;
-    for (let layer of this.layers) {
+    this.#layers.forEach((layer) => {
       layer.level = level;
       layer.render();
       level += 1;
+    });
+  }
+
+  #renderGrid() {
+    for (let layer of this.#layers) {
+      layer.renderGrid(); // Drawing grid for testing purposes only
     }
   }
 
+  /*
+   * finds the element positionned in x, y
+   */
   findElement(x, y) {
-    let elementFound = false;
-    for (let layer of this.layers.slice().reverse()) {
+    for (let layer of this.#layers.slice().reverse()) {
       let element = layer.findElement(x, y);
-      if (!elementFound && element) {
-        this.hoveredElement = element;
-        elementFound = true;
+      if (element) {
+        return element;
       }
     }
-    if (!elementFound) this.hoveredElement = null;
+    return null;
   }
 
-  handleHover() {
-    if (this.hoveredElement) {
-      this.layers.forEach((layer) => layer.initStyle());
-      this.hoveredElement.style.fill = HOVER_COLOR;
-      document.querySelector("main").style.cursor = "pointer";
-    } else {
-      this.layers.forEach((layer) => layer.initStyle());
-      document.querySelector("main").style.cursor = "default";
+  /*
+    Selects an element on the map
+    The previous selected element is unselected.
+    Each element is responsible for its style
+  */
+  select(element) {
+    if (this.#selected) {
+      this.#selected.initStyle();
     }
+    if (element) {
+      element.hover();
+    }
+    this.#selected = element;
   }
 
   extractDomains(notebook) {

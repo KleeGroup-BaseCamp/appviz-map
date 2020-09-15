@@ -26,6 +26,10 @@ class Element {
     };
   }
 
+  hover() {
+    this.style.fill = HOVER_COLOR;
+  }
+
   applyStyle(style) {
     if (style.stroke) stroke(style.stroke);
     if (style.strokeWeight) strokeWeight(style.strokeWeight);
