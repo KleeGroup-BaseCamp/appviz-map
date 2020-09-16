@@ -9,15 +9,14 @@ class Square extends Element {
     });
   }
 
-  render() {
+  getSquareProps() {
     let sideLength, squareUpperLeftX, squareUpperLeftY;
-    this.applyStyle(this.style);
     const {
       upperLeftX: boundingBoxUpperLeftX,
       upperLeftY: boundingBoxUpperLeftY,
       width: boundingBoxWidth,
       height: boundingBoxHeight,
-    } = this.getPixelProps();
+    } = this.getBoundingBox();
 
     if (boundingBoxWidth > boundingBoxHeight) {
       sideLength = boundingBoxHeight;
@@ -30,8 +29,19 @@ class Square extends Element {
       squareUpperLeftY =
         boundingBoxUpperLeftY + (boundingBoxHeight - boundingBoxWidth) / 2;
     }
+    return { squareUpperLeftX, squareUpperLeftY, sideLength };
+  }
+
+  render() {
+    this.applyStyle(this.style);
+    const {
+      squareUpperLeftX,
+      squareUpperLeftY,
+      sideLength,
+    } = this.getSquareProps();
     square(squareUpperLeftX, squareUpperLeftY, sideLength);
-    // console.log(this.title, this.getMaxTextSize(sideLength));
+
+    // Add title
     rectMode(CENTER);
     noStroke();
     fill(255);
@@ -45,7 +55,6 @@ class Square extends Element {
       sideLength,
       sideLength
     );
-
     rectMode(CORNER);
   }
 
@@ -53,36 +62,19 @@ class Square extends Element {
     if (!this.title) return 0;
     let size = 1;
     textSize(size);
-
     while (textWidth(this.title) < sideLength) {
       size++;
       textSize(size);
-    }
-    if (this.title === "DtGroups") {
-      //   console.log(textWidth(this.title));
     }
     return size - 1;
   }
 
   contains(x, y) {
-    let sideLength, squareUpperLeftX, squareUpperLeftY;
     const {
-      upperLeftX: boundingBoxUpperLeftX,
-      upperLeftY: boundingBoxUpperLeftY,
-      width: boundingBoxWidth,
-      height: boundingBoxHeight,
-    } = this.getPixelProps();
-    if (boundingBoxWidth > boundingBoxHeight) {
-      sideLength = boundingBoxHeight;
-      squareUpperLeftX =
-        boundingBoxUpperLeftX + (boundingBoxWidth - boundingBoxHeight) / 2;
-      squareUpperLeftY = boundingBoxUpperLeftY;
-    } else {
-      sideLength = boundingBoxWidth;
-      squareUpperLeftX = boundingBoxUpperLeftX;
-      squareUpperLeftY =
-        boundingBoxUpperLeftY + (boundingBoxHeight - boundingBoxWidth) / 2;
-    }
+      squareUpperLeftX,
+      squareUpperLeftY,
+      sideLength,
+    } = this.getSquareProps();
     return (
       x > squareUpperLeftX &&
       x < squareUpperLeftX + sideLength &&

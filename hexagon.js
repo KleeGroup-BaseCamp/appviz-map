@@ -9,7 +9,7 @@ class Hexagon extends Element {
   }
 
   getCircumcircle() {
-    const { upperLeftX, upperLeftY, width, height } = this.getPixelProps();
+    const { upperLeftX, upperLeftY, width, height } = this.getBoundingBox();
     const circumcenterX = upperLeftX + width / 2;
     const circumcenterY = upperLeftY + height / 2;
     const circumradius = min(height, width / cos(30)) / 2;

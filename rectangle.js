@@ -11,7 +11,7 @@ class Rectangle extends Element {
 
   render() {
     this.applyStyle(this.style);
-    const { upperLeftX, upperLeftY, width, height } = this.getPixelProps();
+    const { upperLeftX, upperLeftY, width, height } = this.getBoundingBox();
     rect(upperLeftX, upperLeftY, width, height);
     rectMode(CENTER);
     textSize(32);
@@ -28,7 +28,7 @@ class Rectangle extends Element {
   }
 
   contains(x, y) {
-    const { upperLeftX, upperLeftY, width, height } = this.getPixelProps();
+    const { upperLeftX, upperLeftY, width, height } = this.getBoundingBox();
 
     return (
       x > upperLeftX &&

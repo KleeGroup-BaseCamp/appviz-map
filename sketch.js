@@ -1,23 +1,20 @@
 let vizMap;
-let notebook;
+let notebookHandler;
 
 function preload() {
-  notebook = loadJSON("./notebook.json");
+  notebookHandler = new NotebookHandler("./notebook.json");
 }
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
-  vizMap = new Map(null, null, notebook.sketches);
+  vizMap = new Map(null, null, notebookHandler);
 }
 
 function draw() {
-  //---
   let element = vizMap.findElement(mouseX, mouseY);
   vizMap.select(element);
-
-  drawCursor(element!=null);
-  //----
+  drawCursor(element != null);
   vizMap.render();
 }
 

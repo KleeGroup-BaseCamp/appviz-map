@@ -7,7 +7,7 @@ class Element {
     this.title = title;
   }
 
-  getPixelProps() {
+  getBoundingBox() {
     const padding = this.layer.level * 10 + 5;
     const rowSize = windowHeight / this.layer.rows;
     const columnSize = windowWidth / this.layer.columns;
