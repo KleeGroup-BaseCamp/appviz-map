@@ -1,23 +1,21 @@
 class Map {
-  #selected = null;
-  #layers = [];
-  #notebookHandler;
+  #selected;
+  #layers;
 
-  constructor(state, config, notebookHandler) {
-    let level = 0;
-    this.#notebookHandler = notebookHandler;
-    this.#layers = this.#notebookHandler
-      ? this.#notebookHandler.generateLayersFromDomains(
-          this.#notebookHandler.extractDomains()
-        )
-      : [];
-    for (let layer of this.#layers) {
-      layer.level = level;
-      layer.initStyle();
-      level++;
-    }
+  constructor(layers)  {
+    this.#layers = layers;
+    this.#initStyle();
   }
 
+  #initStyle(){
+    this.#layers.forEach (layer => layer.initStyle()); 
+  }
+
+  /*
+    Renders the map
+    - the background
+    - the layers from bottom to up
+   */
   render() {
     this.#renderBackground();
     // this.#renderGrid();
@@ -29,12 +27,7 @@ class Map {
   }
 
   #renderLayers() {
-    let level = 0;
-    this.#layers.forEach((layer) => {
-      layer.level = level;
-      layer.render();
-      level += 1;
-    });
+    this.#layers.forEach(layer => layer.render());
   }
 
   #renderGrid() {

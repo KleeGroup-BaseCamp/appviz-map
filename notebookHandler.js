@@ -3,7 +3,12 @@ class NotebookHandler {
     this.notebook = loadJSON(notebookPath);
   }
 
-  extractDomains() {
+  handle (mapBuilder){
+    let domains = this.#extractDomains();
+    this.#generateLayersFromDomains(domains, mapBuilder);
+  }
+
+  #extractDomains() {
     let domains = {};
     Object.keys(this.notebook.sketches).map((sketchName) => {
       if (sketchName.slice(0, 2) === "Dt") {
@@ -31,11 +36,11 @@ class NotebookHandler {
     return domains;
   }
 
-  generateLayersFromDomains(domains) {
+  #generateLayersFromDomains(domains, mapBuilder) {
     const numOfDomains = Object.keys(domains).length;
     const numOfRows = Math.ceil(numOfDomains / 3) * 5;
-    let layer1 = new Layer(numOfRows, 12);
-    let layer2 = new Layer(numOfRows, 12);
+    let layer1 = mapBuilder.addLayer(numOfRows, 12);
+    let layer2 = mapBuilder.addLayer(numOfRows, 12);
     Object.keys(domains).forEach((domain, domainIndex) => {
       layer1.addElement(
         new Rectangle({
@@ -84,7 +89,5 @@ class NotebookHandler {
         });
       }
     });
-
-    return [layer1, layer2];
   }
 }

@@ -8,7 +8,10 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
-  vizMap = new Map(null, null, notebookHandler);
+
+  let mapBuilder = new MapBuilder();
+  notebookHandler.handle(mapBuilder); 
+  vizMap = mapBuilder.build();    
 }
 
 function draw() {
