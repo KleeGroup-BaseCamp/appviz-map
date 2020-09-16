@@ -47,26 +47,27 @@ class Square extends Element {
     fill(255);
     textAlign(CENTER, CENTER);
     textFont("Helvetica");
-    textSize(this.getMaxTextSize(sideLength));
+    textSize(16);
     text(
-      this.title,
+      this.getMaxCharacters(sideLength) + 3 != this.title.length
+        ? this.title.slice(0, this.getMaxCharacters(sideLength)) + "..."
+        : this.title,
       squareUpperLeftX + sideLength / 2,
-      squareUpperLeftY + sideLength / 2,
-      sideLength,
-      sideLength
+      squareUpperLeftY + sideLength / 2
     );
     rectMode(CORNER);
   }
 
-  getMaxTextSize(sideLength) {
+  getMaxCharacters(sideLength) {
     if (!this.title) return 0;
-    let size = 1;
-    textSize(size);
-    while (textWidth(this.title) < sideLength) {
-      size++;
-      textSize(size);
+    let numOfCharacters = 1;
+    while (
+      numOfCharacters <= this.title.length &&
+      textWidth(this.title.slice(0, numOfCharacters)) < sideLength
+    ) {
+      numOfCharacters++;
     }
-    return size - 1;
+    return numOfCharacters - 4;
   }
 
   contains(x, y) {

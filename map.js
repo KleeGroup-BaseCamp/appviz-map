@@ -20,7 +20,7 @@ class Map {
 
   render() {
     this.#renderBackground();
-    this.#renderGrid();
+    // this.#renderGrid();
     this.#renderLayers();
   }
 

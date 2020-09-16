@@ -27,6 +27,7 @@ class NotebookHandler {
         } else domains[domainName] = { tasks: [sketchName] };
       }
     });
+    console.log(domains);
     return domains;
   }
 
@@ -55,7 +56,10 @@ class NotebookHandler {
                 row: numOfRows - 5 * (Math.floor(domainIndex / 3) + 1) + 1,
                 numOfColumns: 1,
                 numOfRows: 2,
-                title: object,
+                title:
+                  objectIndex < 3 || domains[domain].objects.length == 4
+                    ? object
+                    : "More ...",
               })
             );
           }
@@ -70,7 +74,10 @@ class NotebookHandler {
                 row: numOfRows - 5 * (Math.floor(domainIndex / 3) + 1) + 3,
                 numOfColumns: 1,
                 numOfRows: 2,
-                title: task,
+                title:
+                  taskIndex < 3 || domains[domain].tasks.length == 4
+                    ? task
+                    : "More ...",
               })
             );
           }
