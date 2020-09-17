@@ -3,8 +3,8 @@ class Layer {
   columns;
   #elements = [];
   level;
-  
-  constructor(rows, columns, level) {
+
+  constructor(columns, rows, level) {
     this.rows = rows;
     this.columns = columns;
     this.level = level;
@@ -16,7 +16,7 @@ class Layer {
   }
 
   render() {
-    this.#elements.forEach(element => element.render());
+    this.#elements.forEach((element) => element.render());
   }
 
   findElement(x, y) {
@@ -40,6 +40,6 @@ class Layer {
   }
 
   initStyle() {
-    this.#elements.forEach(element => element.initStyle());
+    this.#elements.forEach((element) => element.initStyle());
   }
 }
