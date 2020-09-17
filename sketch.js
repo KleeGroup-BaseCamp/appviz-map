@@ -22,11 +22,7 @@ function draw() {
 }
 
 function drawCursor(isSelected) {
-  if (isSelected) {
-    document.querySelector("main").style.cursor = "pointer";
-  } else {
-    document.querySelector("main").style.cursor = "default";
-  }
+    cursor (isSelected ? "pointer":"default");
 }
 
 function windowResized() {
