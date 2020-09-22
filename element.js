@@ -1,39 +1,25 @@
 class Element {
-  constructor({ column, row, numOfColumns, numOfRows, title = "" }) {
-    this.column = column;
-    this.row = row;
-    this.numOfColumns = numOfColumns;
-    this.numOfRows = numOfRows;
-    this.title = title;
-  }
-
-  getBoundingBox() {
-    const padding = this.layer.level * 10 + 10;
-    const rowSize = windowHeight / this.layer.rows;
-    const columnSize = windowWidth / this.layer.columns;
-    const upperLeftX = this.column * columnSize + padding;
-    const upperLeftY = this.row * rowSize + padding;
-    const height = rowSize * this.numOfRows - 2 * padding;
-    const width = columnSize * this.numOfColumns - 2 * padding;
-    return { upperLeftX, upperLeftY, width, height };
+  _style;
+  constructor(style) {
+    this._style = style;
   }
 
   initStyle() {
-    this.style = {
-      fill: COLORS[this.layer.level],
+    this._style = {
+      fill: COLORS[0],
       stroke: 255,
       strokeWeight: 2,
     };
   }
 
   hover() {
-    this.style.fill = HOVER_COLOR;
+    this._style.fill = HOVER_COLOR;
   }
 
-  applyStyle(style) {
-    if (style.stroke) stroke(style.stroke);
-    if (style.strokeWeight) strokeWeight(style.strokeWeight);
-    if (style.fill) fill(...style.fill);
+  applyStyle() {
+    if (this._style.stroke) stroke(this._style.stroke);
+    if (this._style.strokeWeight) strokeWeight(this._style.strokeWeight);
+    if (this._style.fill) fill(this._style.fill);
   }
 
   render() {

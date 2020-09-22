@@ -2,13 +2,17 @@ class Map {
   #selected;
   #layers;
 
-  constructor(layers)  {
+  constructor(layers) {
     this.#layers = layers;
     this.#initStyle();
   }
 
-  #initStyle(){
-    this.#layers.forEach (layer => layer.initStyle()); 
+  #initStyle() {
+    this.#layers.forEach((layer) => layer.initStyle());
+  }
+
+  getlayers() {
+    return this.#layers;
   }
 
   /*
@@ -27,7 +31,7 @@ class Map {
   }
 
   #renderLayers() {
-    this.#layers.forEach(layer => layer.render());
+    this.#layers.forEach((layer) => layer.render());
   }
 
   #renderGrid() {

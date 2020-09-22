@@ -1,40 +1,30 @@
 class Rectangle extends Element {
-  constructor({ column, row, numOfColumns, numOfRows, title }) {
-    super({
-      column,
-      row,
-      numOfColumns,
-      numOfRows,
-      title,
-    });
+  #title;
+  #height;
+  #width;
+  constructor({ title = "", style = {}, height, width }) {
+    super(style);
+    this.#title = title;
+    this.#height = height;
+    this.#width = width;
   }
 
   render() {
-    this.applyStyle(this.style);
-    const { upperLeftX, upperLeftY, width, height } = this.getBoundingBox();
-    rect(upperLeftX, upperLeftY, width, height);
-    rectMode(CENTER);
-    textSize(32);
-    noStroke();
-    fill(255);
-    textAlign(CENTER, CENTER);
-    textFont("Helvetica");
-    text(
-      this.title,
-      upperLeftX + width / 2,
-      upperLeftY + height / (2 * this.numOfRows) // Position on the first column
-    );
-    rectMode(CORNER);
+    this.applyStyle(this._style);
+    rect(0, 0, this.#width, this.#height);
+    if (this.#title) {
+      rectMode(CENTER);
+      textSize(16);
+      noStroke();
+      fill(255);
+      textAlign(CENTER, CENTER);
+      textFont("Helvetica");
+      text(this.#title, this.#width / 2, 20); // Hardcode title position for now
+      rectMode(CORNER);
+    }
   }
 
   contains(x, y) {
-    const { upperLeftX, upperLeftY, width, height } = this.getBoundingBox();
-
-    return (
-      x > upperLeftX &&
-      x < upperLeftX + width &&
-      y > upperLeftY &&
-      y < upperLeftY + height
-    );
+    return x > 0 && x < this.#width && y > 0 && y < this.#height;
   }
 }

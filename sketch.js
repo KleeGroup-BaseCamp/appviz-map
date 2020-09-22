@@ -10,8 +10,8 @@ function setup() {
   angleMode(DEGREES);
 
   let mapBuilder = new MapBuilder();
-  notebookHandler.handle(mapBuilder); 
-  vizMap = mapBuilder.build();    
+  // notebookHandler.handle(mapBuilder);
+  vizMap = mapBuilder.buildTestMap();
 }
 
 function draw() {
@@ -22,7 +22,7 @@ function draw() {
 }
 
 function drawCursor(isSelected) {
-    cursor (isSelected ? "pointer":"default");
+  cursor(isSelected ? "pointer" : "default");
 }
 
 function windowResized() {

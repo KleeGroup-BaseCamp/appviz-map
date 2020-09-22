@@ -12,4 +12,12 @@ class MapBuilder {
   build() {
     return new Map(this.#layers);
   }
+
+  buildTestMap() {
+    let layer = new Layer();
+    layer.addElement(
+      new Rectangle({ height: 100, width: 300, title: "It works" })
+    );
+    return new Map([layer]);
+  }
 }
