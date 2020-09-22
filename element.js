@@ -1,22 +1,22 @@
 class Element {
-  _style;
-  constructor(style) {
-    this._style = style;
+  _x;
+  _y;
+  _style = DEFAULT_STYLE; // Hardcode init style
+
+  constructor(x, y) {
+    this._x = x;
+    this._y = y;
   }
 
-  initStyle() {
-    this._style = {
-      fill: COLORS[0],
-      stroke: 255,
-      strokeWeight: 2,
-    };
+  setDefaultStyle() {
+    this._style = DEFAULT_STYLE; // Hardcode default style
   }
 
   hover() {
-    this._style.fill = HOVER_COLOR;
+    this._style = HOVER_STYLE; // Hardcode hover style
   }
 
-  applyStyle() {
+  _applyStyle() {
     if (this._style.stroke) stroke(this._style.stroke);
     if (this._style.strokeWeight) strokeWeight(this._style.strokeWeight);
     if (this._style.fill) fill(this._style.fill);

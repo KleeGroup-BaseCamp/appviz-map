@@ -3,17 +3,20 @@ class Layer {
 
   constructor() {}
 
-  addElement(element, x, y) {
-    this.#elements.push({ element, x, y });
+  addElement(element) {
+    this.#elements.push(element);
+    return this;
   }
 
   render() {
-    this.#elements.forEach((element) => element.element.render());
+    this.#elements.forEach((element) => {
+      element.render();
+    });
   }
 
   findElement(x, y) {
     for (let element of this.#elements) {
-      if (element.element.contains(x, y)) return element.element;
+      if (element.contains(x, y)) return element;
     }
     return null;
   }
@@ -32,6 +35,6 @@ class Layer {
   }
 
   initStyle() {
-    this.#elements.forEach((element) => element.element.initStyle());
+    this.#elements.forEach((element) => element.initStyle());
   }
 }

@@ -15,9 +15,9 @@ class MapBuilder {
 
   buildTestMap() {
     let layer = new Layer();
-    layer.addElement(
-      new Rectangle({ height: 100, width: 300, title: "It works" })
-    );
+    layer
+      .addElement(new Rectangle(0, 0, 200, 100, "It works"))
+      .addElement(new Rectangle(200, 200, 200, 100));
     return new Map([layer]);
   }
 }

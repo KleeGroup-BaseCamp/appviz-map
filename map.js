@@ -4,7 +4,7 @@ class Map {
 
   constructor(layers) {
     this.#layers = layers;
-    this.#initStyle();
+    // this.#initStyle();
   }
 
   #initStyle() {
@@ -60,7 +60,7 @@ class Map {
   */
   select(element) {
     if (this.#selected) {
-      this.#selected.initStyle();
+      this.#selected.setDefaultStyle();
     }
     if (element) {
       element.hover();
