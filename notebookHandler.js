@@ -32,15 +32,14 @@ class NotebookHandler {
         } else domains[domainName] = { tasks: [sketchName] };
       }
     });
-    // console.log(domains);
+    console.log(domains);
     return domains;
   }
 
   #generateLayersFromDomains(domains, mapBuilder, fake) {
-    const padding = 10;
     let zonesLayer = mapBuilder.addLayer();
     let groupsLayer = mapBuilder.addLayer();
-
+    let itemsLayer = mapBuilder.addLayer();
     Object.keys(fake.zones).forEach((zoneName) => {
       let zone = fake.zones[zoneName];
       let { x, y, width, height } = this.#getPixels(
@@ -52,6 +51,7 @@ class NotebookHandler {
       zonesLayer.addElement(new Rectangle(x, y, width, height, zoneName));
     });
     Object.keys(fake.groups).forEach((groupName) => {
+      const padding = 10;
       let group = fake.groups[groupName];
       let { x, y, width, height } = this.#getPixels(
         group.row,
@@ -66,6 +66,22 @@ class NotebookHandler {
           width - padding * 2,
           height - padding * 2,
           groupName
+        )
+      );
+      itemsLayer.addElement(
+        new ItemType(
+          x + padding + 20,
+          y + padding + 50,
+          "Dt",
+          domains[groupName].objects ? domains[groupName].objects.length : 0
+        )
+      );
+      itemsLayer.addElement(
+        new ItemType(
+          x + padding + 20,
+          y + padding + 100,
+          "Tk",
+          domains[groupName].tasks ? domains[groupName].tasks.length : 0
         )
       );
     });
