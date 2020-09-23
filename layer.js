@@ -33,8 +33,4 @@ class Layer {
       line(columnSize * j, 0, columnSize * j, windowHeight);
     }
   }
-
-  initStyle() {
-    this.#elements.forEach((element) => element.initStyle());
-  }
 }

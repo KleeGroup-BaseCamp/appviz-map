@@ -1,11 +1,9 @@
 class MapBuilder {
-  #level = 0;
   #layers = [];
 
-  addLayer(columns, rows) {
-    let layer = new Layer(columns, rows, this.#level);
+  addLayer() {
+    let layer = new Layer();
     this.#layers.push(layer);
-    this.#level++;
     return layer;
   }
 
@@ -16,8 +14,9 @@ class MapBuilder {
   buildTestMap() {
     let layer = new Layer();
     layer
-      .addElement(new Rectangle(0, 0, 200, 100, "It works"))
-      .addElement(new Rectangle(200, 200, 200, 100));
+      .addElement(new Rectangle(400, 400, 200, 100, "Title goes here"))
+      .addElement(new Rectangle(200, 200, 200, 100))
+      .addElement(new ItemType(0, 0, "test", 15));
     return new Map([layer]);
   }
 }

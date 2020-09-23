@@ -1,8 +1,10 @@
 let vizMap;
 let notebookHandler;
+let fake;
 
 function preload() {
   notebookHandler = new NotebookHandler("./notebook.json");
+  fake = loadJSON("./fake.json");
 }
 
 function setup() {
@@ -10,8 +12,8 @@ function setup() {
   angleMode(DEGREES);
 
   let mapBuilder = new MapBuilder();
-  // notebookHandler.handle(mapBuilder);
-  vizMap = mapBuilder.buildTestMap();
+  notebookHandler.handle(mapBuilder, fake);
+  vizMap = mapBuilder.build();
 }
 
 function draw() {

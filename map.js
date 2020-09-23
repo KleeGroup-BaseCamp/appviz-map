@@ -4,11 +4,6 @@ class Map {
 
   constructor(layers) {
     this.#layers = layers;
-    // this.#initStyle();
-  }
-
-  #initStyle() {
-    this.#layers.forEach((layer) => layer.initStyle());
   }
 
   getlayers() {
@@ -17,13 +12,13 @@ class Map {
 
   /*
     Renders the map
-    - the background
-    - the layers from bottom to up
+    - The background
+    - The layers from bottom to up
    */
   render() {
     this.#renderBackground();
-    // this.#renderGrid();
     this.#renderLayers();
+    this.#renderGrid();
   }
 
   #renderBackground() {
@@ -35,8 +30,13 @@ class Map {
   }
 
   #renderGrid() {
-    for (let layer of this.#layers) {
-      layer.renderGrid(); // Drawing grid for testing purposes only
+    strokeWeight(1);
+    stroke(150);
+    for (let i = 0; i < 12; i++) {
+      line(0, (windowHeight / 12) * i, windowWidth, (windowHeight / 12) * i);
+    }
+    for (let j = 0; j < 12; j++) {
+      line((windowWidth / 12) * j, 0, (windowWidth / 12) * j, windowHeight);
     }
   }
 

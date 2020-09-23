@@ -1,0 +1,60 @@
+{
+  "zones": {
+    "pilotage": {
+      "column": 0,
+      "row": 0,
+      "numOfColumns": 3,
+      "numOfRows": 12
+    },
+    "operationnel": {
+      "column": 3,
+      "row": 0,
+      "numOfColumns": 6,
+      "numOfRows": 12
+    },
+    "referentiel": {
+      "column": 9,
+      "row": 0,
+      "numOfColumns": 3,
+      "numOfRows": 12
+    }
+  },
+  "groups": {
+    "maintenance": {
+      "column": 0,
+      "row": 1,
+      "numOfColumns": 3,
+      "numOfRows": 3
+    },
+    "hr": {
+      "column": 3,
+      "row": 1,
+      "numOfColumns": 3,
+      "numOfRows": 3
+    },
+    "opendata": {
+      "column": 6,
+      "row": 1,
+      "numOfColumns": 3,
+      "numOfRows": 3
+    },
+    "common": {
+      "column": 3,
+      "row": 4,
+      "numOfColumns": 3,
+      "numOfRows": 3
+    },
+    "basemanagement": {
+      "column": 6,
+      "row": 4,
+      "numOfColumns": 3,
+      "numOfRows": 3
+    },
+    "catalog": {
+      "column": 9,
+      "row": 1,
+      "numOfColumns": 3,
+      "numOfRows": 3
+    }
+  }
+}

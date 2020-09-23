@@ -21,13 +21,12 @@ class Rectangle extends Element {
   #renderTitle() {
     if (this.#title) {
       push();
-      rectMode(CENTER);
       textSize(16);
       noStroke();
       fill(255);
-      textAlign(CENTER, CENTER);
+      textAlign(CENTER);
       textFont("Helvetica");
-      text(this.#title, this.#width / 2, 20); // Hardcode title position
+      text(this.#title, 0, 5, this.#width);
       pop();
     }
   }
