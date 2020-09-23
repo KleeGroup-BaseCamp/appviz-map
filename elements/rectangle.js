@@ -32,8 +32,12 @@ class Rectangle extends Element {
   }
 
   contains(x, y) {
-    x -= this._x;
-    y -= this._y;
-    return x > 0 && x < this.#width && y > 0 && y < this.#height;
+    const lx = x- this._x;
+    const ly = y - this._y;
+    
+    return lx > 0 
+    && lx < this.#width 
+    && ly > 0 
+    && ly < this.#height;
   }
 }
