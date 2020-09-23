@@ -9,9 +9,7 @@ class Layer {
   }
 
   render() {
-    this.#elements.forEach((element) => {
-      element.render();
-    });
+    this.#elements.forEach(element => element.render());
   }
 
   findElement(x, y) {
