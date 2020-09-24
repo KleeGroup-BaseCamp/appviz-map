@@ -17,9 +17,9 @@ class Element {
   }
 
   _applyStyle() {
-    if (this._style.stroke) stroke(this._style.stroke);
-    if (this._style.strokeWeight) strokeWeight(this._style.strokeWeight);
-    if (this._style.fill) fill(this._style.fill);
+    stroke(this._style.stroke);
+    strokeWeight(this._style.strokeWeight);
+    fill(this._style.fill);
   }
 
   render() {
