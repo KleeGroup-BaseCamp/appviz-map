@@ -1,11 +1,8 @@
 class Layer {
   #elements = [];
 
-  constructor() {}
-
-  addElement(element) {
-    this.#elements.push(element);
-    return this;
+  constructor(elements) {
+    this.#elements = elements;
   }
 
   render() {

@@ -12,8 +12,7 @@ function setup() {
   angleMode(DEGREES);
 
   let mapBuilder = new MapBuilder();
-  notebookHandler.handle(mapBuilder, fake);
-  vizMap = mapBuilder.build();
+  vizMap = notebookHandler.handle(fake);
 }
 
 function draw() {

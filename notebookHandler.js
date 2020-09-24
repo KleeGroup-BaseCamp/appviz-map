@@ -3,9 +3,9 @@ class NotebookHandler {
     this.notebook = loadJSON(notebookPath);
   }
 
-  handle(mapBuilder, fake) {
+  handle(fake) {
     let domains = this.#extractDomains();
-    this.#generateLayersFromDomains(domains, mapBuilder, fake);
+    return this.#generateMapFromDomains(domains, fake);
   }
 
   #extractDomains() {
@@ -36,10 +36,10 @@ class NotebookHandler {
     return domains;
   }
 
-  #generateLayersFromDomains(domains, mapBuilder, fake) {
-    let zonesLayer = mapBuilder.addLayer();
-    let groupsLayer = mapBuilder.addLayer();
-    let itemsLayer = mapBuilder.addLayer();
+  #generateMapFromDomains(domains, fake) {
+    let zonesLayerBuilder = new LayerBuilder();
+    let groupsLayerBuilder = new LayerBuilder();
+    let itemsLayerBuilder = new LayerBuilder();
     Object.keys(fake.zones).forEach((zoneName) => {
       let zone = fake.zones[zoneName];
       let { x, y, width, height } = this.#getPixels(
@@ -48,7 +48,9 @@ class NotebookHandler {
         zone.numOfRows,
         zone.numOfColumns
       );
-      zonesLayer.addElement(new Rectangle(x, y, width, height, zoneName));
+      zonesLayerBuilder.addElement(
+        new Rectangle(x, y, width, height, zoneName)
+      );
     });
     Object.keys(fake.groups).forEach((groupName) => {
       const padding = 10;
@@ -59,7 +61,7 @@ class NotebookHandler {
         group.numOfRows,
         group.numOfColumns
       );
-      groupsLayer.addElement(
+      groupsLayerBuilder.addElement(
         new Rectangle(
           x + padding,
           y + padding,
@@ -68,23 +70,30 @@ class NotebookHandler {
           groupName
         )
       );
-      itemsLayer.addElement(
-        new ItemType(
-          x + padding + 20,
-          y + padding + 50,
-          "Dt",
-          domains[groupName].objects ? domains[groupName].objects.length : 0
+      itemsLayerBuilder
+        .addElement(
+          new ItemType(
+            x + padding + 20,
+            y + padding + 50,
+            "Dt",
+            domains[groupName].objects ? domains[groupName].objects.length : 0
+          )
         )
-      );
-      itemsLayer.addElement(
-        new ItemType(
-          x + padding + 20,
-          y + padding + 100,
-          "Tk",
-          domains[groupName].tasks ? domains[groupName].tasks.length : 0
-        )
-      );
+        .addElement(
+          new ItemType(
+            x + padding + 20,
+            y + padding + 100,
+            "Tk",
+            domains[groupName].tasks ? domains[groupName].tasks.length : 0
+          )
+        );
     });
+    let mapBuilder = new MapBuilder();
+    mapBuilder
+      .addLayer(zonesLayerBuilder.build())
+      .addLayer(groupsLayerBuilder.build())
+      .addLayer(itemsLayerBuilder.build());
+    return mapBuilder.build();
   }
 
   #getPixels(row, column, numOfRows, numOfColumns) {
