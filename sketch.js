@@ -1,6 +1,7 @@
 let vizMap;
 let notebookHandler;
 let fake;
+let canvaSize;
 
 function preload() {
   notebookHandler = new NotebookHandler("./notebook.json");
@@ -8,7 +9,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  canvaSize = windowHeight;
+  createCanvas(canvaSize, canvaSize);
   angleMode(DEGREES);
 
   let mapBuilder = new MapBuilder();
@@ -16,6 +18,7 @@ function setup() {
 }
 
 function draw() {
+  vizMap = notebookHandler.handle(fake);
   let element = vizMap.findElement(mouseX, mouseY);
   vizMap.select(element);
   drawCursor(element != null);
@@ -27,5 +30,6 @@ function drawCursor(isSelected) {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  canvaSize = windowHeight;
+  resizeCanvas(canvaSize, canvaSize);
 }

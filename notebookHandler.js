@@ -97,10 +97,11 @@ class NotebookHandler {
   }
 
   #getPixels(row, column, numOfRows, numOfColumns) {
-    let x = (column * windowWidth) / 12;
-    let y = (row * windowHeight) / 12;
-    let width = (numOfColumns * windowWidth) / 12;
-    let height = (numOfRows * windowHeight) / 12;
+    console.log(canvaSize);
+    let x = (column * canvaSize) / 12;
+    let y = (row * canvaSize) / 12;
+    let width = (numOfColumns * canvaSize) / 12;
+    let height = (numOfRows * canvaSize) / 12;
     return { x, y, width, height };
   }
 }

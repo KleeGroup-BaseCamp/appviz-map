@@ -33,10 +33,10 @@ class Map {
     strokeWeight(1);
     stroke(150);
     for (let i = 0; i < 12; i++) {
-      line(0, (windowHeight / 12) * i, windowWidth, (windowHeight / 12) * i);
+      line(0, (canvaSize / 12) * i, canvaSize, (canvaSize / 12) * i);
     }
     for (let j = 0; j < 12; j++) {
-      line((windowWidth / 12) * j, 0, (windowWidth / 12) * j, windowHeight);
+      line((canvaSize / 12) * j, 0, (canvaSize / 12) * j, canvaSize);
     }
   }
 
