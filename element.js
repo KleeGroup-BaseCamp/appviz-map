@@ -1,11 +1,7 @@
 class Element {
-  _x;
-  _y;
   _style = DEFAULT_STYLE; // Hardcode init style
 
-  constructor(x, y) {
-    this._x = x;
-    this._y = y;
+  constructor() {
     this._style.type = "default";
   }
 

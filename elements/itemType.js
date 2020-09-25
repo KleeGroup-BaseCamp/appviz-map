@@ -1,19 +1,16 @@
 class ItemType extends Element {
   #itemTypeName; // Use icon later
   #number;
-  constructor(x, y, itemTypeName, number, style) {
-    super(x, y);
+  constructor(itemTypeName, number, style) {
+    super();
     this.#itemTypeName = itemTypeName;
     this.#number = number;
     this._style = { ...this._style, ...style };
   }
 
   render() {
-    push();
     this._applyStyle();
-    translate(this._x, this._y);
     this.#renderName();
-    pop();
   }
 
   #renderName() {

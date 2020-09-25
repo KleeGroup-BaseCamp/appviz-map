@@ -54,7 +54,9 @@ class NotebookHandler {
         zone.numOfColumns
       );
       zonesLayerBuilder.addElement(
-        new Rectangle(x, y, width, height, zoneName, styles.zones)
+        new Rectangle(width, height, zoneName, styles.zones),
+        x,
+        y
       );
     });
 
@@ -69,32 +71,32 @@ class NotebookHandler {
       );
       groupsLayerBuilder.addElement(
         new Rectangle(
-          x + padding,
-          y + padding,
           width - padding * 2,
           height - padding * 2,
           groupName,
           styles.groups
-        )
+        ),
+        x + padding,
+        y + padding
       );
       itemsLayerBuilder
         .addElement(
           new ItemType(
-            x + padding + 20,
-            y + padding + 50,
             "Dt",
             domains[groupName].objects ? domains[groupName].objects.length : 0,
             styles.items
-          )
+          ),
+          x + padding + 20,
+          y + padding + 50
         )
         .addElement(
           new ItemType(
-            x + padding + 20,
-            y + padding + 100,
             "Tk",
             domains[groupName].tasks ? domains[groupName].tasks.length : 0,
             styles.items
-          )
+          ),
+          x + padding + 20,
+          y + padding + 100
         );
     });
 

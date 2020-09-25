@@ -1,7 +1,7 @@
 class Background extends Element {
   #backgroundColor;
   constructor(backgroundColor) {
-    super(0, 0);
+    super();
     this.#backgroundColor = backgroundColor;
   }
 

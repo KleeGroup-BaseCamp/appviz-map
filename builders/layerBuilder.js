@@ -1,8 +1,8 @@
 class LayerBuilder {
   #elements = [];
 
-  addElement(element) {
-    this.#elements.push(element);
+  addElement(element, x = 0, y = 0) {
+    this.#elements.push({ element, position: { x, y } });
     return this;
   }
 

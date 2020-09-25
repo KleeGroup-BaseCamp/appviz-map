@@ -1,19 +1,28 @@
 class Layer {
-  #elements;
+  #elementsDetail;
 
-  constructor(elements) {
-    this.#elements = elements;
+  constructor(elementsDetail) {
+    this.#elementsDetail = elementsDetail;
   }
 
   render() {
-    this.#elements.forEach((element) => {
-      element.render();
+    this.#elementsDetail.forEach((elementDetail) => {
+      push();
+      translate(elementDetail.position.x, elementDetail.position.y);
+      elementDetail.element.render();
+      pop();
     });
   }
 
   findElement(x, y) {
-    for (let element of this.#elements) {
-      if (element.contains(x, y)) return element;
+    for (let elementDetail of this.#elementsDetail) {
+      if (
+        elementDetail.element.contains(
+          x - elementDetail.position.x,
+          y - elementDetail.position.y
+        )
+      )
+        return elementDetail.element;
     }
     return null;
   }

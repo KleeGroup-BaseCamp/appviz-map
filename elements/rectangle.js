@@ -2,8 +2,8 @@ class Rectangle extends Element {
   #title;
   #height;
   #width;
-  constructor(x, y, width, height, title, style) {
-    super(x, y);
+  constructor(width, height, title, style) {
+    super();
     this.#height = height;
     this.#width = width;
     this.#title = title;
@@ -11,12 +11,9 @@ class Rectangle extends Element {
   }
 
   render() {
-    push();
     this._applyStyle();
-    translate(this._x, this._y);
     rect(0, 0, this.#width, this.#height);
     this.#renderTitle();
-    pop();
   }
 
   #renderTitle() {
@@ -31,9 +28,6 @@ class Rectangle extends Element {
   }
 
   contains(x, y) {
-    const lx = x - this._x;
-    const ly = y - this._y;
-
-    return lx > 0 && lx < this.#width && ly > 0 && ly < this.#height;
+    return x > 0 && x < this.#width && y > 0 && y < this.#height;
   }
 }
