@@ -1,12 +1,14 @@
 class Layer {
-  #elements = [];
+  #elements;
 
   constructor(elements) {
     this.#elements = elements;
   }
 
   render() {
-    this.#elements.forEach((element) => element.render());
+    this.#elements.forEach((element) => {
+      element.render();
+    });
   }
 
   findElement(x, y) {

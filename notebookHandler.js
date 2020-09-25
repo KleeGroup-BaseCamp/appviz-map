@@ -32,14 +32,19 @@ class NotebookHandler {
         } else domains[domainName] = { tasks: [sketchName] };
       }
     });
-    console.log(domains);
     return domains;
   }
 
   #generateMapFromDomains(domains, fake) {
+    let backgroundLayerBuilder = new LayerBuilder();
     let zonesLayerBuilder = new LayerBuilder();
     let groupsLayerBuilder = new LayerBuilder();
     let itemsLayerBuilder = new LayerBuilder();
+    let gridLayerBuilder = new LayerBuilder();
+
+    backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
+    gridLayerBuilder.addElement(new Grid());
+
     Object.keys(fake.zones).forEach((zoneName) => {
       let zone = fake.zones[zoneName];
       let { x, y, width, height } = this.#getPixels(
@@ -52,6 +57,7 @@ class NotebookHandler {
         new Rectangle(x, y, width, height, zoneName)
       );
     });
+
     Object.keys(fake.groups).forEach((groupName) => {
       const padding = 10;
       let group = fake.groups[groupName];
@@ -88,16 +94,18 @@ class NotebookHandler {
           )
         );
     });
+
     let mapBuilder = new MapBuilder();
     mapBuilder
+      .addLayer(backgroundLayerBuilder.build())
       .addLayer(zonesLayerBuilder.build())
       .addLayer(groupsLayerBuilder.build())
-      .addLayer(itemsLayerBuilder.build());
+      .addLayer(itemsLayerBuilder.build())
+      .addLayer(gridLayerBuilder.build());
     return mapBuilder.build();
   }
 
   #getPixels(row, column, numOfRows, numOfColumns) {
-    console.log(canvaSize);
     let x = (column * canvaSize) / 12;
     let y = (row * canvaSize) / 12;
     let width = (numOfColumns * canvaSize) / 12;

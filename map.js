@@ -6,38 +6,15 @@ class Map {
     this.#layers = layers;
   }
 
-  getlayers() {
-    return this.#layers;
-  }
-
   /*
-    Renders the map
-    - The background
-    - The layers from bottom to up
+    Renders the layers from bottom to up
    */
   render() {
-    this.#renderBackground();
     this.#renderLayers();
-    this.#renderGrid();
-  }
-
-  #renderBackground() {
-    background(3, 4, 94);
   }
 
   #renderLayers() {
     this.#layers.forEach((layer) => layer.render());
-  }
-
-  #renderGrid() {
-    strokeWeight(1);
-    stroke(150);
-    for (let i = 0; i < 12; i++) {
-      line(0, (canvaSize / 12) * i, canvaSize, (canvaSize / 12) * i);
-    }
-    for (let j = 0; j < 12; j++) {
-      line((canvaSize / 12) * j, 0, (canvaSize / 12) * j, canvaSize);
-    }
   }
 
   /*
