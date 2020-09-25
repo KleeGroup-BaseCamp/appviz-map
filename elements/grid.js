@@ -1,9 +1,9 @@
 class Grid extends Element {
-  constructor() {
+  constructor(style) {
     super(0, 0);
 
     // Temporary: Remove once styles are externalised
-    this._style = GRID_STYLE;
+    this._style = { ...this._style, ...style };
   }
 
   render() {

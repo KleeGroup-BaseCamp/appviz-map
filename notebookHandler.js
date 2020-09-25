@@ -43,7 +43,7 @@ class NotebookHandler {
     let gridLayerBuilder = new LayerBuilder();
 
     backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
-    gridLayerBuilder.addElement(new Grid());
+    gridLayerBuilder.addElement(new Grid(styles.grid));
 
     Object.keys(fake.zones).forEach((zoneName) => {
       let zone = fake.zones[zoneName];
@@ -54,7 +54,7 @@ class NotebookHandler {
         zone.numOfColumns
       );
       zonesLayerBuilder.addElement(
-        new Rectangle(x, y, width, height, zoneName)
+        new Rectangle(x, y, width, height, zoneName, styles.zones)
       );
     });
 
@@ -73,7 +73,8 @@ class NotebookHandler {
           y + padding,
           width - padding * 2,
           height - padding * 2,
-          groupName
+          groupName,
+          styles.groups
         )
       );
       itemsLayerBuilder
@@ -82,7 +83,8 @@ class NotebookHandler {
             x + padding + 20,
             y + padding + 50,
             "Dt",
-            domains[groupName].objects ? domains[groupName].objects.length : 0
+            domains[groupName].objects ? domains[groupName].objects.length : 0,
+            styles.items
           )
         )
         .addElement(
@@ -90,7 +92,8 @@ class NotebookHandler {
             x + padding + 20,
             y + padding + 100,
             "Tk",
-            domains[groupName].tasks ? domains[groupName].tasks.length : 0
+            domains[groupName].tasks ? domains[groupName].tasks.length : 0,
+            styles.items
           )
         );
     });

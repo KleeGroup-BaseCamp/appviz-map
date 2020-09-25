@@ -6,20 +6,23 @@ class Element {
   constructor(x, y) {
     this._x = x;
     this._y = y;
+    this._style.type = "default";
   }
 
   setDefaultStyle() {
-    this._style = DEFAULT_STYLE; // Hardcode default style
+    this._style.type = "default"; // Hardcode default style
   }
 
   hover() {
-    this._style = HOVER_STYLE; // Hardcode hover style
+    this._style.type = "hover"; // Hardcode hover style
   }
 
   _applyStyle() {
-    stroke(this._style.stroke);
-    strokeWeight(this._style.strokeWeight);
-    fill(this._style.fill);
+    textSize(this._style.font.size);
+    textFont(this._style.font.name);
+    stroke(this._style.setting[this._style.type].stroke);
+    strokeWeight(this._style.setting[this._style.type].strokeWeight);
+    fill(this._style.setting[this._style.type].fill);
   }
 
   render() {
