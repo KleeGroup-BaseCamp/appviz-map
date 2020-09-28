@@ -40,7 +40,7 @@ class Map {
       this.#selected.setDefaultStyle();
     }
     if (element) {
-      element.hover();
+      element.setStyle("hover");
     }
     this.#selected = element;
   }

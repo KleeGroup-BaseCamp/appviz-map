@@ -5,12 +5,9 @@ class Element {
     this._style.type = "default";
   }
 
-  setDefaultStyle() {
-    this._style.type = "default"; // Hardcode default style
-  }
-
-  hover() {
-    this._style.type = "hover"; // Hardcode hover style
+  setStyle(type) {
+    if (type == "hover") this._style.type = "hover";
+    else this._style.type = "default";
   }
 
   _applyStyle() {

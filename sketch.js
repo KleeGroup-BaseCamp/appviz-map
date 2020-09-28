@@ -6,14 +6,14 @@ let canvaSize;
 function preload() {
   notebookHandler = new NotebookHandler("./notebook.json");
   fake = loadJSON("./fake.json");
+  roboto = loadFont("fonts/Roboto-Regular.ttf");
+  initStyles();
 }
 
 function setup() {
   canvaSize = windowHeight;
   createCanvas(canvaSize, canvaSize);
   angleMode(DEGREES);
-
-  let mapBuilder = new MapBuilder();
   vizMap = notebookHandler.handle(fake);
 }
 

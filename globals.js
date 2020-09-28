@@ -21,59 +21,62 @@ const DEFAULT_STYLE = {
 
 const BACKGROUND_COLOR = [3, 4, 94];
 
-const styles = {
-  zones: {
-    font: {
-      fill: 255,
-      name: "Helvetica",
-      size: 18,
-    },
-    setting: {
-      default: {
-        fill: [0, 0], // Black fill with 0 opacity => No fill
-        stroke: 255,
-        strokeWeight: 2,
+let styles;
+const initStyles = () => {
+  styles = {
+    zones: {
+      font: {
+        fill: 255,
+        name: roboto,
+        size: 28,
       },
-      hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
-    },
-  },
-  groups: {
-    font: {
-      fill: 255,
-      name: "Helvetica",
-      size: 16,
-    },
-    setting: {
-      default: {
-        fill: COLORS[0],
-        stroke: 255,
-        strokeWeight: 2,
-      },
-      hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
-    },
-  },
-  items: {
-    font: {
-      fill: 255,
-      name: "Helvetica",
-      size: 14,
-    },
-    setting: {
-      default: {
-        fill: COLORS[1],
-        stroke: 255,
-        strokeWeight: 2,
-      },
-      hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
-    },
-  },
-  grid: {
-    setting: {
-      default: {
-        fill: 0,
-        stroke: 200,
-        strokeWeight: 1,
+      setting: {
+        default: {
+          fill: [0, 0], // Black fill with 0 opacity => No fill
+          stroke: 255,
+          strokeWeight: 2,
+        },
+        hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
       },
     },
-  },
+    groups: {
+      font: {
+        fill: 255,
+        name: roboto,
+        size: 16,
+      },
+      setting: {
+        default: {
+          fill: COLORS[0],
+          stroke: 255,
+          strokeWeight: 2,
+        },
+        hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
+      },
+    },
+    items: {
+      font: {
+        fill: 255,
+        name: roboto,
+        size: 14,
+      },
+      setting: {
+        default: {
+          fill: COLORS[1],
+          stroke: 255,
+          strokeWeight: 2,
+        },
+        hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
+      },
+    },
+    grid: {
+      setting: {
+        default: {
+          fill: 0,
+          stroke: 150,
+          strokeWeight: 1,
+        },
+      },
+    },
+  };
 };
