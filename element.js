@@ -23,6 +23,6 @@ class Element {
   }
 
   contains(x, y) {
-    //This method must  be overridden
+    return false;
   }
 }

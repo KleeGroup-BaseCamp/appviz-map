@@ -17,17 +17,21 @@ class Rectangle extends Element {
   }
 
   #renderTitle() {
-    if (this.#title) {
-      push();
-      noStroke();
-      fill(this._style.font.fill);
-      textAlign(CENTER);
-      text(this.#title, 0, textAscent() + 5, this.#width);
-      pop();
-    }
+    noStroke();
+    fill(this._style.font.fill);
+    textAlign(CENTER);
+    text(
+      this.#title ? this.#title : "No title",
+      0,
+      textAscent() + 5,
+      this.#width
+    );
   }
 
   contains(x, y) {
-    return x > 0 && x < this.#width && y > 0 && y < this.#height;
+    return x > 0
+      && x < this.#width
+      && y > 0
+      && y < this.#height;
   }
 }

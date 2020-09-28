@@ -15,8 +15,4 @@ class Grid extends Element {
       line((canvaSize / 12) * j, 0, (canvaSize / 12) * j, canvaSize);
     }
   }
-
-  contains(x, y) {
-    return false;
-  }
 }

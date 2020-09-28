@@ -8,8 +8,4 @@ class Background extends Element {
   render() {
     background(...this.#backgroundColor);
   }
-
-  contains(x, y) {
-    return false;
-  }
 }

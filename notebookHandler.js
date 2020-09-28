@@ -1,4 +1,5 @@
 class NotebookHandler {
+  types = { Dt: "objects", Tk: "tasks" };
   constructor(notebookPath) {
     this.notebook = loadJSON(notebookPath);
   }
@@ -11,28 +12,24 @@ class NotebookHandler {
   #extractDomains() {
     let domains = {};
     Object.keys(this.notebook.sketches).map((sketchName) => {
-      if (sketchName.slice(0, 2) === "Dt") {
-        // TO DO : Use a function updateDomains() to simplify code
-        let domainName = this.notebook.sketches[sketchName].packageName.split(
-          "."
-        )[2];
-        if (domains[domainName]) {
-          if (domains[domainName].objects)
-            domains[domainName].objects.push(sketchName);
-          else domains[domainName].objects = [sketchName];
-        } else domains[domainName] = { objects: [sketchName] };
-      } else if (sketchName.slice(0, 2) === "Tk") {
-        let domainName = this.notebook.sketches[sketchName].packageName.split(
-          "."
-        )[2];
-        if (domains[domainName]) {
-          if (domains[domainName].tasks)
-            domains[domainName].tasks.push(sketchName);
-          else domains[domainName].tasks = [sketchName];
-        } else domains[domainName] = { tasks: [sketchName] };
+      for (let typePrefix in this.types) {
+        if (sketchName.slice(0, 2) === typePrefix)
+          this.#extractType(domains, sketchName)
       }
     });
     return domains;
+  }
+
+  #extractType(domains, sketchName) {
+    let typePrefix = sketchName.slice(0, 2)
+    let domainName = this.notebook.sketches[sketchName].packageName.split(
+      "."
+    )[2];
+    if (domains[domainName]) {
+      if (domains[domainName][this.types[typePrefix]])
+        domains[domainName][this.types[typePrefix]].push(sketchName);
+      else domains[domainName][this.types[typePrefix]] = [sketchName];
+    } else domains[domainName] = { [this.types[typePrefix]]: [sketchName] };
   }
 
   #generateMapFromDomains(domains, fake) {
@@ -79,6 +76,8 @@ class NotebookHandler {
         x + padding,
         y + padding
       );
+      let top = y + padding + 40;
+      let bottom = y + height - padding - 10;
       itemsLayerBuilder
         .addElement(
           new ItemType(
@@ -88,7 +87,7 @@ class NotebookHandler {
             styles.items
           ),
           x + padding * 2,
-          y + padding + 70
+          top + (bottom - top) / 4
         )
         .addElement(
           new ItemType(
@@ -98,7 +97,7 @@ class NotebookHandler {
             styles.items
           ),
           x + padding * 2,
-          y + padding + 140
+          top + (3 * (bottom - top)) / 4
         );
     });
 

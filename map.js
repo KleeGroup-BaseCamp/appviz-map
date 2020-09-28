@@ -14,7 +14,7 @@ class Map {
   }
 
   #renderLayers() {
-    this.#layers.forEach((layer) => layer.render());
+    this.#layers.forEach(layer => layer.render());
   }
 
   /*
