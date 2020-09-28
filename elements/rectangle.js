@@ -22,9 +22,7 @@ class Rectangle extends Element {
       noStroke();
       fill(this._style.font.fill);
       textAlign(CENTER);
-      // text(this.#title, 0, textAscent() + 20, this.#width);
-      text(this.#title, this.#width / 2, textAscent() + 5);
-      stroke(255);
+      text(this.#title, 0, textAscent() + 5, this.#width);
       pop();
     }
   }

@@ -84,19 +84,21 @@ class NotebookHandler {
           new ItemType(
             "Dt",
             domains[groupName].objects ? domains[groupName].objects.length : 0,
+            width - padding * 2,
             styles.items
           ),
-          x + padding + 20,
-          y + padding + 50
+          x + padding * 2,
+          y + padding + 70
         )
         .addElement(
           new ItemType(
             "Tk",
             domains[groupName].tasks ? domains[groupName].tasks.length : 0,
+            width - padding * 2,
             styles.items
           ),
-          x + padding + 20,
-          y + padding + 100
+          x + padding * 2,
+          y + padding + 140
         );
     });
 

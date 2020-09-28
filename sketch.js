@@ -2,11 +2,13 @@ let vizMap;
 let notebookHandler;
 let fake;
 let canvaSize;
+let fonts = {};
 
 function preload() {
   notebookHandler = new NotebookHandler("./notebook.json");
   fake = loadJSON("./fake.json");
-  roboto = loadFont("fonts/Roboto-Regular.ttf");
+  fonts.roboto = loadFont("fonts/Roboto-Regular.ttf");
+  fonts.fa = loadFont("fonts/fa.otf");
   initStyles();
 }
 

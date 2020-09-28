@@ -27,7 +27,7 @@ const initStyles = () => {
     zones: {
       font: {
         fill: 255,
-        name: roboto,
+        name: fonts.roboto,
         size: 28,
       },
       setting: {
@@ -42,7 +42,7 @@ const initStyles = () => {
     groups: {
       font: {
         fill: 255,
-        name: roboto,
+        name: fonts.roboto,
         size: 16,
       },
       setting: {
@@ -57,26 +57,27 @@ const initStyles = () => {
     items: {
       font: {
         fill: 255,
-        name: roboto,
+        name: fonts.fa,
         size: 14,
       },
       setting: {
         default: {
-          fill: COLORS[1],
-          stroke: 255,
+          fill: COLORS[0],
+          stroke: COLORS[2],
           strokeWeight: 2,
         },
-        hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
       },
     },
     grid: {
       setting: {
         default: {
           fill: 0,
-          stroke: 150,
+          stroke: [255, 0],
           strokeWeight: 1,
         },
       },
     },
   };
 };
+
+const icons = { dt: "\uf15b", tk: "\uf013" };
