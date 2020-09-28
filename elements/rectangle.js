@@ -1,7 +1,8 @@
 class Rectangle extends Element {
-  #title;
-  #height;
   #width;
+  #height;
+  #title;
+  
   constructor(width, height, title, style) {
     super();
     this.#height = height;
