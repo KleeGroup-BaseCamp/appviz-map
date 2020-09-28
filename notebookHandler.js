@@ -5,14 +5,14 @@ class NotebookHandler {
   }
 
   handle(fake) {
-    let domains = this.#extractDomains();
+    const domains = this.#extractDomains();
     return this.#generateMapFromDomains(domains, fake);
   }
 
   #extractDomains() {
-    let domains = {};
+    const domains = {};
     Object.keys(this.notebook.sketches).map((sketchName) => {
-      for (let typePrefix in this.types) {
+      for (const typePrefix in this.types) {
         if (sketchName.slice(0, 2) === typePrefix)
           this.#extractType(domains, sketchName)
       }
@@ -21,8 +21,8 @@ class NotebookHandler {
   }
 
   #extractType(domains, sketchName) {
-    let typePrefix = sketchName.slice(0, 2)
-    let domainName = this.notebook.sketches[sketchName].packageName.split(
+    const typePrefix = sketchName.slice(0, 2)
+    const domainName = this.notebook.sketches[sketchName].packageName.split(
       "."
     )[2];
     if (domains[domainName]) {
@@ -33,18 +33,18 @@ class NotebookHandler {
   }
 
   #generateMapFromDomains(domains, fake) {
-    let backgroundLayerBuilder = new LayerBuilder();
-    let zonesLayerBuilder = new LayerBuilder();
-    let groupsLayerBuilder = new LayerBuilder();
-    let itemsLayerBuilder = new LayerBuilder();
-    let gridLayerBuilder = new LayerBuilder();
+    const backgroundLayerBuilder = new LayerBuilder();
+    const zonesLayerBuilder = new LayerBuilder();
+    const groupsLayerBuilder = new LayerBuilder();
+    const itemsLayerBuilder = new LayerBuilder();
+    const gridLayerBuilder = new LayerBuilder();
 
     backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
     gridLayerBuilder.addElement(new Grid(styles.grid));
 
     Object.keys(fake.zones).forEach((zoneName) => {
-      let zone = fake.zones[zoneName];
-      let { x, y, width, height } = this.#getPixels(
+      const zone = fake.zones[zoneName];
+      const { x, y, width, height } = this.#getPixels(
         zone.row,
         zone.column,
         zone.numOfRows,
@@ -59,8 +59,8 @@ class NotebookHandler {
 
     Object.keys(fake.groups).forEach((groupName) => {
       const padding = 10;
-      let group = fake.groups[groupName];
-      let { x, y, width, height } = this.#getPixels(
+      const group = fake.groups[groupName];
+      const { x, y, width, height } = this.#getPixels(
         group.row,
         group.column,
         group.numOfRows,
@@ -76,8 +76,8 @@ class NotebookHandler {
         x + padding,
         y + padding
       );
-      let top = y + padding + 40;
-      let bottom = y + height - padding - 10;
+      const top = y + padding + 40;
+      const bottom = y + height - padding - 10;
       Object.keys(this.types).forEach((typePrefix, index) => {
         itemsLayerBuilder
           .addElement(
@@ -99,14 +99,14 @@ class NotebookHandler {
       .addLayer(groupsLayerBuilder.build())
       .addLayer(itemsLayerBuilder.build())
       .addLayer(gridLayerBuilder.build())
-      r.build();
+      .build();
   }
 
   #getPixels(row, column, numOfRows, numOfColumns) {
-    let x = (column * canvaSize) / 12;
-    let y = (row * canvaSize) / 12;
-    let width = (numOfColumns * canvaSize) / 12;
-    let height = (numOfRows * canvaSize) / 12;
+    const x = (column * canvaSize) / 12;
+    const y = (row * canvaSize) / 12;
+    const width = (numOfColumns * canvaSize) / 12;
+    const height = (numOfRows * canvaSize) / 12;
     return { x, y, width, height };
   }
 }
