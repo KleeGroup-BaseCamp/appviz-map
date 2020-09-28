@@ -93,14 +93,13 @@ class NotebookHandler {
       })
     });
 
-    let mapBuilder = new MapBuilder();
-    mapBuilder
+    return  new MapBuilder()
       .addLayer(backgroundLayerBuilder.build())
       .addLayer(zonesLayerBuilder.build())
       .addLayer(groupsLayerBuilder.build())
       .addLayer(itemsLayerBuilder.build())
-      .addLayer(gridLayerBuilder.build());
-    return mapBuilder.build();
+      .addLayer(gridLayerBuilder.build())
+      r.build();
   }
 
   #getPixels(row, column, numOfRows, numOfColumns) {
