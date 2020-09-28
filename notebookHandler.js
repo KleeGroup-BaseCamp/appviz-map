@@ -78,27 +78,19 @@ class NotebookHandler {
       );
       let top = y + padding + 40;
       let bottom = y + height - padding - 10;
-      itemsLayerBuilder
-        .addElement(
-          new ItemType(
-            "Dt",
-            domains[groupName].objects ? domains[groupName].objects.length : 0,
-            width - padding * 2,
-            styles.items
-          ),
-          x + padding * 2,
-          top + (bottom - top) / 4
-        )
-        .addElement(
-          new ItemType(
-            "Tk",
-            domains[groupName].tasks ? domains[groupName].tasks.length : 0,
-            width - padding * 2,
-            styles.items
-          ),
-          x + padding * 2,
-          top + (3 * (bottom - top)) / 4
-        );
+      Object.keys(this.types).forEach((typePrefix, index) => {
+        itemsLayerBuilder
+          .addElement(
+            new ItemType(
+              typePrefix,
+              domains[groupName][this.types[typePrefix]] ? domains[groupName][this.types[typePrefix]].length : 0,
+              width - padding * 2,
+              styles.items
+            ),
+            x + padding * 2,
+            top + (2 * index + 1) * (bottom - top) / (2 * Object.keys(this.types).length)
+          );
+      })
     });
 
     let mapBuilder = new MapBuilder();
