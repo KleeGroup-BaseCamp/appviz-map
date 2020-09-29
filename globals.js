@@ -72,7 +72,7 @@ const initStyles = () => {
       setting: {
         default: {
           fill: 0,
-          stroke: [255, 0],
+          stroke: [255, 50],
           strokeWeight: 1,
         },
       },

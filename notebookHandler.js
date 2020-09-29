@@ -40,7 +40,7 @@ class NotebookHandler {
     const gridLayerBuilder = new LayerBuilder();
 
     backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
-    gridLayerBuilder.addElement(new Grid(styles.grid));
+    gridLayerBuilder.addElement(new Grid(12, 12, styles.grid));
 
     Object.keys(fake.zones).forEach((zoneName) => {
       const zone = fake.zones[zoneName];
@@ -76,7 +76,7 @@ class NotebookHandler {
         x + padding,
         y + padding
       );
-      const top = y + padding + 40;
+      const top = y + padding + 40; // TO DO : Use title textAscent to compute
       const bottom = y + height - padding - 10;
       Object.keys(this.types).forEach((typePrefix, index) => {
         itemsLayerBuilder
@@ -93,7 +93,7 @@ class NotebookHandler {
       })
     });
 
-    return  new MapBuilder()
+    return new MapBuilder()
       .addLayer(backgroundLayerBuilder.build())
       .addLayer(zonesLayerBuilder.build())
       .addLayer(groupsLayerBuilder.build())
@@ -103,10 +103,10 @@ class NotebookHandler {
   }
 
   #getPixels(row, column, numOfRows, numOfColumns) {
-    const x = (column * canvaSize) / 12;
-    const y = (row * canvaSize) / 12;
-    const width = (numOfColumns * canvaSize) / 12;
-    const height = (numOfRows * canvaSize) / 12;
+    const x = (column * canvasSize) / 12;
+    const y = (row * canvasSize) / 12;
+    const width = (numOfColumns * canvasSize) / 12;
+    const height = (numOfRows * canvasSize) / 12;
     return { x, y, width, height };
   }
 }

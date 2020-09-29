@@ -1,18 +1,20 @@
 class Grid extends Element {
-  constructor(style) {
+  #columns
+  #rows
+  constructor(columns, rows, style) {
     super();
-
-    // Temporary: Remove once styles are externalised
+    this.#columns = columns;
+    this.#rows = rows;
     this._style = { ...this._style, ...style };
   }
 
   render() {
     this._applyStyle();
-    for (let i = 0; i < 12; i++) {
-      line(0, (canvaSize / 12) * i, canvaSize, (canvaSize / 12) * i);
+    for (let i = 0; i < this.#rows; i++) {
+      line(0, (canvasSize / this.#rows) * i, canvasSize, (canvasSize / this.#rows) * i);
     }
-    for (let j = 0; j < 12; j++) {
-      line((canvaSize / 12) * j, 0, (canvaSize / 12) * j, canvaSize);
+    for (let j = 0; j < this.#columns; j++) {
+      line((canvasSize / this.#columns) * j, 0, (canvasSize / this.#columns) * j, canvasSize);
     }
   }
 }

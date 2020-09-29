@@ -1,7 +1,7 @@
 let vizMap;
 let notebookHandler;
 let fake;
-let canvaSize;
+let canvasSize;
 let fonts = {};
 
 function preload() {
@@ -13,8 +13,8 @@ function preload() {
 }
 
 function setup() {
-  canvaSize = windowHeight;
-  createCanvas(canvaSize, canvaSize);
+  canvasSize = windowHeight;
+  createCanvas(canvasSize, canvasSize);
   angleMode(DEGREES);
   vizMap = notebookHandler.handle(fake);
 }
@@ -32,6 +32,6 @@ function drawCursor(isSelected) {
 }
 
 function windowResized() {
-  canvaSize = windowHeight;
-  resizeCanvas(canvaSize, canvaSize);
+  canvasSize = windowHeight;
+  resizeCanvas(canvasSize, canvasSize);
 }
