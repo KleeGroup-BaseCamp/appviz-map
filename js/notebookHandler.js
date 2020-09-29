@@ -6,18 +6,12 @@ class NotebookHandler {
 
   handle(fake) {
     const domains = this.#extractDomains();
-    return this.#generateMapFromDomains(domains, fake);
-  }
-
-  #extractDomains() {
-    const domains = {};
-    Object.keys(this.notebook.sketches).map((sketchName) => {
-      for (const typePrefix in this.types) {
-        if (sketchName.slice(0, 2) === typePrefix)
-          this.#extractType(domains, sketchName)
-      }
-    });
-    return domains;
+    if (!groups) {
+      return this.#generateDomainsMap(domains, fake);
+    }
+    else {
+      return this.#generateGroupMap(domains, fake)
+    }
   }
 
   #extractType(domains, sketchName) {
@@ -32,7 +26,18 @@ class NotebookHandler {
     } else domains[domainName] = { [this.types[typePrefix]]: [sketchName] };
   }
 
-  #generateMapFromDomains(domains, fake) {
+  #extractDomains() {
+    const domains = {};
+    Object.keys(this.notebook.sketches).map((sketchName) => {
+      for (const typePrefix in this.types) {
+        if (sketchName.slice(0, 2) === typePrefix)
+          this.#extractType(domains, sketchName)
+      }
+    });
+    return domains;
+  }
+
+  #generateDomainsMap(domains, fake) {
     const backgroundLayerBuilder = new LayerBuilder();
     const zonesLayerBuilder = new LayerBuilder();
     const groupsLayerBuilder = new LayerBuilder();
@@ -40,7 +45,7 @@ class NotebookHandler {
     const gridLayerBuilder = new LayerBuilder();
 
     backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
-    gridLayerBuilder.addElement(new Grid(12, 12, styles.grid));
+    gridLayerBuilder.addElement(new Grid(12, 12, styles.domainsView.grid));
 
     Object.keys(fake.zones).forEach((zoneName) => {
       const zone = fake.zones[zoneName];
@@ -51,7 +56,7 @@ class NotebookHandler {
         zone.numOfColumns
       );
       zonesLayerBuilder.addElement(
-        new Rectangle(width, height, zoneName, styles.zones),
+        new Rectangle(width, height, zoneName, styles.domainsView.zones),
         x,
         y
       );
@@ -71,7 +76,7 @@ class NotebookHandler {
           width - padding * 2,
           height - padding * 2,
           groupName,
-          styles.groups
+          styles.domainsView.groups
         ),
         x + padding,
         y + padding
@@ -85,7 +90,7 @@ class NotebookHandler {
               typePrefix,
               domains[groupName][this.types[typePrefix]] ? domains[groupName][this.types[typePrefix]].length : 0,
               width - padding * 2,
-              styles.items
+              styles.domainsView.items
             ),
             x + padding * 2,
             top + (2 * index + 1) * (bottom - top) / (2 * Object.keys(this.types).length)
@@ -100,6 +105,17 @@ class NotebookHandler {
       .addLayer(itemsLayerBuilder.build())
       .addLayer(gridLayerBuilder.build())
       .build();
+  }
+
+  #generateGroupMap(domains, fake) {
+    const backgroundLayerBuilder = new LayerBuilder();
+    const groupLayerBuilder = new LayerBuilder();
+    backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
+    groupLayerBuilder.addElement(new Rectangle(canvasSize, canvasSize, "My Group", styles.groupView.group), 0, 0)
+    return new MapBuilder()
+      .addLayer(backgroundLayerBuilder.build())
+      .addLayer(groupLayerBuilder.build())
+      .build()
   }
 
   #getPixels(row, column, numOfRows, numOfColumns) {

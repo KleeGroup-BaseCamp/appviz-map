@@ -1,11 +1,11 @@
 class ItemType extends Element {
-  #itemTypeName; // Use icon later
+  #itemType;
   #number;
   #width;
   #textAscent;
-  constructor(itemTypeName, number, width, style) {
+  constructor(itemType, number, width, style) {
     super();
-    this.#itemTypeName = itemTypeName;
+    this.#itemType = itemType;
     this.#number = number;
     this.#width = width;
     this._style = { ...this._style, ...style };
@@ -22,7 +22,7 @@ class ItemType extends Element {
     noStroke();
     fill(this._style.font.fill);
     this.#textAscent = textAscent();
-    if (this.#itemTypeName == "Dt") text(icons.dt, 0, 0);
+    if (this.#itemType == "Dt") text(icons.dt, 0, 0);
     else text(icons.tk, 0, 0);
   }
 

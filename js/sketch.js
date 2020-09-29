@@ -3,6 +3,7 @@ let notebookHandler;
 let fake;
 let canvasSize;
 let fonts = {};
+let groups = false // temp variable
 
 function preload() {
   notebookHandler = new NotebookHandler("./notebook.json");
@@ -35,3 +36,8 @@ function windowResized() {
   canvasSize = windowHeight;
   resizeCanvas(canvasSize, canvasSize);
 }
+
+function mouseClicked() { // Attach event to canvas ?
+  groups = !groups
+}
+
