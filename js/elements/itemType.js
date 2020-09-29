@@ -22,7 +22,7 @@ class ItemType extends Element {
     noStroke();
     fill(this._style.font.fill);
     this.#textAscent = textAscent();
-    if (this.#itemType == "Dt") text(icons.dt, 0, 0);
+    if (this.#itemType == "dt") text(icons.dt, 0, 0);
     else text(icons.tk, 0, 0);
   }
 

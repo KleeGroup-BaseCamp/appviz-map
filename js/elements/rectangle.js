@@ -2,13 +2,15 @@ class Rectangle extends Element {
   #width;
   #height;
   #title;
+  #titlePosition;
 
-  constructor(width, height, title, style) {
+  constructor(width, height, title, style, titlePosition = "top") {
     super();
     this.#height = height;
     this.#width = width;
     this.#title = title;
     this._style = { ...this._style, ...style };
+    this.#titlePosition = titlePosition
   }
 
   render() {
@@ -20,13 +22,24 @@ class Rectangle extends Element {
   #renderTitle() {
     noStroke();
     fill(this._style.font.fill);
-    textAlign(CENTER);
-    text(
-      this.#title ? this.#getDisplayableTitle() : "No title",
-      0,
-      textAscent() + 5,
-      this.#width
-    );
+    if (this.#titlePosition == "top") {
+      textAlign(CENTER);
+      text(
+        this.#title ? this.#getDisplayableTitle() : "No title",
+        0,
+        textAscent() + 5,
+        this.#width
+      );
+    } else {
+      textAlign(CENTER, CENTER);
+      text(
+        this.#title ? this.#getDisplayableTitle() : "No title",
+        0,
+        0,
+        this.#width,
+        this.#height
+      )
+    }
   }
 
   contains(x, y) {

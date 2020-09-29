@@ -98,6 +98,44 @@ const initStyles = () => {
             strokeWeight: 2,
           },
         },
+      },
+      itemType: {
+        font: {
+          fill: COLORS[0],
+          name: fonts.fa,
+          size: 20,
+        },
+        setting: {
+          default: {
+            fill: COLORS[2],
+            stroke: 255,
+            strokeWeight: 2,
+          },
+          hover: {
+            fill: COLORS[3],
+            stroke: 255,
+            strokeWeight: 2,
+          },
+        },
+      },
+      item: {
+        font: {
+          fill: 255,
+          name: fonts.roboto,
+          size: 14,
+        },
+        setting: {
+          default: {
+            fill: COLORS[1],
+            stroke: 255,
+            strokeWeight: 2,
+          },
+          hover: {
+            fill: COLORS[3],
+            stroke: 255,
+            strokeWeight: 2,
+          },
+        },
       }
     }
   };

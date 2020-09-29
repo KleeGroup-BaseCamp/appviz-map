@@ -1,5 +1,5 @@
 class NotebookHandler {
-  types = { Dt: "objects", Tk: "tasks" };
+  #types = { dt: "objects", tk: "tasks" };
   constructor(notebookPath) {
     this.notebook = loadJSON(notebookPath);
   }
@@ -10,27 +10,28 @@ class NotebookHandler {
       return this.#generateDomainsMap(domains, fake);
     }
     else {
-      return this.#generateGroupMap(domains, fake)
+      const groupName = "basemanagement"
+      return this.#generateGroupMap(domains, fake, groupName)
     }
   }
 
   #extractType(domains, sketchName) {
-    const typePrefix = sketchName.slice(0, 2)
+    const typePrefix = sketchName.slice(0, 2).toLowerCase()
     const domainName = this.notebook.sketches[sketchName].packageName.split(
       "."
     )[2];
     if (domains[domainName]) {
-      if (domains[domainName][this.types[typePrefix]])
-        domains[domainName][this.types[typePrefix]].push(sketchName);
-      else domains[domainName][this.types[typePrefix]] = [sketchName];
-    } else domains[domainName] = { [this.types[typePrefix]]: [sketchName] };
+      if (domains[domainName][this.#types[typePrefix]])
+        domains[domainName][this.#types[typePrefix]].push(sketchName);
+      else domains[domainName][this.#types[typePrefix]] = [sketchName];
+    } else domains[domainName] = { [this.#types[typePrefix]]: [sketchName] };
   }
 
   #extractDomains() {
     const domains = {};
     Object.keys(this.notebook.sketches).map((sketchName) => {
-      for (const typePrefix in this.types) {
-        if (sketchName.slice(0, 2) === typePrefix)
+      for (const typePrefix in this.#types) {
+        if (sketchName.slice(0, 2).toLowerCase() === typePrefix)
           this.#extractType(domains, sketchName)
       }
     });
@@ -56,7 +57,7 @@ class NotebookHandler {
         zone.numOfColumns
       );
       zonesLayerBuilder.addElement(
-        new Rectangle(width, height, zoneName, styles.domainsView.zones),
+        new Rectangle(width, height, this.#firstCharUpperCase(zoneName), styles.domainsView.zones),
         x,
         y
       );
@@ -83,17 +84,17 @@ class NotebookHandler {
       );
       const top = y + padding + 40; // TO DO : Use title textAscent to compute
       const bottom = y + height - padding - 10;
-      Object.keys(this.types).forEach((typePrefix, index) => {
+      Object.keys(this.#types).forEach((typePrefix, index) => {
         itemsLayerBuilder
           .addElement(
             new ItemType(
               typePrefix,
-              domains[groupName][this.types[typePrefix]] ? domains[groupName][this.types[typePrefix]].length : 0,
+              domains[groupName][this.#types[typePrefix]] ? domains[groupName][this.#types[typePrefix]].length : 0,
               width - padding * 2,
               styles.domainsView.items
             ),
             x + padding * 2,
-            top + (2 * index + 1) * (bottom - top) / (2 * Object.keys(this.types).length)
+            top + (2 * index + 1) * (bottom - top) / (2 * Object.keys(this.#types).length)
           );
       })
     });
@@ -107,14 +108,50 @@ class NotebookHandler {
       .build();
   }
 
-  #generateGroupMap(domains, fake) {
+  #generateGroupMap(domains, fake, groupName) {
     const backgroundLayerBuilder = new LayerBuilder();
     const groupLayerBuilder = new LayerBuilder();
+    const itemTypesLayerBuilder = new LayerBuilder();
+    const itemsLayerBuilder = new LayerBuilder();
     backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
-    groupLayerBuilder.addElement(new Rectangle(canvasSize, canvasSize, "My Group", styles.groupView.group), 0, 0)
+    groupLayerBuilder.addElement(
+      new Rectangle(canvasSize, canvasSize, groupName, styles.groupView.group),
+      0,
+      0
+    );
+    Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
+      const padding = 10;
+      const x = padding
+      const y = (typeIndex * 300) + 100
+      const width = canvasSize - 2 * padding;
+      const itemsPerRow = 4;
+      const itemHeight = 30;
+      const itemWidth = (width - padding * (itemsPerRow + 1)) / itemsPerRow
+      let items = domains[groupName][this.#types[typePrefix]]
+      const height = 40 + Math.ceil(items.length / itemsPerRow) * (itemHeight + padding)
+      itemTypesLayerBuilder.addElement(
+        new Rectangle(
+          width,
+          height,
+          this.#firstCharUpperCase(this.#types[typePrefix]) + " " + icons[typePrefix],
+          styles.groupView.itemType
+        ),
+        x,
+        y
+      )
+      items.forEach((item, itemIndex) => {
+        itemsLayerBuilder.addElement(
+          new Rectangle(itemWidth, itemHeight, item.slice(2, item.length), styles.groupView.item, "center"),
+          x + (((itemWidth + padding) * itemIndex + padding) % (width - padding)),
+          y + 40 + Math.floor(itemIndex / itemsPerRow) * (itemHeight + padding)
+        )
+      })
+    })
     return new MapBuilder()
       .addLayer(backgroundLayerBuilder.build())
       .addLayer(groupLayerBuilder.build())
+      .addLayer(itemTypesLayerBuilder.build())
+      .addLayer(itemsLayerBuilder.build())
       .build()
   }
 
@@ -124,5 +161,9 @@ class NotebookHandler {
     const width = (numOfColumns * canvasSize) / 12;
     const height = (numOfRows * canvasSize) / 12;
     return { x, y, width, height };
+  }
+
+  #firstCharUpperCase(string) {
+    return string[0].toUpperCase() + string.slice(1, string.length)
   }
 }
