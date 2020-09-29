@@ -3,7 +3,8 @@ let notebookHandler;
 let fake;
 let canvasSize;
 let fonts = {};
-let groups = false // temp variable
+let group = false // temp variable
+let cnv;
 
 function preload() {
   notebookHandler = new NotebookHandler("./notebook.json");
@@ -15,17 +16,25 @@ function preload() {
 
 function setup() {
   canvasSize = windowHeight;
-  createCanvas(canvasSize, canvasSize);
+  cnv = createCanvas(canvasSize, canvasSize);
+  cnv.mouseClicked(handleClick)
   angleMode(DEGREES);
   vizMap = notebookHandler.handle(fake);
 }
 
 function draw() {
   vizMap = notebookHandler.handle(fake);
-  let element = vizMap.findElement(mouseX, mouseY);
+  const element = vizMap.findElement(mouseX, mouseY)
+    ? vizMap.findElement(mouseX, mouseY).element
+    : null;
   vizMap.select(element);
   drawCursor(element != null);
   vizMap.render();
+}
+
+function handleClick() {
+  const { element, index: layerIndex } = vizMap.findElement(mouseX, mouseY);
+  vizMap.click(element, layerIndex)
 }
 
 function drawCursor(isSelected) {
@@ -37,7 +46,4 @@ function windowResized() {
   resizeCanvas(canvasSize, canvasSize);
 }
 
-function mouseClicked() { // Attach event to canvas ?
-  groups = !groups
-}
 

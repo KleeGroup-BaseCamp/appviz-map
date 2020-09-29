@@ -6,12 +6,11 @@ class NotebookHandler {
 
   handle(fake) {
     const domains = this.#extractDomains();
-    if (!groups) {
+    if (!group) {
       return this.#generateDomainsMap(domains, fake);
     }
     else {
-      const groupName = "basemanagement"
-      return this.#generateGroupMap(domains, fake, groupName)
+      return this.#generateGroupMap(domains, fake, group)
     }
   }
 
@@ -128,7 +127,7 @@ class NotebookHandler {
       const itemHeight = 30;
       const itemWidth = (width - padding * (itemsPerRow + 1)) / itemsPerRow
       let items = domains[groupName][this.#types[typePrefix]]
-      const height = 40 + Math.ceil(items.length / itemsPerRow) * (itemHeight + padding)
+      const height = items ? 40 + Math.ceil(items.length / itemsPerRow) * (itemHeight + padding) : 50
       itemTypesLayerBuilder.addElement(
         new Rectangle(
           width,
@@ -139,13 +138,15 @@ class NotebookHandler {
         x,
         y
       )
-      items.forEach((item, itemIndex) => {
-        itemsLayerBuilder.addElement(
-          new Rectangle(itemWidth, itemHeight, item.slice(2, item.length), styles.groupView.item, "center"),
-          x + (((itemWidth + padding) * itemIndex + padding) % (width - padding)),
-          y + 40 + Math.floor(itemIndex / itemsPerRow) * (itemHeight + padding)
-        )
-      })
+      if (items) {
+        items.forEach((item, itemIndex) => {
+          itemsLayerBuilder.addElement(
+            new Rectangle(itemWidth, itemHeight, item.slice(2, item.length), styles.groupView.item, "center"),
+            x + (((itemWidth + padding) * itemIndex + padding) % (width - padding)),
+            y + 40 + Math.floor(itemIndex / itemsPerRow) * (itemHeight + padding)
+          )
+        })
+      }
     })
     return new MapBuilder()
       .addLayer(backgroundLayerBuilder.build())

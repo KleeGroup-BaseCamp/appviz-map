@@ -93,7 +93,7 @@ const initStyles = () => {
             strokeWeight: 2,
           },
           hover: {
-            fill: COLORS[3],
+            fill: COLORS[0],
             stroke: 255,
             strokeWeight: 2,
           },
