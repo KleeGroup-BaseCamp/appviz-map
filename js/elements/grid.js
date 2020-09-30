@@ -10,11 +10,15 @@ class Grid extends Element {
 
   render() {
     this._applyStyle();
+
+    const rowSize = canvasSize / this.#rows; 
     for (let i = 0; i < this.#rows; i++) {
-      line(0, (canvasSize / this.#rows) * i, canvasSize, (canvasSize / this.#rows) * i);
+      line(0, rowSize * i, canvasSize, rowSize * i);
     }
+
+    const columnSize = canvasSize / this.#columns;
     for (let j = 0; j < this.#columns; j++) {
-      line((canvasSize / this.#columns) * j, 0, (canvasSize / this.#columns) * j, canvasSize);
+      line(columnSize * j, 0, columnSize  * j, canvasSize);
     }
   }
 }
