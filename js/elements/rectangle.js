@@ -1,9 +1,10 @@
 class Rectangle extends Element {
   #width;
   #height;
-  #titlePosition;
+  #titleOnTop;
+  #hasBar
 
-  constructor(width, height, title, style, titlePosition = "top") {
+  constructor(width, height, title, style, titleOnTop = true, hasBar = false) {
     super();
     this.#height = height;
     this.#width = width;
@@ -12,19 +13,21 @@ class Rectangle extends Element {
       ...this._style,
       ...style
     };
-    this.#titlePosition = titlePosition;
+    this.#titleOnTop = titleOnTop;
+    this.#hasBar = hasBar
   }
 
   render() {
     this._applyStyle();
     rect(0, 0, this.#width, this.#height);
+    this.#renderBar()
     this.#renderTitle();
   }
 
   #renderTitle() {
     noStroke();
     fill(this._style.font.fill);
-    if (this.#titlePosition == "top") {
+    if (this.#titleOnTop) {
       textAlign(CENTER);
       text(
         this.title ? this.#getDisplayableTitle() : "No title",
@@ -42,6 +45,11 @@ class Rectangle extends Element {
         this.#height
       );
     }
+  }
+
+  #renderBar() {
+    if (this.#hasBar)
+      line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
   }
 
   contains(x, y) {

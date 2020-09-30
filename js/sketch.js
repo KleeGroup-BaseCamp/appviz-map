@@ -11,7 +11,6 @@ function preload() {
   fake = loadJSON("./fake.json");
   fonts.roboto = loadFont("fonts/Roboto-Regular.ttf");
   fonts.fa = loadFont("fonts/fa.otf");
-  initStyles();
 }
 
 function setup() {
@@ -19,21 +18,25 @@ function setup() {
   cnv = createCanvas(canvasSize, canvasSize);
   cnv.mouseClicked(handleClick)
   angleMode(DEGREES);
+  initStyles();
   vizMap = notebookHandler.handle(fake);
 }
 
 function draw() {
   vizMap = notebookHandler.handle(fake);
-  const element = vizMap.findElement(mouseX, mouseY)
-    ? vizMap.findElement(mouseX, mouseY).element
-    : null;
+  const element = vizMap.findElement(mouseX, mouseY) ?
+    vizMap.findElement(mouseX, mouseY).element :
+    null;
   vizMap.select(element);
   drawCursor(element != null);
   vizMap.render();
 }
 
 function handleClick() {
-  const { element, index: layerIndex } = vizMap.findElement(mouseX, mouseY);
+  const {
+    element,
+    index: layerIndex
+  } = vizMap.findElement(mouseX, mouseY);
   vizMap.click(element, layerIndex)
 }
 
@@ -45,5 +48,3 @@ function windowResized() {
   canvasSize = windowHeight;
   resizeCanvas(canvasSize, canvasSize);
 }
-
-

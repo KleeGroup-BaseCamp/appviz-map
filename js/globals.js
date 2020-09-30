@@ -52,7 +52,7 @@ const initStyles = () => {
           },
         },
       },
-      groups: {
+      pilotage: {
         font: {
           fill: 255,
           name: fonts.roboto,
@@ -61,12 +61,50 @@ const initStyles = () => {
         setting: {
           default: {
             fill: [4, 12, 44],
-            stroke: [1, 255, 255],
+            stroke: fake.zones.pilotage.color,
             strokeWeight: 2,
           },
           hover: {
             fill: [4, 82, 134],
-            stroke: 255,
+            stroke: fake.zones.pilotage.color,
+            strokeWeight: 3
+          },
+        },
+      },
+      operationnel: {
+        font: {
+          fill: 255,
+          name: fonts.roboto,
+          size: 20,
+        },
+        setting: {
+          default: {
+            fill: [4, 12, 44],
+            stroke: fake.zones.operationnel.color,
+            strokeWeight: 2,
+          },
+          hover: {
+            fill: [4, 82, 134],
+            stroke: fake.zones.operationnel.color,
+            strokeWeight: 3
+          },
+        },
+      },
+      referentiel: {
+        font: {
+          fill: 255,
+          name: fonts.roboto,
+          size: 20,
+        },
+        setting: {
+          default: {
+            fill: [4, 12, 44],
+            stroke: fake.zones.referentiel.color,
+            strokeWeight: 2,
+          },
+          hover: {
+            fill: [4, 82, 134],
+            stroke: fake.zones.referentiel.color,
             strokeWeight: 3
           },
         },
@@ -158,5 +196,6 @@ const initStyles = () => {
 }
 const icons = {
   dt: "\uf15b",
-  tk: "\uf013"
+  tk: "\uf085"
+
 };

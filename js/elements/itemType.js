@@ -3,6 +3,7 @@ class ItemType extends Element {
   #number;
   #width;
   #textAscent;
+  #MAX_VALUE;
   constructor(itemType, number, width, style) {
     super();
     this.#itemType = itemType;
@@ -12,6 +13,7 @@ class ItemType extends Element {
       ...this._style,
       ...style
     };
+    this.#MAX_VALUE = 20
   }
 
   render(x, y) {
@@ -25,21 +27,25 @@ class ItemType extends Element {
     noStroke();
     fill(this._style.font.fill);
     this.#textAscent = textAscent();
-    if (this.#itemType == "dt") text(icons.dt, 0, 0);
-    else text(icons.tk, 0, 0);
+    if (this.#itemType == "dt") text(icons.dt, 10, 0);
+    else text(icons.tk, 10, 0);
+    text("0", 40, 0)
+    text(this.#MAX_VALUE.toString(), this.#width - 25, 0)
   }
 
   #renderBar() {
     const MAX_VALUE = 20; // TODO : determiner cette valeur dans le notebookHandler
-    const length = this.#width - 35 - 25;
+    const start = 55;
+    const end = 35;
+    const length = this.#width - start - end;
     strokeWeight(4);
     stroke(...this._style.setting.default.stroke, 100);
-    line(25, -this.#textAscent / 2, this.#width - 35, -this.#textAscent / 2);
+    line(start, -this.#textAscent / 2, this.#width - end, -this.#textAscent / 2);
     stroke(this._style.setting.default.stroke);
     line(
-      25,
+      start,
       -this.#textAscent / 2,
-      25 + (this.#number / MAX_VALUE) * length,
+      start + (this.#number / MAX_VALUE) * length,
       -this.#textAscent / 2
     );
   }

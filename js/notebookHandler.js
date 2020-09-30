@@ -69,56 +69,75 @@ class NotebookHandler {
           width,
           height,
           this.#firstCharUpperCase(zoneName),
-          styles.domainsView.zones
+          styles.domainsView.zones,
+          true,
+          true
         ),
         x,
         y
       );
-    });
 
-    Object.keys(fake.groups).forEach((groupName) => {
-      const padding = 10;
-      const group = fake.groups[groupName];
-      const {
-        x,
-        y,
-        width,
-        height
-      } = this.#getPixels(
-        group.row,
-        group.column,
-        group.numOfRows,
-        group.numOfColumns
-      );
-      groupsLayerBuilder.addElement(
-        new Rectangle(
-          width - padding * 2,
-          height - padding * 2,
-          this.#firstCharUpperCase(groupName),
-          styles.domainsView.groups
-        ),
-        x + padding,
-        y + padding
-      );
-      const top = y + padding + 40; // TO DO : Use title textAscent to compute
-      const bottom = y + height - padding - 10;
-      Object.keys(this.#types).forEach((typePrefix, index) => {
-        itemsLayerBuilder.addElement(
-          new ItemType(
-            typePrefix,
-            domains[groupName][this.#types[typePrefix]] ?
-            domains[groupName][this.#types[typePrefix]].length :
-            0,
-            width - padding * 2,
-            styles.domainsView.items
-          ),
-          x + padding * 2,
-          top +
-          ((2 * index + 1) * (bottom - top)) /
-          (2 * Object.keys(this.#types).length)
+      Object.keys(zone.groups).forEach((groupName) => {
+        let pt = 5; // top
+        let pl = 5; // left
+        let pb = 5; // bottom
+        let pr = 5; // right
+        const group = zone.groups[groupName];
+        const {
+          x,
+          y,
+          width,
+          height
+        } = this.#getPixels(
+          group.row,
+          group.column,
+          group.numOfRows,
+          group.numOfColumns
         );
+        if (zone.column == group.column) {
+          pl += 5
+        }
+        if (zone.column + zone.numOfColumns == group.column + group.numOfColumns) {
+          pr += 5
+        }
+        if (zone.row == group.row) {
+          pt += 5
+        }
+        if (zone.row + zone.numOfRows == group.row + group.numOfRows) {
+          pb += 5
+        }
+        groupsLayerBuilder.addElement(
+          new Rectangle(
+            width - pr - pl,
+            height - pt - pb,
+            this.#firstCharUpperCase(groupName),
+            styles.domainsView[zoneName]
+          ),
+          x + pl,
+          y + pt
+        );
+        const top = y + pt + 40; // TO DO : Use title textAscent to compute
+        const bottom = y + height - pb - 10;
+        Object.keys(this.#types).forEach((typePrefix, index) => {
+          itemsLayerBuilder.addElement(
+            new ItemType(
+              typePrefix,
+              domains[groupName][this.#types[typePrefix]] ?
+              domains[groupName][this.#types[typePrefix]].length :
+              0,
+              width - pl - pr,
+              styles.domainsView.items
+            ),
+            x + pl,
+            top +
+            ((2 * index + 1) * (bottom - top)) /
+            (2 * Object.keys(this.#types).length)
+          );
+        });
       });
     });
+
+
 
     return new MapBuilder()
       .addLayer(backgroundLayerBuilder.build())
@@ -161,7 +180,9 @@ class NotebookHandler {
         new Rectangle(
           width,
           height,
-          this.#firstCharUpperCase(this.#types[typePrefix]) +
+          (this.#types[typePrefix] == "objects" ?
+            "Data" :
+            this.#firstCharUpperCase(this.#types[typePrefix])) +
           " " +
           icons[typePrefix],
           styles.groupView.itemType
@@ -177,7 +198,7 @@ class NotebookHandler {
               itemHeight,
               item.slice(2, item.length),
               styles.groupView.item,
-              "center"
+              false
             ),
             x +
             (((itemWidth + padding) * itemIndex + padding) %
