@@ -8,8 +8,11 @@ class Rectangle extends Element {
     this.#height = height;
     this.#width = width;
     this.title = title;
-    this._style = { ...this._style, ...style };
-    this.#titlePosition = titlePosition
+    this._style = {
+      ...this._style,
+      ...style
+    };
+    this.#titlePosition = titlePosition;
   }
 
   render() {
@@ -26,7 +29,7 @@ class Rectangle extends Element {
       text(
         this.title ? this.#getDisplayableTitle() : "No title",
         0,
-        textAscent() + 5,
+        textAscent() + 15,
         this.#width
       );
     } else {
@@ -37,22 +40,23 @@ class Rectangle extends Element {
         0,
         this.#width,
         this.#height
-      )
+      );
     }
   }
 
   contains(x, y) {
-    return x > 0
-      && x < this.#width
-      && y > 0
-      && y < this.#height;
+    return x > 0 &&
+      x < this.#width &&
+      y > 0 &&
+      y < this.#height;
   }
 
   #getMaxCharacters() {
     let numOfCharacters = 1;
     while (
       numOfCharacters < this.title.length &&
-      textWidth(this.title.slice(0, numOfCharacters)) < this.#width - textWidth('m')
+      textWidth(this.title.slice(0, numOfCharacters)) <
+      this.#width - textWidth("m")
     ) {
       numOfCharacters++;
     }
@@ -60,7 +64,9 @@ class Rectangle extends Element {
   }
 
   #getDisplayableTitle() {
-    const numOfCharacters = this.#getMaxCharacters()
-    return numOfCharacters == this.title.length ? this.title : this.title.slice(0, numOfCharacters - 3) + "..."
+    const numOfCharacters = this.#getMaxCharacters();
+    return numOfCharacters == this.title.length ?
+      this.title :
+      this.title.slice(0, numOfCharacters - 3) + "...";
   }
 }

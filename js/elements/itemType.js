@@ -8,7 +8,10 @@ class ItemType extends Element {
     this.#itemType = itemType;
     this.#number = number;
     this.#width = width;
-    this._style = { ...this._style, ...style };
+    this._style = {
+      ...this._style,
+      ...style
+    };
   }
 
   render(x, y) {

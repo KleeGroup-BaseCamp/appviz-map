@@ -14,12 +14,20 @@ const DEFAULT_STYLE = {
     size: 18,
   },
   setting: {
-    default: { fill: COLORS[0], stroke: 255, strokeWeight: 2 },
-    hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
+    default: {
+      fill: COLORS[0],
+      stroke: 255,
+      strokeWeight: 2
+    },
+    hover: {
+      fill: COLORS[3],
+      stroke: 255,
+      strokeWeight: 2
+    },
   },
 };
 
-const BACKGROUND_COLOR = [3, 4, 94];
+const BACKGROUND_COLOR = ["#040413"];
 
 let styles;
 const initStyles = () => {
@@ -29,30 +37,38 @@ const initStyles = () => {
         font: {
           fill: 255,
           name: fonts.roboto,
-          size: 28,
+          size: 32,
         },
         setting: {
           default: {
             fill: [0, 0], // Black fill with 0 opacity => No fill
             stroke: 255,
-            strokeWeight: 2,
+            strokeWeight: 1,
           },
-          hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
+          hover: {
+            fill: [0, 0],
+            stroke: 255,
+            strokeWeight: 1
+          },
         },
       },
       groups: {
         font: {
           fill: 255,
           name: fonts.roboto,
-          size: 16,
+          size: 20,
         },
         setting: {
           default: {
-            fill: COLORS[0],
-            stroke: 255,
+            fill: [4, 12, 44],
+            stroke: [1, 255, 255],
             strokeWeight: 2,
           },
-          hover: { fill: COLORS[3], stroke: 255, strokeWeight: 2 },
+          hover: {
+            fill: [4, 82, 134],
+            stroke: 255,
+            strokeWeight: 3
+          },
         },
       },
       items: {
@@ -63,8 +79,8 @@ const initStyles = () => {
         },
         setting: {
           default: {
-            fill: COLORS[0],
-            stroke: COLORS[2],
+            fill: [0, 0],
+            stroke: [1, 255, 255],
             strokeWeight: 2,
           },
         },
@@ -73,7 +89,7 @@ const initStyles = () => {
         setting: {
           default: {
             fill: 0,
-            stroke: [255, 50],
+            stroke: [255, 30],
             strokeWeight: 1,
           },
         },
@@ -82,37 +98,37 @@ const initStyles = () => {
     groupView: {
       group: {
         font: {
-          fill: 255,
+          fill: [255],
           name: fonts.roboto,
-          size: 36,
+          size: 42,
         },
         setting: {
           default: {
-            fill: COLORS[0],
+            fill: [0, 0],
             stroke: 255,
-            strokeWeight: 2,
+            strokeWeight: 0,
           },
           hover: {
-            fill: COLORS[0],
+            fill: [0, 0],
             stroke: 255,
-            strokeWeight: 2,
+            strokeWeight: 0,
           },
         },
       },
       itemType: {
         font: {
-          fill: COLORS[0],
+          fill: 255,
           name: fonts.fa,
           size: 20,
         },
         setting: {
           default: {
-            fill: COLORS[2],
+            fill: [4, 28, 60],
             stroke: 255,
             strokeWeight: 2,
           },
           hover: {
-            fill: COLORS[3],
+            fill: [4, 28, 60],
             stroke: 255,
             strokeWeight: 2,
           },
@@ -126,12 +142,12 @@ const initStyles = () => {
         },
         setting: {
           default: {
-            fill: COLORS[1],
-            stroke: 255,
+            fill: [4, 54, 95],
+            stroke: [1, 255, 255],
             strokeWeight: 2,
           },
           hover: {
-            fill: COLORS[3],
+            fill: [4, 108, 156],
             stroke: 255,
             strokeWeight: 2,
           },
@@ -140,4 +156,7 @@ const initStyles = () => {
     }
   };
 }
-const icons = { dt: "\uf15b", tk: "\uf013" };
+const icons = {
+  dt: "\uf15b",
+  tk: "\uf013"
+};
