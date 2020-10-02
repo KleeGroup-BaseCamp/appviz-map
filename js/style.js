@@ -1,4 +1,13 @@
 class Style {
+    #fontSizes = {
+        xxs: 12,
+        xs: 14,
+        s: 16,
+        m: 20,
+        l: 26,
+        xl: 32,
+        xxl: 42,
+    }
     constructor() {
     }
 
@@ -7,23 +16,7 @@ class Style {
     }
 
     getFontSize(fontSize) {
-        switch (fontSize) {
-            case "xxs":
-                return 12
-            case "xs":
-                return 14
-            case "s":
-                return 16
-            case "l":
-                return 26
-            case "xl":
-                return 32
-            case "xxl":
-                return 42
-            default:
-                return 20
-        }
-
+        this.#fontSizes[fontSize] ? this.#fontSizes[fontSize] : 60
     }
 
     getPrimaryStroke(type, zone = null) {
