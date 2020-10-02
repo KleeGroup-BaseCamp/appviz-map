@@ -1,30 +1,30 @@
 class Layer {
-  #elementsDetail;
+  #positionedElements;
 
-  constructor(elementsDetail) {
-    this.#elementsDetail = elementsDetail;
+  constructor(positionedElements) {
+    this.#positionedElements = positionedElements;
   }
 
   render() {
-    this.#elementsDetail.forEach((elementDetail) => {
+    this.#positionedElements.forEach((positionedElement) => {
       push();
-      translate(elementDetail.position.x, elementDetail.position.y);
-      elementDetail.element.render();
+      translate(positionedElement.position.x, positionedElement.position.y);
+      positionedElement.element.render();
       pop();
     });
   }
 
   findElement(x, y) {
-    for (let elementDetail of this.#elementsDetail) {
+    for (let positionedElement of this.#positionedElements) {
       // console.log(this.#elementsDetail)
       // console.log(elementDetail)
       if (
-        elementDetail.element.contains(
-          x - elementDetail.position.x,
-          y - elementDetail.position.y
+        positionedElement.element.contains(
+          x - positionedElement.position.x,
+          y - positionedElement.position.y
         )
       )
-        return elementDetail.element;
+        return positionedElement.element;
     }
     return null;
   }

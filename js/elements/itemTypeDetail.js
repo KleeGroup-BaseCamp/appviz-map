@@ -1,7 +1,7 @@
 class ItemTypeDetail extends Rectangle {
     #itemsNames
     items
-    
+
     constructor(width, height, title, itemsNames) {
         super(width, height);
         this.title = title;
@@ -11,18 +11,19 @@ class ItemTypeDetail extends Rectangle {
     }
 
     render() {
-
         this.#renderRectangle()
         this.#renderTitle();
         this.#renderBar()
         this.#renderItems()
     }
+
     #renderRectangle() {
         strokeWeight(1)
         stroke(255)
         fill([100, 100, 200])
         rect(0, 0, this._width, this._height);
     }
+    
     #renderTitle() {
         noStroke()
         fill(style.getTextFill());

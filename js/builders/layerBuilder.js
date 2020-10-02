@@ -1,12 +1,12 @@
 class LayerBuilder {
-  #elements = [];
+  #positionedElements = [];
 
   addElement(element, x = 0, y = 0) {
-    this.#elements.push({ element, position: { x, y } });
+    this.#positionedElements.push({ element, position: { x, y } });
     return this;
   }
 
   build() {
-    return new Layer(this.#elements);
+    return new Layer(this.#positionedElements);
   }
 }
