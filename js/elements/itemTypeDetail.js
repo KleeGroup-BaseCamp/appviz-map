@@ -1,12 +1,16 @@
 class ItemTypeDetail extends Rectangle {
-    #items
-    constructor(width, height, title, items) {
+    #itemsNames
+    items
+    constructor(width, height, title, itemsNames) {
         super(width, height);
         this.title = title;
-        this.#items = items
+        this.#itemsNames = itemsNames
+        this.items = []
+        this.#initItems()
     }
 
     render() {
+
         this.#renderRectangle()
         this.#renderTitle();
         this.#renderBar()
@@ -37,41 +41,33 @@ class ItemTypeDetail extends Rectangle {
         line(this._width / 4, textAscent() + textDescent() + 20, this._width * 3 / 4, textAscent() + textDescent() + 20)
     }
 
-    #renderItems() {
-        textFont(style.getFont(false))
+    #initItems() {
         const padding = 10 // Use px and py
         const itemsPerRow = 4;
         const itemHeight = 30;
         const itemWidth = (this._width - padding * (itemsPerRow + 1)) / itemsPerRow;
-        const height = this.#items ?
-            50 + Math.ceil(this.#items.length / itemsPerRow) * (itemHeight + padding) :
-            50;
-
-
-
-        textSize(16)
-        this.#items.forEach((item, index) => {
+        textFont(style.getFont(false))
+        textSize(style.getFontSize("s"))
+        this.#itemsNames.forEach((item, index) => {
             const x = (((itemWidth + padding) * index + padding) % (this._width - padding))
             const y = 60 + Math.floor(index / itemsPerRow) * (itemHeight + 2 * padding)
-            this.#renderItem(item, x, y, itemWidth, itemHeight)
+            const textBox = new TextBox(itemWidth, itemHeight, this.#getDisplayableText(item.slice(2), itemWidth))
+            this.items.push({ element: textBox, x, y })
+
         })
     }
 
-    #renderItem(itemName, x, y, itemWidth, itemHeight) {
-        fill(255)
-        rect(x, y, itemWidth, itemHeight)
-        fill(0)
-        textSize(16)
-        textAlign(CENTER, CENTER);
+    #renderItems() {
+        textFont(style.getFont(false))
+        textSize(style.getFontSize("s"))
 
-        text(
-            itemName ? this.#getDisplayableText(itemName.slice(2), itemWidth) : "No title",
-            x,
-            y,
-            itemWidth,
-            itemHeight
-        )
-
+        this.items.forEach((item, index) => {
+            push()
+            translate(item.x, item.y)
+            fill(style.getShapeFill("itemTypeDetail", item.element._state))
+            item.element.render()
+            pop()
+        })
     }
 
     #getMaxCharacters(text, width) {
@@ -91,5 +87,15 @@ class ItemTypeDetail extends Rectangle {
         return numOfCharacters == text.length ?
             text :
             text.slice(0, numOfCharacters - 3) + "...";
+    }
+
+    contains(x, y) {
+        for (const item of this.items) {
+            if (item.element.contains(x - item.x, y - item.y)) {
+                item.element._state = "hover"
+                return true
+            }
+        }
+        return false
     }
 }

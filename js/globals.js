@@ -12,5 +12,4 @@ const BACKGROUND_COLOR = ["#041c3c"];
 const icons = {
   dt: "\uf15b",
   tk: "\uf085"
-
 };

@@ -76,11 +76,7 @@ class Style {
                     default:
                         return [255, 251, 0]
                 }
-            case "grouptitle":
-                return [0, 0]
-            case "elementTypeTitle":
-                return [4, 28, 60]
-            case "item":
+            case "itemTypeDetail":
                 switch (state) {
                     case "default":
                         return [4, 54, 95]
