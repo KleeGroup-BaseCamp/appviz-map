@@ -16,7 +16,7 @@ class Style {
     }
 
     getFontSize(fontSize) {
-        this.#fontSizes[fontSize] ? this.#fontSizes[fontSize] : 60
+        return this.#fontSizes[fontSize] ? this.#fontSizes[fontSize] : 60
     }
 
     getPrimaryStroke(type, zone = null) {
