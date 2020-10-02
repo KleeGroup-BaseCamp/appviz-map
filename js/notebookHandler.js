@@ -3,7 +3,7 @@ class NotebookHandler {
     dt: "objects",
     tk: "tasks"
   };
-  
+
   constructor(notebookPath) {
     this.notebook = loadJSON(notebookPath);
   }
@@ -49,7 +49,7 @@ class NotebookHandler {
     const itemsLayerBuilder = new LayerBuilder();
     const gridLayerBuilder = new LayerBuilder();
 
-    backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
+    backgroundLayerBuilder.addElement(new Background());
     // gridLayerBuilder.addElement(new Grid(12, 12, styles.domainsView.grid));
 
     Object.keys(fake.zones).forEach((zoneName) => {
@@ -161,7 +161,7 @@ class NotebookHandler {
     const groupLayerBuilder = new LayerBuilder();
     const itemTypesLayerBuilder = new LayerBuilder();
     const itemsLayerBuilder = new LayerBuilder();
-    backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
+    backgroundLayerBuilder.addElement(new Background());
     groupLayerBuilder.addElement(
       new GroupView(
         canvasSize,

@@ -1,12 +1,11 @@
 class Background extends Element {
   #backgroundColor;
-  
-  constructor(backgroundColor) {
+
+  constructor() {
     super();
-    this.#backgroundColor = backgroundColor;
   }
 
   render() {
-    background(...this.#backgroundColor);
+    background( style.getBackgroundColor());
   }
 }

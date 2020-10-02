@@ -12,6 +12,10 @@ class Style {
     constructor() {
     }
 
+    getBackgroundColor(){
+        return color("#041c3c")
+    }    
+
     getFont(isIcon) {
         return isIcon ? fonts.fa : fonts.roboto
     }
