@@ -1,6 +1,7 @@
 class ItemTypeDetail extends Rectangle {
     #itemsNames
     items
+    
     constructor(width, height, title, itemsNames) {
         super(width, height);
         this.title = title;

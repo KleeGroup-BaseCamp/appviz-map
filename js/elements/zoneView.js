@@ -1,4 +1,5 @@
 class ZoneView extends Rectangle {
+    
     constructor(width, height, title) {
         super(width, height);
         this.title = title;

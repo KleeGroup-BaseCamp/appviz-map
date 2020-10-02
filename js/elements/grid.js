@@ -1,6 +1,7 @@
 class Grid extends Element {
   #columns
   #rows
+  
   constructor(columns, rows, style) {
     super();
     this.#columns = columns;

@@ -1,5 +1,6 @@
 class Background extends Element {
   #backgroundColor;
+  
   constructor(backgroundColor) {
     super();
     this.#backgroundColor = backgroundColor;

@@ -3,6 +3,7 @@ class NotebookHandler {
     dt: "objects",
     tk: "tasks"
   };
+  
   constructor(notebookPath) {
     this.notebook = loadJSON(notebookPath);
   }
