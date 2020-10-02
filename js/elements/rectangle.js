@@ -1,4 +1,6 @@
 class Rectangle extends Element {
+  _height;
+  _width;
 
   constructor(width, height) {
     super();
