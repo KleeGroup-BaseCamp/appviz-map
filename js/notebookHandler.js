@@ -126,21 +126,21 @@ class NotebookHandler {
         );
         const top = y + pt + 40; // TO DO : Use title textAscent to compute
         const bottom = y + height - pb - 10;
-        Object.keys(this.#types).forEach((typePrefix, index) => {
-          itemsLayerBuilder.addElement(
-            new ItemType(
-              typePrefix,
-              domains[groupName][this.#types[typePrefix]] ?
-                domains[groupName][this.#types[typePrefix]].length :
-                0,
-              width - pl - pr
-            ),
-            x + pl,
-            top +
-            ((2 * index + 1) * (bottom - top)) /
-            (2 * Object.keys(this.#types).length)
-          );
-        });
+        // Object.keys(this.#types).forEach((typePrefix, index) => {
+        //   itemsLayerBuilder.addElement(
+        //     new ItemType(
+        //       typePrefix,
+        //       domains[groupName][this.#types[typePrefix]] ?
+        //         domains[groupName][this.#types[typePrefix]].length :
+        //         0,
+        //       width - pl - pr
+        //     ),
+        //     x + pl,
+        //     top +
+        //     ((2 * index + 1) * (bottom - top)) /
+        //     (2 * Object.keys(this.#types).length)
+        //   );
+        // });
       });
     });
 
@@ -171,53 +171,46 @@ class NotebookHandler {
       0
     );
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
-      const padding = 10;
-      const x = padding;
-      const y = typeIndex * 300 + 100;
-      const width = canvasSize - 2 * padding;
-      const itemsPerRow = 4;
-      const itemHeight = 30;
-      const itemWidth = (width - padding * (itemsPerRow + 1)) / itemsPerRow;
-      let items = domains[groupName][this.#types[typePrefix]];
-      const height = items ?
-        50 + Math.ceil(items.length / itemsPerRow) * (itemHeight + padding) :
-        50;
+      const px = 20;
+      const py = 50
+
+      const height = (canvasSize - 100) / Object.keys(this.#types).length - py;
       itemTypesLayerBuilder.addElement(
-        new Rectangle(
-          width,
+        new ItemTypeDetail(
+          canvasSize - 2 * px,
           height,
           (this.#types[typePrefix] == "objects" ?
             "Data" :
             this.#firstCharUpperCase(this.#types[typePrefix])) +
           " " +
           icons[typePrefix],
+          domains[groupName][this.#types[typePrefix]]
         ),
-        x,
-        y
+        px,
+        100 + (height + py) * typeIndex
       );
-      if (items) {
-        items.forEach((item, itemIndex) => {
-          itemsLayerBuilder.addElement(
-            new Rectangle(
-              itemWidth,
-              itemHeight,
-              item.slice(2, item.length),
-            ),
-            x +
-            (((itemWidth + padding) * itemIndex + padding) %
-              (width - padding)),
-            y +
-            50 +
-            Math.floor(itemIndex / itemsPerRow) * (itemHeight + padding)
-          );
-        });
-      }
+      // if (items) {
+      //   items.forEach((item, itemIndex) => {
+      //     itemsLayerBuilder.addElement(
+      //       new Rectangle(
+      //         itemWidth,
+      //         itemHeight,
+      //         item.slice(2, item.length),
+      //       ),
+      //       x +
+      //       (((itemWidth + padding) * itemIndex + padding) %
+      //         (width - padding)),
+      //       y +
+      //       50 +
+      //       Math.floor(itemIndex / itemsPerRow) * (itemHeight + padding)
+      //     );
+      //   });
+      // }
     });
     return new MapBuilder()
       .addLayer(backgroundLayerBuilder.build())
       .addLayer(groupLayerBuilder.build())
       .addLayer(itemTypesLayerBuilder.build())
-      .addLayer(itemsLayerBuilder.build())
       .build();
   }
 
