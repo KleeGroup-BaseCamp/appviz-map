@@ -16,6 +16,8 @@ class Layer {
 
   findElement(x, y) {
     for (let elementDetail of this.#elementsDetail) {
+      // console.log(this.#elementsDetail)
+      // console.log(elementDetail)
       if (
         elementDetail.element.contains(
           x - elementDetail.position.x,

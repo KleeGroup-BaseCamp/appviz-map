@@ -5,6 +5,7 @@ let canvasSize;
 let fonts = {};
 let group = false // temp variable
 let cnv;
+let style;
 
 function preload() {
   notebookHandler = new NotebookHandler("./notebook.json");
@@ -17,9 +18,9 @@ function setup() {
   canvasSize = windowHeight;
   cnv = createCanvas(canvasSize, canvasSize);
   cnv.mouseClicked(handleClick)
-  angleMode(DEGREES);
-  initStyles();
+  style = new Style();
   vizMap = notebookHandler.handle(fake);
+  angleMode(DEGREES);
 }
 
 function draw() {

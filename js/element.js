@@ -1,21 +1,13 @@
 class Element {
-  _style = DEFAULT_STYLE; // Hardcode init style
+  _state;
 
   constructor() {
-    this._style.type = "default";
+    this._state = "default";
   }
 
-  setStyle(type) {
-    if (type == "hover") this._style.type = "hover";
-    else this._style.type = "default";
-  }
-
-  _applyStyle() {
-    textSize(this._style.font.size);
-    textFont(this._style.font.name);
-    stroke(this._style.setting[this._style.type].stroke);
-    strokeWeight(this._style.setting[this._style.type].strokeWeight);
-    fill(this._style.setting[this._style.type].fill);
+  setStyle(state) {
+    if (state == "hover") this._state = "hover";
+    else this._state = "default";
   }
 
   render() {

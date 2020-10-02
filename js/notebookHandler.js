@@ -49,7 +49,7 @@ class NotebookHandler {
     const gridLayerBuilder = new LayerBuilder();
 
     backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
-    gridLayerBuilder.addElement(new Grid(12, 12, styles.domainsView.grid));
+    // gridLayerBuilder.addElement(new Grid(12, 12, styles.domainsView.grid));
 
     Object.keys(fake.zones).forEach((zoneName) => {
       const zone = fake.zones[zoneName];
@@ -65,23 +65,21 @@ class NotebookHandler {
         zone.numOfColumns
       );
       zonesLayerBuilder.addElement(
-        new Rectangle(
+        new ZoneView(
           width,
           height,
           this.#firstCharUpperCase(zoneName),
-          styles.domainsView.zones,
-          true,
-          true
         ),
         x,
         y
       );
 
       Object.keys(zone.groups).forEach((groupName) => {
-        let pt = 5; // top
-        let pl = 5; // left
-        let pb = 5; // bottom
-        let pr = 5; // right
+        const paddingStep = 5
+        let pt = paddingStep; // top
+        let pl = paddingStep; // left
+        let pb = paddingStep; // bottom
+        let pr = paddingStep; // right
         const group = zone.groups[groupName];
         const {
           x,
@@ -95,23 +93,33 @@ class NotebookHandler {
           group.numOfColumns
         );
         if (zone.column == group.column) {
-          pl += 5
+          pl += paddingStep
         }
-        if (zone.column + zone.numOfColumns == group.column + group.numOfColumns) {
-          pr += 5
+        if ((zone.column + zone.numOfColumns) == (group.column + group.numOfColumns)) {
+          pr += paddingStep
         }
         if (zone.row == group.row) {
-          pt += 5
+          pt += paddingStep
         }
-        if (zone.row + zone.numOfRows == group.row + group.numOfRows) {
-          pb += 5
+        if ((zone.row + zone.numOfRows) == (group.row + group.numOfRows)) {
+          pb += paddingStep
         }
+        const items = Object.keys(this.#types).map((typePrefix) => {
+          return {
+            prefix: typePrefix,
+            frequency:
+              domains[groupName][this.#types[typePrefix]]
+                ? domains[groupName][this.#types[typePrefix]].length
+                : 0
+          }
+        })
         groupsLayerBuilder.addElement(
-          new Rectangle(
+          new Group(
             width - pr - pl,
             height - pt - pb,
             this.#firstCharUpperCase(groupName),
-            styles.domainsView[zoneName]
+            zoneName,
+            items
           ),
           x + pl,
           y + pt
@@ -123,10 +131,9 @@ class NotebookHandler {
             new ItemType(
               typePrefix,
               domains[groupName][this.#types[typePrefix]] ?
-              domains[groupName][this.#types[typePrefix]].length :
-              0,
-              width - pl - pr,
-              styles.domainsView.items
+                domains[groupName][this.#types[typePrefix]].length :
+                0,
+              width - pl - pr
             ),
             x + pl,
             top +
@@ -143,8 +150,8 @@ class NotebookHandler {
       .addLayer(backgroundLayerBuilder.build())
       .addLayer(zonesLayerBuilder.build())
       .addLayer(groupsLayerBuilder.build())
-      .addLayer(itemsLayerBuilder.build())
-      .addLayer(gridLayerBuilder.build())
+      // .addLayer(itemsLayerBuilder.build())
+      // .addLayer(gridLayerBuilder.build())
       .build();
   }
 
@@ -155,11 +162,10 @@ class NotebookHandler {
     const itemsLayerBuilder = new LayerBuilder();
     backgroundLayerBuilder.addElement(new Background(BACKGROUND_COLOR));
     groupLayerBuilder.addElement(
-      new Rectangle(
+      new GroupView(
         canvasSize,
         canvasSize,
         this.#firstCharUpperCase(groupName),
-        styles.groupView.group
       ),
       0,
       0
@@ -185,7 +191,6 @@ class NotebookHandler {
             this.#firstCharUpperCase(this.#types[typePrefix])) +
           " " +
           icons[typePrefix],
-          styles.groupView.itemType
         ),
         x,
         y
@@ -197,8 +202,6 @@ class NotebookHandler {
               itemWidth,
               itemHeight,
               item.slice(2, item.length),
-              styles.groupView.item,
-              false
             ),
             x +
             (((itemWidth + padding) * itemIndex + padding) %
