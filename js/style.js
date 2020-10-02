@@ -1,4 +1,6 @@
 class Style {
+    #fonts = {};
+
     #fontSizes = {
         xxs: 12,
         xs: 14,
@@ -10,6 +12,8 @@ class Style {
         default : 60
     }
     constructor() {
+        this.#fonts.roboto = loadFont("fonts/Roboto-Regular.ttf");
+        this.#fonts.fa = loadFont("fonts/fa.otf");
     }
 
     getBackgroundColor(){
@@ -17,7 +21,9 @@ class Style {
     }    
 
     getFont(isIcon) {
-        return isIcon ? fonts.fa : fonts.roboto
+        return isIcon 
+        ? this.#fonts.fa 
+        : this.#fonts.roboto
     }
 
     getFontSize(fontSize) {
