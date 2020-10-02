@@ -22,8 +22,7 @@ class ItemType extends Element {
     fill(style.getTextFill());
     textSize(style.getFontSize("xs"))
     textFont(style.getFont(true))
-    if (this.#itemType == "dt") text(icons.dt, 10, 0);
-    else text(icons.tk, 10, 0);
+    text(getIcon(this.#itemType), 10, 0);
     text("0", 40, 0)
     text(this.#MAX_VALUE.toString(), this.#width - 25, 0)
   }

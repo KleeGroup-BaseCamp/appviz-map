@@ -1,7 +1,7 @@
 class Group extends Rectangle {
     #items
     #maxValue // Make static ?
-    
+
     constructor(width, height, title, zone, items, maxValue = 20) {
         super(width, height);
         this.title = title;
@@ -65,11 +65,7 @@ class Group extends Rectangle {
         fill(style.getTextFill());
         textSize(style.getFontSize("xs"))
         textFont(style.getFont(true))
-        if (itemPrefix == "dt") {
-            text(icons.dt, 10, 0);
-        } else {
-            text(icons.tk, 10, 0);
-        } 
+        text(getIcon(itemPrefix), 10, 0);
         text("0", 40, 0)
         text(this.#maxValue.toString(), this._width - 25, 0)
     }

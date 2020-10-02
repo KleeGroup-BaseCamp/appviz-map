@@ -183,8 +183,7 @@ class NotebookHandler {
           (this.#types[typePrefix] == "objects" ?
             "Data" :
             this.#firstCharUpperCase(this.#types[typePrefix])) +
-          " " +
-          icons[typePrefix],
+          " " + getIcon (typePrefix),
           domains[groupName][this.#types[typePrefix]]
         ),
         px,
