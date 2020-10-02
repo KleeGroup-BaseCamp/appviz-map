@@ -7,6 +7,7 @@ class Style {
         l: 26,
         xl: 32,
         xxl: 42,
+        default : 60
     }
     constructor() {
     }
@@ -16,7 +17,9 @@ class Style {
     }
 
     getFontSize(fontSize) {
-        return this.#fontSizes[fontSize] ? this.#fontSizes[fontSize] : 60
+        return this.#fontSizes[fontSize] 
+        ? this.#fontSizes[fontSize] 
+        : this.#fontSizes.default
     }
 
     getPrimaryStroke(type, zone = null) {
@@ -50,9 +53,9 @@ class Style {
     getSecondaryStroke(type) {
         switch (type) {
             case "group":
-                return [1, 255, 255]
+                return color(1, 255, 255)
             default:
-                return [255, 251, 0]
+                return color(255, 251, 0)
         }
     }
 

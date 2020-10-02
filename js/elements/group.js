@@ -75,7 +75,7 @@ class Group extends Rectangle {
         const end = 35;
         const length = this._width - start - end;
         strokeWeight(4);
-        stroke(...style.getSecondaryStroke("group"), 100);
+        stroke(style.getSecondaryStroke("group"), 100);
         line(start, -textAscent() / 2, this._width - end, -textAscent() / 2);
         stroke(style.getSecondaryStroke("group"));
         line(
