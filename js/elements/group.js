@@ -5,7 +5,7 @@ class Group extends Rectangle {
 
     constructor(width, height, title, zone, items, maxValue = 20) {
         super(width, height);
-        this.title = title ? this.#buildDisplayableTitle(title) : "No title" 
+        this.title = title ? Utils.buildDisplayableTitle(title, width) : "No title" 
         
         this.zone = zone
         this.#items = items
@@ -81,21 +81,5 @@ class Group extends Rectangle {
             start + (itemFrequency / this.#maxValue) * length,
             -textAscent() / 2
         );
-    }
-
-    #maxCharacters(text) {
-        let numOfCharacters = 1;
-        while (numOfCharacters < text.length 
-            && textWidth(text.slice(0, numOfCharacters)) <(this._width - textWidth("m"))) {
-            numOfCharacters++;
-        }
-        return numOfCharacters;
-    }
-
-    #buildDisplayableTitle(text) {
-        const numOfCharacters = this.#maxCharacters(text);
-        return numOfCharacters == text.length 
-                ? text 
-                : text.slice(0, numOfCharacters - 3) + "...";
     }
 }
