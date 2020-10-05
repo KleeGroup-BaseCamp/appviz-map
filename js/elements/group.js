@@ -21,18 +21,17 @@ class Group extends Element {
        * @override
        */  
       render() {
-        this.#renderRectangle()
-        this.#renderBar()
-        this.#renderItems()
+        this.#renderBackground()
         this.#renderTitle();
+        this.#renderItems()
     }
 
-    #renderRectangle() {
+    #renderBackground() {
         strokeWeight(2)
         fill(style.getShapeFill("group", this._state))
         stroke(style.getPrimaryStroke("group", this.zone))
         rect(0, 0, this.#width, this.#height);
-    }
+     }
 
     #renderTitle() {
         noStroke()
@@ -41,13 +40,11 @@ class Group extends Element {
         textFont(style.getFont(false))
         textAlign(CENTER);
         text(this.title, 0, textAscent() + 15, this.#width);
-    }
-
-    #renderBar() {
+        //--- underline
         stroke(style.getPrimaryStroke("group", this.zone))
         strokeWeight(2)
         line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
-    }
+   }
 
     #renderItems() {
         const top = textAscent() + 35
