@@ -10,10 +10,16 @@ class Element {
     else this._state = "default";
   }
 
+  /**
+   * This method MUST be overridden
+   */
   render() {
-    //This method must be overridden
+    throw 'render method MUST be overridden'
   }
 
+  /**
+   * This method CAN be overridden
+   */
   contains(x, y) {
     return false;
   }
