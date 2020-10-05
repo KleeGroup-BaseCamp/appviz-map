@@ -1,10 +1,15 @@
-class Group extends Rectangle {
+class Group extends Element {
+    #width;
+    #height;
     #items
     #maxValue // Make static ?
     title    
 
     constructor(width, height, title, zone, items, maxValue = 20) {
-        super(width, height);
+        super();
+        this.#width = width;
+        this.#height = height;
+     
         this.title = title ? Utils.buildDisplayableTitle(title, width) : "No title" 
         
         this.zone = zone
@@ -23,7 +28,7 @@ class Group extends Rectangle {
         strokeWeight(2)
         fill(style.getShapeFill("group", this._state))
         stroke(style.getPrimaryStroke("group", this.zone))
-        rect(0, 0, this._width, this._height);
+        rect(0, 0, this.#width, this.#height);
     }
 
     #renderTitle() {
@@ -32,20 +37,20 @@ class Group extends Rectangle {
         textSize(style.getFontSize("m"))
         textFont(style.getFont(false))
         textAlign(CENTER);
-        text(this.title, 0, textAscent() + 15, this._width);
+        text(this.title, 0, textAscent() + 15, this.#width);
     }
 
     #renderBar() {
         stroke(style.getPrimaryStroke("group", this.zone))
         strokeWeight(2)
-        line(this._width / 4, textAscent() + textDescent() + 20, this._width * 3 / 4, textAscent() + textDescent() + 20)
+        line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
     }
 
     #renderItems() {
         const top = textAscent() + 35
         let positions = []
         for (let i = 0; i < this.#items.length; i++) {
-            positions.push(top + (this._width - top) / (this.#items.length + 1) * (i + 1))
+            positions.push(top + (this.#width - top) / (this.#items.length + 1) * (i + 1))
         }
         this.#items.forEach((item, index) => {
             push()
@@ -64,16 +69,16 @@ class Group extends Rectangle {
         textFont(style.getFont(true))
         text(getIcon(itemPrefix), 10, 0);
         text("0", 40, 0)
-        text(this.#maxValue.toString(), this._width - 25, 0)
+        text(this.#maxValue.toString(), this.#width - 25, 0)
     }
 
     #renderFrequencyBar(itemFrequency) {
         const start = 55;
         const end = 35;
-        const length = this._width - start - end;
+        const length = this.#width - start - end;
         strokeWeight(4);
         stroke(style.getSecondaryStroke("group"), 100);
-        line(start, -textAscent() / 2, this._width - end, -textAscent() / 2);
+        line(start, -textAscent() / 2, this.#width - end, -textAscent() / 2);
         stroke(style.getSecondaryStroke("group"));
         line(
             start,
@@ -82,4 +87,11 @@ class Group extends Rectangle {
             -textAscent() / 2
         );
     }
+
+    contains(x, y) {
+        return x > 0 &&
+          x < this.#width &&
+          y > 0 &&
+          y < this.#height;
+      }
 }
