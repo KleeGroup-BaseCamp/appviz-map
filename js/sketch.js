@@ -20,12 +20,15 @@ function setup() {
 
 function draw() {
   vizMap = notebookHandler.handle(fake);
+  
   const element = vizMap.findElement(mouseX, mouseY) 
     ? vizMap.findElement(mouseX, mouseY).element 
     :  null;
   vizMap.select(element);
-  const selected = element != null;
-  drawCursor(selected);
+  //--- cursor
+  const isSelected = element != null;
+  cursor(isSelected ? "pointer" : "default");
+  //--- render
   vizMap.render();
 }
 
@@ -38,7 +41,7 @@ function mouseClicked() {
 }
 
 function drawCursor(isSelected) {
-  cursor(isSelected ? "pointer" : "default");
+ 
 }
 
 function windowResized() {

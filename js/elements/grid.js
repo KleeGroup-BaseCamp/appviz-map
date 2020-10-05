@@ -2,18 +2,18 @@ class Grid extends Element {
   #columns
   #rows
   
-  constructor(columns, rows, style) {
+  constructor(columns, rows) {
     super();
     this.#columns = columns;
     this.#rows = rows;
-    this._style = { ...this._style, ...style };
   }
 
   /**
    * @override 
    */
   render() {
-    this._applyStyle();
+    stroke(122, 122, 122, 122);
+    strokeWeight(1);
 
     const rowSize = canvasSize / this.#rows; 
     for (let i = 0; i < this.#rows; i++) {

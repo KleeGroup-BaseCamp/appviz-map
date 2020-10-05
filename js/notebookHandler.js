@@ -43,13 +43,11 @@ class NotebookHandler {
   }
 
   #generateDomainsMap(domains, fake) {
-    const backgroundLayerBuilder = new LayerBuilder();
     const zonesLayerBuilder = new LayerBuilder();
     const groupsLayerBuilder = new LayerBuilder();
     const itemsLayerBuilder = new LayerBuilder();
     const gridLayerBuilder = new LayerBuilder();
 
-    backgroundLayerBuilder.addElement(new Background());
     // gridLayerBuilder.addElement(new Grid(12, 12, styles.domainsView.grid));
 
     Object.keys(fake.zones).forEach((zoneName) => {
@@ -148,20 +146,29 @@ class NotebookHandler {
 
 
     return new MapBuilder()
-      .addLayer(backgroundLayerBuilder.build())
+      .addLayer(this.#buildBackgroundLayer())
       .addLayer(zonesLayerBuilder.build())
       .addLayer(groupsLayerBuilder.build())
       // .addLayer(itemsLayerBuilder.build())
-      // .addLayer(gridLayerBuilder.build())
+      .addLayer(this.#buildGridLayer())
       .build();
   }
 
+  #buildBackgroundLayer(){
+    return new LayerBuilder()
+      .addElement(new Background())
+      .build();
+  }
+
+  #buildGridLayer(){
+    return new LayerBuilder()
+      .addElement(new Grid(12, 12))
+      .build();
+  }
   #generateGroupMap(domains, fake, groupName) {
-    const backgroundLayerBuilder = new LayerBuilder();
     const groupLayerBuilder = new LayerBuilder();
     const itemTypesLayerBuilder = new LayerBuilder();
     const itemsLayerBuilder = new LayerBuilder();
-    backgroundLayerBuilder.addElement(new Background());
     groupLayerBuilder.addElement(
       new GroupView(
         canvasSize,
@@ -208,9 +215,10 @@ class NotebookHandler {
       // }
     });
     return new MapBuilder()
-      .addLayer(backgroundLayerBuilder.build())
+      .addLayer(this.#buildBackgroundLayer())
       .addLayer(groupLayerBuilder.build())
       .addLayer(itemTypesLayerBuilder.build())
+      .addLayer(this.#buildGridLayer())
       .build();
   }
 
