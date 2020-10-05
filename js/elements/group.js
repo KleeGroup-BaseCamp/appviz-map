@@ -1,10 +1,12 @@
 class Group extends Rectangle {
     #items
     #maxValue // Make static ?
+    title    
 
     constructor(width, height, title, zone, items, maxValue = 20) {
         super(width, height);
-        this.title = title;
+        this.title = title ? this.#getDisplayableTitle(title) : "No title" 
+        
         this.zone = zone
         this.#items = items
         this.#maxValue = maxValue
@@ -30,12 +32,7 @@ class Group extends Rectangle {
         textSize(style.getFontSize("m"))
         textFont(style.getFont(false))
         textAlign(CENTER);
-        text(
-            this.title ? this.#getDisplayableTitle() : "No title",
-            0,
-            textAscent() + 15,
-            this._width
-        );
+        text(this.title, 0, textAscent() + 15, this._width);
     }
 
     #renderBar() {
@@ -86,22 +83,19 @@ class Group extends Rectangle {
         );
     }
 
-    #getMaxCharacters() {
+    #getMaxCharacters(text) {
         let numOfCharacters = 1;
-        while (
-            numOfCharacters < this.title.length &&
-            textWidth(this.title.slice(0, numOfCharacters)) <
-            this._width - textWidth("m")
-        ) {
+        while (numOfCharacters < text.length 
+            && textWidth(text.slice(0, numOfCharacters)) <(this._width - textWidth("m"))) {
             numOfCharacters++;
         }
         return numOfCharacters;
     }
 
-    #getDisplayableTitle() {
-        const numOfCharacters = this.#getMaxCharacters();
-        return numOfCharacters == this.title.length ?
-            this.title :
-            this.title.slice(0, numOfCharacters - 3) + "...";
+    #getDisplayableTitle(text) {
+        const numOfCharacters = this.#getMaxCharacters(text);
+        return numOfCharacters == text.length 
+                ? text 
+                : text.slice(0, numOfCharacters - 3) + "...";
     }
 }
