@@ -20,11 +20,12 @@ function setup() {
 
 function draw() {
   vizMap = notebookHandler.handle(fake);
-  const element = vizMap.findElement(mouseX, mouseY) ?
-    vizMap.findElement(mouseX, mouseY).element :
-    null;
+  const element = vizMap.findElement(mouseX, mouseY) 
+    ? vizMap.findElement(mouseX, mouseY).element 
+    :  null;
   vizMap.select(element);
-  drawCursor(element != null);
+  const selected = element != null;
+  drawCursor(selected);
   vizMap.render();
 }
 
