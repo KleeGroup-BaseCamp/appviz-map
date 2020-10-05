@@ -3,7 +3,6 @@ let notebookHandler;
 let fake;
 let canvasSize;
 let group = false // temp variable
-let cnv;
 let style;
 
 function preload() {
@@ -14,8 +13,7 @@ function preload() {
 
 function setup() {
   canvasSize = windowHeight;
-  cnv = createCanvas(canvasSize, canvasSize);
-  cnv.mouseClicked(handleClick)
+  createCanvas(canvasSize, canvasSize);
   vizMap = notebookHandler.handle(fake);
   angleMode(DEGREES);
 }
@@ -30,7 +28,7 @@ function draw() {
   vizMap.render();
 }
 
-function handleClick() {
+function mouseClicked() {
   const {
     element,
     index: layerIndex
