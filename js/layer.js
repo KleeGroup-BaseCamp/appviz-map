@@ -18,14 +18,11 @@ class Layer {
     for (let positionedElement of this.#positionedElements) {
       // console.log(this.#elementsDetail)
       // console.log(elementDetail)
-      if (
-        positionedElement.element.contains(
-          x - positionedElement.position.x,
-          y - positionedElement.position.y
-        )
-      )
+      const lx = x - positionedElement.position.x;
+      const ly = y - positionedElement.position.y;
+      if (positionedElement.element.contains( lx, ly))
         return positionedElement.element;
-    }
+    }    
     return null;
   }
 }
