@@ -1,11 +1,11 @@
 class Rectangle extends Element {
-  _height;
   _width;
+  _height;
 
   constructor(width, height) {
     super();
-    this._height = height;
     this._width = width;
+    this._height = height;
   }
 
   render() {
