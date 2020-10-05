@@ -10,12 +10,11 @@ class ZoneView extends Element {
     }
 
     render() {
-        this.#renderRectangle()
+        this.#renderBackground()
         this.#renderTitle();
-        this.#renderBar()
     }
 
-    #renderRectangle() {
+    #renderBackground() {
         strokeWeight(1)
         stroke(255)
         fill([0, 0])
@@ -29,9 +28,7 @@ class ZoneView extends Element {
         textFont(style.getFont(false))
         textAlign(CENTER);
         text( this.title, 0, textAscent() + 15, this.#width);
-    }
-
-    #renderBar() {
+        //--- underline
         stroke(255)
         line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
     }
