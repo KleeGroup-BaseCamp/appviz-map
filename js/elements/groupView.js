@@ -5,6 +5,9 @@ class GroupView extends Rectangle {
         this.title = title ? Utils.buildDisplayableTitle(title, width) :  "No title";
     }
 
+    /**
+     * @override
+     */
     render() {
         this.#renderRectangle()
         this.#renderTitle();

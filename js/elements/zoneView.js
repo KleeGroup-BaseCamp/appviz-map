@@ -9,6 +9,9 @@ class ZoneView extends Element {
         this.title = title ? Utils.buildDisplayableTitle(title, width) :  "No title";
     }
 
+    /**
+     * @override
+     */
     render() {
         this.#renderBackground()
         this.#renderTitle();
@@ -31,9 +34,5 @@ class ZoneView extends Element {
         //--- underline
         stroke(255)
         line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
-    }
-
-    contains(x, y) {
-        return false
     }
 }

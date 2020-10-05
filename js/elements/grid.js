@@ -9,6 +9,9 @@ class Grid extends Element {
     this._style = { ...this._style, ...style };
   }
 
+  /**
+   * @override 
+   */
   render() {
     this._applyStyle();
 

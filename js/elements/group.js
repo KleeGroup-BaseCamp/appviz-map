@@ -17,7 +17,10 @@ class Group extends Element {
         this.#maxValue = maxValue
     }
 
-    render() {
+      /**
+       * @override
+       */  
+      render() {
         this.#renderRectangle()
         this.#renderBar()
         this.#renderItems()
@@ -80,14 +83,16 @@ class Group extends Element {
         stroke(style.getSecondaryStroke("group"), 100);
         line(start, -textAscent() / 2, this.#width - end, -textAscent() / 2);
         stroke(style.getSecondaryStroke("group"));
-        line(
-            start,
+        line(start,
             -textAscent() / 2,
             start + (itemFrequency / this.#maxValue) * length,
             -textAscent() / 2
         );
     }
 
+    /**
+     * @override
+     */
     contains(x, y) {
         return x > 0 &&
           x < this.#width &&
