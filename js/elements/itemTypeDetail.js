@@ -31,7 +31,7 @@ class ItemTypeDetail extends Rectangle {
         textFont(style.getFont(true))
         textAlign(CENTER);
         text(
-            this.title ? this.#getDisplayableText(this.title, this._width) : "No title",
+            this.title ? Utils.buildDisplayableTitle(this.title, this._width) : "No title",
             0,
             textAscent() + 15,
             this._width
@@ -53,7 +53,7 @@ class ItemTypeDetail extends Rectangle {
         this.#itemsNames.forEach((item, index) => {
             const x = (((itemWidth + padding) * index + padding) % (this._width - padding))
             const y = 60 + Math.floor(index / itemsPerRow) * (itemHeight + 2 * padding)
-            const textBox = new TextBox(itemWidth, itemHeight, this.#getDisplayableText(item.slice(2), itemWidth))
+            const textBox = new TextBox(itemWidth, itemHeight, Utils.buildDisplayableTitle(item.slice(2), itemWidth))
             this.items.push({ element: textBox, x, y })
 
         })
@@ -63,32 +63,13 @@ class ItemTypeDetail extends Rectangle {
         textFont(style.getFont(false))
         textSize(style.getFontSize("s"))
 
-        this.items.forEach((item, index) => {
+        this.items.forEach((item) => {
             push()
             translate(item.x, item.y)
             fill(style.getShapeFill("itemTypeDetail", item.element._state))
             item.element.render()
             pop()
         })
-    }
-
-    #getMaxCharacters(text, width) {
-        let numOfCharacters = 1;
-        while (
-            numOfCharacters < text.length &&
-            textWidth(text.slice(0, numOfCharacters)) <
-            width - textWidth("m")
-        ) {
-            numOfCharacters++;
-        }
-        return numOfCharacters;
-    }
-
-    #getDisplayableText(text, width) {
-        const numOfCharacters = this.#getMaxCharacters(text, width);
-        return numOfCharacters == text.length ?
-            text :
-            text.slice(0, numOfCharacters - 3) + "...";
     }
 
     contains(x, y) {

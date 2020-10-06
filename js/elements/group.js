@@ -4,24 +4,24 @@ class Group extends Element {
     #items
     #maxValue // Make static ?
     title
-    #header    
+    #header
 
     constructor(width, height, title, zone, items, maxValue = 20) {
         super();
         this.#width = width;
         this.#height = height;
-     
-        this.title = title ? Utils.buildDisplayableTitle(title, width) : "No title" 
-        this.#header = new Header (title, width, /*fontSize*/ "m", style.getPrimaryStroke("group", this.zone))
+
+        this.title = title ? Utils.buildDisplayableTitle(title, width) : "No title"
         this.zone = zone
+        this.#header = new Header(title, width, /*fontSize*/ "m", style.getPrimaryStroke("group", this.zone))
         this.#items = items
         this.#maxValue = maxValue
     }
 
-      /**
-       * @override
-       */  
-      render() {
+    /**
+     * @override
+     */
+    render() {
         this.#renderBackground()
         this.#header.render();
         this.#renderItems()
@@ -32,7 +32,7 @@ class Group extends Element {
         fill(style.getShapeFill("group", this._state))
         stroke(style.getPrimaryStroke("group", this.zone))
         rect(0, 0, this.#width, this.#height);
-     }
+    }
 
     #renderItems() {
         const top = textAscent() + 35
@@ -43,31 +43,34 @@ class Group extends Element {
         this.#items.forEach((item, index) => {
             push()
             translate(0, positions[index])
-            this.#renderItemTypeName(item.prefix)
+            this.#renderItemTypeIcon(item.prefix)
             this.#renderFrequencyBar(item.frequency)
             pop()
         })
     }
 
-    #renderItemTypeName(itemPrefix) {
+    #renderItemTypeIcon(itemPrefix) {
         rectMode(CENTER);
         noStroke();
         fill(style.getTextFill());
         textSize(style.getFontSize("xs"))
         textFont(style.getFont(true))
-        text(getIcon(itemPrefix), 10, 0);
+        text(getIcon(itemPrefix), 20, 0);
         text("0", 40, 0)
-        text(this.#maxValue.toString(), this.#width - 25, 0)
+        text(this.#maxValue.toString(), this.#width - 15, 0)
     }
 
     #renderFrequencyBar(itemFrequency) {
         const start = 55;
         const end = 35;
         const length = this.#width - start - end;
+        const secondaryStroke = style.getSecondaryStroke("group")
+        secondaryStroke.setAlpha(100)
         strokeWeight(4);
-        stroke(style.getSecondaryStroke("group"), 100);
+        stroke(secondaryStroke);
         line(start, -textAscent() / 2, this.#width - end, -textAscent() / 2);
-        stroke(style.getSecondaryStroke("group"));
+        secondaryStroke.setAlpha(255)
+        stroke(secondaryStroke);
         line(start,
             -textAscent() / 2,
             start + (itemFrequency / this.#maxValue) * length,
@@ -80,8 +83,8 @@ class Group extends Element {
      */
     contains(x, y) {
         return x > 0 &&
-          x < this.#width &&
-          y > 0 &&
-          y < this.#height;
-      }
+            x < this.#width &&
+            y > 0 &&
+            y < this.#height;
+    }
 }

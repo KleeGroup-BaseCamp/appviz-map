@@ -9,27 +9,27 @@ class Style {
         l: 26,
         xl: 32,
         xxl: 42,
-        default : 60
+        default: 60
     }
     constructor() {
         this.#fonts.roboto = loadFont("fonts/Roboto-Regular.ttf");
         this.#fonts.fa = loadFont("fonts/fa.otf");
     }
 
-    getBackgroundColor(){
+    getBackgroundColor() {
         return color("#041c3c")
-    }    
+    }
 
     getFont(isIcon) {
-        return isIcon 
-        ? this.#fonts.fa 
-        : this.#fonts.roboto
+        return isIcon
+            ? this.#fonts.fa
+            : this.#fonts.roboto
     }
 
     getFontSize(fontSize) {
-        return this.#fontSizes[fontSize] 
-        ? this.#fontSizes[fontSize] 
-        : this.#fontSizes.default
+        return this.#fontSizes[fontSize]
+            ? this.#fontSizes[fontSize]
+            : this.#fontSizes.default
     }
 
     getPrimaryStroke(type, zone = null) {
