@@ -165,20 +165,15 @@ class NotebookHandler {
       .addElement(new Grid(12, 12))
       .build();
   }
+  
   #generateGroupMap(domains, fake, groupName) {
-    const groupLayerBuilder = new LayerBuilder();
     const itemTypesLayerBuilder = new LayerBuilder();
     const itemsLayerBuilder = new LayerBuilder();
-    groupLayerBuilder.addElement(
-      new GroupView(
-        canvasSize,
-        canvasSize,
-        this.#firstCharUpperCase(groupName),
-      ),
-      0,
-      0
-    );
-    Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
+    const groupLayer = new LayerBuilder()
+      .addElement(new GroupView(canvasSize, canvasSize, this.#firstCharUpperCase(groupName)))
+      .build();
+
+      Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
       const px = 20;
       const py = 50
 
@@ -216,7 +211,7 @@ class NotebookHandler {
     });
     return new MapBuilder()
       .addLayer(this.#buildBackgroundLayer())
-      .addLayer(groupLayerBuilder.build())
+      .addLayer(groupLayer)
       .addLayer(itemTypesLayerBuilder.build())
       .addLayer(this.#buildGridLayer())
       .build();
