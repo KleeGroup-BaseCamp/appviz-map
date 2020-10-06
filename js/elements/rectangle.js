@@ -8,10 +8,6 @@ class Rectangle extends Element {
     this._height = height;
   }
 
-  render() {
-    rect(0, 0, this._width, this._height);
-  }
-
   contains(x, y) {
     return x > 0 &&
       x < this._width &&

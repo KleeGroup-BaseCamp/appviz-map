@@ -1,7 +1,12 @@
 class GroupView extends Element {
+    #width
+    #height
     #header
+
     constructor(width, height, title) {
-        super(width, height)
+        super()
+        this.#width = width
+        this.#height = height
         this.#header  = new Header (title, width,"xxl", 255)
     }
 
@@ -17,6 +22,6 @@ class GroupView extends Element {
         strokeWeight(1)
         stroke(255)
         fill([0, 0])
-        rect(0, 0, this._width, this._height);
+        rect(0, 0, this.#width, this.#height);
     }
 }
