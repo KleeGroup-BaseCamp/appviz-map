@@ -21,15 +21,10 @@ class Map {
    * Finds the element positionned in x, y
    */
   findElement(x, y) {
-    let index = this.#layers.length;
     for (const layer of this.#layers.slice().reverse()) {
-      index--;
-      let element = layer.findElement(x, y);
+      const element = layer.findElement(x, y);
       if (element) {
-        return {
-          element,
-          index
-        };
+        return element
       }
     }
     return null;
@@ -50,8 +45,8 @@ class Map {
     this.#selected = element;
   }
 
-  click(element, layerIndex) {
-    if (!group && layerIndex == 2) {
+  click(element) {
+    if (!group && element instanceof Group) {
       group = element.title.toLowerCase();
     } else {
       group = false;

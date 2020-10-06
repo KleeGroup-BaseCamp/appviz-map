@@ -2,7 +2,7 @@ class TextBox extends Rectangle {
 
     constructor(width, height, text) {
         super(width, height);
-        this.text = text ? Utils.buildDisplayableTitle(text, width) :  "No title";    
+        this.text = text ? Utils.buildDisplayableTitle(text, width) : "No title";
     }
 
     render() {

@@ -14,16 +14,13 @@ function preload() {
 function setup() {
   canvasSize = windowHeight;
   createCanvas(canvasSize, canvasSize);
-  vizMap = notebookHandler.handle(fake);
   angleMode(DEGREES);
 }
 
 function draw() {
   vizMap = notebookHandler.handle(fake);
-  
-  const element = vizMap.findElement(mouseX, mouseY) 
-    ? vizMap.findElement(mouseX, mouseY).element 
-    :  null;
+
+  const element = vizMap.findElement(mouseX, mouseY)
   vizMap.select(element);
   //--- cursor
   const isSelected = element != null;
@@ -33,16 +30,11 @@ function draw() {
 }
 
 function mouseClicked() {
-  const {
-    element,
-    index: layerIndex
-  } = vizMap.findElement(mouseX, mouseY);
-  vizMap.click(element, layerIndex)
+  const element = vizMap.findElement(mouseX, mouseY);
+  vizMap.click(element)
 }
 
-function drawCursor(isSelected) {
- 
-}
+
 
 function windowResized() {
   canvasSize = windowHeight;

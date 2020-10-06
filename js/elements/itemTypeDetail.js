@@ -23,7 +23,7 @@ class ItemTypeDetail extends Rectangle {
         fill([100, 100, 200])
         rect(0, 0, this._width, this._height);
     }
-    
+
     #renderTitle() {
         noStroke()
         fill(style.getTextFill());

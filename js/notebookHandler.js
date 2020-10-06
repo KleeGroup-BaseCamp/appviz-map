@@ -154,18 +154,18 @@ class NotebookHandler {
       .build();
   }
 
-  #buildBackgroundLayer(){
+  #buildBackgroundLayer() {
     return new LayerBuilder()
       .addElement(new Background())
       .build();
   }
 
-  #buildGridLayer(){
+  #buildGridLayer() {
     return new LayerBuilder()
       .addElement(new Grid(12, 12))
       .build();
   }
-  
+
   #generateGroupMap(domains, fake, groupName) {
     const itemTypesLayerBuilder = new LayerBuilder();
     const itemsLayerBuilder = new LayerBuilder();
@@ -173,11 +173,12 @@ class NotebookHandler {
       .addElement(new GroupView(canvasSize, canvasSize, this.#firstCharUpperCase(groupName)))
       .build();
 
-      Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
+    Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
       const px = 20;
       const py = 50
 
       const height = (canvasSize - 100) / Object.keys(this.#types).length - py;
+      const items = domains[groupName][this.#types[typePrefix]] ?? []
       itemTypesLayerBuilder.addElement(
         new ItemTypeDetail(
           canvasSize - 2 * px,
@@ -185,29 +186,12 @@ class NotebookHandler {
           (this.#types[typePrefix] == "objects" ?
             "Data" :
             this.#firstCharUpperCase(this.#types[typePrefix])) +
-          " " + getIcon (typePrefix),
-          domains[groupName][this.#types[typePrefix]]
+          " " + getIcon(typePrefix),
+          items
         ),
         px,
         100 + (height + py) * typeIndex
       );
-      // if (items) {
-      //   items.forEach((item, itemIndex) => {
-      //     itemsLayerBuilder.addElement(
-      //       new Rectangle(
-      //         itemWidth,
-      //         itemHeight,
-      //         item.slice(2, item.length),
-      //       ),
-      //       x +
-      //       (((itemWidth + padding) * itemIndex + padding) %
-      //         (width - padding)),
-      //       y +
-      //       50 +
-      //       Math.floor(itemIndex / itemsPerRow) * (itemHeight + padding)
-      //     );
-      //   });
-      // }
     });
     return new MapBuilder()
       .addLayer(this.#buildBackgroundLayer())
