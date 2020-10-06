@@ -13,7 +13,7 @@ class NotebookHandler {
     if (!group) {
       return this.#generateDomainsMap(domains, fake);
     } else {
-      return this.#generateGroupMap(domains, fake, group);
+      return this.#generateGroupMap(domains, group);
     }
   }
 
@@ -22,13 +22,18 @@ class NotebookHandler {
     const domainName = this.notebook.sketches[sketchName].packageName.split(
       "."
     )[2];
+    const type = this.#types[typePrefix]
     if (domains[domainName]) {
-      if (domains[domainName][this.#types[typePrefix]])
-        domains[domainName][this.#types[typePrefix]].push(sketchName);
-      else domains[domainName][this.#types[typePrefix]] = [sketchName];
-    } else domains[domainName] = {
-      [this.#types[typePrefix]]: [sketchName]
-    };
+      if (domains[domainName][type]) {
+        domains[domainName][type].push(sketchName);
+      } else {
+        domains[domainName][type] = [sketchName];
+      }
+    } else {
+      domains[domainName] = { [type]: [sketchName] };
+    }
+
+
   }
 
   #extractDomains() {
@@ -45,10 +50,6 @@ class NotebookHandler {
   #generateDomainsMap(domains, fake) {
     const zonesLayerBuilder = new LayerBuilder();
     const groupsLayerBuilder = new LayerBuilder();
-    const itemsLayerBuilder = new LayerBuilder();
-    const gridLayerBuilder = new LayerBuilder();
-
-    // gridLayerBuilder.addElement(new Grid(12, 12, styles.domainsView.grid));
 
     Object.keys(fake.zones).forEach((zoneName) => {
       const zone = fake.zones[zoneName];
@@ -67,18 +68,13 @@ class NotebookHandler {
         new ZoneView(
           width,
           height,
-          this.#firstCharUpperCase(zoneName),
+          Utils.firstCharUpperCase(zoneName),
         ),
         x,
         y
       );
 
       Object.keys(zone.groups).forEach((groupName) => {
-        const paddingStep = 5
-        let pt = paddingStep; // top
-        let pl = paddingStep; // left
-        let pb = paddingStep; // bottom
-        let pr = paddingStep; // right
         const group = zone.groups[groupName];
         const {
           x,
@@ -91,18 +87,6 @@ class NotebookHandler {
           group.numOfRows,
           group.numOfColumns
         );
-        if (zone.column == group.column) {
-          pl += paddingStep
-        }
-        if ((zone.column + zone.numOfColumns) == (group.column + group.numOfColumns)) {
-          pr += paddingStep
-        }
-        if (zone.row == group.row) {
-          pt += paddingStep
-        }
-        if ((zone.row + zone.numOfRows) == (group.row + group.numOfRows)) {
-          pb += paddingStep
-        }
         const items = Object.keys(this.#types).map((typePrefix) => {
           return {
             prefix: typePrefix,
@@ -112,34 +96,18 @@ class NotebookHandler {
                 : 0
           }
         })
+        const padding = this.#getGroupPadding(group, zone)
         groupsLayerBuilder.addElement(
           new Group(
-            width - pr - pl,
-            height - pt - pb,
-            this.#firstCharUpperCase(groupName),
+            width - padding.right - padding.left,
+            height - padding.top - padding.bottom,
+            Utils.firstCharUpperCase(groupName),
             zoneName,
             items
           ),
-          x + pl,
-          y + pt
+          x + padding.left,
+          y + padding.top
         );
-        const top = y + pt + 40; // TO DO : Use title textAscent to compute
-        const bottom = y + height - pb - 10;
-        // Object.keys(this.#types).forEach((typePrefix, index) => {
-        //   itemsLayerBuilder.addElement(
-        //     new ItemType(
-        //       typePrefix,
-        //       domains[groupName][this.#types[typePrefix]] ?
-        //         domains[groupName][this.#types[typePrefix]].length :
-        //         0,
-        //       width - pl - pr
-        //     ),
-        //     x + pl,
-        //     top +
-        //     ((2 * index + 1) * (bottom - top)) /
-        //     (2 * Object.keys(this.#types).length)
-        //   );
-        // });
       });
     });
 
@@ -149,7 +117,6 @@ class NotebookHandler {
       .addLayer(this.#buildBackgroundLayer())
       .addLayer(zonesLayerBuilder.build())
       .addLayer(groupsLayerBuilder.build())
-      // .addLayer(itemsLayerBuilder.build())
       .addLayer(this.#buildGridLayer())
       .build();
   }
@@ -166,31 +133,29 @@ class NotebookHandler {
       .build();
   }
 
-  #generateGroupMap(domains, fake, groupName) {
+  #generateGroupMap(domains, groupName) {
     const itemTypesLayerBuilder = new LayerBuilder();
-    const itemsLayerBuilder = new LayerBuilder();
     const groupLayer = new LayerBuilder()
-      .addElement(new GroupView(canvasSize, canvasSize, this.#firstCharUpperCase(groupName)))
+      .addElement(new GroupView(canvasSize, canvasSize, Utils.firstCharUpperCase(groupName)))
       .build();
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
-      const px = 20;
-      const py = 50
+      const padding = { x: 20, y: 50 }
 
-      const height = (canvasSize - 100) / Object.keys(this.#types).length - py;
+      const height = (canvasSize - 100) / Object.keys(this.#types).length - padding.y;
       const items = domains[groupName][this.#types[typePrefix]] ?? []
       itemTypesLayerBuilder.addElement(
         new ItemTypeDetail(
-          canvasSize - 2 * px,
+          canvasSize - 2 * padding.x,
           height,
           (this.#types[typePrefix] == "objects" ?
             "Data" :
-            this.#firstCharUpperCase(this.#types[typePrefix])) +
+            Utils.firstCharUpperCase(this.#types[typePrefix])) +
           " " + getIcon(typePrefix),
           items
         ),
-        px,
-        100 + (height + py) * typeIndex
+        padding.x,
+        100 + (height + padding.y) * typeIndex
       );
     });
     return new MapBuilder()
@@ -214,7 +179,24 @@ class NotebookHandler {
     };
   }
 
-  #firstCharUpperCase(string) {
-    return string[0].toUpperCase() + string.slice(1, string.length);
+  #getGroupPadding(group, zone) {
+    const paddingStep = 5
+
+    const left = (zone.column == group.column)
+      ? 2 * paddingStep
+      : paddingStep
+    const right = ((zone.column + zone.numOfColumns) == (group.column + group.numOfColumns))
+      ? 2 * paddingStep
+      : paddingStep
+    const top = (zone.row == group.row)
+      ? 2 * paddingStep
+      : paddingStep
+    const bottom = ((zone.row + zone.numOfRows) == (group.row + group.numOfRows))
+      ? 2 * paddingStep
+      : paddingStep
+
+    return { left, top, right, bottom }
   }
+
+
 }
