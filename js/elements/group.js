@@ -3,7 +3,8 @@ class Group extends Element {
     #height;
     #items
     #maxValue // Make static ?
-    title    
+    title
+    #header    
 
     constructor(width, height, title, zone, items, maxValue = 20) {
         super();
@@ -11,7 +12,7 @@ class Group extends Element {
         this.#height = height;
      
         this.title = title ? Utils.buildDisplayableTitle(title, width) : "No title" 
-        
+        this.#header = new Header (title, width, /*fontSize*/ "m", style.getPrimaryStroke("group", this.zone))
         this.zone = zone
         this.#items = items
         this.#maxValue = maxValue
@@ -22,7 +23,7 @@ class Group extends Element {
        */  
       render() {
         this.#renderBackground()
-        this.#renderTitle();
+        this.#header.render();
         this.#renderItems()
     }
 
@@ -32,19 +33,6 @@ class Group extends Element {
         stroke(style.getPrimaryStroke("group", this.zone))
         rect(0, 0, this.#width, this.#height);
      }
-
-    #renderTitle() {
-        noStroke()
-        fill(style.getTextFill());
-        textSize(style.getFontSize("m"))
-        textFont(style.getFont(false))
-        textAlign(CENTER);
-        text(this.title, 0, textAscent() + 15, this.#width);
-        //--- underline
-        stroke(style.getPrimaryStroke("group", this.zone))
-        strokeWeight(2)
-        line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
-   }
 
     #renderItems() {
         const top = textAscent() + 35
