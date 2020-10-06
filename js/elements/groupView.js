@@ -1,4 +1,4 @@
-class GroupView extends Rectangle {
+class GroupView extends Element {
     #header
     constructor(width, height, title) {
         super(width, height)
@@ -9,11 +9,11 @@ class GroupView extends Rectangle {
      * @override
      */
     render() {
-        this.#renderRectangle()
+        this.#renderBackground()
         this.#header.render()
     }
-    
-    #renderRectangle() {
+
+    #renderBackground() {
         strokeWeight(1)
         stroke(255)
         fill([0, 0])
