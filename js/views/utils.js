@@ -15,7 +15,7 @@ class Utils {
             : text.slice(0, numOfCharacters - 3) + "...";
     }
 
-    static firstCharUpperCase(string) {
-        return string[0].toUpperCase() + string.slice(1, string.length);
+    static firstCharUpperCase(text) {
+        return text[0].toUpperCase() + text.slice(1, text.length);
     }
 }
