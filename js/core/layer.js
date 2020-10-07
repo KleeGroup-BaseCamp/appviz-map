@@ -6,12 +6,12 @@ class Layer {
   }
 
   render() {
-    this.#positionedElements.forEach((positionedElement) => {
+    for (let positionedElement of this.#positionedElements) {
       push();
       translate(positionedElement.position.x, positionedElement.position.y);
       positionedElement.element.render();
       pop();
-    });
+    }
   }
 
   findElement(x, y) {
@@ -22,7 +22,7 @@ class Layer {
       const ly = y - positionedElement.position.y;
       if (positionedElement.element.contains( lx, ly))
         return positionedElement.element;
-    }    
+    }
     return null;
   }
 }
