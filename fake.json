@@ -1,67 +1,79 @@
 {
   "zones": {
     "pilotage": {
-      "column": 0,
-      "row": 0,
-      "numOfColumns": 3,
-      "numOfRows": 12,
+      "column": "0",
+      "row": "0",
+      "numOfColumns": "3",
+      "numOfRows": "12",
       "groups": {
         "maintenance": {
-          "column": 0,
-          "row": 1,
-          "numOfColumns": 3,
-          "numOfRows": 3
+          "column": "0",
+          "row": "1",
+          "numOfColumns": "3",
+          "numOfRows": "3"
         }
       },
-      "color": [91, 8, 194]
+      "color": [
+        91,
+        8,
+        194
+      ]
     },
     "operationnel": {
-      "column": 3,
-      "row": 0,
-      "numOfColumns": 6,
-      "numOfRows": 12,
+      "column": "3",
+      "row": "0",
+      "numOfColumns": "6",
+      "numOfRows": "12",
       "groups": {
         "hr": {
-          "column": 3,
-          "row": 1,
-          "numOfColumns": 3,
-          "numOfRows": 3
+          "column": "3",
+          "row": "1",
+          "numOfColumns": "3",
+          "numOfRows": "3"
         },
         "opendata": {
-          "column": 6,
-          "row": 1,
-          "numOfColumns": 3,
-          "numOfRows": 3
+          "column": "6",
+          "row": "1",
+          "numOfColumns": "3",
+          "numOfRows": "3"
         },
         "common": {
-          "column": 3,
-          "row": 4,
-          "numOfColumns": 3,
-          "numOfRows": 3
+          "column": "3",
+          "row": "4",
+          "numOfColumns": "3",
+          "numOfRows": "3"
         },
         "basemanagement": {
-          "column": 6,
-          "row": 4,
-          "numOfColumns": 3,
-          "numOfRows": 3
+          "column": "6",
+          "row": "4",
+          "numOfColumns": "3",
+          "numOfRows": "3"
         }
       },
-      "color": [68, 128, 5]
+      "color": [
+        68,
+        128,
+        5
+      ]
     },
     "referentiel": {
-      "column": 9,
-      "row": 0,
-      "numOfColumns": 3,
-      "numOfRows": 12,
+      "column": "9",
+      "row": "0",
+      "numOfColumns": "3",
+      "numOfRows": "12",
       "groups": {
         "catalog": {
-          "column": 9,
-          "row": 1,
-          "numOfColumns": 3,
-          "numOfRows": 3
+          "column": "9",
+          "row": "1",
+          "numOfColumns": "3",
+          "numOfRows": "3"
         }
       },
-      "color": [107, 38, 3]
+      "color": [
+        107,
+        38,
+        3
+      ]
     }
   }
 }

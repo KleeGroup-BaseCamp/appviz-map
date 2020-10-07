@@ -1,27 +1,31 @@
-class ItemTypeDetail extends Rectangle {
+class ItemTypeDetail extends Element {
     #itemsNames
+    #width
+    #height
     items
 
     constructor(width, height, title, itemsNames) {
-        super(width, height);
+        super();
+        this.#width = width
+        this.#height = height
         this.title = title;
         this.#itemsNames = itemsNames
         this.items = []
-        this.#initItems()
+        // this.#initItems()
     }
 
     render() {
         this.#renderRectangle()
         this.#renderTitle();
         this.#renderBar()
-        this.#renderItems()
+        // this.#renderItems()
     }
 
     #renderRectangle() {
         strokeWeight(1)
         stroke(255)
         fill([100, 100, 200])
-        rect(0, 0, this._width, this._height);
+        rect(0, 0, this.#width, this.#height);
     }
 
     #renderTitle() {
@@ -31,27 +35,27 @@ class ItemTypeDetail extends Rectangle {
         textFont(style.getFont(true))
         textAlign(CENTER);
         text(
-            this.title ? Utils.buildDisplayableTitle(this.title, this._width) : "No title",
+            this.title ? Utils.buildDisplayableTitle(this.title, this.#width) : "No title",
             0,
             textAscent() + 15,
-            this._width
+            this.#width
         );
     }
 
     #renderBar() {
         stroke(255)
-        line(this._width / 4, textAscent() + textDescent() + 20, this._width * 3 / 4, textAscent() + textDescent() + 20)
+        line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
     }
 
     #initItems() {
         const padding = 10 // Use px and py
         const itemsPerRow = 4;
         const itemHeight = 30;
-        const itemWidth = (this._width - padding * (itemsPerRow + 1)) / itemsPerRow;
+        const itemWidth = (this.#width - padding * (itemsPerRow + 1)) / itemsPerRow;
         textFont(style.getFont(false))
         textSize(style.getFontSize("s"))
         this.#itemsNames.forEach((item, index) => {
-            const x = (((itemWidth + padding) * index + padding) % (this._width - padding))
+            const x = (((itemWidth + padding) * index + padding) % (this.#width - padding))
             const y = 60 + Math.floor(index / itemsPerRow) * (itemHeight + 2 * padding)
             const textBox = new TextBox(itemWidth, itemHeight, Utils.buildDisplayableTitle(item.slice(2), itemWidth))
             this.items.push({ element: textBox, x, y })

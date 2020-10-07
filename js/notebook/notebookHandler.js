@@ -166,11 +166,29 @@ class NotebookHandler {
       .build();
   }
 
-  #getPixels(row, column, numOfRows, numOfColumns) {
-    const x = (column * canvasSize) / 12;
-    const y = (row * canvasSize) / 12;
-    const width = (numOfColumns * canvasSize) / 12;
-    const height = (numOfRows * canvasSize) / 12;
+  #getPixels(rowCode, columnCode, numOfRowsCode, numOfColumnsCode) {
+    let gridHeight = canvasSize
+    let gridWidth = canvasSize
+    let x = 0
+    let y = 0
+    const rows = rowCode.split(":")
+    const columns = columnCode.split(":")
+    const numsOfColumns = numOfColumnsCode.split(":")
+    const numsOfRows = numOfRowsCode.split(":")
+    // rows.length = columns.length = numOfColumns.length = numOfRows.length
+    const depth = rows.length
+    for (let i = 0; i < depth; i++) {
+      const row = parseInt(rows[i])
+      const column = parseInt(columns[i])
+      const numOfColumns = parseInt(numsOfColumns[i])
+      const numOfRows = parseInt(numsOfRows[i])
+      x += (column * gridWidth) / 12
+      y += (row * gridHeight) / 12
+      gridWidth = (numOfColumns * gridWidth) / 12
+      gridHeight = (numOfRows * gridHeight) / 12
+    }
+    const width = gridWidth
+    const height = gridHeight
     return {
       x,
       y,
@@ -178,6 +196,7 @@ class NotebookHandler {
       height
     };
   }
+
 
   #getGroupPadding(group, zone) {
     const paddingStep = 5
