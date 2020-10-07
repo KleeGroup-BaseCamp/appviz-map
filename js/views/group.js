@@ -1,6 +1,6 @@
 class Group extends Element {
-    #width;
-    #height;
+    #width
+    #height
     #items
     #maxValue // Make static ?
     title
@@ -23,7 +23,7 @@ class Group extends Element {
      */
     render() {
         this.#renderBackground()
-        this.#header.render();
+        this.#header.render()
         this.#renderItems()
     }
 
@@ -50,37 +50,37 @@ class Group extends Element {
     }
 
     #renderItemTypeIcon(itemPrefix) {
-        rectMode(CENTER);
-        noStroke();
+        rectMode(CENTER)
+        noStroke()
         fill(style.getTextFill());
         textSize(style.getFontSize("xs"))
         textFont(style.getFont(true))
-        text(getIcon(itemPrefix), 20, 0);
+        text(getIcon(itemPrefix), 20, 0)
         text("0", 40, 0)
         text(this.#maxValue.toString(), this.#width - 15, 0)
     }
 
     #renderFrequencyBar(itemFrequency) {
-        const start = 55;
-        const end = 35;
-        const length = this.#width - start - end;
+        const start = 55
+        const end = 35
+        const length = this.#width - start - end
         const secondaryStroke = style.getSecondaryStroke("group")
         secondaryStroke.setAlpha(100)
-        strokeWeight(4);
-        stroke(secondaryStroke);
+        strokeWeight(4)
+        stroke(secondaryStroke)
         line(start, -textAscent() / 2, this.#width - end, -textAscent() / 2);
         secondaryStroke.setAlpha(255)
-        stroke(secondaryStroke);
-        line(start, -textAscent() / 2, start + (itemFrequency / this.#maxValue) * length, -textAscent() / 2);
+        stroke(secondaryStroke)
+        line(start, -textAscent() / 2, start + (itemFrequency / this.#maxValue) * length, -textAscent() / 2)
     }
 
     /**
      * @override
      */
     contains(x, y) {
-        return x > 0 &&
-            x < this.#width &&
-            y > 0 &&
-            y < this.#height;
+        return x > 0
+            && x < this.#width
+            && y > 0
+            && y < this.#height
     }
 }
