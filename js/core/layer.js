@@ -1,4 +1,10 @@
 class Layer {
+  /**
+   * Array of {
+   *  - {x, y} 
+   *  - element
+   * }  
+   */
   #positionedElements;
 
   constructor(positionedElements) {
