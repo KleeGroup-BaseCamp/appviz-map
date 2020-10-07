@@ -4,6 +4,7 @@ let fake;
 let canvasSize;
 let group = false // temp variable
 let style;
+const state = new State(); 
 
 function preload() {
   notebookHandler = new NotebookHandler("./notebook.json");

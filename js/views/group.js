@@ -71,11 +71,7 @@ class Group extends Element {
         line(start, -textAscent() / 2, this.#width - end, -textAscent() / 2);
         secondaryStroke.setAlpha(255)
         stroke(secondaryStroke);
-        line(start,
-            -textAscent() / 2,
-            start + (itemFrequency / this.#maxValue) * length,
-            -textAscent() / 2
-        );
+        line(start, -textAscent() / 2, start + (itemFrequency / this.#maxValue) * length, -textAscent() / 2);
     }
 
     /**
