@@ -1,7 +1,7 @@
 class State {
     selectedElement
 
-    constructor(){}
+    constructor() { }
 
     /**
      * Selects an element 
@@ -9,5 +9,5 @@ class State {
      */
     select(element) {
         this.selectedElement = element;
-    }    
+    }
 }

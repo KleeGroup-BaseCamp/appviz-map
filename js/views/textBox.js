@@ -1,16 +1,26 @@
-class TextBox extends Rectangle {
+class TextBox extends Element {
+    #width
+    #height
 
     constructor(width, height, text) {
-        super(width, height);
+        super();
+        this.#width = width
+        this.#height = height
         this.text = text ? Utils.buildDisplayableTitle(text, width) : "No title";
     }
 
     render() {
-        rect(0, 0, this._width, this._height)
+        rect(0, 0, this.#width, this.#height)
         fill(255)
         textSize(style.getFontSize("s"))
         textAlign(CENTER, CENTER);
 
-        text(this.text, 0, 0, this._width, this._height);
+        text(this.text, 0, 0, this.#width, this.#height);
+    }
+    contains(x, y) {
+        return x > 0 &&
+            x < this.#width &&
+            y > 0 &&
+            y < this.#height;
     }
 }
