@@ -40,11 +40,14 @@ class Group extends Element {
         for (let i = 0; i < this.#items.length; i++) {
             positions.push(top + (this.#width - top) / (this.#items.length + 1) * (i + 1))
         }
+        const secondaryStroke = style.getSecondaryStroke("group")
         this.#items.forEach((item, index) => {
             push()
             translate(0, positions[index])
             this.#renderItemTypeIcon(item.prefix)
-            this.#renderFrequencyBar(item.frequency)
+            translate(55, -textAscent() / 2)
+            new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)
+                .render()
             pop()
         })
     }
@@ -58,20 +61,6 @@ class Group extends Element {
         text(getIcon(itemPrefix), 20, 0)
         text("0", 40, 0)
         text(this.#maxValue.toString(), this.#width - 15, 0)
-    }
-
-    #renderFrequencyBar(itemFrequency) {
-        const start = 55
-        const end = 35
-        const length = this.#width - start - end
-        const secondaryStroke = style.getSecondaryStroke("group")
-        secondaryStroke.setAlpha(100)
-        strokeWeight(4)
-        stroke(secondaryStroke)
-        line(start, -textAscent() / 2, this.#width - end, -textAscent() / 2);
-        secondaryStroke.setAlpha(255)
-        stroke(secondaryStroke)
-        line(start, -textAscent() / 2, start + (itemFrequency / this.#maxValue) * length, -textAscent() / 2)
     }
 
     /**
