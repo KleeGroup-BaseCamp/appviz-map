@@ -11,6 +11,6 @@ class Element {
    * This method CAN be overridden
    */
   contains(x, y) {
-    return false;
+    return false
   }
 }

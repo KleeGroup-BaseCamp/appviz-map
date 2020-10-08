@@ -3,7 +3,7 @@ class Utils {
         let numOfCharacters = 1
         while (numOfCharacters < text.length
             && textWidth(text.slice(0, numOfCharacters)) < (width - textWidth("m"))) {
-            numOfCharacters++;
+            numOfCharacters++
         }
         return numOfCharacters
     }

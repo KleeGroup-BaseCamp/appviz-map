@@ -3,10 +3,10 @@ class Item extends Element {
     #height
 
     constructor(width, height, title) {
-        super();
+        super()
         this.#width = width
         this.#height = height
-        this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("s")) : "No title";
+        this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("s")) : "No title"
     }
 
     render() {
@@ -14,14 +14,14 @@ class Item extends Element {
         rect(0, 0, this.#width, this.#height)
         fill(255)
         textSize(style.getFontSize("s"))
-        textAlign(CENTER, CENTER);
+        textAlign(CENTER, CENTER)
 
-        text(this.title, 0, 0, this.#width, this.#height);
+        text(this.title, 0, 0, this.#width, this.#height)
     }
     contains(x, y) {
         return x > 0
             && x < this.#width
             && y > 0
-            && y < this.#height;
+            && y < this.#height
     }
 }

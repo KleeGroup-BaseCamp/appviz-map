@@ -22,6 +22,6 @@ class GroupView extends Element {
         strokeWeight(1)
         stroke(255)
         fill([0, 0])
-        rect(0, 0, this.#width, this.#height);
+        rect(0, 0, this.#width, this.#height)
     }
 }
