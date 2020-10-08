@@ -7,10 +7,10 @@ class ZoneView extends Element {
         super()
         this.#width = width
         this.#height = height
-        this.#header = new Header(title, width, style.getFont(false), /*fontSize*/  "xl", 255 /*color*/)
+        this.#header = new Header(title, width, style.getFont(false), style.getFontSize("xl"), 255 /*color*/, 255)
     }
 
-    /**
+    /**g
      * @override
      */
     render() {
