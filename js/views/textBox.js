@@ -6,8 +6,7 @@ class TextBox extends Element {
         super();
         this.#width = width
         this.#height = height
-        textSize(style.getFontSize("s"))
-        this.text = text ? Utils.buildDisplayableTitle(text, width) : "No title";
+        this.text = text ? Utils.buildDisplayableTitle(text, width, style.getFontSize("s")) : "No title";
     }
 
     render() {

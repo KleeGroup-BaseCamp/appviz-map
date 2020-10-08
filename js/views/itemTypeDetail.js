@@ -29,7 +29,7 @@ class ItemTypeDetail extends Element {
         textFont(style.getFont(true))
         textAlign(CENTER);
         text(
-            this.title ? Utils.buildDisplayableTitle(this.title, this.#width) : "No title",
+            this.title ? Utils.buildDisplayableTitle(this.title, this.#width, style.getFontSize("l")) : "No title",
             0,
             textAscent() + 15,
             this.#width

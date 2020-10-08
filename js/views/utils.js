@@ -8,8 +8,11 @@ class Utils {
         return numOfCharacters;
     }
 
-    static buildDisplayableTitle(text, width) {
+    static buildDisplayableTitle(text, width, fontSize) {
+        push() // This function should not alter textSize
+        textSize(fontSize)
         const numOfCharacters = Utils.#maxCharacters(text, width);
+        pop()
         return numOfCharacters == text.length
             ? text
             : text.slice(0, numOfCharacters - 3) + "...";

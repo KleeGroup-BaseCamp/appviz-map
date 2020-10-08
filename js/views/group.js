@@ -11,7 +11,7 @@ class Group extends Element {
         this.#width = width;
         this.#height = height;
 
-        this.title = title ? Utils.buildDisplayableTitle(title, width) : "No title"
+        this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("xs")) : "No title"
         this.zone = zone
         this.#header = new Header(title, width, /*fontSize*/ "m", style.getPrimaryStroke("group", this.zone))
         this.#items = items
