@@ -58,10 +58,10 @@ class NotebookHandler {
         width,
         height
       } = this.#getPixels(
-        zone.row,
         zone.column,
-        zone.numOfRows,
-        zone.numOfColumns
+        zone.row,
+        zone.numOfColumns,
+        zone.numOfRows
       );
       zonesLayerBuilder.addElement(
         new ZoneView(
@@ -81,10 +81,10 @@ class NotebookHandler {
           width,
           height
         } = this.#getPixels(
-          group.row,
           group.column,
-          group.numOfRows,
-          group.numOfColumns
+          group.row,
+          group.numOfColumns,
+          group.numOfRows
         );
         const items = Object.keys(this.#types).map((typePrefix) => {
           return {
@@ -150,10 +150,10 @@ class NotebookHandler {
         width: itemTypeWidth,
         height: itemTypeHeight
       } = this.#getPixels(
-        row.toString(),
         column.toString(),
+        row.toString(),
+        numOfColumns.toString(),
         numOfRows.toString(),
-        numOfColumns.toString()
       )
 
       itemTypesLayerBuilder.addElement(
@@ -178,11 +178,11 @@ class NotebookHandler {
           itemHeight
         } = this.#getItemPixels(
           index,
-          row,
+          4,
           column,
-          numOfRows,
+          row,
           numOfColumns,
-          4
+          numOfRows,
         )
         itemsLayerBuilder.addElement(new Item(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
       })
@@ -196,7 +196,7 @@ class NotebookHandler {
       .build();
   }
 
-  #getItemPixels(itemIndex, itemTypeRow, itemTypeColumn, itemTypeNumOfRows, itemTypeNumOfColumns, itemsPerRow) {
+  #getItemPixels(itemIndex, itemsPerRow, itemTypeColumn, itemTypeRow, itemTypeNumOfColumns, itemTypeNumOfRows) {
     const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
     const innerColumn = (itemIndex % itemsPerRow) * (12 / itemsPerRow)
     const padding = 5
@@ -207,10 +207,10 @@ class NotebookHandler {
       width,
       height
     } = this.#getPixels(
-      (itemTypeRow + 1) + ":" + innerRow,
       itemTypeColumn + ":" + innerColumn,
-      itemTypeNumOfRows + ":2",
-      itemTypeNumOfColumns + ":" + (12 / itemsPerRow)
+      (itemTypeRow + 1) + ":" + innerRow,
+      itemTypeNumOfColumns + ":" + (12 / itemsPerRow),
+      itemTypeNumOfRows + ":2"
     )
     return {
       itemX: x + padding,
@@ -220,7 +220,7 @@ class NotebookHandler {
     }
   }
 
-  #getPixels(rowCode, columnCode, numOfRowsCode, numOfColumnsCode) {
+  #getPixels(columnCode, rowCode, numOfColumnsCode, numOfRowsCode) {
     let gridHeight = canvasSize
     let gridWidth = canvasSize
     let x = 0
