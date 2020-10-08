@@ -9,7 +9,6 @@ class NotebookHandler {
   }
 
   handle(fake) {
-    idCount = 0
     const domains = this.#extractDomains();
     if (!group) {
       return this.#generateDomainsMap(domains, fake);
@@ -20,9 +19,8 @@ class NotebookHandler {
 
   #extractType(domains, sketchName) {
     const typePrefix = sketchName.slice(0, 2).toLowerCase();
-    const domainName = this.notebook.sketches[sketchName].packageName.split(
-      "."
-    )[2];
+    const domainName = this.notebook.sketches[sketchName].packageName
+      .split(".")[2];
     const type = this.#types[typePrefix]
     if (domains[domainName]) {
       if (domains[domainName][type]) {
@@ -143,21 +141,21 @@ class NotebookHandler {
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
       const row = 2 + typeIndex * 5
-
+      const column = 1
+      const numOfRows = 4
+      const numOfColumns = 12 - column * 2
       const {
         x: itemTypeX,
         y: itemTypeY,
         width: itemTypeWidth,
         height: itemTypeHeight
-      } = this.#getPixels(row.toString(), "1", "4", "10")
-      // const itemTypePadding = { x: 20, y: 50 }
+      } = this.#getPixels(
+        row.toString(),
+        column.toString(),
+        numOfRows.toString(),
+        numOfColumns.toString()
+      )
 
-      // const height = (canvasSize - 100) / Object.keys(this.#types).length - padding.y;
-      const items = domains[groupName][this.#types[typePrefix]] ?? []
-      items.forEach((item, index) => {
-        const { itemX, itemY, itemWidth, itemHeight } = this.#getItemPixels(index, row, 6)
-        itemsLayerBuilder.addElement(new Item(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
-      })
       itemTypesLayerBuilder.addElement(
         new ItemTypeDetail(
           itemTypeWidth,
@@ -170,6 +168,24 @@ class NotebookHandler {
         itemTypeX,
         itemTypeY
       );
+
+      const items = domains[groupName][this.#types[typePrefix]] ?? []
+      items.forEach((item, index) => {
+        const {
+          itemX,
+          itemY,
+          itemWidth,
+          itemHeight
+        } = this.#getItemPixels(
+          index,
+          row,
+          column,
+          numOfRows,
+          numOfColumns,
+          4
+        )
+        itemsLayerBuilder.addElement(new Item(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
+      })
     });
     return new MapBuilder()
       .addLayer(this.#buildBackgroundLayer())
@@ -180,7 +196,7 @@ class NotebookHandler {
       .build();
   }
 
-  #getItemPixels(itemIndex, itemTypeRow, itemsPerRow) {
+  #getItemPixels(itemIndex, itemTypeRow, itemTypeColumn, itemTypeNumOfRows, itemTypeNumOfColumns, itemsPerRow) {
     const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
     const innerColumn = (itemIndex % itemsPerRow) * (12 / itemsPerRow)
     const padding = 5
@@ -190,7 +206,12 @@ class NotebookHandler {
       y,
       width,
       height
-    } = this.#getPixels((itemTypeRow + 1).toString() + ":" + innerRow, "1:" + innerColumn, "4:2", "10:" + (12 / itemsPerRow))
+    } = this.#getPixels(
+      (itemTypeRow + 1) + ":" + innerRow,
+      itemTypeColumn + ":" + innerColumn,
+      itemTypeNumOfRows + ":2",
+      itemTypeNumOfColumns + ":" + (12 / itemsPerRow)
+    )
     return {
       itemX: x + padding,
       itemY: y + padding,
@@ -208,7 +229,7 @@ class NotebookHandler {
     const columns = columnCode.split(":")
     const numsOfColumns = numOfColumnsCode.split(":")
     const numsOfRows = numOfRowsCode.split(":")
-    // rows.length = columns.length = numOfColumns.length = numOfRows.length
+    // rows.length == columns.length == numOfColumns.length == numOfRows.length
     const depth = rows.length
     for (let i = 0; i < depth; i++) {
       const row = parseInt(rows[i])
