@@ -1,47 +1,24 @@
 class ItemTypeDetail extends Element {
     #width
     #height
+    #header
 
     constructor(width, height, title) {
-        super();
+        super()
         this.#width = width
         this.#height = height
-        this.title = title;
+        this.#header = new Header(title, width, "l"/*fontSize*/, 255)
     }
 
     render() {
-        this.#renderRectangle()
-        this.#renderTitle();
-        this.#renderBar()
+        this.#renderBackground()
+        this.#header.render()
     }
 
-    #renderRectangle() {
+    #renderBackground() {
         strokeWeight(1)
         stroke(255)
         fill([100, 100, 200])
-        rect(0, 0, this.#width, this.#height);
-    }
-
-    #renderTitle() {
-        noStroke()
-        fill(style.getTextFill());
-        textSize(style.getFontSize("l"))
-        textFont(style.getFont(true))
-        textAlign(CENTER);
-        text(
-            this.title ? Utils.buildDisplayableTitle(this.title, this.#width, style.getFontSize("l")) : "No title",
-            0,
-            textAscent() + 15,
-            this.#width
-        );
-    }
-
-    #renderBar() {
-        stroke(255)
-        line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
-    }
-
-    contains(x, y) {
-        return false
+        rect(0, 0, this.#width, this.#height)
     }
 }

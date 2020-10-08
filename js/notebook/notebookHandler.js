@@ -165,7 +165,7 @@ class NotebookHandler {
           (this.#types[typePrefix] == "objects" ?
             "Data" :
             Utils.firstCharUpperCase(this.#types[typePrefix])) +
-          " " + getIcon(typePrefix)
+          " " + style.getIcon(typePrefix)
         ),
         itemTypeX,
         itemTypeY

@@ -1,5 +1,10 @@
 class Style {
-    #fonts = {};
+    #icons = {
+        dt: "\uf15b",
+        tk: "\uf085"
+      }
+
+    #fonts = {}
 
     #fontSizes = {
         xxs: 12,
@@ -11,9 +16,17 @@ class Style {
         xxl: 42,
         default: 60
     }
+
     constructor() {
-        this.#fonts.roboto = loadFont("fonts/Roboto-Regular.ttf");
-        this.#fonts.fa = loadFont("fonts/fa.otf");
+    }    
+
+    getIcon(itemPrefix){ 
+        return this.#icons[itemPrefix]
+    }
+
+    load() {
+        this.#fonts.roboto = loadFont("fonts/Roboto-Regular.ttf")
+        this.#fonts.fa = loadFont("fonts/fa.otf")
     }
 
     getBackgroundColor() {
@@ -99,7 +112,6 @@ class Style {
     getTextFill() {
         return 255
     }
-
 }
 
 
