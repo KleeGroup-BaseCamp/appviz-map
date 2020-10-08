@@ -1,5 +1,4 @@
 class Map {
-  #selected;
   #layers;
 
   constructor(layers) {

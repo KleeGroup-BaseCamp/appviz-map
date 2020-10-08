@@ -36,8 +36,6 @@ function mouseClicked() {
   vizMap.click(element)
 }
 
-
-
 function windowResized() {
   canvasSize = windowHeight
   resizeCanvas(canvasSize, canvasSize)

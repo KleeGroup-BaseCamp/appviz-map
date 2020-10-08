@@ -8,15 +8,14 @@ class ItemTypeDetail extends Element {
         this.#width = width
         this.#height = height
         this.#header = new Header(title, width, "l"/*fontSize*/, 255)
-        this.title = this.title ? Utils.buildDisplayableTitle(this.title, this.#width, style.getFontSize("l")) : "No title"
     }
 
     render() {
-        this.#renderRectangle()
+        this.#renderBackground()
         this.#header.render()
     }
 
-    #renderRectangle() {
+    #renderBackground() {
         strokeWeight(1)
         stroke(255)
         fill([100, 100, 200])
