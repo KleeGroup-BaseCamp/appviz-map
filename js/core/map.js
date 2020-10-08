@@ -18,7 +18,7 @@ class Map {
    */
   findElement(x, y) {
     for (const layer of this.#layers.slice().reverse()) {
-      const element = layer.findElement(x, y);
+      const element = layer.findElement(x, y)
       if (element) {
         return element
       }

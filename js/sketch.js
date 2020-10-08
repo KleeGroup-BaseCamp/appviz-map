@@ -23,11 +23,10 @@ function setup() {
 function draw() {
   const element = vizMap.findElement(mouseX, mouseY)
   state.select(element)
+  //--- cursor
   cursor(element != null ? "pointer" : "default")
-  if (state.changed) {
-    vizMap.render()
-    state.changed = false
-  }
+  //--- render
+  vizMap.render()
 }
 
 function mouseClicked() {

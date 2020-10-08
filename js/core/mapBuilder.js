@@ -1,12 +1,12 @@
 class MapBuilder {
-  #layers = [];
+  #layers = []
 
   addLayer(layer) {
-    this.#layers.push(layer);
-    return this;
+    this.#layers.push(layer)
+    return this
   }
 
   build() {
-    return new Map(this.#layers);
+    return new Map(this.#layers)
   }
 }
