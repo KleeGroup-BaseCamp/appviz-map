@@ -4,6 +4,7 @@ let fake
 let canvasSize
 let group = false // temp variable
 const style = new Style()
+let idCount = 0
 const state = new State()
 
 function preload() {
@@ -24,14 +25,16 @@ function draw() {
   const element = vizMap.findElement(mouseX, mouseY)
   state.select(element)
   //--- cursor
-  cursor(element != null ? "pointer" : "default")
+  const isSelected = element != null
+  cursor(isSelected ? "pointer" : "default")
   //--- render
-  vizMap.render()
+    vizMap.render()
 }
 
 function mouseClicked() {
   const element = vizMap.findElement(mouseX, mouseY)
   vizMap.click(element)
+  // Build map on click only
   vizMap = notebookHandler.handle(fake);
 }
 
