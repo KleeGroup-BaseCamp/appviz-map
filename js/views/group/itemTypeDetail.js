@@ -7,7 +7,7 @@ class ItemTypeDetail extends Element {
         super()
         this.#width = width
         this.#height = height
-        this.#header = new Header(title, width, style.getFont(true), "l"/*fontSize*/, 255)
+        this.#header = new Header(title, width, style.getFont(true), style.getFontSize("l"), 255, 255)
     }
 
     render() {

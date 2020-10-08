@@ -3,25 +3,27 @@ class Header {
     #width
     #font
     #fontSize
-    #strokeColor
+    #textColor
+    #underlineColor
 
-    constructor(title, width, font, fontSize, strokeColor) {
-        this.#title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize(fontSize)) : "No title"
+    constructor(title, width, font, fontSize, textColor, underlineColor) {
+        this.#title = title ? Utils.buildDisplayableTitle(title, width, fontSize) : "No title"
         this.#width = width
         this.#font = font
         this.#fontSize = fontSize
-        this.#strokeColor = strokeColor
+        this.#textColor = textColor
+        this.#underlineColor = underlineColor
     }
 
     render() {
         noStroke()
-        fill(style.getTextFill())
-        textSize(style.getFontSize(this.#fontSize))
+        fill(this.#textColor)
+        textSize(this.#fontSize)
         textFont(this.#font)
         textAlign(CENTER)
         text(this.#title, 0, textAscent() + 15, this.#width)
         //--- underline
-        stroke(this.#strokeColor)
+        stroke(this.#underlineColor)
         strokeWeight(2)
         line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
     }
