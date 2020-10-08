@@ -1,9 +1,4 @@
 class Element {
-  id
-
-  constructor() {
-    this.id = idCount++ // Temporary
-  }
 
   /**
    * This method MUST be overridden

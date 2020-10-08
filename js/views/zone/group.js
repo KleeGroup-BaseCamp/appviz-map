@@ -30,7 +30,7 @@ class Group extends Element {
 
     #renderBackground() {
         strokeWeight(2)
-        fill(style.getShapeFill("group", (state.selectedElement && this.id == state.selectedElement.id) ? "hover" : "default"))
+        fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
         stroke(style.getPrimaryStroke("group", this.zone))
         rect(0, 0, this.#width, this.#height);
     }

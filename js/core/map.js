@@ -5,15 +5,12 @@ class Map {
     this.#layers = layers;
   }
 
-  /*
-    Renders the layers from bottom to up
+  /**
+   * Renders the layers from bottom to up 
    */
   render() {
-    this.#renderLayers();
-  }
-
-  #renderLayers() {
-    this.#layers.forEach(layer => layer.render());
+    this.#layers
+      .forEach(layer => layer.render())
   }
 
   /*
@@ -29,22 +26,9 @@ class Map {
     return null;
   }
 
-  /*
-    Selects an element on the map
-    The previous selected element is unselected.
-    Each element is responsible for its style
-  */
-  select(element) {
-    if (element) {
-      state.select(element);
-    } else {
-      state.select(null)
-    }
-  }
-
   click(element) {
     if (!group && element instanceof Group) {
-      group = element.title.toLowerCase();
+      group = element.title.toLowerCase()
     } else {
       group = false;
     }

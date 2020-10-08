@@ -23,7 +23,7 @@ function draw() {
   vizMap = notebookHandler.handle(fake)
 
   const element = vizMap.findElement(mouseX, mouseY)
-  vizMap.select(element)
+  state.select(element)
   //--- cursor
   const isSelected = element != null
   cursor(isSelected ? "pointer" : "default")
