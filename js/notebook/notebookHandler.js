@@ -4,8 +4,17 @@ class NotebookHandler {
     tk: "tasks"
   }
 
+  #gridRows
+  #gridColumns
+  #gridWidth
+  #gridHeight
+
   constructor(notebookPath) {
     this.notebook = loadJSON(notebookPath)
+    this.#gridRows = 12
+    this.#gridColumns = 12
+    this.#gridWidth = canvasSize
+    this.#gridHeight = canvasSize
   }
 
   handle(fake) {
@@ -128,7 +137,7 @@ class NotebookHandler {
 
   #buildGridLayer() {
     return new LayerBuilder()
-      .addElement(new Grid(12, 12))
+      .addElement(new Grid(this.#gridRows, this.#gridColumns))
       .build()
   }
 
@@ -136,14 +145,14 @@ class NotebookHandler {
     const itemTypesLayerBuilder = new LayerBuilder()
     const itemsLayerBuilder = new LayerBuilder()
     const groupLayer = new LayerBuilder()
-      .addElement(new GroupView(canvasSize, canvasSize, Utils.firstCharUpperCase(groupName)))
+      .addElement(new GroupView(this.#gridWidth, this.#gridHeight, Utils.firstCharUpperCase(groupName)))
       .build()
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
       const row = 2 + typeIndex * 5
       const column = 1
       const numOfRows = 4
-      const numOfColumns = 12 - column * 2
+      const numOfColumns = this.#gridColumns - column * 2
       const {
         x: itemTypeX,
         y: itemTypeY,
@@ -198,7 +207,7 @@ class NotebookHandler {
 
   #getItemPixels(itemIndex, itemsPerRow, itemTypeColumn, itemTypeRow, itemTypeNumOfColumns, itemTypeNumOfRows) {
     const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
-    const innerColumn = (itemIndex % itemsPerRow) * (12 / itemsPerRow)
+    const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
     const padding = 5
 
     const {
@@ -209,7 +218,7 @@ class NotebookHandler {
     } = this.#getPixels(
       itemTypeColumn + ":" + innerColumn,
       (itemTypeRow + 1) + ":" + innerRow,
-      itemTypeNumOfColumns + ":" + (12 / itemsPerRow),
+      itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
       itemTypeNumOfRows + ":2"
     )
     return {
@@ -221,8 +230,8 @@ class NotebookHandler {
   }
 
   #getPixels(columnCode, rowCode, numOfColumnsCode, numOfRowsCode) {
-    let gridHeight = canvasSize
-    let gridWidth = canvasSize
+    let gridHeight = this.#gridHeight
+    let gridWidth = this.#gridWidth
     let x = 0
     let y = 0
     const rows = rowCode.split(":")
@@ -236,10 +245,10 @@ class NotebookHandler {
       const column = parseInt(columns[i])
       const numOfColumns = parseInt(numsOfColumns[i])
       const numOfRows = parseInt(numsOfRows[i])
-      x += (column * gridWidth) / 12
-      y += (row * gridHeight) / 12
-      gridWidth = (numOfColumns * gridWidth) / 12
-      gridHeight = (numOfRows * gridHeight) / 12
+      x += (column * gridWidth) / this.#gridColumns
+      y += (row * gridHeight) / this.#gridRows
+      gridWidth = (numOfColumns * gridWidth) / this.#gridColumns
+      gridHeight = (numOfRows * gridHeight) / this.#gridRows
     }
     const width = gridWidth
     const height = gridHeight

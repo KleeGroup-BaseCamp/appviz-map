@@ -8,13 +8,13 @@ let idCount = 0
 const state = new State()
 
 function preload() {
+  canvasSize = windowHeight
   notebookHandler = new NotebookHandler("./notebook.json")
   fake = loadJSON("./fake.json")
   style.load()
 }
 
 function setup() {
-  canvasSize = windowHeight
   createCanvas(canvasSize, canvasSize)
   angleMode(DEGREES)
   vizMap = notebookHandler.handle(fake)
@@ -28,7 +28,7 @@ function draw() {
   const isSelected = element != null
   cursor(isSelected ? "pointer" : "default")
   //--- render
-    vizMap.render()
+  vizMap.render()
 }
 
 function mouseClicked() {

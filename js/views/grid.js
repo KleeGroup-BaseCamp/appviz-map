@@ -12,7 +12,7 @@ class Grid extends Element {
    * @override 
    */
   render() {
-    stroke(122, 122, 122, 122)
+    stroke(125, 50)
     strokeWeight(1)
 
     const rowSize = canvasSize / this.#rows
