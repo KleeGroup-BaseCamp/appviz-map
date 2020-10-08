@@ -56,7 +56,7 @@ class Group extends Element {
     #renderItemTypeIcon(itemPrefix) {
         rectMode(CENTER)
         noStroke()
-        fill(style.getTextFill());
+        fill(style.getTextFill())
         textSize(style.getFontSize("xs"))
         textFont(style.getFont(true))
         text(style.getIcon(itemPrefix), 20, 0)

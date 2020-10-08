@@ -6,6 +6,6 @@ class State {
      * The previous selected element is unselected
      */
     select(element) {
-        this.selectedElement = element;
+        this.selectedElement = element
     }
 }
