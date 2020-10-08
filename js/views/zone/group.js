@@ -6,7 +6,7 @@ class Group extends Element {
     #header
     title
     zone 
-    
+
     constructor(width, height, title, zone, items, maxValue = 20) {
         super();
         this.#width = width;
@@ -59,7 +59,7 @@ class Group extends Element {
         fill(style.getTextFill());
         textSize(style.getFontSize("xs"))
         textFont(style.getFont(true))
-        text(getIcon(itemPrefix), 20, 0)
+        text(style.getIcon(itemPrefix), 20, 0)
         text("0", 40, 0)
         text(this.#maxValue.toString(), this.#width - 15, 0)
     }

@@ -1,4 +1,9 @@
 class Style {
+    #icons = {
+        dt: "\uf15b",
+        tk: "\uf085"
+      }
+
     #fonts = {}
 
     #fontSizes = {
@@ -11,9 +16,13 @@ class Style {
         xxl: 42,
         default: 60
     }
-    
+
     constructor() {
     }    
+
+    getIcon(itemPrefix){ 
+        return this.#icons[itemPrefix]
+    }
 
     load() {
         this.#fonts.roboto = loadFont("fonts/Roboto-Regular.ttf")

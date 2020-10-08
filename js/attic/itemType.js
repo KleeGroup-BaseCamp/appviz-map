@@ -22,7 +22,7 @@ class ItemType extends Element {
     fill(style.getTextFill());
     textSize(style.getFontSize("xs"))
     textFont(style.getFont(true))
-    text(getIcon(this.#itemType), 10, 0);
+    text(style.getIcon(this.#itemType), 10, 0);
     text("0", 40, 0)
     text(this.#MAX_VALUE.toString(), this.#width - 25, 0)
   }
