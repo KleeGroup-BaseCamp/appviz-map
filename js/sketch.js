@@ -17,23 +17,28 @@ function setup() {
   canvasSize = windowHeight
   createCanvas(canvasSize, canvasSize)
   angleMode(DEGREES)
+  vizMap = notebookHandler.handle(fake)
+  vizMap.render()
 }
 
 function draw() {
-  vizMap = notebookHandler.handle(fake)
-
   const element = vizMap.findElement(mouseX, mouseY)
   state.select(element)
   //--- cursor
   const isSelected = element != null
   cursor(isSelected ? "pointer" : "default")
   //--- render
-  vizMap.render()
+  if (state.changed) {
+    vizMap.render()
+    state.changed = false
+  }
 }
 
 function mouseClicked() {
   const element = vizMap.findElement(mouseX, mouseY)
   vizMap.click(element)
+  // Build map on click only
+  vizMap = notebookHandler.handle(fake);
 }
 
 function windowResized() {

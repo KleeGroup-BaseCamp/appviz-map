@@ -5,7 +5,7 @@ class Group extends Element {
     #maxValue // Make static ?
     #header
     title
-    zone 
+    zone
 
     constructor(width, height, title, zone, items, maxValue = 20) {
         super();
@@ -14,7 +14,7 @@ class Group extends Element {
 
         this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("xs")) : "No title"
         this.zone = zone
-        this.#header = new Header(title, width, /*fontSize*/ "m", style.getPrimaryStroke("group", this.zone))
+        this.#header = new Header(title, width, style.getFont(false), /*fontSize*/ "m", style.getPrimaryStroke("group", this.zone))
         this.#items = items
         this.#maxValue = maxValue
     }
