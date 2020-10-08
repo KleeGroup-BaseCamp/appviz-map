@@ -10,7 +10,7 @@ class TextBox extends Element {
     }
 
     render() {
-        fill(style.getShapeFill("item", this._state))
+        fill(style.getShapeFill("item", (state.selectedElement && this.id == state.selectedElement.id) ? "hover" : "default"))
         rect(0, 0, this.#width, this.#height)
         fill(255)
         textSize(style.getFontSize("s"))

@@ -1,13 +1,8 @@
 class Element {
-  _state;
+  id
 
   constructor() {
-    this._state = "default";
-  }
-
-  setStyle(state) {
-    if (state == "hover") this._state = "hover";
-    else this._state = "default";
+    this.id = idCount++ // Temporary
   }
 
   /**

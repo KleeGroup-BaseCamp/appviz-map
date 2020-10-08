@@ -36,12 +36,10 @@ class Map {
     Each element is responsible for its style
   */
   select(element) {
-    if (state.selectedElement) {
-      state.selectedElement.setStyle("default");
-    }
-    state.select(element);
-    if (state.selectedElement) {
-      state.selectedElement.setStyle("hover");
+    if (element) {
+      state.select(element);
+    } else {
+      state.select(null)
     }
   }
 

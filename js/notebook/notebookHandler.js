@@ -9,6 +9,7 @@ class NotebookHandler {
   }
 
   handle(fake) {
+    idCount = 0
     const domains = this.#extractDomains();
     if (!group) {
       return this.#generateDomainsMap(domains, fake);

@@ -4,6 +4,7 @@ let fake;
 let canvasSize;
 let group = false // temp variable
 let style;
+let idCount = 0;
 const state = new State();
 
 function preload() {
