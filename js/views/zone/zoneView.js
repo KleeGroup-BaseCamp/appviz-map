@@ -21,7 +21,7 @@ class ZoneView extends Element {
     #renderBackground() {
         strokeWeight(1)
         stroke(255)
-        fill(0)
+        fill([0, 0]) //No fill
         rect(0, 0, this.#width, this.#height)
     }
 }

@@ -2,56 +2,56 @@ class NotebookHandler {
   #types = {
     dt: "objects",
     tk: "tasks"
-  };
+  }
 
   constructor(notebookPath) {
-    this.notebook = loadJSON(notebookPath);
+    this.notebook = loadJSON(notebookPath)
   }
 
   handle(fake) {
-    const domains = this.#extractDomains();
+    const domains = this.#extractDomains()
     if (!group) {
-      return this.#generateDomainsMap(domains, fake);
+      return this.#generateDomainsMap(domains, fake)
     } else {
-      return this.#generateGroupMap(domains, group);
+      return this.#generateGroupMap(domains, group)
     }
   }
 
   #extractType(domains, sketchName) {
-    const typePrefix = sketchName.slice(0, 2).toLowerCase();
+    const typePrefix = sketchName.slice(0, 2).toLowerCase()
     const domainName = this.notebook.sketches[sketchName].packageName
-      .split(".")[2];
+      .split(".")[2]
     const type = this.#types[typePrefix]
     if (domains[domainName]) {
       if (domains[domainName][type]) {
-        domains[domainName][type].push(sketchName);
+        domains[domainName][type].push(sketchName)
       } else {
-        domains[domainName][type] = [sketchName];
+        domains[domainName][type] = [sketchName]
       }
     } else {
-      domains[domainName] = { [type]: [sketchName] };
+      domains[domainName] = { [type]: [sketchName] }
     }
 
 
   }
 
   #extractDomains() {
-    const domains = {};
+    const domains = {}
     Object.keys(this.notebook.sketches).map((sketchName) => {
       for (const typePrefix in this.#types) {
         if (sketchName.slice(0, 2).toLowerCase() === typePrefix)
-          this.#extractType(domains, sketchName);
+          this.#extractType(domains, sketchName)
       }
-    });
-    return domains;
+    })
+    return domains
   }
 
   #generateDomainsMap(domains, fake) {
-    const zonesLayerBuilder = new LayerBuilder();
-    const groupsLayerBuilder = new LayerBuilder();
+    const zonesLayerBuilder = new LayerBuilder()
+    const groupsLayerBuilder = new LayerBuilder()
 
     Object.keys(fake.zones).forEach((zoneName) => {
-      const zone = fake.zones[zoneName];
+      const zone = fake.zones[zoneName]
       const {
         x,
         y,
@@ -62,7 +62,7 @@ class NotebookHandler {
         zone.row,
         zone.numOfColumns,
         zone.numOfRows
-      );
+      )
       zonesLayerBuilder.addElement(
         new ZoneView(
           width,
@@ -71,10 +71,10 @@ class NotebookHandler {
         ),
         x,
         y
-      );
+      )
 
       Object.keys(zone.groups).forEach((groupName) => {
-        const group = zone.groups[groupName];
+        const group = zone.groups[groupName]
         const {
           x,
           y,
@@ -85,7 +85,7 @@ class NotebookHandler {
           group.row,
           group.numOfColumns,
           group.numOfRows
-        );
+        )
         const items = Object.keys(this.#types).map((typePrefix) => {
           return {
             prefix: typePrefix,
@@ -106,9 +106,9 @@ class NotebookHandler {
           ),
           x + padding.left,
           y + padding.top
-        );
-      });
-    });
+        )
+      })
+    })
 
 
 
@@ -117,27 +117,27 @@ class NotebookHandler {
       .addLayer(zonesLayerBuilder.build())
       .addLayer(groupsLayerBuilder.build())
       .addLayer(this.#buildGridLayer())
-      .build();
+      .build()
   }
 
   #buildBackgroundLayer() {
     return new LayerBuilder()
       .addElement(new Background())
-      .build();
+      .build()
   }
 
   #buildGridLayer() {
     return new LayerBuilder()
       .addElement(new Grid(12, 12))
-      .build();
+      .build()
   }
 
   #generateGroupMap(domains, groupName) {
-    const itemTypesLayerBuilder = new LayerBuilder();
-    const itemsLayerBuilder = new LayerBuilder();
+    const itemTypesLayerBuilder = new LayerBuilder()
+    const itemsLayerBuilder = new LayerBuilder()
     const groupLayer = new LayerBuilder()
       .addElement(new GroupView(canvasSize, canvasSize, Utils.firstCharUpperCase(groupName)))
-      .build();
+      .build()
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
       const row = 2 + typeIndex * 5
@@ -167,7 +167,7 @@ class NotebookHandler {
         ),
         itemTypeX,
         itemTypeY
-      );
+      )
 
       const items = domains[groupName][this.#types[typePrefix]] ?? []
       items.forEach((item, index) => {
@@ -186,14 +186,14 @@ class NotebookHandler {
         )
         itemsLayerBuilder.addElement(new Item(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
       })
-    });
+    })
     return new MapBuilder()
       .addLayer(this.#buildBackgroundLayer())
       .addLayer(groupLayer)
       .addLayer(itemTypesLayerBuilder.build())
       .addLayer(itemsLayerBuilder.build())
       .addLayer(this.#buildGridLayer())
-      .build();
+      .build()
   }
 
   #getItemPixels(itemIndex, itemsPerRow, itemTypeColumn, itemTypeRow, itemTypeNumOfColumns, itemTypeNumOfRows) {
@@ -248,7 +248,7 @@ class NotebookHandler {
       y,
       width,
       height
-    };
+    }
   }
 
 

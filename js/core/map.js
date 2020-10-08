@@ -1,8 +1,8 @@
 class Map {
-  #layers;
+  #layers
 
   constructor(layers) {
-    this.#layers = layers;
+    this.#layers = layers
   }
 
   /**
@@ -23,14 +23,14 @@ class Map {
         return element
       }
     }
-    return null;
+    return null
   }
 
   click(element) {
     if (!group && element instanceof Group) {
       group = element.title.toLowerCase()
     } else {
-      group = false;
+      group = false
     }
   }
 }
