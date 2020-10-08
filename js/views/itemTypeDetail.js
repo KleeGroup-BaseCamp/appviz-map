@@ -7,14 +7,12 @@ class ItemTypeDetail extends Element {
         this.#width = width
         this.#height = height
         this.title = title;
-        // this.#initItems()
     }
 
     render() {
         this.#renderRectangle()
         this.#renderTitle();
         this.#renderBar()
-        // this.#renderItems()
     }
 
     #renderRectangle() {
@@ -42,35 +40,6 @@ class ItemTypeDetail extends Element {
         stroke(255)
         line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
     }
-
-    // #initItems() {
-    //     const padding = 10 // Use px and py
-    //     const itemsPerRow = 4;
-    //     const itemHeight = 30;
-    //     const itemWidth = (this.#width - padding * (itemsPerRow + 1)) / itemsPerRow;
-    //     textFont(style.getFont(false))
-    //     textSize(style.getFontSize("s"))
-    //     this.#itemsNames.forEach((item, index) => {
-    //         const x = (((itemWidth + padding) * index + padding) % (this.#width - padding))
-    //         const y = 60 + Math.floor(index / itemsPerRow) * (itemHeight + 2 * padding)
-    //         const textBox = new TextBox(itemWidth, itemHeight, Utils.buildDisplayableTitle(item.slice(2), itemWidth))
-    //         this.items.push({ element: textBox, x, y })
-
-    //     })
-    // }
-
-    // #renderItems() {
-    //     textFont(style.getFont(false))
-    //     textSize(style.getFontSize("s"))
-
-    //     this.items.forEach((item) => {
-    //         push()
-    //         translate(item.x, item.y)
-    //         fill(style.getShapeFill("itemTypeDetail", item.element._state))
-    //         item.element.render()
-    //         pop()
-    //     })
-    // }
 
     contains(x, y) {
         return false

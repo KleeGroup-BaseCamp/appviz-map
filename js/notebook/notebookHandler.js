@@ -148,22 +148,13 @@ class NotebookHandler {
         y: itemTypeY,
         width: itemTypeWidth,
         height: itemTypeHeight
-      } = this.#getPixels(row.toString(), "0", "4", "12")
-      const padding = { x: 20, y: 50 }
+      } = this.#getPixels(row.toString(), "1", "4", "10")
+      // const itemTypePadding = { x: 20, y: 50 }
 
       // const height = (canvasSize - 100) / Object.keys(this.#types).length - padding.y;
       const items = domains[groupName][this.#types[typePrefix]] ?? []
       items.forEach((item, index) => {
-        const itemsPerRow = 6
-        const innerRow = Math.floor(index / itemsPerRow) * 2
-        const innerColumn = (index % itemsPerRow) * 2
-
-        const {
-          x: itemX,
-          y: itemY,
-          width: itemWidth,
-          height: itemHeight
-        } = this.#getPixels((row + 1).toString() + ":" + innerRow, "0:" + innerColumn, "4:2", "12:2")
+        const { itemX, itemY, itemWidth, itemHeight } = this.#getItemPixels(index, row, 6)
         itemsLayerBuilder.addElement(new TextBox(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
       })
       itemTypesLayerBuilder.addElement(
@@ -186,6 +177,25 @@ class NotebookHandler {
       .addLayer(itemsLayerBuilder.build())
       .addLayer(this.#buildGridLayer())
       .build();
+  }
+
+  #getItemPixels(itemIndex, itemTypeRow, itemsPerRow) {
+    const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
+    const innerColumn = (itemIndex % itemsPerRow) * (12 / itemsPerRow)
+    const padding = 5
+
+    const {
+      x,
+      y,
+      width,
+      height
+    } = this.#getPixels((itemTypeRow + 1).toString() + ":" + innerRow, "1:" + innerColumn, "4:2", "10:" + (12 / itemsPerRow))
+    return {
+      itemX: x + padding,
+      itemY: y + padding,
+      itemWidth: width - 2 * padding,
+      itemHeight: height - 2 * padding
+    }
   }
 
   #getPixels(rowCode, columnCode, numOfRowsCode, numOfColumnsCode) {
