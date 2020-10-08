@@ -28,10 +28,7 @@ function draw() {
   const isSelected = element != null
   cursor(isSelected ? "pointer" : "default")
   //--- render
-  if (state.changed) {
     vizMap.render()
-    state.changed = false
-  }
 }
 
 function mouseClicked() {
