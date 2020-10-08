@@ -16,13 +16,20 @@ class Header {
     }
 
     render() {
+        this.#renderTitle()
+        this.#renderUnderline()
+    }
+
+    #renderTitle() {
         noStroke()
         fill(this.#textColor)
         textSize(this.#fontSize)
         textFont(this.#font)
         textAlign(CENTER)
         text(this.#title, 0, textAscent() + 15, this.#width)
-        //--- underline
+    }
+
+    #renderUnderline() {
         stroke(this.#underlineColor)
         strokeWeight(2)
         line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
