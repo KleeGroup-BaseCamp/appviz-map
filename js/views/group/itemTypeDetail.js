@@ -18,7 +18,7 @@ class ItemTypeDetail extends Element {
     #renderBackground() {
         strokeWeight(1)
         stroke(255)
-        fill([100, 100, 200])
+        fill(style.getShapeFill("itemTypeDetail"))
         rect(0, 0, this.#width, this.#height)
     }
 }

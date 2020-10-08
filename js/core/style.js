@@ -2,7 +2,7 @@ class Style {
     #icons = {
         dt: "\uf15b",
         tk: "\uf085"
-      }
+    }
 
     #fonts = {}
 
@@ -18,9 +18,9 @@ class Style {
     }
 
     constructor() {
-    }    
+    }
 
-    getIcon(itemPrefix){ 
+    getIcon(itemPrefix) {
         return this.#icons[itemPrefix]
     }
 
@@ -48,28 +48,28 @@ class Style {
     getPrimaryStroke(type, zone = null) {
         switch (type) {
             case "zoneTitle":
-                return 255
+                return color(255)
             case "group":
                 switch (zone) {
                     case "pilotage":
-                        return [91, 8, 194]
+                        return color([91, 8, 194])
                     case "operationnel":
-                        return [68, 128, 5]
+                        return color([68, 128, 5])
                     case "referentiel":
-                        return [107, 38, 3]
+                        return color([107, 38, 3])
                     default:
-                        return [255, 251, 0]
+                        return color([255, 251, 0])
                 }
             case "itemType":
-                return [1, 255, 255]
+                return color([1, 255, 255])
             case "groupTitle":
-                return 255
+                return color(255)
             case "elementTypeTitle":
-                return 255
+                return color(255)
             case "item":
-                return [1, 255, 255]
+                return color([1, 255, 255])
             default:
-                return [255, 251, 0]
+                return color([255, 251, 0])
         }
     }
 
@@ -85,32 +85,34 @@ class Style {
     getShapeFill(type, state) {
         switch (type) {
             case "zoneTitle":
-                return [0, 0]
+                return color([0, 0])
             case "group":
                 switch (state) {
                     case "default":
-                        return [4, 12, 44]
+                        return color([4, 12, 44])
                     case "hover":
-                        return [4, 82, 134]
+                        return color([4, 82, 134])
                     default:
-                        return [255, 251, 0]
+                        return color([255, 251, 0])
                 }
             case "item":
                 switch (state) {
                     case "default":
-                        return [4, 54, 95]
+                        return color([4, 54, 95])
                     case "hover":
-                        return [4, 108, 156]
+                        return color([4, 108, 156])
                     default:
-                        return [255, 251, 0]
+                        return color([255, 251, 0])
                 }
+            case "itemTypeDetail":
+                return color([100, 100, 200])
             default:
-                [255, 251, 0]
+                color([255, 251, 0])
         }
     }
 
     getTextFill() {
-        return 255
+        return color(255)
     }
 }
 

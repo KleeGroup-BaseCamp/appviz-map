@@ -15,7 +15,6 @@ class Item extends Element {
         fill(255)
         textSize(style.getFontSize("s"))
         textAlign(CENTER, CENTER)
-
         text(this.title, 0, 0, this.#width, this.#height)
     }
     contains(x, y) {
