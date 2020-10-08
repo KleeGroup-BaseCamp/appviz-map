@@ -1,12 +1,14 @@
 class Header {
     #title
     #width
-    #strokeColor
+    #font
     #fontSize
+    #strokeColor
 
-    constructor(title, width, fontSize, strokeColor) {
+    constructor(title, width, font, fontSize, strokeColor) {
         this.#title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize(fontSize)) : "No title"
         this.#width = width
+        this.#font = font
         this.#fontSize = fontSize
         this.#strokeColor = strokeColor
     }
@@ -15,7 +17,7 @@ class Header {
         noStroke()
         fill(style.getTextFill())
         textSize(style.getFontSize(this.#fontSize))
-        textFont(style.getFont(false))
+        textFont(this.#font)
         textAlign(CENTER)
         text(this.#title, 0, textAscent() + 15, this.#width)
         //--- underline
