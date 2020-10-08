@@ -34,8 +34,7 @@ function draw() {
 function mouseClicked() {
   const element = vizMap.findElement(mouseX, mouseY)
   vizMap.click(element)
-  // Build map on click only
-  vizMap = notebookHandler.handle(fake);
+  vizMap = notebookHandler.handle(fake)
 }
 
 function windowResized() {

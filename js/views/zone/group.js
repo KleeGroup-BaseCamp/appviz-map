@@ -8,9 +8,9 @@ class Group extends Element {
     zone
 
     constructor(width, height, title, zone, items, maxValue = 20) {
-        super();
-        this.#width = width;
-        this.#height = height;
+        super()
+        this.#width = width
+        this.#height = height
 
         this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("xs")) : "No title"
         this.zone = zone
@@ -32,7 +32,7 @@ class Group extends Element {
         strokeWeight(2)
         fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
         stroke(style.getPrimaryStroke("group", this.zone))
-        rect(0, 0, this.#width, this.#height);
+        rect(0, 0, this.#width, this.#height)
     }
 
     #renderItems() {
