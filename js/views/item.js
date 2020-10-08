@@ -1,4 +1,4 @@
-class TextBox extends Element {
+class Item extends Element {
     #width
     #height
 

@@ -156,7 +156,7 @@ class NotebookHandler {
       const items = domains[groupName][this.#types[typePrefix]] ?? []
       items.forEach((item, index) => {
         const { itemX, itemY, itemWidth, itemHeight } = this.#getItemPixels(index, row, 6)
-        itemsLayerBuilder.addElement(new TextBox(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
+        itemsLayerBuilder.addElement(new Item(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
       })
       itemTypesLayerBuilder.addElement(
         new ItemTypeDetail(
