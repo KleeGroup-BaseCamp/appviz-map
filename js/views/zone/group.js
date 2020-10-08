@@ -3,9 +3,10 @@ class Group extends Element {
     #height
     #items
     #maxValue // Make static ?
-    title
     #header
-
+    title
+    zone 
+    
     constructor(width, height, title, zone, items, maxValue = 20) {
         super();
         this.#width = width;

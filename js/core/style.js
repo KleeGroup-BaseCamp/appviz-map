@@ -1,5 +1,5 @@
 class Style {
-    #fonts = {};
+    #fonts = {}
 
     #fontSizes = {
         xxs: 12,
@@ -11,9 +11,13 @@ class Style {
         xxl: 42,
         default: 60
     }
+    
     constructor() {
-        this.#fonts.roboto = loadFont("fonts/Roboto-Regular.ttf");
-        this.#fonts.fa = loadFont("fonts/fa.otf");
+    }    
+
+    load() {
+        this.#fonts.roboto = loadFont("fonts/Roboto-Regular.ttf")
+        this.#fonts.fa = loadFont("fonts/fa.otf")
     }
 
     getBackgroundColor() {
@@ -99,7 +103,6 @@ class Style {
     getTextFill() {
         return 255
     }
-
 }
 
 

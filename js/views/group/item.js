@@ -19,9 +19,9 @@ class Item extends Element {
         text(this.text, 0, 0, this.#width, this.#height);
     }
     contains(x, y) {
-        return x > 0 &&
-            x < this.#width &&
-            y > 0 &&
-            y < this.#height;
+        return x > 0
+            && x < this.#width
+            && y > 0
+            && y < this.#height;
     }
 }

@@ -1,17 +1,18 @@
 class ItemTypeDetail extends Element {
     #width
     #height
+    title
 
     constructor(width, height, title) {
-        super();
+        super()
         this.#width = width
         this.#height = height
-        this.title = title;
+        this.title = this.title ? Utils.buildDisplayableTitle(this.title, this.#width, style.getFontSize("l")) : "No title"
     }
 
     render() {
         this.#renderRectangle()
-        this.#renderTitle();
+        this.#renderTitle()
         this.#renderBar()
     }
 
@@ -19,7 +20,7 @@ class ItemTypeDetail extends Element {
         strokeWeight(1)
         stroke(255)
         fill([100, 100, 200])
-        rect(0, 0, this.#width, this.#height);
+        rect(0, 0, this.#width, this.#height)
     }
 
     #renderTitle() {
@@ -28,20 +29,11 @@ class ItemTypeDetail extends Element {
         textSize(style.getFontSize("l"))
         textFont(style.getFont(true))
         textAlign(CENTER);
-        text(
-            this.title ? Utils.buildDisplayableTitle(this.title, this.#width, style.getFontSize("l")) : "No title",
-            0,
-            textAscent() + 15,
-            this.#width
-        );
+        text(this.title, 0, textAscent() + 15, this.#width)
     }
 
     #renderBar() {
         stroke(255)
         line(this.#width / 4, textAscent() + textDescent() + 20, this.#width * 3 / 4, textAscent() + textDescent() + 20)
-    }
-
-    contains(x, y) {
-        return false
     }
 }
