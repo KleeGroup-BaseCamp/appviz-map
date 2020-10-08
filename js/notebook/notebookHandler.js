@@ -135,33 +135,55 @@ class NotebookHandler {
 
   #generateGroupMap(domains, groupName) {
     const itemTypesLayerBuilder = new LayerBuilder();
+    const itemsLayerBuilder = new LayerBuilder();
     const groupLayer = new LayerBuilder()
       .addElement(new GroupView(canvasSize, canvasSize, Utils.firstCharUpperCase(groupName)))
       .build();
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
+      const row = 2 + typeIndex * 5
+
+      const {
+        x: itemTypeX,
+        y: itemTypeY,
+        width: itemTypeWidth,
+        height: itemTypeHeight
+      } = this.#getPixels(row.toString(), "0", "4", "12")
       const padding = { x: 20, y: 50 }
 
-      const height = (canvasSize - 100) / Object.keys(this.#types).length - padding.y;
+      // const height = (canvasSize - 100) / Object.keys(this.#types).length - padding.y;
       const items = domains[groupName][this.#types[typePrefix]] ?? []
+      items.forEach((item, index) => {
+        const itemsPerRow = 6
+        const innerRow = Math.floor(index / itemsPerRow) * 2
+        const innerColumn = (index % itemsPerRow) * 2
+
+        const {
+          x: itemX,
+          y: itemY,
+          width: itemWidth,
+          height: itemHeight
+        } = this.#getPixels((row + 1).toString() + ":" + innerRow, "0:" + innerColumn, "4:2", "12:2")
+        itemsLayerBuilder.addElement(new TextBox(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
+      })
       itemTypesLayerBuilder.addElement(
         new ItemTypeDetail(
-          canvasSize - 2 * padding.x,
-          height,
+          itemTypeWidth,
+          itemTypeHeight,
           (this.#types[typePrefix] == "objects" ?
             "Data" :
             Utils.firstCharUpperCase(this.#types[typePrefix])) +
-          " " + getIcon(typePrefix),
-          items
+          " " + getIcon(typePrefix)
         ),
-        padding.x,
-        100 + (height + padding.y) * typeIndex
+        itemTypeX,
+        itemTypeY
       );
     });
     return new MapBuilder()
       .addLayer(this.#buildBackgroundLayer())
       .addLayer(groupLayer)
       .addLayer(itemTypesLayerBuilder.build())
+      .addLayer(itemsLayerBuilder.build())
       .addLayer(this.#buildGridLayer())
       .build();
   }

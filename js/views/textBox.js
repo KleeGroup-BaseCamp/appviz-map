@@ -10,6 +10,7 @@ class TextBox extends Element {
     }
 
     render() {
+        fill(style.getShapeFill("item", this._state))
         rect(0, 0, this.#width, this.#height)
         fill(255)
         textSize(style.getFontSize("s"))

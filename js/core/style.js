@@ -82,7 +82,7 @@ class Style {
                     default:
                         return [255, 251, 0]
                 }
-            case "itemTypeDetail":
+            case "item":
                 switch (state) {
                     case "default":
                         return [4, 54, 95]
