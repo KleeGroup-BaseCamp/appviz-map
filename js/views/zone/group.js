@@ -11,7 +11,6 @@ class Group extends Element {
         super()
         this.#width = width
         this.#height = height
-
         this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("xs")) : "No title"
         this.zone = zone
         this.#header = new Header(title, width, style.getFont(false), style.getFontSize("m"), 255, style.getPrimaryStroke("group", this.zone))
@@ -55,13 +54,11 @@ class Group extends Element {
 
     #renderItemTypeIcon(itemPrefix) {
         rectMode(CENTER)
-        noStroke()
-        fill(style.getTextFill())
-        textSize(style.getFontSize("xs"))
-        textFont(style.getFont(true))
-        text(style.getIcon(itemPrefix), 20, 0)
-        text("0", 40, 0)
-        text(this.#maxValue.toString(), this.#width - 15, 0)
+        const y = -2
+        new VText(style.getIcon(itemPrefix), 20, y, style.getFont(true), style.getFontSize("xs")).render()
+        // Progress bar information
+        new VText("0", 40, y, style.getFont(false), style.getFontSize("xs")).render()
+        new VText(this.#maxValue.toString(), this.#width - 15, y, style.getFont(false), style.getFontSize("xs")).render()
     }
 
     /**
