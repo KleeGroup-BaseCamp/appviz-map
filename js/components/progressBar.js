@@ -12,22 +12,20 @@ class ProgressBar {
         this.#color = color
         this.#title = new VText("0", style.text.font, style.text.size.s)
         const size = (value / this.#maxValue) * this.#width
-        ProgressBar.#move(
-            0, 
-            size, 
-            s => {
-            this.#value = s
-            this.#title.setText(Math.floor(this.#value * this.#maxValue / this.#width))
-            }
-        )
+        ProgressBar.#move(0, size,s => this.#value = s)
     }
 
     render() {
-        const weight = 8
+        const weight = 10
         this.#title.render() 
-
+        this.#title.setText(Math.floor(this.#value * this.#maxValue / this.#width))
         push()
         translate(20, (-textAscent() + weight) / 2)
+        this.#renderBar(weight);
+        pop()
+    }
+
+    #renderBar(weight){
         strokeJoin(ROUND)
         strokeWeight(weight)
         
@@ -38,9 +36,8 @@ class ProgressBar {
         this.#color.setAlpha(255)
         stroke(this.#color)
         line(0, 0, this.#value, 0)
-        pop()
+    
     }
-
     static #move(from, to, callBack) {
         const duration = 300 /*ms*/
         const interval = 10 /*ms*/
