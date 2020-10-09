@@ -71,20 +71,12 @@ class Group extends Element {
         }
         this.#items.forEach((item, index) => {
             push()
-            translate(0, positions[index])
-            this.#renderText(20, 0, style.getIcon(item.prefix), style.getFont(true), style.getFontSize("s"))
-            // this.#renderText(50, 0, item.frequency, style.getFont(false), style.getFontSize("s"))
-            translate(60, 0)
+            translate(20, positions[index])
+            new VText(style.getIcon(item.prefix), style.getFont(true), style.getFontSize("s")).render()
+            translate(40, 0)
             this.#progressBars[index].render()
             pop()
         })
-    }
-
-    #renderText(x, y, ...textParams){
-        push()
-        translate(x, y)
-        new VText(...textParams).render()
-        pop()
     }
 
     /**

@@ -25,13 +25,16 @@ class ProgressBar {
     render() {
         const weight = 8
         this.#title.render() 
+
         push()
         translate(20, (-textAscent() + weight) / 2)
         strokeJoin(ROUND)
         strokeWeight(weight)
+        
         this.#color.setAlpha(100)
         stroke(this.#color)
         line(0, 0, this.#width, 0)
+        
         this.#color.setAlpha(255)
         stroke(this.#color)
         line(0, 0, this.#value, 0)
