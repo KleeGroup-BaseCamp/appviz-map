@@ -3,15 +3,15 @@ class Group extends Element {
     #height
     #items
     #color
-    #maxValue // Make static ?
+    #maxValue
     #header
-    title
+    id
 
     constructor(width, height, title, items, color, maxValue = 20) {
         super()
         this.#width = width
         this.#height = height
-        this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("xs")) : "No title"
+        this.id = title
         this.#color = color
         this.#header = new Header(
             title, 

@@ -35,7 +35,7 @@ class Map {
    */
   click(element) {
     if (!group && element instanceof Group) {
-      group = element.title.toLowerCase()
+      group = element.id.toLowerCase()
     } else {
       group = false
     }
