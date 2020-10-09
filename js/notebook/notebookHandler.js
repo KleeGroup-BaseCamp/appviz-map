@@ -20,9 +20,9 @@ class NotebookHandler {
   handle(fake) {
     const domains = this.#extractDomains()
     if (!group) {
-      return this.#generateDomainsMap(domains, fake)
+      return this.#generateZoneViewMap(domains, fake)
     } else {
-      return this.#generateGroupMap(domains, group)
+      return this.#generateGroupViewMap(domains, group)
     }
   }
 
@@ -40,8 +40,6 @@ class NotebookHandler {
     } else {
       domains[domainName] = { [type]: [sketchName] }
     }
-
-
   }
 
   #extractDomains() {
@@ -55,7 +53,8 @@ class NotebookHandler {
     return domains
   }
 
-  #generateDomainsMap(domains, fake) {
+  
+  #generateZoneViewMap(domains, fake) {
     const zonesLayerBuilder = new LayerBuilder()
     const groupsLayerBuilder = new LayerBuilder()
 
@@ -129,19 +128,7 @@ class NotebookHandler {
       .build()
   }
 
-  #buildBackgroundLayer() {
-    return new LayerBuilder()
-      .addElement(new Background())
-      .build()
-  }
-
-  #buildGridLayer() {
-    return new LayerBuilder()
-      .addElement(new Grid(this.#gridWidth, this.#gridHeight, this.#gridRows, this.#gridColumns))
-      .build()
-  }
-
-  #generateGroupMap(domains, groupName) {
+  #generateGroupViewMap(domains, groupName) {
     const itemTypesLayerBuilder = new LayerBuilder()
     const itemsLayerBuilder = new LayerBuilder()
     const groupLayer = new LayerBuilder()
@@ -202,6 +189,18 @@ class NotebookHandler {
       .addLayer(itemTypesLayerBuilder.build())
       .addLayer(itemsLayerBuilder.build())
       .addLayer(this.#buildGridLayer())
+      .build()
+  }
+
+  #buildBackgroundLayer() {
+    return new LayerBuilder()
+      .addElement(new Background())
+      .build()
+  }
+
+  #buildGridLayer() {
+    return new LayerBuilder()
+      .addElement(new Grid(this.#gridWidth, this.#gridHeight, this.#gridRows, this.#gridColumns))
       .build()
   }
 

@@ -41,6 +41,12 @@ class Group extends Element {
         rect(0, 0, this.#width, this.#height)
     }
 
+    /*
+    *   Render item type:
+    *       - Icon
+    *       - Progress bar with its information
+    */
+
     #renderItems() {
         const top = textAscent() + 35
         let positions = []
