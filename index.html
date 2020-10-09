@@ -2,12 +2,29 @@
 <html lang="en">
 
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.css" />
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
+  <div class="columns">
+  <div class="column">
+    <h1 class="title is-1 has-text-centered mt-1">State</h1>
+  </div>
+  <div class="column" id="myContainer">
+  </div>
+  <div class="column">
+    <h1 class="title is-1 has-text-centered mt-1">Detail</h1>
+    <div class="content">
+    <ul type="1">
+      <li>Something 1</li>
+      <li>Something 2</li>
+      <li>Something 3</li>
+    </ul>
+  </div>
   <script src="js/core/map.js"></script>
   <script src="js/core/state.js"></script>
   <script src="js/core/layer.js"></script>
