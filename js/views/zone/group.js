@@ -34,10 +34,28 @@ class Group extends Element {
     }
 
     #renderBackground() {
-        strokeWeight(2)
+        
+        stroke(200)
+        strokeWeight(1)
         fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
-        stroke(this.#color)
-        rect(0, 0, this.#width, this.#height)
+        const cornerSize = 30
+        const padding = 5
+        beginShape();
+        vertex(cornerSize, 0);
+        vertex(this.#width - cornerSize, 0);
+        vertex(this.#width, cornerSize);
+        vertex(this.#width, this.#height);
+        vertex(0, this.#height);
+        vertex(0, cornerSize);
+        endShape(CLOSE);
+        noStroke()
+        fill(this.#color)
+        beginShape();
+        vertex(0, 0);
+        vertex(cornerSize - padding, 0);
+        vertex(0, cornerSize - padding);
+        endShape(CLOSE);
+        // rect(0, 0, this.#width, this.#height)
     }
 
     /*
