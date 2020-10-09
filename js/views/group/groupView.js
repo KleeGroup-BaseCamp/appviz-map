@@ -7,7 +7,14 @@ class GroupView extends Element {
         super()
         this.#width = width
         this.#height = height
-        this.#header = new Header(title, width, style.getFont(false), style.getFontSize("xxl"), 255, 255)
+        this.#header = new Header(
+            title,
+            width,
+            style.getFont(false),
+            style.getFontSize("xxl"), 
+            style.getTextColor(), 
+            255
+            )
     }
 
     /**

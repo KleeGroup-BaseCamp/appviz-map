@@ -6,7 +6,7 @@ class VText {
     #fontSize
     #color
 
-    constructor(text, x, y, font, fontSize, color = 255) {
+    constructor(text, x, y, font, fontSize, color = style.getTextColor()) {
         this.#text = text
         this.#x = x
         this.#y = y

@@ -32,9 +32,9 @@ class ItemType extends Element {
     const end = 35;
     const length = this.#width - start - end;
     strokeWeight(4);
-    stroke(...style.getPrimaryStroke(), 100);
+    stroke(...style.getPrimaryBorderColor(), 100);
     line(start, -textAscent() / 2, this.#width - end, -textAscent() / 2);
-    stroke(style.getPrimaryStroke());
+    stroke(style.getPrimaryBorderColor());
     line(
       start,
       -textAscent() / 2,

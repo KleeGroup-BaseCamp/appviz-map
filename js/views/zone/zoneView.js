@@ -7,7 +7,13 @@ class ZoneView extends Element {
         super()
         this.#width = width
         this.#height = height
-        this.#header = new Header(title, width, style.getFont(false), style.getFontSize("xl"), 255 /*color*/, 255)
+        this.#header = new Header(
+            title, 
+            width, 
+            style.getFont(false), 
+            style.getFontSize("xl"), 
+            style.getTextColor(), 
+            255)
     }
 
     /**g
