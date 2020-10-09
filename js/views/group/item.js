@@ -1,12 +1,13 @@
 class Item extends Element {
     #width
     #height
+    #title
 
     constructor(width, height, title) {
         super()
         this.#width = width
         this.#height = height
-        this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("s")) : "No title"
+        this.#title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("s")) : "No title"
     }
 
     render() {
@@ -15,7 +16,7 @@ class Item extends Element {
         fill(255)
         textSize(style.getFontSize("s"))
         textAlign(CENTER, CENTER)
-        text(this.title, 0, 0, this.#width, this.#height)
+        text(this.#title, 0, 0, this.#width, this.#height)
     }
     contains(x, y) {
         return x > 0

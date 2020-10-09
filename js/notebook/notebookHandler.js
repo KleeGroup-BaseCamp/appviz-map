@@ -3,14 +3,14 @@ class NotebookHandler {
     dt: "objects",
     tk: "tasks"
   }
-
+  #notebook
   #gridRows
   #gridColumns
   #gridWidth
   #gridHeight
 
   constructor(notebookPath) {
-    this.notebook = loadJSON(notebookPath)
+    this.#notebook = loadJSON(notebookPath)
     this.#gridRows = 12
     this.#gridColumns = 12
     this.#gridWidth = canvasSize
@@ -28,7 +28,7 @@ class NotebookHandler {
 
   #extractType(domains, sketchName) {
     const typePrefix = sketchName.slice(0, 2).toLowerCase()
-    const domainName = this.notebook.sketches[sketchName].packageName
+    const domainName = this.#notebook.sketches[sketchName].packageName
       .split(".")[2]
     const type = this.#types[typePrefix]
     if (domains[domainName]) {
@@ -44,7 +44,7 @@ class NotebookHandler {
 
   #extractDomains() {
     const domains = {}
-    Object.keys(this.notebook.sketches).map((sketchName) => {
+    Object.keys(this.#notebook.sketches).map((sketchName) => {
       for (const typePrefix in this.#types) {
         if (sketchName.slice(0, 2).toLowerCase() === typePrefix)
           this.#extractType(domains, sketchName)
