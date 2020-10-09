@@ -2,7 +2,7 @@ class ZoneView extends Element {
     #width
     #height
     #header
-    #color
+    #corner
 
     constructor(width, height, title) {
         super()
@@ -15,14 +15,14 @@ class ZoneView extends Element {
             style.getFontSize("xl"), 
             style.getTextColor(), 
             )
-        this.#color = style.getPrimaryBorderColor("zone", title.toLowerCase())
+        this.#corner = new Corner(30, 30, style.getPrimaryBorderColor("zone", title.toLowerCase()))
     }
 
     /**g
      * @override
      */
     render() {
-        new Corner(30, 30, this.#color).render()
+        this.#corner.render()
         this.#renderBackground()
         this.#header.render()
    }

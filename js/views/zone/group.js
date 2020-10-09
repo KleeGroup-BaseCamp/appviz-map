@@ -4,16 +4,20 @@ class Group extends Element {
     #items
     #color
     #maxValue
+    #cornerSize
+    #corner
     #header
     #progressBars
     id
 
-    constructor(width, height, title, items, color, maxValue = 20) {
+    constructor(width, height, title, items, color, maxValue = 20, cornerSize = 30) {
         super()
         this.#width = width
         this.#height = height
         this.id = title
         this.#color = color
+        this.#cornerSize = cornerSize
+        this.#corner = new Corner(this.#cornerSize - 5, this.#cornerSize - 5, color)
         this.#header = new Header( title, width, style.getFont(false), style.getFontSize("m"), style.getTextColor())
         this.#items = items
         this.#maxValue = maxValue
@@ -33,11 +37,8 @@ class Group extends Element {
     }
 
     #renderBackground() {
-        const cornerSize = 30
-        const padding = 5
-
-        this.#renderCroppedRectangle(cornerSize)
-        new Corner(cornerSize - padding, cornerSize - padding, this.#color).render()
+        this.#renderCroppedRectangle(this.#cornerSize)
+        this.#corner.render()
     }
 
     #renderCroppedRectangle(cornerSize){
