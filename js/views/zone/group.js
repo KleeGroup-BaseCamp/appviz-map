@@ -74,7 +74,8 @@ class Group extends Element {
     /*
     *   Render item type:
     *       - Icon
-    *       - Progress bar with its information
+    *       - Item frequency
+    *       - Progress bar
     */
 
     #renderItems() {
@@ -87,21 +88,13 @@ class Group extends Element {
         this.#items.forEach((item, index) => {
             push()
             translate(0, positions[index])
-            this.#renderItemTypeIcon(item.prefix)
-            translate(55, -textAscent() / 2)
+            this.#renderText(20, 0, style.getIcon(item.prefix), style.getFont(true), style.getFontSize("s"))
+            this.#renderText(50, 0, item.frequency, style.getFont(false), style.getFontSize("s"))
+            translate(70, -textAscent() / 2 + 4)
             new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)
                 .render()
             pop()
         })
-    }
-
-    #renderItemTypeIcon(itemPrefix) {
-        rectMode(CENTER)
-        const y = -2
-
-        this.#renderText(20, y, style.getIcon(itemPrefix), style.getFont(true), style.getFontSize("xs"))
-        this.#renderText(40, y, "0", style.getFont(false), style.getFontSize("xs"))
-        this.#renderText(this.#width - 15, y, this.#maxValue.toString(), style.getFont(false), style.getFontSize("xs"))
     }
 
     #renderText(x, y, ...textParams){
