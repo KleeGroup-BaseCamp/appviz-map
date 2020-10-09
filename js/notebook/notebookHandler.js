@@ -204,30 +204,6 @@ class NotebookHandler {
       .build()
   }
 
-  #getItemPixels(itemIndex, itemsPerRow, itemTypeColumn, itemTypeRow, itemTypeNumOfColumns, itemTypeNumOfRows) {
-    const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
-    const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
-    const padding = 5
-
-    const {
-      x,
-      y,
-      width,
-      height
-    } = this.#getPixels(
-      itemTypeColumn + ":" + innerColumn,
-      (itemTypeRow + 1) + ":" + innerRow,
-      itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
-      itemTypeNumOfRows + ":2"
-    )
-    return {
-      itemX: x + padding,
-      itemY: y + padding,
-      itemWidth: width - 2 * padding,
-      itemHeight: height - 2 * padding
-    }
-  }
-
   #getPixels(columnCode, rowCode, numOfColumnsCode, numOfRowsCode) {
     let gridHeight = this.#gridHeight
     let gridWidth = this.#gridWidth
@@ -259,6 +235,29 @@ class NotebookHandler {
     }
   }
 
+  #getItemPixels(itemIndex, itemsPerRow, itemTypeColumn, itemTypeRow, itemTypeNumOfColumns, itemTypeNumOfRows) {
+    const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
+    const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
+    const padding = 5
+
+    const {
+      x,
+      y,
+      width,
+      height
+    } = this.#getPixels(
+      itemTypeColumn + ":" + innerColumn,
+      (itemTypeRow + 1) + ":" + innerRow,
+      itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
+      itemTypeNumOfRows + ":2"
+    )
+    return {
+      itemX: x + padding,
+      itemY: y + padding,
+      itemWidth: width - 2 * padding,
+      itemHeight: height - 2 * padding
+    }
+  }
 
   #getGroupPadding(group, zone) {
     const paddingStep = 5
