@@ -4,20 +4,29 @@ class Style {
         tk: "\uf085"
     }
 
-    #fonts = {}
-
-    #fontSizes = {
-        xxs: 12,
-        xs: 14,
-        s: 16,
-        m: 20,
-        l: 26,
-        xl: 32,
-        xxl: 42,
-        default: 60
+    constructor() {
     }
 
-    constructor() {
+    icon = {
+        font : undefined, 
+        size : {
+            s: 16
+        }    
+    }    
+
+    text = {
+        font : undefined,
+        size : {
+            xxs: 12,
+            xs: 14,
+            s: 16,
+            m: 20,
+            l: 26,
+            xl: 32,
+            xxl: 42,
+            default: 60
+        },
+        color : 255
     }
 
     getIcon(itemPrefix) {
@@ -25,24 +34,12 @@ class Style {
     }
 
     load() {
-        this.#fonts.roboto = loadFont("fonts/Roboto-Regular.ttf")
-        this.#fonts.fa = loadFont("fonts/fa.otf")
+        this.text.font = loadFont("fonts/Roboto-Regular.ttf")
+        this.icon.font = loadFont("fonts/fa.otf")
     }
 
     getBackgroundColor() {
         return color("#041c3c")
-    }
-
-    getFont(isIcon) {
-        return isIcon
-            ? this.#fonts.fa
-            : this.#fonts.roboto
-    }
-
-    getFontSize(fontSize) {
-        return this.#fontSizes[fontSize]
-            ? this.#fontSizes[fontSize]
-            : this.#fontSizes.default
     }
 
     getPrimaryBorderColor(type, zone = null) {
@@ -110,10 +107,4 @@ class Style {
                 color([255, 251, 0])
         }
     }
-
-    getTextColor() {
-        return color(255)
-    }
 }
-
-

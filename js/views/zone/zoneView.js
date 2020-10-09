@@ -11,9 +11,9 @@ class ZoneView extends Element {
         this.#header = new Header(
             title, 
             width, 
-            style.getFont(false), 
-            style.getFontSize("xl"), 
-            style.getTextColor(), 
+            style.text.font, 
+            style.text.size.xl, 
+            style.text.color, 
             )
         this.#corner = new Corner(30, 30, style.getPrimaryBorderColor("zone", title.toLowerCase()))
     }

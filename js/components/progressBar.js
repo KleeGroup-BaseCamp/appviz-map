@@ -10,7 +10,7 @@ class ProgressBar {
         this.#maxValue = maxValue
         this.#width = width
         this.#color = color
-        this.#title = new VText("0", style.getFont(false), style.getFontSize("s"))
+        this.#title = new VText("0", style.text.font, style.text.size.s)
         const size = (value / this.#maxValue) * this.#width
         ProgressBar.#move(
             0, 

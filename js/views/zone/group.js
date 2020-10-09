@@ -18,7 +18,7 @@ class Group extends Element {
         this.#color = color
         this.#cornerSize = cornerSize
         this.#corner = new Corner(this.#cornerSize - 5, this.#cornerSize - 5, color)
-        this.#header = new Header( title, width, style.getFont(false), style.getFontSize("m"), style.getTextColor())
+        this.#header = new Header( title, width, style.text.font, style.text.size.m, style.text.color)
         this.#items = items
         this.#maxValue = maxValue
 
@@ -72,7 +72,7 @@ class Group extends Element {
         this.#items.forEach((item, index) => {
             push()
             translate(20, positions[index])
-            new VText(style.getIcon(item.prefix), style.getFont(true), style.getFontSize("s")).render()
+            new VText(style.getIcon(item.prefix), style.icon.font, style.icon.size.s).render()
             translate(40, 0)
             this.#progressBars[index].render()
             pop()
