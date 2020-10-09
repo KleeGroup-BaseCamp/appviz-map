@@ -2,24 +2,24 @@ class Group extends Element {
     #width
     #height
     #items
+    #color
     #maxValue // Make static ?
     #header
     title
-    zone
 
-    constructor(width, height, title, zone, items, maxValue = 20) {
+    constructor(width, height, title, items, color, maxValue = 20) {
         super()
         this.#width = width
         this.#height = height
         this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("xs")) : "No title"
-        this.zone = zone
+        this.#color = color
         this.#header = new Header(
             title, 
             width, 
             style.getFont(false), 
             style.getFontSize("m"), 
             style.getTextColor(), 
-            style.getPrimaryBorderColor("group", this.zone)
+            this.#color
             )
         this.#items = items
         this.#maxValue = maxValue
@@ -37,7 +37,7 @@ class Group extends Element {
     #renderBackground() {
         strokeWeight(2)
         fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
-        stroke(style.getPrimaryBorderColor("group", this.zone))
+        stroke(this.#color)
         rect(0, 0, this.#width, this.#height)
     }
 

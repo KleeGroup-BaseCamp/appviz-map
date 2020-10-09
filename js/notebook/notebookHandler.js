@@ -109,8 +109,8 @@ class NotebookHandler {
             width - padding.right - padding.left,
             height - padding.top - padding.bottom,
             Utils.firstCharUpperCase(groupName),
-            zoneName,
-            items
+            items,
+            style.getPrimaryBorderColor("group", zoneName)
           ),
           x + padding.left,
           y + padding.top
