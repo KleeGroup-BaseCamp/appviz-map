@@ -38,7 +38,7 @@ class Group extends Element {
         const padding = 5
 
         this.#renderCroppedRectangle(cornerSize)
-        this.#renderTriangle(cornerSize - padding)
+        new Triangle(cornerSize - padding, this.#color).render()
     }
 
     #renderCroppedRectangle(cornerSize){
@@ -53,20 +53,6 @@ class Group extends Element {
         vertex(this.#width, this.#height);
         vertex(0, this.#height);
         vertex(0, cornerSize);
-        endShape(CLOSE);
-    }
-
-    /*
-    * Right isosceles triangle
-    */
-    #renderTriangle(sideLength){
-        stroke(this.#color)
-        fill(this.#color)
-
-        beginShape();
-        vertex(0, 0);
-        vertex(sideLength, 0);
-        vertex(0, sideLength);
         endShape(CLOSE);
     }
     
