@@ -4,6 +4,7 @@ let fake
 let canvasSize
 let group = false // temp variable
 const style = new Style()
+const detail = new Detail()
 let idCount = 0
 const state = new State()
 
@@ -30,6 +31,7 @@ function draw() {
 }
 
 function mouseClicked() {
+  
   vizMap.click(state.selectedElement)
   vizMap = notebookHandler.handle(fake)
 }
@@ -38,4 +40,8 @@ function windowResized() {
   canvasSize = windowHeight
   resizeCanvas(canvasSize, canvasSize)
   vizMap = notebookHandler.handle(fake)
+}
+
+function switchViews(title){
+  group = title.toLowerCase()
 }

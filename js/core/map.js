@@ -34,10 +34,8 @@ class Map {
    * depending on the element clicked ad the current view 
    */
   click(element) {
-    if (!group && element instanceof Group) {
-      group = element.id.toLowerCase()
-    } else {
-      group = false
+    if (element instanceof Group) {
+      detail.update(element.id)
     }
   }
 }

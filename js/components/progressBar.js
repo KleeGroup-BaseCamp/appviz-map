@@ -18,10 +18,10 @@ class ProgressBar {
             s => {
             this.#value = s
             this.#title.setText(Math.floor(this.#value * this.#maxValue / this.#width))
-            }
+        }
         )
     }
-
+    
     render() {
         const weight = 8
         this.#title.render() 
