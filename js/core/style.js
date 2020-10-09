@@ -49,7 +49,7 @@ class Style {
         switch (type) {
             case "zoneTitle":
                 return color(255)
-            case "group":
+            case "zone":
                 switch (zone) {
                     case "pilotage":
                         return color([91, 8, 194])

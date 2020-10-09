@@ -60,7 +60,6 @@ class Group extends Element {
     * Right isosceles triangle
     */
     #renderTriangle(sideLength){
-        
         stroke(this.#color)
         fill(this.#color)
 
