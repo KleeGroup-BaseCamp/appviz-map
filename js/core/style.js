@@ -38,8 +38,10 @@ class Style {
         this.icon.font = loadFont("fonts/fa.otf")
     }
 
-    getBackgroundColor() {
-        return color("#041c3c")
+    color = {
+        background : "#041c3c"
+
+        //to be continued .......
     }
 
     getPrimaryBorderColor(type, zone = null) {
