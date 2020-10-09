@@ -37,7 +37,7 @@ class Group extends Element {
         const padding = 5
 
         this.#renderCroppedRectangle(cornerSize)
-        new Triangle(cornerSize - padding, this.#color).render()
+        new Corner(cornerSize - padding, cornerSize - padding, this.#color).render()
     }
 
     #renderCroppedRectangle(cornerSize){

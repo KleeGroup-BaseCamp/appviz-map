@@ -22,7 +22,7 @@ class ZoneView extends Element {
      * @override
      */
     render() {
-        new Triangle(30, this.#color).render()
+        new Corner(30, 30, this.#color).render()
         this.#renderBackground()
         this.#header.render()
    }
