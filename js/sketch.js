@@ -36,4 +36,5 @@ function mouseClicked() {
 function windowResized() {
   canvasSize = windowHeight
   resizeCanvas(canvasSize, canvasSize)
+  vizMap = notebookHandler.handle(fake)
 }

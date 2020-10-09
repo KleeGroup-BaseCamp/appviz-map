@@ -17,7 +17,13 @@ class NotebookHandler {
     this.#gridHeight = canvasSize
   }
 
+  #updateGridDimensions(){
+    this.#gridWidth = canvasSize
+    this.#gridHeight = canvasSize
+  }
+
   handle(fake) {
+    this.#updateGridDimensions()
     const domains = this.#extractDomains()
     if (!group) {
       return this.#generateZoneViewMap(domains, fake)
@@ -258,6 +264,8 @@ class NotebookHandler {
       itemHeight: height - 2 * padding
     }
   }
+
+  
 
   #getGroupPadding(group, zone) {
     const paddingStep = 5
