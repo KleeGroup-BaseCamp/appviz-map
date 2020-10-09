@@ -12,7 +12,8 @@ class ProgressBar {
     }
 
     render() {
-        strokeWeight(4)
+        strokeJoin(ROUND)
+        strokeWeight(8)
         this.#color.setAlpha(100)
         stroke(this.#color)
         line(0, 0, this.#width, 0)
