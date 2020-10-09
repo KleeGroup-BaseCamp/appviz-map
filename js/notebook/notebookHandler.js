@@ -137,7 +137,7 @@ class NotebookHandler {
 
   #buildGridLayer() {
     return new LayerBuilder()
-      .addElement(new Grid(this.#gridRows, this.#gridColumns))
+      .addElement(new Grid(this.#gridWidth, this.#gridHeight, this.#gridRows, this.#gridColumns))
       .build()
   }
 

@@ -20,6 +20,14 @@ class Layer {
     }
   }
 
+  /**
+   * 
+   * @param {number} x - mouse x coordinate on screen
+   * @param {number} y - mouse y coordinate on screen
+   * @return {?Element} Layer's Element containing 
+   * cursor if it exists 
+   */
+
   findElement(x, y) {
     for (let positionedElement of this.#positionedElements) {
       const lx = x - positionedElement.position.x

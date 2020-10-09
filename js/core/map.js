@@ -26,6 +26,13 @@ class Map {
     return null
   }
 
+  /**
+   * 
+   * @param {?Element} element
+   * 
+   * Change the view (controlled by the group var) 
+   * depending on the element clicked ad the current view 
+   */
   click(element) {
     if (!group && element instanceof Group) {
       group = element.title.toLowerCase()
