@@ -26,7 +26,7 @@ class Style {
             xxl: 42,
             default: 60
         },
-        color : 255
+        color : "#f0f0f0"
     }
 
     getIcon(itemPrefix) {
@@ -39,7 +39,7 @@ class Style {
     }
 
     color = {
-        background : "#041c3c"
+        background : "#24262e"
 
         //to be continued .......
     }
@@ -51,11 +51,11 @@ class Style {
             case "zone":
                 switch (zone) {
                     case "pilotage":
-                        return color([91, 8, 194])
+                        return color("#ac08c2")
                     case "operationnel":
-                        return color([68, 128, 5])
+                        return color("#4CAF50")
                     case "referentiel":
-                        return color([107, 38, 3])
+                        return color("#d99011")
                     default:
                         return color([255, 251, 0])
                 }
@@ -75,7 +75,7 @@ class Style {
     getSecondaryBorderColor(type) {
         switch (type) {
             case "group":
-                return color(1, 255, 255)
+                return color("#2196F3")
             default:
                 return color(255, 251, 0)
         }
@@ -88,23 +88,23 @@ class Style {
             case "group":
                 switch (state) {
                     case "default":
-                        return color([4, 12, 44])
+                        return color("#3A3E52")
                     case "hover":
-                        return color([4, 82, 134])
+                        return color("#656875")
                     default:
                         return color([255, 251, 0])
                 }
             case "item":
                 switch (state) {
                     case "default":
-                        return color([4, 54, 95])
+                        return color("#0061ad")
                     case "hover":
-                        return color([4, 108, 156])
+                        return color("#2196F3")
                     default:
                         return color([255, 251, 0])
                 }
             case "itemTypeDetail":
-                return color([100, 100, 200])
+                return color("#3A3E52")
             default:
                 color([255, 251, 0])
         }

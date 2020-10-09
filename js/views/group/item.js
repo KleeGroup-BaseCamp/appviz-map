@@ -14,8 +14,10 @@ class Item extends Element {
 
     render() {
         fill(style.getShapeFill("item", (state.selectedElement === this) ? "hover" : "default"))
+        stroke(255)
         rect(0, 0, this.#width, this.#height)
-        fill(255)
+        noStroke()
+        fill(style.text.color)
         textSize(style.text.size.s)
         textAlign(CENTER, CENTER)
         text(this.#title, 0, 0, this.#width, this.#height)
