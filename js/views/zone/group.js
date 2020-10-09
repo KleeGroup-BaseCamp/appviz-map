@@ -34,12 +34,18 @@ class Group extends Element {
     }
 
     #renderBackground() {
-        
-        stroke(200)
-        strokeWeight(1)
-        fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
         const cornerSize = 30
         const padding = 5
+
+        this.#renderCroppedRectangle(cornerSize)
+        this.#renderTriangle(cornerSize - padding)
+    }
+
+    #renderCroppedRectangle(cornerSize){
+        stroke(255)
+        strokeWeight(1)
+        fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
+        
         beginShape();
         vertex(cornerSize, 0);
         vertex(this.#width - cornerSize, 0);
@@ -48,16 +54,23 @@ class Group extends Element {
         vertex(0, this.#height);
         vertex(0, cornerSize);
         endShape(CLOSE);
-        noStroke()
-        fill(this.#color)
-        beginShape();
-        vertex(0, 0);
-        vertex(cornerSize - padding, 0);
-        vertex(0, cornerSize - padding);
-        endShape(CLOSE);
-        // rect(0, 0, this.#width, this.#height)
     }
 
+    /*
+    * Right isosceles triangle
+    */
+    #renderTriangle(sideLength){
+        
+        stroke(this.#color)
+        fill(this.#color)
+
+        beginShape();
+        vertex(0, 0);
+        vertex(sideLength, 0);
+        vertex(0, sideLength);
+        endShape(CLOSE);
+    }
+    
     /*
     *   Render item type:
     *       - Icon
