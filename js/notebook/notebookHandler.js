@@ -25,10 +25,10 @@ class NotebookHandler {
   handle(fake) {
     this.#updateGridDimensions()
     const domains = this.#extractDomains()
-    if (!group) {
+    if (view == "zones") {
       return this.#generateZoneViewMap(domains, fake)
     } else {
-      return this.#generateGroupViewMap(domains, group)
+      return this.#generateGroupViewMap(domains, view)
     }
   }
 

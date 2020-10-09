@@ -2,7 +2,7 @@ let vizMap
 let notebookHandler
 let fake
 let canvasSize
-let group = false // temp variable
+let view = "zones"
 const style = new Style()
 const detail = new Detail()
 let idCount = 0
@@ -43,5 +43,5 @@ function windowResized() {
 }
 
 function switchViews(title){
-  group = title.toLowerCase()
+  view = title.toLowerCase()
 }

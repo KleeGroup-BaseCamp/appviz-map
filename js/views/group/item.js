@@ -2,12 +2,14 @@ class Item extends Element {
     #width
     #height
     #title
+    id
 
     constructor(width, height, title) {
         super()
         this.#width = width
         this.#height = height
         this.#title = title ? Utils.buildDisplayableTitle(title, width, style.text.size.s) : "No title"
+        this.id = title // Temp
     }
 
     render() {
