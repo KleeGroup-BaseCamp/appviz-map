@@ -15,11 +15,11 @@ class ProgressBar {
     }
     
     render() {
-        const weight = 10
+        const weight = 8
         this.#title.setText(Math.floor(this.#value))
         this.#title.render() 
         push()
-        translate(20, (-textAscent() + weight) / 2)
+        translate(20, (-textAscent() + weight) / 2 )
         this.#renderBar(weight);
         pop()
     }

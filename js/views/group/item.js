@@ -7,14 +7,14 @@ class Item extends Element {
         super()
         this.#width = width
         this.#height = height
-        this.#title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("s")) : "No title"
+        this.#title = title ? Utils.buildDisplayableTitle(title, width, style.text.size.s) : "No title"
     }
 
     render() {
         fill(style.getShapeFill("item", (state.selectedElement === this) ? "hover" : "default"))
         rect(0, 0, this.#width, this.#height)
         fill(255)
-        textSize(style.getFontSize("s"))
+        textSize(style.text.size.s)
         textAlign(CENTER, CENTER)
         text(this.#title, 0, 0, this.#width, this.#height)
     }

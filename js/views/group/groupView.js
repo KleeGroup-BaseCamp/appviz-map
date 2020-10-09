@@ -10,9 +10,9 @@ class GroupView extends Element {
         this.#header = new Header(
             title,
             width,
-            style.getFont(false),
-            style.getFontSize("xxl"), 
-            style.getTextColor()            
+            style.text.font,
+            style.text.size.xxl, 
+            style.text.color            
             )
     }
 

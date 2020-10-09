@@ -10,9 +10,9 @@ class ItemTypeDetail extends Element {
         this.#header = new Header(
             title, 
             width, 
-            style.getFont(true), 
-            style.getFontSize("l"), 
-            style.getTextColor(),
+            style.icon.font, 
+            style.text.size.l, 
+            style.text.color,
             )
     }
 
