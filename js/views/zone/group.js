@@ -5,6 +5,7 @@ class Group extends Element {
     #color
     #maxValue
     #header
+    #progressBars
     id
 
     constructor(width, height, title, items, color, maxValue = 20) {
@@ -13,15 +14,13 @@ class Group extends Element {
         this.#height = height
         this.id = title
         this.#color = color
-        this.#header = new Header(
-            title, 
-            width, 
-            style.getFont(false), 
-            style.getFontSize("m"), 
-            style.getTextColor(), 
-            )
+        this.#header = new Header( title, width, style.getFont(false), style.getFontSize("m"), style.getTextColor())
         this.#items = items
         this.#maxValue = maxValue
+
+        this.#progressBars = []
+        const secondaryStroke = style.getSecondaryBorderColor("group")
+        this.#items.forEach(item => this.#progressBars.push(new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)))
     }
 
     /**
@@ -46,14 +45,14 @@ class Group extends Element {
         strokeWeight(1)
         fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
         
-        beginShape();
-        vertex(cornerSize, 0);
-        vertex(this.#width - cornerSize, 0);
-        vertex(this.#width, cornerSize);
-        vertex(this.#width, this.#height);
-        vertex(0, this.#height);
-        vertex(0, cornerSize);
-        endShape(CLOSE);
+        beginShape()
+        vertex(cornerSize, 0)
+        vertex(this.#width - cornerSize, 0)
+        vertex(this.#width, cornerSize)
+        vertex(this.#width, this.#height)
+        vertex(0, this.#height)
+        vertex(0, cornerSize)
+        endShape(CLOSE)
     }
     
     /*
@@ -76,8 +75,7 @@ class Group extends Element {
             this.#renderText(20, 0, style.getIcon(item.prefix), style.getFont(true), style.getFontSize("s"))
             this.#renderText(50, 0, item.frequency, style.getFont(false), style.getFontSize("s"))
             translate(70, -textAscent() / 2 + 4)
-            new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)
-                .render()
+            this.#progressBars[index].render()
             pop()
         })
     }
