@@ -9,6 +9,8 @@ class ProgressBar {
         this.#maxValue = maxValue
         this.#width = width
         this.#color = color
+        const size = (value / this.#maxValue) * this.#width
+        ProgressBar.#move(0, size, s => this.#value = s)
     }
 
     render() {
@@ -19,6 +21,23 @@ class ProgressBar {
         line(0, 0, this.#width, 0)
         this.#color.setAlpha(255)
         stroke(this.#color)
-        line(0, 0, (this.#value / this.#maxValue) * this.#width, 0)
+        line(0, 0, this.#value, 0)
     }
+
+    static #move(from, to, callBack) {
+        const duration = 30 /*300ms*/
+        let value = from
+        const id = setInterval(animte, 10)
+        const step = (to - from)/ duration 
+        callBack(from)
+
+        function animte() {
+            value+= step
+            if (value > to){
+                clearInterval(id)
+                value = to;
+            }
+            callBack(value);
+        }
+      }
 }
