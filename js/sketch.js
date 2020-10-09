@@ -15,7 +15,8 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(canvasSize, canvasSize)
+  let myCanvas = createCanvas(canvasSize, canvasSize)
+  myCanvas.parent('myContainer');
   angleMode(DEGREES)
   vizMap = notebookHandler.handle(fake)
   vizMap.render()
