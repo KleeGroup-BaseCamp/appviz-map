@@ -29,8 +29,7 @@ function draw() {
 }
 
 function mouseClicked() {
-  const element = vizMap.findElement(mouseX, mouseY)
-  vizMap.click(element)
+  vizMap.click(state.selectedElement)
   vizMap = notebookHandler.handle(fake)
 }
 
