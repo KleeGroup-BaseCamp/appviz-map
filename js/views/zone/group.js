@@ -13,7 +13,14 @@ class Group extends Element {
         this.#height = height
         this.title = title ? Utils.buildDisplayableTitle(title, width, style.getFontSize("xs")) : "No title"
         this.zone = zone
-        this.#header = new Header(title, width, style.getFont(false), style.getFontSize("m"), 255, style.getPrimaryStroke("group", this.zone))
+        this.#header = new Header(
+            title, 
+            width, 
+            style.getFont(false), 
+            style.getFontSize("m"), 
+            style.getTextColor(), 
+            style.getPrimaryBorderColor("group", this.zone)
+            )
         this.#items = items
         this.#maxValue = maxValue
     }
@@ -30,9 +37,15 @@ class Group extends Element {
     #renderBackground() {
         strokeWeight(2)
         fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
-        stroke(style.getPrimaryStroke("group", this.zone))
+        stroke(style.getPrimaryBorderColor("group", this.zone))
         rect(0, 0, this.#width, this.#height)
     }
+
+    /*
+    *   Render item type:
+    *       - Icon
+    *       - Progress bar with its information
+    */
 
     #renderItems() {
         const top = textAscent() + 35
@@ -40,7 +53,7 @@ class Group extends Element {
         for (let i = 0; i < this.#items.length; i++) {
             positions.push(top + (this.#width - top) / (this.#items.length + 1) * (i + 1))
         }
-        const secondaryStroke = style.getSecondaryStroke("group")
+        const secondaryStroke = style.getSecondaryBorderColor("group")
         this.#items.forEach((item, index) => {
             push()
             translate(0, positions[index])

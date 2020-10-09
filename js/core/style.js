@@ -45,7 +45,7 @@ class Style {
             : this.#fontSizes.default
     }
 
-    getPrimaryStroke(type, zone = null) {
+    getPrimaryBorderColor(type, zone = null) {
         switch (type) {
             case "zoneTitle":
                 return color(255)
@@ -73,7 +73,7 @@ class Style {
         }
     }
 
-    getSecondaryStroke(type) {
+    getSecondaryBorderColor(type) {
         switch (type) {
             case "group":
                 return color(1, 255, 255)
@@ -111,7 +111,7 @@ class Style {
         }
     }
 
-    getTextFill() {
+    getTextColor() {
         return color(255)
     }
 }

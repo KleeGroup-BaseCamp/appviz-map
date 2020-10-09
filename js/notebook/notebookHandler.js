@@ -20,9 +20,9 @@ class NotebookHandler {
   handle(fake) {
     const domains = this.#extractDomains()
     if (!group) {
-      return this.#generateDomainsMap(domains, fake)
+      return this.#generateZoneViewMap(domains, fake)
     } else {
-      return this.#generateGroupMap(domains, group)
+      return this.#generateGroupViewMap(domains, group)
     }
   }
 
@@ -40,8 +40,6 @@ class NotebookHandler {
     } else {
       domains[domainName] = { [type]: [sketchName] }
     }
-
-
   }
 
   #extractDomains() {
@@ -55,7 +53,8 @@ class NotebookHandler {
     return domains
   }
 
-  #generateDomainsMap(domains, fake) {
+  
+  #generateZoneViewMap(domains, fake) {
     const zonesLayerBuilder = new LayerBuilder()
     const groupsLayerBuilder = new LayerBuilder()
 
@@ -129,19 +128,7 @@ class NotebookHandler {
       .build()
   }
 
-  #buildBackgroundLayer() {
-    return new LayerBuilder()
-      .addElement(new Background())
-      .build()
-  }
-
-  #buildGridLayer() {
-    return new LayerBuilder()
-      .addElement(new Grid(this.#gridWidth, this.#gridHeight, this.#gridRows, this.#gridColumns))
-      .build()
-  }
-
-  #generateGroupMap(domains, groupName) {
+  #generateGroupViewMap(domains, groupName) {
     const itemTypesLayerBuilder = new LayerBuilder()
     const itemsLayerBuilder = new LayerBuilder()
     const groupLayer = new LayerBuilder()
@@ -205,28 +192,16 @@ class NotebookHandler {
       .build()
   }
 
-  #getItemPixels(itemIndex, itemsPerRow, itemTypeColumn, itemTypeRow, itemTypeNumOfColumns, itemTypeNumOfRows) {
-    const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
-    const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
-    const padding = 5
+  #buildBackgroundLayer() {
+    return new LayerBuilder()
+      .addElement(new Background())
+      .build()
+  }
 
-    const {
-      x,
-      y,
-      width,
-      height
-    } = this.#getPixels(
-      itemTypeColumn + ":" + innerColumn,
-      (itemTypeRow + 1) + ":" + innerRow,
-      itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
-      itemTypeNumOfRows + ":2"
-    )
-    return {
-      itemX: x + padding,
-      itemY: y + padding,
-      itemWidth: width - 2 * padding,
-      itemHeight: height - 2 * padding
-    }
+  #buildGridLayer() {
+    return new LayerBuilder()
+      .addElement(new Grid(this.#gridWidth, this.#gridHeight, this.#gridRows, this.#gridColumns))
+      .build()
   }
 
   #getPixels(columnCode, rowCode, numOfColumnsCode, numOfRowsCode) {
@@ -260,6 +235,29 @@ class NotebookHandler {
     }
   }
 
+  #getItemPixels(itemIndex, itemsPerRow, itemTypeColumn, itemTypeRow, itemTypeNumOfColumns, itemTypeNumOfRows) {
+    const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
+    const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
+    const padding = 5
+
+    const {
+      x,
+      y,
+      width,
+      height
+    } = this.#getPixels(
+      itemTypeColumn + ":" + innerColumn,
+      (itemTypeRow + 1) + ":" + innerRow,
+      itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
+      itemTypeNumOfRows + ":2"
+    )
+    return {
+      itemX: x + padding,
+      itemY: y + padding,
+      itemWidth: width - 2 * padding,
+      itemHeight: height - 2 * padding
+    }
+  }
 
   #getGroupPadding(group, zone) {
     const paddingStep = 5
