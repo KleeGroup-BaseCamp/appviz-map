@@ -19,7 +19,6 @@ class Group extends Element {
             style.getFont(false), 
             style.getFontSize("m"), 
             style.getTextColor(), 
-            this.#color
             )
         this.#items = items
         this.#maxValue = maxValue

@@ -12,8 +12,7 @@ class GroupView extends Element {
             width,
             style.getFont(false),
             style.getFontSize("xxl"), 
-            style.getTextColor(), 
-            255
+            style.getTextColor()            
             )
     }
 

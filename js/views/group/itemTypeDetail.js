@@ -13,7 +13,6 @@ class ItemTypeDetail extends Element {
             style.getFont(true), 
             style.getFontSize("l"), 
             style.getTextColor(),
-            255
             )
     }
 

@@ -13,7 +13,7 @@ class ZoneView extends Element {
             style.getFont(false), 
             style.getFontSize("xl"), 
             style.getTextColor(), 
-            255)
+            )
     }
 
     /**g
