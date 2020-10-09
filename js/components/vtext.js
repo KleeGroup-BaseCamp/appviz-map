@@ -1,15 +1,11 @@
 class VText {
     #text
-    #x
-    #y
     #font
     #fontSize
     #color
 
-    constructor(text, x, y, font, fontSize, color = style.getTextColor()) {
+    constructor(text, font, fontSize, color = style.getTextColor()) {
         this.#text = text
-        this.#x = x
-        this.#y = y
         this.#font = font
         this.#fontSize = fontSize
         this.#color = color
@@ -20,6 +16,6 @@ class VText {
         fill(this.#color)
         textSize(this.#fontSize)
         textFont(this.#font)
-        text(this.#text, this.#x, this.#y)
+        text(this.#text, 0, 0)
     }
 }

@@ -68,10 +68,17 @@ class Group extends Element {
     #renderItemTypeIcon(itemPrefix) {
         rectMode(CENTER)
         const y = -2
-        new VText(style.getIcon(itemPrefix), 20, y, style.getFont(true), style.getFontSize("xs")).render()
-        // Progress bar information
-        new VText("0", 40, y, style.getFont(false), style.getFontSize("xs")).render()
-        new VText(this.#maxValue.toString(), this.#width - 15, y, style.getFont(false), style.getFontSize("xs")).render()
+
+        this.#renderText(20, y, style.getIcon(itemPrefix), style.getFont(true), style.getFontSize("xs"))
+        this.#renderText(40, y, "0", style.getFont(false), style.getFontSize("xs"))
+        this.#renderText(this.#width - 15, y, this.#maxValue.toString(), style.getFont(false), style.getFontSize("xs"))
+    }
+
+    #renderText(x, y, ...textParams){
+        push()
+        translate(x, y)
+        new VText(...textParams).render()
+        pop()
     }
 
     /**
