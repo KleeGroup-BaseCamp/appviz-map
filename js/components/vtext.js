@@ -18,4 +18,8 @@ class VText {
         textFont(this.#font)
         text(this.#text, 0, 0)
     }
+
+    setText(text){
+        this.#text = text
+    }
 }

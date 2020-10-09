@@ -69,13 +69,12 @@ class Group extends Element {
         for (let i = 0; i < this.#items.length; i++) {
             positions.push(top + (this.#width - top) / (this.#items.length + 1) * (i + 1))
         }
-        const secondaryStroke = style.getSecondaryBorderColor("group")
         this.#items.forEach((item, index) => {
             push()
             translate(0, positions[index])
             this.#renderText(20, 0, style.getIcon(item.prefix), style.getFont(true), style.getFontSize("s"))
-            this.#renderText(50, 0, item.frequency, style.getFont(false), style.getFontSize("s"))
-            translate(70, -textAscent() / 2 + 4)
+            // this.#renderText(50, 0, item.frequency, style.getFont(false), style.getFontSize("s"))
+            translate(60, 0)
             this.#progressBars[index].render()
             pop()
         })
