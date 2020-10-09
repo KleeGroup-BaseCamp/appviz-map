@@ -25,13 +25,15 @@ class ProgressBar {
     }
 
     static #move(from, to, callBack) {
-        const duration = 30 /*300ms*/
+        const duration = 300 /*ms*/
+        const interval = 10 /*ms*/
+
         let value = from
-        const id = setInterval(animte, 10)
-        const step = (to - from)/ duration 
+        const id = setInterval(animate, interval)
+        const step = (to - from) * interval / duration 
         callBack(from)
 
-        function animte() {
+        function animate() {
             value+= step
             if (value > to){
                 clearInterval(id)
