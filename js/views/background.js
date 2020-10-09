@@ -4,6 +4,6 @@ class Background extends Element {
   * @override
   */
   render() {
-    background( style.getBackgroundColor())
+    background(style.color.background )
   }
 }
