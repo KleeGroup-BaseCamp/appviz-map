@@ -11,9 +11,8 @@ class ZoneView extends Element {
         this.#header = new Header(
             title, 
             width, 
-            style.text.font, 
-            style.text.size.xl, 
-            style.text.color, 
+            50,
+            style.text.size.xl 
             )
         this.#corner = new Corner(30, 30, style.getPrimaryBorderColor("zone", title.toLowerCase()))
     }
@@ -29,8 +28,8 @@ class ZoneView extends Element {
 
     #renderBackground() {
         strokeWeight(1)
-        stroke(255)
-        fill([0, 0]) //No fill
+        stroke(style.theme.secondary)
+        noFill()
         rect(0, 0, this.#width, this.#height)
     }
 }
