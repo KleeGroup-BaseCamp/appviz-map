@@ -11,7 +11,8 @@ class ProgressBar {
         this.#width = width
         this.#color = color
         this.#title = new VText("", style.text.font, style.text.size.s)
-        ProgressBar.#move(0, value, s => this.#value = s)
+        const duration = 300 /*ms*/
+        AnimationUtils.animate(0, value, duration, s => this.#value = s)
     }
     
     render() {
@@ -38,22 +39,4 @@ class ProgressBar {
         line(0, 0, size, 0)
     
     }
-    static #move(from, to, callBack) {
-        const duration = 300 /*ms*/
-        const interval = 10 /*ms*/
-
-        let value = from
-        const id = setInterval(animate, interval)
-        const step = (to - from) * interval / duration 
-        callBack(from)
-
-        function animate() {
-            value+= step
-            if (value > to){
-                clearInterval(id)
-                value = to;
-            }
-            callBack(value);
-        }
-      }
 }

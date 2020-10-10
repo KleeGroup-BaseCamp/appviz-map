@@ -6,7 +6,7 @@ class Header {
     #color
 
     constructor(title, width, font, fontSize, color) {
-        this.#title = title ? Utils.buildDisplayableTitle(title, width, fontSize) : "No title"
+        this.#title = title ? TextUtils.buildDisplayableTitle(title, width, fontSize) : "No title"
         this.#width = width
         this.#font = font
         this.#fontSize = fontSize

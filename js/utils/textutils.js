@@ -1,4 +1,4 @@
-class Utils {
+class TextUtils {
     static #maxCharacters(text, width) {
         let numOfCharacters = 1
         while (numOfCharacters < text.length
@@ -11,7 +11,7 @@ class Utils {
     static buildDisplayableTitle(text, width, fontSize) {
         push() // This function should not alter textSize
         textSize(fontSize)
-        const numOfCharacters = Utils.#maxCharacters(text, width)
+        const numOfCharacters = TextUtils.#maxCharacters(text, width)
         pop()
         return numOfCharacters == text.length
             ? text

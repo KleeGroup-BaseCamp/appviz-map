@@ -81,7 +81,7 @@ class NotebookHandler {
         new ZoneView(
           width,
           height,
-          Utils.firstCharUpperCase(zoneName)
+          TextUtils.firstCharUpperCase(zoneName)
         ),
         x,
         y
@@ -114,7 +114,7 @@ class NotebookHandler {
           new Group(
             width - padding.right - padding.left,
             height - padding.top - padding.bottom,
-            Utils.firstCharUpperCase(groupName),
+            TextUtils.firstCharUpperCase(groupName),
             items,
             style.getPrimaryBorderColor("zone", zoneName)
           ),
