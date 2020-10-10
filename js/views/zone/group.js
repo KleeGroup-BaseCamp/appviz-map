@@ -42,8 +42,7 @@ class Group extends Element {
     }
 
     #renderCroppedRectangle(cornerSize){
-        stroke(style.theme.secondary)
-        strokeWeight(1)
+        noStroke()
         fill(style.theme.middle)
         
         beginShape()
