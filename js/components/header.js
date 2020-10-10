@@ -19,7 +19,7 @@ class Header {
 
     #renderBackground() {
         noStroke()
-        fill(style.theme.middle)
+        fill(style.theme.front)
         rect (0, 0, this.#width, this.#height)
     }
 

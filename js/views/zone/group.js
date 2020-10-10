@@ -42,9 +42,9 @@ class Group extends Element {
     }
 
     #renderCroppedRectangle(cornerSize){
-        stroke(255)
+        stroke(style.theme.secondary)
         strokeWeight(1)
-        fill(style.getShapeFill("group", (state.selectedElement === this) ? "hover" : "default"))
+        fill(style.theme.middle)
         
         beginShape()
         vertex(cornerSize, 0)

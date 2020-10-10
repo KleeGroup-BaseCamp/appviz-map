@@ -111,33 +111,4 @@ class Style {
                 return this.theme.undefined
         }
     }
-
-    getShapeFill(type, state) {
-        switch (type) {
-            case "zoneTitle":
-                return this.theme.front
-            case "group":
-                switch (state) {
-                    case "default":
-                        return this.theme.middle
-                    case "hover":
-                        return color("#656875")
-                    default:
-                        return this.theme.no-color
-                    }
-            case "item":
-                switch (state) {
-                    case "default":
-                        return color("#0061ad")
-                    case "hover":
-                        return this.theme.a
-                    default:
-                        return this.theme.undefined
-                    }
-            case "itemTypeDetail":
-                return this.theme.middle
-            default:
-                return this.theme.undefined
-        }
-    }
 }
