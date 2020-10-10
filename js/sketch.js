@@ -5,7 +5,6 @@ let canvasSize
 let view = "zones"
 const style = new Style()
 const detail = new Detail()
-let idCount = 0
 const state = new State()
 
 function preload() {
