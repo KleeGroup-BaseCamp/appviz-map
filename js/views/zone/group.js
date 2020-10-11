@@ -16,12 +16,12 @@ class Group extends Element {
         this.id = title
         this.#cornerSize = cornerSize
         this.#corner = new Corner(this.#cornerSize - 5, this.#cornerSize - 5, color)
-        this.#header = new Header( title, width, style.text.font, style.text.size.m, style.theme.secondary)
+        this.#header = new Header( title, width, style.text.font, style.text.size.m, style.text.color.secondary)
         this.#items = items
         this.#maxValue = maxValue
 
         this.#progressBars = []
-        const secondaryStroke = style.theme.a
+        const secondaryStroke = style.color.a
         this.#items.forEach(item => this.#progressBars.push(new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)))
     }
 
@@ -41,8 +41,8 @@ class Group extends Element {
     #renderBackground() {
         const selected = (this === state.selectedElement) 
         fill(selected 
-            ? style.theme.front
-            : style.theme.middle)
+            ? style.color.front
+            : style.color.middle)
         noStroke()
         beginShape()
         vertex(this.#cornerSize, 0)

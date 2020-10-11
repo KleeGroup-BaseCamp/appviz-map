@@ -12,7 +12,7 @@ class ZoneView extends Element {
             title, 
             width, 
             50,
-            style.text.size.xl 
+            style.text.size.l 
             )
         this.#corner = new Corner(30, 30, color)
     }
@@ -21,15 +21,15 @@ class ZoneView extends Element {
      * @override
      */
     render() {
-        this.#renderBackground()
+//        this.#renderBackground()
         this.#header.render()
         this.#corner.render()
    }
 
-    #renderBackground() {
-        strokeWeight(1)
-        stroke(style.theme.secondary)
+/*    #renderBackground() {
+        noStroke()
         noFill()
         rect(0, 0, this.#width, this.#height)
     }
+*/    
 }

@@ -137,13 +137,13 @@ class NotebookHandler {
   #buildColor(zone){
     switch (zone) {
       case "pilotage":
-          return style.theme.b
+          return style.color.b
       case "operationnel":
-          return style.theme.a
+          return style.color.a
       case "referentiel":
-          return style.theme.c
+          return style.color.c
       default:
-          return style.theme.undefined
+          return style.color.undefined
       }
   }
   #generateGroupViewMap(domains, groupName) {
