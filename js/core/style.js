@@ -102,13 +102,4 @@ class Style {
                 return this.theme.undefined
         }
     }
-
-    getSecondaryBorderColor(type) {
-        switch (type) {
-            case "group":
-                return this.theme.a
-            default:
-                return this.theme.undefined
-        }
-    }
 }

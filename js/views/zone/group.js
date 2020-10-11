@@ -23,7 +23,7 @@ class Group extends Element {
         this.#maxValue = maxValue
 
         this.#progressBars = []
-        const secondaryStroke = style.getSecondaryBorderColor("group")
+        const secondaryStroke = style.theme.a
         this.#items.forEach(item => this.#progressBars.push(new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)))
     }
 
