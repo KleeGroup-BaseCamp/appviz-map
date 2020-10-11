@@ -46,7 +46,7 @@ class Style {
         this.theme.primary   = color("#FFFFF") /* white */ 
         this.theme.secondary  = color("#9EA3B4")  /* light grey */
 
-        this.theme.undefined  = color("#fff700")  /* lemnon*/
+        this.theme.undefined  = color("#fff700")  /* lemon*/
         this.text.color  =  this.theme.primary
     }
 
@@ -74,32 +74,5 @@ class Style {
 
     getIcon(itemPrefix) {
         return this.#icons[itemPrefix]
-    }
-
-
-    getPrimaryBorderColor(type, zone = null) {
-        switch (type) {
-            case "groupTitle":
-            case "elementTypeTitle":
-            case "zoneTitle":
-                return this.theme.primary
-            case "zone":
-                switch (zone) {
-                    case "pilotage":
-                        return this.theme.b
-                    case "operationnel":
-                        return this.theme.a
-                    case "referentiel":
-                        return this.theme.c
-                    default:
-                        return this.theme.no-color
-                    }
-            case "itemType":
-                return color([1, 255, 255])
-            case "item":
-                return color([1, 255, 255])
-            default:
-                return this.theme.undefined
-        }
     }
 }

@@ -18,7 +18,7 @@ class Group extends Element {
         this.#color = color
         this.#cornerSize = cornerSize
         this.#corner = new Corner(this.#cornerSize - 5, this.#cornerSize - 5, color)
-        this.#header = new Header( title, width, style.text.font, style.text.size.m, style.text.color)
+        this.#header = new Header( title, width, style.text.font, style.text.size.m, style.theme.secondary)
         this.#items = items
         this.#maxValue = maxValue
 

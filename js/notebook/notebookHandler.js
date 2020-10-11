@@ -81,7 +81,8 @@ class NotebookHandler {
         new ZoneView(
           width,
           height,
-          TextUtils.firstCharUpperCase(zoneName)
+          TextUtils.firstCharUpperCase(zoneName),
+          this.#buildColor(zoneName)
         ),
         x,
         y
@@ -116,8 +117,7 @@ class NotebookHandler {
             height - padding.top - padding.bottom,
             TextUtils.firstCharUpperCase(groupName),
             items,
-            style.getPrimaryBorderColor("zone", zoneName)
-          ),
+            this.#buildColor(zoneName)),
           x + padding.left,
           y + padding.top
         )
@@ -134,6 +134,18 @@ class NotebookHandler {
       .build()
   }
 
+  #buildColor(zone){
+    switch (zone) {
+      case "pilotage":
+          return style.theme.b
+      case "operationnel":
+          return style.theme.a
+      case "referentiel":
+          return style.theme.c
+      default:
+          return style.theme.undefined
+      }
+  }
   #generateGroupViewMap(domains, groupName) {
     const itemTypesLayerBuilder = new LayerBuilder()
     const itemsLayerBuilder = new LayerBuilder()
