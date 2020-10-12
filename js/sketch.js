@@ -1,21 +1,23 @@
 let vizMap
 let notebookHandler
 let fake
-let canvasSize
+let canvasHeight
+let canvasWidth
 let view = "zones"
 const style = new Style()
 const detail = new Detail()
 const state = new State()
 
 function preload() {
-  canvasSize = windowHeight
+  canvasHeight = windowHeight
+  canvasWidth = windowWidth * 0.75
   notebookHandler = new NotebookHandler("./notebook.json")
   fake = loadJSON("./fake.json")
   style.load()
 }
 
 function setup() {
-  let myCanvas = createCanvas(canvasSize, canvasSize)
+  let myCanvas = createCanvas(canvasWidth, canvasHeight)
   myCanvas.parent('myContainer');
   angleMode(DEGREES)
   vizMap = notebookHandler.handle(fake)
@@ -36,8 +38,9 @@ function mouseClicked() {
 }
 
 function windowResized() {
-  canvasSize = windowHeight
-  resizeCanvas(canvasSize, canvasSize)
+  canvasHeight = windowHeight
+  canvasWidth = windowWidth * 0.75
+  resizeCanvas(canvasWidth, canvasHeight)
   vizMap = notebookHandler.handle(fake)
 }
 
