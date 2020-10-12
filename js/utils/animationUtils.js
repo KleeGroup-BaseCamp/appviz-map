@@ -9,7 +9,8 @@ class AnimationUtils {
 
         function animate() {
             value+= step
-            if (value > to){
+            if ((step > 0 && value > to)
+                || (step < 0 && value < to)){
                 clearInterval(id)
                 value = to;
             }

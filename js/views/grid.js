@@ -3,6 +3,7 @@ class Grid extends Element {
   #height
   #columns
   #rows
+  #alpha
 
   constructor(width, height, columns, rows) {
     super()
@@ -10,13 +11,16 @@ class Grid extends Element {
     this.#height = height
     this.#columns = columns
     this.#rows = rows
+    AnimationUtils.animate(255, 0, 1000, a => this.#alpha = a)
   }
 
   /**
    * @override 
    */
   render() {
-    stroke(125, 50)
+    let color = style.text.color.secondary
+    color.setAlpha(this.#alpha)
+    stroke(color)
     strokeWeight(1)
 
     const rowSize = this.#height / this.#rows
