@@ -8,17 +8,20 @@ class Item extends Element {
         super()
         this.#width = width
         this.#height = height
-        this.#title = title ? Utils.buildDisplayableTitle(title, width, style.text.size.s) : "No title"
+        this.#title = title ? TextUtils.buildDisplayableTitle(title, width, style.text.size.s) : "No title"
         this.id = title // Temp
     }
 
     render() {
-        fill(style.getShapeFill("item", (state.selectedElement === this) ? "hover" : "default"))
+        fill((this === state.selectedElement) 
+            ? style.color.front
+            : style.color.middle)
         stroke(255)
         rect(0, 0, this.#width, this.#height)
         noStroke()
-        fill(style.text.color)
+        fill(style.text.color.primary)
         textSize(style.text.size.s)
+        textFont(style.text.font)
         textAlign(CENTER, CENTER)
         text(this.#title, 0, 0, this.#width, this.#height)
     }

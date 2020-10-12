@@ -8,9 +8,10 @@ class TextUtils {
         return numOfCharacters
     }
 
-    static buildDisplayableTitle(text, width, fontSize) {
+    static buildDisplayableTitle(text, width, fontSize, font = style.text.font) {
         push() // This function should not alter textSize
         textSize(fontSize)
+        textFont(font)
         const numOfCharacters = TextUtils.#maxCharacters(text, width)
         pop()
         return numOfCharacters == text.length

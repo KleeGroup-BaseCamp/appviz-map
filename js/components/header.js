@@ -3,12 +3,14 @@ class Header {
     #width
     #height
     #fontSize
+    #font
 
-    constructor(title, width, height, fontSize) {
+    constructor(title, width, height, fontSize, font = style.text.font) {
         this.#title = title ? TextUtils.buildDisplayableTitle(title, width, fontSize) : "No title"
         this.#width = width
         this.#height = height
         this.#fontSize = fontSize
+        this.#font = font
     }
 
     render() {
@@ -27,7 +29,7 @@ class Header {
         noStroke()
         fill(style.text.color.primary)
         textSize(this.#fontSize)
-        textFont(style.text.font)
+        textFont(this.#font)
         textAlign(CENTER)
         text(this.#title, 0, textAscent() + 15, this.#width)
     }

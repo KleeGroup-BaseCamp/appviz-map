@@ -10,9 +10,9 @@ class ItemTypeDetail extends Element {
         this.#header = new Header(
             title, 
             width, 
-            style.icon.font, 
-            style.text.size.l, 
-            style.text.color,
+            60, 
+            style.text.size.xl, 
+            style.icon.font
             )
     }
 
@@ -24,7 +24,7 @@ class ItemTypeDetail extends Element {
     #renderBackground() {
         strokeWeight(1)
         stroke(255)
-        fill(style.getShapeFill("itemTypeDetail"))
+        fill(style.color.middle)
         rect(0, 0, this.#width, this.#height)
     }
 }

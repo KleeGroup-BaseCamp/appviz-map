@@ -150,7 +150,7 @@ class NotebookHandler {
     const itemTypesLayerBuilder = new LayerBuilder()
     const itemsLayerBuilder = new LayerBuilder()
     const groupLayer = new LayerBuilder()
-      .addElement(new GroupView(this.#gridWidth, this.#gridHeight, Utils.firstCharUpperCase(groupName)))
+      .addElement(new GroupView(this.#gridWidth, this.#gridHeight, TextUtils.firstCharUpperCase(groupName)))
       .build()
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
@@ -176,7 +176,7 @@ class NotebookHandler {
           itemTypeHeight,
           (this.#types[typePrefix] == "objects" ?
             "Data" :
-            Utils.firstCharUpperCase(this.#types[typePrefix])) +
+            TextUtils.firstCharUpperCase(this.#types[typePrefix])) +
           " " + style.getIcon(typePrefix)
         ),
         itemTypeX,
