@@ -50,7 +50,7 @@ class Style {
     }
 
     load() {
-        this.text.font = loadFont("fonts/Roboto-Regular.ttf")
+        this.text.font = loadFont("fonts/Montserrat-Regular.ttf")
         this.icon.font = loadFont("fonts/fa.otf")
 
         this.color.a = color("#2196F3") /* blue */
