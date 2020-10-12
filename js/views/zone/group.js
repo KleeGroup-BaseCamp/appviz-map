@@ -68,7 +68,7 @@ class Group extends Element {
         const top = textAscent() + 35
         let positions = []
         for (let i = 0; i < this.#items.length; i++) {
-            positions.push(top + (this.#width - top) / (this.#items.length + 1) * (i + 1))
+            positions.push(top + (this.#height - top) / (this.#items.length + 1) * (i + 1))
         }
         this.#items.forEach((item, index) => {
             push()
