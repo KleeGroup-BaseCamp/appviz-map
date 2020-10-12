@@ -19,13 +19,13 @@ class Header {
 
     #renderBackground() {
         noStroke()
-        fill(style.theme.front)
+        fill(style.color.front)
         rect (0, 0, this.#width, this.#height)
     }
 
     #renderTitle() {
         noStroke()
-        fill(style.theme.primary)
+        fill(style.text.color.primary)
         textSize(this.#fontSize)
         textFont(style.text.font)
         textAlign(CENTER)
