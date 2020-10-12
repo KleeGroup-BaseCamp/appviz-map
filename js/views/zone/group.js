@@ -8,6 +8,7 @@ class Group extends Element {
     #corner
     #header
     #progressBars
+    #color
 
     constructor(width, height, title, items, color, maxValue = 20, cornerSize = 30) {
         super()
@@ -15,6 +16,7 @@ class Group extends Element {
         this.#width = width
         this.#height = height
         this.#cornerSize = cornerSize
+        this.#color = color
         this.#corner = new Corner(this.#cornerSize - 5, this.#cornerSize - 5, color)
         this.#header = new Header( title, width, 50, style.text.size.m)
         this.#items = items
@@ -36,9 +38,12 @@ class Group extends Element {
         this.#renderBackground()
         //-- header
         this.#header.render()
-        this.#corner.render()
+       // this.#corner.render()
         //-- body
         this.#renderItems()
+        noStroke()
+        fill(this.#color) 
+        rect(0, 0, 2, 50)    
     }
 
     #renderBackground() {
@@ -47,7 +52,9 @@ class Group extends Element {
             ? style.color.front
             : style.color.middle)
         noStroke()
-        beginShape()
+        rect(0, 0, this.#width, this.#height)
+
+/*        beginShape()
         vertex(this.#cornerSize, 0)
         vertex(this.#width - this.#cornerSize, 0)
         vertex(this.#width, this.#cornerSize)
@@ -55,6 +62,7 @@ class Group extends Element {
         vertex(0, this.#height)
         vertex(0, this.#cornerSize)
         endShape(CLOSE)
+    */    
     }
     
     /*
