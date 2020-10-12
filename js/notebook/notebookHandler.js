@@ -13,13 +13,13 @@ class NotebookHandler {
     this.#notebook = loadJSON(notebookPath)
     this.#gridRows = 12
     this.#gridColumns = 12
-    this.#gridWidth = canvasSize
-    this.#gridHeight = canvasSize
+    this.#gridWidth = canvasWidth
+    this.#gridHeight = canvasHeight
   }
 
   #updateGridDimensions(){
-    this.#gridWidth = canvasSize
-    this.#gridHeight = canvasSize
+    this.#gridWidth = canvasWidth
+    this.#gridHeight = canvasHeight
   }
 
   handle(fake) {
