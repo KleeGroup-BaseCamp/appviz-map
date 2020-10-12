@@ -33,7 +33,7 @@ class Style {
         c : null, /* red */
         d : null, /* grey */
 
-        /* back to front colors */
+        /* layer > back to front colors */
         back   : null,  /* deep dark */
         middle : null,  /* dark */
         front  : null,  /* light dark */
@@ -52,7 +52,14 @@ class Style {
     load() {
         this.text.font = loadFont("fonts/Montserrat-Regular.ttf")
         this.icon.font = loadFont("fonts/fa.otf")
+        if (random(0,10) > 5){
+            this.#loadDarkTheme()
+        }else {
+            this.#loadLightTheme()
+        }
+    }    
 
+    #loadDarkTheme() {
         this.color.a = color("#2196F3") /* blue */
         this.color.b  = color( "#4CAF50") /* green */
         this.color.c  = color("#F44336") /* red */
@@ -70,7 +77,28 @@ class Style {
         this.color.undefined  = color("#fff700")  /* lemon*/
     }
 
+    #loadLightTheme() {
+        this.#loadDarkTheme()
+
+        this.color.back   = color("#F6F6F4")  /*  light++ */
+        this.color.middle  = color("#EFEFEF")  /* light   */
+        this.color.front   = color("#DDDDDD")  /* light-- */
+
+        /* text */
+        this.text.color.primary   = color("#000000") /* black */
+        this.text.color.secondary  = Style.#invertColor(this.text.color.secondary)
+
+        this.color.undefined  = Style.#invertColor(this.color.undefined)
+    }
+
     getIcon(itemPrefix) {
         return this.#icons[itemPrefix]
+    }
+
+    static #invertColor(colorToInvert){
+        const r = 255 - red (colorToInvert) 
+        const g = 255 - green (colorToInvert)
+        const b = 255 - blue(colorToInvert)
+        return color(r,g,b) 
     }
 }

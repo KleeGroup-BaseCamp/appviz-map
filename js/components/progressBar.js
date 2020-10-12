@@ -27,13 +27,11 @@ class ProgressBar {
 
     #renderBar(weight){
         strokeJoin(ROUND)
-        strokeWeight(weight)
         
-        this.#color.setAlpha(100)
-        stroke(this.#color)
+        strokeWeight(weight)
+        stroke(style.color.front)
         line(0, 0, this.#width, 0)
         
-        this.#color.setAlpha(255)
         stroke(this.#color)
         const size = this.#value * this.#width / this.#maxValue  
         line(0, 0, size, 0)
