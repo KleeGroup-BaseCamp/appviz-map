@@ -1,15 +1,19 @@
 class Item extends Element {
+    #id
     #width
     #height
     #title
-    id
 
     constructor(width, height, title) {
         super()
+        this.#id = title // Temp
         this.#width = width
         this.#height = height
         this.#title = title ? TextUtils.buildDisplayableTitle(title, width, style.text.size.s) : "No title"
-        this.id = title // Temp
+    }
+
+    getId(){
+        return this.#id
     }
 
     render() {

@@ -1,4 +1,5 @@
 class Group extends Element {
+    #id
     #width
     #height
     #items
@@ -7,13 +8,12 @@ class Group extends Element {
     #corner
     #header
     #progressBars
-    id
 
     constructor(width, height, title, items, color, maxValue = 20, cornerSize = 30) {
         super()
+        this.#id = title
         this.#width = width
         this.#height = height
-        this.id = title
         this.#cornerSize = cornerSize
         this.#corner = new Corner(this.#cornerSize - 5, this.#cornerSize - 5, color)
         this.#header = new Header( title, width, 50, style.text.size.m)
@@ -25,6 +25,9 @@ class Group extends Element {
         this.#items.forEach(item => this.#progressBars.push(new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)))
     }
 
+    getId(){
+        return this.#id
+    }
     /**
      * @override
      */
