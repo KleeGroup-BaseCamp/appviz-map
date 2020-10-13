@@ -64,4 +64,8 @@ class Element {
         && y > 0
         && y < this.#height
   }
+
+  _isSelected(){
+    return state.selectedElement == this
+  }
 }

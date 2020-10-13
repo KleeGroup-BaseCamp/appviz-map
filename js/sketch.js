@@ -32,7 +32,6 @@ function draw() {
 
 function mouseClicked() {
   onClick(state.selectedElement)
- // vizMap = notebookHandler.handle(fake)
 }
 
 /**
@@ -51,7 +50,6 @@ function windowResized() {
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
   resizeCanvas(canvasWidth, canvasHeight)
-  vizMap = notebookHandler.handle(fake)
 }
 
 function switchViews(title){

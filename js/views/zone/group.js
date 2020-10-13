@@ -23,18 +23,19 @@ class Group extends Element {
     render() {
         //-- background
         this.#renderBackground()
+
         //-- header
         this.#header.render()
-        //-- body
-        this.#renderItems()
         noStroke()
         fill(this.#color) 
-        rect(0, 0, 4, 50)    
+        rect(0, 0, 4, 50)   
+
+        //-- body
+        this.#renderItems()
     }
 
     #renderBackground() {
-        const selected = (this === state.selectedElement) 
-        fill(selected 
+        fill(this._isSelected() 
             ? style.color.front
             : style.color.middle)
         noStroke()
