@@ -78,27 +78,24 @@ class Style {
     }
 
     #loadLightTheme() {
-        this.#loadDarkTheme()
+        this.color.a = color("#2196F3") /* blue */
+        this.color.b  = color( "#4CAF50") /* green */
+        this.color.c  = color("#F44336") /* red */
+        this.color.d  = color("#7881A9") /* grey */
 
+        /* back to front colors */
         this.color.back   = color("#F6F6F4")  /*  light++ */
         this.color.middle  = color("#EFEFEF")  /* light   */
         this.color.front   = color("#DDDDDD")  /* light-- */
 
         /* text */
         this.text.color.primary   = color("#000000") /* black */
-        this.text.color.secondary  = Style.#invertColor(this.text.color.secondary)
+        this.text.color.secondary  = color("#615c4b")
 
-        this.color.undefined  = Style.#invertColor(this.color.undefined)
+        this.color.undefined  = color("0008ff")
     }
 
     getIcon(itemPrefix) {
         return this.#icons[itemPrefix]
-    }
-
-    static #invertColor(colorToInvert){
-        const r = 255 - red (colorToInvert) 
-        const g = 255 - green (colorToInvert)
-        const b = 255 - blue(colorToInvert)
-        return color(r,g,b) 
     }
 }
