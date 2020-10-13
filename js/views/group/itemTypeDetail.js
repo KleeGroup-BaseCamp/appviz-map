@@ -1,12 +1,8 @@
 class ItemTypeDetail extends Element {
-    #width
-    #height
     #header
 
     constructor(id, width, height, title) {
-        super(id)
-        this.#width = width
-        this.#height = height
+        super(id, width, height)
         this.#header = new Header(
             title, 
             width, 
@@ -25,6 +21,6 @@ class ItemTypeDetail extends Element {
         strokeWeight(1)
         stroke(255)
         fill(style.color.middle)
-        rect(0, 0, this.#width, this.#height)
+        rect(0, 0, this.getWidth(), this.getHeight())
     }
 }

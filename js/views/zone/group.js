@@ -72,7 +72,7 @@ class Group extends Element {
         const top = textAscent() + 35
         let positions = []
         for (let i = 0; i < this.#items.length; i++) {
-            positions.push(top + (this.#height - top) / (this.#items.length + 1) * (i + 1))
+            positions.push(top + (this.getHeight() - top) / (this.#items.length + 1) * (i + 1))
         }
         this.#items.forEach((item, index) => {
             push()
@@ -89,8 +89,8 @@ class Group extends Element {
      */
     contains(x, y) {
         return x > 0
-            && x < this.#width
+            && x < this.getWidth()
             && y > 0
-            && y < this.#height
+            && y < this.hetHeight()
     }
 }

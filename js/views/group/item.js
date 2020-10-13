@@ -1,19 +1,9 @@
 class Item extends Element {
-    #id
-    #width
-    #height
-    #title
+     #title
 
     constructor(id, width, height, title) {
-        super(id)
-        this.#id = title // Temp
-        this.#width = width
-        this.#height = height
+        super(id, width, height)
         this.#title = title ? TextUtils.buildDisplayableTitle(title, width, style.text.size.s) : "No title"
-    }
-
-    getId(){
-        return this.#id
     }
 
     render() {
@@ -21,18 +11,18 @@ class Item extends Element {
             ? style.color.front
             : style.color.middle)
         stroke(255)
-        rect(0, 0, this.#width, this.#height)
+        rect(0, 0, this.getWidth(), this.getHeight())
         noStroke()
         fill(style.text.color.primary)
         textSize(style.text.size.s)
         textFont(style.text.font)
         textAlign(CENTER, CENTER)
-        text(this.#title, 0, 0, this.#width, this.#height)
+        text(this.#title, 0, 0, this.getWidth(), this.getHeight())
     }
     contains(x, y) {
         return x > 0
-            && x < this.#width
+            && x < this.getWidth()
             && y > 0
-            && y < this.#height
+            && y < this.getHeight()
     }
 }

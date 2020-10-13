@@ -1,19 +1,35 @@
 /**
  * Element.
- * An element is displaied in a layer by the 'render' method.
- * Each element has an id.
+ * An element is displayed in a layer by the 'render' method.
  * 
+ * Each element has 
+ * - an id
+ * - a width
+ * - a height
+ *  
  * Elements must not depend each other.
  */
 class Element {
   #id
+  #width
+  #height
  
-  constuctor (id){
+  constuctor (id, width, height){
     this.#id = id
+    this.#width = width
+    this.#height = height
   }
 
   getId(){
     return this.#id
+  }
+
+  getWidth(){
+    return this.#width
+  }
+
+  getHeight(){
+    return this.#height
   }
 
   /**
