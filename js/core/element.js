@@ -19,32 +19,32 @@
  *  - define a specific 'contains' method to handle a specific shape  
  */
 class Element {
-  id
-  width
-  height
-  selectable
+  #id
+  #width
+  #height
+  #selectable
  
   constructor (id, width, height, selectable){
-    this.id = id
-    this.width = width
-    this.height = height
-    this.selectable = selectable
+    this.#id = id
+    this.#width = width
+    this.#height = height
+    this.#selectable = selectable
   }
 
   getId(){
-    return this.id
+    return this.#id
   }
 
   getWidth(){
-    return this.width
+    return this.#width
   }
 
   getHeight(){
-    return this.height
+    return this.#height
   }
 
   isSelectable(){
-    return this.selectable
+    return this.#selectable
   }
   /**
    * This method MUST be overridden
@@ -59,8 +59,8 @@ class Element {
    */
   contains(x, y) {
     return x > 0
-        && x < this.width
+        && x < this.#width
         && y > 0
-        && y < this.height
+        && y < this.#height
   }
 }
