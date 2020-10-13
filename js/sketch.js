@@ -44,7 +44,8 @@ function mouseClicked() {
 function onClick(element) {
   if (element instanceof Group || element instanceof Item) {
     detail.update(element.getId())
-  } 
+  }
+  vizMap = notebookHandler.handle(fake) 
 }
 
 function windowResized() {
