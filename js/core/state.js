@@ -1,11 +1,41 @@
 class State {
-    selectedElement
+    #hoveredElement
+    #selectedElement
 
     /**
-     * Selects an element 
-     * The previous selected element is unselected
+     * Marks an element as Hovered
+     */
+    hover(element) {
+        this.#hoveredElement = element
+    }
+
+
+    /**
+     * Is the provided element in Hovered state
+     */
+    isHovered(element){
+        return element === this.#hoveredElement
+    }
+
+
+    /**
+     * Marks an element as Selected
      */
     select(element) {
-        this.selectedElement = element
+        this.#selectedElement = element
+    }
+
+     /**
+     * Return the selected element on the map
+     */
+    getSelectedElement(){
+        return this.#selectedElement;
+    }
+
+    /**
+     * Is the provided element currently selected
+     */
+    isElementSelected(element){
+        return element === this.#selectedElement
     }
 }

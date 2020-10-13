@@ -65,7 +65,7 @@ class Element {
         && y < this.#height
   }
 
-  _isSelected(){
-    return state.selectedElement == this
+  _isHovered(){
+    return state.isHovered(this)
   }
 }
