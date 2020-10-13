@@ -1,7 +1,7 @@
 /**
  * View of a zone.
  */
-class ZoneView extends Element {
+class TechZoneView extends Element {
     #header
     #corner
 
