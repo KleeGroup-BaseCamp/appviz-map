@@ -8,6 +8,8 @@
  * - a height
  *  
  * Elements must not depend each other.
+ * An elemnt can be a rectangle, an hexagon, a circle or anything
+ * BUT each element is defined in a bounding box 
  */
 class Element {
   #id
@@ -44,6 +46,9 @@ class Element {
    * This method CAN be overridden
    */
   contains(x, y) {
-    return false
+    return x > 0
+        && x < this.#width()
+        && y > 0
+        && y < this.#height()
   }
 }

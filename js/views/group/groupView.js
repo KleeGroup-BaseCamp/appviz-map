@@ -23,4 +23,8 @@ class GroupView extends Element {
         noStroke()
         rect(0, 0, this.getWidth(), this.getHeight())
     }
+
+    contains(){
+        return false
+    }
 }

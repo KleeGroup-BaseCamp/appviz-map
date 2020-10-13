@@ -23,4 +23,8 @@ class ItemTypeDetail extends Element {
         fill(style.color.middle)
         rect(0, 0, this.getWidth(), this.getHeight())
     }
+
+    contains(){
+        return false
+    }
 }

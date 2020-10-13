@@ -82,15 +82,4 @@ class Group extends Element {
             this.#progressBars[index].render()
             pop()
         })
-    }
-
-    /**
-     * @override
-     */
-    contains(x, y) {
-        return x > 0
-            && x < this.getWidth()
-            && y > 0
-            && y < this.hetHeight()
-    }
 }

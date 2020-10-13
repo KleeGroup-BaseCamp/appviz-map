@@ -36,5 +36,8 @@ class ZoneView extends Element {
         noFill()
         rect(0, 0, this.#width, this.#height)
     }
-*/    
+*/
+    contains(){
+        return false
+    }
 }

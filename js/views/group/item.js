@@ -19,10 +19,4 @@ class Item extends Element {
         textAlign(CENTER, CENTER)
         text(this.#title, 0, 0, this.getWidth(), this.getHeight())
     }
-    contains(x, y) {
-        return x > 0
-            && x < this.getWidth()
-            && y > 0
-            && y < this.getHeight()
-    }
 }
