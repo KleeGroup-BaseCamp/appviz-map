@@ -6,3 +6,28 @@ body {
 canvas {
   display: block;
 }
+
+#nav{
+  background-color: #3A3E52;
+  color:#ffffff;
+} 
+
+.menu-item{
+  padding: 20px;
+}
+
+.menu-item:hover{
+  background-color:#ffffff;
+  color:#3A3E52;
+  cursor: pointer;
+}
+
+.tile.is-parent:not(:nth-of-type(1)){
+  padding-top: 0;
+}
+
+.tile.is-parent{
+  padding-bottom: 0;
+}
+
+.material-icons.md-36 { font-size: 36px; }

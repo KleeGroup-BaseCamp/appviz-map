@@ -34,7 +34,7 @@ class Group extends Element {
         this.#renderItems()
         noStroke()
         fill(this.#color) 
-        rect(0, 0, 2, 50)    
+        rect(0, 0, 4, 50)    
     }
 
     #renderBackground() {

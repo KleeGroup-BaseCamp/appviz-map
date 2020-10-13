@@ -5,21 +5,44 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
   <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
-  <div class="columns">
-  <div class="column">
-    <h1 class="title is-1 has-text-centered mt-1">State</h1>
-  </div>
-  <div class="column" id="myContainer">
-  </div>
-  <div class="column">
-    <h1 class="title is-1 has-text-centered mt-1" id="detail-title">Detail</h1>
-    <div class="content" id = "detail-content">
-      <p>Some general detail about all zones might go here later !</p>
+  <div class="columns is-gapless">
+    <div class="column  is-narrow" id="nav">
+      <div class="tile is-ancestor is-vertical">
+        <div class="tile is-parent">
+          <div class="tile is-child menu-item" >
+            <i class="material-icons md-36">home</i>
+          </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile is-child menu-item">
+            <i class="material-icons md-36">view_quilt</i>
+          </div>
+       </div>
+       <div class="tile is-parent">
+          <div class="tile is-child menu-item">
+            <i class="material-icons md-36">work</i>
+          </div>
+       </div>
+       <div class="tile is-parent">
+          <div class="tile is-child menu-item">
+            <i class="material-icons md-36">construction</i>
+          </div>
+       </div>
+      </div>
+    </div>
+    <div class="column" id="myContainer">
+    </div>
+    <div class="column">
+      <h1 class="title is-1 has-text-centered mt-1" id="detail-title">Detail</h1>
+      <div class="content" id = "detail-content">
+        <p>Some general detail about all zones might go here later !</p>
+      </div>
     </div>
   </div>
   <script src="js/utils/textutils.js"></script>

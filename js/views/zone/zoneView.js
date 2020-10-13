@@ -16,7 +16,7 @@ class ZoneView extends Element {
         this.#corner = new Corner(30, 30, color)
     }
 
-    /**g
+    /**
      * @override
      */
     render() {
