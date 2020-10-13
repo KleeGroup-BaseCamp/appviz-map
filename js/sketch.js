@@ -21,7 +21,6 @@ function setup() {
   myCanvas.parent('myContainer');
   angleMode(DEGREES)
   vizMap = notebookHandler.handle(fake)
-  vizMap.render()
 }
 
 function draw() {
@@ -32,9 +31,20 @@ function draw() {
 }
 
 function mouseClicked() {
-  
-  vizMap.click(state.selectedElement)
-  vizMap = notebookHandler.handle(fake)
+  onClick(state.selectedElement)
+ // vizMap = notebookHandler.handle(fake)
+}
+
+/**
+ * @param {?Element} element
+ * 
+ * Change the view (controlled by the group var) 
+ * depending on the element clicked ad the current view 
+ */
+function onClick(element) {
+  if (element instanceof Group || element instanceof Item) {
+    detail.update(element.getId())
+  } 
 }
 
 function windowResized() {
