@@ -2,7 +2,7 @@ class Item extends Element {
      #title
 
     constructor(id, width, height, title) {
-        super(id, width, height)
+        super(id, width, height, true)
         this.#title = title ? TextUtils.buildDisplayableTitle(title, width, style.text.size.s) : "No title"
     }
 

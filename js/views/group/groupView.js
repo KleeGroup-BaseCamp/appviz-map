@@ -2,7 +2,7 @@ class GroupView extends Element {
     #header
 
     constructor(id, width, height, title) {
-        super(id, width, height)
+        super(id, width, height, false)
         this.#header = new Header(
             title,
             width,
@@ -22,9 +22,5 @@ class GroupView extends Element {
     #renderBackground() {
         noStroke()
         rect(0, 0, this.getWidth(), this.getHeight())
-    }
-
-    contains(){
-        return false
     }
 }

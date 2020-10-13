@@ -32,7 +32,7 @@ class Layer {
     for (let positionedElement of this.#positionedElements) {
       const lx = x - positionedElement.position.x
       const ly = y - positionedElement.position.y
-      if (positionedElement.element.contains(lx, ly))
+      if (positionedElement.element.isSelectable() && positionedElement.element.contains(lx, ly))
         return positionedElement.element
     }
     return null

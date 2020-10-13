@@ -1,18 +1,12 @@
 /**
  * View of a zone.
- *   
  */
 class ZoneView extends Element {
-    #id
-    #width
-    #height
     #header
     #corner
 
     constructor(id, width, height, title, color) {
-        super(id)
-        this.#width = width
-        this.#height = height
+        super(id, width, height, false)
         this.#header = new Header(
             title, 
             width, 
@@ -37,7 +31,4 @@ class ZoneView extends Element {
         rect(0, 0, this.#width, this.#height)
     }
 */
-    contains(){
-        return false
-    }
-}
+ }

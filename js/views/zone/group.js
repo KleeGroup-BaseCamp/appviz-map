@@ -1,19 +1,14 @@
 class Group extends Element {
-    #id
-    #width
-    #height
     #items
     #maxValue
     #cornerSize
-    #corner
+//    #corner
     #header
     #progressBars
     #color
 
     constructor(id, width, height, title, items, color, maxValue = 20, cornerSize = 30) {
-        super(id)
-        this.#width = width
-        this.#height = height
+        super(id, width, height, true)
         this.#cornerSize = cornerSize
         this.#color = color
         this.#corner = new Corner(this.#cornerSize - 5, this.#cornerSize - 5, color)
@@ -48,7 +43,7 @@ class Group extends Element {
             ? style.color.front
             : style.color.middle)
         noStroke()
-        rect(0, 0, this.#width, this.#height)
+        rect(0, 0, this.getWidth(), this.getHeight())
 
 /*        beginShape()
         vertex(this.#cornerSize, 0)

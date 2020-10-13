@@ -15,11 +15,13 @@ class Element {
   #id
   #width
   #height
+  #selectable
  
-  constuctor (id, width, height){
+  constuctor (id, width, height, selectable){
     this.#id = id
     this.#width = width
     this.#height = height
+    this.#selectable = selectable
   }
 
   getId(){
@@ -34,6 +36,9 @@ class Element {
     return this.#height
   }
 
+  isSelectable(){
+    return this.#selectable
+  }
   /**
    * This method MUST be overridden
    * This defines how the elemnt is rendererd inside a layer.
@@ -47,8 +52,8 @@ class Element {
    */
   contains(x, y) {
     return x > 0
-        && x < this.#width()
+        && x < this.#width
         && y > 0
-        && y < this.#height()
+        && y < this.#height
   }
 }
