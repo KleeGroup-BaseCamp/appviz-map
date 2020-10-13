@@ -78,7 +78,7 @@ class NotebookHandler {
         zone.numOfRows
       )
       zonesLayerBuilder.addElement(
-        new ZoneView(
+        new ZoneView(0,
           width,
           height,
           TextUtils.firstCharUpperCase(zoneName),
@@ -113,6 +113,7 @@ class NotebookHandler {
         const padding = this.#getGroupPadding(group, zone)
         groupsLayerBuilder.addElement(
           new Group(
+            groupName,
             width - padding.right - padding.left,
             height - padding.top - padding.bottom,
             TextUtils.firstCharUpperCase(groupName),
@@ -150,7 +151,7 @@ class NotebookHandler {
     const itemTypesLayerBuilder = new LayerBuilder()
     const itemsLayerBuilder = new LayerBuilder()
     const groupLayer = new LayerBuilder()
-      .addElement(new GroupView(this.#gridWidth, this.#gridHeight, TextUtils.firstCharUpperCase(groupName)))
+      .addElement(new GroupView(groupName, this.#gridWidth, this.#gridHeight, TextUtils.firstCharUpperCase(groupName)))
       .build()
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
@@ -172,6 +173,7 @@ class NotebookHandler {
 
       itemTypesLayerBuilder.addElement(
         new ItemTypeDetail(
+          this.#types[typePrefix],
           itemTypeWidth,
           itemTypeHeight,
           (this.#types[typePrefix] == "objects" ?
@@ -198,7 +200,7 @@ class NotebookHandler {
           numOfColumns,
           numOfRows,
         )
-        itemsLayerBuilder.addElement(new Item(itemWidth, itemHeight, item.slice(2)), itemX, itemY)
+        itemsLayerBuilder.addElement(new Item(item, itemWidth, itemHeight, item.slice(2)), itemX, itemY)
       })
     })
     return new MapBuilder()
@@ -218,7 +220,7 @@ class NotebookHandler {
 
   #buildGridLayer() {
     return new LayerBuilder()
-      .addElement(new Grid(this.#gridWidth, this.#gridHeight, this.#gridRows, this.#gridColumns))
+      .addElement(new Grid(0, this.#gridWidth, this.#gridHeight, this.#gridRows, this.#gridColumns))
       .build()
   }
 

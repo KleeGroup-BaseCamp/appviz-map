@@ -1,14 +1,10 @@
 class Grid extends Element {
-  #width
-  #height
   #columns
   #rows
   #alpha
 
-  constructor(width, height, columns, rows) {
-    super()
-    this.#width = width
-    this.#height = height
+  constructor(id, width, height, columns, rows) {
+    super(id, width, height, false)
     this.#columns = columns
     this.#rows = rows
     AnimationUtils.animate(255, 0, 1000, a => this.#alpha = a)
@@ -23,14 +19,14 @@ class Grid extends Element {
     stroke(color)
     strokeWeight(1)
 
-    const rowSize = this.#height / this.#rows
+    const rowSize = this.getHeight() / this.#rows
     for (let i = 0; i < this.#rows; i++) {
-      line(0, rowSize * i, this.#width, rowSize * i)
+      line(0, rowSize * i, this.getWidth(), rowSize * i)
     }
 
-    const columnSize = this.#width / this.#columns
+    const columnSize = this.getWidth() / this.#columns
     for (let j = 0; j < this.#columns; j++) {
-      line(columnSize * j, 0, columnSize * j, this.#height)
+      line(columnSize * j, 0, columnSize * j, this.getHeight())
     }
   }
 }

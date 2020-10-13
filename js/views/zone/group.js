@@ -2,7 +2,7 @@ class Group extends Element {
     #items
     #maxValue
     #cornerSize
-//    #corner
+    #corner
     #header
     #progressBars
     #color
@@ -18,7 +18,7 @@ class Group extends Element {
 
         this.#progressBars = []
         const secondaryStroke = style.text.color.primary
-        this.#items.forEach(item => this.#progressBars.push(new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)))
+        this.#items.forEach(item => this.#progressBars.push(new ProgressBar(item.frequency, this.#maxValue, this.getWidth() - 90, secondaryStroke)))
     }
 
     /**
@@ -29,7 +29,7 @@ class Group extends Element {
         this.#renderBackground()
         //-- header
         this.#header.render()
-       // this.#corner.render()
+        // this.#corner.render()
         //-- body
         this.#renderItems()
         noStroke()
@@ -45,15 +45,14 @@ class Group extends Element {
         noStroke()
         rect(0, 0, this.getWidth(), this.getHeight())
 
-/*        beginShape()
+        beginShape()
         vertex(this.#cornerSize, 0)
-        vertex(this.#width - this.#cornerSize, 0)
-        vertex(this.#width, this.#cornerSize)
-        vertex(this.#width, this.#height)
-        vertex(0, this.#height)
+        vertex(this.getWidth() - this.#cornerSize, 0)
+        vertex(this.getWidth(), this.#cornerSize)
+        vertex(this.getWidth(), this.getHeight())
+        vertex(0, this.getHeight())
         vertex(0, this.#cornerSize)
-        endShape(CLOSE)
-    */    
+        endShape(CLOSE) 
     }
     
     /*
@@ -77,4 +76,5 @@ class Group extends Element {
             this.#progressBars[index].render()
             pop()
         })
+    }
 }

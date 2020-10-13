@@ -21,6 +21,7 @@ class GroupView extends Element {
 
     #renderBackground() {
         noStroke()
+        fill([0, 0])
         rect(0, 0, this.getWidth(), this.getHeight())
     }
 }
