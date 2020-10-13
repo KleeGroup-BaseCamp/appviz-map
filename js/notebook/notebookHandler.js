@@ -25,10 +25,18 @@ class NotebookHandler {
   handle(fake) {
     this.#updateGridDimensions()
     const domains = this.#extractDomains()
-    if (view == "zones") {
-      return this.#generateZoneViewMap(domains, fake)
+    if (view == "techZone") {
+      return this.#generateZoneViewMap(domains, fake, true)
+    } else if (view == "techGroup"){
+      return this.#generateGroupViewMap(domains, groupId, true)
+    } else if (view == "funcZone"){
+      return this.#generateZoneViewMap(domains, fake, false)
+    } else if (view == "funcGroup"){
+      return this.#generateGroupViewMap(domains, groupId, false)
+    } else if(view == "demo"){
+        return this.#generateDemoViewMap()
     } else {
-      return this.#generateGroupViewMap(domains, view)
+      return this.#generateHomeViewMap()
     }
   }
 
@@ -60,7 +68,7 @@ class NotebookHandler {
   }
 
   
-  #generateZoneViewMap(domains, fake) {
+  #generateZoneViewMap(domains, fake, isTechView) {
     const zonesLayerBuilder = new LayerBuilder()
     const groupsLayerBuilder = new LayerBuilder()
 
@@ -81,7 +89,7 @@ class NotebookHandler {
         new TechZoneView(0,
           width,
           height,
-          TextUtils.firstCharUpperCase(zoneName),
+          TextUtils.firstCharUpperCase((isTechView ? "" : "Func ") + zoneName) ,
           this.#buildColor(zoneName)
         ),
         x,
@@ -147,11 +155,11 @@ class NotebookHandler {
           return style.color.undefined
       }
   }
-  #generateGroupViewMap(domains, groupName) {
+  #generateGroupViewMap(domains, groupName, isTechView) {
     const itemTypesLayerBuilder = new LayerBuilder()
     const itemsLayerBuilder = new LayerBuilder()
     const groupLayer = new LayerBuilder()
-      .addElement(new TechGroupView(groupName, this.#gridWidth, this.#gridHeight, TextUtils.firstCharUpperCase(groupName)))
+      .addElement(new TechGroupView(groupName, this.#gridWidth, this.#gridHeight, TextUtils.firstCharUpperCase((isTechView ? "" : "Functional") + groupName )))
       .build()
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
@@ -298,6 +306,26 @@ class NotebookHandler {
       : paddingStep
 
     return { left, top, right, bottom }
+  }
+
+
+  #generateHeaderMap(title){
+    const headerLayer = new LayerBuilder()
+      .addElement(new TechGroupView(title, this.#gridWidth, this.#gridHeight, title))
+      .build()
+    
+      return new MapBuilder()
+      .addLayer(this.#buildBackgroundLayer())
+      .addLayer(headerLayer)
+      .build()
+  }
+
+  #generateDemoViewMap(){
+    return this.#generateHeaderMap("Demo View")
+  }
+
+  #generateHomeViewMap(){
+    return this.#generateHeaderMap("Home View")
   }
 
 

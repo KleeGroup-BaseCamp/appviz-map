@@ -3,7 +3,8 @@ let notebookHandler
 let fake
 let canvasHeight
 let canvasWidth
-let view = "zones"
+let view = "home"
+let groupId = ""
 const style = new Style()
 const detail = new Detail()
 const state = new State()
@@ -18,7 +19,7 @@ function preload() {
 
 function setup() {
   let myCanvas = createCanvas(canvasWidth, canvasHeight)
-  myCanvas.parent('myContainer');
+  myCanvas.parent('myContainer')
   angleMode(DEGREES)
   vizMap = notebookHandler.handle(fake)
 }
@@ -53,6 +54,22 @@ function windowResized() {
   resizeCanvas(canvasWidth, canvasHeight)
 }
 
-function switchViews(title){
-  view = title.toLowerCase()
+// function switchViews(title){
+//   view = title.toLowerCase()
+// }
+
+function switchZoneGroup(title){
+  if (title == "zone"){
+    view = view.slice(0,4) + "Zone" // Depends on "tech".length == "func".length
+  } else{
+    view = view.slice(0,4) + "Group"
+    groupId = title
+  }
 }
+
+["home", "tech", "func", "demo"].forEach((viewName)=>{
+  document.getElementById(viewName).addEventListener("click", ()=>{
+    view = viewName + (viewName == "tech" || viewName == "func" ? "Zone" : "")
+  });
+
+})

@@ -9,9 +9,9 @@ class Detail{
     }
 
     #getContent(title){
-        const content = (view == "zones")
-            ? `<div class='has-text-centered'><button class='button is-light' onClick="switchViews('${title}')">Switch view</button><p>Group detail goes here</p></div>`
-            : `<div class='has-text-centered'><button class='button is-light' onClick="switchViews('zones')">Switch view</button><p>Item detail goes here</p></div>`
+        const content = (view == "techZone" || view == "funcZone")
+            ? `<div class='has-text-centered'><button class='button is-light' onClick="switchZoneGroup('${title}')">Switch view</button><p>Group detail goes here</p></div>`
+            : `<div class='has-text-centered'><button class='button is-light' onClick="switchZoneGroup('zone')">Switch view</button><p>Item detail goes here</p></div>`
         return content
     }
 }
