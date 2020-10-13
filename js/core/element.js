@@ -46,6 +46,7 @@ class Element {
   isSelectable(){
     return this.#selectable
   }
+  
   /**
    * This method MUST be overridden
    * This defines how the elemnt is rendererd inside a layer.
