@@ -78,7 +78,7 @@ class NotebookHandler {
         zone.numOfRows
       )
       zonesLayerBuilder.addElement(
-        new ZoneView(0,
+        new TechZoneView(0,
           width,
           height,
           TextUtils.firstCharUpperCase(zoneName),
@@ -151,7 +151,7 @@ class NotebookHandler {
     const itemTypesLayerBuilder = new LayerBuilder()
     const itemsLayerBuilder = new LayerBuilder()
     const groupLayer = new LayerBuilder()
-      .addElement(new GroupView(groupName, this.#gridWidth, this.#gridHeight, TextUtils.firstCharUpperCase(groupName)))
+      .addElement(new TechGroupView(groupName, this.#gridWidth, this.#gridHeight, TextUtils.firstCharUpperCase(groupName)))
       .build()
 
     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
