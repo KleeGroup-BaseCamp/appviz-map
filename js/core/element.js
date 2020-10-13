@@ -1,15 +1,22 @@
 /**
- * Element.
- * An element is displayed in a layer by the 'render' method.
+ * Element displayed on the map.
  * 
- * Each element has 
+ * An element is 
+ *  - displayed in a layer by the 'render' method.
+ *  - a bounding box
+ *  - selectable -or not-
+ * 
+ * An element has 
  * - an id
  * - a width
  * - a height
  *  
- * Elements must not depend each other.
- * An elemnt can be a rectangle, an hexagon, a circle or anything
- * BUT each element is defined in a bounding box 
+ * An element must
+ * - define a rendering method
+ * - not depend each other
+ * 
+ * An element can
+ *  - define a specific 'contains' method to handle a specific shape  
  */
 class Element {
   #id
