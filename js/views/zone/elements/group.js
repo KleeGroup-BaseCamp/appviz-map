@@ -57,9 +57,9 @@ class Group extends Element {
         }
         this.#items.forEach((item, index) => {
             push()
-            translate(20, positions[index])
-            new VText(style.getIcon(item.prefix), style.icon.font, style.icon.size.s).render()
-            translate(40, 0)
+            translate(25, positions[index] + 8)
+            new VText(style.getIcon(item.prefix), style.icon.font, style.icon.size.xl).render()
+            translate(35, -8)
             this.#progressBars[index].render()
             pop()
         })

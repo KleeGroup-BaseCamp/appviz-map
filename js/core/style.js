@@ -2,7 +2,10 @@ class Style {
     icon = {
         font : undefined, 
         size : {
-            s: 16
+            s: 16,
+            m: 20,
+            l: 26,
+            xl: 32
         }    
     }    
 
@@ -42,8 +45,8 @@ class Style {
     }
 
     #icons = {
-        dt: "\uf15b",
-        tk: "\uf085"
+        dt: "\ue0ee", // \uf15b
+        tk: "\ue566",
     }
 
     constructor() {
@@ -51,7 +54,7 @@ class Style {
 
     load() {
         this.text.font = loadFont("fonts/Montserrat-Regular.ttf")
-        this.icon.font = loadFont("fonts/fa.otf")
+        this.icon.font = loadFont("fonts/material-design-outlined.ttf")
         if (random(0,10) > 5){
             this.#loadDarkTheme()
         }else {
