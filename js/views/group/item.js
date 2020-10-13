@@ -4,8 +4,8 @@ class Item extends Element {
     #height
     #title
 
-    constructor(width, height, title) {
-        super()
+    constructor(id, width, height, title) {
+        super(id)
         this.#id = title // Temp
         this.#width = width
         this.#height = height

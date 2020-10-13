@@ -1,11 +1,16 @@
+/**
+ * View of a zone.
+ *   
+ */
 class ZoneView extends Element {
+    #id
     #width
     #height
     #header
     #corner
 
-    constructor(width, height, title, color) {
-        super()
+    constructor(id, width, height, title, color) {
+        super(id)
         this.#width = width
         this.#height = height
         this.#header = new Header(

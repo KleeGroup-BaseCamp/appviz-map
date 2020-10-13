@@ -10,9 +10,8 @@ class Group extends Element {
     #progressBars
     #color
 
-    constructor(width, height, title, items, color, maxValue = 20, cornerSize = 30) {
-        super()
-        this.#id = title
+    constructor(id, width, height, title, items, color, maxValue = 20, cornerSize = 30) {
+        super(id)
         this.#width = width
         this.#height = height
         this.#cornerSize = cornerSize
@@ -23,13 +22,10 @@ class Group extends Element {
         this.#maxValue = maxValue
 
         this.#progressBars = []
-        const secondaryStroke = style.color.a
+        const secondaryStroke = style.text.color.primary
         this.#items.forEach(item => this.#progressBars.push(new ProgressBar(item.frequency, this.#maxValue, this.#width - 90, secondaryStroke)))
     }
 
-    getId(){
-        return this.#id
-    }
     /**
      * @override
      */

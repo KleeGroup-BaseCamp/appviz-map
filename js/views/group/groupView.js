@@ -3,8 +3,8 @@ class GroupView extends Element {
     #height
     #header
 
-    constructor(width, height, title) {
-        super()
+    constructor(id, width, height, title) {
+        super(id)
         this.#width = width
         this.#height = height
         this.#header = new Header(
