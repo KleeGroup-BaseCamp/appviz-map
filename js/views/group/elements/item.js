@@ -7,7 +7,7 @@ class Item extends Element {
     }
 
     render() {
-        fill((this === state.selectedElement) 
+        fill(this._isSelected() 
             ? style.color.front
             : style.color.middle)
         stroke(255)
