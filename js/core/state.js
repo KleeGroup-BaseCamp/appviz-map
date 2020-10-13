@@ -35,7 +35,7 @@ class State {
     /**
      * Is the provided element currently selected
      */
-    isElementSelected(element){
+    isSelected(element){
         return element === this.#selectedElement
     }
 }
