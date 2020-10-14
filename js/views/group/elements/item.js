@@ -7,7 +7,7 @@ class Item extends Element {
     }
 
     render() {
-        fill(this._isHovered() 
+        fill(state.isHovered(this) 
             ? style.color.front
             : style.color.middle)
         stroke(255)

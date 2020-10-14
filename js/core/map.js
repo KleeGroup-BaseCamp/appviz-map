@@ -1,6 +1,10 @@
 class Map {
   #layers
 
+  /**
+   * Constructor
+   * @param {Layer[]} layers 
+   */
   constructor(layers) {
     this.#layers = layers
   }
@@ -13,8 +17,12 @@ class Map {
       .forEach(layer => layer.render())
   }
 
-  /*
-   * Finds the element positionned in x, y
+  /**
+   * Finds the element positionned in (x, y)
+   * 
+   * @param {number} x 
+   * @param {number} y 
+   * @return {?Element} element 
    */
   findElement(x, y) {
     for (const layer of this.#layers.slice().reverse()) {

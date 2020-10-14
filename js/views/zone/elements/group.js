@@ -35,7 +35,7 @@ class Group extends Element {
     }
 
     #renderBackground() {
-        fill(this._isHovered() 
+        fill(state.isHovered(this) 
             ? style.color.front
             : style.color.middle)
         noStroke()
