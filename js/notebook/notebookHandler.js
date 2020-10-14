@@ -253,13 +253,13 @@ class NotebookHandler {
       gridWidth = (numOfColumns * gridWidth) / this.#gridColumns
       gridHeight = (numOfRows * gridHeight) / this.#gridRows
     }
-    const width = gridWidth
-    const height = gridHeight
+    // const width = gridWidth
+    // const height = gridHeight
     return {
       x,
       y,
-      width,
-      height
+      width: gridWidth,
+      height: gridHeight
     }
   }
 

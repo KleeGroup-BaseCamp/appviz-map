@@ -4,4 +4,8 @@ class ModelRepository{
     constructor(groups){
         this.#groups = groups
     }
+
+    getGroups(){
+        return this.#groups
+    }
 }

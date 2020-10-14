@@ -5,4 +5,8 @@ class GroupModel extends Model{
         super(id, title, type, sections)
         this.#items = items
     }
+
+    getItems(){
+        return this.#items
+    }
 }
