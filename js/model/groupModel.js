@@ -1,8 +1,8 @@
 class GroupModel extends Model{
     #items
 
-    constructor(id, title, items){
-        super(id, title)
+    constructor(id, title, type, sections, items){
+        super(id, title, type, sections)
         this.#items = items
     }
 }

@@ -1,0 +1,8 @@
+{
+    "maintenance": "pilotage",
+    "hr": "operationnel",
+    "opendata": "operationnel",
+    "common": "operationnel",
+    "basemanagement": "operationnel",
+    "catalog": "referentiel"
+}
