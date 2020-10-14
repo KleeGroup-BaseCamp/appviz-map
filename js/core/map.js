@@ -22,7 +22,7 @@ class Map {
    * 
    * @param {number} x 
    * @param {number} y 
-   * @return {Element?} element 
+   * @return {?Element} element 
    */
   findElement(x, y) {
     for (const layer of this.#layers.slice().reverse()) {
