@@ -1,11 +1,8 @@
-class groupModel {
-    #id
-    #label
+class GroupModel extends Model{
     #items
 
-    constructor(id, label, items){
-        this.#id = id
-        this.#label = label
+    constructor(id, title, items){
+        super(id, title)
         this.#items = items
     }
 }

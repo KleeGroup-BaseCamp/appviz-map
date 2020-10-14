@@ -1,11 +1,10 @@
-class ItemModel {
-    #id
+class ItemModel extends Model{
     #type
-    #label
-    
-    constructor(id, type, label){
-        this.#id = id
+    #props
+
+    constructor(id, title, type, props){
+        super(id, title)
         this.#type = type
-        this.#label = label
+        this.#props = props // (k, v) list 
     }
 }
