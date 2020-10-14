@@ -11,6 +11,9 @@ class Model{
         this.#sections = sections
     }
 
+    getId(){
+        return this.#id
+    }
     
     getTitle(){
         return this.#title

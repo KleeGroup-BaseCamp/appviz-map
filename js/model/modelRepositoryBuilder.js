@@ -1,4 +1,4 @@
-class ModelBuilder {
+class ModelRepositoryBuilder {
   #types = {
     dt: "data",
     tk: "task",
@@ -11,7 +11,7 @@ class ModelBuilder {
     this.#config = loadJSON(configPath)
   }
 
-  buildModelRepository() {
+  build() {
     const itemsModelsPerGroup = {}
     Object.keys(this.#notebook.sketches).forEach((itemName) => {
       const itemNamePrefix = itemName.slice(0, 2).toLowerCase()

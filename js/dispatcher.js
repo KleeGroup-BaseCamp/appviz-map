@@ -76,6 +76,57 @@ class Dispatcher{
         return pixelLayout
     }
 
+    #getItemTypeLayout(typeIndex){
+        return {
+            row : 2 + typeIndex * 5,
+            column : 1,
+            numOfRows : 4,
+            numOfColumns : this.#gridColumns - column * 2
+        }
+    }
+
+    #getItemTypePixels(typeIndex){
+        const {row, column, numOfRows, numOfColumns} = this.#getItemTypeLayout(typeIndex)
+        const {x, y, width, height} = this.#getPixels(
+            column.toString(),
+            row.toString(),
+            numOfColumns.toString(),
+            numOfRows.toString()
+        )
+        return {
+            itemTypeX: x,
+            itemTypeY: y,
+            itemTypeWidth: width,
+            itemTypeHeight: height
+        }
+    }
+
+    #getItemPixels(itemIndex, itemsPerRow, typeIndex) {
+        const {
+            row: itemTypeRow, 
+            column: itemTypeColumn, 
+            numOfRows: itemTypeNumOfRows, 
+            numOfColumns: itemTypeNumOfColumns
+        } = this.#getItemTypeLayout(typeIndex)
+        
+        const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
+        const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
+        const padding = 5
+
+        const {x, y, width, height} = this.#getPixels(
+            itemTypeColumn + ":" + innerColumn,
+            (itemTypeRow + 1) + ":" + innerRow,
+            itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
+            itemTypeNumOfRows + ":2"
+        )
+        return {
+            itemX: x + padding,
+            itemY: y + padding,
+            itemWidth: width - 2 * padding,
+            itemHeight: height - 2 * padding
+        }
+    }
+
     #getGroupPadding(group, zone) {
         const paddingStep = 5
 
@@ -163,7 +214,7 @@ class Dispatcher{
             const itemsTypesFrequencies = this.#getItemsTypesFrequencies(groupModel.getItemsModels())
             groupsLayerBuilder.addElement(
                 new Group(
-                    groupName,
+                    groupModel.getId(),
                     group.width - padding.right - padding.left,
                     group.height - padding.top - padding.bottom,
                     TextUtils.firstCharUpperCase((isTechView ? "" : "Func ") + groupName),
@@ -181,5 +232,60 @@ class Dispatcher{
         .addLayer(groupsLayerBuilder.build())
         .addLayer(this.#buildGridLayer())
         .build()
+    }
+
+    #generateGroupViewMap(groupId, isTechView) {
+        const groupModel = modelRepository.getGroupsModels().find(groupModel => 
+            groupModel.getId() === groupId
+        )
+        const itemTypesLayerBuilder = new LayerBuilder()
+        const itemsLayerBuilder = new LayerBuilder()
+        const groupLayer = new LayerBuilder()
+            .addElement(
+                new TechGroupView(
+                    groupModel.getId(), 
+                    this.#gridWidth, 
+                    this.#gridHeight, 
+                    TextUtils.firstCharUpperCase((isTechView ? "" : "Functional") + groupModel.getTitle())
+                )
+            )
+            .build()
+        
+        const itemModels = groupModel.getItemsModels()
+        Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
+            const {itemTypeX, itemTypeY, itemTypeWidth, itemTypeHeight} = this.#getItemTypePixels(typeIndex)
+             itemTypesLayerBuilder.addElement(
+                new ItemTypeDetail(
+                    this.#types[typePrefix],
+                    itemTypeWidth,
+                    itemTypeHeight,
+                    (TextUtils.firstCharUpperCase(this.#types[typePrefix])) + "s " + style.getIcon(typePrefix)
+                ),
+                itemTypeX,
+                itemTypeY
+            )
+            const typeItemsModels = itemModels.filter((itemModel) => itemModel.getType() === this.#types[typePrefix])
+            typeItemsModels.forEach((itemModel, itemModelIndex) => {
+                const {itemX, itemY, itemWidth, itemHeight } = this.#getItemPixels(itemModelIndex, 4, typeIndex)
+                itemsLayerBuilder.addElement(
+                    new Item(
+                        itemModel.getId(), 
+                        itemWidth, 
+                        itemHeight, 
+                        item.getTitle()
+                    ), 
+                    itemX, 
+                    itemY
+                )
+            })
+        })
+
+        return new MapBuilder()
+            .addLayer(this.#buildBackgroundLayer())
+            .addLayer(groupLayer)
+            .addLayer(itemTypesLayerBuilder.build())
+            .addLayer(itemsLayerBuilder.build())
+            .addLayer(this.#buildGridLayer())
+            .build()
     }
 }
