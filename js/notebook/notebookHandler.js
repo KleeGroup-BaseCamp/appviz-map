@@ -8,13 +8,28 @@ class NotebookHandler {
   #gridColumns
   #gridWidth
   #gridHeight
+  #mapModel
 
   constructor(notebookPath) {
     this.#notebook = loadJSON(notebookPath)
     this.#gridRows = 12
     this.#gridColumns = 12
     this.#gridWidth = canvasWidth
-    this.#gridHeight = canvasHeight
+    this.#gridHeight = canvasHeight 
+  }
+
+
+  static #buildMapModel(notebook, fake){
+    Object.keys(fake.zones).map(zoneName => {
+      const groups = fake[zoneName].groups
+
+    })
+    Object.keys(notebook.sketches).map((sketchName) => {
+      for (const typePrefix in this.#types) {
+        if (sketchName.slice(0, 2).toLowerCase() === typePrefix)
+          this.#extractType(domains, sketchName)
+      }
+    })
   }
 
   #updateGridDimensions(){
