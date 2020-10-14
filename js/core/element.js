@@ -31,18 +31,30 @@ class Element {
     this.#selectable = selectable
   }
 
+  /**
+   * @return {*} id
+   */
   getId(){
     return this.#id
   }
 
+  /**
+   * @return {number} width
+   */
   getWidth(){
     return this.#width
   }
 
+  /**
+   * @return {number} height
+   */
   getHeight(){
     return this.#height
   }
 
+  /**
+   * @return {boolean} if the element is selectable
+   */
   isSelectable(){
     return this.#selectable
   }
@@ -57,15 +69,15 @@ class Element {
 
   /**
    * This method CAN be overridden
+   * 
+   * @param {number} x 
+   * @param {number} y 
+   * @return {boolean} if the element contains the point (x, y)
    */
   contains(x, y) {
     return x > 0
         && x < this.#width
         && y > 0
         && y < this.#height
-  }
-
-  _isHovered(){
-    return state.isHovered(this)
   }
 }
