@@ -2,6 +2,7 @@ class Map {
   #layers
 
   /**
+   * Constructor
    * @param {Layer[]} layers 
    */
   constructor(layers) {
