@@ -24,6 +24,13 @@ class Element {
   #height
   #selectable
  
+  /**
+   * Constructor
+   * @param {*} id 
+   * @param {number} width 
+   * @param {number} height 
+   * @param {boolean} selectable 
+   */
   constructor (id, width, height, selectable){
     this.#id = id
     this.#width = width
