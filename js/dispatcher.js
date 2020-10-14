@@ -154,13 +154,13 @@ class Dispatcher{
             )
         }
         for(const groupName in pixelLayout.groups){
-            const groupModel = modelRepository.getGroups().find(groupModel => 
+            const groupModel = modelRepository.getGroupsModels().find(groupModel => 
                 groupModel.getTitle() === groupName
             )
             const group = pixelLayout.groups[groupName]
             const zone = pixelLayout.zones[groupModel.getType()]
             const padding = this.#getGroupPadding(group, zone)
-            const itemsTypesFrequencies = this.#getItemsTypesFrequencies(groupModel.getItems())
+            const itemsTypesFrequencies = this.#getItemsTypesFrequencies(groupModel.getItemsModels())
             groupsLayerBuilder.addElement(
                 new Group(
                     groupName,

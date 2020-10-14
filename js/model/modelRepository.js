@@ -1,11 +1,11 @@
 class ModelRepository{
-    #groups
+    #groupsModels
 
-    constructor(groups){
-        this.#groups = groups
+    constructor(groupsModels){
+        this.#groupsModels = groupsModels
     }
 
-    getGroups(){
-        return this.#groups
+    getGroupsModels(){
+        return this.#groupsModels
     }
 }

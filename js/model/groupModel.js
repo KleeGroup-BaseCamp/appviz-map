@@ -1,12 +1,12 @@
 class GroupModel extends Model{
-    #items
+    #itemsModels
 
-    constructor(id, title, type, sections, items){
+    constructor(id, title, type, sections, itemsModels){
         super(id, title, type, sections)
-        this.#items = items
+        this.#itemsModels = itemsModels
     }
 
-    getItems(){
-        return this.#items
+    getItemsModels(){
+        return this.#itemsModels
     }
 }

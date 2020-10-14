@@ -24,10 +24,10 @@ class ModelBuilder {
     Object.keys(this.#config).forEach(groupName => {
       groupsModels.push(
         new GroupModel(
-          groupName,
+          groupName, // id will go here later
           groupName,
           this.#config[groupName], // Zone name
-          [],
+          [], // sections will go here later
           itemsModelsPerGroup[groupName] ?? []
         ))
     })
