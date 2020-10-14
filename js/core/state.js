@@ -1,6 +1,31 @@
 class State {
     #hoveredElement
     #selectedElement
+    #dirty
+
+    constructor(){
+        this.#marksAsDirty()
+    }
+
+    /**
+     *  A state is active if 
+     *  - state has changed (dirty)
+     *  - animation is running
+     * 
+     * @return {boolean}
+     */
+    isActive() {
+        const active = this.#dirty || AnimationUtils.isActive()
+        this.#cleanDirty()
+        return active
+    }
+    #cleanDirty(){
+        this.#dirty = false
+    }
+
+    #marksAsDirty(){
+        this.#dirty = true
+    }
 
     /**
      * Marks an element as Hovered
@@ -8,7 +33,10 @@ class State {
      * @param {Element} element 
      */
      hover(element) {
-        this.#hoveredElement = element
+        if (this.#hoveredElement !== element){
+            this.#hoveredElement = element
+            this.#marksAsDirty()
+        }
     }
 
     /**
@@ -27,7 +55,10 @@ class State {
      * @param {Element} element 
      */
     select(element) {
-        this.#selectedElement = element
+        if (this.#selectedElement !== element){
+            this.#selectedElement = element
+            this.#marksAsDirty()
+        }    
     }
 
     /**

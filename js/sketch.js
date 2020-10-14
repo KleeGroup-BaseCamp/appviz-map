@@ -31,11 +31,14 @@ function setup() {
 
 function draw() {
   const element = vizMap.findElement(mouseX, mouseY)
+  
   state.hover(element)
   cursor(element != null ? "pointer" : "default")
-  vizMap.render()
-}
 
+  if (state.isActive()){
+    vizMap.render()
+  }
+}
 function mouseClicked() {
   const element = vizMap.findElement(mouseX, mouseY)
   state.select(element);
