@@ -3,6 +3,14 @@ class Grid extends Element {
   #rows
   #alpha
 
+  /**
+   * Constructor
+   * @param {*} id 
+   * @param {number} width 
+   * @param {number} height 
+   * @param {number} columns 
+   * @param {number} rows 
+   */
   constructor(id, width, height, columns, rows) {
     super(id, width, height, false)
     this.#columns = columns
