@@ -8,8 +8,8 @@ class Projection {
      * @constructor
      * @param {number} gridWidth 
      * @param {number} gridHeight 
-     * @param {number} gridColumns 
-     * @param {number} gridRows 
+     * @param {number} [gridColumns=12]
+     * @param {number} [gridRows=12] 
      */
     constructor(gridWidth, gridHeight, gridColumns = 12, gridRows = 12){
         this.#gridWidth = gridWidth
