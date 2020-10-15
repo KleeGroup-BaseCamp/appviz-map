@@ -2,7 +2,6 @@ let vizMap
 let modelRepositoryBuilder
 let modelRepository
 let dispatcher
-let fake
 let canvasHeight
 let canvasWidth
 let view = "home"
@@ -16,7 +15,6 @@ function preload() {
   canvasWidth = windowWidth * 0.75
   modelRepositoryBuilder = new ModelRepositoryBuilder("./notebook.json", "./config.json")
   dispatcher = new Dispatcher("./layout.json")
-  fake = loadJSON("./fake.json")
   style.load()
 }
 
@@ -78,7 +76,7 @@ function windowResized() {
   canvasWidth = windowWidth * 0.75
   resizeCanvas(canvasWidth, canvasHeight)
 }
-
+// Temp
 function switchZoneGroup(title){
   if (title == "zone"){
     view = view.slice(0,4) + "Zone" // Depends on "tech".length == "func".length
@@ -88,7 +86,7 @@ function switchZoneGroup(title){
   }
 }
 
-
+// Temp
 ["home", "tech", "func", "demo"].forEach((viewName)=>{
   document.getElementById(viewName).addEventListener("click", ()=>{
     view = viewName + (viewName == "tech" || viewName == "func" ? "Zone" : "")

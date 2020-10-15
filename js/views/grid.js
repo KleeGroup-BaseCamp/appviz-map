@@ -15,7 +15,7 @@ class Grid extends Element {
     super(id, width, height, false)
     this.#columns = columns
     this.#rows = rows
-    AnimationUtils.animate(255, 0, 1000, a => this.#alpha = a)
+    AnimationUtils.animate(150, 0, 300, a => this.#alpha = a)
   }
 
   /**

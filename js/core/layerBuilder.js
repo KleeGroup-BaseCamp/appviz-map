@@ -5,8 +5,8 @@ class LayerBuilder {
    * Adds an element 
    * 
    * @param {Element} element 
-   * @param {?number} x default 0 
-   * @param {?number} y default 0 
+   * @param {?number} [x=0]
+   * @param {?number} [y=0] 
    */
   addElement(element, x = 0, y = 0) {
     this.#positionedElements.push({ element, position: { x, y } })

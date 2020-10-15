@@ -69,7 +69,7 @@ class Style {
         this.color.d  = color("#7881A9") /* grey */
 
         /* back to front colors */
-        this.color.back   = color("#2F3243")  /* deep dark */
+        this.color.back   = color("#2a2c3b")  /* deep dark */
         this.color.middle  = color("#3A3E52")  /* dark */
         this.color.front   = color("#505464")  /* light dark */
 
