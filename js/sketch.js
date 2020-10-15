@@ -1,6 +1,6 @@
 let vizMap
 let notebookHandler
-let modelBuilder
+let modelRepositoryBuilder
 let modelRepository
 let dispatcher
 let fake
@@ -16,7 +16,7 @@ function preload() {
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
   notebookHandler = new NotebookHandler("./notebook.json")
-  modelBuilder = new ModelBuilder("./notebook.json", "./config.json")
+  modelRepositoryBuilder = new ModelRepositoryBuilder("./notebook.json", "./config.json")
   dispatcher = new Dispatcher("./layout.json")
   fake = loadJSON("./fake.json")
   style.load()
@@ -27,7 +27,7 @@ function setup() {
   myCanvas.parent('myContainer')
   angleMode(DEGREES)
   vizMap = notebookHandler.handle(fake)
-  modelRepository = modelBuilder.buildModelRepository() 
+  modelRepository = modelRepositoryBuilder.build() 
 }
 
 function draw() {

@@ -1,5 +1,5 @@
 class GroupModel extends Model{
-    #itemsModels
+    #itemModels
 
     constructor(id, title, type, sections, itemModels){
         super(id, title, type, sections)
