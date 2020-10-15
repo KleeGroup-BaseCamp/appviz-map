@@ -22,4 +22,8 @@ class Model{
     getType(){
         return this.#type
     }
+
+    getSections(){
+        return this.#sections
+    }
 }
