@@ -143,6 +143,10 @@ class NotebookHandler {
       .build()
   }
 
+  // #generateZoneViewMap(domains, fake, isTechView) {
+  //   dispatcher.generateZoneViewMap(isTechView)
+  // }
+
   #buildColor(zone){
     switch (zone) {
       case "pilotage":

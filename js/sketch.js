@@ -7,7 +7,7 @@ let fake
 let canvasHeight
 let canvasWidth
 let view = "home"
-let groupId = ""
+let groupId = null
 const style = new Style()
 const detail = new Detail()
 const state = new State()

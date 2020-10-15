@@ -8,4 +8,8 @@ class ModelRepository{
     getGroupModels(){
         return this.#groupModels
     }
+
+    // getGroupTypes() -> string[]
+
+    // getGroupModelsByType(type: string) -> groupModel[]
 }

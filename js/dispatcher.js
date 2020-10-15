@@ -185,7 +185,7 @@ class Dispatcher{
             .build()
     }
 
-    #generateZoneViewMap(isTechView) {
+    generateZoneViewMap(isTechView) {
         const pixelLayout = this.#getPixelLayout()
         const zonesLayerBuilder = new LayerBuilder()
         const groupsLayerBuilder = new LayerBuilder()
@@ -234,7 +234,7 @@ class Dispatcher{
         .build()
     }
 
-    #generateGroupViewMap(groupId, isTechView) {
+    generateGroupViewMap(groupId, isTechView) {
         const groupModel = modelRepository.getGroupsModels().find(groupModel => 
             groupModel.getId() === groupId
         )
