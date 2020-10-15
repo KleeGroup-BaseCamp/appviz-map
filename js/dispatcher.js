@@ -56,21 +56,21 @@ class Dispatcher{
         const pixelLayout = {zones: {}, groups: {}}
 
         for(const zoneName in this.#layout.zones){
-            const zone = this.#layout.zones[zoneName]
+            const zoneLayout = this.#layout.zones[zoneName]
             pixelLayout.zones[zoneName] = this.#getPixels(
-                zone.column,
-                zone.row,
-                zone.numOfColumns,
-                zone.numOfRows
+                zoneLayout.column,
+                zoneLayout.row,
+                zoneLayout.numOfColumns,
+                zoneLayout.numOfRows
             )
         }
         for (const groupName in this.#layout.groups){
-            const group = this.#layout.groups[groupName]
+            const groupLayout = this.#layout.groups[groupName]
             pixelLayout.groups[groupName] = this.#getPixels(
-                group.column,
-                group.row,
-                group.numOfColumns,
-                group.numOfRows
+                groupLayout.column,
+                groupLayout.row,
+                groupLayout.numOfColumns,
+                groupLayout.numOfRows
             )
         }
         return pixelLayout
@@ -146,18 +146,18 @@ class Dispatcher{
         return { left, top, right, bottom }
     }
 
-    #getItemsTypesFrequencies(itemsModels){
-        const itemsTypesFrequencies = {}
+    #getItemTypeFrequencies(itemsModels){
+        const itemTypeFrequencies = {}
         for (const typePrefix in this.#types){
-            itemsTypesFrequencies[this.#types[typePrefix]] = 0
+            itemTypeFrequencies[this.#types[typePrefix]] = 0
         }
         for(const itemModel of itemsModels){
             const itemModelType = itemModel.getType()
-            if(Object.keys(itemsTypesFrequencies).includes(itemModelType)){
-                itemsTypesFrequencies[itemModelType]++
+            if(Object.keys(itemTypeFrequencies).includes(itemModelType)){
+                itemTypeFrequencies[itemModelType]++
             }
         }
-        return itemsTypesFrequencies
+        return itemTypeFrequencies
     }
 
     #getZoneColor(zone){
@@ -191,38 +191,38 @@ class Dispatcher{
         const groupsLayerBuilder = new LayerBuilder()
 
         for(const zoneName in pixelLayout.zones){
-            const zone = pixelLayout.zones[zoneName]
+            const zonePixelLayout = pixelLayout.zones[zoneName]
             zonesLayerBuilder.addElement(
                 new TechZoneView(
                     zoneName,
-                    zone.width,
-                    zone.height,
+                    zonePixelLayout.width,
+                    zonePixelLayout.height,
                     TextUtils.firstCharUpperCase((isTechView ? "" : "Func ") + zoneName),
                     this.#getZoneColor(zoneName)
                 ),
-                zone.x,
-                zone.y
+                zonePixelLayout.x,
+                zonePixelLayout.y
             )
         }
         for(const groupName in pixelLayout.groups){
             const groupModel = modelRepository.getGroupsModels().find(groupModel => 
                 groupModel.getTitle() === groupName
             )
-            const group = pixelLayout.groups[groupName]
-            const zone = pixelLayout.zones[groupModel.getType()]
-            const padding = this.#getGroupPadding(group, zone)
-            const itemsTypesFrequencies = this.#getItemsTypesFrequencies(groupModel.getItemsModels())
+            const groupPixelLayout = pixelLayout.groups[groupName]
+            const zonePixelLayout = pixelLayout.zones[groupModel.getType()]
+            const padding = this.#getGroupPadding(groupPixelLayout, zonePixelLayout)
+            const itemTypeFrequencies = this.#getItemTypeFrequencies(groupModel.getItemsModels())
             groupsLayerBuilder.addElement(
                 new Group(
                     groupModel.getId(),
-                    group.width - padding.right - padding.left,
-                    group.height - padding.top - padding.bottom,
+                    groupPixelLayout.width - padding.right - padding.left,
+                    groupPixelLayout.height - padding.top - padding.bottom,
                     TextUtils.firstCharUpperCase((isTechView ? "" : "Func ") + groupName),
-                    itemsTypesFrequencies,
+                    itemTypeFrequencies,
                     this.#getZoneColor(groupModel.getType())
                 ),
-                group.x + padding.left,
-                group.y + padding.top
+                groupPixelLayout.x + padding.left,
+                groupPixelLayout.y + padding.top
             )
         }
 

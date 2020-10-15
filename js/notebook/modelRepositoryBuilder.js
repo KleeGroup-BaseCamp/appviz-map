@@ -12,30 +12,30 @@ class ModelRepositoryBuilder {
   }
 
   build() {
-    const itemsModelsPerGroup = {}
+    const itemModelsPerGroup = {}
     Object.keys(this.#notebook.sketches).forEach((itemName) => {
       const itemNamePrefix = itemName.slice(0, 2).toLowerCase()
         if (Object.keys(this.#types).includes(itemNamePrefix)){
-          this.#addItem(itemsModelsPerGroup, itemName)
+          this.#addItem(itemModelsPerGroup, itemName)
         }
     })
 
-    const groupsModels = []
+    const groupModels = []
     Object.keys(this.#config).forEach(groupName => {
-      groupsModels.push(
+      groupModels.push(
         new GroupModel(
           groupName, // id will go here later
           groupName,
           this.#config[groupName], // Zone name
           [], // sections will go here later
-          itemsModelsPerGroup[groupName] ?? []
+          itemModelsPerGroup[groupName] ?? []
         ))
     })
 
-    return new ModelRepository(groupsModels)
+    return new ModelRepository(groupModels)
   }
 
-  #addItem(itemsModelsPerGroup, itemName){
+  #addItem(itemModelsPerGroup, itemName){
     const groupName = this.#notebook.sketches[itemName].packageName.split(".")[2]
     const itemModel = new ItemModel(
           itemName, // id will go here later
@@ -43,10 +43,10 @@ class ModelRepositoryBuilder {
           this.#types[itemName.slice(0, 2).toLowerCase()], 
           [] // sections will go here later
         )
-    if (Object.keys(itemsModelsPerGroup).includes(groupName)){
-      itemsModelsPerGroup[groupName].push(itemModel)
+    if (Object.keys(itemModelsPerGroup).includes(groupName)){
+      itemModelsPerGroup[groupName].push(itemModel)
     } else {
-      itemsModelsPerGroup[groupName] = [itemModel]
+      itemModelsPerGroup[groupName] = [itemModel]
     }
   }
 }
