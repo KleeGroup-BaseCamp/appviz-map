@@ -45,8 +45,8 @@ class Style {
     }
 
     #icons = {
-        dt: "\ue0ee", // \uf15b
-        tk: "\ue566",
+        data: "\ue0ee", // \uf15b
+        task: "\ue566",
     }
 
     constructor() {

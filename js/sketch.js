@@ -1,5 +1,4 @@
 let vizMap
-let notebookHandler
 let modelRepositoryBuilder
 let modelRepository
 let dispatcher
@@ -15,7 +14,6 @@ const state = new State()
 function preload() {
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
-  notebookHandler = new NotebookHandler("./notebook.json")
   modelRepositoryBuilder = new ModelRepositoryBuilder("./notebook.json", "./config.json")
   dispatcher = new Dispatcher("./layout.json")
   fake = loadJSON("./fake.json")
@@ -26,8 +24,8 @@ function setup() {
   let myCanvas = createCanvas(canvasWidth, canvasHeight)
   myCanvas.parent('myContainer')
   angleMode(DEGREES)
-  vizMap = notebookHandler.handle(fake)
   modelRepository = modelRepositoryBuilder.build() 
+  vizMap = generateMap(view)
 }
 
 function draw() {
@@ -56,7 +54,23 @@ function onClick(element) {
   if (element instanceof Group || element instanceof Item) {
     detail.update(element.getId())
   }
-  vizMap = notebookHandler.handle(fake) 
+  vizMap = generateMap(view)
+}
+
+function generateMap(view){
+  if (view == "techZone") {
+    return dispatcher.generateZoneViewMap(true)
+  } else if (view == "techGroup"){
+    return dispatcher.generateGroupViewMap(groupId, true)
+  } else if (view == "funcZone"){
+    return dispatcher.generateZoneViewMap(false)
+  } else if (view == "funcGroup"){
+    return dispatcher.generateGroupViewMap(groupId, false)
+  } else if(view == "demo"){
+      return dispatcher.generateDemoViewMap()
+  } else {
+    return dispatcher.generateHomeViewMap()
+  }
 }
 
 function windowResized() {
@@ -64,10 +78,6 @@ function windowResized() {
   canvasWidth = windowWidth * 0.75
   resizeCanvas(canvasWidth, canvasHeight)
 }
-
-// function switchViews(title){
-//   view = title.toLowerCase()
-// }
 
 function switchZoneGroup(title){
   if (title == "zone"){
@@ -78,9 +88,9 @@ function switchZoneGroup(title){
   }
 }
 
+
 ["home", "tech", "func", "demo"].forEach((viewName)=>{
   document.getElementById(viewName).addEventListener("click", ()=>{
     view = viewName + (viewName == "tech" || viewName == "func" ? "Zone" : "")
   });
-
 })

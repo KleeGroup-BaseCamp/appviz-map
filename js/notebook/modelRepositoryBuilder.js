@@ -21,7 +21,7 @@ class ModelRepositoryBuilder {
     })
 
     const groupModels = []
-    Object.keys(this.#config).forEach(groupName => {
+    Object.keys(this.#config).forEach(groupName => { // > groupId
       groupModels.push(
         new GroupModel(
           groupName, // id will go here later

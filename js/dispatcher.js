@@ -81,7 +81,7 @@ class Dispatcher{
             row : 2 + typeIndex * 5,
             column : 1,
             numOfRows : 4,
-            numOfColumns : this.#gridColumns - column * 2
+            numOfColumns : this.#gridColumns - 2
         }
     }
 
@@ -205,13 +205,13 @@ class Dispatcher{
             )
         }
         for(const groupName in pixelLayout.groups){
-            const groupModel = modelRepository.getGroupsModels().find(groupModel => 
+            const groupModel = modelRepository.getGroupModels().find(groupModel => 
                 groupModel.getTitle() === groupName
             )
             const groupPixelLayout = pixelLayout.groups[groupName]
             const zonePixelLayout = pixelLayout.zones[groupModel.getType()]
             const padding = this.#getGroupPadding(groupPixelLayout, zonePixelLayout)
-            const itemTypeFrequencies = this.#getItemTypeFrequencies(groupModel.getItemsModels())
+            const itemTypeFrequencies = this.#getItemTypeFrequencies(groupModel.getItemModels())
             groupsLayerBuilder.addElement(
                 new Group(
                     groupModel.getId(),
@@ -235,7 +235,7 @@ class Dispatcher{
     }
 
     generateGroupViewMap(groupId, isTechView) {
-        const groupModel = modelRepository.getGroupsModels().find(groupModel => 
+        const groupModel = modelRepository.getGroupModels().find(groupModel => 
             groupModel.getId() === groupId
         )
         const itemTypesLayerBuilder = new LayerBuilder()
@@ -251,7 +251,7 @@ class Dispatcher{
             )
             .build()
         
-        const itemModels = groupModel.getItemsModels()
+        const itemModels = groupModel.getItemModels()
         Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
             const {itemTypeX, itemTypeY, itemTypeWidth, itemTypeHeight} = this.#getItemTypePixels(typeIndex)
              itemTypesLayerBuilder.addElement(
@@ -272,7 +272,7 @@ class Dispatcher{
                         itemModel.getId(), 
                         itemWidth, 
                         itemHeight, 
-                        item.getTitle()
+                        itemModel.getTitle()
                     ), 
                     itemX, 
                     itemY
@@ -288,4 +288,24 @@ class Dispatcher{
             .addLayer(this.#buildGridLayer())
             .build()
     }
+
+    #generateHeaderMap(title){
+        const headerLayer = new LayerBuilder()
+            .addElement(new TechGroupView(title, this.#gridWidth, this.#gridHeight, title))
+            .build()
+            
+        return new MapBuilder()
+            .addLayer(this.#buildBackgroundLayer())
+            .addLayer(headerLayer)
+            .build()
+    }
+
+    generateHomeViewMap(){
+        return this.#generateHeaderMap("Home View")
+    }
+
+    generateDemoViewMap(){
+        return this.#generateHeaderMap("Demo View")
+    }
+
 }

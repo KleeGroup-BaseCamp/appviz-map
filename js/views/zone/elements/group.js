@@ -14,7 +14,9 @@ class Group extends Element {
 
         this.#progressBars = []
         const secondaryStroke = style.text.color.primary
-        this.#items.forEach(item => this.#progressBars.push(new ProgressBar(item.frequency, this.#maxValue, this.getWidth() - 90, secondaryStroke)))
+        Object.keys(this.#items).forEach(item => {
+            this.#progressBars.push(new ProgressBar(this.#items[item], this.#maxValue, this.getWidth() - 90, secondaryStroke))
+        })
     }
 
     /**
@@ -52,13 +54,13 @@ class Group extends Element {
     #renderItems() {
         const top = textAscent() + 35
         let positions = []
-        for (let i = 0; i < this.#items.length; i++) {
-            positions.push(top + (this.getHeight() - top) / (this.#items.length + 1) * (i + 1))
+        for (let i = 0; i < Object.keys(this.#items).length; i++) {
+            positions.push(top + (this.getHeight() - top) / (Object.keys(this.#items).length + 1) * (i + 1))
         }
-        this.#items.forEach((item, index) => {
+        Object.keys(this.#items).forEach((itemPrefix, index) => {
             push()
             translate(25, positions[index] + 8)
-            new VText(style.getIcon(item.prefix), style.icon.font, style.icon.size.xl).render()
+            new VText(style.getIcon(itemPrefix), style.icon.font, style.icon.size.xl).render()
             translate(35, -8)
             this.#progressBars[index].render()
             pop()
