@@ -8,17 +8,17 @@ canvas {
 }
 
 #nav{
-  background-color: #3A3E52;
+  background-color: #2F3243;
   color:#ffffff;
 } 
 
 .menu-item{
+  color: #7981a6;
   padding: 20px;
 }
 
 .menu-item:hover{
-  background-color:#ffffff;
-  color:#3A3E52;
+  color:#ffffff;
   cursor: pointer;
 }
 

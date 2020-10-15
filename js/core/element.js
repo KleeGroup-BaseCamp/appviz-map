@@ -25,7 +25,8 @@ class Element {
   #selectable
  
   /**
-   * Constructor
+   * @constructor
+   * 
    * @param {*} id 
    * @param {number} width 
    * @param {number} height 
@@ -39,28 +40,28 @@ class Element {
   }
 
   /**
-   * @return {*} id
+   * @returns {*} id
    */
   getId(){
     return this.#id
   }
 
   /**
-   * @return {number} width
+   * @returns {number} width
    */
   getWidth(){
     return this.#width
   }
 
   /**
-   * @return {number} height
+   * @returns {number} height
    */
   getHeight(){
     return this.#height
   }
 
   /**
-   * @return {boolean} if the element is selectable
+   * @returns {boolean} if the element is selectable
    */
   isSelectable(){
     return this.#selectable
@@ -79,7 +80,7 @@ class Element {
    * 
    * @param {number} x 
    * @param {number} y 
-   * @return {boolean} if the element contains the point (x, y)
+   * @returns {boolean} if the element contains the point (x, y)
    */
   contains(x, y) {
     return x > 0

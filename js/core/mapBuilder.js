@@ -14,7 +14,7 @@ class MapBuilder {
   /**
    * Builds an immutable Map
    * 
-   * @return {Map} map
+   * @returns {Map} map
    */
   build() {
     return new Map(this.#layers)

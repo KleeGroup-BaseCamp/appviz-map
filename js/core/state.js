@@ -12,7 +12,7 @@ class State {
      *  - state has changed (dirty)
      *  - animation is running
      * 
-     * @return {boolean}
+     * @returns {boolean}
      */
     isActive() {
         const active = this.#dirty || AnimationUtils.isActive()
@@ -43,7 +43,7 @@ class State {
      * Is the provided element in Hovered state
      * 
      * @param {Element} element 
-     * @return {boolean}
+     * @returns {boolean}
      */
     isHovered(element){
         return element === this.#hoveredElement
@@ -65,7 +65,7 @@ class State {
      * Is the provided element currently selected
      * 
      * @param {Element} element 
-     * @return {boolean}
+     * @returns {boolean}
      */
     isSelected(element){
         return element === this.#selectedElement

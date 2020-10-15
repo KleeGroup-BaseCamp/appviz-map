@@ -24,35 +24,35 @@ class ItemModel{
     }
 
     /**
-     * @return {*} id
+     * @returns {*} id
      */
     getId(){
         return this.#id
     }
 
     /**
-     * @return {string} title
+     * @returns {string} title
      */
     getTitle(){
         return this.#title
     }
 
     /**
-     * @return {string} type
+     * @returns {string} type
      */
     getType(){
         return this.#type
     }
 
     /**
-     * @return {string} subType
+     * @returns {string} subType
      */
     getSubType(){
         return this.#subType
     }
 
     /**
-     * @return {Section[]} sections
+     * @returns {Section[]} sections
      */
     getSections(){
         return this.#sections

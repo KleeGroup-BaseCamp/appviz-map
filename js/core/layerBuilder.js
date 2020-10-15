@@ -16,7 +16,7 @@ class LayerBuilder {
   /**
    * Builds an immutable Layer
    * 
-   * @return {Layer} layer
+   * @returns {Layer} layer
    */
   build() {
     return new Layer(this.#positionedElements)
