@@ -1,16 +1,10 @@
 class section{
-    #id
     #title
     #data
 
-    constructor(id, title, data){
-        this.#id = id
+    constructor(title, data){
         this.#title = title
         this.#data = data
-    }
-
-    getId(){
-        return this.#id
     }
 
     getTitle(){
