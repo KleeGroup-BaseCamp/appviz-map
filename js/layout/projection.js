@@ -19,55 +19,55 @@ class Projection {
     }
 
     /**
-     * @param {GridPos} gridPos
-     * @returns {PxPos}
+     * @param {string} column
+     * @param {string} row
+     * @returns {PxPosition}
      */
-    getPxPos(gridPos){
+    getPxPosition(column, row){
         let x = 0
         let y = 0
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
-        const columns = gridPos.getColumn().split(":")
-        const rows = gridPos.getRow().split(":")
+        const columns = column.split(":")
+        const rows = row.split(":")
         for(let i = 0; i < columns.length; i++){ // columns.length == rows.length
             x += parseInt(columns[i]) * (this.#gridWidth / gridColumns)
             y += parseInt(rows[i]) * (this.#gridHeight / gridRows)
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
-        return PxPos(x, y)
+        return new PxPosition(x, y)
     } 
 
     /**
-     * @param {GridSize} gridSize
+     * @param {string} numOfColumns
+     * @param {string} numOfRows
      * @returns {PxSize}
      */
-    getPxSize(gridSize){
+    getPxSize(numOfColumns, numOfRows){
         let width = 0
         let height = 0
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
-        const numsOfColumns = gridSize.getNumOfColumns().split(":")
-        const numsOfRows = gridSize.getNumOfRows().split(":")
+        const numsOfColumns = numOfColumns.split(":")
+        const numsOfRows = numOfRows.split(":")
         for(let i = 0; i < numsOfColumns.length; i++){ // numsOfColumns.length == numsOfRows.length
             width += parseInt(numsOfColumns[i]) * (this.#gridWidth / gridColumns)
             height += parseInt(numsOfRows[i]) * (this.#gridHeight / gridRows)
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
-        return PxSize(width, height)
+        return new PxSize(width, height)
     }
 
     /**
      * @param {PxPos} pxPos
      * @param {number} level
-     * @returns {GridPos}
+     * @returns {GridPosition}
      */
-    getGridPos(pxPos, level){
+    getGridPosition(x, y, level){
         let columns = []
         let rows = []
-        let x = pxPos.getX()
-        let y = pxPos.getY()
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
         for(let i = 0; i < level; i++){
@@ -80,19 +80,18 @@ class Projection {
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
-        return GridPos(columns.join(":"), rows.join(":"))
+        return new GridPosition(columns.join(":"), rows.join(":"))
     }
 
     /**
-     * @param {PxSize} pxSize 
+     * @param {number} width 
+     * @param {number} height 
      * @param {number} level
      * @returns {GridSize}
      */
-    getGridSize(pxSize, level){
+    getGridSize(width, height, level){
         let numsOfColumns = []
         let numsOfRows = []
-        let width = pxSize.getWidth()
-        let height = pxSize.getHeight()
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
         for(let i = 0; i < level; i++){ // columns.length == rows.length
@@ -105,6 +104,6 @@ class Projection {
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
-        return GridSize(numsOfColumns.join(":"), numsOfRows.join(":"))
+        return new GridSize(numsOfColumns.join(":"), numsOfRows.join(":"))
     }
 }

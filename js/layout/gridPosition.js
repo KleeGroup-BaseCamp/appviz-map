@@ -1,4 +1,4 @@
-class GridPos{
+class GridPosition{
     #column
     #row
 
