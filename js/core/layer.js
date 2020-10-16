@@ -14,7 +14,7 @@ class Layer {
   render() {
     for (let positionedElement of this.#positionedElements) {
       push()
-      translate(positionedElement.position.x, positionedElement.position.y)
+      translate(positionedElement.pxPosition.getX(), positionedElement.pxPosition.getY())
       positionedElement.element.render()
       pop()
     }
@@ -29,8 +29,8 @@ class Layer {
    */
   findElement(x, y) {
     for (let positionedElement of this.#positionedElements) {
-      const lx = x - positionedElement.position.x
-      const ly = y - positionedElement.position.y
+      const lx = x - positionedElement.pxPosition.getX()
+      const ly = y - positionedElement.pxPosition.getY()
       if (positionedElement.element.isSelectable() && positionedElement.element.contains(lx, ly))
         return positionedElement.element
     }

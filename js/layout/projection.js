@@ -107,4 +107,20 @@ class Projection {
         }
         return new GridSize(numsOfColumns.join(":"), numsOfRows.join(":"))
     }
+
+    getGridWidth(){
+        return this.#gridWidth
+    }
+
+    getGridHeight(){
+        return this.#gridHeight
+    }
+
+    getGridColumns(){
+        return this.#gridColumns
+    }
+
+    getGridRows(){
+        return this.#gridRows
+    }
 }

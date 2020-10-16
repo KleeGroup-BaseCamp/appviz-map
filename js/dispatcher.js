@@ -4,128 +4,122 @@ class Dispatcher{
         tk: "task"
     }
     #layout
-    #gridRows
-    #gridColumns
-    #gridWidth
-    #gridHeight
+    #projection
 
     constructor(layoutPath) {
         this.#layout = loadJSON(layoutPath)
-        this.#gridRows = 12
-        this.#gridColumns = 12
-        this.#gridWidth = canvasWidth
-        this.#gridHeight = canvasHeight 
+        this.#projection = new Projection(canvasWidth, canvasHeight)
     }
 
-    #updateGridDimensions(){
-        this.#gridWidth = canvasWidth
-        this.#gridHeight = canvasHeight
-    }
+    // #updateGridDimensions(){
+    //     this.#gridWidth = canvasWidth
+    //     this.#gridHeight = canvasHeight
+    // }
 
-    #getPixels(columnCode, rowCode, numOfColumnsCode, numOfRowsCode) {
-        let gridHeight = this.#gridHeight
-        let gridWidth = this.#gridWidth
-        let x = 0
-        let y = 0
-        const rows = rowCode.split(":")
-        const columns = columnCode.split(":")
-        const numsOfColumns = numOfColumnsCode.split(":")
-        const numsOfRows = numOfRowsCode.split(":")
-        const depth = rows.length // rows.length == columns.length == numOfColumns.length == numOfRows.length
-        for (let i = 0; i < depth; i++) {
-            const row = parseInt(rows[i])
-            const column = parseInt(columns[i])
-            const numOfColumns = parseInt(numsOfColumns[i])
-            const numOfRows = parseInt(numsOfRows[i])
-            x += (column * gridWidth) / this.#gridColumns
-            y += (row * gridHeight) / this.#gridRows
-            gridWidth = (numOfColumns * gridWidth) / this.#gridColumns
-            gridHeight = (numOfRows * gridHeight) / this.#gridRows
-        }
-        const width = gridWidth
-        const height = gridHeight
-        return {
-        x,
-        y,
-        width,
-        height
-        }
-    }
+    // #getPixels(columnCode, rowCode, numOfColumnsCode, numOfRowsCode) {
+    //     let gridHeight = this.#gridHeight
+    //     let gridWidth = this.#gridWidth
+    //     let x = 0
+    //     let y = 0
+    //     const rows = rowCode.split(":")
+    //     const columns = columnCode.split(":")
+    //     const numsOfColumns = numOfColumnsCode.split(":")
+    //     const numsOfRows = numOfRowsCode.split(":")
+    //     const depth = rows.length // rows.length == columns.length == numOfColumns.length == numOfRows.length
+    //     for (let i = 0; i < depth; i++) {
+    //         const row = parseInt(rows[i])
+    //         const column = parseInt(columns[i])
+    //         const numOfColumns = parseInt(numsOfColumns[i])
+    //         const numOfRows = parseInt(numsOfRows[i])
+    //         x += (column * gridWidth) / this.#gridColumns
+    //         y += (row * gridHeight) / this.#gridRows
+    //         gridWidth = (numOfColumns * gridWidth) / this.#gridColumns
+    //         gridHeight = (numOfRows * gridHeight) / this.#gridRows
+    //     }
+    //     const width = gridWidth
+    //     const height = gridHeight
+    //     return {
+    //     x,
+    //     y,
+    //     width,
+    //     height
+    //     }
+    // }
 
-    #getPixelLayout(){
-        const pixelLayout = {zones: {}, groups: {}}
+    // #getPixelLayout(){
+    //     const pixelLayout = {zones: {}, groups: {}}
 
-        for(const zoneName in this.#layout.zones){
-            const zoneLayout = this.#layout.zones[zoneName]
-            pixelLayout.zones[zoneName] = this.#getPixels(
-                zoneLayout.column,
-                zoneLayout.row,
-                zoneLayout.numOfColumns,
-                zoneLayout.numOfRows
-            )
-        }
-        for (const groupName in this.#layout.groups){
-            const groupLayout = this.#layout.groups[groupName]
-            pixelLayout.groups[groupName] = this.#getPixels(
-                groupLayout.column,
-                groupLayout.row,
-                groupLayout.numOfColumns,
-                groupLayout.numOfRows
-            )
-        }
-        return pixelLayout
-    }
+    //     for(const zoneName in this.#layout.zones){
+    //         const zoneLayout = this.#layout.zones[zoneName]
+    //         pixelLayout.zones[zoneName] = this.#getPixels(
+    //             zoneLayout.column,
+    //             zoneLayout.row,
+    //             zoneLayout.numOfColumns,
+    //             zoneLayout.numOfRows
+    //         )
+    //     }
+    //     for (const groupName in this.#layout.groups){
+    //         const groupLayout = this.#layout.groups[groupName]
+    //         pixelLayout.groups[groupName] = this.#getPixels(
+    //             groupLayout.column,
+    //             groupLayout.row,
+    //             groupLayout.numOfColumns,
+    //             groupLayout.numOfRows
+    //         )
+    //     }
+    //     return pixelLayout
+    // }
 
     #getItemTypeLayout(typeIndex){
         return {
             row : 2 + typeIndex * 5,
             column : 1,
             numOfRows : 4,
-            numOfColumns : this.#gridColumns - 2
+            numOfColumns : this.#projection.getGridColumns() - 2
         }
     }
 
-    #getItemTypePixels(typeIndex){
-        const {row, column, numOfRows, numOfColumns} = this.#getItemTypeLayout(typeIndex)
-        const {x, y, width, height} = this.#getPixels(
-            column.toString(),
-            row.toString(),
-            numOfColumns.toString(),
-            numOfRows.toString()
-        )
-        return {
-            itemTypeX: x,
-            itemTypeY: y,
-            itemTypeWidth: width,
-            itemTypeHeight: height
-        }
-    }
+    // #getItemTypePixels(typeIndex){
+    //     const {row, column, numOfRows, numOfColumns} = this.#getItemTypeLayout(typeIndex)
+    //     const {x, y, width, height} = this.#getPixels(
+    //         column.toString(),
+    //         row.toString(),
+    //         numOfColumns.toString(),
+    //         numOfRows.toString()
+    //     )
+    //     return {
+    //         itemTypeX: x,
+    //         itemTypeY: y,
+    //         itemTypeWidth: width,
+    //         itemTypeHeight: height
+    //     }
+    // }
 
-    #getItemPixels(itemIndex, itemsPerRow, typeIndex) {
-        const {
-            row: itemTypeRow, 
-            column: itemTypeColumn, 
-            numOfRows: itemTypeNumOfRows, 
-            numOfColumns: itemTypeNumOfColumns
-        } = this.#getItemTypeLayout(typeIndex)
+    // #getItemPixels(itemIndex, itemsPerRow, typeIndex) {
+    //     const {
+    //         row: itemTypeRow, 
+    //         column: itemTypeColumn, 
+    //         numOfRows: itemTypeNumOfRows, 
+    //         numOfColumns: itemTypeNumOfColumns
+    //     } = this.#getItemTypeLayout(typeIndex)
         
-        const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
-        const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
-        const padding = 5
+    //     const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
+    //     const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
+    //     const padding = 5
 
-        const {x, y, width, height} = this.#getPixels(
-            itemTypeColumn + ":" + innerColumn,
-            (itemTypeRow + 1) + ":" + innerRow,
-            itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
-            itemTypeNumOfRows + ":2"
-        )
-        return {
-            itemX: x + padding,
-            itemY: y + padding,
-            itemWidth: width - 2 * padding,
-            itemHeight: height - 2 * padding
-        }
-    }
+    //     const {x, y, width, height} = this.#getPixels(
+    //         itemTypeColumn + ":" + innerColumn,
+    //         (itemTypeRow + 1) + ":" + innerRow,
+    //         itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
+    //         itemTypeNumOfRows + ":2"
+    //     )
+    //     return {
+    //         itemX: x + padding,
+    //         itemY: y + padding,
+    //         itemWidth: width - 2 * padding,
+    //         itemHeight: height - 2 * padding
+    //     }
+    // }
 
     #getGroupPadding(group, zone) {
         const paddingStep = 5
@@ -181,48 +175,53 @@ class Dispatcher{
 
     #buildGridLayer() {
         return new LayerBuilder()
-            .addElement(new Grid(0, this.#gridWidth, this.#gridHeight, this.#gridRows, this.#gridColumns))
+            .addElement(new Grid(
+                0, 
+                this.#projection.getGridWidth(), 
+                this.#projection.getGridHeight(), 
+                this.#projection.getGridRows(), 
+                this.#projection.getGridColumns()))
             .build()
     }
 
     generateZoneViewMap(isTechView) {
-        const pixelLayout = this.#getPixelLayout()
         const zonesLayerBuilder = new LayerBuilder()
         const groupsLayerBuilder = new LayerBuilder()
-
-        for(const zoneName in pixelLayout.zones){
-            const zonePixelLayout = pixelLayout.zones[zoneName]
+        
+        for(const zoneName in this.#layout.zones){
+            const zoneLayout = this.#layout.zones[zoneName]
+            const zonePxSize = this.#projection.getPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
+            const zonePxPos = this.#projection.getPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
             zonesLayerBuilder.addElement(
                 new TechZoneView(
                     zoneName,
-                    zonePixelLayout.width,
-                    zonePixelLayout.height,
+                    zonePxSize.getWidth(),
+                    zonePxSize.getHeight(),
                     TextUtils.firstCharUpperCase((isTechView ? "" : "Func ") + zoneName),
                     this.#getZoneColor(zoneName)
                 ),
-                zonePixelLayout.x,
-                zonePixelLayout.y
+                zonePxPos
             )
         }
-        for(const groupName in pixelLayout.groups){
+        for(const groupName in this.#layout.groups){
             const groupModel = modelRepository.getGroupModels().find(groupModel => 
                 groupModel.getTitle() === groupName
             )
-            const groupPixelLayout = pixelLayout.groups[groupName]
-            const zonePixelLayout = pixelLayout.zones[groupModel.getType()]
-            const padding = this.#getGroupPadding(groupPixelLayout, zonePixelLayout)
+            const groupLayout = this.#layout.groups[groupName]
+            const padding = this.#getGroupPadding(groupLayout, this.#layout.zones[groupModel.getType()])
             const itemTypeFrequencies = this.#getItemTypeFrequencies(groupModel.getItemModels())
+            const groupPxSize = this.#projection.getPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
+            const groupPxPos = this.#projection.getPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
             groupsLayerBuilder.addElement(
                 new Group(
                     groupModel.getId(),
-                    groupPixelLayout.width - padding.right - padding.left,
-                    groupPixelLayout.height - padding.top - padding.bottom,
+                    groupPxSize.getWidth() - padding.right - padding.left,
+                    groupPxSize.getHeight() - padding.top - padding.bottom,
                     TextUtils.firstCharUpperCase((isTechView ? "" : "Func ") + groupName),
                     itemTypeFrequencies,
                     this.#getZoneColor(groupModel.getType())
                 ),
-                groupPixelLayout.x + padding.left,
-                groupPixelLayout.y + padding.top
+                groupPxPos
             )
         }
 
@@ -234,64 +233,64 @@ class Dispatcher{
         .build()
     }
 
-    generateGroupViewMap(groupId, isTechView) {
-        const groupModel = modelRepository.getGroupModels().find(groupModel => 
-            groupModel.getId() === groupId
-        )
-        const itemTypesLayerBuilder = new LayerBuilder()
-        const itemsLayerBuilder = new LayerBuilder()
-        const groupLayer = new LayerBuilder()
-            .addElement(
-                new TechGroupView(
-                    groupModel.getId(), 
-                    this.#gridWidth, 
-                    this.#gridHeight, 
-                    TextUtils.firstCharUpperCase((isTechView ? "" : "Functional") + groupModel.getTitle())
-                )
-            )
-            .build()
+    // generateGroupViewMap(groupId, isTechView) {
+    //     const groupModel = modelRepository.getGroupModels().find(groupModel => 
+    //         groupModel.getId() === groupId
+    //     )
+    //     const itemTypesLayerBuilder = new LayerBuilder()
+    //     const itemsLayerBuilder = new LayerBuilder()
+    //     const groupLayer = new LayerBuilder()
+    //         .addElement(
+    //             new TechGroupView(
+    //                 groupModel.getId(), 
+    //                 this.#gridWidth, 
+    //                 this.#gridHeight, 
+    //                 TextUtils.firstCharUpperCase((isTechView ? "" : "Functional") + groupModel.getTitle())
+    //             )
+    //         )
+    //         .build()
         
-        const itemModels = groupModel.getItemModels()
-        Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
-            const {itemTypeX, itemTypeY, itemTypeWidth, itemTypeHeight} = this.#getItemTypePixels(typeIndex)
-             itemTypesLayerBuilder.addElement(
-                new ItemTypeDetail(
-                    this.#types[typePrefix],
-                    itemTypeWidth,
-                    itemTypeHeight,
-                    (TextUtils.firstCharUpperCase(this.#types[typePrefix])) + "s " + style.getIcon(typePrefix)
-                ),
-                itemTypeX,
-                itemTypeY
-            )
-            const typeItemsModels = itemModels.filter((itemModel) => itemModel.getType() === this.#types[typePrefix])
-            typeItemsModels.forEach((itemModel, itemModelIndex) => {
-                const {itemX, itemY, itemWidth, itemHeight } = this.#getItemPixels(itemModelIndex, 4, typeIndex)
-                itemsLayerBuilder.addElement(
-                    new Item(
-                        itemModel.getId(), 
-                        itemWidth, 
-                        itemHeight, 
-                        itemModel.getTitle()
-                    ), 
-                    itemX, 
-                    itemY
-                )
-            })
-        })
+    //     const itemModels = groupModel.getItemModels()
+    //     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
+    //         const {itemTypeX, itemTypeY, itemTypeWidth, itemTypeHeight} = this.#getItemTypePixels(typeIndex)
+    //          itemTypesLayerBuilder.addElement(
+    //             new ItemTypeDetail(
+    //                 this.#types[typePrefix],
+    //                 itemTypeWidth,
+    //                 itemTypeHeight,
+    //                 (TextUtils.firstCharUpperCase(this.#types[typePrefix])) + "s " + style.getIcon(typePrefix)
+    //             ),
+    //             itemTypeX,
+    //             itemTypeY
+    //         )
+    //         const typeItemsModels = itemModels.filter((itemModel) => itemModel.getType() === this.#types[typePrefix])
+    //         typeItemsModels.forEach((itemModel, itemModelIndex) => {
+    //             const {itemX, itemY, itemWidth, itemHeight } = this.#getItemPixels(itemModelIndex, 4, typeIndex)
+    //             itemsLayerBuilder.addElement(
+    //                 new Item(
+    //                     itemModel.getId(), 
+    //                     itemWidth, 
+    //                     itemHeight, 
+    //                     itemModel.getTitle()
+    //                 ), 
+    //                 itemX, 
+    //                 itemY
+    //             )
+    //         })
+    //     })
 
-        return new MapBuilder()
-            .addLayer(this.#buildBackgroundLayer())
-            .addLayer(groupLayer)
-            .addLayer(itemTypesLayerBuilder.build())
-            .addLayer(itemsLayerBuilder.build())
-            .addLayer(this.#buildGridLayer())
-            .build()
-    }
+    //     return new MapBuilder()
+    //         .addLayer(this.#buildBackgroundLayer())
+    //         .addLayer(groupLayer)
+    //         .addLayer(itemTypesLayerBuilder.build())
+    //         .addLayer(itemsLayerBuilder.build())
+    //         .addLayer(this.#buildGridLayer())
+    //         .build()
+    // }
 
     #generateHeaderMap(title){
         const headerLayer = new LayerBuilder()
-            .addElement(new TechGroupView(title, this.#gridWidth, this.#gridHeight, title))
+            .addElement(new TechGroupView(title, this.#projection.getGridWidth(), this.#projection.getGridHeight(), title))
             .build()
             
         return new MapBuilder()

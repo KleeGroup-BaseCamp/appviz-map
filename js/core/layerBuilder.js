@@ -5,11 +5,10 @@ class LayerBuilder {
    * Adds an element 
    * 
    * @param {Element} element 
-   * @param {?number} [x=0]
-   * @param {?number} [y=0] 
+   * @param {PxPos} pxPosition
    */
-  addElement(element, x = 0, y = 0) {
-    this.#positionedElements.push({ element, position: { x, y } })
+  addElement(element, pxPosition = new PxPosition(0, 0)) {
+    this.#positionedElements.push({ element, pxPosition})
     return this
   }
 
