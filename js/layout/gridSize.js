@@ -1,17 +1,17 @@
 class GridSize{
-    #numOfColumns
-    #numOfRows
+    #numOfColumnsCode
+    #numOfRowsCode
 
-    constructor(numOfColumns, numOfRows){
-        this.#numOfColumns = numOfColumns
-        this.#numOfRows = numOfRows
+    constructor(numOfColumnsCode, numOfRowsCode){
+        this.#numOfColumnsCode = numOfColumnsCode
+        this.#numOfRowsCode = numOfRowsCode
     }
 
-    getNumOfColumns(){
-        return this.#numOfColumns
+    getNumOfColumnsCode(){
+        return this.#numOfColumnsCode
     }
 
-    getNumOfRows(){
-        return this.#numOfRows
+    getNumOfRowsCode(){
+        return this.#numOfRowsCode
     }
 }

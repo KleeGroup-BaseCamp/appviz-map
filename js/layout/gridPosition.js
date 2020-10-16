@@ -1,17 +1,17 @@
 class GridPosition{
-    #column
-    #row
+    #columnCode
+    #rowCode
 
-    constructor(column, row){
-        this.#column = column
-        this.#row = row
+    constructor(columnCode, rowCode){
+        this.#columnCode = columnCode
+        this.#rowCode = rowCode
     }
 
-    getColumn(){
-        return this.#column
+    getColumnCode(){
+        return this.#columnCode
     }
 
-    getRow(){
-        return this.#row
+    getRowCode(){
+        return this.#rowCode
     }
 }

@@ -19,17 +19,17 @@ class Projection {
     }
 
     /**
-     * @param {string} column
-     * @param {string} row
+     * @param {string} columnCode
+     * @param {string} rowCode
      * @returns {PxPosition}
      */
-    getPxPosition(column, row){
+    getPxPosition(columnCode, rowCode){
         let x = 0
         let y = 0
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
-        const columns = column.split(":")
-        const rows = row.split(":")
+        const columns = columnCode.split(":")
+        const rows = rowCode.split(":")
         for(let i = 0; i < columns.length; i++){ // columns.length == rows.length
             x += Math.round(parseInt(columns[i]) * (this.#gridWidth / gridColumns))
             y += Math.round(parseInt(rows[i]) * (this.#gridHeight / gridRows))
@@ -40,17 +40,17 @@ class Projection {
     } 
 
     /**
-     * @param {string} numOfColumns
-     * @param {string} numOfRows
+     * @param {string} numOfColumnsCode
+     * @param {string} numOfRowsCode
      * @returns {PxSize}
      */
-    getPxSize(numOfColumns, numOfRows){
+    getPxSize(numOfColumnsCode, numOfRowsCode){
         let width = 0
         let height = 0
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
-        const numsOfColumns = numOfColumns.split(":")
-        const numsOfRows = numOfRows.split(":")
+        const numsOfColumns = numOfColumnsCode.split(":")
+        const numsOfRows = numOfRowsCode.split(":")
         for(let i = 0; i < numsOfColumns.length; i++){ // numsOfColumns.length == numsOfRows.length
             width += Math.round(parseInt(numsOfColumns[i]) * (this.#gridWidth / gridColumns))
             height += Math.round(parseInt(numsOfRows[i]) * (this.#gridHeight / gridRows))
