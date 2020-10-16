@@ -3,12 +3,7 @@ class TechGroupView extends Element {
 
     constructor(id, width, height, title) {
         super(id, width, height, false)
-        this.#header = new Header(
-            title,
-            width,
-            100,
-            style.text.size.xxl, 
-            )
+        this.#header = new Header(title, width, 100,style.text.size.xxl)
     }
 
     /**

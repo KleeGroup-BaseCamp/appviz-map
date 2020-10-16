@@ -3,6 +3,13 @@ class Corner {
     #height
     #color
 
+    /**
+     * @constructor
+     * 
+     * @param {number} width 
+     * @param {number} height 
+     * @param {Color} color 
+     */
     constructor(width, height, color) {
         this.#width = width,
         this.#height = height
