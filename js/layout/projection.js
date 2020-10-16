@@ -31,8 +31,8 @@ class Projection {
         const columns = column.split(":")
         const rows = row.split(":")
         for(let i = 0; i < columns.length; i++){ // columns.length == rows.length
-            x += parseInt(columns[i]) * (this.#gridWidth / gridColumns)
-            y += parseInt(rows[i]) * (this.#gridHeight / gridRows)
+            x += Math.round(parseInt(columns[i]) * (this.#gridWidth / gridColumns))
+            y += Math.round(parseInt(rows[i]) * (this.#gridHeight / gridRows))
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
@@ -52,8 +52,8 @@ class Projection {
         const numsOfColumns = numOfColumns.split(":")
         const numsOfRows = numOfRows.split(":")
         for(let i = 0; i < numsOfColumns.length; i++){ // numsOfColumns.length == numsOfRows.length
-            width += parseInt(numsOfColumns[i]) * (this.#gridWidth / gridColumns)
-            height += parseInt(numsOfRows[i]) * (this.#gridHeight / gridRows)
+            width += Math.round(parseInt(numsOfColumns[i]) * (this.#gridWidth / gridColumns))
+            height += Math.round(parseInt(numsOfRows[i]) * (this.#gridHeight / gridRows))
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
