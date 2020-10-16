@@ -1,17 +1,17 @@
 class GridPos{
     #column
-    #line
+    #row
 
-    constructor(column, line){
+    constructor(column, row){
         this.#column = column
-        this.#line = line
+        this.#row = row
     }
 
     getColumn(){
         return this.#column
     }
 
-    getLine(){
-        return this.#line
+    getRow(){
+        return this.#row
     }
 }

@@ -92,3 +92,6 @@ function switchZoneGroup(title){
     view = viewName + (viewName == "tech" || viewName == "func" ? "Zone" : "")
   });
 })
+
+
+

@@ -51,7 +51,7 @@ class Projection {
         let gridRows = this.#gridRows
         const numsOfColumns = numOfColumns.split(":")
         const numsOfRows = numOfRows.split(":")
-        for(let i = 0; i < columns.length; i++){ // columns.length == rows.length
+        for(let i = 0; i < numsOfColumns.length; i++){ // numsOfColumns.length == numsOfRows.length
             width += parseInt(numsOfColumns[i]) * (this.#gridWidth / gridColumns)
             height += parseInt(numsOfRows[i]) * (this.#gridHeight / gridRows)
             gridColumns *= this.#gridColumns
@@ -71,7 +71,7 @@ class Projection {
         let rows = []
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
-        for(let i = 0; i < level; i++){ // columns.length == rows.length
+        for(let i = 0; i < level; i++){
             const column = Math.floor(x / (this.#gridWidth / gridColumns))
             const row = Math.floor(y / (this.#gridHeight / gridRows))
             columns.push(column.toString())
@@ -100,8 +100,8 @@ class Projection {
             const numOfRows = Math.floor(height / (this.#gridHeight / gridRows))
             numsOfColumns.push(numOfColumns.toString())
             numsOfRows.push(numOfRows.toString())
-            x -= numOfColumns * (this.#gridWidth / gridColumns)
-            y -= numOfRows * (this.#gridHeight / gridRows)
+            width -= numOfColumns * (this.#gridWidth / gridColumns)
+            height -= numOfRows * (this.#gridHeight / gridRows)
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
