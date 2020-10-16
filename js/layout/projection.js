@@ -19,46 +19,92 @@ class Projection {
     }
 
     /**
-     * @param {string} column 
-     * @param {string} row 
+     * @param {string} column
+     * @param {string} row
      * @returns {{x: number, y: number}}
      */
     getPxPos(column, row){
-        const x = parseInt(column) * (this.#gridWidth / this.#gridColumns)
-        const y = parseInt(row) * (this.#gridHeight / this.#gridRows)
+        let x = 0
+        let y = 0
+        let gridColumns = this.#gridColumns
+        let gridRows = this.#gridRows
+        const columns = column.split(":")
+        const rows = row.split(":")
+        for(let i = 0; i < columns.length; i++){ // columns.length == rows.length
+            x += parseInt(columns[i]) * (this.#gridWidth / gridColumns)
+            y += parseInt(rows[i]) * (this.#gridHeight / gridRows)
+            gridColumns *= this.#gridColumns
+            gridRows *= this.#gridRows
+        }
         return {x, y}
     } 
 
     /**
-     * @param {string} numOfColumns 
-     * @param {string} numOfRows 
+     * @param {string} numOfColumns
+     * @param {string} numOfRows
      * @returns {{width: number, height: number}}
      */
     getPxSize(numOfColumns, numOfRows){
-        const width = parseInt(numOfColumns) * (this.#gridWidth / this.#gridColumns)
-        const height = parseInt(numOfRows) * (this.#gridHeight / this.#gridRows)
+        let width = 0
+        let height = 0
+        let gridColumns = this.#gridColumns
+        let gridRows = this.#gridRows
+        const numsOfColumns = numOfColumns.split(":")
+        const numsOfRows = numOfRows.split(":")
+        for(let i = 0; i < columns.length; i++){ // columns.length == rows.length
+            width += parseInt(numsOfColumns[i]) * (this.#gridWidth / gridColumns)
+            height += parseInt(numsOfRows[i]) * (this.#gridHeight / gridRows)
+            gridColumns *= this.#gridColumns
+            gridRows *= this.#gridRows
+        }
         return {width, height}
     }
 
     /**
-     * @param {string} x 
-     * @param {string} y
-     * @returns {{column: number, row: number}}
+     * @param {number} x
+     * @param {number} y
+     * @param {number} level
+     * @returns {{column: string, row: string}}
      */
-    getGridPos(x, y){
-        const column = Math.round(parseInt(x) / (this.#gridWidth / this.#gridColumns)) 
-        const row = Math.round(parseInt(y) / (this.#gridHeight / this.#gridRows))
-        return {column, row}
+    getGridPos(x, y, level){
+        let columns = []
+        let rows = []
+        let gridColumns = this.#gridColumns
+        let gridRows = this.#gridRows
+        for(let i = 0; i < level; i++){ // columns.length == rows.length
+            const column = Math.floor(x / (this.#gridWidth / gridColumns))
+            const row = Math.floor(y / (this.#gridHeight / gridRows))
+            columns.push(column.toString())
+            rows.push(row.toString())
+            x -= column * (this.#gridWidth / gridColumns)
+            y -= row * (this.#gridHeight / gridRows)
+            gridColumns *= this.#gridColumns
+            gridRows *= this.#gridRows
+        }
+        return {column: columns.join(":"), row: rows.join(":")}
     }
 
     /**
-     * @param {string} width 
-     * @param {string} height
-     * @returns {{numOfColumns: number, numOfRows: number}}
+     * @param {number} width 
+     * @param {number} height
+     * @param {number} level
+     * @returns {{numOfColumns: string, numOfRows: string}}
      */
-    getGridSize(width, height){
-        const numOfColumns = Math.round(parseInt(width) / (this.#gridWidth / this.#gridColumns))
-        const numOfRows = Math.round(parseInt(height) / (this.#gridHeight / this.#gridRows))
-        return {numOfColumns, numOfRows}
+    getGridSize(width, height, level){
+        let numsOfColumns = []
+        let numsOfRows = []
+        let gridColumns = this.#gridColumns
+        let gridRows = this.#gridRows
+        for(let i = 0; i < level; i++){ // columns.length == rows.length
+            const numOfColumns = Math.floor(width / (this.#gridWidth / gridColumns))
+            const numOfRows = Math.floor(height / (this.#gridHeight / gridRows))
+            numsOfColumns.push(numOfColumns.toString())
+            numsOfRows.push(numOfRows.toString())
+            x -= numOfColumns * (this.#gridWidth / gridColumns)
+            y -= numOfRows * (this.#gridHeight / gridRows)
+            gridColumns *= this.#gridColumns
+            gridRows *= this.#gridRows
+        }
+        return {numOfColumn: numsOfColumns.join(":"), numOfRow: numsOfRows.join(":")}
     }
 }
