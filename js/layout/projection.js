@@ -21,9 +21,9 @@ class Projection {
     /**
      * @param {string} column
      * @param {string} row
-     * @returns {{x: number, y: number}}
+     * @returns {PxPosition}
      */
-    getPxPos(column, row){
+    getPxPosition(column, row){
         let x = 0
         let y = 0
         let gridColumns = this.#gridColumns
@@ -36,13 +36,13 @@ class Projection {
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
-        return {x, y}
+        return new PxPosition(x, y)
     } 
 
     /**
      * @param {string} numOfColumns
      * @param {string} numOfRows
-     * @returns {{width: number, height: number}}
+     * @returns {PxSize}
      */
     getPxSize(numOfColumns, numOfRows){
         let width = 0
@@ -57,16 +57,16 @@ class Projection {
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
-        return {width, height}
+        return new PxSize(width, height)
     }
 
     /**
      * @param {number} x
      * @param {number} y
      * @param {number} level
-     * @returns {{column: string, row: string}}
+     * @returns {GridPosition}
      */
-    getGridPos(x, y, level){
+    getGridPosition(x, y, level){
         let columns = []
         let rows = []
         let gridColumns = this.#gridColumns
@@ -81,14 +81,14 @@ class Projection {
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
-        return {column: columns.join(":"), row: rows.join(":")}
+        return new GridPosition(columns.join(":"), rows.join(":"))
     }
 
     /**
      * @param {number} width 
      * @param {number} height
      * @param {number} level
-     * @returns {{numOfColumns: string, numOfRows: string}}
+     * @returns {GridSize}
      */
     getGridSize(width, height, level){
         let numsOfColumns = []
@@ -105,6 +105,6 @@ class Projection {
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
-        return {numOfColumn: numsOfColumns.join(":"), numOfRow: numsOfRows.join(":")}
+        return new GridSize(numsOfColumns.join(":"), numsOfRows.join(":"))
     }
 }

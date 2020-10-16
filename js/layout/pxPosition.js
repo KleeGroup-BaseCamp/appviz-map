@@ -1,4 +1,4 @@
-class PxPos{
+class PxPosition{
     #x
     #y
 
