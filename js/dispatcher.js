@@ -11,115 +11,25 @@ class Dispatcher{
         this.#projection = new Projection(canvasWidth, canvasHeight)
     }
 
-    // #updateGridDimensions(){
-    //     this.#gridWidth = canvasWidth
-    //     this.#gridHeight = canvasHeight
-    // }
 
-    // #getPixels(columnCode, rowCode, numOfColumnsCode, numOfRowsCode) {
-    //     let gridHeight = this.#gridHeight
-    //     let gridWidth = this.#gridWidth
-    //     let x = 0
-    //     let y = 0
-    //     const rows = rowCode.split(":")
-    //     const columns = columnCode.split(":")
-    //     const numsOfColumns = numOfColumnsCode.split(":")
-    //     const numsOfRows = numOfRowsCode.split(":")
-    //     const depth = rows.length // rows.length == columns.length == numOfColumns.length == numOfRows.length
-    //     for (let i = 0; i < depth; i++) {
-    //         const row = parseInt(rows[i])
-    //         const column = parseInt(columns[i])
-    //         const numOfColumns = parseInt(numsOfColumns[i])
-    //         const numOfRows = parseInt(numsOfRows[i])
-    //         x += (column * gridWidth) / this.#gridColumns
-    //         y += (row * gridHeight) / this.#gridRows
-    //         gridWidth = (numOfColumns * gridWidth) / this.#gridColumns
-    //         gridHeight = (numOfRows * gridHeight) / this.#gridRows
-    //     }
-    //     const width = gridWidth
-    //     const height = gridHeight
-    //     return {
-    //     x,
-    //     y,
-    //     width,
-    //     height
-    //     }
-    // }
+    #getItemPx(itemIndex, itemsPerRow, itemTypePxSize, itemTypePxPosition) {
+        const padding = 10
 
-    // #getPixelLayout(){
-    //     const pixelLayout = {zones: {}, groups: {}}
-
-    //     for(const zoneName in this.#layout.zones){
-    //         const zoneLayout = this.#layout.zones[zoneName]
-    //         pixelLayout.zones[zoneName] = this.#getPixels(
-    //             zoneLayout.column,
-    //             zoneLayout.row,
-    //             zoneLayout.numOfColumns,
-    //             zoneLayout.numOfRows
-    //         )
-    //     }
-    //     for (const groupName in this.#layout.groups){
-    //         const groupLayout = this.#layout.groups[groupName]
-    //         pixelLayout.groups[groupName] = this.#getPixels(
-    //             groupLayout.column,
-    //             groupLayout.row,
-    //             groupLayout.numOfColumns,
-    //             groupLayout.numOfRows
-    //         )
-    //     }
-    //     return pixelLayout
-    // }
-
-    #getItemTypeLayout(typeIndex){
+        const itemTypeX = itemTypePxPosition.getX()
+        const itemTypeY = itemTypePxPosition.getY()
+        const itemTypeWidth = itemTypePxSize.getWidth()
+        const itemWidth = ((itemTypeWidth - padding) / itemsPerRow) - padding
+        const itemHeight = 40
+         
         return {
-            row : 2 + typeIndex * 5,
-            column : 1,
-            numOfRows : 4,
-            numOfColumns : this.#projection.getGridColumns() - 2
+            itemPxPosition: new PxPosition(
+                itemTypeX + padding + (itemIndex % itemsPerRow) * (itemWidth + padding), 
+                itemTypeY + 80 + Math.floor(itemIndex / itemsPerRow) * (itemHeight + padding)
+                ),
+            itemPxSize: new PxSize(((itemTypeWidth - padding) / itemsPerRow) - padding, itemHeight)
         }
     }
 
-    // #getItemTypePixels(typeIndex){
-    //     const {row, column, numOfRows, numOfColumns} = this.#getItemTypeLayout(typeIndex)
-    //     const {x, y, width, height} = this.#getPixels(
-    //         column.toString(),
-    //         row.toString(),
-    //         numOfColumns.toString(),
-    //         numOfRows.toString()
-    //     )
-    //     return {
-    //         itemTypeX: x,
-    //         itemTypeY: y,
-    //         itemTypeWidth: width,
-    //         itemTypeHeight: height
-    //     }
-    // }
-
-    // #getItemPixels(itemIndex, itemsPerRow, typeIndex) {
-    //     const {
-    //         row: itemTypeRow, 
-    //         column: itemTypeColumn, 
-    //         numOfRows: itemTypeNumOfRows, 
-    //         numOfColumns: itemTypeNumOfColumns
-    //     } = this.#getItemTypeLayout(typeIndex)
-        
-    //     const innerRow = Math.floor(itemIndex / itemsPerRow) * 2
-    //     const innerColumn = (itemIndex % itemsPerRow) * (this.#gridColumns / itemsPerRow)
-    //     const padding = 5
-
-    //     const {x, y, width, height} = this.#getPixels(
-    //         itemTypeColumn + ":" + innerColumn,
-    //         (itemTypeRow + 1) + ":" + innerRow,
-    //         itemTypeNumOfColumns + ":" + (this.#gridColumns / itemsPerRow),
-    //         itemTypeNumOfRows + ":2"
-    //     )
-    //     return {
-    //         itemX: x + padding,
-    //         itemY: y + padding,
-    //         itemWidth: width - 2 * padding,
-    //         itemHeight: height - 2 * padding
-    //     }
-    // }
 
     #getGroupPadding(group, zone) {
         const paddingStep = 5
@@ -191,7 +101,7 @@ class Dispatcher{
         for(const zoneName in this.#layout.zones){
             const zoneLayout = this.#layout.zones[zoneName]
             const zonePxSize = this.#projection.getPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
-            const zonePxPos = this.#projection.getPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
+            const zonePxPosition = this.#projection.getPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
             zonesLayerBuilder.addElement(
                 new TechZoneView(
                     zoneName,
@@ -200,7 +110,7 @@ class Dispatcher{
                     TextUtils.firstCharUpperCase((isTechView ? "" : "Func ") + zoneName),
                     this.#getZoneColor(zoneName)
                 ),
-                zonePxPos
+                zonePxPosition
             )
         }
         for(const groupName in this.#layout.groups){
@@ -211,7 +121,7 @@ class Dispatcher{
             const padding = this.#getGroupPadding(groupLayout, this.#layout.zones[groupModel.getType()])
             const itemTypeFrequencies = this.#getItemTypeFrequencies(groupModel.getItemModels())
             const groupPxSize = this.#projection.getPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
-            const groupPxPos = this.#projection.getPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
+            const groupPxPosition = this.#projection.getPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
             groupsLayerBuilder.addElement(
                 new Group(
                     groupModel.getId(),
@@ -221,7 +131,7 @@ class Dispatcher{
                     itemTypeFrequencies,
                     this.#getZoneColor(groupModel.getType())
                 ),
-                groupPxPos
+                groupPxPosition
             )
         }
 
@@ -233,60 +143,67 @@ class Dispatcher{
         .build()
     }
 
-    // generateGroupViewMap(groupId, isTechView) {
-    //     const groupModel = modelRepository.getGroupModels().find(groupModel => 
-    //         groupModel.getId() === groupId
-    //     )
-    //     const itemTypesLayerBuilder = new LayerBuilder()
-    //     const itemsLayerBuilder = new LayerBuilder()
-    //     const groupLayer = new LayerBuilder()
-    //         .addElement(
-    //             new TechGroupView(
-    //                 groupModel.getId(), 
-    //                 this.#gridWidth, 
-    //                 this.#gridHeight, 
-    //                 TextUtils.firstCharUpperCase((isTechView ? "" : "Functional") + groupModel.getTitle())
-    //             )
-    //         )
-    //         .build()
+    generateGroupViewMap(groupId, isTechView) {
+        const groupModel = modelRepository.getGroupModels().find(groupModel => 
+            groupModel.getId() === groupId
+        )
+        const itemTypesLayerBuilder = new LayerBuilder()
+        const itemsLayerBuilder = new LayerBuilder()
+        const groupLayer = new LayerBuilder()
+            .addElement(
+                new TechGroupView(
+                    groupModel.getId(), 
+                    this.#projection.getGridWidth(), 
+                    this.#projection.getGridHeight(), 
+                    TextUtils.firstCharUpperCase((isTechView ? "" : "Functional") + groupModel.getTitle())
+                )
+            )
+            .build()
         
-    //     const itemModels = groupModel.getItemModels()
-    //     Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
-    //         const {itemTypeX, itemTypeY, itemTypeWidth, itemTypeHeight} = this.#getItemTypePixels(typeIndex)
-    //          itemTypesLayerBuilder.addElement(
-    //             new ItemTypeDetail(
-    //                 this.#types[typePrefix],
-    //                 itemTypeWidth,
-    //                 itemTypeHeight,
-    //                 (TextUtils.firstCharUpperCase(this.#types[typePrefix])) + "s " + style.getIcon(typePrefix)
-    //             ),
-    //             itemTypeX,
-    //             itemTypeY
-    //         )
-    //         const typeItemsModels = itemModels.filter((itemModel) => itemModel.getType() === this.#types[typePrefix])
-    //         typeItemsModels.forEach((itemModel, itemModelIndex) => {
-    //             const {itemX, itemY, itemWidth, itemHeight } = this.#getItemPixels(itemModelIndex, 4, typeIndex)
-    //             itemsLayerBuilder.addElement(
-    //                 new Item(
-    //                     itemModel.getId(), 
-    //                     itemWidth, 
-    //                     itemHeight, 
-    //                     itemModel.getTitle()
-    //                 ), 
-    //                 itemX, 
-    //                 itemY
-    //             )
-    //         })
-    //     })
+        const itemModels = groupModel.getItemModels()
+        Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
+            // Harcoded layout for 2 itemTypes (to change)
+            const itemTypeLayout = {
+                row : (2 + typeIndex * 5).toString(),
+                column : "1",
+                numOfRows : "4",
+                numOfColumns : (this.#projection.getGridColumns() - 2).toString()
+            }
 
-    //     return new MapBuilder()
-    //         .addLayer(this.#buildBackgroundLayer())
-    //         .addLayer(groupLayer)
-    //         .addLayer(itemTypesLayerBuilder.build())
-    //         .addLayer(itemsLayerBuilder.build())
-    //         .addLayer(this.#buildGridLayer())
-    //         .build()
-    // }
+            const itemTypePxSize = this.#projection.getPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
+            const itemTypePxPosition = this.#projection.getPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
+            itemTypesLayerBuilder.addElement(
+                new ItemTypeDetail(
+                    this.#types[typePrefix],
+                    itemTypePxSize.getWidth(),
+                    itemTypePxSize.getHeight(),
+                    (TextUtils.firstCharUpperCase(this.#types[typePrefix])) + "s " + style.getIcon(typePrefix)
+                ),
+                itemTypePxPosition
+            )
+            const typeItemModels = itemModels.filter((itemModel) => itemModel.getType() === this.#types[typePrefix])
+            typeItemModels.forEach((itemModel, itemModelIndex) => {
+                const {itemPxPosition, itemPxSize} = this.#getItemPx(itemModelIndex, 4, itemTypePxSize, itemTypePxPosition)
+                itemsLayerBuilder.addElement(
+                    new Item(
+                        itemModel.getId(), 
+                        itemPxSize.getWidth(), 
+                        itemPxSize.getHeight(), 
+                        itemModel.getTitle()
+                    ), 
+                    itemPxPosition
+                )
+            })
+        })
+
+        return new MapBuilder()
+            .addLayer(this.#buildBackgroundLayer())
+            .addLayer(groupLayer)
+            .addLayer(itemTypesLayerBuilder.build())
+            .addLayer(itemsLayerBuilder.build())
+            .addLayer(this.#buildGridLayer())
+            .build()
+    }
 
     #generateHeaderMap(title){
         const headerLayer = new LayerBuilder()
