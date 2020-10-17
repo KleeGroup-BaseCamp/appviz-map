@@ -5,7 +5,7 @@ class LayerBuilder {
    * Adds an element 
    * 
    * @param {Element} element 
-   * @param {PxPos} pxPosition
+   * @param {PxPosition} pxPosition
    */
   addElement(element, pxPosition = new PxPosition(0, 0)) {
     this.#positionedElements.push({ element, pxPosition})
