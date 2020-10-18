@@ -7,7 +7,7 @@
   <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 
 <body>
@@ -15,22 +15,17 @@
     <div class="column  is-narrow" id="nav">
       <div class="tile is-ancestor is-vertical">
         <div class="tile is-parent">
-          <div class="tile is-child menu-item" id = "home">
+          <div class="tile is-child menu-item" id = "home" onclick="switchView('home')">
             <i class="material-icons md-36">home</i>
           </div>
         </div>
         <div class="tile is-parent">
-          <div class="tile is-child menu-item" id = "tech">
+          <div class="tile is-child menu-item" id = "tech" onclick="switchView('techZone')">
             <i class="material-icons md-36">view_module</i>
           </div>
        </div>
        <div class="tile is-parent">
-          <div class="tile is-child menu-item" id = "func">
-            <i class="material-icons md-36">map</i>
-          </div>
-       </div>
-       <div class="tile is-parent">
-          <div class="tile is-child menu-item" id = "demo">
+          <div class="tile is-child menu-item" id = "demo" onclick="switchView('demo')">
             <i class="material-icons md-36">construction</i>
           </div>
        </div>
@@ -65,16 +60,20 @@
   <script src="js/model/groupModel.js"></script>
   <script src="js/model/itemModel.js"></script>
   <script src="js/model/modelRepository.js"></script>
-  
-  <script src="js/notebook/modelRepositoryBuilder.js"></script>
+  <script src="js/model/modelRepositoryBuilder.js"></script>
 
-  <script src="js/views/background.js"></script>
-  <script src="js/views/grid.js"></script>
-  <script src="js/views/zone/techZoneView.js"></script>
-  <script src="js/views/zone/elements/group.js"></script>
-  <script src="js/views/group/techGroupView.js"></script>
-  <script src="js/views/group/elements/item.js"></script>
-  <script src="js/views/group/elements/itemTypeDetail.js"></script>
+  <script src="js/views/elements/background.js"></script>
+  <script src="js/views/elements/grid.js"></script>
+  <script src="js/views/elements/card.js"></script>
+  <script src="js/views/elements/item.js"></script>
+  <script src="js/views/elements/itemTypeDetail.js"></script>
+  <script src="js/views/elements/zone.js"></script>
+  <script src="js/views/elements/group.js"></script>
+
+  <script src="js/views/techZoneView.js"></script>
+  <script src="js/views/techGroupView.js"></script>
+  <script src="js/views/demoView.js"></script>
+  <script src="js/views/homeView.js"></script>
 
   <script src="js/components/header.js"></script>
   <script src="js/components/progressBar.js"></script>
@@ -82,7 +81,6 @@
   <script src="js/components/corner.js"></script>
 
   <script src="js/detail.js"></script>
-  <script src="js/dispatcher.js"></script>
   <script src="js/sketch.js"></script>
 </body>
 

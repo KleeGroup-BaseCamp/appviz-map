@@ -3,7 +3,7 @@ class State {
     #selectedElement
     #dirty
 
-    constructor(){
+    constructor() {
         this.#marksAsDirty()
     }
 
@@ -19,11 +19,11 @@ class State {
         this.#cleanDirty()
         return active
     }
-    #cleanDirty(){
+    #cleanDirty() {
         this.#dirty = false
     }
 
-    #marksAsDirty(){
+    #marksAsDirty() {
         this.#dirty = true
     }
 
@@ -32,8 +32,8 @@ class State {
      * 
      * @param {Element} element 
      */
-     hover(element) {
-        if (this.#hoveredElement !== element){
+    hover(element) {
+        if (this.#hoveredElement !== element) {
             this.#hoveredElement = element
             this.#marksAsDirty()
         }
@@ -45,7 +45,7 @@ class State {
      * @param {Element} element 
      * @returns {boolean}
      */
-    isHovered(element){
+    isHovered(element) {
         return element === this.#hoveredElement
     }
 
@@ -55,10 +55,10 @@ class State {
      * @param {Element} element 
      */
     select(element) {
-        if (this.#selectedElement !== element){
+        if (this.#selectedElement !== element) {
             this.#selectedElement = element
             this.#marksAsDirty()
-        }    
+        }
     }
 
     /**
@@ -67,7 +67,17 @@ class State {
      * @param {Element} element 
      * @returns {boolean}
      */
-    isSelected(element){
+    isSelected(element) {
         return element === this.#selectedElement
     }
+
+    /**
+     * Completly reset the state
+     */
+    reset() {
+        this.#hoveredElement = undefined
+        this.#selectedElement = undefined
+        this.#marksAsDirty()
+    }
+
 }

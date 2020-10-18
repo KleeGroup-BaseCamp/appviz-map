@@ -12,6 +12,16 @@ class MapBuilder {
   }
 
   /**
+   * Adds layers 
+   * 
+   * @param {Layer[]} layers 
+   */
+  addLayers(layers) {
+    layers.forEach(layer => this.addLayer(layer));
+    return this;
+  }
+
+  /**
    * Builds an immutable Map
    * 
    * @returns {Map} map

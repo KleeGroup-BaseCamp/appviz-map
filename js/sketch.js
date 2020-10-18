@@ -1,20 +1,22 @@
 let vizMap
 let modelRepositoryBuilder
 let modelRepository
-let dispatcher
 let canvasHeight
 let canvasWidth
-let view = "home"
-let groupId = null
+let view
+let viewParams
 const style = new Style()
 const detail = new Detail()
 const state = new State()
+let layout
+let projection
 
 function preload() {
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
-  modelRepositoryBuilder = new ModelRepositoryBuilder("./notebook.json", "./config.json")
-  dispatcher = new Dispatcher("./layout.json")
+  modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
+  layout = loadJSON("/js/views/layout.json")
+  projection = new Projection(canvasWidth, canvasHeight)
   style.load()
 }
 
@@ -22,76 +24,78 @@ function setup() {
   let myCanvas = createCanvas(canvasWidth, canvasHeight)
   myCanvas.parent('myContainer')
   angleMode(DEGREES)
-  modelRepository = modelRepositoryBuilder.build() 
-  vizMap = generateMap(view)
+  modelRepository = modelRepositoryBuilder.build()
+  // go to home
+  switchView("home")
 }
 
 function draw() {
   const element = vizMap.findElement(mouseX, mouseY)
-  
+
   state.hover(element)
   cursor(element != null ? "pointer" : "default")
 
-  if (state.isActive()){
+  if (state.isActive()) {
     vizMap.render()
   }
 }
 function mouseClicked() {
   const element = vizMap.findElement(mouseX, mouseY)
   state.select(element);
-  onClick(element)
-}
-
-/**
- * @param {?Element} element
- * 
- * Change the view (controlled by the group var) 
- * depending on the element clicked ad the current view 
- */
-function onClick(element) {
-  if (element instanceof Group || element instanceof Item) {
-    detail.update(element.getId())
-  }
-  vizMap = generateMap(view)
-}
-
-function generateMap(view){
-  if (view == "techZone") {
-    return dispatcher.generateZoneViewMap(true)
-  } else if (view == "techGroup"){
-    return dispatcher.generateGroupViewMap(groupId, true)
-  } else if (view == "funcZone"){
-    return dispatcher.generateZoneViewMap(false)
-  } else if (view == "funcGroup"){
-    return dispatcher.generateGroupViewMap(groupId, false)
-  } else if(view == "demo"){
-      return dispatcher.generateDemoViewMap()
-  } else {
-    return dispatcher.generateHomeViewMap()
-  }
+  updateDetail(element)
 }
 
 function windowResized() {
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
   resizeCanvas(canvasWidth, canvasHeight)
+  projection = new Projection(canvasWidth, canvasHeight)
+  //
+  vizMap = generateMap(view, viewParams)
+  state.reset()
 }
-// Temp
-function switchZoneGroup(title){
-  if (title == "zone"){
-    view = view.slice(0,4) + "Zone" // Depends on "tech".length == "func".length
-  } else{
-    view = view.slice(0,4) + "Group"
-    groupId = title
+
+/**
+ * @param {?Element} element
+ * 
+ * Update the detail Panel  
+ */
+function updateDetail(element) {
+  if (element instanceof Group || element instanceof Item) {
+    detail.update(element instanceof Group ? 'group' : 'item', element.getId())
   }
 }
 
-// Temp
-["home", "tech", "func", "demo"].forEach((viewName)=>{
-  document.getElementById(viewName).addEventListener("click", ()=>{
-    view = viewName + (viewName == "tech" || viewName == "func" ? "Zone" : "")
-  });
-})
+function switchView(viewName, params) {
+  const hasChanged = view !== viewName
+  //
+  view = viewName
+  viewParams = params
+  //
+  if (hasChanged) {
+    vizMap = generateMap(view, viewParams)
+    state.reset()
+  }
+}
 
+function generateMap(view, params) {
+  switch (view) {
+    case "techZone":
+      return generateMapFromView(new TechZoneView());
+    case "techGroup":
+      return generateMapFromView(new TechGroupView(params.groupId));
+    case "demo":
+      return generateMapFromView(new DemoView());
+    case "home":
+      return generateMapFromView(new HomeView());
+    default:
+      throw 'View : "' + view + '" is not recognized'
+  } 
+}
 
-
+function generateMapFromView(viewInstance) {
+  return new MapBuilder()
+    .addLayer(new LayerBuilder().addElement(new Background()).build())
+    .addLayers(viewInstance.provideLayers(modelRepository, layout))
+    .build()
+}

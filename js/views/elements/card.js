@@ -1,4 +1,4 @@
-class TechGroupView extends Element {
+class Card extends Element {
     #header
 
     constructor(id, width, height, title) {
