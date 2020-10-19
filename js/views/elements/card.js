@@ -1,9 +1,9 @@
 class Card extends Element {
     #header
 
-    constructor(id, width, height, title) {
-        super(id, width, height, false)
-        this.#header = new Header(title, width, 100,style.text.size.xxl)
+    constructor(id, pxSize, title) {
+        super(id, pxSize.getWidth(), pxSize.getHeight(), false)
+        this.#header = new Header(title, this.getWidth(), 100,style.text.size.xxl)
     }
 
     /**

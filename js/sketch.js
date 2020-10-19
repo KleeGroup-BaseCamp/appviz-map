@@ -16,7 +16,7 @@ function preload() {
   canvasWidth = windowWidth * 0.75
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
   layout = loadJSON("/js/views/layout.json")
-  projection = new Projection(canvasWidth, canvasHeight)
+  projection = new Projection(new PxSize(canvasWidth, canvasHeight))
   style.load()
 }
 
@@ -49,7 +49,7 @@ function windowResized() {
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
   resizeCanvas(canvasWidth, canvasHeight)
-  projection = new Projection(canvasWidth, canvasHeight)
+  projection = new Projection(new PxSize(canvasWidth, canvasHeight))
   //
   vizMap = generateMap(view, viewParams)
   state.reset()

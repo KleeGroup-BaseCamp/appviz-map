@@ -20,8 +20,8 @@ class TechZoneView {
 
         for (const zoneName in layout.zones) {
             const zoneLayout = layout.zones[zoneName]
-            const zonePxSize = projection.getPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
-            const zonePxPosition = projection.getPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
+            const zonePxSize = projection.gridToPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
+            const zonePxPosition = projection.gridToPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
             zonesLayerBuilder.addElement(
                 new Zone(
                     zoneName,
@@ -48,8 +48,8 @@ class TechZoneView {
             const groupLayout = layout.groups[groupName]
             const padding = this.#getGroupPadding(groupLayout, layout.zones[groupModel.getType()])
             const itemTypeFrequencies = this.#getItemTypeFrequencies(groupModel.getItemModels())
-            const groupPxSize = projection.getPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
-            const groupPxPosition = projection.getPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
+            const groupPxSize = projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
+            const groupPxPosition = projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
             groupsLayerBuilder.addElement(
                 new Group(
                     groupModel.getId(),
