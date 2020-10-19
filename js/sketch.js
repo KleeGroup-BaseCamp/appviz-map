@@ -3,8 +3,8 @@ let modelRepositoryBuilder
 let modelRepository
 let canvasHeight
 let canvasWidth
-let view // => viewName must be changed !!
-let viewParams
+let currentViewName
+let currentViewParams
 const style = new Style()
 const detail = new Detail()
 const state = new State()
@@ -66,16 +66,15 @@ function updateDetail(element) {
   }
 }
 
-function switchView(viewName, params) {
-  const hasChanged = view !== viewName
-  //
-  view = viewName
-  viewParams = params
-  //
+function switchView(viewName, viewParams) {
+  const hasChanged = (currentViewName !== viewName) || (currentViewParams!==viewParams)
+  //--
+  currentViewName = viewName
+  currentViewParams = viewParams
+  //--
   if (hasChanged) {
-    
-    const vvview = selectView(viewName, viewParams)
-    vizMap = generateMapFromView(vvview)
+    const view = selectView(viewName, viewParams)
+    vizMap = generateMapFromView(view)
     state.reset()
   }
 }
@@ -90,13 +89,13 @@ function selectView(viewName, viewParams) {
     case "techZone":
       return new TechZoneView();
     case "techGroup":
-      return new TechGroupView(viewParams.groupId);
+      return new TechGroupView(viewParams);
     case "demo":
       return new DemoView();
     case "home":
       return new HomeView();
     default:
-      throw 'View : "' + view + '" is not recognized'
+      throw 'View : ' + viewName + ' is not recognized'
   } 
 }
 

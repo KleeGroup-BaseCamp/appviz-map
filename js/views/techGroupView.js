@@ -6,9 +6,12 @@ class TechGroupView extends View {
     }
     #groupId
 
-    constructor(groupId) {
+    /**
+     * @param {Object} params 
+     */
+    constructor(params) {
         super()
-        this.#groupId = groupId;
+        this.#groupId = params.groupId;
     }
 
     provideLayers(modelRepository, layout) {
