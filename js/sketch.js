@@ -51,7 +51,7 @@ function windowResized() {
   resizeCanvas(canvasWidth, canvasHeight)
   projection = new Projection(new PxSize(canvasWidth, canvasHeight))
   //
-  vizMap = generateMap(view, viewParams)
+  vizMap = generateMap(currentViewName, currentViewParams)
   state.reset()
 }
 
@@ -85,18 +85,10 @@ function switchView(viewName, viewParams) {
  * @return {View}
  */
 function selectView(viewName, viewParams) {
-  switch (viewName) {
-    case "techZone":
-      return new TechZoneView();
-    case "techGroup":
-      return new TechGroupView(viewParams);
-    case "demo":
-      return new DemoView();
-    case "home":
-      return new HomeView();
-    default:
-      throw 'View : ' + viewName + ' is not recognized'
-  } 
+  const clazzName = TextUtils.firstCharUpperCase(viewName)+'View'
+  const jsonParams = JSON.stringify(viewParams)
+  const expression = `new ${clazzName} (${jsonParams} )` 
+  return  eval(expression);
 }
 
 function generateMapFromView(viewInstance) {
