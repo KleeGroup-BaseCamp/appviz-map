@@ -25,8 +25,7 @@ class TechGroupView  {
             .addElement(
                 new Card(
                     groupModel.getId(), 
-                    projection.getGridWidth(), 
-                    projection.getGridHeight(), 
+                    projection.getPxSize(), 
                     TextUtils.firstCharUpperCase(groupModel.getTitle())
                 )
             )
@@ -49,8 +48,8 @@ class TechGroupView  {
                 numOfColumns : (projection.getGridColumns() - 2).toString()
             }
 
-            const itemTypePxSize = projection.getPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
-            const itemTypePxPosition = projection.getPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
+            const itemTypePxSize = projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
+            const itemTypePxPosition = projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
             itemTypesLayerBuilder.addElement(
                 new ItemTypeDetail(
                     this.#types[typePrefix],
