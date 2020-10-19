@@ -10,9 +10,9 @@ We have two coordinates systems
 
 So We have 4 main classes
 - GridPosition
-- PxPosition
 - GridSize
 - PxPosition
+- PxSize
 
 And we can change the coordinates system ; these changes are all included in the Projection class.
 Grid to Px

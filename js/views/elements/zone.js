@@ -5,8 +5,15 @@ class Zone extends Element {
     #header
     #corner
 
+    /**
+     * 
+     * @param {*} id 
+     * @param {Pxsize} pxSize 
+     * @param {string} title 
+     * @param {Color} color 
+     */
     constructor(id, pxSize, title, color) {
-        super(id, pxSize.getWidth(), pxSize.getHeight(), false)
+        super(id, pxSize, false)
         this.#header = new Header(
             title, 
             this.getWidth(), 

@@ -2,7 +2,7 @@ class Card extends Element {
     #header
 
     constructor(id, pxSize, title) {
-        super(id, pxSize.getWidth(), pxSize.getHeight(), false)
+        super(id, pxSize, false)
         this.#header = new Header(title, this.getWidth(), 100,style.text.size.xxl)
     }
 

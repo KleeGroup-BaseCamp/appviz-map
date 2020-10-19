@@ -53,8 +53,7 @@ class TechGroupView  {
             itemTypesLayerBuilder.addElement(
                 new ItemTypeDetail(
                     this.#types[typePrefix],
-                    itemTypePxSize.getWidth(),
-                    itemTypePxSize.getHeight(),
+                    itemTypePxSize,
                     (TextUtils.firstCharUpperCase(this.#types[typePrefix])) + "s " + style.getIcon(typePrefix)
                 ),
                 itemTypePxPosition
@@ -65,8 +64,7 @@ class TechGroupView  {
                 itemsLayerBuilder.addElement(
                     new Item(
                         itemModel.getId(), 
-                        itemPxSize.getWidth(), 
-                        itemPxSize.getHeight(), 
+                        itemPxSize, 
                         itemModel.getTitle()
                     ), 
                     itemPxPosition

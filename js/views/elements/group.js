@@ -5,10 +5,10 @@ class Group extends Element {
     #progressBars
     #color
 
-    constructor(id, width, height, title, items, color, maxValue = 20) {
-        super(id, width, height, true)
+    constructor(id, pxSize, title, items, color, maxValue = 20) {
+        super(id, pxSize, true)
         this.#color = color
-        this.#header = new Header( title, width, 50, style.text.size.m)
+        this.#header = new Header( title, this.getWidth(), 50, style.text.size.m)
         this.#items = items
         this.#maxValue = maxValue
 

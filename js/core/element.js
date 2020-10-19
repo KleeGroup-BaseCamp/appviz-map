@@ -20,47 +20,50 @@
  */
 class Element {
   #id
-  #width
-  #height
+  #pxSize
   #selectable
  
   /**
    * @constructor
    * 
    * @param {*} id 
-   * @param {number} width 
-   * @param {number} height 
+   * @param {PxSize} pxSize 
    * @param {boolean} selectable 
    */
-  constructor (id, width, height, selectable){
+  constructor (id, pxSize, selectable){
     this.#id = id
-    this.#width = width
-    this.#height = height
+    this.#pxSize = pxSize
     this.#selectable = selectable
   }
 
   /**
-   * @returns {*} id
+   * @return {*} id
    */
   getId(){
     return this.#id
   }
 
   /**
-   * @returns {number} width
-   */
+  * @return {number} width
+  */
   getWidth(){
-    return this.#width
-  }
+    return this.#pxSize.getWidth()
+  }  
 
   /**
-   * @returns {number} height
+   * @return {number} height
    */
   getHeight(){
-    return this.#height
-  }
+    return this.#pxSize.getHeight()
+  }  
 
   /**
+   * @return {pxSize} pxsize
+   */
+  getPxSize(){
+    return this.#pxSize
+  }
+    /**
    * @returns {boolean} if the element is selectable
    */
   isSelectable(){
@@ -80,12 +83,12 @@ class Element {
    * 
    * @param {number} x 
    * @param {number} y 
-   * @returns {boolean} if the element contains the point (x, y)
+   * @return {boolean} if the element contains the point (x, y)
    */
   contains(x, y) {
     return x > 0
-        && x < this.#width
+        && x < this.#pxSize.getWidth()
         && y > 0
-        && y < this.#height
+        && y < this.#pxSize.getHeight()
   }
 }

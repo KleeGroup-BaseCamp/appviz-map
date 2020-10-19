@@ -6,13 +6,12 @@ class Grid extends Element {
   /**
    * Constructor
    * @param {*} id 
-   * @param {number} width 
-   * @param {number} height 
+   * @param {PxSize} pxSize 
    * @param {number} columns 
    * @param {number} rows 
    */
-  constructor(id, width, height, columns, rows) {
-    super(id, width, height, false)
+  constructor(id, pxSize, columns, rows) {
+    super(id, pxSize, false)
     this.#columns = columns
     this.#rows = rows
     AnimationUtils.animate(150, 0, 300, a => this.#alpha = a)

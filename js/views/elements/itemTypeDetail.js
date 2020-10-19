@@ -1,11 +1,11 @@
 class ItemTypeDetail extends Element {
     #header
 
-    constructor(id, width, height, title) {
-        super(id, width, height, false)
+    constructor(id, pxSize, title) {
+        super(id, pxSize, false)
         this.#header = new Header(
             title, 
-            width, 
+            this.getWidth(), 
             60, 
             style.text.size.xl, 
             style.icon.font

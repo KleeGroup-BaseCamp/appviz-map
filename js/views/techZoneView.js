@@ -52,8 +52,8 @@ class TechZoneView {
             groupsLayerBuilder.addElement(
                 new Group(
                     groupModel.getId(),
-                    groupPxSize.getWidth() - padding.right - padding.left,
-                    groupPxSize.getHeight() - padding.top - padding.bottom,
+                    new PxSize ( groupPxSize.getWidth() - padding.right - padding.left,
+                    groupPxSize.getHeight() - padding.top - padding.bottom),
                     TextUtils.firstCharUpperCase(groupName),
                     itemTypeFrequencies,
                     this.#getZoneColor(groupModel.getType())
