@@ -40,9 +40,11 @@ function draw() {
   }
 }
 function mouseClicked() {
-  const element = vizMap.findElement(mouseX, mouseY)
-  state.select(element);
-  updateDetail(element)
+  if (vizMap){
+    const element = vizMap.findElement(mouseX, mouseY)
+    state.select(element)
+    updateDetail(element)
+  }
 }
 
 function windowResized() {
