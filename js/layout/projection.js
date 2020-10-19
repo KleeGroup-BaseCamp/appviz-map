@@ -24,11 +24,12 @@ class Projection {
         let y = 0
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
-        const columns = gridPosition.getColumnCode().split(":")
-        const rows = gridPosition.getRowCode().split(":")
-        for(let i = 0; i < columns.length; i++){ // columns.length == rows.length
-            x += Math.round(parseInt(columns[i]) * (this.#pxSize.getWidth() / gridColumns))
-            y += Math.round(parseInt(rows[i]) * (this.#pxSize.getHeight() / gridRows))
+        const scaleX = this.#pxSize.getWidth() / gridColumns
+        const scaleY = this.#pxSize.getHeight() / gridRows
+        
+        for(let i = 0; i < gridPosition.getLength(); i++){
+            x += Math.round(gridPosition.getColumn(i) * scaleX)
+            y += Math.round(gridPosition.getRow(i)* scaleY)
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }
@@ -44,11 +45,12 @@ class Projection {
         let height = 0
         let gridColumns = this.#gridColumns
         let gridRows = this.#gridRows
-        const numsOfColumns = gridSize.getNumOfColumnsCode().split(":")
-        const numsOfRows = gridSize.getNumOfRowsCode().split(":")
-        for(let i = 0; i < numsOfColumns.length; i++){ // numsOfColumns.length == numsOfRows.length
-            width += Math.round(parseInt(numsOfColumns[i]) * (this.#pxSize.getWidth() / gridColumns))
-            height += Math.round(parseInt(numsOfRows[i]) * (this.#pxSize.getHeight() / gridRows))
+        const scaleX = this.#pxSize.getWidth() / gridColumns
+        const scaleY = this.#pxSize.getHeight() / gridRows
+
+        for(let i = 0; i < gridSize.getLength(); i++){
+            width += Math.round(gridSize.getColumns(i) * scaleX)
+            height += Math.round(gridSize.getRows(i) * scaleY)
             gridColumns *= this.#gridColumns
             gridRows *= this.#gridRows
         }

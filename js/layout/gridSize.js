@@ -1,17 +1,38 @@
 class GridSize{
-    #numOfColumnsCode
-    #numOfRowsCode
+    /**
+     * Array.<string>
+     */
+    #columns
+    #rows
+    #length
 
-    constructor(numOfColumnsCode, numOfRowsCode){
-        this.#numOfColumnsCode = numOfColumnsCode
-        this.#numOfRowsCode = numOfRowsCode
+    constructor(columnCode, rowCode){
+        this.#columns = columnCode.split(":").map (s=> Number(s))
+        this.#rows = rowCode.split(":").map (s=> Number(s))
+        //---
+        if (this.#columns.length !== this.#rows.length){
+            throw 'levels of columns and rows mus be equal'    
+        }
+        this.#length = this.#columns.length //= this.#rows.length
+    }    
+
+    getLength(){
+        return this.#length
     }
 
-    getNumOfColumnsCode(){
-        return this.#numOfColumnsCode
+    #checkLevel(level){
+        if (level<0 || level >= this.#length) { 
+            throw 'level must be between [0 ; '+this.#length +'['    
+        }
+    }
+    
+    getColumns(level){
+        this.#checkLevel(level)
+        return this.#columns[level]
     }
 
-    getNumOfRowsCode(){
-        return this.#numOfRowsCode
+    getRows(level){
+        this.#checkLevel(level)
+        return this.#rows[level]
     }
 }
