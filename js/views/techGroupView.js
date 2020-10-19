@@ -11,9 +11,7 @@ class TechGroupView  {
     }
 
     provideLayers(modelRepository, layout) {
-        const groupModel = modelRepository.getGroupModels().find(groupModel => 
-            groupModel.getId() === this.#groupId
-        )
+        const groupModel = modelRepository.getGroupModelById(this.#groupId)
         return [
             this.#createGroupLayer(groupModel),
             ...this.#createItemTypesLayers(groupModel)
