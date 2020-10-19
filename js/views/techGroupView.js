@@ -1,4 +1,4 @@
-class TechGroupView  {
+class TechGroupView extends View {
 
     #types = {
         dt: "data",
@@ -7,6 +7,7 @@ class TechGroupView  {
     #groupId
 
     constructor(groupId) {
+        super()
         this.#groupId = groupId;
     }
 

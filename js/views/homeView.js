@@ -1,4 +1,4 @@
-class HomeView   {
+class HomeView extends View {
 
     provideLayers(modelRepository, layout) {
         return  [

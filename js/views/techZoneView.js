@@ -1,7 +1,7 @@
 /**
  * View of a zone.
  */
-class TechZoneView {
+class TechZoneView extends View {
 
     #types = {
         dt: "data",

@@ -3,7 +3,7 @@ let modelRepositoryBuilder
 let modelRepository
 let canvasHeight
 let canvasWidth
-let view
+let view // => viewName must be changed !!
 let viewParams
 const style = new Style()
 const detail = new Detail()
@@ -73,21 +73,28 @@ function switchView(viewName, params) {
   viewParams = params
   //
   if (hasChanged) {
-    vizMap = generateMap(view, viewParams)
+    
+    const vvview = selectView(viewName, viewParams)
+    vizMap = generateMapFromView(vvview)
     state.reset()
   }
 }
 
-function generateMap(view, params) {
-  switch (view) {
+/**
+ * @param {string} viewName 
+ * @param {Object} viewParams 
+ * @return {View}
+ */
+function selectView(viewName, viewParams) {
+  switch (viewName) {
     case "techZone":
-      return generateMapFromView(new TechZoneView());
+      return new TechZoneView();
     case "techGroup":
-      return generateMapFromView(new TechGroupView(params.groupId));
+      return new TechGroupView(viewParams.groupId);
     case "demo":
-      return generateMapFromView(new DemoView());
+      return new DemoView();
     case "home":
-      return generateMapFromView(new HomeView());
+      return new HomeView();
     default:
       throw 'View : "' + view + '" is not recognized'
   } 
@@ -97,5 +104,6 @@ function generateMapFromView(viewInstance) {
   return new MapBuilder()
     .addLayer(new LayerBuilder().addElement(new Background()).build())
     .addLayers(viewInstance.provideLayers(modelRepository, layout))
+    //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
     .build()
 }

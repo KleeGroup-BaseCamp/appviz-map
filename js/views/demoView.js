@@ -1,4 +1,4 @@
-class DemoView   {
+class DemoView extends View {
 
     provideLayers(modelRepository, layout) {
         return  [
