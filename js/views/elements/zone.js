@@ -5,11 +5,11 @@ class Zone extends Element {
     #header
     #corner
 
-    constructor(id, width, height, title, color) {
-        super(id, width, height, false)
+    constructor(id, pxSize, title, color) {
+        super(id, pxSize.getWidth(), pxSize.getHeight(), false)
         this.#header = new Header(
             title, 
-            width, 
+            this.getWidth(), 
             50,
             style.text.size.l 
             )
