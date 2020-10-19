@@ -25,8 +25,7 @@ class TechZoneView {
             zonesLayerBuilder.addElement(
                 new Zone(
                     zoneName,
-                    zonePxSize.getWidth(),
-                    zonePxSize.getHeight(),
+                    zonePxSize,
                     TextUtils.firstCharUpperCase(zoneName),
                     this.#getZoneColor(zoneName)
                 ),
