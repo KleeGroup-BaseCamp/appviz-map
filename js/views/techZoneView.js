@@ -49,6 +49,7 @@ class TechZoneView extends View {
             const itemTypeFrequencies = this.#getItemTypeFrequencies(groupModel.getItemModels())
             const groupPxSize = projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
             const groupPxPosition = projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
+            const paddedGroupPxPosition = new PxPosition(groupPxPosition.getX() + padding.left, groupPxPosition.getY() + padding.top)
             groupsLayerBuilder.addElement(
                 new Group(
                     groupModel.getId(),
@@ -58,7 +59,7 @@ class TechZoneView extends View {
                     itemTypeFrequencies,
                     this.#getZoneColor(groupModel.getType())
                 ),
-                groupPxPosition
+                paddedGroupPxPosition
             )
         }
 
