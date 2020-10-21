@@ -1,4 +1,4 @@
-class Background extends Element {
+class Background extends VElement {
 
  /**
   * @override

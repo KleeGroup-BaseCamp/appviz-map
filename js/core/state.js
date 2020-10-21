@@ -30,7 +30,7 @@ class State {
     /**
      * Marks an element as Hovered
      * 
-     * @param {Element} element 
+     * @param {VElement} element 
      */
     hover(element) {
         if (this.#hoveredElement !== element) {
@@ -42,7 +42,7 @@ class State {
     /**
      * Is the provided element in Hovered state
      * 
-     * @param {Element} element 
+     * @param {VElement} element 
      * @returns {boolean}
      */
     isHovered(element) {
@@ -52,7 +52,7 @@ class State {
     /**
      * Marks an element as Selected
      * 
-     * @param {Element} element 
+     * @param {VElement} element 
      */
     select(element) {
         if (this.#selectedElement !== element) {
@@ -64,7 +64,7 @@ class State {
     /**
      * Is the provided element currently selected
      * 
-     * @param {Element} element 
+     * @param {VElement} element 
      * @returns {boolean}
      */
     isSelected(element) {

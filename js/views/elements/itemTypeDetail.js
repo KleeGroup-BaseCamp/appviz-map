@@ -1,4 +1,4 @@
-class ItemTypeDetail extends Element {
+class ItemTypeDetail extends VElement {
     #header
 
     constructor(id, pxSize, title) {

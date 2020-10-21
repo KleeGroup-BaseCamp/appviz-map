@@ -1,4 +1,4 @@
-class Group extends Element {
+class Group extends VElement {
     #items
     #maxValue
     #header

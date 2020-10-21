@@ -25,7 +25,7 @@ class Layer {
    * 
    * @param {number} x 
    * @param {number} y 
-   * @returns {?Element} element 
+   * @returns {?VElement} element 
    */
   findElement(x, y) {
     for (let positionedElement of this.#positionedElements) {

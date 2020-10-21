@@ -1,5 +1,5 @@
 /**
- * Element displayed on the map.
+ * VElement displayed on the map.
  * 
  * An element is 
  *  - displayed in a layer by the 'render' method.
@@ -18,7 +18,7 @@
  * An element can
  *  - define a specific 'contains' method to handle a specific shape  
  */
-class Element {
+class VElement {
   #id
   #pxSize
   #selectable

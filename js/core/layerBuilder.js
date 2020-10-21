@@ -4,7 +4,7 @@ class LayerBuilder {
   /**
    * Adds an element 
    * 
-   * @param {Element} element 
+   * @param {VElement} element 
    * @param {PxPosition} pxPosition
    */
   addElement(element, pxPosition = new PxPosition(0, 0)) {

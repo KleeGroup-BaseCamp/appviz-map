@@ -1,4 +1,4 @@
-class Card extends Element {
+class Card extends VElement {
     #header
 
     constructor(id, pxSize, title) {

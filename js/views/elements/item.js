@@ -1,4 +1,4 @@
-class Item extends Element {
+class Item extends VElement {
      #title
 
     constructor(id, pxSize, title) {

@@ -58,7 +58,7 @@ function windowResized() {
 }
 
 /**
- * @param {?Element} element
+ * @param {?VElement} element
  * 
  * Update the detail Panel  
  */

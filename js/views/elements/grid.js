@@ -1,4 +1,4 @@
-class Grid extends Element {
+class Grid extends VElement {
   #columns
   #rows
   #alpha
