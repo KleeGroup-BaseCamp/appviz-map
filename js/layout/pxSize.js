@@ -1,4 +1,4 @@
-class PxSize{
+export default class PxSize{
     #width
     #height
 

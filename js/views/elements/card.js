@@ -1,4 +1,4 @@
-class Card extends VElement {
+export default class Card extends VElement {
     #header
 
     constructor(id, pxSize, title) {

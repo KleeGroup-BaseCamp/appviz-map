@@ -1,4 +1,4 @@
-class ItemTypeDetail extends VElement {
+export default class ItemTypeDetail extends VElement {
     #header
 
     constructor(id, pxSize, title) {

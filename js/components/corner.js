@@ -1,4 +1,4 @@
-class Corner {
+export default class Corner {
     #width
     #height
     #color

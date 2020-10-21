@@ -1,4 +1,4 @@
-class LayerBuilder {
+export default class LayerBuilder {
   #positionedElements = []
 
   /**

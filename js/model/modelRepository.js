@@ -1,4 +1,4 @@
-class ModelRepository{
+export default class ModelRepository{
     #groupModels
 
     /**

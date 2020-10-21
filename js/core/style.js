@@ -1,4 +1,4 @@
-class Style {
+export default class Style {
     icon = {
         font : undefined, 
         size : {

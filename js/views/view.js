@@ -1,4 +1,4 @@
-class View {
+export default class View {
 
     provideLayers(modelRepository, layout) {
         throw 'render method MUST be overridden'

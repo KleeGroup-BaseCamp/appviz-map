@@ -4,5 +4,6 @@
     "allowJs": true,
     "target": "es5"
   },
-  "include": ["js"]
+  "include": ["js"],
+  "exclude": ["js/attic"]
 }

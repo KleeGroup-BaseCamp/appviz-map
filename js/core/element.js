@@ -18,7 +18,7 @@
  * An element can
  *  - define a specific 'contains' method to handle a specific shape  
  */
-class VElement {
+export default class VElement {
   #id
   #pxSize
   #selectable

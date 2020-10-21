@@ -1,4 +1,4 @@
-class TextUtils {
+export default class TextUtils {
     static #maxCharacters(text, width) {
         let numOfCharacters = 1
         while (numOfCharacters < text.length

@@ -1,4 +1,4 @@
-class Background extends VElement {
+export default class Background extends VElement {
 
  /**
   * @override

@@ -1,4 +1,4 @@
-class GroupModel{
+export default class GroupModel{
     #id
     #title
     #type

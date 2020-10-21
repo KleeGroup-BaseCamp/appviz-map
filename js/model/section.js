@@ -1,4 +1,4 @@
-class section{
+export default class section{
     #title
     #data
 

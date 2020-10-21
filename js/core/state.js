@@ -1,4 +1,4 @@
-class State {
+export default class State {
     #hoveredElement
     #selectedElement
     #dirty

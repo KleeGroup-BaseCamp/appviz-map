@@ -1,4 +1,4 @@
-class Projection {
+export default class Projection {
     #pxSize
     #gridColumns
     #gridRows

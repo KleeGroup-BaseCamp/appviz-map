@@ -1,4 +1,4 @@
-class VText {
+export default class VText {
     #text
     #font
     #fontSize

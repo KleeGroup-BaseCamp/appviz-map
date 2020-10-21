@@ -1,4 +1,4 @@
-class ItemModel{
+export default class ItemModel{
     #id
     #title
     #type

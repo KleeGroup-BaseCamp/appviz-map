@@ -1,4 +1,4 @@
-class ModelRepositoryBuilder {
+export default class ModelRepositoryBuilder {
   #types = {
     dt: "data",
     tk: "task",

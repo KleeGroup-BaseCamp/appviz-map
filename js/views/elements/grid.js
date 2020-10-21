@@ -1,4 +1,4 @@
-class Grid extends VElement {
+export default class Grid extends VElement {
   #columns
   #rows
   #alpha

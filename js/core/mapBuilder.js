@@ -1,4 +1,4 @@
-class MapBuilder {
+export default class MapBuilder {
   #layers = []
 
   /**

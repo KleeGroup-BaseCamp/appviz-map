@@ -1,4 +1,4 @@
-class GridPosition extends GridVector{
+export default class GridPosition extends GridVector{
 
     constructor(columnCode, rowCode){
         super(columnCode, rowCode)

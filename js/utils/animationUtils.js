@@ -1,4 +1,4 @@
-class AnimationUtils {
+export default class AnimationUtils {
     static #animations = 0;
 
     static isActive (){

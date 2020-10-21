@@ -1,4 +1,4 @@
-class GridVector {
+export default class GridVector {
      /**
      * Array.<string>
      */

@@ -1,7 +1,7 @@
 /**
  * View of a zone.
  */
-class Zone extends VElement {
+export default class Zone extends VElement {
     #header
     #corner
 

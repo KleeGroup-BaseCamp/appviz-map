@@ -1,4 +1,4 @@
-class Group extends VElement {
+export default class Group extends VElement {
     #items
     #maxValue
     #header

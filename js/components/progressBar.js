@@ -1,4 +1,4 @@
-class ProgressBar {
+export default class ProgressBar {
     #value
     #maxValue
     #width

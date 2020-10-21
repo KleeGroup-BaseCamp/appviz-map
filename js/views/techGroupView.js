@@ -1,4 +1,4 @@
-class TechGroupView extends View {
+export default class TechGroupView extends View {
 
     #types = {
         dt: "data",

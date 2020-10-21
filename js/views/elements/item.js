@@ -1,4 +1,4 @@
-class Item extends VElement {
+export default class Item extends VElement {
      #title
 
     constructor(id, pxSize, title) {
