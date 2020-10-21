@@ -1,3 +1,5 @@
+import  GridVector  from "./gridVector";
+
 export default class GridSize extends GridVector{
 
     constructor(columnCode, rowCode){

@@ -1,3 +1,5 @@
+import {style} from "../sketch"
+
 export default class TextUtils {
     static #maxCharacters(text, width) {
         let numOfCharacters = 1

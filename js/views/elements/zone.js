@@ -1,6 +1,10 @@
 /**
  * View of a zone.
  */
+import VElement from "../../core/element"
+import Header from "../../components/header"
+import Corner from "../../components/corner"
+import {style} from "../../sketch"
 export default class Zone extends VElement {
     #header
     #corner

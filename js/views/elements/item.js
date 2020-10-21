@@ -1,3 +1,6 @@
+import VElement from "../../core/element"
+import TextUtils  from "../../utils/textutils"
+import {style, state} from "../../sketch"
 export default class Item extends VElement {
      #title
 

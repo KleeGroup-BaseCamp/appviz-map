@@ -1,6 +1,15 @@
 /**
  * View of a zone.
  */
+import View from "./view"
+import LayerBuilder from "../core/layerBuilder"
+import TextUtils  from "../utils/textutils"
+import Zone from "./elements/zone"
+import PxPosition from "../layout/pxPosition"
+import GridPosition from "../layout/gridPosition"
+import PxSize from "../layout/pxSize"
+import GridSize from "../layout/gridSize"
+import {style, projection} from "../sketch"
 export default class TechZoneView extends View {
 
     #types = {

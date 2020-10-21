@@ -1,3 +1,8 @@
+import VElement from "../../core/element"
+import Header from "../../components/header"
+import ProgressBar  from "../../components/progressBar"
+import VText  from "../../components/vtext"
+import {style, state} from "../../sketch"
 export default class Group extends VElement {
     #items
     #maxValue

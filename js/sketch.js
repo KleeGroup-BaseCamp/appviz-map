@@ -1,3 +1,21 @@
+import Style from "./core/style"
+import State from "./core/state"
+import MapBuilder from "./core/mapBuilder"
+import LayerBuilder from "./core/layerBuilder"
+
+import Detail from "./detail"
+
+import ModelRepositoryBuilder from "./model/modelRepositoryBuilder"
+
+import Projection from "./layout/projection"
+import PxSize from "./layout/pxSize"
+
+import Group from "./views/elements/group"
+import Item from "./views/elements/item"
+import Background from "./views/elements/background"
+
+import TextUtils from "./utils/textutils"
+
 let vizMap
 let modelRepositoryBuilder
 let modelRepository
@@ -53,7 +71,8 @@ function windowResized() {
   resizeCanvas(canvasWidth, canvasHeight)
   projection = new Projection(new PxSize(canvasWidth, canvasHeight))
   //
-  vizMap = generateMap(currentViewName, currentViewParams)
+  const view = selectView(currentViewName, currentViewParams)
+  vizMap = generateMapFromView(view)
   state.reset()
 }
 
@@ -100,3 +119,5 @@ function generateMapFromView(viewInstance) {
     //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
     .build()
 }
+
+export {style, state, detail, projection}

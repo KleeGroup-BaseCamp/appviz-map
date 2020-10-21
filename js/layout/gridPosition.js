@@ -1,3 +1,4 @@
+import  GridVector  from "./gridVector";
 export default class GridPosition extends GridVector{
 
     constructor(columnCode, rowCode){

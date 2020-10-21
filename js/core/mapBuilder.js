@@ -1,3 +1,4 @@
+import Map from "./map";
 export default class MapBuilder {
   #layers = []
 

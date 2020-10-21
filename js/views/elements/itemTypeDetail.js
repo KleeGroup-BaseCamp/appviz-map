@@ -1,3 +1,6 @@
+import VElement from "../../core/element"
+import Header from "../../components/header"
+import {style} from "../../sketch"
 export default class ItemTypeDetail extends VElement {
     #header
 

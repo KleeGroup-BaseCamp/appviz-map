@@ -1,3 +1,4 @@
+import AnimationUtils from "../utils/animationUtils";
 export default class State {
     #hoveredElement
     #selectedElement
