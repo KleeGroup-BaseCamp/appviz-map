@@ -15,7 +15,7 @@ class State {
      * @returns {boolean}
      */
     isActive() {
-        const active = this.#dirty || AnimationUtils.isActive()
+        const active = (this.#dirty || AnimationUtils.isActive())
         this.#cleanDirty()
         return active
     }
