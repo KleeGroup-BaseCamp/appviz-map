@@ -1,0 +1,22 @@
+{
+  "name": "appviz",
+  "version": "1.0.0",
+  "description": "AppViz is like DataViz but for Applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KleeGroup-BaseCamp/appviz-map.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KleeGroup-BaseCamp/appviz-map/issues"
+  },
+  "homepage": "https://github.com/KleeGroup-BaseCamp/appviz-map#readme",
+  "devDependencies": {
+    "typescript": "^4.0.3"
+  }
+}
