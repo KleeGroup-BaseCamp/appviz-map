@@ -1,3 +1,4 @@
+import "p5"
 import Style from "./core/style"
 import State from "./core/state"
 import MapBuilder from "./core/mapBuilder"
