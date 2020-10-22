@@ -1,3 +1,7 @@
+import VText from "./vtext"
+import AnimationUtils from "../utils/animationUtils"
+import {style} from "../sketch"
+
 export default class ProgressBar {
     #value
     #maxValue

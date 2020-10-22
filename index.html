@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/style.css" />
-</head>
-
-<body>
-  <script src="/dist/main2.js"></script>
-  <div class="columns is-gapless">
-    <div class="column  is-narrow" id="nav">
-      <div class="tile is-ancestor is-vertical">
-        <div class="tile is-parent">
-          <div class="tile is-child menu-item" id = "home" onclick="switchView('home')">
-            <i class="material-icons md-36">home</i>
+  
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+  </head>
+  
+  <body>
+    <div class="columns is-gapless">
+      <div class="column  is-narrow" id="nav">
+        <div class="tile is-ancestor is-vertical">
+          <div class="tile is-parent">
+            <div class="tile is-child menu-item" id = "home">
+              <i class="material-icons md-36">home</i>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child menu-item" id = "tech">
+              <i class="material-icons md-36">view_module</i>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child menu-item" id = "demo">
+              <i class="material-icons md-36">construction</i>
+            </div>
           </div>
         </div>
-        <div class="tile is-parent">
-          <div class="tile is-child menu-item" id = "tech" onclick="switchView('techZone')">
-            <i class="material-icons md-36">view_module</i>
-          </div>
-       </div>
-       <div class="tile is-parent">
-          <div class="tile is-child menu-item" id = "demo" onclick="switchView('demo')">
-            <i class="material-icons md-36">construction</i>
-          </div>
-       </div>
-      </div>
     </div>
     <div class="column" id="myContainer">
     </div>
@@ -41,12 +40,13 @@
       </div>
     </div>
   </div>
-
+  
+  <script src="/dist/main.js"></script>
   
   <!-- <script src="js/utils/textutils.js"></script>
-  <script src="js/utils/animationutils.js"></script>
-  
-  <script src="js/core/map.js"></script>
+    <script src="js/utils/animationutils.js"></script>
+    
+    <script src="js/core/map.js"></script>
   <script src="js/core/state.js"></script>
   <script src="js/core/layer.js"></script>
   <script src="js/core/element.js"></script>

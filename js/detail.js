@@ -8,9 +8,9 @@ export default class Detail{
         document.querySelector("#detail-content").innerHTML = this.#getContent(type, title)
     }
 
-    #getContent(type, title){
+    #getContent(type, title){ // TO DO: title > id
         if (type === 'group') {
-            return `<div class='has-text-centered'><button class='button is-light' onClick="switchView('techGroup', {'groupId': '${title}'})">Go to detail</button><p>Group detail goes here</p></div>`
+            return `<div class='has-text-centered'><button class='button is-light' id='detail-button'>Go to detail</button><p>Group detail goes here</p></div>`
         } else {
             return '';
         }

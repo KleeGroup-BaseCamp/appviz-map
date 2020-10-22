@@ -1,16 +1,18 @@
 const path = require('path');
 
 module.exports = {
+  mode: "development",
+  watch: true,
   entry: './js/sketch.js',
   output: {
-    filename: 'main2.js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {

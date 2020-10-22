@@ -5,6 +5,7 @@ import {projection} from "../sketch"
 export default class HomeView extends View {
 
     provideLayers(modelRepository, layout) {
+        console.log(projection)
         return  [
             new LayerBuilder()
             .addElement(new Card("home_main", projection.getPxSize(), "Home"))

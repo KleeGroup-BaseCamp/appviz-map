@@ -1,3 +1,5 @@
+import {style} from "../sketch"
+import TextUtils from "../utils/textutils"
 export default class Header {
     #title
     #width

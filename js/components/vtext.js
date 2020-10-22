@@ -1,3 +1,5 @@
+import {style} from "../sketch"
+
 export default class VText {
     #text
     #font
