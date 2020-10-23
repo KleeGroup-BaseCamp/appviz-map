@@ -1,11 +1,12 @@
 import AnimationUtils from "../utils/animationUtils";
+import VElement from "./element";
 export default class State {
-    #hoveredElement
-    #selectedElement
-    #dirty
+    #hoveredElement: VElement | null = null
+    #selectedElement: VElement | null = null
+    #dirty: boolean = true
 
     constructor() {
-        this.#marksAsDirty()
+        this.marksAsDirty()
     }
 
     /**
@@ -15,16 +16,17 @@ export default class State {
      * 
      * @returns {boolean}
      */
-    isActive() {
+    isActive(): boolean {
         const active = (this.#dirty || AnimationUtils.isActive())
-        this.#cleanDirty()
+        this.cleanDirty()
         return active
     }
-    #cleanDirty() {
+
+    private cleanDirty() {
         this.#dirty = false
     }
 
-    #marksAsDirty() {
+    private marksAsDirty() {
         this.#dirty = true
     }
 
@@ -33,10 +35,10 @@ export default class State {
      * 
      * @param {VElement} element 
      */
-    hover(element) {
+    hover(element: VElement) {
         if (this.#hoveredElement !== element) {
             this.#hoveredElement = element
-            this.#marksAsDirty()
+            this.marksAsDirty()
         }
     }
 
@@ -46,7 +48,7 @@ export default class State {
      * @param {VElement} element 
      * @returns {boolean}
      */
-    isHovered(element) {
+    isHovered(element: VElement): boolean {
         return element === this.#hoveredElement
     }
 
@@ -55,10 +57,10 @@ export default class State {
      * 
      * @param {VElement} element 
      */
-    select(element) {
+    select(element: VElement) {
         if (this.#selectedElement !== element) {
             this.#selectedElement = element
-            this.#marksAsDirty()
+            this.marksAsDirty()
         }
     }
 
@@ -68,7 +70,7 @@ export default class State {
      * @param {VElement} element 
      * @returns {boolean}
      */
-    isSelected(element) {
+    isSelected(element: VElement): boolean {
         return element === this.#selectedElement
     }
 
@@ -76,9 +78,9 @@ export default class State {
      * Completly reset the state
      */
     reset() {
-        this.#hoveredElement = undefined
-        this.#selectedElement = undefined
-        this.#marksAsDirty()
+        this.#hoveredElement = null
+        this.#selectedElement = null
+        this.marksAsDirty()
     }
 
 }

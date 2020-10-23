@@ -1,15 +1,16 @@
 import VText from "./vtext"
 import AnimationUtils from "../utils/animationUtils"
 import {style} from "../sketch"
+import * as p5 from "p5"
 
 export default class ProgressBar {
-    #value
-    #maxValue
-    #width
-    #color
-    #title
+    #value: number
+    #maxValue: number
+    #width: number
+    #color: p5.Color
+    #title: VText // TO DO: Use better name (e.g title is also used for string field in other objects (i.e. Header))
 
-    constructor(value, maxValue, width, color /* p5 Color*/) {
+    constructor(value: number, maxValue: number, width: number, color: p5.Color) {
         this.#value = value
         this.#maxValue = maxValue
         this.#width = width
@@ -21,15 +22,15 @@ export default class ProgressBar {
     
     render() {
         const weight = 8
-        this.#title.setText(Math.floor(this.#value))
+        this.#title.setText(Math.floor(this.#value).toString())
         this.#title.render() 
         push()
         translate(20, (-textAscent() + weight) / 2 )
-        this.#renderBar(weight);
+        this.renderBar(weight);
         pop()
     }
 
-    #renderBar(weight){
+    private renderBar(weight: number){
         strokeJoin(ROUND)
         
         strokeWeight(weight)
@@ -39,6 +40,5 @@ export default class ProgressBar {
         stroke(this.#color)
         const size = this.#value * this.#width / this.#maxValue  
         line(0, 0, size, 0)
-    
     }
 }

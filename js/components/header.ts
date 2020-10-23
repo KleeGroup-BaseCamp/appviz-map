@@ -1,13 +1,14 @@
+import * as p5 from "p5"
 import {style} from "../sketch"
 import TextUtils from "../utils/textutils"
 export default class Header {
-    #title
-    #width
-    #height
-    #fontSize
-    #font
+    #title: string
+    #width: number
+    #height: number
+    #fontSize: number
+    #font: p5.Font
 
-    constructor(title, width, height, fontSize, font = style.text.font) {
+    constructor(title: string, width: number, height: number, fontSize: number, font: p5.Font = style.text.font) {
         this.#title = title ? TextUtils.buildDisplayableTitle(title, width, fontSize) : "No title"
         this.#width = width
         this.#height = height
@@ -16,17 +17,17 @@ export default class Header {
     }
 
     render() {
-        this.#renderBackground()
-        this.#renderTitle()
+        this.renderBackground()
+        this.renderTitle()
     }
 
-    #renderBackground() {
+    private renderBackground() {
         noStroke()
         fill(style.color.front)
         rect (0, 0, this.#width, this.#height)
     }
 
-    #renderTitle() {
+    private renderTitle() {
         noStroke()
         fill(style.text.color.primary)
         textSize(this.#fontSize)

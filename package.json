@@ -23,6 +23,7 @@
     "@babel/plugin-proposal-private-methods": "^7.12.1",
     "@babel/plugin-syntax-class-properties": "^7.12.1",
     "@babel/preset-env": "^7.12.1",
+    "@types/p5": "^0.9.1",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "babel-loader": "^8.1.0",

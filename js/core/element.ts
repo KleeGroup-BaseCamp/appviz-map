@@ -1,3 +1,5 @@
+import PxSize from "../layout/pxSize"
+
 /**
  * VElement displayed on the map.
  * 
@@ -19,9 +21,9 @@
  *  - define a specific 'contains' method to handle a specific shape  
  */
 export default class VElement {
-  #id
-  #pxSize
-  #selectable
+  #id: any
+  #pxSize: PxSize
+  #selectable: boolean
  
   /**
    * @constructor
@@ -30,7 +32,7 @@ export default class VElement {
    * @param {PxSize} pxSize 
    * @param {boolean} selectable 
    */
-  constructor (id, pxSize, selectable){
+  constructor (id: any, pxSize: PxSize, selectable: boolean){
     this.#id = id
     this.#pxSize = pxSize
     this.#selectable = selectable
@@ -39,34 +41,34 @@ export default class VElement {
   /**
    * @return {*} id
    */
-  getId(){
+  getId(): any{
     return this.#id
   }
 
   /**
   * @return {number} width
   */
-  getWidth(){
+  getWidth(): number{
     return this.#pxSize.getWidth()
   }  
 
   /**
    * @return {number} height
    */
-  getHeight(){
+  getHeight(): number{
     return this.#pxSize.getHeight()
   }  
 
   /**
    * @return {pxSize} pxsize
    */
-  getPxSize(){
+  getPxSize(): PxSize{
     return this.#pxSize
   }
     /**
    * @returns {boolean} if the element is selectable
    */
-  isSelectable(){
+  isSelectable(): boolean{
     return this.#selectable
   }
   
@@ -85,7 +87,7 @@ export default class VElement {
    * @param {number} y 
    * @return {boolean} if the element contains the point (x, y)
    */
-  contains(x, y) {
+  contains(x: number, y: number): boolean {
     return x > 0
         && x < this.#pxSize.getWidth()
         && y > 0

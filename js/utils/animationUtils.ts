@@ -15,7 +15,7 @@ export default class AnimationUtils {
         clearInterval(id)
     }
 
-    static animate(from, to, duration, callBack) {
+    static animate(from: number, to: number, duration: number, callBack: (v:number) => void) {
         callBack(from)
         if (from ===to) return 
         const interval = 10 /*ms*/

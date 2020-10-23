@@ -1,13 +1,13 @@
-export default class Layer {
-  /**
-   * Array of {
-   *  - {x, y} 
-   *  - element
-   * }  
-   */
-  #positionedElements
+import PxPosition from "../layout/pxPosition"
+import { PositionedElement } from "../types/types"
+import VElement from "./element"
 
-  constructor(positionedElements) {
+export default class Layer {
+  
+
+  #positionedElements: PositionedElement[]
+
+  constructor(positionedElements: PositionedElement[]) {
     this.#positionedElements = positionedElements
   }
 
@@ -27,7 +27,7 @@ export default class Layer {
    * @param {number} y 
    * @returns {?VElement} element 
    */
-  findElement(x, y) {
+  findElement(x: number, y: number): VElement | null {
     for (let positionedElement of this.#positionedElements) {
       const lx = x - positionedElement.pxPosition.getX()
       const ly = y - positionedElement.pxPosition.getY()

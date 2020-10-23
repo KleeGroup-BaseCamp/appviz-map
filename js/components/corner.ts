@@ -1,16 +1,17 @@
+import * as p5 from "p5"
 export default class Corner {
-    #width
-    #height
-    #color
+    #width: number
+    #height: number
+    #color : p5.Color
 
     /**
      * @constructor
      * 
      * @param {number} width 
      * @param {number} height 
-     * @param {Color} color 
+     * @param {p5.Color} color 
      */
-    constructor(width, height, color) {
+    constructor(width: number, height: number, color: p5.Color) {
         this.#width = width,
         this.#height = height
         this.#color = color

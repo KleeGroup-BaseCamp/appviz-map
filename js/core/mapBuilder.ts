@@ -1,13 +1,14 @@
+import Layer from "./layer";
 import Map from "./map";
 export default class MapBuilder {
-  #layers = []
+  #layers: Layer[] = []
 
   /**
    * Adds a layer 
    * 
    * @param {Layer} layer 
    */
-  addLayer(layer) {
+  addLayer(layer: Layer) {
     this.#layers.push(layer)
     return this
   }
@@ -17,7 +18,7 @@ export default class MapBuilder {
    * 
    * @param {Layer[]} layers 
    */
-  addLayers(layers) {
+  addLayers(layers: Layer[]) {
     layers.forEach(layer => this.addLayer(layer));
     return this;
   }
@@ -27,7 +28,7 @@ export default class MapBuilder {
    * 
    * @returns {Map} map
    */
-  build() {
+  build(): Map {
     return new Map(this.#layers)
   }
 }

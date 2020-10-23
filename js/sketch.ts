@@ -1,4 +1,5 @@
 import "p5"
+// import "p5/global"
 import Style from "./core/style"
 import State from "./core/state"
 import MapBuilder from "./core/mapBuilder"
@@ -18,21 +19,24 @@ import TechGroupView from "./views/techGroupView"
 import Group from "./views/elements/group"
 import Item from "./views/elements/item"
 import Background from "./views/elements/background"
+import ModelRepository from "./model/modelRepository"
+import Map from "./core/map"
 
 // import TextUtils from "./utils/textutils"
 
-let vizMap
-let modelRepositoryBuilder
-let modelRepository
-let canvasHeight
-let canvasWidth
-let currentViewName
-let currentViewParams
 const style = new Style()
 const detail = new Detail()
 const state = new State()
-let layout
-let projection
+
+let vizMap : Map
+let modelRepositoryBuilder : ModelRepositoryBuilder
+let modelRepository : ModelRepository
+let canvasHeight : number
+let canvasWidth : number
+let currentViewName : string
+let currentViewParams : string
+let projection : Projection 
+let layout : any
 
 window.preload = preload
 window.setup = setup

@@ -1,6 +1,18 @@
+import * as p5 from "p5"
+
+type ColorStyle = {[colorName: string] : p5.Color}
+type SizeStyle = {[sizeName: string] : number}
+type IconStyle = {
+    font : p5.Font,
+    size : SizeStyle
+}
+type TextStyle = IconStyle & {
+    color: ColorStyle
+} 
+
 export default class Style {
-    icon = {
-        font : undefined, 
+    icon: IconStyle = {
+        font : new p5.Font(), 
         size : {
             s: 16,
             m: 20,
@@ -9,8 +21,8 @@ export default class Style {
         }    
     }    
 
-    text = {
-        font : undefined,
+    text: TextStyle = {
+        font : new p5.Font(),
         size : {
             xxs: 12,
             xs: 14,
@@ -22,26 +34,26 @@ export default class Style {
             default: 60
         }, 
         color : {
-            primary   : null,  /* white */ 
-            secondary : null,  /* light grey */
+            primary   : new p5.Color(), // TO DO : give default color  /* white */ 
+            secondary : new p5.Color(), // TO DO : give default color /* light grey */
         }
     }
 
-    color = {
+    color: ColorStyle = {
         /* inspiration : www.behance.net/gallery/36390371/Virtus-Dashboard-Free-PSD-Template */
 
         /* colors */
-        a : null, //color("#2196F3"), /* blue */
-        b : null, /* green */
-        c : null, /* red */
-        d : null, /* grey */
+        a : new p5.Color(), // TO DO : give default color, //color("#2196F3"), /* blue */
+        b : new p5.Color(), // TO DO : give default color, /* green */
+        c : new p5.Color(), // TO DO : give default color, /* red */
+        d : new p5.Color(), // TO DO : give default color, /* grey */
 
         /* layer > back to front colors */
-        back   : null,  /* deep dark */
-        middle : null,  /* dark */
-        front  : null,  /* light dark */
+        back   : new p5.Color(), // TO DO : give default color,  /* deep dark */
+        middle : new p5.Color(), // TO DO : give default color,  /* dark */
+        front  : new p5.Color(), // TO DO : give default color,  /* light dark */
 
-        undefined :  null  /* lemnon*/
+        undefined :  new p5.Color(), // TO DO : give default color  /* lemnon*/
     }
 
     #icons = {
@@ -56,13 +68,13 @@ export default class Style {
         this.text.font = loadFont("fonts/Montserrat-Regular.ttf")
         this.icon.font = loadFont("fonts/material-design-outlined.ttf")
         if (random(0,10) > 5){
-            this.#loadDarkTheme()
+            this.loadDarkTheme()
         }else {
-            this.#loadLightTheme()
+            this.loadLightTheme()
         }
     }    
 
-    #loadDarkTheme() {
+    private loadDarkTheme() {
         this.color.a = color("#2196F3") /* blue */
         this.color.b  = color( "#4CAF50") /* green */
         this.color.c  = color("#F44336") /* red */
@@ -80,7 +92,7 @@ export default class Style {
         this.color.undefined  = color("#fff700")  /* lemon*/
     }
 
-    #loadLightTheme() {
+    private loadLightTheme() {
         this.color.a = color("#2196F3") /* blue */
         this.color.b  = color( "#4CAF50") /* green */
         this.color.c  = color("#F44336") /* red */
@@ -98,7 +110,7 @@ export default class Style {
         this.color.undefined  = color("0008ff")
     }
 
-    getIcon(itemPrefix) {
+    getIcon(itemPrefix: "data" | "task") {
         return this.#icons[itemPrefix]
     }
 }
