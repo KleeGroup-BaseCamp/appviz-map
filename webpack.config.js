@@ -4,26 +4,20 @@ module.exports = {
   mode: "development",
   watch: true,
   entry: './js/sketch.js',
+  devtool: 'inline-source-map',
   output: {
-    filename: 'main.js',
+    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  resolve: {
+    extensions: [".ts", ".js"]
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: [
-              "@babel/plugin-proposal-class-properties",
-              "@babel/plugin-proposal-private-methods"
-            ]
-          }
-        }
-      }
+      { 
+        test: /\.ts$/, 
+        loader: "ts-loader" 
+      },
     ]
   }
 };

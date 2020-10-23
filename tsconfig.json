@@ -1,12 +1,10 @@
 {
   "compilerOptions": {
     "outDir": "./built",
-    // "module": "AMD",
-    // "outFile": "dist/bundle.js",
     "allowJs": true,
+    "sourceMap": true,
     "target": "es5"
   },
   "include": ["js"],
   "exclude": ["js/attic"]
-  // "files": ["js/sketch.js"]
 }

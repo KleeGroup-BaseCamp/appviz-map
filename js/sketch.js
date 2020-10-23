@@ -38,6 +38,7 @@ window.preload = preload
 window.setup = setup
 window.draw = draw
 window.mouseClicked = mouseClicked
+window.windowResized = windowResized
 window.switchView = switchView
 
 function preload() {
