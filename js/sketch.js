@@ -38,6 +38,7 @@ window.preload = preload
 window.setup = setup
 window.draw = draw
 window.mouseClicked = mouseClicked
+window.switchView = switchView
 
 function preload() {
   canvasHeight = windowHeight
@@ -92,11 +93,8 @@ function windowResized() {
  * Update the detail Panel  
  */
 function updateDetail(element) {
-  if (element instanceof Group) {
-    detail.update('group', element.getId())
-    document.getElementById("detail-button").onclick = ()=>{switchView('techGroup', {'groupId': element.getId()})}
-  } else if (element instanceof Item){
-    detail.update('item', element.getId())
+  if (element instanceof Group || element instanceof Item) {
+    detail.update(element instanceof Group ? 'group' : 'item', element.getId())
   }
 }
 
@@ -142,9 +140,6 @@ function generateMapFromView(viewInstance) {
     //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
     .build()
 }
-  document.getElementById("home").onclick = ()=>{switchView('home')}
-  document.getElementById("tech").onclick = ()=>{switchView('techZone')}
-  document.getElementById("demo").onclick = ()=>{switchView('demo')}
 
 
 export {style, state, detail, projection}

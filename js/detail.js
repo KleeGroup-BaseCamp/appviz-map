@@ -10,7 +10,7 @@ export default class Detail{
 
     #getContent(type, title){ // TO DO: title > id
         if (type === 'group') {
-            return `<div class='has-text-centered'><button class='button is-light' id='detail-button'>Go to detail</button><p>Group detail goes here</p></div>`
+            return `<div class='has-text-centered'><button class='button is-light' id='detail-button' onclick="switchView('techGroup', {'groupId': '${title}'})">Go to detail</button><p>Group detail goes here</p></div>`
         } else {
             return '';
         }
