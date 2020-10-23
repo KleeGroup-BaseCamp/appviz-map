@@ -1,7 +1,7 @@
-import PxPosition from "../layout/pxPosition";
-import PxSize from "../layout/pxSize";
-import GridPosition from "../layout/gridPosition";
-import GridSize from "../layout/gridSize";
+import PxPosition from "./pxPosition";
+import PxSize from "./pxSize";
+import GridPosition from "./gridPosition";
+import GridSize from "./gridSize";
 
 export default class Projection {
     #pxSize
@@ -68,8 +68,8 @@ export default class Projection {
      * @returns {GridPosition}
      */
     pxToGridPosition(pxPos, level){
-        let columns = []
-        let rows = []
+        const columns = []
+        const rows = []
         let x = pxPos.getX()
         let y = pxPos.getY()
         let gridColumns = this.#gridColumns
@@ -93,8 +93,8 @@ export default class Projection {
      * @returns {GridSize}
      */
     pxToGridSize(pxSize, level){
-        let numsOfColumns = []
-        let numsOfRows = []
+        const numsOfColumns = []
+        const numsOfRows = []
         let width = pxSize.getWidth()
         let height = pxSize.getHeight()
         let gridColumns = this.#gridColumns
