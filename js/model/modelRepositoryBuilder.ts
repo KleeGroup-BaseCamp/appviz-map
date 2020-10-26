@@ -1,29 +1,37 @@
 import GroupModel from "./groupModel";
 import ItemModel from "./itemModel";
 import ModelRepository from "./modelRepository";
+
+type Notebook = {sketches: {[itemName: string]: object}}
+type Config = {[zoneName: string]: string}
+type ItemModelsPerGroup = {[groupName: string]: ItemModel[]}
+type ItemWithPackageName = {packageName: string, [field: string]: string}
+type ItemNamePrefix = "dt" | "tk"
+
+
 export default class ModelRepositoryBuilder {
-  #types = {
+  #types: {[itemNamePrefix in ItemNamePrefix]: string} = {
     dt: "data",
     tk: "task",
   }
-  #notebook
-  #config
+  #notebook: Notebook 
+  #config: Config
 
-  constructor(notebookPath, configPath) {
-    this.#notebook = loadJSON(notebookPath)
-    this.#config = loadJSON(configPath)
+  constructor(notebookPath: string, configPath: string) {
+    this.#notebook = loadJSON(notebookPath) as Notebook
+    this.#config = loadJSON(configPath) as Config
   }
 
   build() {
-    const itemModelsPerGroup = {}
+    const itemModelsPerGroup: ItemModelsPerGroup = {}
     Object.keys(this.#notebook.sketches).forEach((itemName) => {
       const itemNamePrefix = itemName.slice(0, 2).toLowerCase()
         if (Object.keys(this.#types).includes(itemNamePrefix)){
-          this.#addItem(itemModelsPerGroup, itemName)
+          this.addItem(itemModelsPerGroup, itemName)
         }
     })
 
-    const groupModels = []
+    const groupModels: GroupModel[] = []
     Object.keys(this.#config).forEach(groupName => { // > groupId
       groupModels.push(
         new GroupModel(
@@ -38,12 +46,13 @@ export default class ModelRepositoryBuilder {
     return new ModelRepository(groupModels)
   }
 
-  #addItem(itemModelsPerGroup, itemName){
-    const groupName = this.#notebook.sketches[itemName].packageName.split(".")[2]
+  private addItem(itemModelsPerGroup: ItemModelsPerGroup, itemName: string){
+    const groupName = (this.#notebook.sketches[itemName] as ItemWithPackageName).packageName.split(".")[2]
     const itemModel = new ItemModel(
           itemName, // id will go here later
           itemName, 
-          this.#types[itemName.slice(0, 2).toLowerCase()], 
+          this.#types[itemName.slice(0, 2).toLowerCase() as ItemNamePrefix], 
+          "",
           [] // sections will go here later
         )
     if (Object.keys(itemModelsPerGroup).includes(groupName)){

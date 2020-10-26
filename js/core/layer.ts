@@ -1,4 +1,3 @@
-import PxPosition from "../layout/pxPosition"
 import { PositionedElement } from "../types/types"
 import VElement from "./element"
 

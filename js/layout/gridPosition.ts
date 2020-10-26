@@ -1,16 +1,16 @@
-import  GridVector  from "./gridVector";
+import  GridVector from "./gridVector";
 export default class GridPosition extends GridVector{
 
-    constructor(columnCode, rowCode){
+    constructor(columnCode: string, rowCode: string){
         super(columnCode, rowCode)
     }    
 
     
-    getColumn(level){
+    getColumn(level: number){
         return this._getColumns(level)
     }
 
-    getRow(level){
+    getRow(level: number){
         return this._getRows(level)
     }
 }

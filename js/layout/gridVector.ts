@@ -2,11 +2,11 @@ export default class GridVector {
      /**
      * Array.<string>
      */
-    #columns
-    #rows
-    #length
+    #columns: number[]
+    #rows: number[]
+    #length: number
 
-    constructor(columnCode, rowCode){
+    constructor(columnCode: string, rowCode: string){
         this.#columns = columnCode.split(":").map (s=> Number(s))
         this.#rows = rowCode.split(":").map (s=> Number(s))
         //---
@@ -20,19 +20,19 @@ export default class GridVector {
         return this.#length
     }
 
-    #checkLevel(level){
+    private checkLevel(level: number){
         if (level<0 || level >= this.#length) { 
             throw 'level must be between [0 ; '+this.#length +'['    
         }
     }
     
-    _getColumns(level){
-        this.#checkLevel(level)
+    _getColumns(level: number){
+        this.checkLevel(level)
         return this.#columns[level]
     }
 
-    _getRows(level){
-        this.#checkLevel(level)
+    _getRows(level: number){
+        this.checkLevel(level)
         return this.#rows[level]
     }
 }

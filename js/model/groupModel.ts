@@ -1,9 +1,11 @@
+import ItemModel from "./itemModel"
+import Section from "./section"
 export default class GroupModel{
-    #id
-    #title
-    #type
-    #sections
-    #itemModels
+    #id: any
+    #title: string
+    #type: string
+    #sections: Section[]
+    #itemModels: ItemModel[]
 
     /**
      * @constructor
@@ -14,7 +16,7 @@ export default class GroupModel{
      * @param {Section[]} sections 
      * @param {ItemModel[]} itemModels 
      */
-    constructor(id, title, type, sections, itemModels){
+    constructor(id: any, title: string, type: string, sections: Section[], itemModels: ItemModel[]){
         this.#id = id
         this.#title = title
         this.#type = type

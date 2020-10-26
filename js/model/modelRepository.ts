@@ -1,12 +1,14 @@
+import GroupModel from "./groupModel"
+
 export default class ModelRepository{
-    #groupModels
+    #groupModels: GroupModel[]
 
     /**
      * @constructor
      * 
      * @param {GroupModel[]} groupModels 
      */
-    constructor(groupModels){
+    constructor(groupModels: GroupModel[]){
         this.#groupModels = groupModels
     }
 
@@ -20,7 +22,7 @@ export default class ModelRepository{
     // getGroupTypes() -> string[]
 
     // getGroupModelsByType(type: string) -> groupModel[]
-    getGroupModelById(id){
+    getGroupModelById(id: any){
         const groupModel = this.getGroupModels().find(groupModel => 
             groupModel.getId() === id)
 

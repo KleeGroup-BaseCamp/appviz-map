@@ -4,9 +4,9 @@ import GridPosition from "./gridPosition";
 import GridSize from "./gridSize";
 
 export default class Projection {
-    #pxSize
-    #gridColumns
-    #gridRows
+    #pxSize: PxSize
+    #gridColumns: number
+    #gridRows: number
 
     /**
      * @constructor
@@ -14,7 +14,7 @@ export default class Projection {
      * @param {number} [gridColumns=12]
      * @param {number} [gridRows=12] 
      */
-    constructor(pxSize, gridColumns = 12, gridRows = 12){
+    constructor(pxSize: PxSize, gridColumns = 12, gridRows = 12){
         this.#pxSize = pxSize
         this.#gridColumns = gridColumns
         this.#gridRows = gridRows
@@ -24,7 +24,7 @@ export default class Projection {
      * @param {GridPosition} gridPosition
      * @returns {PxPosition}
      */
-    gridToPxPosition(gridPosition){
+    gridToPxPosition(gridPosition: GridPosition){
         let x = 0
         let y = 0
         let gridColumns = this.#gridColumns
@@ -45,7 +45,7 @@ export default class Projection {
      * @param {GridSize} gridSize
      * @returns {PxSize}
      */
-    gridToPxSize(gridSize){
+    gridToPxSize(gridSize: GridSize){
         let width = 0
         let height = 0
         let gridColumns = this.#gridColumns
@@ -67,7 +67,7 @@ export default class Projection {
      * @param {number} level
      * @returns {GridPosition}
      */
-    pxToGridPosition(pxPos, level){
+    pxToGridPosition(pxPos: PxPosition, level: number){
         const columns = []
         const rows = []
         let x = pxPos.getX()
@@ -92,7 +92,7 @@ export default class Projection {
      * @param {number} level
      * @returns {GridSize}
      */
-    pxToGridSize(pxSize, level){
+    pxToGridSize(pxSize: PxSize, level: number){
         const numsOfColumns = []
         const numsOfRows = []
         let width = pxSize.getWidth()

@@ -1,4 +1,5 @@
 import * as p5 from "p5"
+
 export default class Corner {
     #width: number
     #height: number

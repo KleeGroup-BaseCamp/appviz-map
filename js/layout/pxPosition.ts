@@ -1,6 +1,6 @@
 export default class PxPosition{
-    #x
-    #y
+    #x: number
+    #y: number
 
     /**
      * @constructor
@@ -8,7 +8,7 @@ export default class PxPosition{
      * @param {number} x 
      * @param {number} y 
      */
-    constructor(x, y){
+    constructor(x: number, y: number){
         this.#x = x
         this.#y = y
     }

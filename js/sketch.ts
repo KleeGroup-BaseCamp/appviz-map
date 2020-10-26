@@ -1,5 +1,6 @@
 import "p5"
-// import "p5/global"
+import "p5/global"
+
 import Style from "./core/style"
 import State from "./core/state"
 import MapBuilder from "./core/mapBuilder"
