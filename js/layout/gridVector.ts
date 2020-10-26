@@ -1,38 +1,35 @@
 export default class GridVector {
-     /**
-     * Array.<string>
-     */
-    #columns: number[]
-    #rows: number[]
-    #length: number
+    private columns: number[]
+    private rows: number[]
+    private length: number
 
     constructor(columnCode: string, rowCode: string){
-        this.#columns = columnCode.split(":").map (s=> Number(s))
-        this.#rows = rowCode.split(":").map (s=> Number(s))
+        this.columns = columnCode.split(":").map (s=> Number(s))
+        this.rows = rowCode.split(":").map (s=> Number(s))
         //---
-        if (this.#columns.length !== this.#rows.length){
+        if (this.columns.length !== this.rows.length){
             throw 'levels of columns and rows mus be equal'    
         }
-        this.#length = this.#columns.length //= this.#rows.length
+        this.length = this.columns.length //= this.#rows.length
     }    
 
-    getLength(){
-        return this.#length
+    getLength(): number{
+        return this.length
     }
 
-    private checkLevel(level: number){
-        if (level<0 || level >= this.#length) { 
-            throw 'level must be between [0 ; '+this.#length +'['    
+    private checkLevel(level: number): void{
+        if (level<0 || level >= this.length) { 
+            throw 'level must be between [0 ; '+this.length +'['    
         }
     }
     
-    _getColumns(level: number){
+    protected _getColumns(level: number): number{
         this.checkLevel(level)
-        return this.#columns[level]
+        return this.columns[level]
     }
 
-    _getRows(level: number){
+    protected _getRows(level: number): number{
         this.checkLevel(level)
-        return this.#rows[level]
+        return this.rows[level]
     }
 }

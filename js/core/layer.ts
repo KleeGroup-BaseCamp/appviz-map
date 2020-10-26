@@ -2,16 +2,14 @@ import { PositionedElement } from "../types/types"
 import VElement from "./element"
 
 export default class Layer {
-  
-
-  #positionedElements: PositionedElement[]
+  private positionedElements: PositionedElement[]
 
   constructor(positionedElements: PositionedElement[]) {
-    this.#positionedElements = positionedElements
+    this.positionedElements = positionedElements
   }
 
-  render() {
-    for (let positionedElement of this.#positionedElements) {
+  public render() : void  {
+    for (let positionedElement of this.positionedElements) {
       push()
       translate(positionedElement.pxPosition.getX(), positionedElement.pxPosition.getY())
       positionedElement.element.render()
@@ -26,8 +24,8 @@ export default class Layer {
    * @param {number} y 
    * @returns {?VElement} element 
    */
-  findElement(x: number, y: number): VElement | null {
-    for (let positionedElement of this.#positionedElements) {
+  public findElement(x: number, y: number): VElement | null {
+    for (let positionedElement of this.positionedElements) {
       const lx = x - positionedElement.pxPosition.getX()
       const ly = y - positionedElement.pxPosition.getY()
       if (positionedElement.element.isSelectable() && positionedElement.element.contains(lx, ly))

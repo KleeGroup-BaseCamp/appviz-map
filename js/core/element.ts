@@ -21,9 +21,9 @@ import PxSize from "../layout/pxSize"
  *  - define a specific 'contains' method to handle a specific shape  
  */
 export default class VElement {
-  #id: any
-  #pxSize: PxSize
-  #selectable: boolean
+  private id: any
+  private pxSize: PxSize
+  private selectable: boolean
  
   /**
    * @constructor
@@ -33,50 +33,50 @@ export default class VElement {
    * @param {boolean} selectable 
    */
   constructor (id: any, pxSize: PxSize, selectable: boolean){
-    this.#id = id
-    this.#pxSize = pxSize
-    this.#selectable = selectable
+    this.id = id
+    this.pxSize = pxSize
+    this.selectable = selectable
   }
 
   /**
    * @return {*} id
    */
-  getId(): any{
-    return this.#id
+  public getId(): any{
+    return this.id
   }
 
   /**
   * @return {number} width
   */
-  getWidth(): number{
-    return this.#pxSize.getWidth()
+ public getWidth(): number{
+    return this.pxSize.getWidth()
   }  
 
   /**
    * @return {number} height
    */
-  getHeight(): number{
-    return this.#pxSize.getHeight()
+  public getHeight(): number{
+    return this.pxSize.getHeight()
   }  
 
   /**
-   * @return {pxSize} pxsize
+   * @return {PxSize} pxsize
    */
-  getPxSize(): PxSize{
-    return this.#pxSize
+  public getPxSize(): PxSize{
+    return this.pxSize
   }
     /**
    * @returns {boolean} if the element is selectable
    */
-  isSelectable(): boolean{
-    return this.#selectable
+  public isSelectable(): boolean{
+    return this.selectable
   }
   
   /**
    * This method MUST be overridden
    * This defines how the elemnt is rendererd inside a layer.
    */
-  render() {
+  public render() : void {
     throw 'render method MUST be overridden'
   }
 
@@ -87,10 +87,10 @@ export default class VElement {
    * @param {number} y 
    * @return {boolean} if the element contains the point (x, y)
    */
-  contains(x: number, y: number): boolean {
+  public contains(x: number, y: number): boolean {
     return x > 0
-        && x < this.#pxSize.getWidth()
+        && x < this.pxSize.getWidth()
         && y > 0
-        && y < this.#pxSize.getHeight()
+        && y < this.pxSize.getHeight()
   }
 }

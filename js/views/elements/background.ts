@@ -5,7 +5,7 @@ export default class Background extends VElement {
  /**
   * @override
   */
-  render() {
+  render(): void  {
     background(style.color.back )
   }
 }

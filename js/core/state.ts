@@ -1,9 +1,9 @@
 import AnimationUtils from "../utils/animationUtils";
 import VElement from "./element";
 export default class State {
-    #hoveredElement: VElement | null = null
-    #selectedElement: VElement | null = null
-    #dirty: boolean = true
+    private hoveredElement: VElement | null = null
+    private selectedElement: VElement | null = null
+    private dirty: boolean = true
 
     constructor() {
         this.marksAsDirty()
@@ -16,18 +16,18 @@ export default class State {
      * 
      * @returns {boolean}
      */
-    isActive(): boolean {
-        const active = (this.#dirty || AnimationUtils.isActive())
+    public isActive(): boolean {
+        const active = (this.dirty || AnimationUtils.isActive())
         this.cleanDirty()
         return active
     }
 
-    private cleanDirty() {
-        this.#dirty = false
+    private cleanDirty(): void  {
+        this.dirty = false
     }
 
-    private marksAsDirty() {
-        this.#dirty = true
+    private marksAsDirty(): void  {
+        this.dirty = true
     }
 
     /**
@@ -35,9 +35,9 @@ export default class State {
      * 
      * @param {VElement} element 
      */
-    hover(element: VElement | null) {
-        if (this.#hoveredElement !== element) {
-            this.#hoveredElement = element
+    public hover(element: VElement | null): void  {
+        if (this.hoveredElement !== element) {
+            this.hoveredElement = element
             this.marksAsDirty()
         }
     }
@@ -48,8 +48,8 @@ export default class State {
      * @param {VElement} element 
      * @returns {boolean}
      */
-    isHovered(element: VElement): boolean {
-        return element === this.#hoveredElement
+    public isHovered(element: VElement): boolean {
+        return element === this.hoveredElement
     }
 
     /**
@@ -57,9 +57,9 @@ export default class State {
      * 
      * @param {VElement} element 
      */
-    select(element: VElement) {
-        if (this.#selectedElement !== element) {
-            this.#selectedElement = element
+    public select(element: VElement): void  {
+        if (this.selectedElement !== element) {
+            this.selectedElement = element
             this.marksAsDirty()
         }
     }
@@ -70,16 +70,16 @@ export default class State {
      * @param {VElement} element 
      * @returns {boolean}
      */
-    isSelected(element: VElement): boolean {
-        return element === this.#selectedElement
+    public isSelected(element: VElement): boolean {
+        return element === this.selectedElement
     }
 
     /**
      * Completly reset the state
      */
-    reset() {
-        this.#hoveredElement = null
-        this.#selectedElement = null
+    public reset(): void {
+        this.hoveredElement = null
+        this.selectedElement = null
         this.marksAsDirty()
     }
 

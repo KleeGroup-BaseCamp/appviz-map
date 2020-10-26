@@ -6,11 +6,11 @@ export default class GridPosition extends GridVector{
     }    
 
     
-    getColumn(level: number){
+    getColumn(level: number): number{
         return this._getColumns(level)
     }
 
-    getRow(level: number){
+    getRow(level: number): number{
         return this._getRows(level)
     }
 }

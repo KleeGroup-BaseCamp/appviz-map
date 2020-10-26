@@ -3,7 +3,7 @@ import { PositionedElement } from "../types/types";
 import VElement from "./element";
 import Layer from "./layer"
 export default class LayerBuilder {
-  #positionedElements: PositionedElement[] = []
+  private positionedElements: PositionedElement[] = []
 
   /**
    * Adds an element 
@@ -11,8 +11,8 @@ export default class LayerBuilder {
    * @param {VElement} element 
    * @param {PxPosition} pxPosition
    */
-  addElement(element: VElement, pxPosition: PxPosition = new PxPosition(0, 0)) {
-    this.#positionedElements.push({ element, pxPosition})
+  public addElement(element: VElement, pxPosition: PxPosition = new PxPosition(0, 0)): LayerBuilder  {
+    this.positionedElements.push({ element, pxPosition})
     return this
   }
 
@@ -21,7 +21,7 @@ export default class LayerBuilder {
    * 
    * @returns {Layer} layer
    */
-  build(): Layer {
-    return new Layer(this.#positionedElements)
+  public build(): Layer {
+    return new Layer(this.positionedElements)
   }
 }
