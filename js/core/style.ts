@@ -35,8 +35,8 @@ export default class Style {
             default: 60
         }, 
         color : {
-            primary   : new p5.Color(), // TO DO : give default color  /* white */ 
-            secondary : new p5.Color(), // TO DO : give default color /* light grey */
+            primary   : color(0), // TO DO : give default color  /* white */ 
+            secondary : color(0), // TO DO : give default color /* light grey */
         }
     }
 
@@ -44,17 +44,17 @@ export default class Style {
         /* inspiration : www.behance.net/gallery/36390371/Virtus-Dashboard-Free-PSD-Template */
 
         /* colors */
-        a : new p5.Color(), // TO DO : give default color, //color("#2196F3"), /* blue */
-        b : new p5.Color(), // TO DO : give default color, /* green */
-        c : new p5.Color(), // TO DO : give default color, /* red */
-        d : new p5.Color(), // TO DO : give default color, /* grey */
+        a : color(0), // TO DO : give default color, //color("#2196F3"), /* blue */
+        b : color(0), // TO DO : give default color, /* green */
+        c : color(0), // TO DO : give default color, /* red */
+        d : color(0), // TO DO : give default color, /* grey */
 
         /* layer > back to front colors */
-        back   : new p5.Color(), // TO DO : give default color,  /* deep dark */
-        middle : new p5.Color(), // TO DO : give default color,  /* dark */
-        front  : new p5.Color(), // TO DO : give default color,  /* light dark */
+        back   : color(0), // TO DO : give default color,  /* deep dark */
+        middle : color(0), // TO DO : give default color,  /* dark */
+        front  : color(0), // TO DO : give default color,  /* light dark */
 
-        undefined :  new p5.Color(), // TO DO : give default color  /* lemnon*/
+        undefined :  color(0), // TO DO : give default color  /* lemnon*/
     }
 
     #icons = {
@@ -68,9 +68,9 @@ export default class Style {
     load() {
         this.text.font = loadFont("fonts/Montserrat-Regular.ttf")
         this.icon.font = loadFont("fonts/material-design-outlined.ttf")
-        if (random(0,10) > 5){
+        if (random(0,10) >= 5){
             this.loadDarkTheme()
-        }else {
+        } else {
             this.loadLightTheme()
         }
     }    

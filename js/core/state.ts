@@ -35,7 +35,7 @@ export default class State {
      * 
      * @param {VElement} element 
      */
-    hover(element: VElement) {
+    hover(element: VElement | null) {
         if (this.#hoveredElement !== element) {
             this.#hoveredElement = element
             this.marksAsDirty()

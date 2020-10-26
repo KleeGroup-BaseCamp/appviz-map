@@ -1,5 +1,5 @@
 import "p5"
-import "p5/global"
+import {} from "p5/global"
 
 import Style from "./core/style"
 import State from "./core/state"
@@ -25,8 +25,10 @@ import Map from "./core/map"
 
 // import TextUtils from "./utils/textutils"
 import {ViewParams} from "./types/types"
+import VElement from "./core/element"
+import View from "./views/view"
 
-const style = new Style()
+let style: Style
 const detail = new Detail()
 const state = new State()
 
@@ -40,14 +42,25 @@ let currentViewParams : ViewParams
 let projection : Projection 
 let layout : any
 
+// Add methods to Window interface
+declare global {
+    interface Window { 
+      preload: any,
+      setup: any,
+      draw: any,
+      switchView: any
+     }
+}
+
 window.preload = preload
 window.setup = setup
 window.draw = draw
+window.switchView = switchView
 window.mouseClicked = mouseClicked
 window.windowResized = windowResized
-window.switchView = switchView
 
 function preload() {
+  style = new Style()
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
@@ -67,10 +80,8 @@ function setup() {
 
 function draw() {
   const element = vizMap.findElement(mouseX, mouseY)
-
   state.hover(element)
   cursor(element != null ? "pointer" : "default")
-
   if (state.isActive()) {
     vizMap.render()
   }
@@ -78,8 +89,10 @@ function draw() {
 function mouseClicked() {
   if (vizMap){
     const element = vizMap.findElement(mouseX, mouseY)
-    state.select(element)
-    updateDetail(element)
+    if (element){
+      state.select(element)
+      updateDetail(element)
+    }
   }
 }
 
@@ -99,17 +112,17 @@ function windowResized() {
  * 
  * Update the detail Panel  
  */
-function updateDetail(element) {
+function updateDetail(element: VElement) {
   if (element instanceof Group || element instanceof Item) {
     detail.update(element instanceof Group ? 'group' : 'item', element.getId())
   }
 }
 
-function switchView(viewName, viewParams: ViewParams) {
+function switchView(viewName: string, viewParams?: ViewParams) {
   const hasChanged = (currentViewName !== viewName) || (currentViewParams!==viewParams)
   //--
   currentViewName = viewName
-  currentViewParams = viewParams
+  currentViewParams = viewParams ?? currentViewParams
   //--
   if (hasChanged) {
     const view = selectView(viewName, viewParams)
@@ -123,7 +136,7 @@ function switchView(viewName, viewParams: ViewParams) {
  * @param {Object} viewParams 
  * @return {View}
  */
-function selectView(viewName, viewParams) {
+function selectView(viewName: string, viewParams?: ViewParams) {
   // const clazzName = TextUtils.firstCharUpperCase(viewName)+'View'
   // const jsonParams = JSON.stringify(viewParams)
   // const expression = `new ${clazzName} (${jsonParams} )` 
@@ -134,15 +147,17 @@ function selectView(viewName, viewParams) {
     case "techZone":
       return new TechZoneView()
     case "techGroup":
-      return new TechGroupView(viewParams)
+      if (viewParams){
+        return new TechGroupView(viewParams)
+      } // Else throw error ?
     default:
       return new DemoView()
   }
 }
 
-function generateMapFromView(viewInstance) {
+function generateMapFromView(viewInstance: View) {
   return new MapBuilder()
-    .addLayer(new LayerBuilder().addElement(new Background()).build())
+    .addLayer(new LayerBuilder().addElement(new Background("background", new PxSize(0,0), false)).build())
     .addLayers(viewInstance.provideLayers(modelRepository, layout))
     //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
     .build()
