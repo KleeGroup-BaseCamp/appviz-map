@@ -1,7 +1,7 @@
 export default class AnimationUtils {
-    private static animations = 0;
+    private static animations:number = 0;
 
-    static isActive (){
+    public static isActive ():  boolean{
         return AnimationUtils.animations > 0
     }    
 
@@ -10,12 +10,12 @@ export default class AnimationUtils {
         return setInterval(fun, interval)
     }
     
-    private static clearInterval(id: NodeJS.Timeout){
+    private static clearInterval(id: NodeJS.Timeout): void{
         AnimationUtils.animations --
         clearInterval(id)
     }
 
-    static animate(from: number, to: number, duration: number, callBack: (v:number) => void) {
+    public static animate(from: number, to: number, duration: number, callBack: (v:number) => void): void  {
         callBack(from)
         if (from ===to) return 
         const interval = 10 /*ms*/

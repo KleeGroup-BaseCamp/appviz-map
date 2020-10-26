@@ -1,6 +1,6 @@
 export default class PxPosition{
-    #x: number
-    #y: number
+    private x: number
+    private y: number
 
     /**
      * @constructor
@@ -9,21 +9,21 @@ export default class PxPosition{
      * @param {number} y 
      */
     constructor(x: number, y: number){
-        this.#x = x
-        this.#y = y
+        this.x = x
+        this.y = y
     }
 
     /**
      * @return {number} x position
      */
-    getX(){
-        return this.#x
+    public getX(): number{
+        return this.x
     }
 
     /**
      * @return {number} y position
      */
-    getY(){
-        return this.#y
+    public getY(): number{
+        return this.y
     }
 }

@@ -1,6 +1,6 @@
 export default class PxSize{
-    #width: number
-    #height: number
+    private width: number
+    private height: number
 
     /**
      * @constructor
@@ -9,21 +9,21 @@ export default class PxSize{
      * @param {number} height
      */
     constructor(width: number, height: number){
-        this.#width = width
-        this.#height = height
+        this.width = width
+        this.height = height
     }
 
     /**
      * @return {number} width
      */
-    getWidth(){
-        return this.#width
+    public getWidth(): number{
+        return this.width
     }
 
     /**
      * @return {number} height
      */
-    getHeight(){
-        return this.#height
+    public getHeight(): number{
+        return this.height
     }
 }
