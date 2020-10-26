@@ -2,12 +2,16 @@ const path = require('path');
 
 module.exports = {
   mode: "development",
-  watch: true,
   entry: './js/sketch.ts',
   devtool: 'inline-source-map',
+  devServer: {
+      publicPath: '/dist/',
+      contentBase: '.',
+  },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/'
   },
   resolve: {
     extensions: [".ts", ".js"]
