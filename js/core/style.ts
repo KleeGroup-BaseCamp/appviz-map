@@ -1,4 +1,5 @@
 import * as p5 from "p5"
+import { ItemTypeName } from "../types/types"
 
 type ColorStyle = {[colorName: string] : p5.Color}
 type SizeStyle = {[sizeName: string] : number}
@@ -110,7 +111,7 @@ export default class Style {
         this.color.undefined  = color("0008ff")
     }
 
-    getIcon(itemPrefix: "data" | "task") {
-        return this.#icons[itemPrefix]
+    getIcon(itemTypeName: ItemTypeName) {
+        return this.#icons[itemTypeName]
     }
 }

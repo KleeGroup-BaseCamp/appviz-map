@@ -1,13 +1,15 @@
 /**
  * View of a zone.
  */
+import * as p5 from "p5"
 import VElement from "../../core/element"
 import Header from "../../components/header"
 import Corner from "../../components/corner"
+import PxSize from "../../layout/pxSize"
 import {style} from "../../sketch"
 export default class Zone extends VElement {
-    #header
-    #corner
+    #header: Header
+    #corner: Corner
 
     /**
      * 
@@ -16,7 +18,7 @@ export default class Zone extends VElement {
      * @param {string} title 
      * @param {Color} color 
      */
-    constructor(id, pxSize, title, color) {
+    constructor(id: any, pxSize: PxSize, title: string, color: p5.Color) {
         super(id, pxSize, false)
         this.#header = new Header(
             title, 

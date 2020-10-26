@@ -1,10 +1,11 @@
 import VElement  from "../../core/element"
 import AnimationUtils  from "../../utils/animationUtils"
+import PxSize from "../../layout/pxSize"
 import {style} from "../../sketch"
 export default class Grid extends VElement {
-  #columns
-  #rows
-  #alpha
+  #columns: number
+  #rows: number
+  #alpha: number = 0
 
   /**
    * Constructor
@@ -13,7 +14,7 @@ export default class Grid extends VElement {
    * @param {number} columns 
    * @param {number} rows 
    */
-  constructor(id, pxSize, columns, rows) {
+  constructor(id: any, pxSize: PxSize, columns: number, rows: number) {
     super(id, pxSize, false)
     this.#columns = columns
     this.#rows = rows

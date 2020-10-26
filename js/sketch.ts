@@ -24,6 +24,7 @@ import ModelRepository from "./model/modelRepository"
 import Map from "./core/map"
 
 // import TextUtils from "./utils/textutils"
+import {ViewParams} from "./types/types"
 
 const style = new Style()
 const detail = new Detail()
@@ -35,7 +36,7 @@ let modelRepository : ModelRepository
 let canvasHeight : number
 let canvasWidth : number
 let currentViewName : string
-let currentViewParams : string
+let currentViewParams : ViewParams
 let projection : Projection 
 let layout : any
 
@@ -104,7 +105,7 @@ function updateDetail(element) {
   }
 }
 
-function switchView(viewName, viewParams) {
+function switchView(viewName, viewParams: ViewParams) {
   const hasChanged = (currentViewName !== viewName) || (currentViewParams!==viewParams)
   //--
   currentViewName = viewName

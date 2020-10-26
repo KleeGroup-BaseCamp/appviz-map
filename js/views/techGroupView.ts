@@ -1,39 +1,51 @@
 import View from "./view"
+
 import LayerBuilder from "../core/layerBuilder"
+
 import TextUtils  from "../utils/textutils"
+
 import Card from "./elements/card"
-import ItemTypeDetail from "./elements/itemTypeDetail"
 import Item from "./elements/item"
+import ItemTypeDetail from "./elements/itemTypeDetail"
+
 import PxPosition from "../layout/pxPosition"
 import GridPosition from "../layout/gridPosition"
 import PxSize from "../layout/pxSize"
 import GridSize from "../layout/gridSize"
+
+import ModelRepository from "../model/modelRepository"
+
+import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types/types"
+
 import {style, projection} from "../sketch"
+import GroupModel from "../model/groupModel"
+
+
 export default class TechGroupView extends View {
 
-    #types = {
+    #types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",
         tk: "task"
     }
-    #groupId
+    #groupId: any
 
     /**
      * @param {Object} params 
      */
-    constructor(params) {
+    constructor(params: ViewParams) {
         super()
         this.#groupId = params.groupId;
     }
 
-    provideLayers(modelRepository, layout) {
+    provideLayers(modelRepository: ModelRepository, layout: Layout) {
         const groupModel = modelRepository.getGroupModelById(this.#groupId)
         return [
-            this.#createGroupLayer(groupModel),
-            ...this.#createItemTypesLayers(groupModel)
+            this.createGroupLayer(groupModel),
+            ...this.createItemTypesLayers(groupModel)
         ]
     }
 
-    #createGroupLayer(groupModel){
+    private createGroupLayer(groupModel: GroupModel){
         return new LayerBuilder()
             .addElement(
                 new Card(
@@ -45,7 +57,7 @@ export default class TechGroupView extends View {
             .build()
     }
 
-    #createItemTypesLayers(groupModel) {
+    private createItemTypesLayers(groupModel: GroupModel) {
         
         const itemTypesLayerBuilder = new LayerBuilder()
         const itemsLayerBuilder = new LayerBuilder()
@@ -63,17 +75,18 @@ export default class TechGroupView extends View {
 
             const itemTypePxSize = projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
             const itemTypePxPosition = projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
+            const typeName = this.#types[typePrefix as ItemNamePrefix]
             itemTypesLayerBuilder.addElement(
                 new ItemTypeDetail(
-                    this.#types[typePrefix],
+                    typeName,
                     itemTypePxSize,
-                    (TextUtils.firstCharUpperCase(this.#types[typePrefix])) + "s " + style.getIcon(typePrefix)
+                    (TextUtils.firstCharUpperCase(typeName)) + "s " + style.getIcon(typeName)
                 ),
                 itemTypePxPosition
             )
-            const typeItemModels = itemModels.filter((itemModel) => itemModel.getType() === this.#types[typePrefix])
+            const typeItemModels = itemModels.filter((itemModel) => itemModel.getType() === typeName)
             typeItemModels.forEach((itemModel, itemModelIndex) => {
-                const {itemPxPosition, itemPxSize} = this.#getItemPx(itemModelIndex, 4, itemTypePxSize, itemTypePxPosition)
+                const {itemPxPosition, itemPxSize} = this.getItemPx(itemModelIndex, 4, itemTypePxSize, itemTypePxPosition)
                 itemsLayerBuilder.addElement(
                     new Item(
                         itemModel.getId(), 
@@ -90,7 +103,7 @@ export default class TechGroupView extends View {
     }
 
 
-    #getItemPx(itemIndex, itemsPerRow, itemTypePxSize, itemTypePxPosition) {
+    getItemPx(itemIndex: number, itemsPerRow: number, itemTypePxSize: PxSize, itemTypePxPosition: PxPosition) {
         const padding = 10
 
         const itemTypeX = itemTypePxPosition.getX()

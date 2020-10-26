@@ -3,24 +3,30 @@ import Header from "../../components/header"
 import ProgressBar  from "../../components/progressBar"
 import VText  from "../../components/vtext"
 import {style, state} from "../../sketch"
-export default class Group extends VElement {
-    #items
-    #maxValue
-    #header
-    #progressBars
-    #color
+import PxSize from "../../layout/pxSize"
+import * as p5 from "p5"
+import { ItemTypeName, ItemTypeFrequencies } from "../../types/types"
 
-    constructor(id, pxSize, title, items, color, maxValue = 20) {
+
+
+export default class Group extends VElement {
+    #itemTypeFrequencies: ItemTypeFrequencies
+    #maxValue: number
+    #header: Header
+    #progressBars: ProgressBar[]
+    #color: p5.Color
+
+    constructor(id: any, pxSize: PxSize, title: string, itemTypeFrequencies: ItemTypeFrequencies, color: p5.Color, maxValue = 20) {
         super(id, pxSize, true)
         this.#color = color
         this.#header = new Header( title, this.getWidth(), 50, style.text.size.m)
-        this.#items = items
+        this.#itemTypeFrequencies = itemTypeFrequencies
         this.#maxValue = maxValue
 
         this.#progressBars = []
         const secondaryStroke = style.text.color.primary
-        Object.keys(this.#items).forEach(item => {
-            this.#progressBars.push(new ProgressBar(this.#items[item], this.#maxValue, this.getWidth() - 90, secondaryStroke))
+        Object.keys(this.#itemTypeFrequencies).forEach(item => {
+            this.#progressBars.push(new ProgressBar(this.#itemTypeFrequencies[item as ItemTypeName] ?? 0, this.#maxValue, this.getWidth() - 90, secondaryStroke))
         })
     }
 
@@ -29,7 +35,7 @@ export default class Group extends VElement {
      */
     render() {
         //-- background
-        this.#renderBackground()
+        this.renderBackground()
 
         //-- header
         this.#header.render()
@@ -38,10 +44,10 @@ export default class Group extends VElement {
         rect(0, 0, 4, 50)   
 
         //-- body
-        this.#renderItems()
+        this.renderItems()
     }
 
-    #renderBackground() {
+    private renderBackground() {
         fill(state.isHovered(this) 
             ? style.color.front
             : style.color.middle)
@@ -56,16 +62,16 @@ export default class Group extends VElement {
     *       - Progress bar
     */
 
-    #renderItems() {
+    private renderItems() {
         const top = textAscent() + 35
-        let positions = []
-        for (let i = 0; i < Object.keys(this.#items).length; i++) {
-            positions.push(top + (this.getHeight() - top) / (Object.keys(this.#items).length + 1) * (i + 1))
+        let positions: number[] = []
+        for (let i = 0; i < Object.keys(this.#itemTypeFrequencies).length; i++) {
+            positions.push(top + (this.getHeight() - top) / (Object.keys(this.#itemTypeFrequencies).length + 1) * (i + 1))
         }
-        Object.keys(this.#items).forEach((itemPrefix, index) => {
+        Object.keys(this.#itemTypeFrequencies).forEach((itemPrefix, index) => {
             push()
             translate(25, positions[index] + 8)
-            new VText(style.getIcon(itemPrefix), style.icon.font, style.icon.size.xl).render()
+            new VText(style.getIcon(itemPrefix as ItemTypeName), style.icon.font, style.icon.size.xl).render()
             translate(35, -8)
             this.#progressBars[index].render()
             pop()

@@ -1,9 +1,10 @@
 import Section from "./section"
+import {ItemTypeName} from "../types/types"
 
 export default class ItemModel{
     #id: any
     #title: string
-    #type: string
+    #type: ItemTypeName
     #subType: string
     #sections: Section[]
 
@@ -12,12 +13,12 @@ export default class ItemModel{
      * 
      * @param {*} id 
      * @param {string} title 
-     * @param {string} type 
+     * @param {ItemTypeName} type 
      * @param {string} subType 
      * @param {Section[]} sections 
      */
 
-    constructor(id: any, title: string, type: string, subType: string, sections: Section[]){
+    constructor(id: any, title: string, type: ItemTypeName, subType: string, sections: Section[]){
         this.#id = id
         this.#title = title
         this.#type = type
