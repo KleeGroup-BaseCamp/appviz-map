@@ -94,7 +94,8 @@ function windowResized() {
  */
 function updateDetail(element: VElement) {
   if (element instanceof Group || element instanceof Item) {
-    detail.update(element instanceof Group ? 'group' : 'item', element.getId())
+    const type = element instanceof Group ? 'group' : 'item'
+    detail.update(type, element.getId())
   }
 }
 

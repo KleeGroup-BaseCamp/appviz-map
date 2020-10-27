@@ -2,12 +2,12 @@ import {AnimationUtils} from "../utils/index";
 import {VElement} from "./element";
 
 export class State {
-    private hoveredElement: VElement | null = null
-    private selectedElement: VElement | null = null
-    private dirty: boolean = true
+    private hoveredElement: VElement | null
+    private selectedElement: VElement | null
+    private dirty: boolean
 
     constructor() {
-        this.marksAsDirty()
+        this.reset()
     }
 
     /**

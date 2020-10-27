@@ -20,7 +20,7 @@ export class MapBuilder {
    * @param {Layer[]} layers 
    */
   public addLayers(layers: Layer[]): MapBuilder{
-    layers.forEach(layer => this.addLayer(layer));
+    layers.forEach(layer => this.addLayer(layer))
     return this;
   }
 

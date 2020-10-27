@@ -1,4 +1,4 @@
-import {VElement} from "./element";
+import { VElement } from "./VElement";
 import {Layer} from "./layer"
 
 export class Map {

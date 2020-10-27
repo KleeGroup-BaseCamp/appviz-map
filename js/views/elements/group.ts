@@ -5,8 +5,6 @@ import {style, state} from "../../sketch"
 import {PxSize} from "../../layout/index"
 import {ItemTypeName, ItemTypeFrequencies} from "../../types/index"
 
-
-
 export class Group extends VElement {
     private itemTypeFrequencies: ItemTypeFrequencies
     private maxValue: number
@@ -59,7 +57,6 @@ export class Group extends VElement {
     *       - Item frequency
     *       - Progress bar
     */
-
     private renderItems(): void {
         const top = textAscent() + 35
         let positions: number[] = []
