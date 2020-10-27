@@ -1,1 +1,3 @@
-./notebook.json
+node_modules
+built
+dist
