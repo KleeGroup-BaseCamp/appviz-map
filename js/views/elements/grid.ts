@@ -5,7 +5,7 @@ import {style} from "../../sketch"
 export default class Grid extends VElement {
   private columns: number
   private rows: number
-  private alpha: number = 0
+  private alpha: (number | undefined)
 
   /**
    * Constructor
@@ -26,7 +26,9 @@ export default class Grid extends VElement {
    */
   public render() : void{
     let color = style.text.color.secondary
-    color.setAlpha(this.alpha)
+    if (this.alpha) {
+      color.setAlpha(this.alpha) 
+    }
     stroke(color)
     strokeWeight(1)
 

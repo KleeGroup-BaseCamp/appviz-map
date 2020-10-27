@@ -23,7 +23,7 @@ import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout
 import {style, projection} from "../sketch"
 import ItemModel from "../model/itemModel"
 
-export default class TechZoneView extends View {
+export default class TechZoneView implements View {
 
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",

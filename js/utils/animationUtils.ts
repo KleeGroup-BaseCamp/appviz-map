@@ -5,12 +5,12 @@ export default class AnimationUtils {
         return AnimationUtils.animations > 0
     }    
 
-    private static setInterval(fun: (...args: any[]) => void, interval: number){
+    private static setInterval(fun: (...args: any[]) => void, interval: number) : any{
         AnimationUtils.animations ++
         return setInterval(fun, interval)
     }
     
-    private static clearInterval(id: NodeJS.Timeout): void{
+    private static clearInterval(id: any): void{
         AnimationUtils.animations --
         clearInterval(id)
     }

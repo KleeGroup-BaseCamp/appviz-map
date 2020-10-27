@@ -152,7 +152,6 @@ function selectView(viewName: string, viewParams?: ViewParams): View {
         return new TechGroupView(viewParams)
       } else{
         console.error("No viewParams were passed to the function selectView")
-        // return new HomeView()
       }
     default:
       return new HomeView()

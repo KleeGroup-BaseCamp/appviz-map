@@ -33,7 +33,7 @@ export default class Zone extends VElement {
      * @override
      */
     public render(): void {
-//        this.renderBackground()
+        // this.renderBackground()
         this.header.render()
         this.corner.render()
    }
