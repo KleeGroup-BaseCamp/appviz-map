@@ -10,23 +10,23 @@ import { ItemTypeName, ItemTypeFrequencies } from "../../types/types"
 
 
 export default class Group extends VElement {
-    #itemTypeFrequencies: ItemTypeFrequencies
-    #maxValue: number
-    #header: Header
-    #progressBars: ProgressBar[]
-    #color: p5.Color
+    private itemTypeFrequencies: ItemTypeFrequencies
+    private maxValue: number
+    private header: Header
+    private progressBars: ProgressBar[]
+    private color: p5.Color
 
     constructor(id: any, pxSize: PxSize, title: string, itemTypeFrequencies: ItemTypeFrequencies, color: p5.Color, maxValue = 20) {
         super(id, pxSize, true)
-        this.#color = color
-        this.#header = new Header( title, this.getWidth(), 50, style.text.size.m)
-        this.#itemTypeFrequencies = itemTypeFrequencies
-        this.#maxValue = maxValue
+        this.color = color
+        this.header = new Header( title, this.getWidth(), 50, style.text.size.m)
+        this.itemTypeFrequencies = itemTypeFrequencies
+        this.maxValue = maxValue
 
-        this.#progressBars = []
+        this.progressBars = []
         const secondaryStroke = style.text.color.primary
-        Object.keys(this.#itemTypeFrequencies).forEach(item => {
-            this.#progressBars.push(new ProgressBar(this.#itemTypeFrequencies[item as ItemTypeName] ?? 0, this.#maxValue, this.getWidth() - 90, secondaryStroke))
+        Object.keys(this.itemTypeFrequencies).forEach(item => {
+            this.progressBars.push(new ProgressBar(this.itemTypeFrequencies[item as ItemTypeName] ?? 0, this.maxValue, this.getWidth() - 90, secondaryStroke))
         })
     }
 
@@ -38,9 +38,9 @@ export default class Group extends VElement {
         this.renderBackground()
 
         //-- header
-        this.#header.render()
+        this.header.render()
         noStroke()
-        fill(this.#color) 
+        fill(this.color) 
         rect(0, 0, 4, 50)   
 
         //-- body
@@ -65,15 +65,15 @@ export default class Group extends VElement {
     private renderItems() {
         const top = textAscent() + 35
         let positions: number[] = []
-        for (let i = 0; i < Object.keys(this.#itemTypeFrequencies).length; i++) {
-            positions.push(top + (this.getHeight() - top) / (Object.keys(this.#itemTypeFrequencies).length + 1) * (i + 1))
+        for (let i = 0; i < Object.keys(this.itemTypeFrequencies).length; i++) {
+            positions.push(top + (this.getHeight() - top) / (Object.keys(this.itemTypeFrequencies).length + 1) * (i + 1))
         }
-        Object.keys(this.#itemTypeFrequencies).forEach((itemPrefix, index) => {
+        Object.keys(this.itemTypeFrequencies).forEach((itemPrefix, index) => {
             push()
             translate(25, positions[index] + 8)
             new VText(style.getIcon(itemPrefix as ItemTypeName), style.icon.font, style.icon.size.xl).render()
             translate(35, -8)
-            this.#progressBars[index].render()
+            this.progressBars[index].render()
             pop()
         })
     }

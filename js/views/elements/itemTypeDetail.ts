@@ -3,11 +3,11 @@ import Header from "../../components/header"
 import {style} from "../../sketch"
 import PxSize from "../../layout/pxSize"
 export default class ItemTypeDetail extends VElement {
-    #header: Header
+    private header: Header
 
     constructor(id: any, pxSize: PxSize, title: string) {
         super(id, pxSize, false)
-        this.#header = new Header(
+        this.header = new Header(
             title, 
             this.getWidth(), 
             60, 
@@ -18,7 +18,7 @@ export default class ItemTypeDetail extends VElement {
 
     render() {
         this.renderBackground()
-        this.#header.render()
+        this.header.render()
     }
 
     private renderBackground() {
