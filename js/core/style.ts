@@ -12,7 +12,7 @@ type TextStyle = IconStyle & {
 } 
 
 export default class Style {
-    icon: IconStyle = {
+    public icon: IconStyle = {
         font : new p5.Font(), 
         size : {
             s: 16,
@@ -22,7 +22,7 @@ export default class Style {
         }    
     }    
 
-    text: TextStyle = {
+    public text: TextStyle = {
         font : new p5.Font(),
         size : {
             xxs: 12,
@@ -40,7 +40,7 @@ export default class Style {
         }
     }
 
-    color: ColorStyle = {
+    public color: ColorStyle = {
         /* inspiration : www.behance.net/gallery/36390371/Virtus-Dashboard-Free-PSD-Template */
 
         /* colors */
@@ -57,7 +57,7 @@ export default class Style {
         undefined :  color(0), // TO DO : give default color  /* lemnon*/
     }
 
-    #icons = {
+    private icons = {
         data: "\ue0ee", // \uf15b
         task: "\ue566",
     }
@@ -65,7 +65,7 @@ export default class Style {
     constructor() {
     }
 
-    load() {
+    public load(): void {
         this.text.font = loadFont("fonts/Montserrat-Regular.ttf")
         this.icon.font = loadFont("fonts/material-design-outlined.ttf")
         if (random(0,10) >= 5){
@@ -75,7 +75,7 @@ export default class Style {
         }
     }    
 
-    private loadDarkTheme() {
+    private loadDarkTheme(): void {
         this.color.a = color("#2196F3") /* blue */
         this.color.b  = color( "#4CAF50") /* green */
         this.color.c  = color("#F44336") /* red */
@@ -93,7 +93,7 @@ export default class Style {
         this.color.undefined  = color("#fff700")  /* lemon*/
     }
 
-    private loadLightTheme() {
+    private loadLightTheme(): void {
         this.color.a = color("#2196F3") /* blue */
         this.color.b  = color( "#4CAF50") /* green */
         this.color.c  = color("#F44336") /* red */
@@ -111,7 +111,7 @@ export default class Style {
         this.color.undefined  = color("0008ff")
     }
 
-    getIcon(itemTypeName: ItemTypeName) {
-        return this.#icons[itemTypeName]
+    public getIcon(itemTypeName: ItemTypeName): string {
+        return this.icons[itemTypeName]
     }
 }

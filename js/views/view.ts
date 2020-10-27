@@ -4,8 +4,9 @@ import {Layout} from "../types/types"
 
 export default class View {
 
-    provideLayers(modelRepository?: ModelRepository, layout?: Layout): Layer[] {
-        throw 'render method MUST be overridden'
-    }    
+    public provideLayers(modelRepository?: ModelRepository, layout?: Layout): Layer[] {
+        console.error("Render method MUST be overridden")
+        return [new Layer([])]
+    }     
 
-} 
+}  

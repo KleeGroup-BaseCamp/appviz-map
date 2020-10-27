@@ -1,8 +1,8 @@
 type Data = {[key: string]: string}
 
 export default class Section{
-    #title: string
-    #data: Data
+    private title: string
+    private data: Data
 
     /**
      * @constructor
@@ -10,21 +10,21 @@ export default class Section{
      * @param {Array.<{k: string, v: string}>} data 
      */
     constructor(title: string, data: Data){
-        this.#title = title
-        this.#data = data
+        this.title = title
+        this.data = data
     }
 
     /**
      * @returns {string} title
      */
-    getTitle(){
-        return this.#title
+    public getTitle(): string{
+        return this.title
     }
 
     /**
      * @returns {Array.<{k: string, v: string}>} data
      */
-    getData(){
-        return this.#data
+    public getData(): Data{
+        return this.data
     }
 }

@@ -6,11 +6,11 @@ export default class GridSize extends GridVector{
         super(columnCode, rowCode)
     }    
     
-    getColumns(level: number){
+    public getColumns(level: number){
        return this._getColumns(level)
     }
 
-    getRows(level: number){
+    public getRows(level: number){
         return this._getRows(level)
     }
 }

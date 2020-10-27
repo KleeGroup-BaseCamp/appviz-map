@@ -8,7 +8,7 @@ export default class MapBuilder {
    * 
    * @param {Layer} layer 
    */
-  addLayer(layer: Layer) {
+  public addLayer(layer: Layer): MapBuilder {
     this.layers.push(layer)
     return this
   }
@@ -18,7 +18,7 @@ export default class MapBuilder {
    * 
    * @param {Layer[]} layers 
    */
-  addLayers(layers: Layer[]) {
+  public addLayers(layers: Layer[]): MapBuilder{
     layers.forEach(layer => this.addLayer(layer));
     return this;
   }
@@ -28,7 +28,7 @@ export default class MapBuilder {
    * 
    * @returns {Map} map
    */
-  build(): Map {
+  public build(): Map {
     return new Map(this.layers)
   }
 }

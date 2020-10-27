@@ -2,7 +2,10 @@
  * View of a zone.
  */
 import View from "./view"
+
+import Layer from "../core/layer"
 import LayerBuilder from "../core/layerBuilder"
+
 import TextUtils  from "../utils/textutils"
 
 import Zone from "./elements/zone"
@@ -22,19 +25,19 @@ import ItemModel from "../model/itemModel"
 
 export default class TechZoneView extends View {
 
-    #types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
+    private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",
         tk: "task"
     }
 
-    provideLayers(modelRepository: ModelRepository, layout: Layout) {
+    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         return [
             this.createZoneLayer(layout),
             this.createGroupLayer(modelRepository, layout)
         ]
     }
 
-    private createZoneLayer(layout: Layout) {
+    private createZoneLayer(layout: Layout): Layer {
         const zonesLayerBuilder = new LayerBuilder()
 
         for (const zoneName in layout.zones) {
@@ -56,11 +59,11 @@ export default class TechZoneView extends View {
     }
 
 
-    private createGroupLayer(modelRepository: ModelRepository, layout: Layout) {
+    private createGroupLayer(modelRepository: ModelRepository, layout: Layout): Layer {
         const groupsLayerBuilder = new LayerBuilder()
 
         for (const groupName in layout.groups) {
-            const groupModel = modelRepository.getGroupModels().find(groupModel =>
+            const groupModel = modelRepository.getGroupModels().find(groupModel => // TO DO: Use getGroupModelById instead
                 groupModel.getTitle() === groupName
             ) 
             if (groupModel !== undefined){
@@ -87,7 +90,12 @@ export default class TechZoneView extends View {
         return groupsLayerBuilder.build();
     }
 
-    private getGroupPadding(group: ElementLayout, zone: ElementLayout) { // TO DO : Rename to groupLayout and zoneLayout ?
+    private getGroupPadding(group: ElementLayout, zone: ElementLayout):{ // TO DO : Rename to groupLayout and zoneLayout ?
+        left: number,
+        top: number,
+        right: number,
+        bottom: number
+    } { 
         const paddingStep = 5
 
         const left = (zone.column == group.column)
@@ -108,13 +116,13 @@ export default class TechZoneView extends View {
 
     private getItemTypeFrequencies(itemsModels: ItemModel[]){
         const itemTypeFrequencies: ItemTypeFrequencies = {}
-        for (const typePrefix in this.#types){
-            itemTypeFrequencies[this.#types[typePrefix as ItemNamePrefix]] = 0
+        for (const typePrefix in this.types){
+            itemTypeFrequencies[this.types[typePrefix as ItemNamePrefix]] = 0
         }
         for(const itemModel of itemsModels){
             const itemModelType = itemModel.getType()
             if(Object.keys(itemTypeFrequencies).includes(itemModelType)){
-                (itemTypeFrequencies[itemModelType] as number)++
+                (itemTypeFrequencies[itemModelType as ItemTypeName] as number)++
             }
         }
         return itemTypeFrequencies

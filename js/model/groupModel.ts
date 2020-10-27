@@ -1,11 +1,11 @@
 import ItemModel from "./itemModel"
 import Section from "./section"
 export default class GroupModel{
-    #id: any
-    #title: string
-    #type: string
-    #sections: Section[]
-    #itemModels: ItemModel[]
+    private id: any
+    private title: string
+    private type: string
+    private sections: Section[]
+    private itemModels: ItemModel[]
 
     /**
      * @constructor
@@ -17,46 +17,46 @@ export default class GroupModel{
      * @param {ItemModel[]} itemModels 
      */
     constructor(id: any, title: string, type: string, sections: Section[], itemModels: ItemModel[]){
-        this.#id = id
-        this.#title = title
-        this.#type = type
-        this.#sections = sections
-        this.#itemModels = itemModels
+        this.id = id
+        this.title = title
+        this.type = type
+        this.sections = sections
+        this.itemModels = itemModels
     }
 
     /**
      * @returns {*} id
      */
-    getId(){
-        return this.#id
+    public getId(): any{
+        return this.id
     }
     
     /**
      * @returns {string} title
      */
-    getTitle(){
-        return this.#title
+    public getTitle(): string{
+        return this.title
     }
 
     /**
      * @returns {string} type
      */
-    getType(){
-        return this.#type
+    public getType(): string{
+        return this.type
     }
 
     /**
      * @returns {Section[]} sections
      */
-    getSections(){
-        return this.#sections
+    public getSections(): Section[]{
+        return this.sections
     }
 
     /**
      * @returns {ItemModel[]} itemModels
      */
-    getItemModels(){
-        return this.#itemModels
+    public getItemModels(): ItemModel[]{
+        return this.itemModels
     }
 
     

@@ -27,10 +27,11 @@ import Map from "./core/map"
 import {ViewParams} from "./types/types"
 import VElement from "./core/element"
 import View from "./views/view"
+import { Renderer } from "p5"
 
 let style: Style
-const detail = new Detail()
-const state = new State()
+const detail: Detail = new Detail()
+const state: State = new State()
 
 let vizMap : Map
 let modelRepositoryBuilder : ModelRepositoryBuilder
@@ -136,22 +137,25 @@ function switchView(viewName: string, viewParams?: ViewParams) {
  * @param {Object} viewParams 
  * @return {View}
  */
-function selectView(viewName: string, viewParams?: ViewParams) {
+function selectView(viewName: string, viewParams?: ViewParams): View {
   // const clazzName = TextUtils.firstCharUpperCase(viewName)+'View'
   // const jsonParams = JSON.stringify(viewParams)
   // const expression = `new ${clazzName} (${jsonParams} )` 
   // return  eval(expression);
   switch(viewName){
-    case "home":
-      return new HomeView()
+    case "demo":
+      return new DemoView()
     case "techZone":
       return new TechZoneView()
     case "techGroup":
       if (viewParams){
         return new TechGroupView(viewParams)
-      } // Else throw error ?
+      } else{
+        console.error("No viewParams were passed to the function selectView")
+        // return new HomeView()
+      }
     default:
-      return new DemoView()
+      return new HomeView()
   }
 }
 

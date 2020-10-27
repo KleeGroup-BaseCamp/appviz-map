@@ -1,5 +1,6 @@
 import View from "./view"
 
+import Layer from "../core/layer"
 import LayerBuilder from "../core/layerBuilder"
 
 import TextUtils  from "../utils/textutils"
@@ -23,29 +24,28 @@ import GroupModel from "../model/groupModel"
 
 export default class TechGroupView extends View {
 
-    #types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
+    private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",
         tk: "task"
     }
-    #groupId: any
+    private groupId: any
 
     /**
      * @param {Object} params 
      */
     constructor(params: ViewParams) {
         super()
-        this.#groupId = params.groupId;
+        this.groupId = params.groupId;
     }
 
-    provideLayers(modelRepository: ModelRepository, layout: Layout) {
-        const groupModel = modelRepository.getGroupModelById(this.#groupId)
-        return [
-            this.createGroupLayer(groupModel),
-            ...this.createItemTypesLayers(groupModel)
-        ]
+    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
+        const groupModel = modelRepository.getGroupModelById(this.groupId)
+        return groupModel 
+            ? [this.createGroupLayer(groupModel), ...this.createItemTypesLayers(groupModel)]
+            : []
     }
 
-    private createGroupLayer(groupModel: GroupModel){
+    private createGroupLayer(groupModel: GroupModel): Layer{
         return new LayerBuilder()
             .addElement(
                 new Card(
@@ -57,14 +57,14 @@ export default class TechGroupView extends View {
             .build()
     }
 
-    private createItemTypesLayers(groupModel: GroupModel) {
+    private createItemTypesLayers(groupModel: GroupModel): Layer[] {
         
         const itemTypesLayerBuilder = new LayerBuilder()
         const itemsLayerBuilder = new LayerBuilder()
         
         
         const itemModels = groupModel.getItemModels()
-        Object.keys(this.#types).forEach((typePrefix, typeIndex) => {
+        Object.keys(this.types).forEach((typePrefix, typeIndex) => {
             // Harcoded layout for 2 itemTypes (to change)
             const itemTypeLayout = {
                 row : (2 + typeIndex * 5).toString(),
@@ -75,7 +75,7 @@ export default class TechGroupView extends View {
 
             const itemTypePxSize = projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
             const itemTypePxPosition = projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
-            const typeName = this.#types[typePrefix as ItemNamePrefix]
+            const typeName = this.types[typePrefix as ItemNamePrefix]
             itemTypesLayerBuilder.addElement(
                 new ItemTypeDetail(
                     typeName,
@@ -103,7 +103,12 @@ export default class TechGroupView extends View {
     }
 
 
-    getItemPx(itemIndex: number, itemsPerRow: number, itemTypePxSize: PxSize, itemTypePxPosition: PxPosition) {
+    private getItemPx(
+        itemIndex: number, 
+        itemsPerRow: number, 
+        itemTypePxSize: PxSize, 
+        itemTypePxPosition: PxPosition
+        ): {itemPxPosition: PxPosition, itemPxSize: PxSize} {
         const padding = 10
 
         const itemTypeX = itemTypePxPosition.getX()

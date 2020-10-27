@@ -3,7 +3,7 @@ export default class Detail{
     constructor(){
     }
 
-    update(type: string, title: string){
+    public update(type: string, title: string): void{
         const detailTitle = document.querySelector("#detail-title")
         const detailContent = document.querySelector("#detail-content")
         if (detailTitle){

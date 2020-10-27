@@ -15,7 +15,7 @@ export default class Map {
   /**
    * Renders the layers from bottom to up 
    */
-  render(): void {
+  public render(): void {
     this.layers
       .forEach(layer => layer.render())
   }
@@ -27,7 +27,7 @@ export default class Map {
    * @param {number} y 
    * @returns {?VElement} element 
    */
-  findElement(x: number, y: number): (VElement | null) {
+  public findElement(x: number, y: number): (VElement | null) {
     for (const layer of this.layers.slice().reverse()) {
       const element = layer.findElement(x, y)
       if (element) {

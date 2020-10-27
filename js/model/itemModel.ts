@@ -2,11 +2,11 @@ import Section from "./section"
 import {ItemTypeName} from "../types/types"
 
 export default class ItemModel{
-    #id: any
-    #title: string
-    #type: ItemTypeName
-    #subType: string
-    #sections: Section[]
+    private id: any
+    private title: string
+    private type: ItemTypeName
+    private subType: string
+    private sections: Section[]
 
     /**
      * @constructor
@@ -19,46 +19,46 @@ export default class ItemModel{
      */
 
     constructor(id: any, title: string, type: ItemTypeName, subType: string, sections: Section[]){
-        this.#id = id
-        this.#title = title
-        this.#type = type
-        this.#subType = subType
-        this.#sections = sections
+        this.id = id
+        this.title = title
+        this.type = type
+        this.subType = subType
+        this.sections = sections
     }
 
     /**
      * @returns {*} id
      */
-    getId(){
-        return this.#id
+    public getId(): any{
+        return this.id
     }
 
     /**
      * @returns {string} title
      */
-    getTitle(){
-        return this.#title
+    public getTitle(): string{
+        return this.title
     }
 
     /**
      * @returns {string} type
      */
-    getType(){
-        return this.#type
+    public getType(): string{
+        return this.type
     }
 
     /**
      * @returns {string} subType
      */
-    getSubType(){
-        return this.#subType
+    public getSubType(): string{
+        return this.subType
     }
 
     /**
      * @returns {Section[]} sections
      */
-    getSections(){
-        return this.#sections
+    public getSections(): Section[]{
+        return this.sections
     }
 
 }

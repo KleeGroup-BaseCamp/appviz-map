@@ -8,8 +8,8 @@ import Corner from "../../components/corner"
 import PxSize from "../../layout/pxSize"
 import {style} from "../../sketch"
 export default class Zone extends VElement {
-    #header: Header
-    #corner: Corner
+    private header: Header
+    private corner: Corner
 
     /**
      * 
@@ -20,28 +20,28 @@ export default class Zone extends VElement {
      */
     constructor(id: any, pxSize: PxSize, title: string, color: p5.Color) {
         super(id, pxSize, false)
-        this.#header = new Header(
+        this.header = new Header(
             title, 
             this.getWidth(), 
             50,
             style.text.size.l 
             )
-        this.#corner = new Corner(30, 30, color)
+        this.corner = new Corner(30, 30, color)
     }
 
     /**
      * @override
      */
-    render() {
-//        this.#renderBackground()
-        this.#header.render()
-        this.#corner.render()
+    public render(): void {
+//        this.renderBackground()
+        this.header.render()
+        this.corner.render()
    }
 
-/*    #renderBackground() {
+/*    renderBackground() {
         noStroke()
         noFill()
-        rect(0, 0, this.#width, this.#height)
+        rect(0, 0, this.width, this.height)
     }
 */
  }
