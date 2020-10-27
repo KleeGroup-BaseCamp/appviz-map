@@ -2,7 +2,7 @@ import {VElement} from "./index"
 import {PositionedElement} from "../types/index"
 
 export class Layer {
-  private positionedElements: PositionedElement[]
+  private readonly positionedElements: PositionedElement[]
 
   constructor(positionedElements: PositionedElement[]) {
     this.positionedElements = positionedElements

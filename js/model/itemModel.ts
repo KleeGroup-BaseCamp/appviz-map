@@ -2,11 +2,11 @@ import {Section} from "./section"
 import {ItemTypeName} from "../types/index"
 
 export class ItemModel{
-    private id: any
-    private title: string
-    private type: ItemTypeName
-    private subType: string
-    private sections: Section[]
+    private readonly id: any
+    private readonly title: string
+    private readonly type: ItemTypeName
+    private readonly subType: string
+    private readonly sections: Section[]
 
     /**
      * @constructor
@@ -17,7 +17,6 @@ export class ItemModel{
      * @param {string} subType 
      * @param {Section[]} sections 
      */
-
     constructor(id: any, title: string, type: ItemTypeName, subType: string, sections: Section[]){
         this.id = id
         this.title = title

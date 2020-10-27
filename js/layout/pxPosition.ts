@@ -1,6 +1,6 @@
 export class PxPosition{
-    private x: number
-    private y: number
+    private readonly x: number
+    private readonly y: number
 
     /**
      * @constructor

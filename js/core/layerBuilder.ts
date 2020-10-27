@@ -5,7 +5,7 @@ import {PxPosition} from "../layout/index";
 import {PositionedElement} from "../types/index";
 
 export class LayerBuilder {
-  private positionedElements: PositionedElement[] = []
+  private readonly positionedElements: PositionedElement[] = []
 
   /**
    * Adds an element 

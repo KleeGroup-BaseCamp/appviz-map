@@ -2,7 +2,7 @@ import {Map} from "./map";
 import {Layer} from "./layer"
 
 export class MapBuilder {
-  private layers: Layer[] = []
+  private readonly layers: Layer[] = []
 
   /**
    * Adds a layer 

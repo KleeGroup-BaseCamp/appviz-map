@@ -1,7 +1,7 @@
 export class GridVector {
-    private columns: number[]
-    private rows: number[]
-    private length: number
+    private readonly columns: number[]
+    private readonly rows: number[]
+    private readonly length: number
 
     constructor(columnCode: string, rowCode: string){
         this.columns = columnCode.split(":").map (s=> Number(s))

@@ -4,9 +4,9 @@ import {GridPosition} from "./gridPosition"
 import {GridSize} from "./gridSize"
 
 export class Projection {
-    private pxSize: PxSize
-    private gridColumns: number
-    private gridRows: number
+    private readonly pxSize: PxSize
+    private readonly gridColumns: number
+    private readonly gridRows: number
 
     /**
      * @constructor

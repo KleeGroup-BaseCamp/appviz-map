@@ -1,6 +1,6 @@
 export class PxSize{
-    private width: number
-    private height: number
+    private readonly width: number
+    private readonly height: number
 
     /**
      * @constructor

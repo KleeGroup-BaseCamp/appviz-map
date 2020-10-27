@@ -2,11 +2,11 @@ import {ItemModel} from "./itemModel"
 import {Section} from "./section"
 
 export class GroupModel{
-    private id: any
-    private title: string
-    private type: string
-    private sections: Section[]
-    private itemModels: ItemModel[]
+    private readonly id: any
+    private readonly title: string
+    private readonly type: string
+    private readonly sections: Section[]
+    private readonly itemModels: ItemModel[]
 
     /**
      * @constructor

@@ -1,7 +1,7 @@
 import {GroupModel} from "./groupModel"
 
 export class ModelRepository{
-    private groupModels: GroupModel[]
+    private readonly groupModels: GroupModel[]
 
     /**
      * @constructor

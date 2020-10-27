@@ -2,7 +2,7 @@ import { VElement } from "./VElement";
 import {Layer} from "./layer"
 
 export class Map {
-  private layers: Layer[]
+  private readonly layers: Layer[]
 
   /**
    * Constructor
