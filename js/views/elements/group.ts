@@ -6,11 +6,11 @@ import {PxSize} from "../../layout/index"
 import {ItemTypeName, ItemTypeFrequencies} from "../../types/index"
 
 export class Group extends VElement {
-    private itemTypeFrequencies: ItemTypeFrequencies
-    private maxValue: number
-    private header: Header
-    private progressBars: ProgressBar[]
-    private color: p5.Color
+    private readonly itemTypeFrequencies: ItemTypeFrequencies
+    private readonly maxValue: number
+    private readonly header: Header
+    private readonly progressBars: ProgressBar[]
+    private readonly color: p5.Color
 
     constructor(id: any, pxSize: PxSize, title: string, itemTypeFrequencies: ItemTypeFrequencies, color: p5.Color, maxValue = 20) {
         super(id, pxSize, true)

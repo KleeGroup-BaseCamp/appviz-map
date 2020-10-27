@@ -2,8 +2,9 @@ import {VElement} from "../../core/index"
 import {Header} from "../../components/index"
 import {style} from "../../sketch"
 import {PxSize} from "../../layout/index"
+
 export class ItemTypeDetail extends VElement {
-    private header: Header
+    private readonly header: Header
 
     constructor(id: any, pxSize: PxSize, title: string) {
         super(id, pxSize, false)

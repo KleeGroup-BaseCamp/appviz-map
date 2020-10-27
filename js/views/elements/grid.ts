@@ -4,9 +4,9 @@ import {PxSize} from "../../layout/index"
 import {style} from "../../sketch"
 
 export class Grid extends VElement {
-  private columns: number
-  private rows: number
-  private alpha: (number | undefined)
+  private readonly columns: number
+  private readonly rows: number
+  private  alpha: (number | undefined)
 
   /**
    * Constructor

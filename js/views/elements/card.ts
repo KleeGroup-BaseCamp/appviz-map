@@ -3,7 +3,7 @@ import {Header} from "../../components/index"
 import {style} from "../../sketch"
 import {PxSize} from "../../layout/index"
 export class Card extends VElement {
-    private header: Header
+    private readonly header: Header
 
     constructor(id: any, pxSize: PxSize, title: string) {
         super(id, pxSize, false)

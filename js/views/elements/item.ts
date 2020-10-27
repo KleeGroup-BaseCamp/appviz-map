@@ -2,9 +2,9 @@ import {VElement} from "../../core/index"
 import {TextUtils}  from "../../utils/index"
 import {style, state} from "../../sketch"
 import {PxSize} from "../../layout/index"
-
+ 
 export class Item extends VElement {
-     private title: string
+     private readonly title: string
 
     constructor(id: any, pxSize: PxSize, title: string) {
         super(id, pxSize, true)

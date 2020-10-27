@@ -1,8 +1,8 @@
 type Data = {[key: string]: string}
 
 export class Section{
-    private title: string
-    private data: Data
+    private readonly title: string
+    private readonly data: Data
 
     /**
      * @constructor
