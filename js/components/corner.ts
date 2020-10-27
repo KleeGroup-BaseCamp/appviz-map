@@ -1,6 +1,7 @@
 import * as p5 from "p5"
+import {Component}  from "./component"
 
-export class Corner {
+export class Corner implements Component{
     private width: number
     private height: number
     private color : p5.Color

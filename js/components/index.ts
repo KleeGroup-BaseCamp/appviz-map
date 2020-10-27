@@ -1,3 +1,4 @@
+export * from "./component"
 export * from "./corner"
 export * from "./header"
 export * from "./progressBar"
