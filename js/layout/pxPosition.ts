@@ -1,4 +1,4 @@
-export default class PxPosition{
+export class PxPosition{
     private x: number
     private y: number
 

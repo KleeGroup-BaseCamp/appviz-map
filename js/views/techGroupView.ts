@@ -1,28 +1,14 @@
-import View from "./view"
-
-import Layer from "../core/layer"
-import LayerBuilder from "../core/layerBuilder"
-
-import TextUtils  from "../utils/textutils"
-
-import Card from "./elements/card"
-import Item from "./elements/item"
-import ItemTypeDetail from "./elements/itemTypeDetail"
-
-import PxPosition from "../layout/pxPosition"
-import GridPosition from "../layout/gridPosition"
-import PxSize from "../layout/pxSize"
-import GridSize from "../layout/gridSize"
-
-import ModelRepository from "../model/modelRepository"
-
-import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types/types"
-
+import {Card, Item, ItemTypeDetail} from "./elements/index"
+import {View} from "./view"
+import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types/index"
 import {style, projection} from "../sketch"
-import GroupModel from "../model/groupModel"
+import {Layer, LayerBuilder} from "../core/index"
+import {ModelRepository, GroupModel} from "../model/index"
+import {PxPosition, GridPosition, PxSize, GridSize} from "../layout/index"
+import {TextUtils}  from "../utils/index"
 
 
-export default class TechGroupView implements View {
+export class TechGroupView implements View {
 
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",

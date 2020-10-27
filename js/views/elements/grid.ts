@@ -1,8 +1,8 @@
-import VElement  from "../../core/element"
-import AnimationUtils  from "../../utils/animationUtils"
-import PxSize from "../../layout/pxSize"
+import {VElement}  from "../../core/index"
+import {AnimationUtils}  from "../../utils/index"
+import {PxSize} from "../../layout/index"
 import {style} from "../../sketch"
-export default class Grid extends VElement {
+export class Grid extends VElement {
   private columns: number
   private rows: number
   private alpha: (number | undefined)

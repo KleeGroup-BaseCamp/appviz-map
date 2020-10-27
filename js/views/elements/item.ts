@@ -1,8 +1,8 @@
-import VElement from "../../core/element"
-import TextUtils  from "../../utils/textutils"
+import {VElement} from "../../core/index"
+import {TextUtils}  from "../../utils/index"
 import {style, state} from "../../sketch"
-import PxSize from "../../layout/pxSize"
-export default class Item extends VElement {
+import {PxSize} from "../../layout/index"
+export class Item extends VElement {
      private title: string
 
     constructor(id: any, pxSize: PxSize, title: string) {

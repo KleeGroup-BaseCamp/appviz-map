@@ -1,6 +1,6 @@
 import {style} from "../sketch"
 
-export default class TextUtils {
+export class TextUtils {
     private static maxCharacters(text: string, width: number): number {
         let numOfCharacters: number = 1
         while (numOfCharacters < text.length

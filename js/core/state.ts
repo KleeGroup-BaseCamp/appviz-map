@@ -1,6 +1,7 @@
-import AnimationUtils from "../utils/animationUtils";
-import VElement from "./element";
-export default class State {
+import {AnimationUtils} from "../utils/index";
+import {VElement} from "./element";
+
+export class State {
     private hoveredElement: VElement | null = null
     private selectedElement: VElement | null = null
     private dirty: boolean = true

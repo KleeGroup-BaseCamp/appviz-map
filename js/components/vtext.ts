@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {style} from "../sketch"
 
-export default class VText {
+export class VText {
     private text: string
     private font: p5.Font
     private fontSize: number

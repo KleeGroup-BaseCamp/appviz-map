@@ -1,4 +1,4 @@
-export default class GridVector {
+export class GridVector {
     private columns: number[]
     private rows: number[]
     private length: number

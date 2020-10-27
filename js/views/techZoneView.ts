@@ -1,29 +1,17 @@
 /**
  * View of a zone.
  */
-import View from "./view"
-
-import Layer from "../core/layer"
-import LayerBuilder from "../core/layerBuilder"
-
-import TextUtils  from "../utils/textutils"
-
-import Zone from "./elements/zone"
-import Group from "./elements/group"
-
-import PxPosition from "../layout/pxPosition"
-import GridPosition from "../layout/gridPosition"
-import PxSize from "../layout/pxSize"
-import GridSize from "../layout/gridSize"
-
-import ModelRepository from "../model/modelRepository"
-
-import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout } from "../types/types"
-
+import {Zone, Group} from "./elements/index"
+import {View} from "./view"
+import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout} from "../types/index"
 import {style, projection} from "../sketch"
-import ItemModel from "../model/itemModel"
+import {Layer, LayerBuilder} from "../core/index"
+import {ModelRepository, ItemModel} from "../model/index"
+import {PxPosition, GridPosition, PxSize, GridSize} from "../layout/index"
+import {TextUtils}  from "../utils/index"
 
-export default class TechZoneView implements View {
+
+export class TechZoneView implements View {
 
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",

@@ -1,6 +1,6 @@
 type Data = {[key: string]: string}
 
-export default class Section{
+export class Section{
     private title: string
     private data: Data
 

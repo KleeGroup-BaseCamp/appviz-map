@@ -1,8 +1,8 @@
-import VElement from "../../core/element"
-import Header from "../../components/header"
+import {VElement} from "../../core/index"
+import {Header} from "../../components/index"
 import {style} from "../../sketch"
-import PxSize from "../../layout/pxSize"
-export default class Card extends VElement {
+import {PxSize} from "../../layout/index"
+export class Card extends VElement {
     private header: Header
 
     constructor(id: any, pxSize: PxSize, title: string) {

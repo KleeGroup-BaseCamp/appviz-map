@@ -1,9 +1,9 @@
-import VText from "./vtext"
-import AnimationUtils from "../utils/animationUtils"
+import {VText} from "./vtext"
+import {AnimationUtils} from "../utils/index"
 import {style} from "../sketch"
 import * as p5 from "p5"
 
-export default class ProgressBar {
+export class ProgressBar {
     private value: number
     private maxValue: number
     private width: number

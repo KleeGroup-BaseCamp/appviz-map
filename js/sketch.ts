@@ -1,33 +1,12 @@
 import "p5"
 import {} from "p5/global"
 
-import Style from "./core/style"
-import State from "./core/state"
-import MapBuilder from "./core/mapBuilder"
-import LayerBuilder from "./core/layerBuilder"
-
-import Detail from "./detail"
-
-import ModelRepositoryBuilder from "./model/modelRepositoryBuilder"
-
-import Projection from "./layout/projection"
-import PxSize from "./layout/pxSize"
-
-import HomeView from "./views/homeView"
-import TechZoneView from "./views/techZoneView"
-import DemoView from "./views/demoView"
-import TechGroupView from "./views/techGroupView"
-import Group from "./views/elements/group"
-import Item from "./views/elements/item"
-import Background from "./views/elements/background"
-import ModelRepository from "./model/modelRepository"
-import Map from "./core/map"
-
-// import TextUtils from "./utils/textutils"
-import {ViewParams} from "./types/types"
-import VElement from "./core/element"
-import View from "./views/view"
-import { Renderer } from "p5"
+import {Detail} from "./detail"
+import {HomeView, TechZoneView, TechGroupView, DemoView, View, Group, Item, Background} from "./views/index"
+import {Style, State, MapBuilder, LayerBuilder, Map, VElement} from "./core/index"
+import {ModelRepositoryBuilder, ModelRepository} from "./model/index"
+import {Projection, PxSize} from "./layout/index"
+import {ViewParams} from "./types/index"
 
 let style: Style
 const detail: Detail = new Detail()

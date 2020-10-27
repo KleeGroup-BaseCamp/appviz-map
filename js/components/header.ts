@@ -1,8 +1,8 @@
 import * as p5 from "p5"
 import {style} from "../sketch"
-import TextUtils from "../utils/textutils"
+import {TextUtils} from "../utils/index"
 
-export default class Header {
+export class Header {
     private title: string
     private width: number
     private height: number

@@ -1,9 +1,9 @@
-import PxPosition from "./pxPosition";
-import PxSize from "./pxSize";
-import GridPosition from "./gridPosition";
-import GridSize from "./gridSize";
+import {PxPosition} from "./pxPosition";
+import {PxSize} from "./pxSize";
+import {GridPosition} from "./gridPosition"
+import {GridSize} from "./gridSize"
 
-export default class Projection {
+export class Projection {
     private pxSize: PxSize
     private gridColumns: number
     private gridRows: number

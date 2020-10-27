@@ -1,4 +1,4 @@
-import PxSize from "../layout/pxSize"
+import {PxSize} from "../layout/index"
 
 /**
  * VElement displayed on the map.
@@ -20,7 +20,7 @@ import PxSize from "../layout/pxSize"
  * An element can
  *  - define a specific 'contains' method to handle a specific shape  
  */
-export default class VElement {
+export class VElement {
   private id: any
   private pxSize: PxSize
   private selectable: boolean

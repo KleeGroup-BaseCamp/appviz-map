@@ -1,7 +1,7 @@
-import GroupModel from "./groupModel";
-import ItemModel from "./itemModel";
-import ModelRepository from "./modelRepository";
-import {ItemNamePrefix, ItemTypeName} from "../types/types"
+import {GroupModel} from "./groupModel";
+import {ItemModel} from "./itemModel";
+import {ModelRepository} from "./modelRepository";
+import {ItemNamePrefix, ItemTypeName} from "../types/index"
 
 type Notebook = {sketches: {[itemName: string]: object}}
 type Config = {[zoneName: string]: string}
@@ -9,7 +9,7 @@ type ItemModelsPerGroup = {[groupName: string]: ItemModel[]}
 type ItemWithPackageName = {packageName: string, [field: string]: string}
 
 
-export default class ModelRepositoryBuilder {
+export class ModelRepositoryBuilder {
   private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
     dt: "data",
     tk: "task",

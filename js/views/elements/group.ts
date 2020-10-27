@@ -1,15 +1,13 @@
-import VElement from "../../core/element"
-import Header from "../../components/header"
-import ProgressBar  from "../../components/progressBar"
-import VText  from "../../components/vtext"
-import {style, state} from "../../sketch"
-import PxSize from "../../layout/pxSize"
 import * as p5 from "p5"
-import { ItemTypeName, ItemTypeFrequencies } from "../../types/types"
+import {VElement} from "../../core/index"
+import {Header, ProgressBar, VText} from "../../components/index"
+import {style, state} from "../../sketch"
+import {PxSize} from "../../layout/index"
+import {ItemTypeName, ItemTypeFrequencies} from "../../types/index"
 
 
 
-export default class Group extends VElement {
+export class Group extends VElement {
     private itemTypeFrequencies: ItemTypeFrequencies
     private maxValue: number
     private header: Header

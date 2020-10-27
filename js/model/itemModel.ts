@@ -1,7 +1,7 @@
-import Section from "./section"
-import {ItemTypeName} from "../types/types"
+import {Section} from "./section"
+import {ItemTypeName} from "../types/index"
 
-export default class ItemModel{
+export class ItemModel{
     private id: any
     private title: string
     private type: ItemTypeName

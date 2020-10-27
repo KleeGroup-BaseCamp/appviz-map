@@ -1,6 +1,6 @@
 import * as p5 from "p5"
 
-export default class Corner {
+export class Corner {
     private width: number
     private height: number
     private color : p5.Color

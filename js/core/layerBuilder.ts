@@ -1,8 +1,10 @@
-import PxPosition from "../layout/pxPosition";
-import { PositionedElement } from "../types/types";
-import VElement from "./element";
-import Layer from "./layer"
-export default class LayerBuilder {
+import {VElement} from "./element";
+import {Layer} from "./layer"
+
+import {PxPosition} from "../layout/index";
+import {PositionedElement} from "../types/index";
+
+export class LayerBuilder {
   private positionedElements: PositionedElement[] = []
 
   /**

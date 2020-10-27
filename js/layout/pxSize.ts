@@ -1,4 +1,4 @@
-export default class PxSize{
+export class PxSize{
     private width: number
     private height: number
 

@@ -1,8 +1,8 @@
-import ModelRepository from "../model/modelRepository";
-import Layer from "../core/layer"
-import {Layout} from "../types/types"
+import {ModelRepository} from "../model/index";
+import {Layer} from "../core/index"
+import {Layout} from "../types/index"
 
-export default interface View {
+export interface View {
 
     provideLayers(modelRepository?: ModelRepository, layout?: Layout): Layer[]
 

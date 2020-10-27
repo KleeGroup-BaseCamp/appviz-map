@@ -1,6 +1,6 @@
-import VElement from "../../core/element"
+import {VElement} from "../../core/index"
 import {style} from "../../sketch"
-export default class Background extends VElement {
+export class Background extends VElement {
 
  /**
   * @override

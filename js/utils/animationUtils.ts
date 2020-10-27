@@ -1,4 +1,4 @@
-export default class AnimationUtils {
+export class AnimationUtils {
     private static animations:number = 0;
 
     public static isActive ():  boolean{

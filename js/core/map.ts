@@ -1,7 +1,7 @@
-import VElement from "./element"
-import Layer from "./layer"
+import {VElement} from "./element";
+import {Layer} from "./layer"
 
-export default class Map {
+export class Map {
   private layers: Layer[]
 
   /**

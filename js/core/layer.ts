@@ -1,7 +1,7 @@
-import { PositionedElement } from "../types/types"
-import VElement from "./element"
+import {VElement} from "./index"
+import {PositionedElement} from "../types/index"
 
-export default class Layer {
+export class Layer {
   private positionedElements: PositionedElement[]
 
   constructor(positionedElements: PositionedElement[]) {

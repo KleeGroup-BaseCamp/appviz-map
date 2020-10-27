@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import { ItemTypeName } from "../types/types"
+import {ItemTypeName} from "../types/index"
 
 type ColorStyle = {[colorName: string] : p5.Color}
 type SizeStyle = {[sizeName: string] : number}
@@ -11,7 +11,7 @@ type TextStyle = IconStyle & {
     color: ColorStyle
 } 
 
-export default class Style {
+export class Style {
     public icon: IconStyle = {
         font : new p5.Font(), 
         size : {

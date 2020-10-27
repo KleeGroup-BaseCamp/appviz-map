@@ -1,6 +1,7 @@
-import Layer from "./layer";
-import Map from "./map";
-export default class MapBuilder {
+import {Map} from "./map";
+import {Layer} from "./layer"
+
+export class MapBuilder {
   private layers: Layer[] = []
 
   /**

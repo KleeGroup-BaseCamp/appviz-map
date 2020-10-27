@@ -1,6 +1,6 @@
-import ItemModel from "./itemModel"
-import Section from "./section"
-export default class GroupModel{
+import {ItemModel} from "./itemModel"
+import {Section} from "./section"
+export class GroupModel{
     private id: any
     private title: string
     private type: string

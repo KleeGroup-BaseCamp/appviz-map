@@ -1,4 +1,4 @@
-export default class Detail{
+export class Detail{
 
     constructor(){
     }

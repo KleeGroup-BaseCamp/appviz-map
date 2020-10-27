@@ -1,6 +1,6 @@
-import GroupModel from "./groupModel"
+import {GroupModel} from "./groupModel"
 
-export default class ModelRepository{
+export class ModelRepository{
     private groupModels: GroupModel[]
 
     /**
