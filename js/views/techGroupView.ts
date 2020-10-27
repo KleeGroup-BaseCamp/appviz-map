@@ -21,7 +21,7 @@ import {style, projection} from "../sketch"
 import GroupModel from "../model/groupModel"
 
 
-export default class TechGroupView extends View {
+export default class TechGroupView implements View {
 
     #types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",
@@ -33,7 +33,6 @@ export default class TechGroupView extends View {
      * @param {Object} params 
      */
     constructor(params: ViewParams) {
-        super()
         this.#groupId = params.groupId;
     }
 
