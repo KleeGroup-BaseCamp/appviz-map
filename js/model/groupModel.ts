@@ -1,5 +1,6 @@
 import {ItemModel} from "./itemModel"
 import {Section} from "./section"
+
 export class GroupModel{
     private id: any
     private title: string
@@ -58,6 +59,5 @@ export class GroupModel{
     public getItemModels(): ItemModel[]{
         return this.itemModels
     }
-
-    
+   
 }

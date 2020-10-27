@@ -22,7 +22,7 @@ export class Section{
     }
 
     /**
-     * @returns {Array.<{k: string, v: string}>} data
+     * @returns {Data} data
      */
     public getData(): Data{
         return this.data

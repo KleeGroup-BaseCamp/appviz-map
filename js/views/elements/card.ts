@@ -7,7 +7,7 @@ export class Card extends VElement {
 
     constructor(id: any, pxSize: PxSize, title: string) {
         super(id, pxSize, false)
-        this.header = new Header(title, this.getWidth(), 100,style.text.size.xxl)
+        this.header = new Header(title, this.getWidth(), 100, style.text.size.xxl)
     }
 
     /**
