@@ -17,4 +17,5 @@ npm start
 ```
 
 This command compiles the app and serves it at port 8080 (default).
+
 **Note**: Compilation can take some time (+10s). 
