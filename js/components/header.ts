@@ -1,6 +1,6 @@
 import * as p5 from "p5"
 import {style} from "../sketch"
-import {TextUtils} from "../utils/index"
+import {TextUtils} from "../utils"
 
 export class Header {
     private title: string

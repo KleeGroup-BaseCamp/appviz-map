@@ -1,9 +1,9 @@
-import {Layer, LayerBuilder} from "../core/index"
-import {Card} from "./elements/index"
-import {View} from "./view"
 import {projection} from "../sketch"
-import {ModelRepository} from "../model/index"
-import {Layout} from "../types/index"
+import {View} from "./view"
+import {Layer, LayerBuilder} from "../core"
+import {Card} from "./elements"
+import {ModelRepository} from "../model"
+import {Layout} from "../types"
 export class DemoView implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {

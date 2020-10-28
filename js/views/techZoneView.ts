@@ -1,14 +1,14 @@
 /**
  * View of a zone.
  */
-import {Zone, Group} from "./elements/index"
-import {View} from "./view"
-import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout} from "../types/index"
 import {style, projection} from "../sketch"
-import {Layer, LayerBuilder} from "../core/index"
-import {ModelRepository, ItemModel} from "../model/index"
-import {PxPosition, GridPosition, PxSize, GridSize} from "../layout/index"
-import {TextUtils}  from "../utils/index"
+import {View} from "./view"
+import {Zone, Group} from "./elements"
+import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout} from "../types"
+import {Layer, LayerBuilder} from "../core"
+import {ModelRepository, ItemModel} from "../model"
+import {PxPosition, GridPosition, PxSize, GridSize} from "../layout"
+import {TextUtils}  from "../utils"
 
 
 export class TechZoneView implements View {

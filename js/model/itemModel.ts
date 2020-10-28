@@ -1,5 +1,5 @@
 import {Section} from "./section"
-import {ItemTypeName} from "../types/index"
+import {ItemTypeName} from "../types"
 
 export class ItemModel{
     private id: any

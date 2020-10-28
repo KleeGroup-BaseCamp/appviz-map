@@ -2,10 +2,10 @@
  * View of a zone.
  */
 import * as p5 from "p5"
-import {VElement} from "../../core/index"
-import {Header, Corner} from "../../components/index"
-import {PxSize} from "../../layout/index"
 import {style} from "../../sketch"
+import {VElement} from "../../core"
+import {Header, Corner} from "../../components"
+import {PxSize} from "../../layout"
 export class Zone extends VElement {
     private header: Header
     private corner: Corner

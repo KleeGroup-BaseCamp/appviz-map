@@ -1,7 +1,7 @@
 import {GroupModel} from "./groupModel";
 import {ItemModel} from "./itemModel";
 import {ModelRepository} from "./modelRepository";
-import {ItemNamePrefix, ItemTypeName} from "../types/index"
+import {ItemNamePrefix, ItemTypeName} from "../types"
 
 type Notebook = {sketches: {[itemName: string]: object}}
 type Config = {[zoneName: string]: string}

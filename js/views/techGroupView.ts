@@ -1,11 +1,11 @@
-import {Card, Item, ItemTypeDetail} from "./elements/index"
 import {View} from "./view"
-import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types/index"
 import {style, projection} from "../sketch"
-import {Layer, LayerBuilder} from "../core/index"
-import {ModelRepository, GroupModel} from "../model/index"
-import {PxPosition, GridPosition, PxSize, GridSize} from "../layout/index"
-import {TextUtils}  from "../utils/index"
+import {Card, Item, ItemTypeDetail} from "./elements"
+import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
+import {Layer, LayerBuilder} from "../core"
+import {ModelRepository, GroupModel} from "../model"
+import {PxPosition, GridPosition, PxSize, GridSize} from "../layout"
+import {TextUtils}  from "../utils"
 
 
 export class TechGroupView implements View {
