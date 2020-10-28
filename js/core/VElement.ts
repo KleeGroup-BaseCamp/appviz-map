@@ -22,9 +22,9 @@ import { PxSize } from "../layout";
  */
 
 export class VElement {
-  private id: any;
-  private pxSize: PxSize;
-  private selectable: boolean;
+  private readonly id: any;
+  private readonly pxSize: PxSize;
+  private readonly selectable: boolean;
 
   /**
    * @constructor

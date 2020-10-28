@@ -2,9 +2,9 @@ import * as p5 from "p5"
 import {Component}  from "./component"
 
 export class Corner implements Component{
-    private width: number
-    private height: number
-    private color : p5.Color
+    private readonly width: number
+    private readonly height: number
+    private readonly color : p5.Color
 
     /**
      * @constructor
