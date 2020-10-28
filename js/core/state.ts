@@ -7,7 +7,9 @@ export class State {
     private dirty: boolean
 
     constructor() {
-        this.reset()
+        this.hoveredElement = null
+        this.selectedElement = null
+        this.dirty = true
     }
 
     /**
