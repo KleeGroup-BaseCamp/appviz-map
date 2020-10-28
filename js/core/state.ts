@@ -1,4 +1,4 @@
-import {AnimationUtils} from "../utils/index";
+import {AnimationUtils} from "../utils";
 import { VElement } from "./VElement";
 
 export class State {

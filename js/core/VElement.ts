@@ -1,4 +1,4 @@
-import { PxSize } from "../layout/index";
+import { PxSize } from "../layout";
 
 /**
  * VElement displayed on the map.

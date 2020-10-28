@@ -1,8 +1,7 @@
-import {VElement} from "../../core/index"
-import {TextUtils}  from "../../utils/index"
 import {style, state} from "../../sketch"
-import {PxSize} from "../../layout/index"
- 
+import {VElement} from "../../core"
+import {TextUtils}  from "../../utils"
+import {PxSize} from "../../layout"
 export class Item extends VElement {
      private readonly title: string
 

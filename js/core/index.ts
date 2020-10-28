@@ -1,4 +1,4 @@
-export * from "./velement"
+export * from "./VElement"
 export * from "./layer"
 export * from "./layerBuilder"
 export * from "./map"

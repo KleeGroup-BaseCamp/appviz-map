@@ -1,9 +1,9 @@
 import * as p5 from "p5"
-import {VElement} from "../../core/index"
-import {Header, ProgressBar, VText} from "../../components/index"
 import {style, state} from "../../sketch"
-import {PxSize} from "../../layout/index"
-import {ItemTypeName, ItemTypeFrequencies} from "../../types/index"
+import {VElement} from "../../core"
+import {Header, ProgressBar, VText} from "../../components"
+import {PxSize} from "../../layout"
+import {ItemTypeName, ItemTypeFrequencies} from "../../types"
 
 export class Group extends VElement {
     private readonly itemTypeFrequencies: ItemTypeFrequencies

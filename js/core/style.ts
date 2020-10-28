@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {ItemTypeName} from "../types/index"
+import {ItemTypeName} from "../types"
 
 type ColorStyle = {[colorName: string] : p5.Color}
 type SizeStyle = {[sizeName: string] : number}

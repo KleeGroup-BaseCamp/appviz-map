@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {style} from "../sketch"
-import {TextUtils} from "../utils/index"
 import {Component}  from "./component"
+import {TextUtils} from "../utils"
 
 export class Header implements Component{
     private title: string

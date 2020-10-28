@@ -2,11 +2,11 @@ import "p5"
 import {} from "p5/global"
 
 import {Detail} from "./detail"
-import {HomeView, TechZoneView, TechGroupView, DemoView, View, Group, Item, Background} from "./views/index"
-import {Style, State, MapBuilder, LayerBuilder, Map, VElement} from "./core/index"
-import {ModelRepositoryBuilder, ModelRepository} from "./model/index"
-import {Projection, PxSize} from "./layout/index"
-import {ViewParams} from "./types/index"
+import {HomeView, TechZoneView, TechGroupView, DemoView, View, Group, Item, Background} from "./views"
+import {Style, State, MapBuilder, LayerBuilder, Map, VElement} from "./core"
+import {ModelRepositoryBuilder, ModelRepository} from "./model"
+import {Projection, PxSize} from "./layout"
+import {ViewParams} from "./types"
 
 let style: Style
 const detail: Detail = new Detail()

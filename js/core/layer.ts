@@ -1,5 +1,5 @@
-import {VElement} from "./index"
-import {PositionedElement} from "../types/index"
+import {VElement} from "./VElement"
+import {PositionedElement} from "../types"
 
 export class Layer {
   private readonly positionedElements: PositionedElement[]

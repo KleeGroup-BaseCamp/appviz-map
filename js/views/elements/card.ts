@@ -1,7 +1,7 @@
-import {VElement} from "../../core/index"
-import {Header} from "../../components/index"
 import {style} from "../../sketch"
-import {PxSize} from "../../layout/index"
+import {VElement} from "../../core"
+import {Header} from "../../components"
+import {PxSize} from "../../layout"
 export class Card extends VElement {
     private readonly header: Header
 

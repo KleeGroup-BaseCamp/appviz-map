@@ -1,5 +1,5 @@
-import {VElement} from "../core/index";
-import {PxPosition} from "../layout/index";
+import {VElement} from "../core";
+import {PxPosition} from "../layout";
 
 export type PositionedElement = {pxPosition: PxPosition, element: VElement}
 

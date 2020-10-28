@@ -1,6 +1,6 @@
-import {ModelRepository} from "../model/index";
-import {Layer} from "../core/index"
-import {Layout} from "../types/index"
+import {ModelRepository} from "../model";
+import {Layer} from "../core"
+import {Layout} from "../types"
 
 export interface View {
 

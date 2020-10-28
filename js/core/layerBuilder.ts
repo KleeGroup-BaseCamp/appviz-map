@@ -1,8 +1,8 @@
 import { VElement } from "./VElement";
 import {Layer} from "./layer"
 
-import {PxPosition} from "../layout/index";
-import {PositionedElement} from "../types/index";
+import {PxPosition} from "../layout";
+import {PositionedElement} from "../types";
 
 export class LayerBuilder {
   private readonly positionedElements: PositionedElement[] = []

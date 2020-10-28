@@ -1,0 +1,570 @@
+[33mcommit 0399d238ca511de44ac0c72b2e5b66b98db2b63a[m[33m ([m[1;36mHEAD -> [m[1;32mTS-migration[m[33m, [m[1;31morigin/TS-migration[m[33m)[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 28 11:44:57 2020 +0100
+
+    Use node module resolution
+
+[33mcommit 5198e4dc8cce45f140766107d8a6bd92aabaeb25[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Tue Oct 27 18:07:37 2020 +0100
+
+    Import from directly from module + no default export
+
+[33mcommit d6cc5a5365db88d4d7d6ac78a8cdcec1d2f1ebc5[m
+Merge: e948659 62a85af
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Tue Oct 27 11:47:41 2020 +0100
+
+    Merge remote-tracking branch 'origin/TS-migration' into TS-migration
+
+[33mcommit e948659e55c56fd263f82829ce53a6c78e27b261[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Tue Oct 27 11:40:45 2020 +0100
+
+    Modifiers & fixes
+
+[33mcommit 62a85af345eaf4f604ff4606692ebce169e3b029[m
+Author: Matthieu Laroche <matthieu.laroche@telecom-bretagne.eu>
+Date:   Tue Oct 27 11:11:23 2020 +0100
+
+    remove dependency to runtime type
+
+[33mcommit 08fc39a3649902889a230f5bd812e8f8e409f934[m
+Author: Matthieu Laroche <matthieu.laroche@telecom-bretagne.eu>
+Date:   Tue Oct 27 11:11:03 2020 +0100
+
+    private modifiers
+
+[33mcommit 2803be8326d9ec8d9f03529e1271b0403b919a31[m
+Author: Matthieu Laroche <matthieu.laroche@telecom-bretagne.eu>
+Date:   Tue Oct 27 11:10:45 2020 +0100
+
+    view is an interface
+
+[33mcommit abdb247b1a6f40a4f5338a73a28acbd3dcdd1b90[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 26 23:57:01 2020 +0100
+
+    modifiers
+
+[33mcommit a1af5083df09862ce9790e6c0356717bc67739ab[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 26 23:51:59 2020 +0100
+
+    modifiers
+
+[33mcommit a5e07fc9cf0220d9a3eb46fdf390762e79369885[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 26 23:40:27 2020 +0100
+
+    modifiers
+
+[33mcommit af50ef7a657a16878660ecd8d16865d1bf10a21f[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Mon Oct 26 18:00:30 2020 +0100
+
+    Serve with webpack & update README.md
+
+[33mcommit 6aad0be9079cdfc4fa2b0fcc18a2d49e868befe6[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Mon Oct 26 17:18:52 2020 +0100
+
+    Clean dependencies
+
+[33mcommit d666c1b513eb6f958db15a8b7124552403d10091[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Mon Oct 26 17:05:15 2020 +0100
+
+    Migrate detail and sketch
+    First TS working version
+
+[33mcommit edf2a1c3b371de48bb161111fb319967e793ae23[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Mon Oct 26 15:14:50 2020 +0100
+
+    Migrate utils and views
+    Non working version: need to migrate sketch and detail
+
+[33mcommit 98dca68de17fcfcdc5d38696b4e6eedbcbe1e47a[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Mon Oct 26 11:37:54 2020 +0100
+
+    Migrate layout and model
+    Non working version: needs to migrate other modules
+
+[33mcommit 33c5fadf6b30908a1aa02ae614a8ecc3716f2b5e[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 23 18:16:35 2020 +0200
+
+    Migrate core + components
+    Non working version: needs to migrate other modules
+
+[33mcommit 939cf9f33cc3d24f9d74fc6c77d1d6e2056276af[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 23 11:56:04 2020 +0200
+
+    .ts > .js
+
+[33mcommit 988bff19c2880c0926f00129c7063bf5e61f32e1[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 23 11:50:17 2020 +0200
+
+    Change config for ts support
+
+[33mcommit c5988e25dcf432f66af749a8ca8e908832f3ae16[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 23 10:32:36 2020 +0200
+
+    switchView available in global scope
+
+[33mcommit 644d7997491119dd4215517e9059ac52d3d277c8[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 22 17:26:44 2020 +0200
+
+    Import p5
+
+[33mcommit 1dee5ee42e53f73d8478904eab9e696edcdc165f[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 22 14:17:53 2020 +0200
+
+    Fix Webpack related issues
+    Working version (using webpack)
+
+[33mcommit cfd35a43ac30cd7181deb1b0ae9e3fddc7d29099[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 21 20:23:28 2020 +0200
+
+    Add webpack
+
+[33mcommit 6c79578463f828bf2be6b5f9fe8dcc0bda8ee298[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 21 17:58:29 2020 +0200
+
+    Add import/export
+
+[33mcommit 20d10f3c74566d6dac154cbe4e81e963b6a25ece[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 21 15:58:41 2020 +0200
+
+    Configure ESLint/Babel
+
+[33mcommit c6def8783cb2b46ddeda78dd0ad4e838b1fdd451[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 21 11:35:39 2020 +0200
+
+    Fix tsc error
+    Debug Failure. Unexpected PrivateIdentifier in name expression with literal-like access
+
+[33mcommit 0a80a775362f838a31d6ea3b6373ad2c548066c2[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 21 11:14:38 2020 +0200
+
+    Add typescript
+
+[33mcommit 1884e7c20a237238bd2b179b5925d53b6f0b95eb[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 21 11:06:37 2020 +0200
+
+    Element > VElement
+
+[33mcommit 9131a36a82cd76626da76a1f112a9ffa590539f4[m
+Author: Matthieu Laroche <matthieu.laroche@telecom-bretagne.eu>
+Date:   Tue Oct 20 10:03:38 2020 +0200
+
+    fix group position padding
+
+[33mcommit 82671a1cfd210807c34df4c56f222a1d92877d61[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Tue Oct 20 09:23:11 2020 +0200
+
+    rem
+
+[33mcommit 8bf9267a8ed57963135e3c129200e5499bb95209[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Tue Oct 20 00:56:53 2020 +0200
+
+    fix bug when clicking before vizMap is created
+
+[33mcommit 9823e7f939f8cbebf09e143ec464658d4cd57ae3[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 20:57:45 2020 +0200
+
+    Dynamic routing !!
+
+[33mcommit 9fc52772adece204f105a3df3aca089e5da8a027[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 20:35:20 2020 +0200
+
+    view
+
+[33mcommit 40b9f4690ca240223f93fddfab02e7e359b1c0ee[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 18:53:07 2020 +0200
+
+    ViewDispatcher
+
+[33mcommit e6095455767e17b9f61f3b6e6e90b3708e78b3a4[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 18:20:27 2020 +0200
+
+    modelrepository
+
+[33mcommit 7b39c21dd8da5060e66e390ea92d2dde092c7ed9[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 17:49:22 2020 +0200
+
+    using PxSize
+
+[33mcommit 13f42f32509bde256be25d1dcaffea3648928116[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 16:49:28 2020 +0200
+
+    Size and POsition are Vectors
+
+[33mcommit dea76f612a71df2594d1f658e2644f2c37f05ca7[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 16:14:13 2020 +0200
+
+    Changes API
+
+[33mcommit 4539ca17f358a1f36fd573c0ecd1b0ddfb502f58[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 13:00:12 2020 +0200
+
+    pxSize
+
+[33mcommit a7edb622a53c7953e4f0ab11a5147485e210df32[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 12:59:35 2020 +0200
+
+    using  pxSize
+
+[33mcommit 04ac49daa8d2c0282a5f537450bece56f5e44dc9[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 12:51:27 2020 +0200
+
+    doc
+
+[33mcommit 59e735ba6d749252787605a6d154b72d663f22ac[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 12:16:38 2020 +0200
+
+    doc
+
+[33mcommit 0f9575d7c602b16095b1b62e5babbf3b454ef19c[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 11:35:33 2020 +0200
+
+    fix
+
+[33mcommit 4c12f1eec0a15adead64b7e1b89f86368d4b41e6[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 10:43:53 2020 +0200
+
+    refac
+
+[33mcommit bb3e0266cb8816749abddf667f73a96f83e0f1c8[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Mon Oct 19 10:38:58 2020 +0200
+
+    refac projection
+
+[33mcommit 71b532384d0331cb317ade0793bd9af8e06897b2[m
+Author: Matthieu Laroche <matthieu.laroche@telecom-bretagne.eu>
+Date:   Sun Oct 18 20:42:27 2020 +0200
+
+    views are views not elements + cleaning
+
+[33mcommit 450bc8f41ec6ae03e9234732bcd4308680d78e26[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Sat Oct 17 13:35:47 2020 +0200
+
+    fix
+
+[33mcommit f3a75bf13eac05bfcb30ae19d47f5efb78f0c0db[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Fri Oct 16 21:54:21 2020 +0200
+
+    clean code
+
+[33mcommit b827c117b381fda552f7bd8bcaaca1470a2bbfc8[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Fri Oct 16 21:42:55 2020 +0200
+
+    doc
+
+[33mcommit 20e11d2e2e6fcd59d7c39e5e47fb62cd31bb1501[m
+Author: phlppchrtn <philippe.chretien@kleegroup.com>
+Date:   Fri Oct 16 21:08:00 2020 +0200
+
+    doc doc
+
+[33mcommit fa57f639a2e78c12d895b65aef3e58a9c3cc88cb[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 18:01:45 2020 +0200
+
+    Refactor TechGroupView
+
+[33mcommit c6c875e6d3c222aa8058badc4cad0ec9d5cb521c[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 17:08:25 2020 +0200
+
+    Refactor TechZoneView
+
+[33mcommit 7fd8c31f6ac6b9ec1107c40df8cd33df4c21d487[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 15:57:33 2020 +0200
+
+    Use pos/size objects in projection methods' parameters
+
+[33mcommit f4bff04cb283f70696223d768344bac15fb7d9c2[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 14:55:53 2020 +0200
+
+    Add Code suffix to grid pos/size fields
+
+[33mcommit 8d5a539d8e090aa39975872448f5f2633550cb1a[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 14:49:32 2020 +0200
+
+    Bad merge
+
+[33mcommit 2050a08a0d3318f74b3301be3ce7d96a1cc1e631[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 14:45:37 2020 +0200
+
+    Return x, y, width, height as ints in projection
+
+[33mcommit af4351fcc0297db182b51d2025ec0d536a19f54d[m
+Merge: 7be8ad8 c5ac6c3
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 14:39:13 2020 +0200
+
+    Merge remote-tracking branch 'origin/master' into master
+
+[33mcommit 7be8ad8a82d9b9ea38be0156c6b4ee26cc574613[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 14:34:23 2020 +0200
+
+    Add layout files to index
+
+[33mcommit 38c64ab3baba4dad324e662abab086e5366a848d[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 14:33:37 2020 +0200
+
+    Use grid and px layout objects
+
+[33mcommit c5ac6c344f9751f761ef2d7766282034159fa8b0[m
+Author: Matthieu Laroche <matthieu.laroche@telecom-bretagne.eu>
+Date:   Fri Oct 16 14:22:51 2020 +0200
+
+    naming
+
+[33mcommit 3ea71578f438e4c487708f92077812f608816921[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 13:39:04 2020 +0200
+
+    Naming + fix
+
+[33mcommit a1e081b9819135c5de85313dd8d6b2b098cf765f[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Fri Oct 16 13:24:25 2020 +0200
+
+    Implement projection
+
+[33mcommit 7becfd24edfa3d8550ab78a68660fd2bd1dd4c01[m
+Author: farouk <faiz@eurecom.fr>
+Date:   Thu Oct 15 20:18:17 2020 +0200
+
+    [Doc] Default value
+
+[33mcommit 57a863854872fc0e01eac925648b778cce0d0633[m
+Author: farouk <faiz@eurecom.fr>
+Date:   Thu Oct 15 20:14:44 2020 +0200
+
+    Add doc
+
+[33mcommit 99b53fbbbc9242542e5b8f6b954af9a90e7ed04f[m
+Author: farouk <faiz@eurecom.fr>
+Date:   Thu Oct 15 20:10:41 2020 +0200
+
+    Projection for one level grid
+
+[33mcommit e9f314cf5e58ff29b9b22b243cf56456b6686031[m
+Merge: 83789dd 7e74188
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 18:04:15 2020 +0200
+
+    Merge remote-tracking branch 'origin/master' into master
+
+[33mcommit 7e74188876e3f42c0dbc1d795c7a2ff6b64f2bff[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Thu Oct 15 17:51:35 2020 +0200
+
+    fix
+
+[33mcommit 83789dd529a49e6b940a8e3162a7fa07677ce62a[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 17:32:03 2020 +0200
+
+    Clean
+
+[33mcommit 4d1ffdf4ebd7f050847023ffd577b6ea0c3450b1[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 15:17:24 2020 +0200
+
+    Use modelRepository and dispatcher instead of notebookHandler
+
+[33mcommit bef2a7f041430dd10dd618cf5bc95d5e79768ea7[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 14:14:19 2020 +0200
+
+    Add Doc
+
+[33mcommit f7e1c5bc8aee79b58b6839cb728d1ceda315f9bf[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 11:44:38 2020 +0200
+
+    Comments
+
+[33mcommit d77e32e3ca601be1444e765b96506d49e672204a[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 11:00:54 2020 +0200
+
+    Fix
+
+[33mcommit e87dca93f7c278da8113434bf0196b57407d8a0d[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 10:58:22 2020 +0200
+
+    Remove id from Section
+
+[33mcommit 9ce4c8f787c62963a96de5183c3d738917d5d862[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 10:25:13 2020 +0200
+
+    Add section
+
+[33mcommit 603b2b6df738a8198ebcf6072242c19cbb5d216f[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Thu Oct 15 10:17:34 2020 +0200
+
+    Naming
+
+[33mcommit 3061e4045368b5566d13635fe0004d0b1300ca6f[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Thu Oct 15 09:58:15 2020 +0200
+
+    Model must not depend on notebook
+
+[33mcommit 5b7d11c11414f908f57ee819d82fa19e4552c053[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Thu Oct 15 09:55:38 2020 +0200
+
+    naming
+
+[33mcommit 064da17d37c24c6bedf71655b2c3d7366e63ddc4[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Thu Oct 15 09:54:57 2020 +0200
+
+    naming
+
+[33mcommit 1d6f1cb8ef8f841c7a3efd851887f1265e4e5dd3[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 14 23:14:37 2020 +0200
+
+    Add group View in dispatcher
+
+[33mcommit d1da1ed95de90150f8d4ae6f909cabcd9efae05c[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 14 18:46:18 2020 +0200
+
+    naming
+
+[33mcommit 47e117cc86db08e86084531a53c445eb0a817bbc[m
+Merge: bd35427 c483547
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 14 18:20:33 2020 +0200
+
+    Merge remote-tracking branch 'origin/master' into master
+
+[33mcommit bd35427064f47ad20ca2c449527399b3ba1eb3c3[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 14 18:20:23 2020 +0200
+
+    Build zone Map from dispatcher
+
+[33mcommit c483547c6afc3b4cd81937ee86a57bd51489bc97[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Wed Oct 14 16:22:40 2020 +0200
+
+    dirty, active => CPU
+
+[33mcommit fbd0163f29a7f8aad3217b6917c9b2779b2d7656[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Wed Oct 14 14:42:17 2020 +0200
+
+    doc
+
+[33mcommit cb576caaa9c3f84b2924a286c8703372042b9b64[m
+Merge: 50cbe2c 6480e09
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 14 13:49:53 2020 +0200
+
+    Merge remote-tracking branch 'origin/master' into master
+
+[33mcommit 50cbe2cd7d372c9cebd6a6c00d984bd86903f538[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 14 13:49:34 2020 +0200
+
+    Build model repository
+
+[33mcommit 6480e09cbed04f5a5f8f3d3ffc35d61e360cf4d5[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Wed Oct 14 10:42:52 2020 +0200
+
+    doc
+
+[33mcommit b3e4e5c149e0cd1168fd94e20d17d8e370eb3ca4[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Wed Oct 14 10:37:01 2020 +0200
+
+    doc
+
+[33mcommit 4fe30b6542cc12baa1d4c5c76ff7114f4fad6044[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Wed Oct 14 10:34:30 2020 +0200
+
+    doc
+
+[33mcommit 8febf5205cccc65bb67bdb9536c2ea2f988b204c[m
+Merge: dd0d46a 255cd53
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Wed Oct 14 10:30:34 2020 +0200
+
+    Merge branch 'master' of https://github.com/KleeGroup-BaseCamp/appviz-map
+
+[33mcommit dd0d46ab1afd2641004e3c5ff60455aed301f1b1[m
+Author: Philippe CHRETIEN <philippe.chretien@kleegroup.com>
+Date:   Wed Oct 14 10:30:24 2020 +0200
+
+    doc
+
+[33mcommit 255cd536b3ee04800fc1766c9f19038edfad1e03[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Wed Oct 14 10:15:56 2020 +0200
+
+    Add models
+
+[33mcommit ee7ce949661fe5be8a645653151ebde6a6a18011[m
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Tue Oct 13 17:15:01 2020 +0200
+
+    Add models constructors
+
+[33mcommit 56ba83b1692414c278a2ec5490cef6326cc3fb99[m
+Merge: c2691b5 c5eb070
+Author: farouk <farouk.faiz@kleegroup.com>
+Date:   Tue Oct 13 16:45:24 2020 +0200
+
+    Merge remote-tracking branch 'origin/master' into master
