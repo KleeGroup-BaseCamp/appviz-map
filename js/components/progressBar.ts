@@ -9,22 +9,22 @@ export class ProgressBar implements Component{
     private maxValue: number
     private width: number
     private color: p5.Color
-    private title: VText // TO DO: Use better name (e.g title is also used for string field in other objects (i.e. Header))
+    private vtext: VText
 
     constructor(value: number, maxValue: number, width: number, color: p5.Color) {
         this.value = value
         this.maxValue = maxValue
         this.width = width
         this.color = color
-        this.title = new VText("", style.text.font, style.text.size.s)
+        this.vtext = new VText("", style.text.font, style.text.size.s)
         const duration = 300 /*ms*/
         AnimationUtils.animate(0, value, duration, s => this.value = s)
     }
     
     public render(): void {
         const weight: number = 8
-        this.title.setText(Math.floor(this.value).toString())
-        this.title.render() 
+        this.vtext.setText(Math.floor(this.value).toString())
+        this.vtext.render() 
         push()
         translate(20, (-textAscent() + weight) / 2 )
         this.renderBar(weight);
