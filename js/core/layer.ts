@@ -1,4 +1,4 @@
-import {VElement} from "./VElement"
+import {VElement} from "./velement"
 import {PositionedElement} from "../types"
 
 export class Layer {
