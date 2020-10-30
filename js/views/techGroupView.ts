@@ -1,6 +1,6 @@
 import {View} from "./view"
 import {style, projection} from "../sketch"
-import {Card, Item, ItemTypeDetail} from "./elements"
+import {Card, Item, ItemTypeDetail, Icons} from "./elements"
 import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
 import {Layer, LayerBuilder} from "../core"
 import {ModelRepository, GroupModel} from "../model"
@@ -65,7 +65,7 @@ export class TechGroupView implements View {
                 new ItemTypeDetail(
                     typeName,
                     itemTypePxSize,
-                    (TextUtils.firstCharUpperCase(typeName)) + "s " + style.getIcon(typeName)
+                    (TextUtils.firstCharUpperCase(typeName)) + "s " + Icons.getIcon(typeName)
                 ),
                 itemTypePxPosition
             )

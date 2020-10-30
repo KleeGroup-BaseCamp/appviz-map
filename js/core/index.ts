@@ -5,4 +5,5 @@ export * from "./map"
 export * from "./mapBuilder"
 export * from "./state"
 export * from "./style"
+export * from "./styleBuilder"
 

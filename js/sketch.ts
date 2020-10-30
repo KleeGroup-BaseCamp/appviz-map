@@ -3,7 +3,7 @@ import {} from "p5/global"
 
 import {Detail} from "./detail"
 import {HomeView, TechZoneView, TechGroupView, DemoView, View, Group, Item, Background} from "./views"
-import {Style, State, MapBuilder, LayerBuilder, Map, VElement} from "./core"
+import {Style, StyleBuilder, State, MapBuilder, LayerBuilder, Map, VElement} from "./core"
 import {ModelRepositoryBuilder, ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
@@ -40,13 +40,12 @@ window.mouseClicked = mouseClicked
 window.windowResized = windowResized
 
 function preload() {
-  style = new Style()
+  style = new StyleBuilder().build()
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
   layout = loadJSON("/js/views/layout.json")
   projection = new Projection(new PxSize(canvasWidth, canvasHeight))
-  style.load()
 }
 
 function setup() {

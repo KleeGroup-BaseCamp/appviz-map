@@ -4,6 +4,7 @@ import {VElement} from "../../core"
 import {Header, ProgressBar, VText} from "../../components"
 import {PxSize} from "../../layout"
 import {ItemTypeName, ItemTypeFrequencies} from "../../types"
+import {Icons} from "./icons"
 
 export class Group extends VElement {
     private readonly itemTypeFrequencies: ItemTypeFrequencies
@@ -66,10 +67,11 @@ export class Group extends VElement {
         Object.keys(this.itemTypeFrequencies).forEach((itemPrefix, index) => {
             push()
             translate(25, positions[index] + 8)
-            new VText(style.getIcon(itemPrefix as ItemTypeName), style.icon.font, style.icon.size.xl).render()
+            new VText(Icons.getIcon(itemPrefix as ItemTypeName), style.icon.font, style.icon.size.xl).render()
             translate(35, -8)
             this.progressBars[index].render()
             pop()
         })
     }
+
 }
