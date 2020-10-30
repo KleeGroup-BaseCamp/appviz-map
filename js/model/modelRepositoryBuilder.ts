@@ -14,8 +14,8 @@ export class ModelRepositoryBuilder {
     dt: "data",
     tk: "task",
   }
-  private notebook: Notebook 
-  private config: Config
+  private readonly notebook: Notebook 
+  private readonly  config: Config
 
   constructor(notebookPath: string, configPath: string) {
     this.notebook = loadJSON(notebookPath) as Notebook
