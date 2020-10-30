@@ -1,4 +1,5 @@
-import {Style} from "./Style"
+import {} from "p5/global"
+import {Style} from "./style"
 
 export class StyleBuilder {
     constructor() {
@@ -17,8 +18,7 @@ export class StyleBuilder {
                     l: 26,
                     xl: 32
                 }
-            },
-        
+            },    
             text : {
                 font : textFont,
                 size : {
@@ -37,7 +37,6 @@ export class StyleBuilder {
                     secondary : color("#9EA3B4"),  /* light grey */
                 }    
             },
-
             color : {
                 a : color("#2196F3"), /* blue */
                 b : color( "#4CAF50"), /* green */
@@ -83,14 +82,11 @@ export class StyleBuilder {
 //        this.color.back   = color("#F6F6F4")  /*  light++ */
 //        this.color.middle  = color("#EFEFEF")  /* light   */
 //        this.color.front   = color("#DDDDDD")  /* light-- */
-
-        /* text */
+       /* text */
 //        this.text.color.primary   = color("#000000") /* black */
 //        this.text.color.secondary  = color("#615c4b")
-
 //        this.color.undefined  = color("0008ff")
 //    }
-
 //    public getIcon(itemTypeName: ItemTypeName): string {
 //        return this.icons[itemTypeName]
 //    }

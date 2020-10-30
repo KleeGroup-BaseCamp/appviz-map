@@ -1,42 +1,50 @@
 import * as p5 from "p5"
 
-type SizeStyle = {[name: string] : number}
-
 interface  IconStyle {
-    font : p5.Font,
-    size : SizeStyle
+    readonly font : p5.Font,
+    readonly size : {
+        readonly s:  number,
+        readonly m:  number,
+        readonly l:  number,
+        readonly xl: number
+    }
 }
 
 interface TextStyle  {
-    font : p5.Font,
-    size : SizeStyle,
-    color: {
-        primary   : p5.Color, 
-        secondary : p5.Color
+    readonly font : p5.Font,
+    readonly size : {
+        readonly xxs: number,
+        readonly xs: number,
+        readonly s: number,
+        readonly m: number,
+        readonly l: number,
+        readonly xl: number,
+        readonly xxl: number,
+        readonly default: number
+    },
+    readonly color: {
+        readonly primary   : p5.Color, 
+        readonly secondary : p5.Color
     }
 }
-/*interface TextColor  {
-    primary   : p5.Color, 
-    secondary : p5.Color
-}    
-*/
+
 interface ColorStyle {
         /* colors */
-        a : p5.Color,
-        b : p5.Color,
-        c : p5.Color,
-        d : p5.Color,
+        readonly a : p5.Color,
+        readonly b : p5.Color,
+        readonly c : p5.Color,
+        readonly d : p5.Color,
 
         /* layer > back to front colors */
-        back   : p5.Color, 
-        middle : p5.Color, 
-        front  : p5.Color, 
+        readonly back   : p5.Color, 
+        readonly middle : p5.Color, 
+        readonly front  : p5.Color, 
 
-        undefined :  p5.Color
+        readonly undefined :  p5.Color
 }
 
 export interface Style {
-    icon:  IconStyle,
-    text:  TextStyle,
-    color: ColorStyle
+    readonly icon:  IconStyle,
+    readonly text:  TextStyle,
+    readonly color: ColorStyle
 }
