@@ -3,13 +3,17 @@ import {ItemTypeName} from "../types"
 
 type ColorStyle = {[colorName: string] : p5.Color}
 type SizeStyle = {[sizeName: string] : number}
+
 type IconStyle = {
     font : p5.Font,
     size : SizeStyle
 }
-type TextStyle = IconStyle & {
+
+type TextStyle = {
+    font : p5.Font,
+    size : SizeStyle,
     color: ColorStyle
-} 
+}
 
 export class Style {
     public icon: IconStyle = {
