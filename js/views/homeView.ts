@@ -1,7 +1,7 @@
 import {projection} from "../sketch"
 import {View} from "./view"
 import {Layer, LayerBuilder} from "../core"
-import {Card} from "./elements"
+import {Card, Grid} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
@@ -11,6 +11,7 @@ export class HomeView implements View {
         return  [
             new LayerBuilder()
             .addElement(new Card("home_main", projection.getPxSize(), "Home"))
+            .addElement(new Grid("grid", projection.getPxSize(), 100, 100))
             .build()
         ]
     }

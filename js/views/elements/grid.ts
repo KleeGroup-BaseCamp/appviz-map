@@ -6,7 +6,7 @@ import {PxSize} from "../../layout"
 export class Grid extends VElement {
   private readonly columns: number
   private readonly rows: number
-  private  alpha: (number | undefined)
+  private  alpha? : number
 
   /**
    * Constructor
@@ -19,7 +19,7 @@ export class Grid extends VElement {
     super(id, pxSize, false)
     this.columns = columns
     this.rows = rows
-    AnimationUtils.animate(150, 0, 300, a => this.alpha = a)
+    AnimationUtils.animate(150, 0, 1000, a => this.alpha = a)
   }
 
   /**
