@@ -4,6 +4,7 @@ import {Layer, LayerBuilder} from "../core"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
+
 export class DemoView implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {

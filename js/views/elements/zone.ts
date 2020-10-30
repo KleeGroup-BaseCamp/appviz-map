@@ -6,6 +6,7 @@ import {style} from "../../sketch"
 import {VElement} from "../../core"
 import {Header, Corner} from "../../components"
 import {PxSize} from "../../layout"
+
 export class Zone extends VElement {
     private readonly header: Header
     private readonly corner: Corner

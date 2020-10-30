@@ -10,7 +10,6 @@ import {ModelRepository, ItemModel} from "../model"
 import {PxPosition, GridPosition, PxSize, GridSize} from "../layout"
 import {TextUtils}  from "../utils"
 
-
 export class TechZoneView implements View {
 
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {

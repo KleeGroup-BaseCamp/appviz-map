@@ -2,6 +2,7 @@ import {style, state} from "../../sketch"
 import {VElement} from "../../core"
 import {TextUtils}  from "../../utils"
 import {PxSize} from "../../layout"
+
 export class Item extends VElement {
      private readonly title: string
 

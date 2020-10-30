@@ -2,6 +2,7 @@ import {style} from "../../sketch"
 import {VElement} from "../../core"
 import {Header} from "../../components"
 import {PxSize} from "../../layout"
+
 export class ItemTypeDetail extends VElement {
     private readonly header: Header
 

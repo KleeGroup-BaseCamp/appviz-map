@@ -7,7 +7,6 @@ import {ModelRepository, GroupModel} from "../model"
 import {PxPosition, GridPosition, PxSize, GridSize} from "../layout"
 import {TextUtils}  from "../utils"
 
-
 export class TechGroupView implements View {
 
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
