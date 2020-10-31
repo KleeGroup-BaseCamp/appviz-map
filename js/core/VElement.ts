@@ -21,7 +21,7 @@ import { PxSize } from "../layout";
  *  - define a specific 'contains' method to handle a specific shape
  */
 
-export class VElement {
+export abstract class VElement {
   private readonly id: any;
   private readonly pxSize: PxSize;
   private readonly selectable: boolean;
@@ -77,9 +77,7 @@ export class VElement {
    * This method MUST be overridden
    * This defines how the elemnt is rendererd inside a layer.
    */
-  public render(): void {
-    throw 'render method MUST be overridden';
-  }
+  public abstract render(): void
 
   /**
    * This method CAN be overridden
