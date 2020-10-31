@@ -11,7 +11,7 @@ export class HomeView implements View {
         return  [
             new LayerBuilder()
             .addElement(new Card("home_main", projection.getPxSize(), "Home"))
-            .addElement(new Grid("grid", projection.getPxSize(), 100, 100))
+            .addElement(new Grid("grid", projection.getPxSize(), 12, 12))
             .build()
         ]
     }
