@@ -19,7 +19,7 @@ export class Grid extends VElement {
     super(id, pxSize, false)
     this.columns = columns
     this.rows = rows
-    AnimationUtils.animate(150, 0, 1000, a => this.alpha = a)
+    AnimationUtils.animate(150, 0, 1000, (a:number) => this.alpha = a)
   }
 
   /**
@@ -28,9 +28,9 @@ export class Grid extends VElement {
   public render() : void{
     let color = style.text.color.secondary
     if (this.alpha) {
-      color.setAlpha(this.alpha) 
+      color.setAlpha(this.alpha)
     }
-    stroke(color)
+    this.alpha ===0 ? noStroke() :stroke(color)
     strokeWeight(1)
 
     const rowSize = this.getHeight() / this.rows
