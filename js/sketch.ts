@@ -40,7 +40,9 @@ window.mouseClicked = mouseClicked
 window.windowResized = windowResized
 
 function preload() {
-  style = new StyleBuilder().build()
+  style = new StyleBuilder()
+    .load()
+    .build()
   canvasHeight = windowHeight
   canvasWidth = windowWidth * 0.75
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")

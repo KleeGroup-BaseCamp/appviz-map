@@ -1,18 +1,25 @@
-import {} from "p5/global"
+import * as p5 from "p5"
 import {Style} from "./style"
 
 export class StyleBuilder {
+    private textFont: p5.Font
+    private iconFont : p5.Font
+
     constructor() {
     }
 
+    public load(): StyleBuilder {
+        this.textFont = loadFont("fonts/Montserrat-Regular.ttf")
+        this.iconFont = loadFont("fonts/material-design-outlined.ttf")
+        return this
+    }
+
     public build(): Style {
-        const textFont = loadFont("fonts/Montserrat-Regular.ttf")
-        const iconFont = loadFont("fonts/material-design-outlined.ttf")
         
         /* DarkTheme */
         return  {
              icon: {
-                font : iconFont, 
+                font : this.iconFont, 
                 size : {
                     s: 16,
                     m: 20,
@@ -21,7 +28,7 @@ export class StyleBuilder {
                 }
             },    
             text : {
-                font : textFont,
+                font : this.textFont,
                 size : {
                     xxs: 12,
                     xs: 14,
