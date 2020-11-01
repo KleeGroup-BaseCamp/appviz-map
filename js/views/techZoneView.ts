@@ -1,7 +1,7 @@
 /**
  * View of a zone.
  */
-import {style, projection} from "../sketch"
+import {sketch} from "../sketch"
 import {View} from "./view"
 import {Zone, Group} from "./elements"
 import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout} from "../types"
@@ -29,8 +29,8 @@ export class TechZoneView implements View {
 
         for (const zoneName in layout.zones) {
             const zoneLayout = layout.zones[zoneName]
-            const zonePxSize = projection.gridToPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
-            const zonePxPosition = projection.gridToPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
+            const zonePxSize = sketch.projection.gridToPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
+            const zonePxPosition = sketch.projection.gridToPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
             zonesLayerBuilder.addElement(
                 new Zone(
                     zoneName,
@@ -57,8 +57,8 @@ export class TechZoneView implements View {
                 const groupLayout = layout.groups[groupName]
                 const padding = this.getGroupPadding(groupLayout, layout.zones[groupModel.getType()])
                 const itemTypeFrequencies = this.getItemTypeFrequencies(groupModel.getItemModels())
-                const groupPxSize = projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
-                const groupPxPosition = projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
+                const groupPxSize = sketch.projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
+                const groupPxPosition = sketch.projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
                 const paddedGroupPxPosition = new PxPosition(groupPxPosition.getX() + padding.left, groupPxPosition.getY() + padding.top)
                 groupsLayerBuilder.addElement(
                     new Group(
@@ -118,13 +118,13 @@ export class TechZoneView implements View {
     private getZoneColor(zone: string){
         switch (zone) {
             case "pilotage":
-                return style.color.b
+                return sketch.style.color.b
             case "operationnel":
-                return style.color.a
+                return sketch.style.color.a
             case "referentiel":
-                return style.color.c
+                return sketch.style.color.c
             default:
-                return style.color.undefined
+                return sketch.style.color.undefined
         }
     }
 

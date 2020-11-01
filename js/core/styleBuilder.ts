@@ -2,8 +2,8 @@ import * as p5 from "p5"
 import {Style} from "./style"
 
 export class StyleBuilder {
-    private textFont: p5.Font
-    private iconFont : p5.Font
+    private textFont?: p5.Font
+    private iconFont? : p5.Font
 
     constructor() {
     }

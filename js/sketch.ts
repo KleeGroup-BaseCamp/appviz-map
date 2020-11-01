@@ -8,19 +8,135 @@ import {ModelRepositoryBuilder, ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
 
-let style: Style
-const detail: Detail = new Detail()
-const state: State = new State()
 
-let vizMap : Map
-let modelRepositoryBuilder : ModelRepositoryBuilder
-let modelRepository : ModelRepository
-let canvasHeight : number
-let canvasWidth : number
-let currentViewName : string
-let currentViewParams : ViewParams
-let projection : Projection 
-let layout : any
+export class Sketch {
+  static readonly sketch: Sketch = new Sketch()
+
+  style: Style
+  private readonly detail: Detail = new Detail()
+  readonly state: State = new State()
+  
+  private vizMap : Map
+  private modelRepositoryBuilder? : ModelRepositoryBuilder
+  private modelRepository? : ModelRepository
+  private canvasHeight : number
+  private canvasWidth : number
+  private currentViewName : string
+  private currentViewParams : ViewParams
+  projection? : Projection 
+  private layout : any
+
+  constructor(){} 
+
+  public preload(): void  {
+    this.style = new StyleBuilder()
+      .load()
+      .build()
+    this.canvasHeight = windowHeight
+    this.canvasWidth = windowWidth * 0.75
+    this.modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
+    this.layout = loadJSON("/js/views/layout.json")
+    this.projection = new Projection(new PxSize(this.canvasWidth, this.canvasHeight))
+  }
+
+  public setup(): void {
+    let myCanvas = createCanvas(this.canvasWidth, this.canvasHeight)
+    myCanvas.parent('myContainer')
+    angleMode(DEGREES)
+    this.modelRepository = this.modelRepositoryBuilder.build()
+    // go to home
+    this.switchView("home")
+  }
+
+  public draw():void  {
+    const element = this.vizMap.findElement(mouseX, mouseY)
+    this.state.hover(element)
+    cursor(element != null ? "pointer" : "default")
+    if (this.state.isActive()) {
+      this.vizMap.render()
+    }
+  }
+  public mouseClicked(): void  {
+    console.log ('clicked')
+    if (this.vizMap){
+      const element = this.vizMap.findElement(mouseX, mouseY)
+      if (element){
+        this.state.select(element)
+        this.updateDetail(element)
+      }
+    }
+  }
+
+  public windowResized(): void {
+    this.canvasHeight = windowHeight
+    this.canvasWidth = windowWidth * 0.75
+    resizeCanvas(this.canvasWidth, this.canvasHeight)
+    this.projection = new Projection(new PxSize(this.canvasWidth, this.canvasHeight))
+    //
+    const view = this.selectView(this.currentViewName, this.currentViewParams)
+    this.vizMap = this.generateMapFromView(view)
+    this.state.reset()
+  }
+
+  /**
+   * @param {?VElement} element
+   * 
+   * Update the detail Panel  
+   */
+  private updateDetail(element: VElement): void {
+    if (element instanceof Group || element instanceof Item) {
+      const type = element instanceof Group ? 'group' : 'item'
+      this.detail.update(type, element.getId())
+    }
+  }
+
+  public switchView(viewName: string, viewParams?: ViewParams): void {
+    const hasChanged = (this.currentViewName !== viewName) || (this.currentViewParams!==viewParams)
+    //--
+    this.currentViewName = viewName
+    this.currentViewParams = viewParams ?? this.currentViewParams
+    //--
+    if (hasChanged) {
+      const view = this.selectView(viewName, viewParams)
+      this.vizMap = this.generateMapFromView(view)
+      this.state.reset()
+    }
+  }
+
+  /**
+   * @param {string} viewName 
+   * @param {Object} viewParams 
+   * @return {View}
+   */
+  public selectView(viewName: string, viewParams?: ViewParams): View {
+    // const clazzName = TextUtils.firstCharUpperCase(viewName)+'View'
+    // const jsonParams = JSON.stringify(viewParams)
+    // const expression = `new ${clazzName} (${jsonParams} )` 
+    // return  eval(expression);
+    switch(viewName){
+      case "demo":
+        return new DemoView()
+      case "techZone":
+        return new TechZoneView()
+      case "techGroup":
+        if (viewParams){
+          return new TechGroupView(viewParams)
+        } else{
+          console.error("No viewParams were passed to the function selectView")
+        }
+      default:
+        return new HomeView()
+    }
+  }
+
+  private generateMapFromView(viewInstance: View): Map {
+    return new MapBuilder()
+      .addLayer(new LayerBuilder().addElement(new Background("background", new PxSize(0,0), false)).build())
+      .addLayers(viewInstance.provideLayers(this.modelRepository, this.layout))
+      //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
+      .build()
+  }
+}
 
 // Add methods to Window interface
 declare global {
@@ -31,121 +147,13 @@ declare global {
       switchView: any
      }
 }
+  
+const sketch : Sketch = new Sketch()
+window.preload = () => {sketch.preload()}
+window.setup = ()=> {sketch.setup()}
+window.draw = ()=> {sketch.draw()}
+window.mouseClicked = (e)=> {sketch.mouseClicked()}
+window.windowResized = ()=> {sketch.windowResized()}
+window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
 
-window.preload = preload
-window.setup = setup
-window.draw = draw
-window.switchView = switchView
-window.mouseClicked = mouseClicked
-window.windowResized = windowResized
-
-function preload() {
-  style = new StyleBuilder()
-    .load()
-    .build()
-  canvasHeight = windowHeight
-  canvasWidth = windowWidth * 0.75
-  modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
-  layout = loadJSON("/js/views/layout.json")
-  projection = new Projection(new PxSize(canvasWidth, canvasHeight))
-}
-
-function setup() {
-  let myCanvas = createCanvas(canvasWidth, canvasHeight)
-  myCanvas.parent('myContainer')
-  angleMode(DEGREES)
-  modelRepository = modelRepositoryBuilder.build()
-  // go to home
-  switchView("home")
-}
-
-function draw() {
-  const element = vizMap.findElement(mouseX, mouseY)
-  state.hover(element)
-  cursor(element != null ? "pointer" : "default")
-  if (state.isActive()) {
-    vizMap.render()
-  }
-}
-function mouseClicked() {
-  if (vizMap){
-    const element = vizMap.findElement(mouseX, mouseY)
-    if (element){
-      state.select(element)
-      updateDetail(element)
-    }
-  }
-}
-
-function windowResized() {
-  canvasHeight = windowHeight
-  canvasWidth = windowWidth * 0.75
-  resizeCanvas(canvasWidth, canvasHeight)
-  projection = new Projection(new PxSize(canvasWidth, canvasHeight))
-  //
-  const view = selectView(currentViewName, currentViewParams)
-  vizMap = generateMapFromView(view)
-  state.reset()
-}
-
-/**
- * @param {?VElement} element
- * 
- * Update the detail Panel  
- */
-function updateDetail(element: VElement) {
-  if (element instanceof Group || element instanceof Item) {
-    const type = element instanceof Group ? 'group' : 'item'
-    detail.update(type, element.getId())
-  }
-}
-
-function switchView(viewName: string, viewParams?: ViewParams) {
-  const hasChanged = (currentViewName !== viewName) || (currentViewParams!==viewParams)
-  //--
-  currentViewName = viewName
-  currentViewParams = viewParams ?? currentViewParams
-  //--
-  if (hasChanged) {
-    const view = selectView(viewName, viewParams)
-    vizMap = generateMapFromView(view)
-    state.reset()
-  }
-}
-
-/**
- * @param {string} viewName 
- * @param {Object} viewParams 
- * @return {View}
- */
-function selectView(viewName: string, viewParams?: ViewParams): View {
-  // const clazzName = TextUtils.firstCharUpperCase(viewName)+'View'
-  // const jsonParams = JSON.stringify(viewParams)
-  // const expression = `new ${clazzName} (${jsonParams} )` 
-  // return  eval(expression);
-  switch(viewName){
-    case "demo":
-      return new DemoView()
-    case "techZone":
-      return new TechZoneView()
-    case "techGroup":
-      if (viewParams){
-        return new TechGroupView(viewParams)
-      } else{
-        console.error("No viewParams were passed to the function selectView")
-      }
-    default:
-      return new HomeView()
-  }
-}
-
-function generateMapFromView(viewInstance: View) {
-  return new MapBuilder()
-    .addLayer(new LayerBuilder().addElement(new Background("background", new PxSize(0,0), false)).build())
-    .addLayers(viewInstance.provideLayers(modelRepository, layout))
-    //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
-    .build()
-}
-
-
-export {style, state, detail, projection}
+export {sketch}

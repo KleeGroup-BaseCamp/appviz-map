@@ -1,4 +1,4 @@
-import {style} from "../../sketch"
+import {sketch} from "../../sketch"
 import {VElement} from "../../core"
 import {Header} from "../../components"
 import {PxSize} from "../../layout"
@@ -12,8 +12,8 @@ export class ItemTypeDetail extends VElement {
             title, 
             this.getWidth(), 
             60, 
-            style.text.size.xl, 
-            style.icon.font
+            sketch.style.text.size.xl, 
+            sketch.style.icon.font
             )
     }
 
@@ -25,7 +25,7 @@ export class ItemTypeDetail extends VElement {
     private renderBackground(): void {
         strokeWeight(1)
         stroke(255)
-        fill(style.color.middle)
+        fill(sketch.style.color.middle)
         rect(0, 0, this.getWidth(), this.getHeight())
     }
 }

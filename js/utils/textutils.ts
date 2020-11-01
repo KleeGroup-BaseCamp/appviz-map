@@ -1,4 +1,5 @@
-import {style} from "../sketch"
+import p5 from "p5"
+import {sketch} from "../sketch"
 
 export class TextUtils {
     private static maxCharacters(text: string, width: number): number {
@@ -10,7 +11,8 @@ export class TextUtils {
         return numOfCharacters
     }
 
-    public static buildDisplayableTitle(text: string, width: number, fontSize: number, font = style.text.font): string {
+    public static buildDisplayableTitle(text: string, width: number, fontSize: number): string {
+        const font : p5.Font = sketch.style.text.font
         push() // This function should not alter textSize
         textSize(fontSize)
         textFont(font)

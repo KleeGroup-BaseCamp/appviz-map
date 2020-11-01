@@ -2,7 +2,7 @@
  * View of a zone.
  */
 import * as p5 from "p5"
-import {style} from "../../sketch"
+import {sketch} from "../../sketch"
 import {VElement} from "../../core"
 import {Header, Corner} from "../../components"
 import {PxSize} from "../../layout"
@@ -24,7 +24,7 @@ export class Zone extends VElement {
             title, 
             this.getWidth(), 
             50,
-            style.text.size.l 
+            sketch.style.text.size.l 
             )
         this.corner = new Corner(30, 30, color)
     }

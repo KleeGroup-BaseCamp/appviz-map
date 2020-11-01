@@ -1,4 +1,4 @@
-import {style} from "../../sketch"
+import {sketch} from "../../sketch"
 import {VElement}  from "../../core"
 import {AnimationUtils}  from "../../utils"
 import {PxSize} from "../../layout"
@@ -26,7 +26,7 @@ export class Grid extends VElement {
    * @override 
    */
   public render() : void{
-    let color = style.text.color.secondary
+    let color = sketch.style.text.color.secondary
     if (this.alpha) {
       color.setAlpha(this.alpha)
     }

@@ -1,5 +1,5 @@
 import {View} from "./view"
-import {style, projection} from "../sketch"
+import {sketch} from "../sketch"
 import {Card, Item, ItemTypeDetail, Icons} from "./elements"
 import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
 import {Layer, LayerBuilder} from "../core"
@@ -34,7 +34,7 @@ export class TechGroupView implements View {
             .addElement(
                 new Card(
                     groupModel.getId(), 
-                    projection.getPxSize(), 
+                    sketch.projection.getPxSize(), 
                     TextUtils.firstCharUpperCase(groupModel.getTitle())
                 )
             )
@@ -54,11 +54,11 @@ export class TechGroupView implements View {
                 row : (2 + typeIndex * 5).toString(),
                 column : "1",
                 numOfRows : "4",
-                numOfColumns : (projection.getGridColumns() - 2).toString()
+                numOfColumns : (sketch.projection.getGridColumns() - 2).toString()
             }
 
-            const itemTypePxSize = projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
-            const itemTypePxPosition = projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
+            const itemTypePxSize = sketch.projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
+            const itemTypePxPosition = sketch.projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
             const typeName = this.types[typePrefix as ItemNamePrefix]
             itemTypesLayerBuilder.addElement(
                 new ItemTypeDetail(

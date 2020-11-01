@@ -1,7 +1,7 @@
 import * as p5 from "p5"
-import {style, state} from "../../sketch"
+import {sketch} from "../../sketch"
 import {VElement} from "../../core"
-import {Header, ProgressBar, VText} from "../../components"
+import {Button, Header, ProgressBar, VText} from "../../components"
 import {PxSize} from "../../layout"
 import {ItemTypeName, ItemTypeFrequencies} from "../../types"
 import {Icons} from "./icons"
@@ -12,19 +12,21 @@ export class Group extends VElement {
     private readonly header: Header
     private readonly progressBars: ProgressBar[]
     private readonly color: p5.Color
+    private readonly button : Button
 
     constructor(id: any, pxSize: PxSize, title: string, itemTypeFrequencies: ItemTypeFrequencies, color: p5.Color, maxValue = 20) {
         super(id, pxSize, true)
         this.color = color
-        this.header = new Header( title, this.getWidth(), 50, style.text.size.m)
+        this.header = new Header( title, this.getWidth(), 50, sketch.style.text.size.m)
         this.itemTypeFrequencies = itemTypeFrequencies
         this.maxValue = maxValue
 
         this.progressBars = []
-        const secondaryStroke = style.text.color.primary
+        const secondaryStroke = sketch.style.text.color.primary
         Object.keys(this.itemTypeFrequencies).forEach(item => {
             this.progressBars.push(new ProgressBar(this.itemTypeFrequencies[item as ItemTypeName] ?? 0, this.maxValue, this.getWidth() - 90, secondaryStroke))
         })
+        this.button = new Button(this.getWidth()/2, this.getHeight()/2, sketch.style.color.undefined, 50)
     }
 
     /**
@@ -42,12 +44,16 @@ export class Group extends VElement {
 
         //-- body
         this.renderItems()
+        //--button
+        if (sketch.state.isHovered(this)){
+            this.button.render()
+        }
     }
 
     private renderBackground(): void {
-        fill(state.isHovered(this) 
-            ? style.color.front
-            : style.color.middle)
+        fill(sketch.state.isHovered(this) 
+            ? sketch.style.color.front
+            : sketch.style.color.middle)
         noStroke()
         rect(0, 0, this.getWidth(), this.getHeight())
     }
@@ -67,11 +73,10 @@ export class Group extends VElement {
         Object.keys(this.itemTypeFrequencies).forEach((itemPrefix, index) => {
             push()
             translate(25, positions[index] + 8)
-            new VText(Icons.getIcon(itemPrefix as ItemTypeName), style.icon.font, style.icon.size.xl).render()
+            new VText(Icons.getIcon(itemPrefix as ItemTypeName), sketch.style.icon.font, sketch.style.icon.size.xl).render()
             translate(35, -8)
             this.progressBars[index].render()
             pop()
         })
     }
-
 }
