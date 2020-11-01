@@ -23,7 +23,7 @@ export class Sketch {
   private canvasWidth : number
   private currentViewName : string
   private currentViewParams : ViewParams
-  projection? : Projection 
+  projection : Projection 
   private layout : any
 
   constructor(){} 
