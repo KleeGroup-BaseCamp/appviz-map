@@ -8,11 +8,9 @@ import {ModelRepositoryBuilder, ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
 
-
 export class Sketch {
-  static readonly sketch: Sketch = new Sketch()
-
   style: Style
+  projection : Projection 
   private readonly detail: Detail = new Detail()
   readonly state: State = new State()
   
@@ -23,7 +21,6 @@ export class Sketch {
   private canvasWidth : number
   private currentViewName : string
   private currentViewParams : ViewParams
-  projection : Projection 
   private layout : any
 
   constructor(){} 
@@ -56,10 +53,10 @@ export class Sketch {
       this.vizMap.render()
     }
   }
-  public mouseClicked(): void  {
-    console.log ('clicked')
+
+  public mouseClicked(x: number, y:number): void  {
     if (this.vizMap){
-      const element = this.vizMap.findElement(mouseX, mouseY)
+      const element = this.vizMap.findElement(x, y)
       if (element){
         this.state.select(element)
         this.updateDetail(element)
@@ -152,7 +149,7 @@ const sketch : Sketch = new Sketch()
 window.preload = () => {sketch.preload()}
 window.setup = ()=> {sketch.setup()}
 window.draw = ()=> {sketch.draw()}
-window.mouseClicked = (e)=> {sketch.mouseClicked()}
+window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
 window.windowResized = ()=> {sketch.windowResized()}
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
 
