@@ -18,27 +18,24 @@ export class Sketch {
   private vizMap : Map
   private modelRepositoryBuilder? : ModelRepositoryBuilder
   private modelRepository? : ModelRepository
-  private canvasHeight : number
-  private canvasWidth : number
   private currentViewName : string
   private currentViewParams : ViewParams
   private layout : any
 
-  constructor(){} 
+  constructor(){}
 
   public preload(): void  {
     this.style = new StyleBuilder()
       .load()
       .build()
-    this.canvasHeight = windowHeight
-    this.canvasWidth = windowWidth * 0.75
     this.modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
     this.layout = loadJSON("/js/views/layout.json")
-    this.projection = new Projection(new PxSize(this.canvasWidth, this.canvasHeight))
+
+    this.projection = this.buildProjection()
   }
 
   public setup(): void {
-    let myCanvas = createCanvas(this.canvasWidth, this.canvasHeight)
+    let myCanvas = createCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
     myCanvas.parent('myContainer')
     angleMode(DEGREES)
     this.modelRepository = this.modelRepositoryBuilder.build()
@@ -64,13 +61,15 @@ export class Sketch {
       }
     }
   }
+  private buildProjection(): Projection{
+    const canvasHeight = windowHeight
+    const canvasWidth = windowWidth * 0.75
+    return  new Projection(new PxSize(canvasWidth, canvasHeight))
+  }
 
   public windowResized(): void {
-    this.canvasHeight = windowHeight
-    this.canvasWidth = windowWidth * 0.75
-    resizeCanvas(this.canvasWidth, this.canvasHeight)
-    this.projection = new Projection(new PxSize(this.canvasWidth, this.canvasHeight))
-    //
+    this.projection = this.buildProjection()
+    resizeCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
     this.drawView()
   }
 
