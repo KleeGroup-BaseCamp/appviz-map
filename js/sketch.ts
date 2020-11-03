@@ -9,11 +9,12 @@ import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
 
 export class Sketch {
-  style: Style
+  style?: Style
   projection : Projection 
-  private readonly detail: Detail = new Detail()
   readonly state: State = new State()
   
+  private readonly detail: Detail = new Detail()
+
   private vizMap : Map
   private modelRepositoryBuilder? : ModelRepositoryBuilder
   private modelRepository? : ModelRepository
@@ -70,9 +71,7 @@ export class Sketch {
     resizeCanvas(this.canvasWidth, this.canvasHeight)
     this.projection = new Projection(new PxSize(this.canvasWidth, this.canvasHeight))
     //
-    const view = this.selectView(this.currentViewName, this.currentViewParams)
-    this.vizMap = this.generateMapFromView(view)
-    this.state.reset()
+    this.drawView()
   }
 
   /**
@@ -94,10 +93,13 @@ export class Sketch {
     this.currentViewParams = viewParams ?? this.currentViewParams
     //--
     if (hasChanged) {
-      const view = this.selectView(viewName, viewParams)
-      this.vizMap = this.generateMapFromView(view)
-      this.state.reset()
+      this.drawView()
     }
+  }
+  private drawView():void{
+    const view = this.selectView(this.currentViewName, this.currentViewParams)
+    this.vizMap = this.generateMapFromView(view)
+    this.state.reset()
   }
 
   /**
