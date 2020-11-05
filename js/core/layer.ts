@@ -1,4 +1,4 @@
-import {VElement} from "./velement"
+import {VElement, State} from "../core"
 import {PositionedElement} from "../types"
 
 export class Layer {
@@ -8,11 +8,11 @@ export class Layer {
     this.positionedElements = positionedElements
   }
 
-  public render() : void  {
+  public render(state : State) : void  {
     for (let positionedElement of this.positionedElements) {
       push()
       translate(positionedElement.pxPosition.getX(), positionedElement.pxPosition.getY())
-      positionedElement.element.render()
+      positionedElement.element.render(state)
       pop()
     }
   }

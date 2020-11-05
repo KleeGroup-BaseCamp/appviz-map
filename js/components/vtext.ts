@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {sketch} from "../sketch"
+import {style} from "../sketch"
 import {Component}  from "./component"
 
 export class VText implements Component{
@@ -8,7 +8,7 @@ export class VText implements Component{
     private fontSize: number
     private color: p5.Color
 
-    constructor(text: string, font: p5.Font, fontSize: number, color: p5.Color = sketch.style.text.color.primary) {
+    constructor(text: string, font: p5.Font, fontSize: number, color: p5.Color = style.text.color.primary) {
         this.text = text
         this.font = font
         this.fontSize = fontSize

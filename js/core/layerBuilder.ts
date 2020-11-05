@@ -1,5 +1,4 @@
-import { VElement } from "./velement";
-import {Layer} from "./layer"
+import { VElement, Layer} from "../core";
 
 import {PxPosition} from "../layout";
 import {PositionedElement} from "../types";

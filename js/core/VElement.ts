@@ -1,4 +1,5 @@
 import { PxSize } from "../layout";
+import { State } from "../core";
 
 /**
  * VElement displayed on the map.
@@ -77,7 +78,7 @@ export abstract class VElement {
    * This method MUST be overridden
    * This defines how the elemnt is rendererd inside a layer.
    */
-  public abstract render(): void
+  public abstract render(state :State): void
 
   /**
    * This method CAN be overridden

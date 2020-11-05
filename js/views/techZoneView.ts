@@ -1,7 +1,7 @@
 /**
  * View of a zone.
  */
-import {sketch} from "../sketch"
+import {sketch, style} from "../sketch"
 import {View} from "./view"
 import {Zone, Group} from "./elements"
 import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout} from "../types"
@@ -118,13 +118,13 @@ export class TechZoneView implements View {
     private getZoneColor(zone: string){
         switch (zone) {
             case "pilotage":
-                return sketch.style.color.b
+                return style.color.b
             case "operationnel":
-                return sketch.style.color.a
+                return style.color.a
             case "referentiel":
-                return sketch.style.color.c
+                return style.color.c
             default:
-                return sketch.style.color.undefined
+                return style.color.undefined
         }
     }
 

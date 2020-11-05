@@ -9,25 +9,21 @@ import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
 
 export class Sketch {
-  style?: Style
   projection : Projection 
-  readonly state: State = new State()
-  
+
+  private readonly state: State = new State()
   private readonly detail: Detail = new Detail()
 
   private vizMap : Map
   private modelRepositoryBuilder? : ModelRepositoryBuilder
   private modelRepository? : ModelRepository
-  private currentViewName : string
-  private currentViewParams : ViewParams
+  private currentViewName? : string
+  private currentViewParams? : ViewParams
   private layout : any
 
   constructor(){}
 
   public preload(): void  {
-    this.style = new StyleBuilder()
-      .load()
-      .build()
     this.modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
     this.layout = loadJSON("/js/views/layout.json")
 
@@ -48,7 +44,7 @@ export class Sketch {
     this.state.hover(element)
     cursor(element != null ? "pointer" : "default")
     if (this.state.isActive()) {
-      this.vizMap.render()
+      this.vizMap.render(this.state)
     }
   }
 
@@ -145,13 +141,24 @@ declare global {
       switchView: any
      }
 }
-  
+
+
+const styleBuilder : StyleBuilder = new StyleBuilder()   
 const sketch : Sketch = new Sketch()
-window.preload = () => {sketch.preload()}
-window.setup = ()=> {sketch.setup()}
+let style  : Style 
+
+
+window.preload = () => {
+  styleBuilder.load()
+  sketch.preload()
+}
+window.setup = ()=> {
+  style = styleBuilder.build()
+  sketch.setup()
+}
 window.draw = ()=> {sketch.draw()}
 window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
 window.windowResized = ()=> {sketch.windowResized()}
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
 
-export {sketch}
+export {style, sketch}

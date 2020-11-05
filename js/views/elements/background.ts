@@ -1,12 +1,12 @@
-import {sketch} from "../../sketch"
-import {VElement} from "../../core"
+import {sketch, style} from "../../sketch"
+import {VElement, State} from "../../core"
 
 export class Background extends VElement {
 
  /**
   * @override
   */
-  render(): void  {
-    background(sketch.style.color.back )
+  render(state : State): void  {
+    background(style.color.back )
   }
 }

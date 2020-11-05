@@ -1,5 +1,4 @@
-import { VElement } from "./VElement";
-import {Layer} from "./layer"
+import { VElement, Layer, State } from "../core";
 
 export class Map {
   private readonly layers: Layer[]
@@ -15,9 +14,9 @@ export class Map {
   /**
    * Renders the layers from bottom to up 
    */
-  public render(): void {
+  public render(state : State): void {
     this.layers
-      .forEach(layer => layer.render())
+      .forEach(layer => layer.render(state))
   }
 
   /**

@@ -1,6 +1,6 @@
 import * as p5 from "p5"
 import {Component}  from "./component"
-import {sketch} from "../sketch"
+import {style} from "../sketch"
 import {VText} from "./vtext"
 import {AnimationUtils} from "../utils"
 
@@ -16,7 +16,7 @@ export class ProgressBar implements Component{
         this.maxValue = maxValue
         this.width = width
         this.color = color
-        this.vtext = new VText("", sketch.style.text.font, sketch.style.text.size.s)
+        this.vtext = new VText("", style.text.font, style.text.size.s)
         const duration = 300 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
@@ -35,7 +35,7 @@ export class ProgressBar implements Component{
         strokeJoin(ROUND)
         
         strokeWeight(weight)
-        stroke(sketch.style.color.front)
+        stroke(style.color.front)
         line(0, 0, this.width, 0)
         
         stroke(this.color)

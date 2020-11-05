@@ -1,5 +1,5 @@
-import {sketch} from "../../sketch"
-import {VElement} from "../../core"
+import {sketch, style} from "../../sketch"
+import {VElement, State} from "../../core"
 import {Header} from "../../components"
 import {PxSize} from "../../layout"
 
@@ -8,13 +8,13 @@ export class Card extends VElement {
 
     constructor(id: any, pxSize: PxSize, title: string) {
         super(id, pxSize, false)
-        this.header = new Header(title, this.getWidth(), 100, sketch.style.text.size.xxl)
+        this.header = new Header(title, this.getWidth(), 100, style.text.size.xxl)
     }
 
     /**
      * @override
      */
-    public render(): void  {
+    public render(state :State): void  {
         this.renderBackground()
         this.header.render()
     }
