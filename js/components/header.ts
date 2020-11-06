@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {sketch, style} from "../sketch"
+import {style} from "../app"
 import {Component}  from "./component"
 import {TextUtils} from "../utils"
 

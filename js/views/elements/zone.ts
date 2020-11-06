@@ -2,7 +2,7 @@
  * View of a zone.
  */
 import * as p5 from "p5"
-import {sketch, style} from "../../sketch"
+import {style} from "../../app"
 import {VElement, State, Style} from "../../core"
 import {Header, Corner} from "../../components"
 import {PxSize} from "../../layout"

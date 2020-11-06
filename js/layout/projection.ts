@@ -123,4 +123,10 @@ export class Projection {
     public getGridRows(): number{
         return this.gridRows
     }
+
+    public static buildProjection(): Projection{
+        const canvasHeight = windowHeight
+        const canvasWidth = windowWidth * 0.75
+        return  new Projection(new PxSize(canvasWidth, canvasHeight))
+      }
 }

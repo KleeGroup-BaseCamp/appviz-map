@@ -1,6 +1,6 @@
 import * as p5 from "p5"
 import {Component}  from "./component"
-import {style} from "../sketch"
+import {style} from "../app"
 import {VText} from "./vtext"
 import {AnimationUtils} from "../utils"
 

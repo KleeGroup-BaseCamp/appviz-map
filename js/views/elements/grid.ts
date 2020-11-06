@@ -1,4 +1,4 @@
-import {sketch, style} from "../../sketch"
+import {style} from "../../app"
 import {VElement, State}  from "../../core"
 import {AnimationUtils}  from "../../utils"
 import {PxSize} from "../../layout"

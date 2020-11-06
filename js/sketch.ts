@@ -1,45 +1,38 @@
 import "p5"
 import {} from "p5/global"
 
+import {projection} from "./app"
 import {Detail} from "./detail"
 import {HomeView, TechZoneView, TechGroupView, DemoView, View, Group, Item, Background} from "./views"
-import {Style, StyleBuilder, State, MapBuilder, LayerBuilder, Map, VElement} from "./core"
-import {ModelRepositoryBuilder, ModelRepository} from "./model"
+import {State, MapBuilder, LayerBuilder, Map, VElement} from "./core"
+import {ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
 
 export class Sketch {
-  projection : Projection 
-
   private readonly state: State = new State()
   private readonly detail: Detail = new Detail()
 
-  private vizMap : Map
-  private modelRepositoryBuilder? : ModelRepositoryBuilder
-  private modelRepository? : ModelRepository
+  private vizMap? : Map
+  private readonly modelRepository : ModelRepository
   private currentViewName? : string
   private currentViewParams? : ViewParams
-  private layout : any
+  private readonly layout : any
 
-  constructor(){}
-
-  public preload(): void  {
-    this.modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
-    this.layout = loadJSON("/js/views/layout.json")
-
-    this.projection = this.buildProjection()
-  }
-
-  public setup(): void {
-    let myCanvas = createCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
+  constructor(modelRepository : ModelRepository, projection : Projection, layout : any){
+    let myCanvas = createCanvas(projection.getPxSize().getWidth(), projection.getPxSize().getHeight())
     myCanvas.parent('myContainer')
     angleMode(DEGREES)
-    this.modelRepository = this.modelRepositoryBuilder.build()
+    this.layout = layout
+    this.modelRepository = modelRepository
     // go to home
     this.switchView("home")
   }
 
   public draw():void  {
+    if (!this.vizMap){
+      throw 'vizMap must be defined'
+    }  
     const element = this.vizMap.findElement(mouseX, mouseY)
     this.state.hover(element)
     cursor(element != null ? "pointer" : "default")
@@ -57,15 +50,9 @@ export class Sketch {
       }
     }
   }
-  private buildProjection(): Projection{
-    const canvasHeight = windowHeight
-    const canvasWidth = windowWidth * 0.75
-    return  new Projection(new PxSize(canvasWidth, canvasHeight))
-  }
 
   public windowResized(): void {
-    this.projection = this.buildProjection()
-    resizeCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
+    resizeCanvas(projection.getPxSize().getWidth(), projection.getPxSize().getHeight())
     this.drawView()
   }
 
@@ -131,34 +118,3 @@ export class Sketch {
       .build()
   }
 }
-
-// Add methods to Window interface
-declare global {
-    interface Window { 
-      preload: any,
-      setup: any,
-      draw: any,
-      switchView: any
-     }
-}
-
-
-const styleBuilder : StyleBuilder = new StyleBuilder()   
-const sketch : Sketch = new Sketch()
-let style  : Style 
-
-
-window.preload = () => {
-  styleBuilder.load()
-  sketch.preload()
-}
-window.setup = ()=> {
-  style = styleBuilder.build()
-  sketch.setup()
-}
-window.draw = ()=> {sketch.draw()}
-window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
-window.windowResized = ()=> {sketch.windowResized()}
-window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
-
-export {style, sketch}

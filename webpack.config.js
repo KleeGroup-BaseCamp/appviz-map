@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
   mode: "development",
-  entry: './js/sketch.ts',
+  entry: './js/app.ts',
   devtool: 'inline-source-map',
   devServer: {
       publicPath: '/dist/',

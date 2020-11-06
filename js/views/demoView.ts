@@ -1,4 +1,4 @@
-import {sketch} from "../sketch"
+import {sketch, projection} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder} from "../core"
 import {Card} from "./elements"
@@ -10,7 +10,7 @@ export class DemoView implements View {
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         return  [
             new LayerBuilder()
-            .addElement(new Card("demo_main", sketch.projection.getPxSize(), "Démo"))
+            .addElement(new Card("demo_main", projection.getPxSize(), "Démo"))
             .build()
         ]
     }

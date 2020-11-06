@@ -1,4 +1,4 @@
-import {sketch, style} from "../../sketch"
+import {sketch, style} from "../../app"
 import {VElement, State} from "../../core"
 
 export class Background extends VElement {

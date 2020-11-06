@@ -8,6 +8,12 @@ export class StyleBuilder {
     constructor() {
     }
 
+    private notNull( font? : p5.Font ):p5.Font {
+        if(font){
+            return font
+        }
+        throw 'value must not be null'
+    } 
     public load(): StyleBuilder {
         this.textFont = loadFont("fonts/Montserrat-Regular.ttf")
         this.iconFont = loadFont("fonts/material-design-outlined.ttf")
@@ -19,7 +25,7 @@ export class StyleBuilder {
         /* DarkTheme */
         return  {
              icon: {
-                font : this.iconFont, 
+                font : this.notNull(this.iconFont), 
                 size : {
                     s: 16,
                     m: 20,
@@ -28,7 +34,7 @@ export class StyleBuilder {
                 }
             },    
             text : {
-                font : this.textFont,
+                font : this.notNull(this.textFont),
                 size : {
                     xxs: 12,
                     xs: 14,

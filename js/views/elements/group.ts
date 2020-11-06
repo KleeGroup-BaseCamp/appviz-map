@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {sketch, style} from "../../sketch"
+import {style} from "../../app"
 import {VElement, State} from "../../core"
 import {Button, Header, ProgressBar, VText} from "../../components"
 import {PxSize} from "../../layout"

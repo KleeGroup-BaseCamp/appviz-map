@@ -1,5 +1,5 @@
 import p5 from "p5"
-import {style} from "../sketch"
+import {style} from "../app"
 
 export class TextUtils {
     private static maxCharacters(text: string, width: number): number {
