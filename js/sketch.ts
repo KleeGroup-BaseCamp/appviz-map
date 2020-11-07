@@ -89,7 +89,7 @@ export class Sketch {
    * @param {Object} viewParams 
    * @return {View}
    */
-  public selectView(viewName: string, viewParams?: ViewParams): View {
+  private selectView(viewName: string, viewParams?: ViewParams): View {
     // const clazzName = TextUtils.firstCharUpperCase(viewName)+'View'
     // const jsonParams = JSON.stringify(viewParams)
     // const expression = `new ${clazzName} (${jsonParams} )` 
