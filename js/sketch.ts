@@ -25,8 +25,6 @@ export class Sketch {
     angleMode(DEGREES)
     this.layout = layout
     this.modelRepository = modelRepository
-    // go to home
-    this.switchView("home")
   }
 
   public draw():void  {

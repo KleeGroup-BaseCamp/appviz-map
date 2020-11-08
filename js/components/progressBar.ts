@@ -17,7 +17,7 @@ export class ProgressBar implements Component{
         this.width = width
         this.color = color
         this.vtext = new VText("", style.text.font, style.text.size.s)
-        const duration = 300 /*ms*/
+        const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
     
