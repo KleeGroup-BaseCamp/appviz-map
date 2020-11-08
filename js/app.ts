@@ -32,6 +32,9 @@ window.preload = () => {
 window.setup = ()=> {
   style = styleBuilder.build()
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
+  // go to home
+  sketch.switchView("home")
+
 }
 window.draw = ()=> {sketch.draw()}
 window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
