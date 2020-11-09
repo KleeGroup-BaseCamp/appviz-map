@@ -7,7 +7,6 @@ import {AnimationUtils} from "../utils"
 export class ProgressBar implements Component{
     private readonly maxValue: number
     private readonly width: number
-    private readonly color: p5.Color
     private readonly vtext: VText
 
     private value: number
@@ -16,7 +15,6 @@ export class ProgressBar implements Component{
         this.value = value
         this.maxValue = maxValue
         this.width = width
-        this.color = style.text.color.primary
         this.vtext = new VText("", style.text.font, style.text.size.s)
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
@@ -39,7 +37,7 @@ export class ProgressBar implements Component{
         stroke(style.color.front)
         line(0, 0, this.width, 0)
         
-        stroke(this.color)
+        stroke(style.text.color.primary)
         const size = this.value * this.width / this.maxValue  
         line(0, 0, size, 0)
     }

@@ -35,9 +35,9 @@ export class Gauge extends VElement{
     private renderArc() : void {
         const widthRatio = 0.2
         noFill()
-        strokeCap(SQUARE)
+        strokeCap(ROUND)
         strokeWeight(widthRatio*this.radius)
-        stroke(style.text.color.secondary)
+        stroke(style.color.front)
         arc(
             this.centerPosition.getX(), 
             this.centerPosition.getY(),
@@ -58,7 +58,7 @@ export class Gauge extends VElement{
     }
 
     private renderPointer(): void{
-        fill(style.text.color.secondary)
+        fill(style.color.front)
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         rotate(this.value  * PI / 100)
