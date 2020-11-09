@@ -1,7 +1,7 @@
 /**
  * View of a zone.
  */
-import {sketch, style, projection} from "../app"
+import {style, projection} from "../app"
 import {View} from "./view"
 import {Zone, Group} from "./elements"
 import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout} from "../types"
