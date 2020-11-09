@@ -22,9 +22,9 @@ export class Light extends VElement{
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
 
-    render(){
+    public render() : void {
         noFill()
-        let maxOpacity = this.value * 255 / 100
+        const maxOpacity = this.value * 255 / 100
         for(let r = 0; r < this.radius; r++){
             let opacity = Math.round(maxOpacity* (1 - r / this.radius))
             this.color.setAlpha(opacity)
