@@ -1,4 +1,4 @@
-import {Easings} from "./Easings"
+import {Easings} from "./easings"
 
 export class AnimationUtils {
     private static animations:number = 0;

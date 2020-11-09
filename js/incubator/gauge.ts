@@ -1,4 +1,4 @@
-import * as p5 from "p5";
+import * as p5 from "p5"
 import { VText } from "../components";
 import { VElement } from "../core";
 import { PxPosition, PxSize } from "../layout";
@@ -6,18 +6,14 @@ import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
 export class Gauge extends VElement{
-    private readonly color: p5.Color
-    private readonly backgroundColor: p5.Color
     private readonly radius: number
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
 
     private value: number
 
-    constructor(id: any, pxSize: PxSize, color: p5.Color, backgroundColor: p5.Color, value: number){ // value -> intensity ?
+    constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
         super(id, pxSize, false)
-        this.color = color
-        this.backgroundColor = backgroundColor;
         this.value = value
         this.vtext = new VText("", style.text.font, style.text.size.s)
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
@@ -30,15 +26,18 @@ export class Gauge extends VElement{
     }
 
     public render() : void {
-        noStroke()
         this.renderArc()
+        noStroke()
         this.renderPointer()
         this.renderValueText() // Render value as VText under pointer
     }
 
     private renderArc() : void {
         const widthRatio = 0.2
-        fill(this.color)
+        noFill()
+        strokeCap(SQUARE)
+        strokeWeight(widthRatio*this.radius)
+        stroke(style.text.color.secondary)
         arc(
             this.centerPosition.getX(), 
             this.centerPosition.getY(),
@@ -47,19 +46,19 @@ export class Gauge extends VElement{
             -PI,
             0
         )
-        fill(this.backgroundColor)
+        stroke(style.text.color.primary)
         arc(
-            this.centerPosition.getX(),
+            this.centerPosition.getX(), 
             this.centerPosition.getY(),
-            this.radius * 2 * (1 - widthRatio),
-            this.radius * 2 * (1 - widthRatio),
-            -PI, 
-            0
+            this.radius * 2,
+            this.radius * 2,
+            -PI,
+            -PI + this.value  * PI / 100
         )
     }
 
     private renderPointer(): void{
-        fill(this.color)
+        fill(style.text.color.secondary)
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         rotate(this.value  * PI / 100)

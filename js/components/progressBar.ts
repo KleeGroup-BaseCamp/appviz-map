@@ -12,11 +12,11 @@ export class ProgressBar implements Component{
 
     private value: number
 
-    constructor(value: number, maxValue: number, width: number, color: p5.Color) {
+    constructor(value: number, maxValue: number, width: number) {
         this.value = value
         this.maxValue = maxValue
         this.width = width
-        this.color = color
+        this.color = style.text.color.primary
         this.vtext = new VText("", style.text.font, style.text.size.s)
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)

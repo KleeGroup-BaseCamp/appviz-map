@@ -22,9 +22,8 @@ export class Group extends VElement {
         this.maxValue = maxValue
 
         this.progressBars = []
-        const secondaryStroke = style.text.color.primary
         Object.keys(this.itemTypeFrequencies).forEach(item => {
-            this.progressBars.push(new ProgressBar(this.itemTypeFrequencies[item as ItemTypeName] ?? 0, this.maxValue, this.getWidth() - 90, secondaryStroke))
+            this.progressBars.push(new ProgressBar(this.itemTypeFrequencies[item as ItemTypeName] ?? 0, this.maxValue, this.getWidth() - 90))
         })
         this.button = new Button(this.getWidth()/2, this.getHeight()/2, style.color.undefined, 50)
     }
