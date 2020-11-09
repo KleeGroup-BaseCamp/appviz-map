@@ -23,7 +23,7 @@ export class AnimationUtils {
         callBack(from)
         if (from ===to) return //When from===to there is no animaation
 
-        const interval = 10 /*ms*/
+        const interval = 20 /*ms*/
         const id = AnimationUtils.setInterval(animate, interval)
         const tweening : Tweening = AnimationUtils.tweeningFactory.easeOutSine()
         const maxStep = duration / interval

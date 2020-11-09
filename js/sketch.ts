@@ -22,7 +22,6 @@ export class Sketch {
   constructor(modelRepository : ModelRepository, projection : Projection, layout : any){
     let myCanvas = createCanvas(projection.getPxSize().getWidth(), projection.getPxSize().getHeight())
     myCanvas.parent('myContainer')
-    angleMode(DEGREES)
     this.layout = layout
     this.modelRepository = modelRepository
   }

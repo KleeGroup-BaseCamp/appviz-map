@@ -26,7 +26,7 @@ export class Light extends VElement{
         noFill()
         const maxOpacity = this.value * 255 / 100
         for(let r = 0; r < this.radius; r++){
-            let opacity = Math.round(maxOpacity* (1 - r / this.radius))
+            const opacity = Math.round(maxOpacity* (1 - r / this.radius))
             this.color.setAlpha(opacity)
             stroke(this.color)
             circle(
