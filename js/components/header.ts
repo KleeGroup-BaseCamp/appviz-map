@@ -4,11 +4,11 @@ import {Component}  from "./component"
 import {TextUtils} from "../utils"
 
 export class Header implements Component{
-    private title: string
-    private width: number
-    private height: number
-    private fontSize: number
-    private font: p5.Font
+    private readonly title: string
+    private readonly width: number
+    private readonly height: number
+    private readonly fontSize: number
+    private readonly font: p5.Font
 
     constructor(title: string, width: number, height: number, fontSize: number, font: p5.Font = style.text.font) {
         this.title = title ? TextUtils.buildDisplayableTitle(title, width, fontSize) : "No title"

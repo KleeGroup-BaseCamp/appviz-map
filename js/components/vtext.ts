@@ -3,10 +3,11 @@ import {style} from "../app"
 import {Component}  from "./component"
 
 export class VText implements Component{
+    private readonly font: p5.Font
+    private readonly fontSize: number
+    private readonly color: p5.Color
+
     private text: string
-    private font: p5.Font
-    private fontSize: number
-    private color: p5.Color
 
     constructor(text: string, font: p5.Font, fontSize: number, color: p5.Color = style.text.color.primary) {
         this.text = text
