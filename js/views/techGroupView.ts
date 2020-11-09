@@ -1,5 +1,5 @@
 import {View} from "./view"
-import {sketch, projection} from "../app"
+import {projection} from "../app"
 import {Card, Item, ItemTypeDetail, Icons} from "./elements"
 import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
 import {Layer, LayerBuilder} from "../core"
