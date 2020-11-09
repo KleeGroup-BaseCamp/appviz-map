@@ -3,7 +3,7 @@ import {TweeningFactory} from "./tweeningFactory"
 
 export class AnimationUtils {
     private static animations:number = 0;
-    private static readonly tweeningFacory = new TweeningFactory()
+    private static readonly tweeningFactory = new TweeningFactory()
 
     public static isActive ():  boolean{
         return AnimationUtils.animations > 0
@@ -25,8 +25,8 @@ export class AnimationUtils {
         if (from ===to) return 
         const interval = 10 /*ms*/
         const id = AnimationUtils.setInterval(animate, interval)
-        const tweening : Tweening = AnimationUtils.tweeningFacory.easeOutSine()
-        const maxStep = duration/ interval 
+        const tweening : Tweening = AnimationUtils.tweeningFactory.easeOutSine()
+        const maxStep = duration / interval 
         let value :number = from
         function animate() {
             step++
