@@ -1,9 +1,8 @@
-import {Tweening} from "./tweening"
-import {TweeningFactory} from "./tweeningFactory"
+import {Easings} from "./Easings"
 
 export class AnimationUtils {
     private static animations:number = 0;
-    private static readonly tweeningFactory = new TweeningFactory()
+    private static readonly easings = new Easings()
 
     public static isActive ():  boolean{
         return AnimationUtils.animations > 0
@@ -25,7 +24,7 @@ export class AnimationUtils {
 
         const interval = 20 /*ms*/
         const id = AnimationUtils.setInterval(animate, interval)
-        const easing : ((r:number)=> number) = AnimationUtils.tweeningFactory.easeOutSine
+        const easing : ((r:number)=> number) = AnimationUtils.easings.easeOutSine
         const maxStep = duration / interval
 
         let step = 0 // from 0 to maxStep (+ margin)
