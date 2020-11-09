@@ -3,7 +3,7 @@ import { VElement } from "../core";
 import { PxPosition, PxSize } from "../layout";
 
 export class Light extends VElement{
-    private color : p5.Color
+    private readonly color : p5.Color
     private readonly intensity: number
     private readonly radius: number
     private readonly centerPosition: PxPosition
@@ -19,9 +19,9 @@ export class Light extends VElement{
             )
     }
 
-    render(){
+    public render() : void {
         noFill()
-        let maxOpacity = this.intensity * 255 / 100
+        const maxOpacity = this.intensity * 255 / 100
         for(let r = 0; r < this.radius; r++){
             let opacity = Math.round(maxOpacity* (1 - r / this.radius))
             this.color.setAlpha(opacity)
