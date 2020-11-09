@@ -1,12 +1,15 @@
 import * as p5 from "p5";
+import { VText } from "../components";
 import { VElement } from "../core";
 import { PxPosition, PxSize } from "../layout";
 import {AnimationUtils} from "../utils"
+import {style} from "../app"
 
 export class Gauge extends VElement{
     private readonly color
     private readonly backgroundColor
     private value: number
+    private vtext: VText
     private readonly radius: number
     private readonly centerPosition: PxPosition
 
@@ -15,6 +18,7 @@ export class Gauge extends VElement{
         this.color = color
         this.backgroundColor = backgroundColor;
         this.value = value
+        this.vtext = new VText("", style.text.font, style.text.size.s)
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
@@ -77,7 +81,13 @@ export class Gauge extends VElement{
         pop()
     }
 
-    private renderValueText():void{
-        // TO DO
+    private renderValueText(): void{
+        const textPadding = 30
+        push()
+        textAlign(CENTER)
+        translate(this.centerPosition.getX(), this.centerPosition.getY() + textPadding)
+        this.vtext.setText(Math.round(this.value).toString())
+        this.vtext.render()
+        pop()
     }
 }
