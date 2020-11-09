@@ -20,16 +20,18 @@ export class AnimationUtils {
     }
 
     public static animate(from: number, to: number, duration: number, callBack: (v:number) => void): void  {
-        let step = 0
         callBack(from)
-        if (from ===to) return 
+        if (from ===to) return //When from===to there is no animaation
+
         const interval = 10 /*ms*/
         const id = AnimationUtils.setInterval(animate, interval)
         const tweening : Tweening = AnimationUtils.tweeningFactory.easeOutSine()
-        const maxStep = duration / interval 
-        let value :number = from
+        const maxStep = duration / interval
+
+        let step = 0 // from 0 to maxStep (+ margin)
         function animate() {
             step++
+            let value = from
             if ( step > (maxStep+10)){
                 value = to
                 AnimationUtils.clearInterval(id)
@@ -40,7 +42,7 @@ export class AnimationUtils {
             }else{
                 value = from + (to-from)* tweening.do(r)
             }    
-            callBack(value);
+            callBack(value)
         }
       }
 }
