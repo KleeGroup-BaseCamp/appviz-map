@@ -6,8 +6,8 @@ import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
 export class Gauge extends VElement{
-    private readonly color
-    private readonly backgroundColor
+    private readonly color: p5.Color
+    private readonly backgroundColo: p5.Color
     private value: number
     private vtext: VText
     private readonly radius: number
