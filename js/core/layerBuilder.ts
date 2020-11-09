@@ -1,5 +1,5 @@
-import {PositionedElement, VElement, Layer} from "../core";
-import {PxPosition} from "../layout";
+import {PositionedElement, VElement, Layer} from "../core"
+import {PxPosition} from "../layout"
 
 export class LayerBuilder {
   private readonly positionedElements: PositionedElement[] = []

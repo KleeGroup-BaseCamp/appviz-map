@@ -1,4 +1,4 @@
-import { VElement } from "../core";
+import { VElement } from "../core"
 
 export interface VEvent {
     readonly sourceElement: VElement   

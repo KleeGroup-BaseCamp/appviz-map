@@ -1,5 +1,5 @@
-import { PxSize } from "../layout";
-import { State } from "../core";
+import { PxSize } from "../layout"
+import { State } from "../core"
 
 /**
  * VElement displayed on the map.

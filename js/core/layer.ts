@@ -1,5 +1,5 @@
 import {VElement, State} from "../core"
-import {PxPosition} from "../layout";
+import {PxPosition} from "../layout"
 
 export type PositionedElement = {pxPosition: PxPosition, element: VElement}
 

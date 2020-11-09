@@ -1,7 +1,4 @@
-import {PxPosition} from "./pxPosition";
-import {PxSize} from "./pxSize";
-import {GridPosition} from "./gridPosition"
-import {GridSize} from "./gridSize"
+import {PxPosition, PxSize, GridPosition, GridSize} from "../layout"
 
 export class Projection {
     private readonly pxSize: PxSize

@@ -1,5 +1,5 @@
-import {AnimationUtils} from "../utils";
-import { VElement } from "../core";
+import {AnimationUtils} from "../utils"
+import { VElement } from "../core"
 
 export class State {
     private hoveredElement: VElement | null
