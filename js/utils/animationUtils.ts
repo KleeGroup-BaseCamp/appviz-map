@@ -25,7 +25,7 @@ export class AnimationUtils {
 
         const interval = 20 /*ms*/
         const id = AnimationUtils.setInterval(animate, interval)
-        const tweening : Tweening = AnimationUtils.tweeningFactory.easeOutSine()
+        const easing : ((r:number)=> number) = AnimationUtils.tweeningFactory.easeOutSine
         const maxStep = duration / interval
 
         let step = 0 // from 0 to maxStep (+ margin)
@@ -40,7 +40,7 @@ export class AnimationUtils {
             if (r >=1) {
                 value = to
             }else{
-                value = from + (to-from)* tweening.do(r)
+                value = from + (to-from)* easing(r)
             }    
             callBack(value)
         }
