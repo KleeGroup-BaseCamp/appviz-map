@@ -5,11 +5,12 @@ import {VText} from "./vtext"
 import {AnimationUtils} from "../utils"
 
 export class ProgressBar implements Component{
+    private readonly maxValue: number
+    private readonly width: number
+    private readonly color: p5.Color
+    private readonly vtext: VText
+
     private value: number
-    private maxValue: number
-    private width: number
-    private color: p5.Color
-    private vtext: VText
 
     constructor(value: number, maxValue: number, width: number, color: p5.Color) {
         this.value = value
