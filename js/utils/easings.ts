@@ -1,5 +1,3 @@
-import {Tweening} from "./tweening"
-
 /**
  * Easing Functions
  * Function y = f(r)

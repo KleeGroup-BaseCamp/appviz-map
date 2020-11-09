@@ -4,7 +4,7 @@ import {} from "p5/global"
 import {projection} from "./app"
 import {Detail} from "./detail"
 import {HomeView, TechZoneView, TechGroupView, DemoView, View, Group, Item, Background} from "./views"
-import {State, MapBuilder, LayerBuilder, Map, VElement} from "./core"
+import {State, MapBuilder, LayerBuilder, Map, VElement, VEvent} from "./core"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
@@ -37,13 +37,21 @@ export class Sketch {
       this.vizMap.render(this.state)
     }
   }
+  
+  private emit(event : VEvent): void{
+    this.state.select(event.sourceElement)
+    this.updateDetail(event.sourceElement)
+  }
 
   public mouseClicked(x: number, y:number): void  {
     if (this.vizMap){
       const element = this.vizMap.findElement(x, y)
-      if (element){
-        this.state.select(element)
-        this.updateDetail(element)
+      if (element) {
+        const event : VEvent = {
+          sourceElement : element,
+          action : 'click'        
+        }  
+        this.emit (event)
       }
     }
   }

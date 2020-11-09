@@ -1,8 +1,3 @@
-import {VElement} from "../core";
-import {PxPosition} from "../layout";
-
-export type PositionedElement = {pxPosition: PxPosition, element: VElement}
-
 export type ItemTypeName = "data" | "task"
 export type ItemNamePrefix = "dt" | "tk"
 
