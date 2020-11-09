@@ -7,11 +7,12 @@ import {style} from "../app"
 
 export class Gauge extends VElement{
     private readonly color: p5.Color
-    private readonly backgroundColo: p5.Color
-    private value: number
-    private vtext: VText
+    private readonly backgroundColor: p5.Color
     private readonly radius: number
     private readonly centerPosition: PxPosition
+    private readonly vtext: VText
+
+    private value: number
 
     constructor(id: any, pxSize: PxSize, color: p5.Color, backgroundColor: p5.Color, value: number){ // value -> intensity ?
         super(id, pxSize, false)

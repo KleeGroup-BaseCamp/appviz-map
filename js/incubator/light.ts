@@ -5,9 +5,10 @@ import {AnimationUtils} from "../utils"
 
 export class Light extends VElement{
     private readonly color : p5.Color
-    private value: number
     private readonly radius: number
     private readonly centerPosition: PxPosition
+    
+    private value: number
 
     constructor(id: any, pxSize: PxSize, color: p5.Color, value: number){ // value -> intensity ?
         super(id, pxSize, false)
