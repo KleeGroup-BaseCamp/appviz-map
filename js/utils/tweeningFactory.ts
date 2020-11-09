@@ -1,9 +1,14 @@
 import {Tweening} from "./tweening"
 
+/**
+ * Easing Functions
+ * 
+ * http://gizma.com/easing/  
+ * https://easings.net/
+ */
 export class TweeningFactory {
     constructor(){}
 
-    //http://gizma.com/easing/  
     public linear () : Tweening {
         return {
             do : (r) => r
