@@ -33,10 +33,10 @@ export class Gauge extends VElement{
     }
 
     private renderArc() : void {
-        const widthRatio = 0.2
+        const weight: number = 8
         noFill()
         strokeCap(ROUND)
-        strokeWeight(widthRatio*this.radius)
+        strokeWeight(weight)
         stroke(style.color.front)
         arc(
             this.centerPosition.getX(), 
