@@ -1,4 +1,4 @@
-import p5 from "p5"
+import * as p5 from "p5"
 import {style} from "../app"
 
 export class TextUtils {

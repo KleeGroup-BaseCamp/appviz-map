@@ -77,6 +77,9 @@ export class Sketch {
     }
   }
   private drawView():void{
+    if (!this.currentViewName){
+      throw 'currentViewName must be defined'
+    } 
     const view = this.selectView(this.currentViewName, this.currentViewParams)
     this.vizMap = this.generateMapFromView(view)
     this.state.reset()
