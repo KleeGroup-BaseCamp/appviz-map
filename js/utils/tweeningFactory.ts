@@ -6,12 +6,13 @@ export class TweeningFactory {
     //http://gizma.com/easing/  
     public linear () : Tweening {
         return {
-            do : (a, c, r) => a + c*r
+            do : (r) => r
         }
     }
+    
     public easeOutSine ():Tweening {
         return {
-            do : (a, c, r) => a + c * Math.sin(r * (Math.PI/2))
+            do : (r) => Math.sin(r * (Math.PI/2))
         }
     }
 }

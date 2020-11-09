@@ -38,7 +38,7 @@ export class AnimationUtils {
             if (r >=1) {
                 value = to
             }else{
-                value = tweening.do(from, (to-from), r)
+                value = from + (to-from)* tweening.do(r)
             }    
             callBack(value);
         }
