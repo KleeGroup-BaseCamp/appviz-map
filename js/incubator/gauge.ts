@@ -21,7 +21,7 @@ export class Gauge extends VElement{
             pxSize.getHeight() / 2
             )
         const duration = 1000 /*ms*/
-        // AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
 
     public render() : void {
