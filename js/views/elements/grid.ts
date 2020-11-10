@@ -28,7 +28,7 @@ export class Grid extends VElement {
   public render(state : State) : void{
     let color = style.text.color.secondary
     if (this.alpha) {
-//      color.setAlpha(this.alpha)
+//      color.setAlpha(this.alpha)  //TODO
     }
     this.alpha ===0 ? noStroke() :stroke(color)
     strokeWeight(1)
