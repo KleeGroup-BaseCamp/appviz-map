@@ -2,7 +2,7 @@ import {VElement} from "../core";
 import {PxSize} from "../layout";
 import {AnimationUtils} from "../utils"
 
-export abstract class Rating extends VElement{
+export abstract class AbstractRating extends VElement{
     protected value: number
 
     constructor(id: any, pxSize: PxSize, value: number){

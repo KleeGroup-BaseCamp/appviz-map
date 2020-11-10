@@ -1,7 +1,7 @@
-import { Rating } from "./rating";
+import { AbstractRating } from "./abstractRating";
 import { style } from "../app"
 
-export class SquareRating extends Rating{
+export class SquareRating extends AbstractRating{
     
     public renderRatingIcon(sideLength: number, value: number): void{
         noStroke()

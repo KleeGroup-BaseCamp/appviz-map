@@ -1,7 +1,7 @@
-import { Rating } from "./rating";
+import { AbstractRating } from "./abstractRating";
 import { icons } from "../app"
 
-export class StarRating extends Rating{
+export class StarRating extends AbstractRating{
     
     public renderRatingIcon(sideLength: number, value: number): void{
         const icon = icons.star
