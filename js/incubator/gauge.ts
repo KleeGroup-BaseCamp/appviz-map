@@ -1,4 +1,3 @@
-import * as p5 from "p5"
 import { VText } from "../components";
 import { VElement } from "../core";
 import { PxPosition, PxSize } from "../layout";

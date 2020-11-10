@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {Gauge, Light} from "../incubator" 
+import {Gauge, Light, Signal} from "../incubator" 
 import { PxPosition, PxSize } from "../layout"
 
 export class DemoView implements View {
@@ -25,6 +25,12 @@ export class DemoView implements View {
             .addElement(new Gauge("-1", pxSize, 33),  new PxPosition(300,400))
             .addElement(new Gauge("-1", pxSize, 66),  new PxPosition(500,400))
             .addElement(new Gauge("-1", pxSize, 100), new PxPosition(700,400))
+            .addElement(new Signal("-1", pxSize, 0), new PxPosition(100,600))
+            .addElement(new Signal("-1", pxSize, 1), new PxPosition(250,600))
+            .addElement(new Signal("-1", pxSize, 2), new PxPosition(400,600))
+            .addElement(new Signal("-1", pxSize, 3), new PxPosition(550,600))
+            .addElement(new Signal("-1", pxSize, 4), new PxPosition(700,600))
+            .addElement(new Signal("-1", pxSize, 5), new PxPosition(850,600))
             .build()
         ]
     }
