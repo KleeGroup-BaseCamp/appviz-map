@@ -13,7 +13,7 @@ export abstract class Rating extends VElement{
     }
 
     public render(){
-        const margin = 5
+        const margin = 3
         const sideLength = min(this.getPxSize().getHeight(), this.getPxSize().getWidth() / 5 - margin)
         let value = this.value
         push()
