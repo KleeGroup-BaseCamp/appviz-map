@@ -22,6 +22,11 @@ export class Signal extends VElement{
     }
 
     public render() : void {
+        this.renderArcs()
+        this.renderCircle()        
+    }
+
+    private renderArcs(): void {
         const weight: number = 6
         noFill()
         strokeCap(ROUND)
@@ -40,6 +45,9 @@ export class Signal extends VElement{
                 - QUARTER_PI
             )
         }
+    }
+
+    private renderCircle(): void{
         fill(this.value > 0 ? style.text.color.primary : style.color.front)
         noStroke()
         circle(
