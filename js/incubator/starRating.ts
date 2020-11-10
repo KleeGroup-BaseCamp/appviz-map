@@ -1,5 +1,4 @@
 import { Rating } from "./rating";
-import { icons } from "../app"
 
 export class StarRating extends Rating{
     
