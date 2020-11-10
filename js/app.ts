@@ -3,6 +3,7 @@ import {Projection} from "./layout"
 import {ViewParams} from "./types"
 import {Sketch} from "./sketch"
 import { ModelRepositoryBuilder } from "./model"
+import * as p5 from "p5"
 
 // Add methods to Window interface
 declare global {
@@ -20,6 +21,7 @@ let style  : Style
 let projection : Projection
 let modelRepositoryBuilder : ModelRepositoryBuilder 
 let layout : any
+let icons : {[iconName: string]: p5.Image} = {} 
 
 
 window.preload = () => {
@@ -27,6 +29,8 @@ window.preload = () => {
   layout = loadJSON("/js/views/layout.json")
   styleBuilder.load()
   projection = Projection.buildProjection()
+  icons.heart = loadImage('icons/heart.png')
+  icons.star = loadImage('icons/star.png')
 }
 
 window.setup = ()=> {
@@ -44,4 +48,4 @@ window.windowResized = ()=> {
 }
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
 
-export {sketch, style, projection}
+export {sketch, style, projection, icons}
