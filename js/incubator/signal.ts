@@ -27,20 +27,22 @@ export class Signal extends VElement{
     }
 
     private renderArcs(): void {
+        const stripes = 4
         const weight: number = 6
+
         noFill()
         strokeCap(ROUND)
         strokeWeight(weight)
         stroke(style.text.color.primary)
-        for (let i = 0; i < 4; i ++){
-            if (i >= this.value - 1){
+        for (let i = 0; i < stripes; i ++){
+            if (i >= this.value){
                 stroke(style.color.front)
             }
             arc(
                 this.centerPosition.getX(), 
                 this.centerPosition.getY(),
-                this.radius * 2 * (i + 1) / 4,
-                this.radius * 2 * (i + 1) / 4,
+                this.radius * 2 * (i + 1) / stripes,
+                this.radius * 2 * (i + 1) / stripes,
                 PI + QUARTER_PI,
                 - QUARTER_PI
             )
