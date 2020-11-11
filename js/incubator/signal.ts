@@ -1,5 +1,6 @@
-import { VElement } from "../core";
-import { PxPosition, PxSize } from "../layout";
+import * as p5 from "p5"
+import {VElement} from "../core"
+import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
@@ -33,11 +34,8 @@ export class Signal extends VElement{
         noFill()
         strokeCap(ROUND)
         strokeWeight(weight)
-        stroke(style.text.color.primary)
         for (let i = 0; i < stripes; i ++){
-            if (i >= this.value){
-                stroke(style.color.front)
-            }
+            stroke(this.pickColor(i))
             arc(
                 this.centerPosition.getX(), 
                 this.centerPosition.getY(),
@@ -49,8 +47,12 @@ export class Signal extends VElement{
         }
     }
 
+    private pickColor(i:number): p5.Color{
+        return this.value > i ? style.text.color.primary : style.color.front
+    }
+
     private renderCircle(): void{
-        fill(this.value > 0 ? style.text.color.primary : style.color.front)
+        fill(this.pickColor(0))
         noStroke()
         circle(
             this.centerPosition.getX(), 
