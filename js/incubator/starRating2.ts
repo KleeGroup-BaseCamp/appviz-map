@@ -1,30 +1,50 @@
 import {AbstractRating} from "./abstractRating"
+import {style} from "../app"
+
 
 export class StarRating2 extends AbstractRating{
     
     public renderRatingIcon(size: number, value: number): void{
         noStroke()
-        fill('gold')
-        const numOfCorners = 5
-        const angle = TWO_PI / numOfCorners
+        const angle = TWO_PI / 5 // numOfCorners = 5
         const ratio = 5 / 2
         const radius1 = size / 2
         const radius2 = radius1 / ratio
+
         push()
         rotate(-PI/2)
-        this.renderStar(angle, radius1, radius2)
+        fill('gold')
+        if (value===1){
+            this.renderStar(angle, radius1, radius2, true, true)
+        }else if (value===0.5){
+            //Half Star
+            this.renderStar(angle, radius1, radius2, true, false)
+        }
+
+        fill(style.color.front)
+        if (value !=1 && value !=0.5){
+            //only int or half-int are accepted 
+            this.renderStar(angle, radius1, radius2, true, true)
+        }else if (value===0.5){
+            //Half Star
+            this.renderStar(angle, radius1, radius2, false, true)
+        }
         pop()
     }
 
-    private renderStar(angle: number, radius1: number, radius2: number): void {
+    private renderStar(angle: number, radius1: number, radius2: number, left: boolean, right: boolean): void {
         beginShape()
-        for (let a = 0; a < TWO_PI; a += angle) {
-            let sx = cos(a) * radius1
-            let sy = sin(a) * radius1
-            vertex(sx, sy)
-            sx = cos(a + angle / 2) * radius2
-            sy = sin(a + angle / 2) * radius2
-            vertex(sx, sy)
+        for (let i = 0; i < 5; i++) {
+            if (i == 0 || right && i <= 2 || left && i >= 3){
+                let sx = cos(angle * i) * radius1
+                let sy = sin(angle * i) * radius1
+                vertex(sx, sy)
+            }
+            if(right && i <= 2 || left && i >= 2){
+                let sx = cos(angle * (i + 1 / 2)) * radius2
+                let sy = sin(angle * (i + 1 / 2)) * radius2
+                vertex(sx, sy)
+            }
         }
         endShape(CLOSE)
     }
