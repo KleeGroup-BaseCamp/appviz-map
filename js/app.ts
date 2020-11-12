@@ -12,10 +12,12 @@ declare global {
       setup: any,
       draw: any,
       switchView: any
+      switchDebug: ()=> void
      }
 }
 
 const styleBuilder : StyleBuilder = new StyleBuilder()   
+let debug : boolean = true
 let sketch : Sketch
 let style  : Style 
 let projection : Projection
@@ -47,5 +49,6 @@ window.windowResized = ()=> {
   sketch.windowResized()
 }
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
+window.switchDebug = () => {debug = !debug}
 
-export {sketch, style, projection, icons}
+export {sketch, style, projection, icons, debug}
