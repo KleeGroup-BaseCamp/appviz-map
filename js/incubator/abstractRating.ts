@@ -16,21 +16,20 @@ export abstract class AbstractRating extends VElement{
 
     public render(){
         const margin = 3
-        const sideLength = min(this.getPxSize().getHeight(), this.getPxSize().getWidth() / this.icons - margin)
+        const size = min(this.getPxSize().getHeight(), this.getPxSize().getWidth() / this.icons - margin)
         let v = this.value
         push()
         for(let i = 0; i < this.icons; i++){
-            this.renderRatingIcon(sideLength, min(v, 1))
+            this.renderRatingIcon(size, min(v, 1))
             v = max(v - 1, 0)
-            translate(sideLength + margin, 0)
+            translate(size + margin, 0)
         }
         pop()
     }
 
     /**
-     * 
-     * @param sideLength Icon's square bounding box's side length
+     * @param size Icon's square bounding box's size
      * @param value Value displayed by icon (0 < value < 1)
      */
-    abstract renderRatingIcon(sideLength: number, value: number): void
+    abstract renderRatingIcon(size: number, value: number): void
 }
