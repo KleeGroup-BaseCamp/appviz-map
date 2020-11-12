@@ -7,14 +7,14 @@ export class HeartRating2 extends AbstractRating{
         //value must be in (O ; 0.5; 1)     
         noStroke()
 
-        //Dispay a full grey heart  
+        //1. Dispay a full grey heart  
         fill(style.color.front)
-        if (value !=1){
+        if (value !==1){
             //only int or half-int are accepted 
             this.renderHearth(size, false)
         }
 
-        //Dispay a red heart (full ot half on the left)  
+        //2. Dispay a red heart (full ot half on the left)  
         fill('red')
         const half = (value===0.5)
         if (value ===0.5 || value ===1){
