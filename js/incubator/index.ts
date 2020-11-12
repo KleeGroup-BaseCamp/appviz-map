@@ -1,9 +1,9 @@
 export * from "./light"
 export * from "./gauge"
 export * from "./signal"
-// export * from "./rating"
 export * from "./squareRating"
-export * from "./heartRating"
-export * from "./heartRating2"
-export * from "./starRating"
-export * from "./starRating2"
+// TO DO: Use better naming & (maybe) a subfolder for rating implementations
+export * from "./heartRating" // Vertices (Using SVG's path) + Commented PNG
+export * from "./heartRating2" // Vertices (simple)
+export * from "./starRating" // PNG
+export * from "./starRating2" // Vertices (simple)
