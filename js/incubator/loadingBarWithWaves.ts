@@ -44,10 +44,9 @@ export class LoadingBarWithWaves extends VElement{
         const diameter = barWidth / (sqrt(2) * this.waveScalingRatio)
         // rect(0, sqrt(2) * diameter / 4, 300,100)
         noFill()
-    
         arc(
             0,
-            0, 
+            yFill - diameter / 2, 
             diameter, 
             diameter, 
             QUARTER_PI, 
@@ -55,7 +54,7 @@ export class LoadingBarWithWaves extends VElement{
         )
         arc(
             2 * diameter - (2 - sqrt(2)) * diameter, 
-            0, 
+            yFill - diameter / 2, 
             diameter, 
             diameter, 
             HALF_PI, 
@@ -63,7 +62,8 @@ export class LoadingBarWithWaves extends VElement{
         )
 
         arc(
-            diameter - (2 - sqrt(2)) * diameter / 2, sqrt(2) * diameter / 2, 
+            diameter - (2 - sqrt(2)) * diameter / 2, 
+            yFill + (sqrt(2) - 1) * diameter / 2, 
             diameter, 
             diameter, 
             PI + QUARTER_PI, 
