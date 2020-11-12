@@ -7,12 +7,15 @@ export class LoadingBarWithWaves extends VElement{
 
 
     private value: number
+    private translationDistance: number
 
     constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
         super(id, pxSize, false)
         this.value = value
+        this.translationDistance = 0
         const duration = 1000 /*ms*/
-        // AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        AnimationUtils.animate(0, 5 * pxSize.getWidth(), duration, (s:number) => this.translationDistance = s)
+        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
 
     public render() : void {
@@ -28,7 +31,7 @@ export class LoadingBarWithWaves extends VElement{
         rect(0, yFill, barWidth, barHeight - yFill)
 
         //Render wave
-        this.renderWave(yFill, barWidth, 0.9 * barWidth)
+        this.renderWave(yFill, barWidth, this.translationDistance % barWidth)
 
         // Render Bar/container
         noFill()
