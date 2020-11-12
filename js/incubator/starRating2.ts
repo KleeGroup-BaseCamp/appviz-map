@@ -8,17 +8,16 @@ export class StarRating2 extends AbstractRating{
         const numOfCorners = 5
         const angle = TWO_PI / numOfCorners
         const offset = - PI / 2
-        const ratio = 5 / 2
-        const radius1 = size / 2
-        const radius2 = radius1 / ratio
+        const externalRadius = size / 2
+        const internalRadius  = externalRadius / (5/2)
 
         beginShape()
         for (let a = 0; a < TWO_PI; a += angle) {
-            let sx = cos(offset + a) * radius1
-            let sy = sin(offset + a) * radius1
+            let sx = cos(offset + a) * externalRadius
+            let sy = sin(offset + a) * externalRadius
             vertex(sx, sy)
-            sx = cos(offset + a + angle / 2) * radius2
-            sy = sin(offset + a + angle / 2) * radius2
+            sx = cos(offset + a + angle / 2) * internalRadius
+            sy = sin(offset + a + angle / 2) * internalRadius
             vertex(sx, sy)
         }
         endShape(CLOSE)
