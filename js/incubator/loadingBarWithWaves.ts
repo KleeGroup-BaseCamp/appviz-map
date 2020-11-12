@@ -7,6 +7,7 @@ export class LoadingBarWithWaves extends VElement{
 
 
     private value: number
+    private readonly waveScalingRatio = 0.75
 
     constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
         super(id, pxSize, false)
@@ -37,26 +38,38 @@ export class LoadingBarWithWaves extends VElement{
     }
 
     private renderWave(yFill: number, barWidth: number): void{
-        const controlPointDistance = 0.36 // https://www.desmos.com/calculator/mtdihhagsx
-        const waveHeight = min(yFill, 20)
-        beginShape()
-        vertex(0, yFill)
-        bezierVertex(
-            (barWidth / 2) * controlPointDistance,
-            yFill, 
-            (barWidth / 2) * (1 - controlPointDistance),
-            yFill - waveHeight, 
-            barWidth / 2,
-            yFill - waveHeight
+        push()
+        stroke(style.color.front)
+        scale(this.waveScalingRatio, 1) // Looks more like a wave
+        const diameter = barWidth / (sqrt(2) * this.waveScalingRatio)
+        // rect(0, sqrt(2) * diameter / 4, 300,100)
+        noFill()
+    
+        arc(
+            0,
+            0, 
+            diameter, 
+            diameter, 
+            QUARTER_PI, 
+            HALF_PI
         )
-        bezierVertex(
-            (barWidth / 2) * (1 + controlPointDistance),
-            yFill - waveHeight, 
-            barWidth - (barWidth / 2) * controlPointDistance, 
-            yFill, 
-            barWidth, 
-            yFill)
-        endShape()
+        arc(
+            2 * diameter - (2 - sqrt(2)) * diameter, 
+            0, 
+            diameter, 
+            diameter, 
+            HALF_PI, 
+            PI - QUARTER_PI
+        )
+
+        arc(
+            diameter - (2 - sqrt(2)) * diameter / 2, sqrt(2) * diameter / 2, 
+            diameter, 
+            diameter, 
+            PI + QUARTER_PI, 
+            -QUARTER_PI
+        )
+        pop()
     }
 
 }
