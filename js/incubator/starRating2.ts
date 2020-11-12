@@ -4,47 +4,48 @@ import {style} from "../app"
 
 export class StarRating2 extends AbstractRating{
     private readonly corners: number = 5
-    private readonly angle = TWO_PI / this.corners
     
     public renderRatingIcon(size: number, value: number): void{
         noStroke()
-        const externalRadius = size / 2
-        const internalRadius = externalRadius / 2.5
 
         push()
-        rotate(-PI/2)
-        fill('gold')
-        if (value===1){
-            this.renderStar(externalRadius, internalRadius, true, true)
-        }else if (value===0.5){
-            //Half Star
-            this.renderStar(externalRadius, internalRadius, true, false)
+        rotate(-PI / 2)
+        //1. Dispay a full grey star  
+        fill(style.color.front)
+        if (value !==1){
+            //only int or half-int are accepted 
+            this.renderStar(size, false)
         }
 
-        fill(style.color.front)
-        if (value !=1 && value !=0.5){
-            //only int or half-int are accepted 
-            this.renderStar(externalRadius, internalRadius, true, true)
-        }else if (value===0.5){
-            //Half Star
-            this.renderStar(internalRadius, internalRadius, false, true)
+        //2. Dispay a gold star (full ot half on the left)  
+        fill('gold')
+        const half = (value===0.5)
+        if (value ===0.5 || value ===1){
+            this.renderStar(size, half)
         }
+
         pop()
     }
 
-    private renderStar(externalRadius: number, internalRadius: number, left: boolean, right: boolean): void {
+    private renderStar(size: number, half: boolean): void {
+        const externalRadius = size / 2
+        const internalRadius = externalRadius / 2.5
+
+        //Angle between external and internal edges
+        // = angle of an external edge (convex)
+        // = angle of an internal edge (concave)
+        const angle = TWO_PI / (2*this.corners)
+
+        //There are two sets of edges (internal and external) 
+        //The number of edges tha must be displayed
+        const edges = this.corners * (half?1:2)+1
+
         beginShape()
-        for (let i = 0; i <  this.corners; i++) {
-            if (i == 0 || right && i <= 2 || left && i >= 3){
-                let sx = cos(this.angle * i) * externalRadius
-                let sy = sin(this.angle * i) * externalRadius
-                vertex(sx, sy)
-            }
-            if(right && i <= 2 || left && i >= 2){
-                let sx = cos(this.angle * (i + 1 / 2)) * internalRadius
-                let sy = sin(this.angle * (i + 1 / 2)) * internalRadius
-                vertex(sx, sy)
-            }
+        for (let i = 0; i <  edges; i++) {
+            const radius = i%2==0? externalRadius : internalRadius
+            const x = cos(angle * i) * radius    
+            const y = - sin(angle * i) * radius 
+            vertex(x, y)
         }
         endShape(CLOSE)
     }
