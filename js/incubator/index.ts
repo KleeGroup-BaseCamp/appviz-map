@@ -7,3 +7,4 @@ export * from "./heartRating" // Vertices (Using SVG's path) + Commented PNG
 export * from "./heartRating2" // Vertices (simple)
 export * from "./starRating" // PNG
 export * from "./starRating2" // Vertices (simple)
+export * from "./loadingBarWithWaves" // TO DO: Change Element's name

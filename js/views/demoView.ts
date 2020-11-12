@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {Gauge, Light, Signal, SquareRating, HeartRating2, StarRating2} from "../incubator" 
+import {Gauge, Light, Signal, SquareRating, HeartRating2, StarRating2, LoadingBarWithWaves} from "../incubator" 
 import { PxPosition, PxSize } from "../layout"
 
 export class DemoView implements View {
@@ -49,6 +49,9 @@ export class DemoView implements View {
             .addElement(new StarRating2("-1", pxSize, 3), new PxPosition(550,800))
             .addElement(new StarRating2("-1", pxSize, 4.2), new PxPosition(700,800))
             .addElement(new StarRating2("-1", pxSize, 5), new PxPosition(850,800))
+            .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 10), new PxPosition(1000,150))
+            .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 50), new PxPosition(1000,400))
+            .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 90), new PxPosition(1000,650))
             .build()
         ]
     }
