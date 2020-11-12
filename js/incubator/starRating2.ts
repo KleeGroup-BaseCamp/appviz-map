@@ -15,10 +15,10 @@ export class StarRating2 extends AbstractRating{
         rotate(-PI/2)
         fill('gold')
         if (value===1){
-            this.renderStar(angle, externalRadius, internalRadius, true, true)
+            this.renderStar(externalRadius, internalRadius, true, true)
         }else if (value===0.5){
             //Half Star
-            this.renderStar(angle, externalRadius, internalRadius, true, false)
+            this.renderStar(externalRadius, internalRadius, true, false)
         }
 
         fill(style.color.front)

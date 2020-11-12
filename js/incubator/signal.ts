@@ -35,7 +35,7 @@ export class Signal extends VElement{
         strokeCap(ROUND)
         strokeWeight(weight)
         for (let i = 0; i < stripes; i ++){
-            stroke(this.pickColor(i))
+            stroke(this.pickColor(i + 1))
             arc(
                 this.centerPosition.getX(), 
                 this.centerPosition.getY(),
