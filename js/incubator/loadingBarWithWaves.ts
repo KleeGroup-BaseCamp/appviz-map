@@ -74,13 +74,6 @@ export class LoadingBarWithWaves extends VElement{
         //Render wave
         this.renderWaves(yFill, barWidth, barHeight)
 
-        //Render "liquid"
-        strokeJoin(ROUND)
-        strokeWeight(2)
-        noStroke()
-        fill(this.primaryColor)
-        rect(0, yFill, barWidth, barHeight - yFill, 0, 0, 15, 15)
-
         // Render bubbles
         this.renderBubbles()
         pop()
@@ -90,7 +83,6 @@ export class LoadingBarWithWaves extends VElement{
         strokeWeight(2)
         stroke(style.text.color.primary)
         rect(0,0, this.getPxSize().getWidth(), this.getPxSize().getHeight(), 15)
-
     }
     /**
      * 
@@ -98,9 +90,6 @@ export class LoadingBarWithWaves extends VElement{
      * @param barWidth With of bar/container
      */
     private renderWaves(yFill: number, barWidth: number, barHeight: number): void{
-        push()
-
-        translate(0, yFill)
         const period = 15
         const fillHeight = barHeight - yFill 
         const amplitude = min(min(this.maxAmplitude, fillHeight), yFill) // bounding box constraints
@@ -109,28 +98,29 @@ export class LoadingBarWithWaves extends VElement{
         // First wave
         // stroke(this.secondaryColor)
         fill(this.secondaryColor)
-        this.renderWave(amplitude, barWidth, period, QUARTER_PI) 
+        blendMode(LIGHTEST);
+        this.renderWave(yFill, amplitude, barWidth, barHeight, period, QUARTER_PI) 
 
         // Second wave
         // stroke(this.primaryColor)
         fill(this.primaryColor)
-        this.renderWave(amplitude/2, barWidth, period, -QUARTER_PI) 
-
-        pop()
+        this.renderWave(yFill, amplitude/2, barWidth, barHeight, period, -QUARTER_PI) 
     }
 
-    private renderWave(amplitude: number, barWidth: number, period: number, omega: number):void{
+    private renderWave(yFill: number, amplitude: number, barWidth: number, barHeight, period: number, omega: number):void{
         beginShape()
-        vertex(0, 0)
+        vertex(0, yFill)
         bezierVertex(
             barWidth / 3, 
-            - amplitude * sin(TWO_PI * this.time / period + QUARTER_PI + omega), 
+            yFill- amplitude * sin(TWO_PI * this.time / period + QUARTER_PI + omega), 
             barWidth * 2 / 3, 
-            - amplitude * sin(TWO_PI * this.time / period + QUARTER_PI - omega), 
+            yFill- amplitude * sin(TWO_PI * this.time / period + QUARTER_PI - omega), 
             barWidth, 
-            0
+            yFill
         )
-        endShape()
+        vertex(barWidth, barHeight)
+        vertex(0, barHeight)
+        endShape(CLOSE)
     }
 
     private renderBubbles(): void {
