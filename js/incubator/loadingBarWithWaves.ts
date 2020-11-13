@@ -14,12 +14,13 @@ export class LoadingBarWithWaves extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
 
+    private readonly maxBubbleSize : number
+    private readonly bubbles : Bubble[] = []
+
     private value: number
     private maxAmplitude: number
     private time: number // TO DO: Use better name
     private xOff: number // x coordinate in noise (Perlin) space 
-    private readonly maxBubbleSize : number
-    private readonly bubbles : Bubble[] = []
 
     constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
         super(id, pxSize, false)
@@ -42,6 +43,7 @@ export class LoadingBarWithWaves extends VElement{
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
         AnimationUtils.animate(50, 0, duration * 10, (s:number) => this.maxAmplitude = s)
         AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
+
         for(let bubble of this.bubbles){
             AnimationUtils.animate(0, 100, duration * 3, (s:number) => bubble.size = (1 - abs(50-s) / 50) * this.maxBubbleSize)
             AnimationUtils.animate(
@@ -65,21 +67,23 @@ export class LoadingBarWithWaves extends VElement{
 
     public render() : void {
         const padding = 5
-        const barHeight = this.getPxSize().getHeight() - padding * 2
-        const barWidth = this.getPxSize().getWidth() - padding * 2
-        const yFill = barHeight * (1 - this.value / 100) // y coordinate of "liquid" surface
 
         push()
         translate(padding, padding)
-        //Render wave
-        this.renderWaves(yFill, barWidth, barHeight)
+        //Render waves
+        this.renderWaves(padding)
 
         // Render bubbles
         this.renderBubbles()
         pop()
 
-        // Render Bar/container
+        // Render container
         noFill()
+
+        strokeWeight(4)
+        stroke(style.color.back)
+        rect(2,2, this.getPxSize().getWidth()-4, this.getPxSize().getHeight()-4, 15)
+
         strokeWeight(2)
         stroke(style.text.color.primary)
         rect(0,0, this.getPxSize().getWidth(), this.getPxSize().getHeight(), 15)
@@ -89,25 +93,30 @@ export class LoadingBarWithWaves extends VElement{
      * @param yFill y coordinate of "liquid" surface
      * @param barWidth With of bar/container
      */
-    private renderWaves(yFill: number, barWidth: number, barHeight: number): void{
+    private renderWaves(padding :number): void{
+        const barHeight = this.getPxSize().getHeight() - padding * 2
+        const barWidth = this.getPxSize().getWidth() - padding * 2
+        const yFill = barHeight * (1 - this.value / 100) // y coordinate of "liquid" surface
+
         const period = 15
         const fillHeight = barHeight - yFill 
         const amplitude = min(min(this.maxAmplitude, fillHeight), yFill) // bounding box constraints
-        noStroke()
 
+        noStroke()
         // First wave
         // stroke(this.secondaryColor)
         fill(this.secondaryColor)
         blendMode(LIGHTEST);
-        this.renderWave(yFill, amplitude, barWidth, barHeight, period, QUARTER_PI) 
+        this.renderWave(yFill, barWidth, barHeight, amplitude, period, QUARTER_PI) 
 
         // Second wave
         // stroke(this.primaryColor)
         fill(this.primaryColor)
-        this.renderWave(yFill, amplitude/2, barWidth, barHeight, period, -QUARTER_PI) 
+        this.renderWave(yFill, barWidth, barHeight, amplitude/2, period*2, -QUARTER_PI) 
     }
 
-    private renderWave(yFill: number, amplitude: number, barWidth: number, barHeight, period: number, omega: number):void{
+    private renderWave(yFill: number, barWidth:number, barHeight:number, 
+        amplitude: number, period: number, omega: number):void{
         beginShape()
         vertex(0, yFill)
         bezierVertex(
