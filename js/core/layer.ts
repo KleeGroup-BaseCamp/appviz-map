@@ -26,7 +26,7 @@ export class Layer {
         //-- Green border to check if en element is inside its bounding box
         noFill()
         stroke('green')
-        strokeWeight(2)
+        strokeWeight(1)
         rect(0, 0, positionedElement.element.getWidth(), positionedElement.element.getHeight())
         //--
       }
