@@ -1,5 +1,5 @@
 import { VElement } from "../core";
-import { PxSize } from "../layout";
+import { PxPosition, PxSize } from "../layout";
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
@@ -8,19 +8,43 @@ export class LoadingBarWithWaves extends VElement{
 
     private value: number
     private maxAmplitude: number
-    private time: number
+    private time: number // TO DO: Use better name
+
+    private readonly maxBubbleSize
+    private readonly numOfBubbles
+    private readonly bubbleSizes: number[]
+    private readonly bubblesPositions: PxPosition[]
 
     constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
         super(id, pxSize, false)
-        // Initialise with some value
         this.value = value
         this.maxAmplitude = 0 
         this.time = 0
-        
+        this.maxBubbleSize = 10
+        this.numOfBubbles = 5
+        this.bubbleSizes = new Array(this.numOfBubbles).fill(0)
+        this.bubblesPositions = new Array(this.numOfBubbles)
+        for(let i = 0; i < this.numOfBubbles; i++){
+            this.bubblesPositions[i] = new PxPosition(random(0, pxSize.getWidth()), 0)
+        }
+
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
         AnimationUtils.animate(30, 0, duration * 10, (s:number) => this.maxAmplitude = s)
         AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
+        for(let i = 0; i < this.numOfBubbles; i++){
+            AnimationUtils.animate(0, 100, duration * 3, (s:number) => this.bubbleSizes[i] = (1 - abs(50-s) / 50) * this.maxBubbleSize)
+            AnimationUtils.animate(
+                pxSize.getHeight(), 
+                0, 
+                duration * 3, 
+                (s:number) => {
+                    const bubbleSize = this.bubbleSizes[i]
+                    const x = min(max(this.bubblesPositions[i].getX() + sin(s / 10), bubbleSize), pxSize.getWidth() - bubbleSize) // Bubble boundaries 
+                    this.bubblesPositions[i] = new PxPosition(x, s)
+                }
+            )
+        }
     }
 
     public render() : void {
@@ -37,6 +61,9 @@ export class LoadingBarWithWaves extends VElement{
 
         //Render wave
         this.renderWave(yFill, barWidth)
+
+        // Render bubbles
+        this.renderBubbles()
 
         // Render Bar/container
         noFill()
@@ -67,5 +94,16 @@ export class LoadingBarWithWaves extends VElement{
             )
         endShape()
         pop()
+    }
+
+    private renderBubbles(){
+        fill("white")
+        for(let i = 0; i < this.numOfBubbles; i++){
+            circle(
+                this.bubblesPositions[i].getX(),
+                this.bubblesPositions[i].getY(),
+                this.bubbleSizes[i]
+            )
+        }
     }
 }
