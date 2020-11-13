@@ -38,7 +38,7 @@ export class LoadingBarWithWaves extends VElement{
             })
         }
         
-        const duration = 1000 /*ms*/
+        const duration = 3000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
         AnimationUtils.animate(50, 0, duration * 10, (s:number) => this.maxAmplitude = s)
         AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
@@ -72,7 +72,7 @@ export class LoadingBarWithWaves extends VElement{
         push()
         translate(padding, padding)
         //Render wave
-        this.renderWave(yFill, barWidth, barHeight)
+        this.renderWaves(yFill, barWidth, barHeight)
 
         //Render "liquid"
         strokeJoin(ROUND)
@@ -97,47 +97,43 @@ export class LoadingBarWithWaves extends VElement{
      * @param yFill y coordinate of "liquid" surface
      * @param barWidth With of bar/container
      */
-    private renderWave(yFill: number, barWidth: number, barHeight: number): void{
+    private renderWaves(yFill: number, barWidth: number, barHeight: number): void{
         push()
-        
+
         translate(0, yFill)
         const period = 15
         const fillHeight = barHeight - yFill 
         const amplitude = min(min(this.maxAmplitude, fillHeight), yFill) // bounding box constraints
         noStroke()
+
+        // First wave
         // stroke(this.secondaryColor)
         fill(this.secondaryColor)
-        // First wave
-        beginShape()
-        vertex(0, 0)
-        bezierVertex(
-            barWidth / 3, 
-            - amplitude * sin(TWO_PI * this.time / period + HALF_PI), 
-            barWidth * 2 / 3, 
-            - amplitude * sin(TWO_PI * this.time / period), 
-            barWidth, 
-            0
-        )
-        endShape()
-        
+        this.renderWave(amplitude, barWidth, period, QUARTER_PI) 
+
+        // Second wave
         // stroke(this.primaryColor)
         fill(this.primaryColor)
-        // Second wave
-        beginShape()
-        vertex(0, 0)
-        bezierVertex(
-            barWidth / 3, 
-            - (amplitude / 2)* sin(TWO_PI * this.time / period), 
-            barWidth * 2 / 3, 
-            - (amplitude / 2) * sin(TWO_PI * this.time / period + HALF_PI), 
-            barWidth, 
-            0
-        )
-        endShape()
+        this.renderWave(amplitude/2, barWidth, period, -QUARTER_PI) 
+
         pop()
     }
 
-    private renderBubbles(){
+    private renderWave(amplitude: number, barWidth: number, period: number, omega: number):void{
+        beginShape()
+        vertex(0, 0)
+        bezierVertex(
+            barWidth / 3, 
+            - amplitude * sin(TWO_PI * this.time / period + QUARTER_PI + omega), 
+            barWidth * 2 / 3, 
+            - amplitude * sin(TWO_PI * this.time / period + QUARTER_PI - omega), 
+            barWidth, 
+            0
+        )
+        endShape()
+    }
+
+    private renderBubbles(): void {
         noStroke()
         fill("white")
         for(let bubble of this.bubbles){
