@@ -7,7 +7,6 @@ export class StarRating2 extends AbstractRating{
     
     public renderRatingIcon(size: number, value: number): void{
         noStroke()
-
         push()
         rotate(-PI / 2)
         //1. Dispay a full grey star  
@@ -39,7 +38,8 @@ export class StarRating2 extends AbstractRating{
         //There are two sets of edges (internal and external) 
         //The number of edges tha must be displayed
         const edges = this.corners * (half?1:2)+1
-
+        push()
+        translate(- externalRadius, externalRadius)
         beginShape()
         for (let i = 0; i <  edges; i++) {
             const radius = i%2==0? externalRadius : internalRadius
@@ -48,5 +48,6 @@ export class StarRating2 extends AbstractRating{
             vertex(x, y)
         }
         endShape(CLOSE)
+        pop()
     }
 }
