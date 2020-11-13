@@ -61,31 +61,32 @@ export class LoadingBarWithWaves extends VElement{
     }
 
     public render() : void {
-        const barHeight = this.getPxSize().getHeight()
-        const barWidth = this.getPxSize().getWidth()
+        const padding = 5
+        const barHeight = this.getPxSize().getHeight() - padding * 2
+        const barWidth = this.getPxSize().getWidth() - padding * 2
         const yFill = barHeight * (1 - this.value / 100) // y coordinate of "liquid" surface
 
+        push()
+        translate(padding, padding)
         //Render wave
-        this.renderWave(yFill, barWidth)
+        this.renderWave(yFill, barWidth, barHeight)
 
         //Render "liquid"
         strokeJoin(ROUND)
         strokeWeight(2)
         noStroke()
-        // rect(0, yFill, barWidth, barHeight - yFill)
-        for(let i = 0; i < this.getPxSize().getHeight() - yFill; i++){
-            stroke(lerpColor(color("#32CD32"), color("#006400"), i / barHeight))
-            line(0, yFill + i, barWidth, yFill + i)
-        }
+        fill(this.primaryColor)
+        rect(0, yFill, barWidth, barHeight - yFill, 0, 0, 15, 15)
 
         // Render bubbles
         this.renderBubbles()
+        pop()
 
         // Render Bar/container
         noFill()
         strokeWeight(2)
         stroke(style.text.color.primary)
-        rect(0,0, this.getPxSize().getWidth(), this.getPxSize().getHeight())
+        rect(0,0, this.getPxSize().getWidth(), this.getPxSize().getHeight(), 15)
 
     }
     /**
@@ -93,15 +94,15 @@ export class LoadingBarWithWaves extends VElement{
      * @param yFill y coordinate of "liquid" surface
      * @param barWidth With of bar/container
      */
-    private renderWave(yFill: number, barWidth: number): void{
+    private renderWave(yFill: number, barWidth: number, barHeight: number): void{
         push()
         
         translate(0, yFill)
-        const period = 10
-        const fillHeight = this.getPxSize().getHeight() - yFill 
+        const period = 15
+        const fillHeight = barHeight - yFill 
         const amplitude = min(min(this.maxAmplitude, fillHeight), yFill) // bounding box constraints
-
-        stroke(this.secondaryColor)
+        noStroke()
+        // stroke(this.secondaryColor)
         fill(this.secondaryColor)
         // First wave
         beginShape()
@@ -116,7 +117,7 @@ export class LoadingBarWithWaves extends VElement{
         )
         endShape()
         
-        stroke(this.primaryColor)
+        // stroke(this.primaryColor)
         fill(this.primaryColor)
         // Second wave
         beginShape()
