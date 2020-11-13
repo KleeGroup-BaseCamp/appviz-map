@@ -3,21 +3,21 @@ import {style} from "../app"
 
 export class HeartRating2 extends AbstractRating{
     
-    public renderRatingIcon(size: number, value: number): void{
+    public renderRatingIcon(size: number, ratio: number): void{
         //value must be in (0 ; 0.5; 1)     
         noStroke()
 
         //1. Dispay a full grey heart  
         fill(style.color.front)
-        if (value !==1){
+        if (ratio !==1){
             //only int or half-int are accepted 
             this.renderHearth(size, false)
         }
 
         //2. Dispay a red heart (full ot half on the left)  
         fill('red')
-        const half = (value===0.5)
-        if (value ===0.5 || value ===1){
+        const half = (ratio===0.5)
+        if (ratio ===0.5 || ratio ===1){
             this.renderHearth(size, half)
         }
     }

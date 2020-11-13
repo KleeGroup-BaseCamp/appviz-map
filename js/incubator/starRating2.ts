@@ -5,21 +5,21 @@ import {style} from "../app"
 export class StarRating2 extends AbstractRating{
     private readonly corners: number = 5
     
-    public renderRatingIcon(size: number, value: number): void{
+    public renderRatingIcon(size: number, ratio: number): void{
         noStroke()
         push()
         rotate(-PI / 2)
         //1. Dispay a full grey star  
         fill(style.color.front)
-        if (value !==1){
+        if (ratio !==1){
             //only int or half-int are accepted 
             this.renderStar(size, false)
         }
 
         //2. Dispay a gold star (full ot half on the left)  
         fill('gold')
-        const half = (value===0.5)
-        if (value ===0.5 || value ===1){
+        const half = (ratio===0.5)
+        if (ratio ===0.5 || ratio ===1){
             this.renderStar(size, half)
         }
 

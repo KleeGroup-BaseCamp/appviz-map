@@ -32,5 +32,5 @@ export abstract class AbstractRating extends VElement{
      * @param size Icon's square bounding box's size
      * @param value Value displayed by icon (0 < value < 1)
      */
-    abstract renderRatingIcon(size: number, value: number): void
+    abstract renderRatingIcon(size: number, ratio: number): void
 }
