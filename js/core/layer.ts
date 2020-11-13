@@ -12,6 +12,12 @@ export class Layer {
   }
 
   public render(state : State) : void  {
+    if (debug){
+      fill('green'); 
+      textSize(30)
+      text("Frame rate : " + frameRate(), 50 , 30); 
+    }  
+
     for (let positionedElement of this.positionedElements) {
       push()
       translate(positionedElement.pxPosition.getX(), positionedElement.pxPosition.getY())
