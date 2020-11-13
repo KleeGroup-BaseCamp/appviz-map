@@ -4,7 +4,7 @@ import {style} from "../app"
 export class HeartRating2 extends AbstractRating{
     
     public renderRatingIcon(size: number, value: number): void{
-        //value must be in (O ; 0.5; 1)     
+        //value must be in (0 ; 0.5; 1)     
         noStroke()
 
         //1. Dispay a full grey heart  
@@ -23,12 +23,15 @@ export class HeartRating2 extends AbstractRating{
     }
 
     private renderHearth(size : number, half : boolean){
+        push()
+        translate(size / 2, 0)
         beginShape()
-        vertex(0, 0)
-        bezierVertex(- size / 2 , - size / 2, - size    , size / 3      , 0 , size)
+        vertex(0, size / 3)
+        bezierVertex(- size / 2, 0, - size * 2 / 3, size * 2 / 3, 0, size)
         if (! half){
-            bezierVertex(+ size     , size / 3  , size / 2  , - size / 2    , 0 , 0)
+            bezierVertex(size * 2 / 3, size * 2 / 3, size / 2, 0, 0, size / 3)
         }
         endShape(CLOSE)
+        pop()
     }    
 }

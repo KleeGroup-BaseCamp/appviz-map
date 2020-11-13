@@ -20,6 +20,7 @@ export abstract class AbstractRating extends VElement{
         let v = this.value
         push()
         for(let i = 0; i < this.icons; i++){
+            // square(0,0, size)
             this.renderRatingIcon(size, min(v, 1))
             v = max(v - 1, 0)
             translate(size + margin, 0)
