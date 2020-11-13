@@ -2,6 +2,7 @@ import { VElement } from "../core";
 import { PxPosition, PxSize } from "../layout";
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
+import * as p5 from "p5";
 
 export class LoadingBarWithWaves extends VElement{
 
@@ -40,7 +41,7 @@ export class LoadingBarWithWaves extends VElement{
                 duration * 3, 
                 (s:number) => {
                     const bubbleSize = this.bubbleSizes[i]
-                    const x = min(max(this.bubblesPositions[i].getX() + sin(s / (5 + i)), bubbleSize), pxSize.getWidth() - bubbleSize) // Bubble boundaries 
+                    const x = min(max(this.bubblesPositions[i].getX() + sin(s / (5 + i)) + random(-2, 2), bubbleSize), pxSize.getWidth() - bubbleSize) // Bubble boundaries 
                     this.bubblesPositions[i] = new PxPosition(x, s)
                 }
             )
@@ -48,19 +49,20 @@ export class LoadingBarWithWaves extends VElement{
     }
 
     public render() : void {
-        strokeJoin(ROUND)
-        strokeWeight(2)
-        fill(style.color.front)
-        noStroke()
         const barHeight = this.getPxSize().getHeight()
         const barWidth = this.getPxSize().getWidth()
         const yFill = barHeight * (1 - this.value / 100) // y coordinate of "liquid" surface
+        const color = "green"
 
         //Render "liquid"
+        strokeJoin(ROUND)
+        strokeWeight(2)
+        fill(color)
+        noStroke()
         rect(0, yFill, barWidth, barHeight - yFill)
 
         //Render wave
-        this.renderWave(yFill, barWidth)
+        this.renderWave(yFill, barWidth, color)
 
         // Render bubbles
         this.renderBubbles()
@@ -75,9 +77,9 @@ export class LoadingBarWithWaves extends VElement{
      * @param yFill y coordinate of "liquid" surface
      * @param barWidth With of bar/container
      */
-    private renderWave(yFill: number, barWidth: number): void{
+    private renderWave(yFill: number, barWidth: number, color: string): void{
         push()
-        stroke(style.color.front)
+        stroke(color)
         translate(0, yFill)
         const period = 10
         const fillHeight = this.getPxSize().getHeight() - yFill 
