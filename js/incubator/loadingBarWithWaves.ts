@@ -10,7 +10,7 @@ export class LoadingBarWithWaves extends VElement{
     private value: number
     private maxAmplitude: number
     private time: number // TO DO: Use better name
-
+    private xOff: number // x coordinate in noise (Perlin) space 
     private readonly maxBubbleSize
     private readonly numOfBubbles
     private readonly bubbleSizes: number[]
@@ -21,6 +21,7 @@ export class LoadingBarWithWaves extends VElement{
         this.value = value
         this.maxAmplitude = 0 
         this.time = 0
+        this.xOff = 0
         this.maxBubbleSize = 8
         this.numOfBubbles = 5
         this.bubbleSizes = new Array(this.numOfBubbles).fill(0)
@@ -41,7 +42,8 @@ export class LoadingBarWithWaves extends VElement{
                 duration * 3, 
                 (s:number) => {
                     const bubbleSize = this.bubbleSizes[i]
-                    const x = min(max(this.bubblesPositions[i].getX() + sin(s / (5 + i)) + random(-2, 2), bubbleSize), pxSize.getWidth() - bubbleSize) // Bubble boundaries 
+                    this.xOff + 0.01
+                    const x = min(max(this.bubblesPositions[i].getX() + sin(s / (5 + i)) + 2 * (noise(this.xOff) - 0.5), bubbleSize), pxSize.getWidth() - bubbleSize) // Bubble boundaries 
                     this.bubblesPositions[i] = new PxPosition(x, s)
                 }
             )
