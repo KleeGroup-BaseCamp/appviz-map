@@ -4,19 +4,22 @@ import {AnimationUtils} from "../utils"
 import {style} from "../app"
 import * as p5 from "p5";
 
-export class LoadingBarWithWaves extends VElement{
+type Bubble = {
+    id : number,
+    size: number,
+    position: PxPosition
+}
 
+export class LoadingBarWithWaves extends VElement{
+    private readonly primaryColor: p5.Color =color("#32CD32")// Light green
+    private readonly secondaryColor: p5.Color =color("#006400")// Dark green
 
     private value: number
     private maxAmplitude: number
     private time: number // TO DO: Use better name
     private xOff: number // x coordinate in noise (Perlin) space 
-    private readonly maxBubbleSize
-    private readonly numOfBubbles
-    private readonly bubbleSizes: number[]
-    private readonly bubblesPositions: PxPosition[]
-    private readonly primaryColor: p5.Color // Light green
-    private readonly secondaryColor: p5.Color // Dark green
+    private readonly maxBubbleSize : number
+    private readonly bubbles : Bubble[] = []
 
     constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
         super(id, pxSize, false)
@@ -25,36 +28,36 @@ export class LoadingBarWithWaves extends VElement{
         this.time = 0
         this.xOff = 0
         this.maxBubbleSize = 8
-        this.numOfBubbles = 5
-        this.primaryColor = color("#32CD32")
-        this.secondaryColor = color("#006400")
-        this.bubbleSizes = new Array(this.numOfBubbles).fill(0)
-        this.bubblesPositions = new Array(this.numOfBubbles)
-        for(let i = 0; i < this.numOfBubbles; i++){
-            this.bubblesPositions[i] = new PxPosition(random(0, pxSize.getWidth()), 0)
-        }
 
+        const numOfBubbles = 5 
+        for(let i = 0; i < numOfBubbles; i++){
+            this.bubbles.push({
+                id : i,
+                size : 0,
+                position :  new PxPosition(random(0, pxSize.getWidth()), 0)
+            })
+        }
+        
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
         AnimationUtils.animate(50, 0, duration * 10, (s:number) => this.maxAmplitude = s)
         AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
-        for(let i = 0; i < this.numOfBubbles; i++){
-            AnimationUtils.animate(0, 100, duration * 3, (s:number) => this.bubbleSizes[i] = (1 - abs(50-s) / 50) * this.maxBubbleSize)
+        for(let bubble of this.bubbles){
+            AnimationUtils.animate(0, 100, duration * 3, (s:number) => bubble.size = (1 - abs(50-s) / 50) * this.maxBubbleSize)
             AnimationUtils.animate(
                 pxSize.getHeight(), 
                 0, 
                 duration * 3, 
                 (s:number) => {
-                    const bubbleSize = this.bubbleSizes[i]
                     this.xOff + 0.01
                     const x = min(
                         max(
-                            this.bubblesPositions[i].getX() + sin(s / (5 + i)) + 2 * (noise(this.xOff) - 0.5), 
-                            bubbleSize
+                            bubble.position.getX() + sin(s / (5 + bubble.id)) + 2 * (noise(this.xOff) - 0.5), 
+                            bubble.size
                         ), 
-                        pxSize.getWidth() - bubbleSize
+                        pxSize.getWidth() - bubble.size
                     ) // Bubble boundaries 
-                    this.bubblesPositions[i] = new PxPosition(x, s)
+                    bubble.position = new PxPosition(x, s)
                 }
             )
         }
@@ -137,11 +140,11 @@ export class LoadingBarWithWaves extends VElement{
     private renderBubbles(){
         noStroke()
         fill("white")
-        for(let i = 0; i < this.numOfBubbles; i++){
+        for(let bubble of this.bubbles){
             circle(
-                this.bubblesPositions[i].getX(),
-                this.bubblesPositions[i].getY(),
-                this.bubbleSizes[i]
+                bubble.position.getX(),
+                bubble.position.getY(),
+                bubble.size
             )
         }
     }
