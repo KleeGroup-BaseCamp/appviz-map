@@ -15,6 +15,8 @@ export class LoadingBarWithWaves extends VElement{
     private readonly numOfBubbles
     private readonly bubbleSizes: number[]
     private readonly bubblesPositions: PxPosition[]
+    private readonly primaryColor: p5.Color // Light green
+    private readonly secondaryColor: p5.Color // Dark green
 
     constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
         super(id, pxSize, false)
@@ -24,6 +26,8 @@ export class LoadingBarWithWaves extends VElement{
         this.xOff = 0
         this.maxBubbleSize = 8
         this.numOfBubbles = 5
+        this.primaryColor = color("#32CD32")
+        this.secondaryColor = color("#006400")
         this.bubbleSizes = new Array(this.numOfBubbles).fill(0)
         this.bubblesPositions = new Array(this.numOfBubbles)
         for(let i = 0; i < this.numOfBubbles; i++){
@@ -60,32 +64,36 @@ export class LoadingBarWithWaves extends VElement{
         const barHeight = this.getPxSize().getHeight()
         const barWidth = this.getPxSize().getWidth()
         const yFill = barHeight * (1 - this.value / 100) // y coordinate of "liquid" surface
-        const color = "green"
 
         //Render wave
-        this.renderWave(yFill, barWidth, color)
+        this.renderWave(yFill, barWidth)
 
         //Render "liquid"
         strokeJoin(ROUND)
         strokeWeight(2)
-        fill(color)
         noStroke()
-        rect(0, yFill, barWidth, barHeight - yFill)
+        // rect(0, yFill, barWidth, barHeight - yFill)
+        for(let i = 0; i < this.getPxSize().getHeight() - yFill; i++){
+            stroke(lerpColor(color("#32CD32"), color("#006400"), i / barHeight))
+            line(0, yFill + i, barWidth, yFill + i)
+        }
 
         // Render bubbles
         this.renderBubbles()
 
         // Render Bar/container
         noFill()
+        strokeWeight(2)
         stroke(style.text.color.primary)
         rect(0,0, this.getPxSize().getWidth(), this.getPxSize().getHeight())
+
     }
     /**
      * 
      * @param yFill y coordinate of "liquid" surface
      * @param barWidth With of bar/container
      */
-    private renderWave(yFill: number, barWidth: number, color: string): void{
+    private renderWave(yFill: number, barWidth: number): void{
         push()
         
         translate(0, yFill)
@@ -93,8 +101,8 @@ export class LoadingBarWithWaves extends VElement{
         const fillHeight = this.getPxSize().getHeight() - yFill 
         const amplitude = min(min(this.maxAmplitude, fillHeight), yFill) // bounding box constraints
 
-        stroke("darkgreen")
-        fill("darkgreen")
+        stroke(this.secondaryColor)
+        fill(this.secondaryColor)
         // First wave
         beginShape()
         vertex(0, 0)
@@ -108,8 +116,8 @@ export class LoadingBarWithWaves extends VElement{
         )
         endShape()
         
-        stroke(color)
-        fill("green")
+        stroke(this.primaryColor)
+        fill(this.primaryColor)
         // Second wave
         beginShape()
         vertex(0, 0)
@@ -126,6 +134,7 @@ export class LoadingBarWithWaves extends VElement{
     }
 
     private renderBubbles(){
+        noStroke()
         fill("white")
         for(let i = 0; i < this.numOfBubbles; i++){
             circle(
