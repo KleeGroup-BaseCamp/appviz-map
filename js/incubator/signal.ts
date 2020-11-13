@@ -6,39 +6,43 @@ import {style} from "../app"
 
 export class Signal extends VElement{
     private readonly radius: number
-    private readonly centerPosition: PxPosition
+    private readonly circleCenterPosition: PxPosition
+    private readonly weight: number
 
     private value: number
 
     constructor(id: any, pxSize: PxSize, value: number){
         super(id, pxSize, false)
         this.value = value
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
-        this.centerPosition = new PxPosition(
+        this.weight = 6
+        this.circleCenterPosition = new PxPosition(
             pxSize.getWidth() / 2,
-            pxSize.getHeight() / 2
-            )
+            pxSize.getHeight() - this.weight
+        )
+        this.radius = min(
+            pxSize.getHeight() - 2 * this.weight, 
+            (pxSize.getWidth() - 2 * this.weight) / sqrt(2)
+        )
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
 
     public render() : void {
+        strokeWeight(this.weight)
         this.renderArcs()
         this.renderCircle()        
     }
 
     private renderArcs(): void {
         const stripes = 4
-        const weight: number = 6
 
         noFill()
         strokeCap(ROUND)
-        strokeWeight(weight)
         for (let i = 0; i < stripes; i ++){
             stroke(this.pickColor(i + 1))
             arc(
-                this.centerPosition.getX(), 
-                this.centerPosition.getY(),
+                this.circleCenterPosition.getX(), 
+                this.circleCenterPosition.getY(),
                 this.radius * 2 * (i + 1) / stripes,
                 this.radius * 2 * (i + 1) / stripes,
                 PI + QUARTER_PI,
@@ -55,8 +59,8 @@ export class Signal extends VElement{
         fill(this.pickColor(0))
         noStroke()
         circle(
-            this.centerPosition.getX(), 
-            this.centerPosition.getY(),
+            this.circleCenterPosition.getX(), 
+            this.circleCenterPosition.getY(),
             this.radius * 2 / 10
         )
     }

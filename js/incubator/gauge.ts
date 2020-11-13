@@ -40,8 +40,8 @@ export class Gauge extends VElement{
         arc(
             this.centerPosition.getX(), 
             this.centerPosition.getY(),
-            this.radius * 2,
-            this.radius * 2,
+            this.radius * 2 - weight,
+            this.radius * 2 - weight,
             -PI,
             0
         )
@@ -49,8 +49,8 @@ export class Gauge extends VElement{
         arc(
             this.centerPosition.getX(), 
             this.centerPosition.getY(),
-            this.radius * 2,
-            this.radius * 2,
+            this.radius * 2 - weight,
+            this.radius * 2 - weight,
             -PI,
             -PI + this.value  * PI / 100
         )
@@ -81,7 +81,7 @@ export class Gauge extends VElement{
     }
 
     private renderValueText(): void{
-        const textPadding = 30
+        const textPadding = min(30, this.getPxSize().getHeight() / 2)
         push()
         textAlign(CENTER)
         translate(this.centerPosition.getX(), this.centerPosition.getY() + textPadding)

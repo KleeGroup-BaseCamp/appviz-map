@@ -43,7 +43,13 @@ export class LoadingBarWithWaves extends VElement{
                 (s:number) => {
                     const bubbleSize = this.bubbleSizes[i]
                     this.xOff + 0.01
-                    const x = min(max(this.bubblesPositions[i].getX() + sin(s / (5 + i)) + 2 * (noise(this.xOff) - 0.5), bubbleSize), pxSize.getWidth() - bubbleSize) // Bubble boundaries 
+                    const x = min(
+                        max(
+                            this.bubblesPositions[i].getX() + sin(s / (5 + i)) + 2 * (noise(this.xOff) - 0.5), 
+                            bubbleSize
+                        ), 
+                        pxSize.getWidth() - bubbleSize
+                    ) // Bubble boundaries 
                     this.bubblesPositions[i] = new PxPosition(x, s)
                 }
             )
