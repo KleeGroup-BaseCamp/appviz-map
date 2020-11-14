@@ -5,8 +5,8 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {Gauge, Light, Signal, SquareRating, HeartRating2, StarRating2, LoadingBarWithWaves} from "../incubator" 
-import { PxPosition, PxSize } from "../layout"
+import {LoadingBarWithWaves} from "../incubator" 
+import {PxPosition, PxSize} from "../layout"
 
 export class DemoView3 implements View {
 
