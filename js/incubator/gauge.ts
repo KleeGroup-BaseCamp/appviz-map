@@ -77,6 +77,8 @@ export class Gauge extends VElement{
             - PI / 2,
             PI / 2
         )
+        fill('blue')
+        circle(0,0,6)
         pop()
     }
 

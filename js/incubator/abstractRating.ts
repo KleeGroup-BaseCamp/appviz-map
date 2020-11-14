@@ -1,3 +1,4 @@
+import {style} from "../app";
 import {VElement} from "../core";
 import {PxSize} from "../layout";
 import {AnimationUtils} from "../utils"
@@ -32,5 +33,21 @@ export abstract class AbstractRating extends VElement{
      * @param size Icon's square bounding box's size
      * @param value Value displayed by icon (0 < value < 1)
      */
-    abstract renderRatingIcon(size: number, ratio: number): void
+    private renderRatingIcon(size: number, ratio: number): void{
+        //value must be in (0 ; 0.5; 1)     
+        noStroke()
+
+        //1. Dispay a full grey icon 
+        fill(style.color.front)
+        if (ratio !==1){
+            this.renderIcon(size, false, 1)
+        }
+
+        //2. Dispay an active icon (full or half on the left)  
+        if (ratio >0){
+            this.renderIcon(size, true, ratio)
+        }
+    }
+
+    abstract renderIcon(size : number, active : boolean, ratio : number):void
 }

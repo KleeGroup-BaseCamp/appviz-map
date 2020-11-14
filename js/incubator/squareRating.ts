@@ -3,11 +3,11 @@ import { style } from "../app"
 
 export class SquareRating extends AbstractRating{
     
-    public renderRatingIcon(size: number, ratio: number): void{
+    public renderIcon(size: number, active : boolean, ratio: number): void{
         noStroke()
-        fill(style.color.front)
-        square(0, 0, size)
-        fill(style.text.color.primary)
+        if (active){
+            fill(style.text.color.primary)
+        }
         rect(0, 0, size * ratio, size)
     }
 }

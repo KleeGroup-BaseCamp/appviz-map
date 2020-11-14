@@ -21,16 +21,15 @@ export class Layer {
     for (let positionedElement of this.positionedElements) {
       push()
       translate(positionedElement.pxPosition.getX(), positionedElement.pxPosition.getY())
-
+      positionedElement.element.render(state)
       if (debug){
         //-- Green border to check if en element is inside its bounding box
         noFill()
         stroke('green')
-        strokeWeight(1)
+        strokeWeight(2)
         rect(0, 0, positionedElement.element.getWidth(), positionedElement.element.getHeight())
         //--
       }
-      positionedElement.element.render(state)
       pop()
     }
   }
