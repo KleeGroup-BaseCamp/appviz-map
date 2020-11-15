@@ -19,7 +19,7 @@ export class StarRating2 extends AbstractRating{
         rotate(-PI / 2)
         translate(- externalRadius, externalRadius)
  
-        //2. Dispay a gold star (full ot half on the left)  
+        //Dispay a gold star (full ot half on the left)  
  
         //Angle between external and internal edges
         // = angle of an external edge (convex)
@@ -27,7 +27,7 @@ export class StarRating2 extends AbstractRating{
         const angle = TWO_PI / (2*this.corners)
 
         //There are two sets of edges (internal and external) 
-        //The number of edges tha must be displayed
+        //The number of edges that must be displayed
         const edges = this.corners * (ratio===1?2:1)+1
         beginShape()
         for (let i = 0; i <  edges; i++) {
