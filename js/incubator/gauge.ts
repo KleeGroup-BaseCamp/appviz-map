@@ -1,6 +1,6 @@
-import { VText } from "../components";
-import { VElement } from "../core";
-import { PxPosition, PxSize } from "../layout";
+import {VText} from "../components"
+import {VElement} from "../core"
+import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
@@ -11,7 +11,7 @@ export class Gauge extends VElement{
 
     private value: number
 
-    constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
+    constructor(id: any, pxSize: PxSize, value: number){
         super(id, pxSize, false)
         this.value = value
         this.vtext = new VText("", style.text.font, style.text.size.s)

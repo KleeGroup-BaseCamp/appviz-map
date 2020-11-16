@@ -1,8 +1,6 @@
 import {AbstractRating} from "./abstractRating"
-import {style} from "../app"
 
-
-export class StarRating2 extends AbstractRating{
+export class StarRating extends AbstractRating{
     private readonly corners: number = 5
     
     public renderIcon(size: number, active: boolean, ratio: number): void{

@@ -1,5 +1,5 @@
-import { AbstractRating } from "./abstractRating";
-import { Image } from "p5";
+import {AbstractRating} from "./abstractRating"
+import {Image} from "p5"
 
 export class ImageRating extends AbstractRating{
     private img? : Image
@@ -11,7 +11,7 @@ export class ImageRating extends AbstractRating{
     
     public renderIcon(size: number, active: boolean, ratio: number): void{
         if (!this.img) {
-            throw 'you must define an image'
+            throw 'You must define an image.'
         }
         const imgRatio = size / max(this.img.height, this.img.width)
         this.img.resize(this.img.width * imgRatio, this.img.height * imgRatio)

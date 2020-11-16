@@ -1,8 +1,8 @@
-import { VElement } from "../core";
-import { PxPosition, PxSize } from "../layout";
+import * as p5 from "p5"
+import {VElement} from "../core"
+import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
-import * as p5 from "p5";
 
 type Bubble = {
     id : number,
@@ -111,8 +111,8 @@ export class LoadingBarWithWaves extends VElement{
         fill(style.text.color.primary)
         rect((this.getPxSize().getWidth() - hatWidth) / 2, 0, hatWidth, this.topMargin - this.padding, 20, 20, 0, 0)
     }
+
     /**
-     * 
      * @param yFill y coordinate of "liquid" surface
      * @param barWidth With of bar/container
      */
