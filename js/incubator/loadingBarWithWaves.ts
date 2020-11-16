@@ -14,6 +14,7 @@ export class LoadingBarWithWaves extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
     private readonly padding: number
+    private readonly topMargin: number
     private readonly maxBubbleSize : number
     private readonly bubbles : Bubble[] = []
 
@@ -30,6 +31,7 @@ export class LoadingBarWithWaves extends VElement{
         this.xOff = 0
         this.maxBubbleSize = 8
         this.padding = 5
+        this.topMargin = 10 // Margin for hat
         const numOfBubbles = 5 
         for(let i = 0; i < numOfBubbles; i++){
             this.bubbles.push({
@@ -47,7 +49,7 @@ export class LoadingBarWithWaves extends VElement{
         for(let bubble of this.bubbles){
             AnimationUtils.animate(0, 100, duration * 3, (s:number) => bubble.size = (1 - abs(50-s) / 50) * this.maxBubbleSize)
             AnimationUtils.animate(
-                pxSize.getHeight(), 
+                pxSize.getHeight() - this.topMargin, 
                 0, 
                 duration * 3, 
                 (s:number) => {
@@ -68,7 +70,7 @@ export class LoadingBarWithWaves extends VElement{
     public render() : void {
 
         push()
-        translate(this.padding, this.padding)
+        translate(this.padding, this.padding + this.topMargin)
         //Render waves
         this.renderWaves()
 
@@ -83,15 +85,19 @@ export class LoadingBarWithWaves extends VElement{
         stroke(style.color.back)
         rect(
             this.padding / 2, 
-            this.padding / 2, 
+            this.padding / 2 + this.topMargin, 
             this.getPxSize().getWidth() - this.padding, 
-            this.getPxSize().getHeight() - this.padding, 
+            this.getPxSize().getHeight() - this.padding - this.topMargin, 
             15
         )
 
         strokeWeight(weight)
         stroke(style.text.color.primary)
-        rect(0,0, this.getPxSize().getWidth(), this.getPxSize().getHeight(), 15)
+        rect(0, this.topMargin, this.getPxSize().getWidth(), this.getPxSize().getHeight() - this.topMargin, 15)
+
+        const hatWidth = 30
+        fill(style.text.color.primary)
+        rect((this.getPxSize().getWidth() - hatWidth) / 2, 0, hatWidth, this.topMargin - this.padding, 20, 20, 0, 0)
     }
     /**
      * 
@@ -99,7 +105,7 @@ export class LoadingBarWithWaves extends VElement{
      * @param barWidth With of bar/container
      */
     private renderWaves(): void{
-        const barHeight = this.getPxSize().getHeight() - this.padding * 2
+        const barHeight = this.getPxSize().getHeight() - this.padding * 2 - this.topMargin
         const barWidth = this.getPxSize().getWidth() - this.padding * 2
         const yFill = barHeight * (1 - this.value / 100) // y coordinate of "liquid" surface
 
