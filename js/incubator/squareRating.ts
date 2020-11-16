@@ -4,7 +4,6 @@ import { style } from "../app"
 export class SquareRating extends AbstractRating{
     
     public renderIcon(size: number, active : boolean, ratio: number): void{
-        noStroke()
         if (active){
             fill(style.text.color.primary)
         }

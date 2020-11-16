@@ -14,7 +14,6 @@ export class StarRating2 extends AbstractRating{
         const externalRadius = size / 2
         const internalRadius = externalRadius / 2.5
 
-        noStroke()
         push()
         rotate(-PI / 2)
         translate(- externalRadius, externalRadius)
