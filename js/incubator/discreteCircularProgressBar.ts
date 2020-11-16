@@ -3,11 +3,14 @@ import { VElement } from "../core";
 import { PxPosition, PxSize } from "../layout";
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
+import * as p5 from "p5";
 
 export class DiscreteCircularProgressBar extends VElement{
     private readonly radius: number
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
+    private readonly primaryColor: p5.Color
+    private readonly secondaryColor: p5.Color
 
     private value: number
 
@@ -20,6 +23,8 @@ export class DiscreteCircularProgressBar extends VElement{
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
+        this.primaryColor = style.color.a
+        this.secondaryColor = style.color.front
         const duration = 3000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
@@ -33,7 +38,7 @@ export class DiscreteCircularProgressBar extends VElement{
         fill(style.color.back)
         circle(0, 0, innerRadius * 2)
 
-        this.renderValueText() // Render value as VText under pointer
+        this.renderValueText()
         pop()
     }
 
@@ -44,11 +49,11 @@ export class DiscreteCircularProgressBar extends VElement{
         noStroke()
         
         const numOfColoredGraduations = Math.floor(numOfGraduations * this.value / 100)
-        fill(255)
+        fill(this.primaryColor)
         for (let i = 0; i < numOfColoredGraduations; i++){
             this.renderArc(angle, margin, i)
         }
-        fill(0)
+        fill(this.secondaryColor)
         for (let i = numOfColoredGraduations; i < numOfGraduations; i++){
             this.renderArc(angle, margin, i)
         }
@@ -66,12 +71,8 @@ export class DiscreteCircularProgressBar extends VElement{
     }
 
     private renderValueText(): void{
-        // const textPadding = min(30, this.getPxSize().getHeight() / 2)
-        // push()
-        // textAlign(CENTER)
-        // translate(this.centerPosition.getX(), this.centerPosition.getY() + textPadding)
-        // this.vtext.setText(Math.round(this.value).toString())
-        // this.vtext.render()
-        // pop()
+        textAlign(CENTER, CENTER)
+        this.vtext.setText(Math.round(this.value).toString() /* + "%" */)
+        this.vtext.render()
     }
 }
