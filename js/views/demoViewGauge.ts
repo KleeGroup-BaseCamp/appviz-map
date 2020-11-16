@@ -8,13 +8,13 @@ import {Layout} from "../types"
 import {DiscreteCircularProgressBar, Gauge, ContinuousCircularProgressBar} from "../incubator" 
 import {PxPosition, PxSize} from "../layout"
 
-export class DemoView4 implements View {
+export class DemoViewGauge implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(100, 100)
         return  [
             new LayerBuilder()
-            .addElement(new Card("demo_main", projection.getPxSize(), "Démo"))
+            .addElement(new Card("demo_main", projection.getPxSize(), "Démo Gauge"))
             .build(),
             new LayerBuilder()
             .addElement(new Gauge("-1", pxSize, 0),   new PxPosition(100,150))

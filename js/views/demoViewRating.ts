@@ -8,13 +8,13 @@ import {Layout} from "../types"
 import {SquareRating, HeartRating2, StarRating2, ImageRating} from "../incubator" 
 import {PxPosition, PxSize} from "../layout"
 
-export class DemoView2 implements View {
+export class DemoViewRating implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(100, 30)
         return  [
             new LayerBuilder()
-            .addElement(new Card("demo_main", projection.getPxSize(), "Démo"))
+            .addElement(new Card("demo_main", projection.getPxSize(), "Démo Rating"))
             .build(),
             new LayerBuilder()
             .addElement(new SquareRating("-1", pxSize, 0), new PxPosition(100,150))

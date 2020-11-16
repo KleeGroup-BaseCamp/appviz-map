@@ -3,7 +3,7 @@ import {} from "p5/global"
 
 import {projection} from "./app"
 import {Detail} from "./detail"
-import {HomeView, TechZoneView, TechGroupView, DemoView, DemoView2, DemoView3, DemoView4, View, Group, Item, Background} from "./views"
+import {HomeView, TechZoneView, TechGroupView, DemoViewBattery, DemoViewGauge, DemoViewRating, DemoViewSignal, DemoViewRadar, View, Group, Item, Background} from "./views"
 import {State, MapBuilder, LayerBuilder, Map, VElement, VEvent} from "./core"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
@@ -103,14 +103,16 @@ export class Sketch {
     // const expression = `new ${clazzName} (${jsonParams} )` 
     // return  eval(expression);
     switch(viewName){
-      case "demo":
-        return new DemoView()
-      case "demo2":
-        return new DemoView2()
-      case "demo3":
-        return new DemoView3()
-      case "demo4":
-        return new DemoView4()
+      case "demoSignal":
+        return new DemoViewSignal()
+      case "demoRating":
+        return new DemoViewRating()
+      case "demoBattery":
+        return new DemoViewBattery()
+      case "demoGauge":
+        return new DemoViewGauge()
+      case "demoRadar":
+        return new DemoViewRadar()
       case "techZone":
         return new TechZoneView()
       case "techGroup":
