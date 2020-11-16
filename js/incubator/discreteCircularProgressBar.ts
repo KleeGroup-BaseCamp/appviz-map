@@ -11,20 +11,22 @@ export class DiscreteCircularProgressBar extends VElement{
     private readonly vtext: VText
     private readonly primaryColor: p5.Color
     private readonly secondaryColor: p5.Color
+    private readonly tertiaryColor: p5.Color
 
     private value: number
 
     constructor(id: any, pxSize: PxSize, value: number){
         super(id, pxSize, false)
         this.value = value
-        this.vtext = new VText("", style.text.font, style.text.size.s)
+        this.vtext = new VText("", style.text.font, style.text.size.xs)
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
         this.primaryColor = style.color.a
-        this.secondaryColor = style.color.front
+        this.secondaryColor = color(0)
+        this.tertiaryColor = color("#323e52")
         const duration = 3000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
@@ -38,13 +40,18 @@ export class DiscreteCircularProgressBar extends VElement{
         fill(style.color.back)
         circle(0, 0, innerRadius * 2)
 
-        this.renderValueText()
+        const text = Math.round(this.value).toString() + "%" 
+        this.renderValueText(text)
+
+        const margin = 3
+        this.renderDottedCircle(innerRadius - margin)
+        this.renderDottedCircle(textWidth("100%") / 2 + margin) // Max text width = textWidth("100%")
         pop()
     }
 
     private renderArcs(): void{
-        const margin = radians(5)
-        const numOfGraduations = 30
+        const margin = radians(3)
+        const numOfGraduations = 60
         const angle = (TWO_PI - margin * numOfGraduations) / numOfGraduations
         noStroke()
         
@@ -65,14 +72,25 @@ export class DiscreteCircularProgressBar extends VElement{
                 0, 
                 2 * this.radius,
                 2 * this.radius, 
-                (angle + margin) * index , 
-                (angle + margin) * index + angle
+                (angle + margin) * index - HALF_PI , 
+                (angle + margin) * index + angle - HALF_PI
             )
     }
 
-    private renderValueText(): void{
+    private renderDottedCircle(radius: number): void{
+        const numOfPoints = this.radius * 4 / 3
+        const weight = 2
+        const angleStep = 2 * PI / numOfPoints
+        noStroke()
+        fill(this.tertiaryColor)
+        for(let i = 0; i < numOfPoints; i++){
+            circle(radius * cos(i * angleStep), radius * sin(i * angleStep), weight)
+        }
+    }
+
+    private renderValueText(text: string): void{
         textAlign(CENTER, CENTER)
-        this.vtext.setText(Math.round(this.value).toString() /* + "%" */)
+        this.vtext.setText(text)
         this.vtext.render()
     }
 }
