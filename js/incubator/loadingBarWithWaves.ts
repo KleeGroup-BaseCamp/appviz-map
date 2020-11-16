@@ -92,6 +92,10 @@ export class LoadingBarWithWaves extends VElement{
         pop()
 
         // Render container
+        this.renderContainer()
+    }
+
+    private renderContainer(){
         noFill()
         const weight = 2
         strokeWeight(this.padding)
