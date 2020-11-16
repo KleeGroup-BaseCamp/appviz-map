@@ -7,7 +7,6 @@ import * as p5 from "p5";
 
 export class ContinuousCircularProgressBar extends VElement{
     private readonly radius: number
-    private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
     private readonly primaryColor: p5.Color
@@ -19,8 +18,7 @@ export class ContinuousCircularProgressBar extends VElement{
         super(id, pxSize, false)
         this.value = value
         this.vtext = new VText("", style.text.font, style.text.size.xs)
-        this.weight = 5
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - this.weight / 2
+        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
@@ -34,15 +32,6 @@ export class ContinuousCircularProgressBar extends VElement{
     public render() : void {
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
-
-        noFill()
-        strokeWeight(this.weight)
-        
-        // Background Arc
-        stroke(style.color.front)
-        this.renderArc(0, TWO_PI)
-
-        // Circular progress Bar
         this.renderArcs()
 
         const text = Math.round(this.value).toString() + "%" 
@@ -56,6 +45,10 @@ export class ContinuousCircularProgressBar extends VElement{
         const totalAngle = TWO_PI * this.value / 100
         const transitionStartAngle = totalAngle * (1 - transitionRatio) / 2
         const angleStep = (totalAngle * transitionRatio) / numOfArcs
+        const weight = 5
+
+        noFill()
+        strokeWeight(weight)
 
         stroke(this.primaryColor)
         this.renderArc(0, transitionStartAngle)
@@ -89,5 +82,12 @@ export class ContinuousCircularProgressBar extends VElement{
         textAlign(CENTER, CENTER)
         this.vtext.setText(text)
         this.vtext.render()
+    }
+
+    private renderRadar(): void{
+        const numOfCircles = 4
+        for(let i = 0; i < numOfCircles; i++){
+            circle(0,0, this.radius / (i + 1))
+        }
     }
 }
