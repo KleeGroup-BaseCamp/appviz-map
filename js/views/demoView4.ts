@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {DiscreteCircularProgressBar, Gauge} from "../incubator" 
+import {DiscreteCircularProgressBar, Gauge, ContinuousCircularProgressBar} from "../incubator" 
 import {PxPosition, PxSize} from "../layout"
 
 export class DemoView4 implements View {
@@ -27,6 +27,11 @@ export class DemoView4 implements View {
             .addElement(new DiscreteCircularProgressBar("-1", pxSize, 50), new PxPosition(500,300))
             .addElement(new DiscreteCircularProgressBar("-1", pxSize, 66), new PxPosition(700,300))
             .addElement(new DiscreteCircularProgressBar("-1", pxSize, 100), new PxPosition(900,300))
+            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 0), new PxPosition(100,500))
+            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 33), new PxPosition(300,500))
+            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 50), new PxPosition(500,500))
+            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 66), new PxPosition(700,500))
+            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 100), new PxPosition(900,500))
             .build()
         ]
     }

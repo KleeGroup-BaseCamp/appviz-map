@@ -52,28 +52,28 @@ export class DiscreteCircularProgressBar extends VElement{
     private renderArcs(): void{
         const margin = radians(3)
         const numOfGraduations = 60
-        const angle = (TWO_PI - margin * numOfGraduations) / numOfGraduations
+        const angleStep = (TWO_PI - margin * numOfGraduations) / numOfGraduations
         noStroke()
         
         const numOfColoredGraduations = Math.floor(numOfGraduations * this.value / 100)
         fill(this.primaryColor)
         for (let i = 0; i < numOfColoredGraduations; i++){
-            this.renderArc(angle, margin, i)
+            this.renderArc(angleStep, margin, i)
         }
         fill(this.secondaryColor)
         for (let i = numOfColoredGraduations; i < numOfGraduations; i++){
-            this.renderArc(angle, margin, i)
+            this.renderArc(angleStep, margin, i)
         }
     }
 
-    private renderArc(angle: number, margin: number, index: number): void{
+    private renderArc(angleStep: number, margin: number, index: number): void{
         arc(
                 0, 
                 0, 
                 2 * this.radius,
                 2 * this.radius, 
-                (angle + margin) * index - HALF_PI , 
-                (angle + margin) * index + angle - HALF_PI
+                (angleStep + margin) * index - HALF_PI , 
+                (angleStep + margin) * index + angleStep - HALF_PI
             )
     }
 

@@ -8,3 +8,4 @@ export * from "./imageRating" // PNG
 export * from "./starRating2" // Vertices (simple)
 export * from "./loadingBarWithWaves" // TO DO: Change Element's name
 export * from "./discreteCircularProgressBar"
+export * from "./continuousCircularProgressBar"
