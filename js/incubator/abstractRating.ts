@@ -35,16 +35,17 @@ export abstract class AbstractRating extends VElement{
      */
     private renderRatingIcon(size: number, ratio: number): void{
         //value must be in (0 ; 0.5; 1)     
-        noStroke()
 
         //1. Dispay a full grey icon 
-        fill(style.color.front)
         if (ratio !==1){
+            noStroke()
+            fill(style.color.front)
             this.renderIcon(size, false, 1)
         }
 
         //2. Dispay an active icon (full or half on the left)  
         if (ratio >0){
+            noStroke()
             this.renderIcon(size, true, ratio)
         }
     }
