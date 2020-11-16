@@ -10,9 +10,9 @@ export class HomeView implements View {
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         return  [
             new LayerBuilder()
-            .addElement(new Card("home_main", projection.getPxSize(), "Home"))
-            .addElement(new Grid("grid", projection.getPxSize(), 12, 12))
-            .build()
+                .addElement(new Card("home_main", projection.getPxSize(), "Home"))
+                .addElement(new Grid("grid", projection.getPxSize(), 12, 12))
+                .build()
         ]
     }
 }

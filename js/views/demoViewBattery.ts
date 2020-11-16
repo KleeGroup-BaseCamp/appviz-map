@@ -1,6 +1,6 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder} from "../core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
@@ -14,13 +14,13 @@ export class DemoViewBattery implements View {
         const pxSize = new PxSize(100, 150)
         return  [
             new LayerBuilder()
-            .addElement(new Card("demo_main", projection.getPxSize(), "Démo Battery"))
-            .build(),
-            new LayerBuilder()
-            .addElement(new LoadingBarWithWaves("-1", pxSize, 10), new PxPosition(100,150))
-            .addElement(new LoadingBarWithWaves("-1", pxSize, 50), new PxPosition(250,150))
-            .addElement(new LoadingBarWithWaves("-1", pxSize, 90), new PxPosition(400,150))
-            .build()
+                .addElement(new Card("demo_main", projection.getPxSize(), "Démo Battery"))
+                .build(),
+            new GridLayerBuilder()
+                .addElement(new LoadingBarWithWaves("-1", pxSize, 10))
+                .addElement(new LoadingBarWithWaves("-1", pxSize, 50))
+                .addElement(new LoadingBarWithWaves("-1", pxSize, 90))
+                .build()
         ]
     }
 }

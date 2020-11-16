@@ -1,12 +1,12 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder} from "../core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {DiscreteCircularProgressBar, Gauge, ContinuousCircularProgressBar} from "../incubator" 
-import {PxPosition, PxSize} from "../layout"
+import {PxSize} from "../layout"
 
 export class DemoViewGauge implements View {
 
@@ -14,25 +14,27 @@ export class DemoViewGauge implements View {
         const pxSize = new PxSize(100, 100)
         return  [
             new LayerBuilder()
-            .addElement(new Card("demo_main", projection.getPxSize(), "Démo Gauge"))
-            .build(),
-            new LayerBuilder()
-            .addElement(new Gauge("-1", pxSize, 0),   new PxPosition(100,150))
-            .addElement(new Gauge("-1", pxSize, 33),  new PxPosition(300,150))
-            .addElement(new Gauge("-1", pxSize, 50),  new PxPosition(500,150))
-            .addElement(new Gauge("-1", pxSize, 66),  new PxPosition(700,150))
-            .addElement(new Gauge("-1", pxSize, 100), new PxPosition(900,150))
-            .addElement(new DiscreteCircularProgressBar("-1", pxSize, 0), new PxPosition(100,300))
-            .addElement(new DiscreteCircularProgressBar("-1", pxSize, 33), new PxPosition(300,300))
-            .addElement(new DiscreteCircularProgressBar("-1", pxSize, 50), new PxPosition(500,300))
-            .addElement(new DiscreteCircularProgressBar("-1", pxSize, 66), new PxPosition(700,300))
-            .addElement(new DiscreteCircularProgressBar("-1", pxSize, 100), new PxPosition(900,300))
-            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 0), new PxPosition(100,450))
-            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 33), new PxPosition(300,450))
-            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 50), new PxPosition(500,450))
-            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 66), new PxPosition(700,450))
-            .addElement(new ContinuousCircularProgressBar("-1", pxSize, 100), new PxPosition(900,450))
-            .build()
-        ]
+                .addElement(new Card("demo_main", projection.getPxSize(), "Démo Gauge"))
+                .build(),
+            new GridLayerBuilder()
+                .addElement(new Gauge("-1", pxSize, 0))
+                .addElement(new Gauge("-1", pxSize, 33))
+                .addElement(new Gauge("-1", pxSize, 50))
+                .addElement(new Gauge("-1", pxSize, 66))
+                .addElement(new Gauge("-1", pxSize, 100))
+                .beginRow()
+                .addElement(new DiscreteCircularProgressBar("-1", pxSize, 0))
+                .addElement(new DiscreteCircularProgressBar("-1", pxSize, 33))
+                .addElement(new DiscreteCircularProgressBar("-1", pxSize, 50))
+                .addElement(new DiscreteCircularProgressBar("-1", pxSize, 66))
+                .addElement(new DiscreteCircularProgressBar("-1", pxSize, 100))
+                .beginRow()
+                .addElement(new ContinuousCircularProgressBar("-1", pxSize, 0))
+                .addElement(new ContinuousCircularProgressBar("-1", pxSize, 33))
+                .addElement(new ContinuousCircularProgressBar("-1", pxSize, 50))
+                .addElement(new ContinuousCircularProgressBar("-1", pxSize, 66))
+                .addElement(new ContinuousCircularProgressBar("-1", pxSize, 100))
+                .build()
+            ]
     }
 }
