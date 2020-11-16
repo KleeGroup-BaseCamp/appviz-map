@@ -27,7 +27,7 @@ export class DiscreteCircularProgressBar extends VElement{
         this.primaryColor = style.color.a
         this.secondaryColor = color(0)
         this.tertiaryColor = color("#323e52")
-        const duration = 3000 /*ms*/
+        const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
 

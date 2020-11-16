@@ -8,6 +8,7 @@ type Bubble = {
     id : number,
     size: number,
     position: PxPosition
+    color: p5.Color
 }
 
 export class LoadingBarWithWaves extends VElement{
@@ -37,7 +38,8 @@ export class LoadingBarWithWaves extends VElement{
             this.bubbles.push({
                 id : i,
                 size : 0,
-                position :  new PxPosition(random(this.padding, pxSize.getWidth() - this.padding), 0)
+                position :  new PxPosition(random(this.padding, pxSize.getWidth() - this.padding), 0),
+                color: this.secondaryColor
             })
         }
         
@@ -47,6 +49,7 @@ export class LoadingBarWithWaves extends VElement{
         AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
 
         for(let bubble of this.bubbles){
+            // TO DO : Change size and color only once 
             AnimationUtils.animate(0, 100, duration * 3, (s:number) => bubble.size = (1 - abs(50-s) / 50) * this.maxBubbleSize)
             AnimationUtils.animate(
                 pxSize.getHeight() - this.topMargin, 
@@ -64,6 +67,15 @@ export class LoadingBarWithWaves extends VElement{
                     bubble.position = new PxPosition(x, s)
                 }
             )
+            AnimationUtils.animate(
+                0, 
+                100, 
+                duration * 3, 
+                (s:number) => bubble.color = lerpColor(this.secondaryColor, 
+                color(255), 
+                s / 100)
+            )
+
         }
     }
 
@@ -145,7 +157,7 @@ export class LoadingBarWithWaves extends VElement{
 
     private renderBubbles(): void {
         noStroke()
-        fill("white")
+        fill(this.bubbles[0].color)
         for(let bubble of this.bubbles){
             circle(
                 bubble.position.getX(),
