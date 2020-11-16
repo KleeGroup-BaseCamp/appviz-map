@@ -20,8 +20,8 @@ export class DiscreteCircularProgressBar extends VElement{
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
-        const duration = 1000 /*ms*/
-        // AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        const duration = 3000 /*ms*/
+        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
 
     public render() : void {
@@ -29,9 +29,9 @@ export class DiscreteCircularProgressBar extends VElement{
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.renderArcs()
         
-        const innerRadius = this.radius * 0.9
+        const innerRadius = this.radius * 0.8
         fill(style.color.back)
-        circle(0,0,innerRadius)
+        circle(0, 0, innerRadius * 2)
 
         this.renderValueText() // Render value as VText under pointer
         pop()
@@ -42,17 +42,27 @@ export class DiscreteCircularProgressBar extends VElement{
         const numOfGraduations = 30
         const angle = (TWO_PI - margin * numOfGraduations) / numOfGraduations
         noStroke()
+        
+        const numOfColoredGraduations = Math.floor(numOfGraduations * this.value / 100)
+        fill(255)
+        for (let i = 0; i < numOfColoredGraduations; i++){
+            this.renderArc(angle, margin, i)
+        }
         fill(0)
-        for (let i = 0; i < numOfGraduations; i++){
-            arc(
+        for (let i = numOfColoredGraduations; i < numOfGraduations; i++){
+            this.renderArc(angle, margin, i)
+        }
+    }
+
+    private renderArc(angle: number, margin: number, index: number): void{
+        arc(
                 0, 
                 0, 
                 2 * this.radius,
                 2 * this.radius, 
-                (angle + margin) * i , 
-                (angle + margin) * i + angle
+                (angle + margin) * index , 
+                (angle + margin) * index + angle
             )
-        }
     }
 
     private renderValueText(): void{
