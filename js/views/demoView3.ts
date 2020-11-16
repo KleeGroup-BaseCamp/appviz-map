@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {LoadingBarWithWaves} from "../incubator" 
+import {DiscreteCircularProgressBar, LoadingBarWithWaves} from "../incubator" 
 import {PxPosition, PxSize} from "../layout"
 
 export class DemoView3 implements View {
@@ -20,6 +20,9 @@ export class DemoView3 implements View {
             .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 10), new PxPosition(100,150))
             .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 50), new PxPosition(250,150))
             .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 90), new PxPosition(400,150))
+            .addElement(new DiscreteCircularProgressBar("-1", pxSize, 10), new PxPosition(100,350))
+            .addElement(new DiscreteCircularProgressBar("-1", pxSize, 50), new PxPosition(250,350))
+            .addElement(new DiscreteCircularProgressBar("-1", pxSize, 90), new PxPosition(400,350))
             .build()
         ]
     }
