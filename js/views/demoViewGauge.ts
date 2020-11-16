@@ -14,7 +14,7 @@ export class DemoViewGauge implements View {
         const pxSize = new PxSize(100, 100)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "Démo Gauge"))
+                .addElement(new Card("demo_main", projection.getPxSize(), "Demo Gauge"))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new Gauge("-1", pxSize, 0))

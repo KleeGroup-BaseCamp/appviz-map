@@ -11,7 +11,7 @@ type Bubble = {
     color: p5.Color
 }
 
-export class LoadingBarWithWaves extends VElement{
+export class Battery extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
 

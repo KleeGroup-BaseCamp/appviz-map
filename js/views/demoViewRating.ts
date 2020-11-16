@@ -6,7 +6,7 @@ import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {SquareRating, HeartRating, StarRating, ImageRating} from "../incubator" 
-import {PxPosition, PxSize} from "../layout"
+import {PxSize} from "../layout"
 
 export class DemoViewRating implements View {
 

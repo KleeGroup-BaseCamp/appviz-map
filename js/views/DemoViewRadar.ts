@@ -5,8 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {} from "../incubator" 
-import {PxPosition, PxSize} from "../layout"
+import {PxSize} from "../layout"
 
 export class DemoViewRadar implements View {
 
