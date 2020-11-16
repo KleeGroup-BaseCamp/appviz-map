@@ -6,12 +6,13 @@ import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
 export class DiscreteCircularProgressBar extends VElement{
+    private readonly primaryColor: p5.Color = style.color.a
+    private readonly secondaryColor: p5.Color = color(0)
+    private readonly tertiaryColor: p5.Color = color("#323e52")
+
     private readonly radius: number
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
-    private readonly primaryColor: p5.Color
-    private readonly secondaryColor: p5.Color
-    private readonly tertiaryColor: p5.Color
 
     private value: number
 
@@ -24,9 +25,6 @@ export class DiscreteCircularProgressBar extends VElement{
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
-        this.primaryColor = style.color.a
-        this.secondaryColor = color(0)
-        this.tertiaryColor = color("#323e52")
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }

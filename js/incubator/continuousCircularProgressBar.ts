@@ -6,12 +6,13 @@ import {style} from "../app"
 import * as p5 from "p5"
 
 export class ContinuousCircularProgressBar extends VElement{
+    private readonly primaryColor: p5.Color = color("DeepSkyBlue")
+    private readonly secondaryColor: p5.Color = color("DeepPink")
+
     private readonly radius: number
     private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
-    private readonly primaryColor: p5.Color
-    private readonly secondaryColor: p5.Color
 
     private value: number
 
@@ -25,8 +26,6 @@ export class ContinuousCircularProgressBar extends VElement{
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
-        this.primaryColor = color("DeepSkyBlue")
-        this.secondaryColor = color("DeepPink")
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }

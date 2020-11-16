@@ -14,6 +14,7 @@ type Bubble = {
 export class LoadingBarWithWaves extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
+
     private readonly padding: number
     private readonly topMargin: number
     private readonly maxBubbleSize : number
