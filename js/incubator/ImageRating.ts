@@ -1,8 +1,9 @@
 import { AbstractRating } from "./abstractRating";
 import { Image } from "p5";
+import { icons } from "../app";
 
 export class ImageRating extends AbstractRating{
-    private img : Image 
+    private img : Image = icons.star
 
     withImage(img : Image) : ImageRating{
         this.img = img

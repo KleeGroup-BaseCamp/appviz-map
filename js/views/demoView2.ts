@@ -39,7 +39,7 @@ export class DemoView2 implements View {
             .addElement(new ImageRating("-1", pxSize, 1).withImage(icons.star), new PxPosition(250,300))
             .addElement(new ImageRating("-1", pxSize, 2.5).withImage(icons.star), new PxPosition(400,300))
             .addElement(new ImageRating("-1", pxSize, 3).withImage(icons.star), new PxPosition(550,300))
-            .addElement(new ImageRating("-1", pxSize, 4.2).withImage(icons.star), new PxPosition(700,300))
+            .addElement(new ImageRating("-1", pxSize, 4.4).withImage(icons.star), new PxPosition(700,300))
             .addElement(new ImageRating("-1", pxSize, 5).withImage(icons.star), new PxPosition(850,300))
             .build()
         ]
