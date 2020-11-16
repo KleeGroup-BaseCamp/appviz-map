@@ -32,6 +32,16 @@ export class ContinuousCircularProgressBar extends VElement{
     public render() : void {
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
+
+        noFill()
+        const weight = 5
+        strokeWeight(weight)
+        
+        // Background Arc
+        stroke(style.color.front)
+        this.renderArc(0, TWO_PI)
+
+        // Circular progress Bar
         this.renderArcs()
 
         const text = Math.round(this.value).toString() + "%" 
@@ -45,10 +55,6 @@ export class ContinuousCircularProgressBar extends VElement{
         const totalAngle = TWO_PI * this.value / 100
         const transitionStartAngle = totalAngle * (1 - transitionRatio) / 2
         const angleStep = (totalAngle * transitionRatio) / numOfArcs
-        const weight = 5
-
-        noFill()
-        strokeWeight(weight)
 
         stroke(this.primaryColor)
         this.renderArc(0, transitionStartAngle)
