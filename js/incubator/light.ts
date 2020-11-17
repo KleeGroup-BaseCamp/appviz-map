@@ -1,4 +1,5 @@
 import * as p5 from "p5"
+import { style } from "../app"
 import {VElement} from "../core"
 import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
@@ -36,5 +37,21 @@ export class Light extends VElement{
                 r
             ) 
         }
-    }
+        smooth()
+        const weight =2
+        strokeWeight(4*weight)
+        stroke(style.color.back)
+        circle(
+            this.centerPosition.getX(), 
+            this.centerPosition.getY(), 
+            this.radius - weight 
+        ) 
+        strokeWeight(2)
+        stroke(style.text.color.primary)
+        circle(
+            this.centerPosition.getX(), 
+            this.centerPosition.getY(), 
+            this.radius
+        ) 
+}
 }
