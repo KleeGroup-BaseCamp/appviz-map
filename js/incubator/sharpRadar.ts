@@ -3,8 +3,6 @@ import { AbstractRadar } from "./abstractRadar"
 
 export class SharpRadar extends AbstractRadar{
     renderGraph(): void{
-        strokeWeight(2)
-        stroke(style.color.a)
         beginShape()
         const dimension = this.values.length
         const angleStep = TWO_PI / dimension

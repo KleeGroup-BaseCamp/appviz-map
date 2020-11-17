@@ -48,6 +48,12 @@ export abstract class AbstractRadar extends VElement{
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.renderRadar()
+
+        strokeWeight(2)
+        const c = color(red(style.color.a), green(style.color.a), blue(style.color.a)) // Deep copy
+        stroke(c)
+        c.setAlpha(50)
+        fill(c) 
         this.renderGraph()
         pop()
         if (state.isHovered(this)){
@@ -58,9 +64,8 @@ export abstract class AbstractRadar extends VElement{
     private renderPopUp(){
         // Pop up rectangle
         noStroke()
-        const color = style.color.d
-        color.setAlpha(200)
-        fill(color)
+        const c = color(red(style.color.d), green(style.color.d), blue(style.color.d), 200)
+        fill(c)
         rect(0,0,200,200)
 
         // Pop up content
