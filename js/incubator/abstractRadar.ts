@@ -1,5 +1,5 @@
 import {VText} from "../components"
-import {VElement} from "../core"
+import {State, VElement} from "../core"
 import {PxPosition, PxSize } from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
@@ -9,19 +9,20 @@ export abstract class AbstractRadar extends VElement{
     private readonly vtexts: VText[]
     private readonly textSize: number
     private readonly textMargin: number
+    private readonly labels: string[]
     
     protected readonly values: number[]
     protected readonly radius: number
 
     constructor(id: any, pxSize: PxSize, values: number[]){
-        super(id, pxSize, false)
+        super(id, pxSize, true)
         this.values = values
 
         this.textSize = style.text.size.xxs
-        const texts = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"] 
+        this.labels = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"] 
         this.vtexts = Array.from(
-            {length: texts.length}, 
-            (_, i) => new VText(texts[i], style.text.font, this.textSize, style.text.color.secondary)
+            {length: this.labels.length}, 
+            (_, i) => new VText(this.labels[i], style.text.font, this.textSize, style.text.color.secondary)
         )
         textSize(this.textSize)
         textAlign(LEFT, CENTER)
@@ -38,19 +39,34 @@ export abstract class AbstractRadar extends VElement{
         }
     }
 
-    public render() : void {
+    public render(state: State) : void {
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.renderRadar()
         this.renderGraph()
         pop()
+        if (state.isHovered(this)){
+            this.renderPopUp()
+        }
     }
 
-    /**
-     * 
-     * @param start Arc starting angle (from - HALF_PI & anti-clockwise) 
-     * @param angleDiff = Arc angle = end angle - start angle
-     */
+    private renderPopUp(){
+        // Pop up rectangle
+        noStroke()
+        const color = style.color.d
+        color.setAlpha(200)
+        fill(color)
+        rect(0,0,200,200)
+
+        // Pop up content
+        fill(style.text.color.primary)
+        textSize(style.text.size.s)
+        textAlign(LEFT, TOP)
+        const margin = 10
+        for(let i = 0; i < this.values.length; i++){
+            text(`${this.labels[i]}: ${this.values[i].toFixed(2)}` , margin, (i + 1) * (textAscent() + textDescent()) + margin)
+        }
+    }
 
     private renderRadar(): void{
         const numOfCircles = 4
