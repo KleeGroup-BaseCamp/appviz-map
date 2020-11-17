@@ -1,6 +1,6 @@
-import { VText } from "../components";
-import { VElement } from "../core";
-import { PxPosition, PxSize } from "../layout";
+import {VText} from "../components"
+import {VElement} from "../core"
+import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
@@ -9,11 +9,11 @@ export class Gauge extends VElement{
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
 
-    private value: number
+    private percent: number
 
-    constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
+    constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
-        this.value = value
+        this.percent = percent
         this.vtext = new VText("", style.text.font, style.text.size.s)
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
         this.centerPosition = new PxPosition(
@@ -21,7 +21,7 @@ export class Gauge extends VElement{
             pxSize.getHeight() / 2
             )
         const duration = 1000 /*ms*/
-        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
 
     public render() : void {
@@ -52,7 +52,7 @@ export class Gauge extends VElement{
             this.radius * 2 - weight,
             this.radius * 2 - weight,
             -PI,
-            -PI + this.value  * PI / 100
+            -PI + this.percent  * PI / 100
         )
     }
 
@@ -60,7 +60,7 @@ export class Gauge extends VElement{
         fill(style.color.front)
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
-        rotate(this.value  * PI / 100)
+        rotate(this.percent  * PI / 100)
         triangle(
             - this.radius /2,
             0,
@@ -87,7 +87,7 @@ export class Gauge extends VElement{
         push()
         textAlign(CENTER)
         translate(this.centerPosition.getX(), this.centerPosition.getY() + textPadding)
-        this.vtext.setText(Math.round(this.value).toString())
+        this.vtext.setText(Math.round(this.percent).toString())
         this.vtext.render()
         pop()
     }

@@ -1,9 +1,9 @@
-import { VText } from "../components";
-import { VElement } from "../core";
-import { PxPosition, PxSize } from "../layout";
+import * as p5 from "p5"
+import {VText} from "../components"
+import {VElement} from "../core"
+import {PxPosition, PxSize } from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
-import * as p5 from "p5";
 
 export class Radar extends VElement{
     private readonly radius: number

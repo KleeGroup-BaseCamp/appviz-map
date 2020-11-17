@@ -1,8 +1,8 @@
-import { VElement } from "../core";
-import { PxPosition, PxSize } from "../layout";
+import * as p5 from "p5"
+import {VElement} from "../core"
+import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
-import * as p5 from "p5";
 
 type Bubble = {
     id : number,
@@ -11,9 +11,10 @@ type Bubble = {
     color: p5.Color
 }
 
-export class LoadingBarWithWaves extends VElement{
+export class Battery extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
+
     private readonly padding: number
     private readonly topMargin: number
     private readonly maxBubbleSize : number
@@ -91,6 +92,10 @@ export class LoadingBarWithWaves extends VElement{
         pop()
 
         // Render container
+        this.renderContainer()
+    }
+
+    private renderContainer(){
         noFill()
         const weight = 2
         strokeWeight(this.padding)
@@ -111,8 +116,8 @@ export class LoadingBarWithWaves extends VElement{
         fill(style.text.color.primary)
         rect((this.getPxSize().getWidth() - hatWidth) / 2, 0, hatWidth, this.topMargin - this.padding, 20, 20, 0, 0)
     }
+
     /**
-     * 
      * @param yFill y coordinate of "liquid" surface
      * @param barWidth With of bar/container
      */

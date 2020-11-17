@@ -1,26 +1,32 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder} from "../core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {LoadingBarWithWaves} from "../incubator" 
-import {PxPosition, PxSize} from "../layout"
+import {Battery, Light} from "../incubator" 
+import {PxSize} from "../layout"
 
 export class DemoViewBattery implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const pxSize = new PxSize(100, 100)
+        const pxSize = new PxSize(100, 150)
         return  [
             new LayerBuilder()
-            .addElement(new Card("demo_main", projection.getPxSize(), "Démo Battery"))
-            .build(),
-            new LayerBuilder()
-            .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 10), new PxPosition(100,150))
-            .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 50), new PxPosition(250,150))
-            .addElement(new LoadingBarWithWaves("-1", new PxSize(100, 150), 90), new PxPosition(400,150))
-            .build()
+                .addElement(new Card("demo_main", projection.getPxSize(), "Demo Battery"))
+                .build(),
+            new GridLayerBuilder()
+                .addElement(new Battery("-1", pxSize, 15))
+                .addElement(new Battery("-1", pxSize, 50))
+                .addElement(new Battery("-1", pxSize, 75))
+                .addElement(new Battery("-1", pxSize, 100))
+                .beginRow()
+                .addElement(new Light("-1", pxSize, color(255, 225, 0), 25))
+                .addElement(new Light("-1", pxSize, color(255, 225, 0), 50))
+                .addElement(new Light("-1", pxSize, color(255, 225, 0), 75))
+                .addElement(new Light("-1", pxSize, color(255, 225, 0), 100))
+                .build()
         ]
     }
 }

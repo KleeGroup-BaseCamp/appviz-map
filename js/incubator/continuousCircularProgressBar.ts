@@ -1,23 +1,24 @@
-import { VText } from "../components";
-import { VElement } from "../core";
-import { PxPosition, PxSize } from "../layout";
+import {VText} from "../components"
+import {VElement} from "../core"
+import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
-import * as p5 from "p5";
+import * as p5 from "p5"
 
 export class ContinuousCircularProgressBar extends VElement{
+    private readonly primaryColor: p5.Color = color("DeepSkyBlue")
+    private readonly secondaryColor: p5.Color = color("DeepPink")
+
     private readonly radius: number
     private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
-    private readonly primaryColor: p5.Color
-    private readonly secondaryColor: p5.Color
 
-    private value: number
+    private percent: number
 
-    constructor(id: any, pxSize: PxSize, value: number){
+    constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
-        this.value = value
+        this.percent = percent
         this.vtext = new VText("", style.text.font, style.text.size.xs)
         this.weight = 5
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - this.weight / 2
@@ -25,10 +26,8 @@ export class ContinuousCircularProgressBar extends VElement{
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
-        this.primaryColor = color("DeepSkyBlue")
-        this.secondaryColor = color("DeepPink")
         const duration = 1000 /*ms*/
-        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
 
     public render() : void {
@@ -45,7 +44,7 @@ export class ContinuousCircularProgressBar extends VElement{
         // Circular progress Bar
         this.renderArcs()
 
-        const text = Math.round(this.value).toString() + "%" 
+        const text = Math.round(this.percent).toString() + "%" 
         this.renderValueText(text)
         pop()
     }
@@ -53,7 +52,7 @@ export class ContinuousCircularProgressBar extends VElement{
     private renderArcs(): void{
         const numOfArcs = 8 // Number of Arcs used in color transition => total number of arcs = numOfArcs + 2
         const transitionRatio = 1 / 10 // ratio of total angle reserved for color transition 
-        const totalAngle = TWO_PI * this.value / 100
+        const totalAngle = TWO_PI * this.percent / 100
         const transitionStartAngle = totalAngle * (1 - transitionRatio) / 2
         const angleStep = (totalAngle * transitionRatio) / numOfArcs
 

@@ -1,34 +1,32 @@
-import { VText } from "../components";
-import { VElement } from "../core";
-import { PxPosition, PxSize } from "../layout";
+import * as p5 from "p5"
+import {VText} from "../components"
+import {VElement} from "../core"
+import {PxPosition, PxSize } from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
-import * as p5 from "p5";
 
 export class DiscreteCircularProgressBar extends VElement{
+    private readonly primaryColor: p5.Color = style.color.a
+    private readonly secondaryColor: p5.Color = color(0)
+    private readonly tertiaryColor: p5.Color = color("#323e52")
+
     private readonly radius: number
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
-    private readonly primaryColor: p5.Color
-    private readonly secondaryColor: p5.Color
-    private readonly tertiaryColor: p5.Color
 
-    private value: number
+    private percent: number
 
-    constructor(id: any, pxSize: PxSize, value: number){
+    constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
-        this.value = value
+        this.percent = percent
         this.vtext = new VText("", style.text.font, style.text.size.xs)
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
-        this.primaryColor = style.color.a
-        this.secondaryColor = color(0)
-        this.tertiaryColor = color("#323e52")
         const duration = 1000 /*ms*/
-        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
 
     public render() : void {
@@ -40,7 +38,7 @@ export class DiscreteCircularProgressBar extends VElement{
         fill(style.color.back)
         circle(0, 0, innerRadius * 2)
 
-        const text = Math.round(this.value).toString() + "%" 
+        const text = Math.round(this.percent).toString() + "%" 
         this.renderValueText(text)
 
         const margin = 3
@@ -55,7 +53,7 @@ export class DiscreteCircularProgressBar extends VElement{
         const angleStep = (TWO_PI - margin * numOfGraduations) / numOfGraduations
         noStroke()
         
-        const numOfColoredGraduations = Math.floor(numOfGraduations * this.value / 100)
+        const numOfColoredGraduations = Math.floor(numOfGraduations * this.percent / 100)
         fill(this.primaryColor)
         for (let i = 0; i < numOfColoredGraduations; i++){
             this.renderArc(angleStep, margin, i)

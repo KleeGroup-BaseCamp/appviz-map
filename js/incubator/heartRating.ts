@@ -1,7 +1,6 @@
 import {AbstractRating} from "./abstractRating"
-import {style} from "../app"
 
-export class HeartRating2 extends AbstractRating{
+export class HeartRating extends AbstractRating{
     
     public renderIcon(size : number, active : boolean, ratio : number):void {
         if (ratio<0.5) return
