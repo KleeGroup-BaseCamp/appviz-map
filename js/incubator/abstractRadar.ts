@@ -1,27 +1,24 @@
-import * as p5 from "p5"
 import {VText} from "../components"
 import {VElement} from "../core"
 import {PxPosition, PxSize } from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
-export class Radar extends VElement{
-    private readonly radius: number
+export abstract class AbstractRadar extends VElement{
     private readonly centerPosition: PxPosition
     private readonly vtexts: VText[]
-    private readonly dimension: number
     private readonly textMargin: number
-
-    private readonly values: number[]
+    
+    protected readonly values: number[]
+    protected readonly radius: number
 
     constructor(id: any, pxSize: PxSize, values: number[]){
         super(id, pxSize, false)
         this.values = values
-        this.dimension = values.length
 
         const size = style.text.size.xxs
         this.vtexts = Array.from(
-            {length: this.dimension}, 
+            {length: this.values.length}, 
             (_, i) => new VText((i + 1).toString(), style.text.font, size, style.text.color.secondary)
         )
         textSize(size)
@@ -65,8 +62,9 @@ export class Radar extends VElement{
         }
 
         // Lines
-        const angleStep = TWO_PI / this.dimension
-        for(let i = 0; i  < this.dimension; i++){
+        const dimension = this.values.length
+        const angleStep = TWO_PI / dimension
+        for(let i = 0; i  < dimension; i++){
             const x = this.radius * cos(- HALF_PI + angleStep * i)
             const y = this.radius * sin(- HALF_PI + angleStep * i)
             line(
@@ -83,17 +81,5 @@ export class Radar extends VElement{
         }
     }
 
-    renderGraph(): void{
-        strokeWeight(2)
-        stroke(style.color.a)
-        beginShape()
-        const angleStep = TWO_PI / this.dimension
-        for(let i = 0; i < this.dimension; i++){
-            vertex(
-                (this.values[i] / 100) * this.radius * cos(- HALF_PI + angleStep * i),
-                (this.values[i] / 100) * this.radius * sin(- HALF_PI + angleStep * i)
-            )
-        }
-        endShape(CLOSE)
-    }
+    abstract renderGraph(): void
 }
