@@ -28,4 +28,7 @@ export class VText implements Component{
         this.text = text
     }
 
+    public getText(): string{
+        return this.text
+    }
 }

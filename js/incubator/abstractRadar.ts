@@ -6,10 +6,10 @@ import {style} from "../app"
 
 export abstract class AbstractRadar extends VElement{
     private readonly centerPosition: PxPosition
-    private readonly vtexts: VText[]
+    private readonly labels: VText[]
+    private readonly scales: VText[]
     private readonly textSize: number
     private readonly textMargin: number
-    private readonly labels: string[]
     
     protected readonly values: number[]
     protected readonly radius: number
@@ -19,10 +19,15 @@ export abstract class AbstractRadar extends VElement{
         this.values = values
 
         this.textSize = style.text.size.xxs
-        this.labels = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"] 
-        this.vtexts = Array.from(
-            {length: this.labels.length}, 
-            (_, i) => new VText(this.labels[i], style.text.font, this.textSize, style.text.color.secondary)
+        const labelsText = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"] 
+        this.labels = Array.from(
+            {length: labelsText.length}, 
+            (_, i) => new VText(labelsText[i], style.text.font, this.textSize, style.text.color.secondary)
+        )
+        const numOfCircles = 4
+        this.scales = Array.from(
+            {length: numOfCircles}, 
+            (_, i) => new VText((100 * (i + 1) / numOfCircles).toString() , style.text.font, this.textSize, style.text.color.secondary)
         )
         textSize(this.textSize)
         textAlign(LEFT, CENTER)
@@ -64,23 +69,37 @@ export abstract class AbstractRadar extends VElement{
         textAlign(LEFT, TOP)
         const margin = 10
         for(let i = 0; i < this.values.length; i++){
-            text(`${this.labels[i]}: ${this.values[i].toFixed(2)}` , margin, (i + 1) * (textAscent() + textDescent()) + margin)
+            text(
+                `${this.labels[i].getText()}: ${this.values[i].toFixed(2)}`,
+                margin, 
+                i * (textAscent() + textDescent()) + margin
+            )
         }
     }
 
+    private renderCircle(index: number): void{
+        const innerRadius = this.radius * (index + 1) / this.scales.length
+        circle(0,0, innerRadius * 2)
+        push()
+        translate(0, - innerRadius)
+        this.scales[index].render()
+        pop()
+    }
+
     private renderRadar(): void{
-        const numOfCircles = 4
+        const numOfCircles = this.scales.length
         noFill()
         stroke(style.color.front)
+        textAlign(CENTER, TOP)
 
         // Outer circle
         strokeWeight(2)
-        circle(0,0, this.radius * 2)
+        this.renderCircle(this.scales.length - 1)
 
         // Inner circles
         strokeWeight(1)
         for(let i = 0; i < numOfCircles - 1; i++){
-            circle(0,0, this.radius * 2 * (i + 1) / numOfCircles)
+            this.renderCircle(i)
         }
 
         // Lines & labels
@@ -94,13 +113,13 @@ export abstract class AbstractRadar extends VElement{
             translate(x + this.textMargin * cos(- HALF_PI + angleStep * i), y + this.textMargin * sin(- HALF_PI + angleStep * i))
             if(angleStep * i % PI === 0){
                 textAlign(CENTER, CENTER)
-                this.vtexts[i].render()
+                this.labels[i].render()
             } else if (angleStep * i < PI){
                 textAlign(LEFT, CENTER)
-                this.vtexts[i].render()
+                this.labels[i].render()
             } else {
                 textAlign(RIGHT, CENTER)
-                this.vtexts[i].render()
+                this.labels[i].render()
             }
             pop()
         }
