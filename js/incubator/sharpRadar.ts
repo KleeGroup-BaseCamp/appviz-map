@@ -7,9 +7,10 @@ export class SharpRadar extends AbstractRadar{
         const dimension = this.values.length
         const angleStep = TWO_PI / dimension
         for(let i = 0; i < dimension; i++){
+            const r =(this.values[i] / 100) * this.radius     
             vertex(
-                (this.values[i] / 100) * this.radius * cos(- HALF_PI + angleStep * i),
-                (this.values[i] / 100) * this.radius * sin(- HALF_PI + angleStep * i)
+                r * cos(- HALF_PI + angleStep * i),
+                r * sin(- HALF_PI + angleStep * i)
             )
         }
         endShape(CLOSE)
