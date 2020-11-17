@@ -7,6 +7,7 @@ import {style} from "../app"
 export abstract class AbstractRadar extends VElement{
     private readonly centerPosition: PxPosition
     private readonly vtexts: VText[]
+    private readonly textSize: number
     private readonly textMargin: number
     
     protected readonly values: number[]
@@ -16,20 +17,25 @@ export abstract class AbstractRadar extends VElement{
         super(id, pxSize, false)
         this.values = values
 
-        const size = style.text.size.xxs
+        this.textSize = style.text.size.xxs
+        const texts = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"] 
         this.vtexts = Array.from(
-            {length: this.values.length}, 
-            (_, i) => new VText((i + 1).toString(), style.text.font, size, style.text.color.secondary)
+            {length: texts.length}, 
+            (_, i) => new VText(texts[i], style.text.font, this.textSize, style.text.color.secondary)
         )
-        textSize(size)
-        this.textMargin = max(textAscent(), textWidth('4')) + 5 // No support for dimension >= 10
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - this.textMargin
+        textSize(this.textSize)
+        textAlign(LEFT, CENTER)
+        textFont(style.text.font)
+        this.textMargin = (textAscent() + textDescent()) / 2
+        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - textWidth('Popularity') - this.textMargin
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
         const duration = 1000 /*ms*/
-        // AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        for (let i = 0; i < this.values.length; i++){
+            AnimationUtils.animate(0, this.values[i], duration, (s:number) => this.values[i] = s)
+        }
     }
 
     public render() : void {
@@ -67,16 +73,19 @@ export abstract class AbstractRadar extends VElement{
         for(let i = 0; i  < dimension; i++){
             const x = this.radius * cos(- HALF_PI + angleStep * i)
             const y = this.radius * sin(- HALF_PI + angleStep * i)
-            line(
-                0, 
-                0,
-                x,
-                y
-            )
+            line(0, 0, x, y)
             push()
-            translate(x + (this.textMargin / 2)  * cos(- HALF_PI + angleStep * i), y + (this.textMargin / 2) * sin(- HALF_PI + angleStep * i))
-            textAlign(CENTER, CENTER)
-            this.vtexts[i].render()
+            translate(x + this.textMargin * cos(- HALF_PI + angleStep * i), y + this.textMargin * sin(- HALF_PI + angleStep * i))
+            if(angleStep * i % PI === 0){
+                textAlign(CENTER, CENTER)
+                this.vtexts[i].render()
+            } else if (angleStep * i < PI){
+                textAlign(LEFT, CENTER)
+                this.vtexts[i].render()
+            } else {
+                textAlign(RIGHT, CENTER)
+                this.vtexts[i].render()
+            }
             pop()
         }
     }

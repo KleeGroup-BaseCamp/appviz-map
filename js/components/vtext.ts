@@ -27,4 +27,5 @@ export class VText implements Component{
     public setText(text: string): void{
         this.text = text
     }
+
 }
