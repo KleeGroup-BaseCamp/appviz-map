@@ -5,19 +5,24 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {} from "../incubator" 
+import {Radar} from "../incubator" 
 import {PxPosition, PxSize} from "../layout"
 
 export class DemoViewRadar implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const pxSize = new PxSize(100, 100)
+        const pxSize = new PxSize(200, 200)
         return  [
             new LayerBuilder()
             .addElement(new Card("demo_main", projection.getPxSize(), "Démo Radar"))
             .build(),
-            // new LayerBuilder()
-            // .build()
+            new LayerBuilder()
+            .addElement(new Radar("-1", pxSize, Array(8).fill(0)),   new PxPosition(50,150))
+            .addElement(new Radar("-1", pxSize, Array(8).fill(0)),  new PxPosition(300,150))
+            .addElement(new Radar("-1", pxSize, Array(8).fill(0)),  new PxPosition(550,150))
+            .addElement(new Radar("-1", pxSize, Array(8).fill(0)),  new PxPosition(800,150))
+            .addElement(new Radar("-1", pxSize, Array(8).fill(0)), new PxPosition(1050,150))
+            .build()
         ]
     }
 }

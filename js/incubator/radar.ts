@@ -5,20 +5,31 @@ import {AnimationUtils} from "../utils"
 import {style} from "../app"
 import * as p5 from "p5";
 
-export class ContinuousCircularProgressBar extends VElement{
+export class Radar extends VElement{
     private readonly radius: number
     private readonly centerPosition: PxPosition
-    private readonly vtext: VText
+    private readonly vtexts: VText[]
     private readonly primaryColor: p5.Color
     private readonly secondaryColor: p5.Color
+    private readonly dimension: number
+    private readonly textMargin: number
 
-    private value: number
+    private readonly values: number[]
 
-    constructor(id: any, pxSize: PxSize, value: number){
+    constructor(id: any, pxSize: PxSize, values: number[]){
         super(id, pxSize, false)
-        this.value = value
-        this.vtext = new VText("", style.text.font, style.text.size.xs)
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
+        this.values = values
+        this.dimension = 8
+
+        const size = style.text.size.xxs
+        this.vtexts = Array.from(
+            {length: this.dimension}, 
+            (_, i) => new VText((i + 1).toString(), style.text.font, size, style.text.color.secondary)
+        )
+        textSize(size)
+        this.textMargin = max(textAscent(), textWidth('4')) + 5 // No support for dimension >= 10
+        console.log(textAscent(),  textWidth('4'))
+        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - this.textMargin
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
@@ -26,40 +37,14 @@ export class ContinuousCircularProgressBar extends VElement{
         this.primaryColor = color("DeepSkyBlue")
         this.secondaryColor = color("DeepPink")
         const duration = 1000 /*ms*/
-        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        // AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
 
     public render() : void {
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
-        this.renderArcs()
-
-        const text = Math.round(this.value).toString() + "%" 
-        this.renderValueText(text)
+        this.renderRadar()
         pop()
-    }
-
-    private renderArcs(): void{
-        const numOfArcs = 8 // Number of Arcs used in color transition => total number of arcs = numOfArcs + 2
-        const transitionRatio = 1 / 10 // ratio of total angle reserved for color transition 
-        const totalAngle = TWO_PI * this.value / 100
-        const transitionStartAngle = totalAngle * (1 - transitionRatio) / 2
-        const angleStep = (totalAngle * transitionRatio) / numOfArcs
-        const weight = 5
-
-        noFill()
-        strokeWeight(weight)
-
-        stroke(this.primaryColor)
-        this.renderArc(0, transitionStartAngle)
-
-        stroke(this.secondaryColor)
-        this.renderArc(transitionStartAngle + totalAngle * transitionRatio, transitionStartAngle)
-
-        for(let i = 0; i < numOfArcs; i++){
-            stroke(lerpColor(this.primaryColor, this.secondaryColor, i / numOfArcs))
-            this.renderArc(transitionStartAngle + i * angleStep, angleStep)
-        }
     }
 
     /**
@@ -78,16 +63,37 @@ export class ContinuousCircularProgressBar extends VElement{
             )
     }
 
-    private renderValueText(text: string): void{
-        textAlign(CENTER, CENTER)
-        this.vtext.setText(text)
-        this.vtext.render()
-    }
-
     private renderRadar(): void{
         const numOfCircles = 4
-        for(let i = 0; i < numOfCircles; i++){
-            circle(0,0, this.radius / (i + 1))
+        noFill()
+        stroke(style.color.front)
+
+        // Outer circle
+        strokeWeight(2)
+        circle(0,0, this.radius * 2)
+
+        // Inner circles
+        strokeWeight(1)
+        for(let i = 0; i < numOfCircles - 1; i++){
+            circle(0,0, this.radius * 2 * (i + 1) / numOfCircles)
+        }
+
+        // Lines
+        const angleStep = TWO_PI / this.dimension
+        for(let i = 0; i  < this.dimension; i++){
+            const x = this.radius * cos(- HALF_PI + angleStep * i)
+            const y = this.radius * sin(- HALF_PI + angleStep * i)
+            line(
+                0, 
+                0,
+                x,
+                y
+            )
+            push()
+            translate(x + (this.textMargin / 2)  * cos(- HALF_PI + angleStep * i), y + (this.textMargin / 2) * sin(- HALF_PI + angleStep * i))
+            textAlign(CENTER, CENTER)
+            this.vtexts[i].render()
+            pop()
         }
     }
 }
