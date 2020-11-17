@@ -15,13 +15,14 @@ export class SmoothRadar extends AbstractRadar{
         for(let i = 0; i < dimension; i++){
             const position1 = this.getControlPointPosition(i, dimension, angleStep)   
             const position2 = this.getControlPointPosition(i + 1, dimension, angleStep)  
+            const r = (this.values[(i + 1) % dimension] / 100) * this.radius
             bezierVertex(
                 (this.values[i] / 100) * this.radius * cos(- HALF_PI + angleStep * i) + position1.getX(),
                 (this.values[i] / 100) * this.radius * sin(- HALF_PI + angleStep * i) + position1.getY(),
-                (this.values[(i + 1) % dimension] / 100) * this.radius * cos(- HALF_PI + angleStep * ((i + 1) % dimension)) - position2.getX(),
-                (this.values[(i + 1) % dimension] / 100) * this.radius * sin(- HALF_PI + angleStep * ((i + 1) % dimension)) - position2.getY(),
-                (this.values[(i + 1) % dimension] / 100) * this.radius * cos(- HALF_PI + angleStep * ((i + 1) % dimension)),
-                (this.values[(i + 1) % dimension] / 100) * this.radius * sin(- HALF_PI + angleStep * ((i + 1) % dimension))
+                r * cos(- HALF_PI + angleStep * ((i + 1) % dimension)) - position2.getX(),
+                r * sin(- HALF_PI + angleStep * ((i + 1) % dimension)) - position2.getY(),
+                r * cos(- HALF_PI + angleStep * ((i + 1) % dimension)),
+                r * sin(- HALF_PI + angleStep * ((i + 1) % dimension))
             )
         }
         endShape(CLOSE)
