@@ -1,6 +1,6 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder} from "../core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
@@ -17,12 +17,12 @@ export class DemoViewRadar implements View {
             new LayerBuilder()
             .addElement(new Card("demo_main", projection.getPxSize(), "Démo Radar"))
             .build(),
-            new LayerBuilder()
-            .addElement(new SharpRadar("-1", pxSize, values[0]),   new PxPosition(50,150))
-            .addElement(new SmoothRadar("-1", pxSize, values[0]),   new PxPosition(50,550))
-
-            .addElement(new SharpRadar("-1", pxSize, values[1]),  new PxPosition(500,150))
-            .addElement(new SmoothRadar("-1", pxSize, values[1]),  new PxPosition(500,550))
+            new GridLayerBuilder()
+            .addElement(new SharpRadar("-1", pxSize, values[0]))
+            .addElement(new SmoothRadar("-1", pxSize, values[0]))
+            .beginRow()
+            .addElement(new SharpRadar("-1", pxSize, values[1]))
+            .addElement(new SmoothRadar("-1", pxSize, values[1]))
 
             .build()
         ]
