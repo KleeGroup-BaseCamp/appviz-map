@@ -67,7 +67,7 @@ export abstract class AbstractRadar extends VElement{
             circle(0,0, this.radius * 2 * (i + 1) / numOfCircles)
         }
 
-        // Lines
+        // Lines & labels
         const dimension = this.values.length
         const angleStep = TWO_PI / dimension
         for(let i = 0; i  < dimension; i++){
