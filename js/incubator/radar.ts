@@ -9,8 +9,6 @@ export class Radar extends VElement{
     private readonly radius: number
     private readonly centerPosition: PxPosition
     private readonly vtexts: VText[]
-    private readonly primaryColor: p5.Color
-    private readonly secondaryColor: p5.Color
     private readonly dimension: number
     private readonly textMargin: number
 
@@ -19,7 +17,7 @@ export class Radar extends VElement{
     constructor(id: any, pxSize: PxSize, values: number[]){
         super(id, pxSize, false)
         this.values = values
-        this.dimension = 8
+        this.dimension = values.length
 
         const size = style.text.size.xxs
         this.vtexts = Array.from(
@@ -28,14 +26,11 @@ export class Radar extends VElement{
         )
         textSize(size)
         this.textMargin = max(textAscent(), textWidth('4')) + 5 // No support for dimension >= 10
-        console.log(textAscent(),  textWidth('4'))
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - this.textMargin
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
-        this.primaryColor = color("DeepSkyBlue")
-        this.secondaryColor = color("DeepPink")
         const duration = 1000 /*ms*/
         // AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
@@ -44,6 +39,7 @@ export class Radar extends VElement{
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.renderRadar()
+        this.renderGraph()
         pop()
     }
 
@@ -52,16 +48,6 @@ export class Radar extends VElement{
      * @param start Arc starting angle (from - HALF_PI & anti-clockwise) 
      * @param angleDiff = Arc angle = end angle - start angle
      */
-    private renderArc(start: number, angleDiff: number): void{
-        arc(
-                0, 
-                0, 
-                2 * this.radius,
-                2 * this.radius, 
-                - HALF_PI + start, 
-                - HALF_PI + start + angleDiff 
-            )
-    }
 
     private renderRadar(): void{
         const numOfCircles = 4
@@ -95,5 +81,19 @@ export class Radar extends VElement{
             this.vtexts[i].render()
             pop()
         }
+    }
+
+    renderGraph(): void{
+        strokeWeight(2)
+        stroke(style.color.a)
+        beginShape()
+        const angleStep = TWO_PI / this.dimension
+        for(let i = 0; i < this.dimension; i++){
+            vertex(
+                (this.values[i] / 100) * this.radius * cos(- HALF_PI + angleStep * i),
+                (this.values[i] / 100) * this.radius * sin(- HALF_PI + angleStep * i)
+            )
+        }
+        endShape(CLOSE)
     }
 }

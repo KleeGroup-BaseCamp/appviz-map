@@ -17,11 +17,11 @@ export class DemoViewRadar implements View {
             .addElement(new Card("demo_main", projection.getPxSize(), "Démo Radar"))
             .build(),
             new LayerBuilder()
-            .addElement(new Radar("-1", pxSize, Array(8).fill(0)),   new PxPosition(50,150))
-            .addElement(new Radar("-1", pxSize, Array(8).fill(0)),  new PxPosition(300,150))
-            .addElement(new Radar("-1", pxSize, Array(8).fill(0)),  new PxPosition(550,150))
-            .addElement(new Radar("-1", pxSize, Array(8).fill(0)),  new PxPosition(800,150))
-            .addElement(new Radar("-1", pxSize, Array(8).fill(0)), new PxPosition(1050,150))
+            .addElement(new Radar("-1", pxSize, Array.from({length: 8}, v => random() * 100)),   new PxPosition(50,150))
+            .addElement(new Radar("-1", pxSize, Array.from({length: 8}, v => random() * 100)),  new PxPosition(300,150))
+            .addElement(new Radar("-1", pxSize, Array.from({length: 8}, v => random() * 100)),  new PxPosition(550,150))
+            .addElement(new Radar("-1", pxSize, Array.from({length: 8}, v => random() * 100)),  new PxPosition(800,150))
+            .addElement(new Radar("-1", pxSize, Array.from({length: 8}, v => random() * 100)), new PxPosition(1050,150))
             .build()
         ]
     }
