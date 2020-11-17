@@ -11,4 +11,5 @@ export * from "./starRating" // Vertices (simple)
 export * from "./battery"
 export * from "./discreteCircularProgressBar"
 export * from "./continuousCircularProgressBar"
-export * from "./radar"
+export * from "./sharpRadar"
+export * from "./smoothRadar"
