@@ -31,7 +31,7 @@ export class BlackHole extends VElement{
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
-        const numOfTrails = 10 // TODO: = f(percent)
+        const numOfTrails = 50 // TODO: = f(percent)
         const maxDelay = 2000 // (ms) Max delay before last trail animation starts
         for(let i = 0; i < numOfTrails; i++){
             this.trails.push({
@@ -41,16 +41,19 @@ export class BlackHole extends VElement{
                 delay: 0 // TO DO: random() * maxDelay
             })
 
-            const duration = 1000 /*ms*/
-            AnimationUtils.animate(
-                this.radius, 
-                0, 
-                duration, 
-                (s:number) => {
-                    this.trails[i].start = s
-                    this.trails[i].end = min(this.radius, s * 2)
-                },
-                new Easings().easeInQuad
+            const duration = 1500 /*ms*/
+            setTimeout(
+                () => AnimationUtils.animate(
+                    this.radius, 
+                    0, 
+                    duration, 
+                    (s:number) => {
+                        this.trails[i].start = s
+                        this.trails[i].end = min(this.radius, s * 3 )
+                    }, 
+                    new Easings().easeInQuad
+                ),
+                random() * maxDelay
             )
         }
 
@@ -89,27 +92,21 @@ export class BlackHole extends VElement{
             fill(0, 100 * (1 - ratio))
             circle(0, 0, 2 * this.radius * ratio)
         }
-
-        // const e = this.customExp(max(t - delay, 0), this.radius)
-        // const s = this.customExp(t, this.radius)
         pop()
     }
 
     private drawTrail(start: number, end: number, angle: number): void{
         const diff = end - start
-        const numOfPoints = 50 // TO DO: = f(end,start)
+        const numOfPoints = 15 // TO DO: = f(end,start)
         const maxRadius = 3
+        const minRadius = 2
         noStroke()
         for(let i = 0; i < numOfPoints; i++){
             const ratio = i / numOfPoints
-            this.secondaryColor.setAlpha(ratio * 50)
+            this.secondaryColor.setAlpha(ratio * 200)
             fill(this.secondaryColor)
             const r = start + ratio * diff
-            circle(r * cos(angle), r * sin(angle), min(ratio * maxRadius, this.radius - r))
+            circle(r * cos(angle), r * sin(angle), min(max(ratio * maxRadius, minRadius), this.radius - r))
         }
-    }
-
-    // private customExp(t: number, r: number): number{
-    //     return t < 1 ? r * (1 - (exp(t) - 1) / (exp(1) - 1)) : 0
-    // }       
+    }  
 }
