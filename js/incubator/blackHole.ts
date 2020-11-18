@@ -21,9 +21,9 @@ export class BlackHole extends VElement{
     private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly trails: Trail[] = []
-
+    
     private percent: number
-
+    
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
         this.progressBar = new ContinuousCircularProgressBar("-1", pxSize, percent)
@@ -44,25 +44,25 @@ export class BlackHole extends VElement{
                 angle: random() * TWO_PI,
                 delay: 0 // TO DO: random() * maxDelay
             })
-
+            
             const duration = 1500 /*ms*/
             setTimeout(
-                () => AnimationUtils.animate(
-                    this.radius, 
-                    0, 
-                    duration, 
-                    (s:number) => {
-                        this.trails[i].start = s
-                        this.trails[i].end = min(this.radius, s * 3 )
-                    }, 
-                    new Easings().easeInQuad
-                ),
+                () => 
+                    AnimationUtils.animate(
+                        this.radius, 
+                        0, 
+                        duration, 
+                        (s:number) => {
+                            this.trails[i].start = s
+                            this.trails[i].end = min(this.radius, s * 3 )
+                        }, 
+                        new Easings().easeInQuad
+                    ),
                 random() * maxDelay
             )
         }
-
     }
-
+                
     public render() : void {
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
@@ -102,17 +102,28 @@ export class BlackHole extends VElement{
     }
 
     private drawTrail(start: number, end: number, angle: number): void{
-        const diff = end - start
         const numOfPoints = 15 // TO DO: = f(end,start)
         const maxRadius = 3
         const minRadius = 2
-        noStroke()
-        for(let i = 0; i < numOfPoints; i++){
-            const ratio = i / numOfPoints
-            this.secondaryColor.setAlpha(ratio * 200)
-            fill(this.secondaryColor)
-            const r = start + ratio * diff
-            circle(r * cos(angle), r * sin(angle), min(max(ratio * maxRadius, minRadius), this.radius - r))
+        // noStroke()
+        // for(let i = 0; i < numOfPoints; i++){
+            //     const ratio = i / numOfPoints
+            //     this.secondaryColor.setAlpha(ratio * 200)
+            //     fill(this.secondaryColor)
+            //     const r = start + ratio * diff
+            //     circle(r * cos(angle), r * sin(angle), min(max(ratio * maxRadius, minRadius), this.radius - r))
+            // }
+        this.secondaryColor.setAlpha(150)
+        strokeWeight(2)
+        stroke(this.secondaryColor)
+        // line(start * cos(angle), start * sin(angle), end * cos(angle), end * sin(angle))
+        const numOfLines = 10        
+        const diff = end - start
+        for (let i = 0; i < numOfLines; i++){
+            strokeWeight(1 + i / numOfLines)
+            const s = start + diff * i / numOfLines
+            const e = start + diff * (i + 1) / numOfLines
+            line(s * cos(angle), s * sin(angle), e * cos(angle), e * sin(angle))
         }
     }  
 }
