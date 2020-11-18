@@ -4,7 +4,7 @@ import {PxPosition} from "../layout"
 export class GridLayerBuilder {
   private readonly positionedElements: PositionedElement[] = []
   private margin: number = 50  
-  private x : number = 0
+  private x : number = this.margin
   private y : number = 150
   private rowHeight: number = 0
   /**
@@ -13,16 +13,16 @@ export class GridLayerBuilder {
    * @param {VElement} element 
    */
   public addElement(element: VElement): GridLayerBuilder  {
-    this.x =  this.x +  this.margin+ element.getWidth()
-    this.rowHeight = max(this.rowHeight, element.getHeight())
-
     const pxPosition: PxPosition = new PxPosition (this.x, this.y) 
     this.positionedElements.push({element, pxPosition})
+
+    this.x =  this.x +  this.margin + element.getWidth()
+    this.rowHeight = max(this.rowHeight, element.getHeight())
     return this
   }
 
   public beginRow(): GridLayerBuilder {
-    this.x = 0
+    this.x = this.margin
     this.y = this.y + this.margin + this.rowHeight 
     this.rowHeight=0
     return this
