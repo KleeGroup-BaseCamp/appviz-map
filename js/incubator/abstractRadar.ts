@@ -16,7 +16,7 @@ export abstract class AbstractRadar extends VElement{
 
     constructor(id: any, pxSize: PxSize, values: number[]){
         super(id, pxSize, true)
-        this.values = values
+        this.values = [...values]
 
         this.textSize = style.text.size.xxs
         const labelsText = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"] 
@@ -39,9 +39,16 @@ export abstract class AbstractRadar extends VElement{
             pxSize.getHeight() / 2
             )
         const duration = 1000 /*ms*/
-        for (let i = 0; i < this.values.length; i++){
-            AnimationUtils.animate(0, this.values[i], duration, (s:number) => this.values[i] = s)
-        }
+        AnimationUtils.animate(
+            0, 
+            1, 
+            duration, 
+            (s:number) => {
+                for (let i = 0; i < this.values.length; i++){
+                    this.values[i] = values[i] * s
+                }
+            }
+        )  
     }
 
     public render(state: State) : void {

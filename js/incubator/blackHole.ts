@@ -36,7 +36,7 @@ export class BlackHole extends VElement{
             pxSize.getHeight() / 2
             )
         const numOfTrails = 100 // TODO: = f(percent)
-        const maxDelay = 2000 // (ms) Max delay before last trail animation starts
+        const maxDelay = 3000 // (ms) Max delay before last trail animation starts
         for(let i = 0; i < numOfTrails; i++){
             this.trails.push({
                 start: this.radius,
@@ -117,8 +117,9 @@ export class BlackHole extends VElement{
         strokeWeight(2)
         stroke(this.secondaryColor)
         line(start * cos(angle), start * sin(angle), end * cos(angle), end * sin(angle))
-        const numOfLines = 10        
-        const diff = end - start
+
+        // const numOfLines = 10        
+        // const diff = end - start
         // for (let i = 0; i < numOfLines; i++){
         //     strokeWeight(1 + i / numOfLines)
         //     const s = start + diff * i / numOfLines
