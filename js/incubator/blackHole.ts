@@ -2,6 +2,7 @@ import {VElement} from "../core"
 import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import * as p5 from "p5"
+import { Easings } from "../utils/easings"
 
 type Trail = {
     start: number,
@@ -48,7 +49,8 @@ export class BlackHole extends VElement{
                 (s:number) => {
                     this.trails[i].start = s
                     this.trails[i].end = min(this.radius, s * 2)
-                }
+                },
+                new Easings().easeInQuad
             )
         }
 
@@ -57,20 +59,33 @@ export class BlackHole extends VElement{
     public render() : void {
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
-
         fill(this.primaryColor)
-        noStroke()
+        strokeWeight(2)
+        stroke(this.secondaryColor)
         circle(0, 0, 2 * this.radius)
-        
+
+        // Gradient stroke
+        const numOfStrokeCircles = 5
+        const weight = 5
+        noFill()
+        this.secondaryColor.setAlpha(100)
+        stroke(this.secondaryColor)
+        for(let i = 0; i < numOfStrokeCircles; i++){
+            const ratio = i / numOfStrokeCircles
+            stroke(lerpColor(this.primaryColor, this.secondaryColor, ratio))
+            circle(0, 0, 2 * this.radius - weight * (1 - ratio))
+        }
+
+        // Trails
         for(let trail of this.trails){
             this.drawTrail(trail.start, trail.end, trail.angle)
         }
 
         // Black Hole
-        const numOfCircles = 20
+        const numOfBlackHoleCircles = 20
         noStroke()
-        for (let i = 0; i < numOfCircles; i++){
-            const ratio = (i + 1) / numOfCircles
+        for (let i = 0; i < numOfBlackHoleCircles; i++){
+            const ratio = i / numOfBlackHoleCircles
             fill(0, 100 * (1 - ratio))
             circle(0, 0, 2 * this.radius * ratio)
         }
@@ -90,7 +105,7 @@ export class BlackHole extends VElement{
             this.secondaryColor.setAlpha(ratio * 50)
             fill(this.secondaryColor)
             const r = start + ratio * diff
-            circle(r * cos(angle), r * sin(angle), ratio * maxRadius)
+            circle(r * cos(angle), r * sin(angle), min(ratio * maxRadius, this.radius - r))
         }
     }
 

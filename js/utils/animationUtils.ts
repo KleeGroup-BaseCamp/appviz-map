@@ -1,5 +1,6 @@
 import {Easings} from "./easings"
 
+type Ease = (r:number) => number
 export class AnimationUtils {
     private static animations:number = 0;
     private static readonly easings = new Easings()
@@ -17,14 +18,22 @@ export class AnimationUtils {
         AnimationUtils.animations --
         clearInterval(id)
     }
-
-    public static animate(from: number, to: number, duration: number, callBack: (v:number) => void): void  {
+    
+    /**
+     * 
+     * @param from 
+     * @param to 
+     * @param duration 
+     * @param callBack 
+     * @param ease Easing or easeout function
+     */
+    public static animate(from: number, to: number, duration: number, callBack: (v:number) => void, ease?: Ease): void  {
         callBack(from)
         if (from ===to) return //When from===to there is no animaation
 
         const interval = 20 /*ms*/
         const id = AnimationUtils.setInterval(animate, interval)
-        const easing : ((r:number)=> number) = AnimationUtils.easings.easeOutSine
+        const e: Ease = ease ?? AnimationUtils.easings.easeOutSine
         const maxStep = duration / interval
 
         let step = 0 // from 0 to maxStep (+ margin)
@@ -39,7 +48,7 @@ export class AnimationUtils {
             if (r >=1) {
                 value = to
             }else{
-                value = from + (to-from)* easing(r)
+                value = from + (to-from)* e(r)
             }    
             callBack(value)
         }

@@ -24,4 +24,5 @@ export class Easings {
     public readonly linear  = (r:number) => r
     public readonly easeOutSine =  (r:number) => Math.sin(r * this.c4)
     public readonly easeOutElastic = (r:number) => Math.pow(2, -10 * r) * Math.sin((r * 10 - 0.75) * this.c3) + 1
+    public readonly easeInQuad = (r: number) => r * r 
 }   
