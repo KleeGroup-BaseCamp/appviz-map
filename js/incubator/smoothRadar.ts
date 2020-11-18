@@ -25,11 +25,14 @@ export class SmoothRadar extends AbstractRadar{
             const alpha1 = - HALF_PI + angleStep * i
 
             bezierVertex(
-                r1 * cos(alpha1) + position1.getX(), // Value point i 2nd control point
+                // Value point i 2nd control point
+                r1 * cos(alpha1) + position1.getX(), 
                 r1 * sin(alpha1) + position1.getY(),
-                r2 * cos(alpha2) - position2.getX(), // Value point i+1 1st control point
+                // Value point i+1 1st control point
+                r2 * cos(alpha2) - position2.getX(), 
                 r2 * sin(alpha2) - position2.getY(),
-                r2 * cos(alpha2), // Value point i+1
+                // Value point i+1
+                r2 * cos(alpha2), 
                 r2 * sin(alpha2)
             )
         }
