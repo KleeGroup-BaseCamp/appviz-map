@@ -35,7 +35,7 @@ export class DemoViewGauge implements View {
                 // .addElement(new ContinuousCircularProgressBar("-1", pxSize, 66))
                 // .addElement(new ContinuousCircularProgressBar("-1", pxSize, 100))
                 // .beginRow()
-                .addElement(new BlackHole("-1", pxSize, 0))
+                .addElement(new BlackHole("-1", pxSize, 66))
                 // .addElement(new BlackHole("-1", pxSize, 33))
                 // .addElement(new BlackHole("-1", pxSize, 50))
                 // .addElement(new BlackHole("-1", pxSize, 66))

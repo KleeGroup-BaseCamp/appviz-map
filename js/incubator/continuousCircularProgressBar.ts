@@ -10,12 +10,12 @@ export class ContinuousCircularProgressBar extends VElement{
     private readonly secondaryColor: p5.Color = color("DeepPink")
 
     private readonly radius: number
-    private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly vtext: VText
-
+    
     private percent: number
-
+    public readonly weight: number
+    
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
         this.percent = percent
