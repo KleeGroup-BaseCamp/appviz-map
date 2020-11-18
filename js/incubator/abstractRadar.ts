@@ -61,9 +61,10 @@ export abstract class AbstractRadar extends VElement{
         stroke(c)
         c.setAlpha(50)
         fill(c) 
-        this.renderGraph()
+        this.renderGraph(state)
         pop()
         if (state.isHovered(this)){
+            if (mouseX)
             this.renderPopUp()
         }
     }
@@ -125,17 +126,15 @@ export abstract class AbstractRadar extends VElement{
             translate(x + this.textMargin * cos(- HALF_PI + angleStep * i), y + this.textMargin * sin(- HALF_PI + angleStep * i))
             if(angleStep * i % PI === 0){
                 textAlign(CENTER, CENTER)
-                this.labels[i].render()
             } else if (angleStep * i < PI){
                 textAlign(LEFT, CENTER)
-                this.labels[i].render()
             } else {
                 textAlign(RIGHT, CENTER)
-                this.labels[i].render()
             }
+            this.labels[i].render()
             pop()
         }
     }
 
-    abstract renderGraph(): void
+    abstract renderGraph(state: State): void
 }

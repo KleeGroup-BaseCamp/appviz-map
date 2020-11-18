@@ -11,7 +11,7 @@ import {PxSize} from "../layout"
 export class DemoViewGauge2 implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const pxSize = new PxSize(100, 100)
+        const pxSize = new PxSize(400, 400)
         return  [
             new LayerBuilder()
                 .addElement(new Card("demo_main", projection.getPxSize(), "Demo Gauge"))
