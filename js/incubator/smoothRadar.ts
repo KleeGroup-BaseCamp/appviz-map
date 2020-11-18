@@ -7,10 +7,13 @@ export class SmoothRadar extends AbstractRadar{
         beginShape()
         const dimension = this.values.length
         const angleStep = TWO_PI / dimension
+        
+        const r0 = (this.values[0] / 100) * this.radius 
         vertex(
-            (this.values[0] / 100) * this.radius * cos(- HALF_PI), // Value point 0
-            (this.values[0] / 100) * this.radius * sin(- HALF_PI)
+            r0 * cos(- HALF_PI), // Value point 0
+            r0 * sin(- HALF_PI)
         )
+
         for(let i = 0; i < dimension; i++){
             const position1 = this.getControlPointPosition(i, dimension, angleStep)   
             const position2 = this.getControlPointPosition(i + 1, dimension, angleStep)  
