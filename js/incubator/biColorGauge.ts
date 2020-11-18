@@ -5,7 +5,7 @@ import {AnimationUtils} from "../utils"
 import {style} from "../app"
 import * as p5 from "p5"
 
-export class ContinuousCircularProgressBar extends VElement{
+export class BiColorGauge extends VElement{
     private readonly primaryColor: p5.Color = color("DeepSkyBlue")
     private readonly secondaryColor: p5.Color = color("DeepPink")
 

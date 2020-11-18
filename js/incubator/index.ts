@@ -9,8 +9,8 @@ export * from "./heartRating" // Vertices (simple)
 export * from "./starRating" // Vertices (simple)
 
 export * from "./battery"
-export * from "./discreteCircularProgressBar"
-export * from "./continuousCircularProgressBar"
+export * from "./tickMarksGauge"
+export * from "./biColorGauge"
 export * from "./sharpRadar"
 export * from "./smoothRadar"
 export * from "./blackHole"

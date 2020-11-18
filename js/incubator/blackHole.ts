@@ -2,8 +2,8 @@ import {VElement} from "../core"
 import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import * as p5 from "p5"
-import { Easings } from "../utils/easings"
-import { ContinuousCircularProgressBar } from "./continuousCircularProgressBar"
+import {Easings} from "../utils/easings"
+import {BiColorGauge} from "./biColorGauge"
 
 type Trail = {
     start: number,
@@ -15,7 +15,7 @@ type Trail = {
 export class BlackHole extends VElement{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")
     private readonly secondaryColor: p5.Color = color("HotPink")
-    private readonly progressBar: ContinuousCircularProgressBar
+    private readonly gauge: BiColorGauge
 
     private readonly radius: number
     private readonly weight: number
@@ -26,11 +26,11 @@ export class BlackHole extends VElement{
     
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
-        this.progressBar = new ContinuousCircularProgressBar("-1", pxSize, percent)
+        this.gauge = new BiColorGauge("-1", pxSize, percent)
         this.percent = percent
         this.weight = 5
         const margin = 10
-        this.radius = (min(pxSize.getHeight(), pxSize.getWidth()) - this.weight - this.progressBar.weight - margin) / 2
+        this.radius = (min(pxSize.getHeight(), pxSize.getWidth()) - this.weight - this.gauge.weight - margin) / 2
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
@@ -98,7 +98,7 @@ export class BlackHole extends VElement{
         }
         pop()
 
-        this.progressBar.render()
+        this.gauge.render()
     }
 
     private drawTrail(start: number, end: number, angle: number): void{
