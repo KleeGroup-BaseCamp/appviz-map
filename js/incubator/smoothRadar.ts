@@ -10,21 +10,27 @@ export class SmoothRadar extends AbstractRadar{
         
         const r0 = (this.values[0] / 100) * this.radius 
         vertex(
-            r0 * cos(- HALF_PI), // Value point 0
+            r0 * cos(- HALF_PI), 
             r0 * sin(- HALF_PI)
         )
 
         for(let i = 0; i < dimension; i++){
             const position1 = this.getControlPointPosition(i, dimension, angleStep)   
             const position2 = this.getControlPointPosition(i + 1, dimension, angleStep)  
-            const r = (this.values[(i + 1) % dimension] / 100) * this.radius
+            
+            const r1 = (this.values[i] / 100) * this.radius 
+            const r2 = (this.values[(i + 1) % dimension] / 100) * this.radius
+
+            const alpha2 = - HALF_PI + angleStep * ((i + 1) % dimension)
+            const alpha1 = - HALF_PI + angleStep * i
+
             bezierVertex(
-                (this.values[i] / 100) * this.radius * cos(- HALF_PI + angleStep * i) + position1.getX(), // Value point i 2nd control point
-                (this.values[i] / 100) * this.radius * sin(- HALF_PI + angleStep * i) + position1.getY(),
-                r * cos(- HALF_PI + angleStep * ((i + 1) % dimension)) - position2.getX(), // Value point i+1 1st control point
-                r * sin(- HALF_PI + angleStep * ((i + 1) % dimension)) - position2.getY(),
-                r * cos(- HALF_PI + angleStep * ((i + 1) % dimension)), // Value point i+1
-                r * sin(- HALF_PI + angleStep * ((i + 1) % dimension))
+                r1 * cos(alpha1) + position1.getX(), // Value point i 2nd control point
+                r1 * sin(alpha1) + position1.getY(),
+                r2 * cos(alpha2) - position2.getX(), // Value point i+1 1st control point
+                r2 * sin(alpha2) - position2.getY(),
+                r2 * cos(alpha2), // Value point i+1
+                r2 * sin(alpha2)
             )
         }
         endShape(CLOSE)
