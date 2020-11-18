@@ -3,7 +3,7 @@ import {} from "p5/global"
 
 import {projection} from "./app"
 import {Detail} from "./detail"
-import {HomeView, TechZoneView, TechGroupView, DemoViewBattery, DemoViewGauge, DemoViewRating, DemoViewSignal, DemoViewRadar, View, Group, Item, Background} from "./views"
+import {HomeView, TechZoneView, TechGroupView, DemoViewBattery, DemoViewGauge, DemoViewGauge2, DemoViewRating, DemoViewSignal, DemoViewRadar, View, Group, Item, Background} from "./views"
 import {State, MapBuilder, LayerBuilder, Map, VElement, VEvent} from "./core"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
@@ -111,6 +111,8 @@ export class Sketch {
         return new DemoViewBattery()
       case "demoGauge":
         return new DemoViewGauge()
+      case "demoGauge2":
+        return new DemoViewGauge2()
       case "demoRadar":
         return new DemoViewRadar()
       case "techZone":
