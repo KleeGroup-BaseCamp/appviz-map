@@ -51,8 +51,12 @@ export class SmoothRadar extends AbstractRadar{
      * @param angleStep Angle between two consecutive values/labels
      */
     private getControlPointPosition(index: number, dimension: number, angleStep: number): PxPosition{
-        const dx = (angleStep * (index % dimension) - HALF_PI) % PI !== 0 ? min(abs((this.values[index % dimension] / 100) * this.radius * tan(angleStep) * cos(angleStep * (index % dimension)) / 2), this.radius * cos(asin(this.values[index % dimension] / 100))) * cos(angleStep * (index % dimension)) / abs(cos(angleStep * (index % dimension))) : 0
-        const dy = (angleStep * (index % dimension)) % PI !== 0 ? min(abs((this.values[index % dimension] / 100) * this.radius * tan(angleStep) * sin(angleStep * (index % dimension)) / 2), this.radius * cos(asin(this.values[index % dimension] / 100))) * sin(angleStep * (index % dimension)) / abs(sin(angleStep * (index % dimension))) : 0  
+        const dx = (angleStep * (index % dimension) - HALF_PI) % PI !== 0 
+        ? min(abs((this.values[index % dimension] / 100) * this.radius * tan(angleStep) * cos(angleStep * (index % dimension)) / 2), this.radius * cos(asin(this.values[index % dimension] / 100))) * cos(angleStep * (index % dimension)) / abs(cos(angleStep * (index % dimension))) 
+        : 0
+        const dy = (angleStep * (index % dimension)) % PI !== 0 
+        ? min(abs((this.values[index % dimension] / 100) * this.radius * tan(angleStep) * sin(angleStep * (index % dimension)) / 2), this.radius * cos(asin(this.values[index % dimension] / 100))) * sin(angleStep * (index % dimension)) / abs(sin(angleStep * (index % dimension))) 
+        : 0  
         return new PxPosition(dx, dy)
     }
 } 
