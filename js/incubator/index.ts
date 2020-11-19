@@ -18,3 +18,4 @@ export * from "./smoothRadar"
 
 export * from "./blackHole"
 export * from "./blackHole2"
+export * from "./blackHole3"
