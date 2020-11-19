@@ -46,9 +46,6 @@ export abstract class AbstractRadar extends VElement{
         textAlign(LEFT, CENTER)
         textFont(style.text.font)
         const keys = Object.keys(data)
-        // const longestLabel = keys.find(
-        //     label => label.length == Math.max(...keys.map(label => label.length))
-        // )
         const longestLabelWidth = Math.max(...keys.map(label => textWidth(label)))
         this.textMargin = (textAscent() + textDescent()) / 2
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - longestLabelWidth - this.textMargin
@@ -84,31 +81,8 @@ export abstract class AbstractRadar extends VElement{
         pop()
         if (state.isHovered(this)){
             if (mouseX)
-            this.renderPopUp()
+            this.popUp.render()
         }
-    }
-
-    private renderPopUp(){
-        // Pop up rectangle
-        // noStroke()
-        // const c = color(red(style.color.d), green(style.color.d), blue(style.color.d), 200)
-        // fill(c)
-        // rect(0,0,200,200)
-
-        // // Pop up content
-        // fill(style.text.color.primary)
-        // textSize(style.text.size.s)
-        // textAlign(LEFT, TOP)
-        // const margin = 10
-        // for(let i = 0; i < this.values.length; i++){
-        //     text(
-        //         `${this.labels[i].getText()}: `,
-        //         margin, 
-        //         i * (textAscent() + textDescent()) + margin
-        //     )
-
-        // }
-        this.popUp.render()
     }
 
     private renderCircle(index: number): void{

@@ -29,8 +29,12 @@ export class Signal extends VElement{
 
     public render() : void {
         strokeWeight(this.weight)
+        const circleRadius = this.radius * 2 / 10
+        push()
+        translate(0, - (this.getPxSize().getHeight() - this.radius - this.weight - circleRadius) / 2)
         this.renderArcs()
-        this.renderCircle()        
+        this.renderCircle(circleRadius) 
+        pop()       
     }
 
     private renderArcs(): void {
@@ -55,13 +59,13 @@ export class Signal extends VElement{
         return this.value > i ? style.text.color.primary : style.color.front
     }
 
-    private renderCircle(): void{
+    private renderCircle(circleRadius: number): void{
         fill(this.pickColor(0))
         noStroke()
         circle(
             this.circleCenterPosition.getX(), 
             this.circleCenterPosition.getY(),
-            this.radius * 2 / 10
+            circleRadius
         )
     }
 }
