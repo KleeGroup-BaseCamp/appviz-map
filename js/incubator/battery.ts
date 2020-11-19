@@ -23,14 +23,12 @@ export class Battery extends VElement{
     private value: number
     private maxAmplitude: number
     private time: number // TO DO: Use better name
-    private xOff: number // x coordinate in noise (Perlin) space 
 
     constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
         super(id, pxSize, false)
         this.value = value
         this.maxAmplitude = 0 
         this.time = 0
-        this.xOff = 0
         this.maxBubbleSize = 8
         this.padding = 5
         this.topMargin = 10 // Margin for hat
@@ -45,7 +43,6 @@ export class Battery extends VElement{
                 color: this.secondaryColor
             })
         }
-        
         const duration = 3000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
         AnimationUtils.animate(50, 0, duration * 10, (s:number) => this.maxAmplitude = s)
@@ -58,12 +55,10 @@ export class Battery extends VElement{
                 0, 
                 duration * 3, 
                 (s:number) => {
-                    this.xOff + 0.01
                     const coneWidth = barWidth * (barHeight - s) / barHeight
                     const xLimit = (barWidth - coneWidth) / 2 + coneWidth * bubble.id / (numOfBubbles - 1)// Bubble tends to be around this position
                     const x = min(
                         max(
-                            // bubble.position.getX() + sin(s / (5 + bubble.id)) + 2 * (noise(this.xOff) - 0.5), 
                             bubble.position.getX() + sin(s / (5 + bubble.id)) + (xLimit - bubble.position.getX()) * random(0.1),
                             bubble.size
                         ), 
@@ -80,12 +75,10 @@ export class Battery extends VElement{
                 color(255), 
                 s / 100)
             )
-
         }
     }
 
     public render() : void {
-
         push()
         translate(this.padding, this.padding + this.topMargin)
         //Render waves
