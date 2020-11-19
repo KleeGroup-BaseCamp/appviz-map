@@ -146,8 +146,9 @@ class PopUp extends VElement{
         this.size = style.text.size.xs
         textSize(this.size)
         for(let label in data){
-            const width = textWidth(label)
-            this.labels.push(new VText(label, style.text.font, this.size))
+            const text = `${label}:`
+            const width = textWidth(text)
+            this.labels.push(new VText(text, style.text.font, this.size))
             this.ratings.push(
                 new StarRating(
                     "-1", 
