@@ -1,6 +1,6 @@
 import {VElement, State} from "../core"
 import {PxPosition} from "../layout"
-import {debug} from "../app"
+import {debug, style} from "../app"
 
 export type PositionedElement = {pxPosition: PxPosition, element: VElement}
 
@@ -21,6 +21,12 @@ export class Layer {
     for (let positionedElement of this.positionedElements) {
       push()
       translate(positionedElement.pxPosition.getX(), positionedElement.pxPosition.getY())
+
+      if (positionedElement.element.needsClear()){
+        noStroke()
+        fill(style.color.back)
+        rect(0, 0, positionedElement.element.getWidth(), positionedElement.element.getHeight())
+      }  
       positionedElement.element.render(state)
       if (debug){
         //-- Green border to check if en element is inside its bounding box

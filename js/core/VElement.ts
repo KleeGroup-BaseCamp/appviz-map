@@ -1,5 +1,5 @@
-import { PxSize } from "../layout"
-import { State } from "../core"
+import {PxSize} from "../layout"
+import {State} from "../core"
 
 /**
  * VElement displayed on the map.
@@ -92,5 +92,9 @@ export abstract class VElement {
       && x < this.pxSize.getWidth()
       && y > 0
       && y < this.pxSize.getHeight();
+  }
+
+  public needsClear():boolean{
+    return true
   }
 }

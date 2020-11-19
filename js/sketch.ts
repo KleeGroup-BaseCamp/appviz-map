@@ -130,7 +130,7 @@ export class Sketch {
 
   private generateMapFromView(viewInstance: View): Map {
     return new MapBuilder()
-      .addLayer(new LayerBuilder().addElement(new Background("background", new PxSize(0,0), false)).build())
+      .addLayer(new LayerBuilder().addElement(new Background("background", new PxSize(width,height))).build())
       .addLayers(viewInstance.provideLayers(this.modelRepository, this.layout))
       //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
       .build()
