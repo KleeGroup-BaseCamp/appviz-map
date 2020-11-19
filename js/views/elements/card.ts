@@ -24,4 +24,8 @@ export class Card extends VElement {
         noFill()
         rect(0, 0, this.getWidth(), this.getHeight())
     }
+
+    public needsClear():boolean {
+        return false
+    }
 }

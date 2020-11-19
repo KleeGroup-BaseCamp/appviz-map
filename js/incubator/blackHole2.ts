@@ -24,8 +24,8 @@ export class BlackHole2 extends VElement{
 
     private static createBolt(_radius : number):Bolt{
         const rnd = random()
-        const x = _radius * cos(TWO_PI* rnd)/2
-        const y = _radius * sin(TWO_PI* rnd)/2
+        const x = _radius * cos(TWO_PI* rnd)*0.75
+        const y = _radius * sin(TWO_PI* rnd)*0.75
         return  { 
             pos :  createVector(x, y),
             vel :  createVector(0, 0)
@@ -44,6 +44,9 @@ export class BlackHole2 extends VElement{
         push()
         translate(this.getWidth()/2, this.getHeight()/2)
         colorMode(HSB);
+        stroke(frameCount% 255, 255, 255);
+//        colorMode(RGB);
+//        stroke(frameCount% 255, 255/frameCount, 255/frameCount);
         for (let bolt of this.bolts)  {
             bolt.pos.add(bolt.vel)
     
@@ -57,7 +60,6 @@ export class BlackHole2 extends VElement{
                 bolt.pos = b.pos
                 bolt.vel = b.vel
             }
-            stroke(frameCount / 2 % 255, 255, 255);
             line(bolt.pos.x, 
                 bolt.pos.y, 
                 bolt.pos.x + bolt.vel.x * 2, 
