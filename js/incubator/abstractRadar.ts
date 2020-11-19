@@ -46,11 +46,12 @@ export abstract class AbstractRadar extends VElement{
         textAlign(LEFT, CENTER)
         textFont(style.text.font)
         const keys = Object.keys(data)
-        const longestLabel = keys.find(
-            label => label.length == Math.max(...keys.map(label => label.length))
-        )
+        // const longestLabel = keys.find(
+        //     label => label.length == Math.max(...keys.map(label => label.length))
+        // )
+        const longestLabelWidth = Math.max(...keys.map(label => textWidth(label)))
         this.textMargin = (textAscent() + textDescent()) / 2
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - textWidth(longestLabel as string) - this.textMargin
+        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - longestLabelWidth - this.textMargin
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
@@ -186,9 +187,10 @@ class PopUp extends VElement{
     render(): void{
         // Pop up rectangle
         noStroke()
-        const c = ColorUtils.clone(style.color.d)
-        c.setAlpha(200)
+        const c = ColorUtils.clone(style.color.a)
+        c.setAlpha(150)
         fill(c)
+        // const maxLabelwidth = Math.max(...this.labels.map(label => textWidth(label.getText()))) // CC Abstract radar --> Make utils method ?
         rect(0, 0, this.getPxSize().getWidth(), this.getPxSize().getHeight())
 
         // Pop up content
