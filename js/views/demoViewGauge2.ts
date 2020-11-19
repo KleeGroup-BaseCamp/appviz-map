@@ -18,10 +18,10 @@ export class DemoViewGauge2 implements View {
                 .build(),
             new GridLayerBuilder()
                 .addElement(new BlackHole("-1", pxSize, 66))
-                .addElement(new BlackHole2("-1", pxSize, 66))
-                .beginRow()
-                .addElement(new BlackHole3("-1", pxSize, 66))
                 .addElement(new BlackHole4("-1", pxSize, 66))
+                .beginRow()
+                .addElement(new BlackHole2("-1", pxSize, 66))
+                .addElement(new BlackHole3("-1", pxSize, 66))
                 .build()
             ]
     }

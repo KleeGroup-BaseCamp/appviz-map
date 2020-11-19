@@ -34,12 +34,14 @@ export class Battery extends VElement{
         this.maxBubbleSize = 8
         this.padding = 5
         this.topMargin = 10 // Margin for hat
+        const barWidth = pxSize.getWidth() - 2 * this.padding
+        const barHeight = pxSize.getHeight() - this.padding - this.topMargin
         const numOfBubbles = 5 
         for(let i = 0; i < numOfBubbles; i++){
             this.bubbles.push({
                 id : i,
                 size : 0,
-                position :  new PxPosition(random(this.padding, pxSize.getWidth() - this.padding), 0),
+                position :  new PxPosition( barWidth / 4 + random(barWidth / 2), 0),
                 color: this.secondaryColor
             })
         }
@@ -48,22 +50,24 @@ export class Battery extends VElement{
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
         AnimationUtils.animate(50, 0, duration * 10, (s:number) => this.maxAmplitude = s)
         AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
-
         for(let bubble of this.bubbles){
             // TO DO : Change size and color only once 
             AnimationUtils.animate(0, 100, duration * 3, (s:number) => bubble.size = (1 - abs(50-s) / 50) * this.maxBubbleSize)
             AnimationUtils.animate(
-                pxSize.getHeight() - this.topMargin, 
+                barHeight, 
                 0, 
                 duration * 3, 
                 (s:number) => {
                     this.xOff + 0.01
+                    const coneWidth = barWidth * (barHeight - s) / barHeight
+                    const xLimit = (barWidth - coneWidth) / 2 + coneWidth * bubble.id / (numOfBubbles - 1)// Bubble tends to be around this position
                     const x = min(
                         max(
-                            bubble.position.getX() + sin(s / (5 + bubble.id)) + 2 * (noise(this.xOff) - 0.5), 
-                            bubble.size + this.padding
+                            // bubble.position.getX() + sin(s / (5 + bubble.id)) + 2 * (noise(this.xOff) - 0.5), 
+                            bubble.position.getX() + sin(s / (5 + bubble.id)) + (xLimit - bubble.position.getX()) * random(0.1),
+                            bubble.size
                         ), 
-                        pxSize.getWidth() - this.padding - bubble.size
+                        barWidth - bubble.size
                     ) // Bubble boundaries 
                     bubble.position = new PxPosition(x, s)
                 }

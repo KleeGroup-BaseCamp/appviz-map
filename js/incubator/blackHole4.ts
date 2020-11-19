@@ -53,7 +53,7 @@ export class BlackHole4 extends VElement{
             duration, 
             (s:number) => {
                 for(let i = 0; i < numOfRays; i++){
-                    this.rays[i].z = s > 70 || this.rays[i].z < this.zMax  // TO DO : change harcoded value (70)
+                    this.rays[i].z = s > 60 || this.rays[i].z < this.zMax  // TO DO : change harcoded value (70)
                         ? this.rays[i].z + 0.05 
                         : 1
                 }
@@ -103,7 +103,7 @@ export class BlackHole4 extends VElement{
 
     private drawRay(ray: Ray): void{
         
-        const pz = max(ray.z - 0.5, 1)
+        const pz = max(ray.z - 1, 1)
         if (pz > this.zMax) return
 
         const px = ray.x / pz
@@ -116,6 +116,5 @@ export class BlackHole4 extends VElement{
         strokeWeight(2)
         stroke(this.secondaryColor)
         line(x, y, px, py)
-        ellipse(x, y, 1 / ray.z)
     }  
 }
