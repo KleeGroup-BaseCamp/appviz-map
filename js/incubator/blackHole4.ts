@@ -34,14 +34,14 @@ export class BlackHole4 extends VElement{
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
-        const numOfRays = 100 // TODO: = f(percent)
-        const maxDelay = 3000 // (ms) Max delay before last trail animation starts
+        const numOfRays = 200 // TODO: = f(percent)
+        const zMax = 4
         for(let i = 0; i < numOfRays; i++){
             const angle = random(TWO_PI)
             this.rays.push({
                 x: this.radius * cos(angle),
                 y: this.radius * sin(angle),
-                z: random(1,3)
+                z: random(1,zMax)
             })
             
         }
@@ -52,8 +52,8 @@ export class BlackHole4 extends VElement{
             duration, 
             (s:number) => {
                 for(let i = 0; i < numOfRays; i++){
-                    this.rays[i].z = this.rays[i].z < 4 
-                        ? this.rays[i].z + random(0.1, 0.01) 
+                    this.rays[i].z = s > 70 || this.rays[i].z < zMax  // TO DO : change harcoded value (70)
+                        ? this.rays[i].z + 0.05 
                         : 1
                 }
             }, 
@@ -97,18 +97,22 @@ export class BlackHole4 extends VElement{
         }
         pop()
 
-        // this.gauge.render()
+        this.gauge.render()
     }
 
     private drawRay(ray: Ray): void{
-        this.secondaryColor.setAlpha(150)
-        strokeWeight(3)
+        this.secondaryColor.setAlpha(200)
+        strokeWeight(2)
         stroke(this.secondaryColor)
+        
         const x = ray.x / ray.z
         const y = ray.y / ray.z
         ellipse(x, y, 1 / ray.z)
-        // line(start * cos(angle), start * sin(angle), end * cos(angle), end * sin(angle))
-
-
+        
+        strokeWeight(2)
+        const pz = max(ray.z - 0.5, 1)
+        const px = ray.x / pz
+        const py = ray.y / pz
+        line(x, y, px, py)
     }  
 }
