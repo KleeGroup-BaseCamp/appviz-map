@@ -20,6 +20,7 @@ export class BlackHole4 extends VElement{
     private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly rays: Ray[] = []
+    private readonly zMax: number
     
     private percent: number
     
@@ -35,24 +36,24 @@ export class BlackHole4 extends VElement{
             pxSize.getHeight() / 2
             )
         const numOfRays = 200 // TODO: = f(percent)
-        const zMax = 4
+        this.zMax = 4
         for(let i = 0; i < numOfRays; i++){
             const angle = random(TWO_PI)
             this.rays.push({
                 x: this.radius * cos(angle),
                 y: this.radius * sin(angle),
-                z: random(1,zMax)
+                z: random(1,this.zMax)
             })
             
         }
-        const duration = 5000 /*ms*/
+        const duration = 3000 /*ms*/
         AnimationUtils.animate(
             0, 
             100, 
             duration, 
             (s:number) => {
                 for(let i = 0; i < numOfRays; i++){
-                    this.rays[i].z = s > 70 || this.rays[i].z < zMax  // TO DO : change harcoded value (70)
+                    this.rays[i].z = s > 70 || this.rays[i].z < this.zMax  // TO DO : change harcoded value (70)
                         ? this.rays[i].z + 0.05 
                         : 1
                 }
@@ -101,18 +102,20 @@ export class BlackHole4 extends VElement{
     }
 
     private drawRay(ray: Ray): void{
-        this.secondaryColor.setAlpha(200)
-        strokeWeight(2)
-        stroke(this.secondaryColor)
+        
+        const pz = max(ray.z - 0.5, 1)
+        if (pz > this.zMax) return
+
+        const px = ray.x / pz
+        const py = ray.y / pz
         
         const x = ray.x / ray.z
         const y = ray.y / ray.z
-        ellipse(x, y, 1 / ray.z)
         
+        this.secondaryColor.setAlpha(200)
         strokeWeight(2)
-        const pz = max(ray.z - 0.5, 1)
-        const px = ray.x / pz
-        const py = ray.y / pz
+        stroke(this.secondaryColor)
         line(x, y, px, py)
+        ellipse(x, y, 1 / ray.z)
     }  
 }
