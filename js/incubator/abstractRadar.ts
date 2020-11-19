@@ -3,37 +3,54 @@ import {State, VElement} from "../core"
 import {PxPosition, PxSize } from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
+import { AbstractRating } from "./abstractRating"
+import { StarRating } from "./starRating"
+import {ColorUtils} from "../utils"
+
+type RadarData = {[label: string]: number}
 
 export abstract class AbstractRadar extends VElement{
     private readonly centerPosition: PxPosition
-    private readonly labels: VText[]
-    private readonly scales: VText[]
+    private readonly popUp: PopUp
+    private readonly labels: VText[] = []
+    private readonly scales: VText[] = []
     private readonly textSize: number
     private readonly textMargin: number
     
     protected readonly values: number[]
     protected readonly radius: number
 
-    constructor(id: any, pxSize: PxSize, values: number[]){
+    constructor(id: any, pxSize: PxSize, data: RadarData){
         super(id, pxSize, true)
-        this.values = [...values]
+        this.values = new Array(Object.keys(data).length)
 
         this.textSize = style.text.size.xxs
-        const labelsText = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"] 
-        this.labels = Array.from(
-            {length: labelsText.length}, 
-            (_, i) => new VText(labelsText[i], style.text.font, this.textSize, style.text.color.secondary)
-        )
+        for(let label in data){
+            this.labels.push(new VText(label, style.text.font, this.textSize, style.text.color.secondary))
+        }
+
         const numOfCircles = 4
-        this.scales = Array.from(
-            {length: numOfCircles}, 
-            (_, i) => new VText((100 * (i + 1) / numOfCircles).toString() , style.text.font, this.textSize, style.text.color.secondary)
-        )
+        for (let i = 0; i < numOfCircles; i++){
+            this.scales.push(
+                new VText(
+                    (100 * (i + 1) / numOfCircles).toString(), 
+                    style.text.font, 
+                    this.textSize, 
+                    style.text.color.secondary
+                )
+            )
+        }
+
+        this.popUp = new PopUp("-1", new PxSize(250, 250), data) // TO DO: change harcoded value
         textSize(this.textSize)
         textAlign(LEFT, CENTER)
         textFont(style.text.font)
+        const keys = Object.keys(data)
+        const longestLabel = keys.find(
+            label => label.length == Math.max(...keys.map(label => label.length))
+        )
         this.textMargin = (textAscent() + textDescent()) / 2
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - textWidth('Popularity') - this.textMargin
+        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - textWidth(longestLabel as string) - this.textMargin
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
@@ -44,8 +61,9 @@ export abstract class AbstractRadar extends VElement{
             1, 
             duration, 
             (s:number) => {
-                for (let i = 0; i < this.values.length; i++){
-                    this.values[i] = values[i] * s
+                const keys = Object.keys(data)
+                for (let i = 0; i < keys.length; i++){
+                    this.values[i] = data[keys[i]] * s
                 }
             }
         )  
@@ -71,23 +89,25 @@ export abstract class AbstractRadar extends VElement{
 
     private renderPopUp(){
         // Pop up rectangle
-        noStroke()
-        const c = color(red(style.color.d), green(style.color.d), blue(style.color.d), 200)
-        fill(c)
-        rect(0,0,200,200)
+        // noStroke()
+        // const c = color(red(style.color.d), green(style.color.d), blue(style.color.d), 200)
+        // fill(c)
+        // rect(0,0,200,200)
 
-        // Pop up content
-        fill(style.text.color.primary)
-        textSize(style.text.size.s)
-        textAlign(LEFT, TOP)
-        const margin = 10
-        for(let i = 0; i < this.values.length; i++){
-            text(
-                `${this.labels[i].getText()}: ${this.values[i].toFixed(2)}`,
-                margin, 
-                i * (textAscent() + textDescent()) + margin
-            )
-        }
+        // // Pop up content
+        // fill(style.text.color.primary)
+        // textSize(style.text.size.s)
+        // textAlign(LEFT, TOP)
+        // const margin = 10
+        // for(let i = 0; i < this.values.length; i++){
+        //     text(
+        //         `${this.labels[i].getText()}: `,
+        //         margin, 
+        //         i * (textAscent() + textDescent()) + margin
+        //     )
+
+        // }
+        this.popUp.render()
     }
 
     private renderCircle(index: number): void{
@@ -137,4 +157,53 @@ export abstract class AbstractRadar extends VElement{
     }
 
     abstract renderGraph(state: State): void
+}
+
+class PopUp extends VElement{
+    private readonly ratings: AbstractRating[] = []
+    private readonly labels: VText[] = []
+    private readonly size: number
+    private readonly padding: number
+
+    constructor(id: any, pxSize: PxSize, data: RadarData){
+        super(id, pxSize, false)
+        this.padding = 10
+        this.size = style.text.size.xs
+        textSize(this.size)
+        for(let label in data){
+            const width = textWidth(label)
+            this.labels.push(new VText(label, style.text.font, this.size))
+            this.ratings.push(
+                new StarRating(
+                    "-1", 
+                    new PxSize(pxSize.getWidth() - 2 * this.padding - width, textAscent() + textDescent()), // TO DO: proper use of padding
+                    data[label] / 20 // -> [0, 5]
+                )
+            )
+        }
+    }
+
+    render(): void{
+        // Pop up rectangle
+        noStroke()
+        const c = ColorUtils.clone(style.color.d)
+        c.setAlpha(200)
+        fill(c)
+        rect(0, 0, this.getPxSize().getWidth(), this.getPxSize().getHeight())
+
+        // Pop up content
+        fill(style.text.color.primary)
+        textSize(this.size)
+        textAlign(LEFT, TOP)
+        const height = this.ratings[0].getPxSize().getHeight()
+        textSize(this.size)
+        for(let i = 0; i < this.labels.length; i++){
+            push()
+            translate(this.padding, this.padding + (height + this.padding) * i, )
+            this.labels[i].render()
+            translate(textWidth(this.labels[i].getText()) + this.padding, 0)
+            this.ratings[i].render()
+            pop()
+        }
+    }
 }

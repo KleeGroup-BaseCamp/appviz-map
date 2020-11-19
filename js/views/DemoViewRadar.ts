@@ -11,18 +11,24 @@ import {PxPosition, PxSize} from "../layout"
 export class DemoViewRadar implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const pxSize = new PxSize(400, 400)
+        const pxSize = new PxSize(350, 350)
         const values = Array.from({length: 2}, v => Array.from({length: 8}, v => random() * 100))
+        const labels = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"]
+        const data: any = [{}, {}]
+        for (let i = 0; i < values[0].length; i++){
+            data[0][labels[i]] = values[0][i]
+            data[1][labels[i]] = values[1][i]
+        }
         return  [
             new LayerBuilder()
             .addElement(new Card("demo_main", projection.getPxSize(), "Démo Radar"))
             .build(),
             new GridLayerBuilder()
-            .addElement(new SharpRadar("-1", pxSize, values[0]))
-            .addElement(new SmoothRadar("-1", pxSize, values[0]))
+            .addElement(new SharpRadar("-1", pxSize, data[0]))
+            .addElement(new SmoothRadar("-1", pxSize, data[0]))
             .beginRow()
-            .addElement(new SharpRadar("-1", pxSize, values[1]))
-            .addElement(new SmoothRadar("-1", pxSize, values[1]))
+            .addElement(new SharpRadar("-1", pxSize, data[1]))
+            .addElement(new SmoothRadar("-1", pxSize, data[1]))
 
             .build()
         ]
