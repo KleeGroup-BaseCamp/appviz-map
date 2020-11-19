@@ -1,12 +1,45 @@
 import {VElement} from "../core"
-import {PxPosition, PxSize} from "../layout"
+import {PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import * as p5 from "p5"
-import {Easings} from "../utils/easings"
 
-type Bolt = {
-    pos: p5.Vector,
+class Bolt {
+    pos: p5.Vector
     vel: p5.Vector
+    radius : number
+
+    constructor(radius : number){
+        this.radius = radius
+        this.pos = this.createPos()
+        this.vel = createVector(0, 0)
+    }
+    
+    private createPos(): p5.Vector{
+        const rnd = random()
+        const x = this.radius * cos(TWO_PI* rnd)*0.6
+        const y = this.radius * sin(TWO_PI* rnd)*0.6
+        return  createVector(x, y)
+    }       
+
+    public tick():void {
+        this.pos.add(this.vel)
+    
+        let rotation = random(TWO_PI);
+        this.vel.x += cos(rotation) * 0.1
+        this.vel.y += sin(rotation) * 0.1
+        
+        const norm = mag(this.pos.x, this.pos.y)  
+        if (norm  > this.radius || norm < this.radius/3){ 
+            this.pos = this.createPos()
+            this.vel = createVector(0, 0)
+        }
+    }
+    public render():void {
+        line(this.pos.x, 
+            this.pos.y, 
+            this.pos.x + this.vel.x * 2, 
+            this.pos.y + this.vel.y * 2)
+    }
 }
 
 export class BlackHole2 extends VElement{
@@ -18,24 +51,15 @@ export class BlackHole2 extends VElement{
         super(id, pxSize, false)
         const duration = 10000 /*ms*/
         this.radius = min (pxSize.getWidth(), pxSize.getHeight())/2
-        this.bolts = BlackHole2.createBolts(200, this.radius)
+        this.bolts = BlackHole2.createBolts(150, this.radius)
         AnimationUtils.animate(0, 1000, duration, (i)=> {})
     }
 
-    private static createBolt(_radius : number):Bolt{
-        const rnd = random()
-        const x = _radius * cos(TWO_PI* rnd)*0.75
-        const y = _radius * sin(TWO_PI* rnd)*0.75
-        return  { 
-            pos :  createVector(x, y),
-            vel :  createVector(0, 0)
-        }
-    }
 
     private static createBolts(num : number, _radius : number) : Bolt[] {
         const _bolts = []  
         for (let i = 0; i < num; i++) {
-            _bolts.push(BlackHole2.createBolt(_radius))
+            _bolts.push(new Bolt(_radius))
         }
         return _bolts
     }
@@ -45,25 +69,9 @@ export class BlackHole2 extends VElement{
         translate(this.getWidth()/2, this.getHeight()/2)
         colorMode(HSB);
         stroke(frameCount% 255, 255, 255);
-//        colorMode(RGB);
-//        stroke(frameCount% 255, 255/frameCount, 255/frameCount);
         for (let bolt of this.bolts)  {
-            bolt.pos.add(bolt.vel)
-    
-            let rotation = random(TWO_PI);
-            bolt.vel.x += cos(rotation) * 0.1
-            bolt.vel.y += sin(rotation) * 0.1
-            
-            const norm = mag(bolt.pos.x, bolt.pos.y)  
-            if (norm  > this.radius || norm < this.radius/3){ 
-                const b = BlackHole2.createBolt(this.radius)
-                bolt.pos = b.pos
-                bolt.vel = b.vel
-            }
-            line(bolt.pos.x, 
-                bolt.pos.y, 
-                bolt.pos.x + bolt.vel.x * 2, 
-                bolt.pos.y + bolt.vel.y * 2)
+            bolt.tick()
+            bolt.render()
         }
         pop()
     }    
