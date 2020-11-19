@@ -140,12 +140,12 @@ class PopUp extends VElement{
     private readonly size: number
     private readonly padding: number
 
-    constructor(id: any, pxSize: PxSize, data: RadarData){
+    constructor(id: any, pxSize: PxSize, value: RadarData){
         super(id, pxSize, false)
         this.padding = 10
         this.size = style.text.size.xs
         textSize(this.size)
-        for(let label in data){
+        for(let label in value){
             const text = `${label}:`
             const width = textWidth(text)
             this.labels.push(new VText(text, style.text.font, this.size))
@@ -153,7 +153,7 @@ class PopUp extends VElement{
                 new StarRating(
                     "-1", 
                     new PxSize(pxSize.getWidth() - 2 * this.padding - width, textAscent() + textDescent()), // TO DO: proper use of padding
-                    data[label] / 20 // -> [0, 5]
+                    value[label] / 20 // -> [0, 5]
                 )
             )
         }
