@@ -5,11 +5,11 @@ import * as p5 from "p5"
 import {Easings} from "../utils/easings"
 import {BiColorGauge} from "./biColorGauge"
 
-type Ray = {
-    readonly x: number,
-    readonly y: number,
-    z: number
-}
+// type Ray = {
+//     readonly x: number,
+//     readonly y: number,
+//     z: number
+// }
 
 export class BlackHole4 extends VElement{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")
@@ -39,11 +39,13 @@ export class BlackHole4 extends VElement{
         this.zMax = 4
         for(let i = 0; i < numOfRays; i++){
             const angle = random(TWO_PI)
-            this.rays.push({
-                x: this.radius * cos(angle),
-                y: this.radius * sin(angle),
-                z: random(1,this.zMax)
-            })
+            this.rays.push(
+                new Ray(
+                    this.radius * cos(angle), 
+                    this.radius * sin(angle), 
+                    random(1, this.zMax)
+                )
+            )
             
         }
         const duration = 3000 /*ms*/
@@ -53,9 +55,10 @@ export class BlackHole4 extends VElement{
             duration, 
             (s:number) => {
                 for(let i = 0; i < numOfRays; i++){
-                    this.rays[i].z = s > 60 || this.rays[i].z < this.zMax  // TO DO : change harcoded value (70)
-                        ? this.rays[i].z + 0.05 
+                    const z = s > 60 || this.rays[i].getZ() < this.zMax  // TO DO : change harcoded value (70)
+                        ? this.rays[i].getZ() + 0.05 
                         : 1
+                    this.rays[i].setZ(z)
                 }
             }, 
             new Easings().linear
@@ -85,7 +88,7 @@ export class BlackHole4 extends VElement{
 
         // Trails
         for(let ray of this.rays){
-            this.drawRay(ray)
+            ray.render(this.zMax, this.secondaryColor)
         }
 
         // Black Hole
@@ -101,20 +104,50 @@ export class BlackHole4 extends VElement{
         this.gauge.render()
     }
 
-    private drawRay(ray: Ray): void{
-        
-        const pz = max(ray.z - 1, 1)
-        if (pz > this.zMax) return
+      
+}
 
-        const px = ray.x / pz
-        const py = ray.y / pz
+
+class Ray {
+    private readonly x: number
+    private readonly y: number
+    private z: number
+
+    constructor(x: number, y: number, z: number){
+        this.x = x
+        this.y = y
+        this.z = z
+    }
+
+    public getX(): number{
+        return this.x
+    }
+
+    public getY(): number{
+        return this.y
+    }
+
+    public getZ(): number{
+        return this.z
+    }
+
+    public setZ(z: number): void{
+        this.z = z
+    }
+
+    public render(zMax: number, color: p5.Color): void{
+        const pz = max(this.getZ() - 1, 1)
+        if (pz > zMax) return
+
+        const px = this.getX() / pz
+        const py = this.getY() / pz
         
-        const x = ray.x / ray.z
-        const y = ray.y / ray.z
+        const x = this.getX() / this.getZ()
+        const y = this.getY() / this.getZ()
         
-        this.secondaryColor.setAlpha(200)
+        color.setAlpha(200)
         strokeWeight(2)
-        stroke(this.secondaryColor)
+        stroke(color)
         line(x, y, px, py)
-    }  
+    }
 }
