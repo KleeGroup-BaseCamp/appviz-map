@@ -6,6 +6,7 @@ export * from "./tickMarksGauge"
 export * from "./biColorGauge"
 
 export * from "./signal"
+export * from "./signalBars"
 
 // TO DO: Use better naming & (maybe) a subfolder for rating implementations
 export * from "./squareRating"

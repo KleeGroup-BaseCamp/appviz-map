@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {Signal} from "../incubator" 
+import {Signal, SignalBars} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewSignal implements View {
@@ -31,6 +31,13 @@ export class DemoViewSignal implements View {
                 .addElement(new Signal("-1", pxSize2, 3))
                 .addElement(new Signal("-1", pxSize2, 4))
                 .addElement(new Signal("-1", pxSize2, 5))
+                .beginRow()
+                .addElement(new SignalBars("-1", pxSize, 0))
+                .addElement(new SignalBars("-1", pxSize, 1))
+                .addElement(new SignalBars("-1", pxSize, 2))
+                .addElement(new SignalBars("-1", pxSize, 3))
+                .addElement(new SignalBars("-1", pxSize, 4))
+                .addElement(new SignalBars("-1", pxSize, 5))
                 .build()
         ]
     }

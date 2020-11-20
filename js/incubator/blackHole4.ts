@@ -5,12 +5,6 @@ import * as p5 from "p5"
 import {Easings} from "../utils/easings"
 import {BiColorGauge} from "./biColorGauge"
 
-// type Ray = {
-//     readonly x: number,
-//     readonly y: number,
-//     z: number
-// }
-
 export class BlackHole4 extends VElement{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")
     private readonly secondaryColor: p5.Color = color("HotPink")
@@ -62,8 +56,7 @@ export class BlackHole4 extends VElement{
                 }
             }, 
             new Easings().linear
-        )
-        
+        ) 
     }
                 
     public render() : void {
