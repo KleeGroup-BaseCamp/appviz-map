@@ -6,19 +6,19 @@ import {AnimationUtils} from "../utils"
 export abstract class AbstractRating extends VElement{
     //How many icons are displayed ?
     private readonly icons: number  = 5
-    protected value: number
+    protected rate: number
 
-    constructor(id: any, pxSize: PxSize, value: number){
+    constructor(id: any, pxSize: PxSize, rate: number){
         super(id, pxSize, false)
-        this.value = value
+        this.rate = rate
         const duration = 1000 /*ms*/
-        AnimationUtils.animate(0, this.icons, duration, (s:number) => this.value = min(s,value) )
+        AnimationUtils.animate(0, this.icons, duration, (s:number) => this.rate = min(s,rate) )
     }
 
     public render(){
         const margin = 3
         const size = min(this.getPxSize().getHeight(), this.getPxSize().getWidth() / this.icons - margin)
-        let v = this.value
+        let v = this.rate
         push()
         for(let i = 0; i < this.icons; i++){
             // square(0,0, size)

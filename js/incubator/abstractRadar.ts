@@ -114,11 +114,12 @@ export abstract class AbstractRadar extends VElement{
         const dimension = this.values.length
         const angleStep = TWO_PI / dimension
         for(let i = 0; i  < dimension; i++){
-            const x = this.radius * cos(- HALF_PI + angleStep * i)
-            const y = this.radius * sin(- HALF_PI + angleStep * i)
+            const alpha = - HALF_PI + angleStep * i
+            const x = this.radius * cos(alpha)
+            const y = this.radius * sin(alpha)
             line(0, 0, x, y)
             push()
-            translate(x + this.textMargin * cos(- HALF_PI + angleStep * i), y + this.textMargin * sin(- HALF_PI + angleStep * i))
+            translate(x + this.textMargin * cos(alpha), y + this.textMargin * sin(alpha))
             if(angleStep * i % PI === 0){
                 textAlign(CENTER, CENTER)
             } else if (angleStep * i < PI){
