@@ -19,8 +19,11 @@ export class DemoViewProgressBar implements View {
                 .build(),
             new GridLayerBuilder()
                 .addElement(new BiColorProgressBar("-1", pxSize, 0))
-                .addElement(new BiColorProgressBar("-1", pxSize, 50).withColors(style.color.b))
-                .addElement(new BiColorProgressBar("-1", pxSize, 100).withColors(style.color.a, style.color.c))
+                .addElement(new BiColorProgressBar("-1", pxSize, 50)
+                    .withLeftColor(style.color.b))
+                .addElement(new BiColorProgressBar("-1", pxSize, 100)
+                    .withLeftColor(style.color.a)
+                    .withRightColor(style.color.c))
                 .beginRow()
                 .addElement(new StripesProgressBar("-1", pxSize2, 0))
                 .addElement(new StripesProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c))

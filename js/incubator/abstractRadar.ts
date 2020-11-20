@@ -16,9 +16,9 @@ export abstract class AbstractRadar extends VElement{
     private readonly scales: VText[] = []
     private readonly textSize: number
     private readonly textMargin: number
+    protected readonly radius: number
     
     protected readonly values: number[]
-    protected readonly radius: number
 
     constructor(id: any, pxSize: PxSize, data: RadarData){
         super(id, pxSize, true)

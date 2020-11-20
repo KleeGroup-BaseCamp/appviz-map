@@ -6,6 +6,7 @@ import {AnimationUtils} from "../utils"
 export abstract class AbstractRating extends VElement{
     //How many icons are displayed ?
     private readonly icons: number  = 5
+
     protected rate: number
 
     constructor(id: any, pxSize: PxSize, rate: number){

@@ -8,9 +8,10 @@ import { PxSize } from "../layout"
 export class BiColorProgressBar extends VElement{
     private readonly vtext: VText
     private readonly size: number
-    
-    private primaryColor: p5.Color
-    private secondaryColor: p5.Color | undefined
+
+    private leftColor: p5.Color = style.color.a
+    private rightColor? : p5.Color
+
     private percent: number
 
     constructor(id: any, pxSize: PxSize, percent: number) {
@@ -18,11 +19,19 @@ export class BiColorProgressBar extends VElement{
         this.percent  = percent
         this.size = style.text.size.s
         this.vtext = new VText("", style.text.font, this.size)
-        this.primaryColor = style.color.a
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
     
+    public withLeftColor(leftColor: p5.Color): BiColorProgressBar{
+        this.leftColor = leftColor
+        return this
+    }
+    public withRightColor(rightColor: p5.Color): BiColorProgressBar{
+        this.rightColor = rightColor
+        return this
+    }
+
     public render(): void {
         push()
         translate(0, this.getPxSize().getHeight() / 2)
@@ -50,17 +59,19 @@ export class BiColorProgressBar extends VElement{
         stroke(style.color.front)
         line(0, 0, barWidth, 0)
         
-        if(!this.secondaryColor){
-            stroke(this.primaryColor)
-            line(0, 0, filledWidth, 0)
-        } else{
+        //There is always a color on the left 
+        stroke(this.leftColor)
+        line(0, 0, filledWidth, 0)
+    
+        //If there is a color on the right 
+        if( this.rightColor){
             const transitionRatio = 1 / 5
             const transitionWidth = filledWidth * transitionRatio
             const transitionStart = (filledWidth - transitionWidth) / 2
             const numOfLines = 10
             
             for (let i = 0; i < numOfLines; i++){
-                stroke(lerpColor(this.primaryColor, this.secondaryColor, i / numOfLines))
+                stroke(lerpColor(this.rightColor, this.leftColor, i / numOfLines))
                 line(
                     transitionStart + transitionWidth * i / numOfLines, 
                     0, 
@@ -68,18 +79,9 @@ export class BiColorProgressBar extends VElement{
                     0
                 )
             }
-            stroke(this.secondaryColor)
-            line(transitionStart + transitionWidth, 0, filledWidth, 0)
-
             // Fill beginning last to have primaryColor when percent = 0
-            stroke(this.primaryColor)
+            stroke(this.rightColor)
             line(0, 0, transitionStart , 0)
         }
-    }
-
-    public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): BiColorProgressBar{
-        this.primaryColor = primaryColor
-        this.secondaryColor = secondaryColor
-        return this
     }
 }
