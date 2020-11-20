@@ -20,13 +20,13 @@ export class Battery extends VElement{
     private readonly maxBubbleSize : number
     private readonly bubbles : Bubble[] = []
 
-    private value: number
+    private percent: number
     private maxAmplitude: number
     private time: number // TO DO: Use better name
 
-    constructor(id: any, pxSize: PxSize, value: number){ // value -> intensity ?
+    constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
-        this.value = value
+        this.percent = percent
         this.maxAmplitude = 0 
         this.time = 0
         this.maxBubbleSize = 8
@@ -44,7 +44,7 @@ export class Battery extends VElement{
             })
         }
         const duration = 3000 /*ms*/
-        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
         AnimationUtils.animate(50, 0, duration * 10, (s:number) => this.maxAmplitude = s)
         AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
         for(let bubble of this.bubbles){
@@ -118,7 +118,7 @@ export class Battery extends VElement{
     private renderWaves(): void{
         const barHeight = this.getPxSize().getHeight() - this.padding * 2 - this.topMargin
         const barWidth = this.getPxSize().getWidth() - this.padding * 2
-        const yFill = barHeight * (1 - this.value / 100) // y coordinate of "liquid" surface
+        const yFill = barHeight * (1 - this.percent / 100) // y coordinate of "liquid" surface
 
         const period = 15
         const fillHeight = barHeight - yFill 

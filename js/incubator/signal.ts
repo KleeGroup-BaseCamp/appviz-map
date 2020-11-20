@@ -9,11 +9,11 @@ export class Signal extends VElement{
     private readonly circleCenterPosition: PxPosition
     private readonly weight: number
 
-    private value: number
+    private rate: number
 
-    constructor(id: any, pxSize: PxSize, value: number){
+    constructor(id: any, pxSize: PxSize, rate: number){
         super(id, pxSize, false)
-        this.value = value
+        this.rate = rate
         this.weight = 6
         this.circleCenterPosition = new PxPosition(
             pxSize.getWidth() / 2,
@@ -24,7 +24,7 @@ export class Signal extends VElement{
             (pxSize.getWidth() - 2 * this.weight) / sqrt(2)
         )
         const duration = 1000 /*ms*/
-        AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+        AnimationUtils.animate(0, rate, duration, (s:number) => this.rate = s)
     }
 
     public render() : void {
@@ -56,7 +56,7 @@ export class Signal extends VElement{
     }
 
     private pickColor(i:number): p5.Color{
-        return this.value > i ? style.text.color.primary : style.color.front
+        return this.rate > i ? style.text.color.primary : style.color.front
     }
 
     private renderCircle(circleRadius: number): void{
