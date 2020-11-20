@@ -18,7 +18,7 @@ export class SignalBars extends VElement{
     public render() : void {
         noStroke()
         const padding = 5
-        const numOfBars = 4
+        const numOfBars = 5
         const barWidth = (this.getPxSize().getWidth() - (numOfBars - 1) * padding) / numOfBars
         const maxHeight = this.getPxSize().getHeight()
         for (let i = 0; i < numOfBars; i++){
