@@ -153,7 +153,7 @@ class PopUp extends VElement{
             this.ratings.push(
                 new StarRating(
                     "-1", 
-                    new PxSize(pxSize.getWidth() - 2 * this.padding - width, textAscent() + textDescent()), // TO DO: proper use of padding
+                    new PxSize(pxSize.getWidth() - 3 * this.padding - width, textAscent() + textDescent()), // TO DO: proper use of padding
                     value[label] / 20 // -> [0, 5]
                 )
             )
@@ -166,20 +166,19 @@ class PopUp extends VElement{
         const c = ColorUtils.clone(style.color.a)
         c.setAlpha(150)
         fill(c)
-        // const maxLabelwidth = Math.max(...this.labels.map(label => textWidth(label.getText()))) // CC Abstract radar --> Make utils method ?
         rect(0, 0, this.getPxSize().getWidth(), this.getPxSize().getHeight())
-
+        
         // Pop up content
         fill(style.text.color.primary)
         textSize(this.size)
         textAlign(LEFT, TOP)
+        const maxLabelwidth = Math.max(...this.labels.map(label => textWidth(label.getText()))) // CC constructor --> Make utils method ?
         const height = this.ratings[0].getPxSize().getHeight()
-        textSize(this.size)
         for(let i = 0; i < this.labels.length; i++){
             push()
             translate(this.padding, this.padding + (height + this.padding) * i, )
             this.labels[i].render()
-            translate(textWidth(this.labels[i].getText()) + this.padding, 0)
+            translate(maxLabelwidth + this.padding, 0)
             this.ratings[i].render()
             pop()
         }

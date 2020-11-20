@@ -56,7 +56,8 @@ export class Battery extends VElement{
                 duration * 3, 
                 (s:number) => {
                     const coneWidth = barWidth * (barHeight - s) / barHeight
-                    const xLimit = (barWidth - coneWidth) / 2 + coneWidth * bubble.id / (numOfBubbles - 1)// Bubble tends to be around this position
+                    // Bubble tends to be around this position
+                    const xLimit = (barWidth - coneWidth) / 2 + coneWidth * bubble.id / (numOfBubbles - 1) 
                     const x = min(
                         max(
                             bubble.position.getX() + sin(s / (5 + bubble.id)) + (xLimit - bubble.position.getX()) * random(0.1),
@@ -81,14 +82,10 @@ export class Battery extends VElement{
     public render() : void {
         push()
         translate(this.padding, this.padding + this.topMargin)
-        //Render waves
         this.renderWaves()
-
-        // Render bubbles
         this.renderBubbles()
         pop()
 
-        // Render container
         this.renderContainer()
     }
 
@@ -129,13 +126,11 @@ export class Battery extends VElement{
 
         noStroke()
         // First wave
-        // stroke(this.secondaryColor)
         fill(this.secondaryColor)
         blendMode(LIGHTEST);
         this.renderWave(yFill, barWidth, barHeight, amplitude, period, QUARTER_PI) 
 
         // Second wave
-        // stroke(this.primaryColor)
         fill(this.primaryColor)
         this.renderWave(yFill, barWidth, barHeight, amplitude/2, period*2, -QUARTER_PI) 
     }
