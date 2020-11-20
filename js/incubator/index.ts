@@ -6,6 +6,7 @@ export * from "./tickMarksGauge"
 export * from "./biColorGauge"
 
 export * from "./biColorProgressBar"
+export * from "./stripesProgressBar"
 
 export * from "./signal"
 export * from "./signalBars"
