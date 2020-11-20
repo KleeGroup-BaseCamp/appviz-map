@@ -5,6 +5,8 @@ export * from "./gauge"
 export * from "./tickMarksGauge"
 export * from "./biColorGauge"
 
+export * from "./biColorProgressBar"
+
 export * from "./signal"
 export * from "./signalBars"
 
