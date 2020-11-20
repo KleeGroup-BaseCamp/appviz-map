@@ -1,5 +1,6 @@
 import {VElement, State} from "../core"
 import {PxPosition} from "../layout"
+import {AnimationUtils} from "../utils"
 import {debug, style} from "../app"
 
 export type PositionedElement = {pxPosition: PxPosition, element: VElement}
@@ -16,6 +17,7 @@ export class Layer {
       fill('green'); 
       textSize(30)
       text("Frame rate : " + frameRate(), 50 , 30); 
+      text("Animations : " + AnimationUtils.count(), 50 , 50); 
     }  
 
     for (let positionedElement of this.positionedElements) {

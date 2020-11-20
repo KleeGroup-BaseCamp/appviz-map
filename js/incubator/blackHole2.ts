@@ -21,7 +21,7 @@ class Bolt {
         return  createVector(x, y)
     }       
 
-    public tick():void {
+    public update():void {
         this.pos.add(this.vel)
     
         let rotation = random(TWO_PI);
@@ -70,7 +70,7 @@ export class BlackHole2 extends VElement{
         colorMode(HSB);
         stroke(frameCount% 255, 255, 255);
         for (let bolt of this.bolts)  {
-            bolt.tick()
+            bolt.update()
             bolt.render()
         }
         pop()

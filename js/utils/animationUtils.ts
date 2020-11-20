@@ -9,6 +9,10 @@ export class AnimationUtils {
         return AnimationUtils.animations > 0
     }    
 
+    public static count ():  number{
+        return AnimationUtils.animations
+    }    
+
     private static setInterval(fun: (...args: any[]) => void, interval: number) : any{
         AnimationUtils.animations ++
         return setInterval(fun, interval)
