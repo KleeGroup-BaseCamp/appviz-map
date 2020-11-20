@@ -14,14 +14,10 @@ export class BlackHole4 extends VElement{
     private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly rays: Ray[] = []
-    private readonly zMax: number
-    
-    private percent: number
     
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
         this.gauge = new BiColorGauge("-1", pxSize, percent)
-        this.percent = percent
         this.weight = 5
         const margin = 10
         this.radius = (min(pxSize.getHeight(), pxSize.getWidth()) - this.weight - this.gauge.weight - margin) / 2
@@ -30,31 +26,16 @@ export class BlackHole4 extends VElement{
             pxSize.getHeight() / 2
             )
         const numOfRays = 200 // TODO: = f(percent)
-        this.zMax = 4
         for(let i = 0; i < numOfRays; i++){
             const angle = random(TWO_PI)
-            this.rays.push(
-                new Ray(
-                    this.radius * cos(angle), 
-                    this.radius * sin(angle), 
-                    random(1, this.zMax)
-                )
-            )
-            
+            this.rays.push(new Ray(this.radius))
         }
         const duration = 3000 /*ms*/
         AnimationUtils.animate(
             0, 
             100, 
             duration, 
-            (s:number) => {
-                for(let i = 0; i < numOfRays; i++){
-                    const z = s > 60 || this.rays[i].getZ() < this.zMax  // TO DO : change harcoded value (70)
-                        ? this.rays[i].getZ() + 0.05 
-                        : 1
-                    this.rays[i].setZ(z)
-                }
-            }, 
+            (s:number) => this.rays.forEach(ray=>ray.update(s)),
             new Easings().linear
         ) 
     }
@@ -81,7 +62,7 @@ export class BlackHole4 extends VElement{
 
         // Trails
         for(let ray of this.rays){
-            ray.render(this.zMax, this.secondaryColor)
+            ray.render(this.secondaryColor)
         }
 
         // Black Hole
@@ -102,41 +83,37 @@ export class BlackHole4 extends VElement{
 
 
 class Ray {
+    private readonly zMax: number = 4
     private readonly x: number
     private readonly y: number
     private z: number
 
-    constructor(x: number, y: number, z: number){
-        this.x = x
-        this.y = y
-        this.z = z
+    constructor(radius: number){
+        const angle = random(TWO_PI)
+        this.x = radius * cos(angle), 
+        this.y = radius * sin(angle), 
+        this.z = random(1, this.zMax)
     }
 
-    public getX(): number{
-        return this.x
-    }
-
-    public getY(): number{
-        return this.y
-    }
-
-    public getZ(): number{
-        return this.z
+    public update (progressPercent: number){
+        this.z= progressPercent > 60 || this.z < this.zMax  
+        ? this.z + 0.05 
+        : 1
     }
 
     public setZ(z: number): void{
         this.z = z
     }
 
-    public render(zMax: number, color: p5.Color): void{
-        const pz = max(this.getZ() - 1, 1)
-        if (pz > zMax) return
+    public render( color: p5.Color): void{
+        const pz = max(this.z - 1, 1)
+        if (pz > this.zMax) return
 
-        const px = this.getX() / pz
-        const py = this.getY() / pz
+        const px = this.x / pz
+        const py = this.y / pz
         
-        const x = this.getX() / this.getZ()
-        const y = this.getY() / this.getZ()
+        const x = this.x / this.z
+        const y = this.y / this.z
         
         color.setAlpha(200)
         strokeWeight(2)

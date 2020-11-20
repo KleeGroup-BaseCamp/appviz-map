@@ -3,7 +3,8 @@ import { VText } from "../components";
 import { AnimationUtils } from "../utils";
 import {VElement} from "../core"
 import { PxPosition, PxSize } from "../layout"
-import { style } from "../app";
+import { style } from "../app"
+
 export class Hexagon extends VElement {
     private readonly circumCenter: PxPosition
     private readonly circumRadius: number
