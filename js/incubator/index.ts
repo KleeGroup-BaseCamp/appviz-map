@@ -1,24 +1,24 @@
 export * from "./light"
 export * from "./battery"
 
-export * from "./gauge"
-export * from "./tickMarksGauge"
-export * from "./biColorGauge"
+export * from "./gauge/gauge"
+export * from "./gauge/tickMarksGauge"
+export * from "./gauge/biColorGauge"
 
-export * from "./biColorProgressBar"
-export * from "./stripesProgressBar"
+export * from "./progressbar/biColorProgressBar"
+export * from "./progressbar/stripesProgressBar"
 
-export * from "./signal"
-export * from "./signalBars"
+export * from "./signal/signal"
+export * from "./signal/signalBars"
 
 // TO DO: Use better naming & (maybe) a subfolder for rating implementations
-export * from "./squareRating"
-export * from "./imageRating" // PNG
-export * from "./heartRating" // Vertices (simple)
-export * from "./starRating" // Vertices (simple)
+export * from "./rating/squareRating"
+export * from "./rating/ImageRating" // PNG
+export * from "./rating/heartRating" // Vertices (simple)
+export * from "./rating/starRating" // Vertices (simple)
 
-export * from "./sharpRadar"
-export * from "./smoothRadar"
+export * from "./radar/sharpRadar"
+export * from "./radar/smoothRadar"
 
 export * from "./blackHole"
 export * from "./blackHole2"
