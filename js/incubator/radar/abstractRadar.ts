@@ -3,7 +3,7 @@ import {State, VElement} from "../../core"
 import {PxPosition, PxSize } from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../app"
-import { AbstractRating } from "../abstractRating"
+import { AbstractRating } from "../rating/abstractRating"
 import { StarRating } from "../rating/starRating"
 import {ColorUtils} from "../../utils"
 
