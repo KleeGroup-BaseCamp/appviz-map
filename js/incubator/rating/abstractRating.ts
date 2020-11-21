@@ -1,7 +1,7 @@
-import {style} from "../app";
-import {VElement} from "../core";
-import {PxSize} from "../layout";
-import {AnimationUtils} from "../utils"
+import {style} from "../../app";
+import {VElement} from "../../core";
+import {PxSize} from "../../layout";
+import {AnimationUtils} from "../../utils"
 
 export abstract class AbstractRating extends VElement{
     //How many icons are displayed ?

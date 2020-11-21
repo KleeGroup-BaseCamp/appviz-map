@@ -1,9 +1,9 @@
 import * as p5 from "p5"
-import {VText} from "../components"
-import {VElement} from "../core"
-import {PxPosition, PxSize } from "../layout"
-import {AnimationUtils} from "../utils"
-import {style} from "../app"
+import {VText} from "../../components"
+import {VElement} from "../../core"
+import {PxPosition, PxSize } from "../../layout"
+import {AnimationUtils} from "../../utils"
+import {style} from "../../app"
 
 export class TickMarksGauge extends VElement{
     private readonly primaryColor: p5.Color = style.color.a
