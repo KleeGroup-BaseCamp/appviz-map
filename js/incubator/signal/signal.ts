@@ -1,8 +1,8 @@
 import * as p5 from "p5"
-import {VElement} from "../core"
-import {PxPosition, PxSize} from "../layout"
-import {AnimationUtils} from "../utils"
-import {style} from "../app"
+import {VElement} from "../../core"
+import {PxPosition, PxSize} from "../../layout"
+import {AnimationUtils} from "../../utils"
+import {style} from "../../app"
 
 export class Signal extends VElement{
     private readonly radius: number

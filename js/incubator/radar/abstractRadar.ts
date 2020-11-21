@@ -1,11 +1,11 @@
-import {VText} from "../components"
-import {State, VElement} from "../core"
-import {PxPosition, PxSize } from "../layout"
-import {AnimationUtils} from "../utils"
-import {style} from "../app"
-import { AbstractRating } from "./abstractRating"
-import { StarRating } from "./starRating"
-import {ColorUtils} from "../utils"
+import {VText} from "../../components"
+import {State, VElement} from "../../core"
+import {PxPosition, PxSize } from "../../layout"
+import {AnimationUtils} from "../../utils"
+import {style} from "../../app"
+import { AbstractRating } from "../abstractRating"
+import { StarRating } from "../rating/starRating"
+import {ColorUtils} from "../../utils"
 
 type RadarData = {[label: string]: number}
 

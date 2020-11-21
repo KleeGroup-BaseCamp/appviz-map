@@ -1,5 +1,5 @@
 import {AbstractRating} from "./abstractRating"
-import {style } from "../app"
+import {style } from "../../app"
 
 export class SquareRating extends AbstractRating{
     

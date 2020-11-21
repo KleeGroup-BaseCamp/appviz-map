@@ -3,7 +3,7 @@ import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import * as p5 from "p5"
 import {Easings} from "../utils/easings"
-import {BiColorGauge} from "./biColorGauge"
+import {BiColorGauge} from "./gauge/biColorGauge"
 
 type Trail = {
     start: number,

@@ -1,9 +1,9 @@
 import * as p5 from "p5"
-import {style} from "../app"
-import {VText} from "../components"
-import {AnimationUtils} from "../utils"
-import { VElement } from "../core"
-import { PxSize } from "../layout"
+import {style} from "../../app"
+import {VText} from "../../components"
+import {AnimationUtils} from "../../utils"
+import { VElement } from "../../core"
+import { PxSize } from "../../layout"
 
 export class BiColorProgressBar extends VElement{
     private readonly vtext: VText

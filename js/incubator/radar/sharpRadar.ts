@@ -1,4 +1,4 @@
-import {style} from "../app"
+import {style} from "../../app"
 import { AbstractRadar } from "./abstractRadar"
 
 export class SharpRadar extends AbstractRadar{

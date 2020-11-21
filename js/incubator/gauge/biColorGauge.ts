@@ -1,8 +1,8 @@
-import {VText} from "../components"
-import {VElement} from "../core"
-import {PxPosition, PxSize} from "../layout"
-import {AnimationUtils} from "../utils"
-import {style} from "../app"
+import {VText} from "../../components"
+import {VElement} from "../../core"
+import {PxPosition, PxSize} from "../../layout"
+import {AnimationUtils} from "../../utils"
+import {style} from "../../app"
 import * as p5 from "p5"
 
 export class BiColorGauge extends VElement{
