@@ -1,7 +1,7 @@
 import {VText} from "../../components"
 import {State, VElement} from "../../core"
 import {PxPosition, PxSize } from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, ColorUtils} from "../../utils"
 import {style} from "../../app"
 import {PopUp} from "./popup"
 
@@ -16,7 +16,7 @@ export abstract class AbstractRadar extends VElement{
     private readonly textMargin: number
     protected readonly radius: number
     
-    protected readonly values: number[]
+    protected readonly values: number[] 
 
     constructor(id: any, pxSize: PxSize, data: RadarData){
         super(id, pxSize, true)
@@ -127,7 +127,7 @@ export abstract class AbstractRadar extends VElement{
 
     doRenderGraph(state: State): void {
         strokeWeight(2)
-        const c = color(red(style.color.a), green(style.color.a), blue(style.color.a)) // Deep copy
+        const c = ColorUtils.clone(style.color.a)
         stroke(c)
         c.setAlpha(50)
         fill(c) 
