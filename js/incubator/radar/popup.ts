@@ -46,6 +46,7 @@ export class PopUp extends VElement{
     } 
  
     renderContent(): void{        
+        noStroke()
         fill(style.text.color.primary)
         textSize(this.size)
         textAlign(LEFT, TOP)

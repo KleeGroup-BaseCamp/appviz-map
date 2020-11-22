@@ -69,14 +69,9 @@ export abstract class AbstractRadar extends VElement{
         push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.renderRadar()
-
-        strokeWeight(2)
-        const c = color(red(style.color.a), green(style.color.a), blue(style.color.a)) // Deep copy
-        stroke(c)
-        c.setAlpha(50)
-        fill(c) 
-        this.renderGraph(state)
+        this.doRenderGraph(state)
         pop()
+
         if (state.isHovered(this)){
             if (mouseX)
             this.popUp.render()
@@ -128,6 +123,15 @@ export abstract class AbstractRadar extends VElement{
             this.labels[i].render()
             pop()
         }
+    }
+
+    doRenderGraph(state: State): void {
+        strokeWeight(2)
+        const c = color(red(style.color.a), green(style.color.a), blue(style.color.a)) // Deep copy
+        stroke(c)
+        c.setAlpha(50)
+        fill(c) 
+        this.renderGraph(state)
     }
 
     abstract renderGraph(state: State): void
