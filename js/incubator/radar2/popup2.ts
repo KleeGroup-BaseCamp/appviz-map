@@ -5,15 +5,15 @@ import {style} from "../../app"
 import {AbstractRating } from "../rating/abstractRating"
 import {StarRating } from "../rating/starRating"
 import {ColorUtils} from "../../utils"
-import {RadarData} from "./RadarData"
+import {RadarData2} from "./RadarData2"
 
-export class PopUp extends VElement{
+export class PopUp2 extends VElement{
     private readonly ratings: AbstractRating[] = []
     private readonly labels: VText[] = []
     private readonly size: number
     private readonly padding: number
 
-    constructor(id: any, pxSize: PxSize, value: RadarData){
+    constructor(id: any, pxSize: PxSize, value: RadarData2){
         super(id, pxSize, false)
         this.padding = 10
         this.size = style.text.size.xs

@@ -1,11 +1,11 @@
-import p5 from "p5"
+import * as p5 from "p5"
 
-export type RadarData = {[label: string]: number}
+export type RadarData2 = {[label: string]: number}
 
-export class RadarDataSystem {
+export class RadarDataSystem2 {
     public readonly  points :p5.Vector[]= []
     
-    constructor(radarData : RadarData, radius: number){
+    constructor(radarData : RadarData2, radius: number){
         const keys = Object.keys(radarData)
         const angleStep = TWO_PI / keys.length
 

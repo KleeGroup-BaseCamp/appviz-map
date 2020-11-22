@@ -1,7 +1,7 @@
-import p5 from "p5"
-import {AbstractRadar} from "./abstractRadar"
+import * as p5 from "p5"
+import {AbstractRadar2} from "./abstractRadar2"
 
-export class SharpRadar extends AbstractRadar {
+export class SharpRadar2 extends AbstractRadar2 {
 
     renderGraph(): void{
         beginShape()

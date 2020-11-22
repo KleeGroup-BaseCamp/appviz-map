@@ -1,26 +1,26 @@
 import {VText} from "../../components"
 import {State, VElement} from "../../core"
 import {PxPosition, PxSize } from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, ColorUtils} from "../../utils"
 import {style} from "../../app"
-import {PopUp} from "./popup"
-import {RadarData, RadarDataSystem} from "./radarData"
+import {PopUp2} from "./popup2"
+import {RadarData2, RadarDataSystem2} from "./radarData2"
 
 
-export abstract class AbstractRadar extends VElement{
+export abstract class AbstractRadar2 extends VElement{
     private readonly centerPosition: PxPosition
-    private readonly popUp: PopUp
+    private readonly popUp: PopUp2
     private readonly labels: VText[] = []
     private readonly scales: VText[] = []
     private readonly textSize: number= style.text.size.xxs
     private readonly textMargin: number
     private readonly radius: number
     
-    protected readonly radarDataSystem : RadarDataSystem
+    protected readonly radarDataSystem : RadarDataSystem2
 
-    protected progressRatio : number
+    protected progressRatio : number = 0
 
-    constructor(id: any, pxSize: PxSize, radarData: RadarData){
+    constructor(id: any, pxSize: PxSize, radarData: RadarData2){
         super(id, pxSize, true)
 
         for(let label in radarData){
@@ -39,7 +39,7 @@ export abstract class AbstractRadar extends VElement{
             )
         }
 
-        this.popUp = new PopUp("-1", new PxSize(250, 250), radarData) // TO DO: change harcoded value
+        this.popUp = new PopUp2("-1", new PxSize(250, 250), radarData) // TO DO: change harcoded value
         textSize(this.textSize)
         textAlign(LEFT, CENTER)
         textFont(style.text.font)
@@ -52,7 +52,7 @@ export abstract class AbstractRadar extends VElement{
             pxSize.getHeight() / 2
             )
         
-        this.radarDataSystem = new RadarDataSystem(radarData, this.radius)
+        this.radarDataSystem = new RadarDataSystem2(radarData, this.radius)
 
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, 1, duration,(s:number) => this.progressRatio = s)
@@ -120,7 +120,7 @@ export abstract class AbstractRadar extends VElement{
 
     doRenderGraph(state: State): void {
         strokeWeight(2)
-        const c = color(red(style.color.a), green(style.color.a), blue(style.color.a)) // Deep copy
+        const c = ColorUtils.clone(style.color.undefined)
         stroke(c)
         c.setAlpha(50)
         fill(c) 

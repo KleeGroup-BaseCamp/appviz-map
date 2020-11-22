@@ -19,6 +19,8 @@ export * from "./rating/starRating" // Vertices (simple)
 
 export * from "./radar/sharpRadar"
 export * from "./radar/smoothRadar"
+export * from "./radar2/sharpRadar2"
+export * from "./radar2/smoothRadar2"
 
 export * from "./blackHole"
 export * from "./blackHole2"

@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {SharpRadar, SmoothRadar} from "../incubator" 
+import {SharpRadar, SmoothRadar, SharpRadar2, SmoothRadar2} from "../incubator" 
 import {PxPosition, PxSize} from "../layout"
 
 export class DemoViewRadar implements View {
@@ -25,10 +25,10 @@ export class DemoViewRadar implements View {
             .build(),
             new GridLayerBuilder()
             .addElement(new SharpRadar("-1", pxSize, data[0]))
-            .addElement(new SmoothRadar("-1", pxSize, data[0]))
+            .addElement(new SharpRadar2("-1", pxSize, data[0]))
             .beginRow()
-            .addElement(new SharpRadar("-1", pxSize, data[1]))
-            .addElement(new SmoothRadar("-1", pxSize, data[1]))
+            .addElement(new SmoothRadar("-1", pxSize, data[0]))
+            .addElement(new SmoothRadar2("-1", pxSize, data[0]))
 
             .build()
         ]

@@ -1,7 +1,7 @@
-import p5 from "p5"
-import {AbstractRadar} from "./abstractRadar"
+import * as p5 from "p5"
+import {AbstractRadar2} from "./abstractRadar2"
 
-export class SmoothRadar extends AbstractRadar{
+export class SmoothRadar2 extends AbstractRadar2{
     renderGraph(): void{
         const points :p5.Vector[] = this.radarDataSystem.points 
 
