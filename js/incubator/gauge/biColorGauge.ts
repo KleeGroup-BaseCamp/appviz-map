@@ -4,10 +4,11 @@ import {PxPosition, PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../app"
 import * as p5 from "p5"
+import { BiColorProgressBar } from "../progressbar/biColorProgressBar"
 
 export class BiColorGauge extends VElement{
-    private readonly primaryColor: p5.Color = color("DeepSkyBlue")
-    private readonly secondaryColor: p5.Color = color("DeepPink")
+    private primaryColor: p5.Color = style.color.a
+    private secondaryColor?: p5.Color
 
     private readonly radius: number
     private readonly centerPosition: PxPosition
@@ -57,14 +58,16 @@ export class BiColorGauge extends VElement{
         const angleStep = (totalAngle * transitionRatio) / numOfArcs
 
         stroke(this.primaryColor)
-        this.renderArc(0, transitionStartAngle)
+        this.renderArc(0, totalAngle)
 
-        stroke(this.secondaryColor)
-        this.renderArc(transitionStartAngle + totalAngle * transitionRatio, transitionStartAngle)
-
-        for(let i = 0; i < numOfArcs; i++){
-            stroke(lerpColor(this.primaryColor, this.secondaryColor, i / numOfArcs))
-            this.renderArc(transitionStartAngle + i * angleStep, angleStep)
+        if(this.secondaryColor){
+            stroke(this.secondaryColor)
+            this.renderArc(transitionStartAngle + totalAngle * transitionRatio, transitionStartAngle)
+    
+            for(let i = 0; i < numOfArcs; i++){
+                stroke(lerpColor(this.primaryColor, this.secondaryColor, i / numOfArcs))
+                this.renderArc(transitionStartAngle + i * angleStep, angleStep)
+            }
         }
     }
 
@@ -88,5 +91,11 @@ export class BiColorGauge extends VElement{
         textAlign(CENTER, CENTER)
         this.vtext.setText(text)
         this.vtext.render()
+    }
+
+    public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): BiColorGauge{
+        this.primaryColor = primaryColor
+        this.secondaryColor = secondaryColor
+        return this
     }
 }

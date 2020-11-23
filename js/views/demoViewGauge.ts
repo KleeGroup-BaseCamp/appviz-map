@@ -1,4 +1,4 @@
-import {projection} from "../app"
+import {projection, style} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
 import {Card} from "./elements"
@@ -30,8 +30,8 @@ export class DemoViewGauge implements View {
                 .addElement(new StripedGauge("-1", pxSize, 100))
                 .beginRow()
                 .addElement(new BiColorGauge("-1", pxSize, 0))
-                .addElement(new BiColorGauge("-1", pxSize, 33))
-                .addElement(new BiColorGauge("-1", pxSize, 50))
+                .addElement(new BiColorGauge("-1", pxSize, 33).withColors(style.color.b))
+                .addElement(new BiColorGauge("-1", pxSize, 50).withColors(style.color.a, style.color.c))
                 .addElement(new BiColorGauge("-1", pxSize, 66))
                 .addElement(new BiColorGauge("-1", pxSize, 100))
                 .build()
