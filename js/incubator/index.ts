@@ -2,7 +2,7 @@ export * from "./light"
 export * from "./battery"
 
 export * from "./gauge/gauge"
-export * from "./gauge/tickMarksGauge"
+export * from "./gauge/stripedGauge"
 export * from "./gauge/biColorGauge"
 
 export * from "./progressbar/biColorProgressBar"
