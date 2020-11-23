@@ -5,7 +5,7 @@ import {PxPosition, PxSize } from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../app"
 
-export class TickMarksGauge extends VElement{
+export class StripedGauge extends VElement{
     private readonly primaryColor: p5.Color = style.color.a
     private readonly secondaryColor: p5.Color = color(0)
     private readonly tertiaryColor: p5.Color = color("#323e52")

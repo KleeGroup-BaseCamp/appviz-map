@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {TickMarksGauge, Gauge, BiColorGauge} from "../incubator" 
+import {StripedGauge, Gauge, BiColorGauge} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewGauge implements View {
@@ -23,11 +23,11 @@ export class DemoViewGauge implements View {
                 .addElement(new Gauge("-1", pxSize, 66))
                 .addElement(new Gauge("-1", pxSize, 100))
                 .beginRow()
-                .addElement(new TickMarksGauge("-1", pxSize, 0))
-                .addElement(new TickMarksGauge("-1", pxSize, 33))
-                .addElement(new TickMarksGauge("-1", pxSize, 50))
-                .addElement(new TickMarksGauge("-1", pxSize, 66))
-                .addElement(new TickMarksGauge("-1", pxSize, 100))
+                .addElement(new StripedGauge("-1", pxSize, 0))
+                .addElement(new StripedGauge("-1", pxSize, 33))
+                .addElement(new StripedGauge("-1", pxSize, 50))
+                .addElement(new StripedGauge("-1", pxSize, 66))
+                .addElement(new StripedGauge("-1", pxSize, 100))
                 .beginRow()
                 .addElement(new BiColorGauge("-1", pxSize, 0))
                 .addElement(new BiColorGauge("-1", pxSize, 33))
