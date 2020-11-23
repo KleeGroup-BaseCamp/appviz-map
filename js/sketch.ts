@@ -72,7 +72,7 @@ export class Sketch {
       this.detail.update(type, element.getId())
     }
   }
-
+ 
   public switchView(viewName: string, viewParams?: ViewParams): void {
     const hasChanged = (this.currentViewName !== viewName) || (this.currentViewParams!==viewParams)
     //--
@@ -83,7 +83,7 @@ export class Sketch {
       this.drawView()
     }
   }
-  private drawView():void{
+  public drawView():void{
     if (!this.currentViewName){
       throw 'currentViewName must be defined'
     } 

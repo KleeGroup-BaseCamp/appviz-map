@@ -49,6 +49,6 @@ window.windowResized = ()=> {
   sketch.windowResized()
 }
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
-window.switchDebug = () => {debug = !debug}
+window.switchDebug = () => {debug = !debug; sketch.drawView()}
 
 export {sketch, style, projection, icons, debug}
