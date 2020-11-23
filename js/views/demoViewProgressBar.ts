@@ -5,7 +5,7 @@ import {Card, Icons} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {BiColorProgressBar, StripedProgressBar} from "../incubator" 
+import {BiColorProgressBar, StripedProgressBar, CaptionedElement} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewProgressBar implements View {
@@ -18,16 +18,16 @@ export class DemoViewProgressBar implements View {
                 .addElement(new Card("demo_main", projection.getPxSize(), "Demo Gauge"))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new BiColorProgressBar("-1", pxSize, 0))
-                .addElement(new BiColorProgressBar("-1", pxSize, 50)
-                    .withLeftColor(style.color.b))
-                .addElement(new BiColorProgressBar("-1", pxSize, 100)
+                .addElement(new CaptionedElement("-1", new BiColorProgressBar("-1", pxSize, 0)))
+                .addElement(new CaptionedElement("-1", new BiColorProgressBar("-1", pxSize, 50)
+                    .withLeftColor(style.color.b)))
+                .addElement(new CaptionedElement("-1", new BiColorProgressBar("-1", pxSize, 100)
                     .withLeftColor(style.color.a)
-                    .withRightColor(style.color.c))
+                    .withRightColor(style.color.c)))
                 .beginRow()
-                .addElement(new StripedProgressBar("-1", pxSize2, 0))
-                .addElement(new StripedProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c))
-                .addElement(new StripedProgressBar("-1", pxSize2, 100).withIcon(Icons.getIcon("data")))
+                .addElement(new CaptionedElement("-1", new StripedProgressBar("-1", pxSize2, 0)))
+                .addElement(new CaptionedElement("-1", new StripedProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c)))
+                .addElement(new CaptionedElement("-1", new StripedProgressBar("-1", pxSize2, 100).withIcon(Icons.getIcon("data"))))
                 .build()
             ]
     }

@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {BlackHole, BlackHole2, BlackHole3, BlackHole4} from "../incubator" 
+import {BlackHole2, BlackHole3, BlackHole4, CaptionedElement} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewGauge2 implements View {
@@ -17,10 +17,10 @@ export class DemoViewGauge2 implements View {
                 .addElement(new Card("demo_main", projection.getPxSize(), "Demo Gauge"))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new BlackHole4("-1", pxSize, 66))
+                .addElement(new CaptionedElement("-1", new BlackHole4("-1", pxSize, 66)))
                 .beginRow()
-                .addElement(new BlackHole2("-1", pxSize, 66))
-                .addElement(new BlackHole3("-1", pxSize, 66))
+                .addElement(new CaptionedElement("-1", new BlackHole2("-1", pxSize, 66)))
+                .addElement(new CaptionedElement("-1", new BlackHole3("-1", pxSize, 66)))
                 .build()
             ]
     }

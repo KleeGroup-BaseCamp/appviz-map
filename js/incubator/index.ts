@@ -26,3 +26,5 @@ export * from "./blackHole"
 export * from "./blackHole2"
 export * from "./blackHole3"
 export * from "./blackHole4"
+
+export * from "./captionedElement"
