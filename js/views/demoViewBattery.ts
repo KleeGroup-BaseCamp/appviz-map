@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {Battery, Light, CaptionedElement} from "../incubator" 
+import {Battery, Caption, Light} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewBattery implements View {
@@ -17,15 +17,19 @@ export class DemoViewBattery implements View {
                 .addElement(new Card("demo_main", projection.getPxSize(), "Demo Battery"))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new CaptionedElement("-1", new Battery("-1", pxSize, 15)))
-                .addElement(new CaptionedElement("-1", new Battery("-1", pxSize, 50)))
-                .addElement(new CaptionedElement("-1", new Battery("-1", pxSize, 75)))
-                .addElement(new CaptionedElement("-1", new Battery("-1", pxSize, 100)))
+                .addElement(new Battery("-1", pxSize, 15))
+                .addElement(new Battery("-1", pxSize, 50))
+                .addElement(new Battery("-1", pxSize, 75))
+                .addElement(new Battery("-1", pxSize, 100))
                 .beginRow()
-                .addElement(new CaptionedElement("-1", new Light("-1", pxSize, color(255, 225, 0), 25)))
-                .addElement(new CaptionedElement("-1", new Light("-1", pxSize, color(255, 225, 0), 50)))
-                .addElement(new CaptionedElement("-1", new Light("-1", pxSize, color(255, 225, 0), 75)))
-                .addElement(new CaptionedElement("-1", new Light("-1", pxSize, color(255, 225, 0), 100)))
+                .addElement(new Caption("-1", new PxSize(550, 50), "Battery"))
+                .beginRow()
+                .addElement(new Light("-1", pxSize, color(255, 225, 0), 25))
+                .addElement(new Light("-1", pxSize, color(255, 225, 0), 50))
+                .addElement(new Light("-1", pxSize, color(255, 225, 0), 75))
+                .addElement(new Light("-1", pxSize, color(255, 225, 0), 100))
+                .beginRow()
+                .addElement(new Caption("-1", new PxSize(550, 50), "Light"))
                 .build()
         ]
     }

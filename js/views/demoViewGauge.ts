@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {StripedGauge, Gauge, BiColorGauge, CaptionedElement} from "../incubator" 
+import {StripedGauge, Gauge, BiColorGauge, Caption} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewGauge implements View {
@@ -17,23 +17,29 @@ export class DemoViewGauge implements View {
                 .addElement(new Card("demo_main", projection.getPxSize(), "Demo Gauge"))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new CaptionedElement("-1", new Gauge("-1", pxSize, 0)))
-                .addElement(new CaptionedElement("-1", new Gauge("-1", pxSize, 33)))
-                .addElement(new CaptionedElement("-1", new Gauge("-1", pxSize, 50)))
-                .addElement(new CaptionedElement("-1", new Gauge("-1", pxSize, 66)))
-                .addElement(new CaptionedElement("-1", new Gauge("-1", pxSize, 100)))
+                .addElement(new Gauge("-1", pxSize, 0))
+                .addElement(new Gauge("-1", pxSize, 33))
+                .addElement(new Gauge("-1", pxSize, 50))
+                .addElement(new Gauge("-1", pxSize, 66))
+                .addElement(new Gauge("-1", pxSize, 100))
                 .beginRow()
-                .addElement(new CaptionedElement("-1", new StripedGauge("-1", pxSize, 0)))
-                .addElement(new CaptionedElement("-1", new StripedGauge("-1", pxSize, 33)))
-                .addElement(new CaptionedElement("-1", new StripedGauge("-1", pxSize, 50)))
-                .addElement(new CaptionedElement("-1", new StripedGauge("-1", pxSize, 66)))
-                .addElement(new CaptionedElement("-1", new StripedGauge("-1", pxSize, 100)))
+                .addElement(new Caption("-1", new PxSize(950, 50), "Gauge"))
                 .beginRow()
-                .addElement(new CaptionedElement("-1", new BiColorGauge("-1", pxSize, 0)))
-                .addElement(new CaptionedElement("-1", new BiColorGauge("-1", pxSize, 33).withColors(style.color.b)))
-                .addElement(new CaptionedElement("-1", new BiColorGauge("-1", pxSize, 50).withColors(style.color.a, style.color.c)))
-                .addElement(new CaptionedElement("-1", new BiColorGauge("-1", pxSize, 66)))
-                .addElement(new CaptionedElement("-1", new BiColorGauge("-1", pxSize, 100)))
+                .addElement(new StripedGauge("-1", pxSize, 0))
+                .addElement(new StripedGauge("-1", pxSize, 33))
+                .addElement(new StripedGauge("-1", pxSize, 50))
+                .addElement(new StripedGauge("-1", pxSize, 66))
+                .addElement(new StripedGauge("-1", pxSize, 100))
+                .beginRow()
+                .addElement(new Caption("-1", new PxSize(950, 50), "StripedGauge"))
+                .beginRow()
+                .addElement(new BiColorGauge("-1", pxSize, 0))
+                .addElement(new BiColorGauge("-1", pxSize, 33).withColors(style.color.b))
+                .addElement(new BiColorGauge("-1", pxSize, 50).withColors(style.color.a, style.color.c))
+                .addElement(new BiColorGauge("-1", pxSize, 66))
+                .addElement(new BiColorGauge("-1", pxSize, 100))
+                .beginRow()
+                .addElement(new Caption("-1", new PxSize(950, 50), "BiColorGauge"))
                 .build()
             ]
     }
