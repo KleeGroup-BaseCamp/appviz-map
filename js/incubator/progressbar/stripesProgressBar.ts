@@ -107,19 +107,23 @@ export class StripesProgressBar extends VElement{
         const totalWidth =  this.getPxSize().getWidth() - this.hexagon.getCircumRadius() * 2 - rightPadding
         const stripeWidth = totalWidth/ numOfStripes - horizontalPadding
         strokeWeight(stripeWidth)
-        stroke(this.primaryColor)
         for (let i = 0; i < numOfStripes; i++){
             const ratio = i / numOfStripes
-            if(ratio >= this.percent / 100){
-                stroke(style.color.front)
-            }
-            else if (this.secondaryColor){
-                stroke(lerpColor(this.primaryColor, this.secondaryColor, ratio))
-            }
+            stroke(this.pickStripeColor(ratio))
             const x = this.hexagon.getCircumRadius() * 2 + stripeWidth / 2 + ratio * totalWidth + horizontalPadding
             const y = this.getPxSize().getHeight() / 4 - verticalPadding - stripeWidth / 2
             line(x, -y, x, y)
         }
+    }
+
+    private pickStripeColor(ratio: number): p5.Color{
+        if(ratio >= this.percent / 100){
+            return style.color.front
+        }
+        else if (this.secondaryColor){
+            return lerpColor(this.primaryColor, this.secondaryColor, ratio)
+        }
+        return this.primaryColor
     }
 
     public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): StripesProgressBar{
