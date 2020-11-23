@@ -12,9 +12,10 @@ export class DemoViewRating implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(100, 30)
+        const captionpxSize = new PxSize(850, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "Démo Rating"))
+                .addElement(new Card("demo_main", projection.getPxSize(), "elements/rating"))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new SquareRating("-1", pxSize, 0))
@@ -23,8 +24,8 @@ export class DemoViewRating implements View {
                 .addElement(new SquareRating("-1", pxSize, 3))
                 .addElement(new SquareRating("-1", pxSize, 4.2))
                 .addElement(new SquareRating("-1", pxSize, 5))
-                .beginRow()
-                .addElement(new Caption("-1", new PxSize(850, 50), "SquareRating"))
+                .beginRow(10)
+                .addElement(new Caption("-1", captionpxSize, "SquareRating"))
                 .beginRow()
                 .addElement(new HeartRating("-1", pxSize, 0))
                 .addElement(new HeartRating("-1", pxSize, 1))
@@ -32,8 +33,8 @@ export class DemoViewRating implements View {
                 .addElement(new HeartRating("-1", pxSize, 3))
                 .addElement(new HeartRating("-1", pxSize, 4.2))
                 .addElement(new HeartRating("-1", pxSize, 5))
-                .beginRow()
-                .addElement(new Caption("-1", new PxSize(850, 50), "HeartRating"))
+                .beginRow(10)
+                .addElement(new Caption("-1", captionpxSize, "HeartRating"))
                 .beginRow()
                 .addElement(new StarRating("-1", pxSize, 0))
                 .addElement(new StarRating("-1", pxSize, 1))
@@ -41,8 +42,8 @@ export class DemoViewRating implements View {
                 .addElement(new StarRating("-1", pxSize, 3))
                 .addElement(new StarRating("-1", pxSize, 4.2))
                 .addElement(new StarRating("-1", pxSize, 5))
-                .beginRow()
-                .addElement(new Caption("-1", new PxSize(850, 50), "StarRating"))
+                .beginRow(10)
+                .addElement(new Caption("-1", captionpxSize, "StarRating"))
                 .beginRow()
                 .addElement(new ImageRating("-1", pxSize, 0).withImage(icons.star))
                 .addElement(new ImageRating("-1", pxSize, 1).withImage(icons.star))
@@ -50,8 +51,8 @@ export class DemoViewRating implements View {
                 .addElement(new ImageRating("-1", pxSize, 3).withImage(icons.star))
                 .addElement(new ImageRating("-1", pxSize, 4.4).withImage(icons.star))
                 .addElement(new ImageRating("-1", pxSize, 5).withImage(icons.star))
-                .beginRow()
-                .addElement(new Caption("-1", new PxSize(850, 50), "ImageRating"))
+                .beginRow(10)
+                .addElement(new Caption("-1", captionpxSize, "ImageRating"))
                 .build()
         ]
     }
