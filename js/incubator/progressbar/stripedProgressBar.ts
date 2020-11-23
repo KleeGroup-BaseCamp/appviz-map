@@ -41,7 +41,7 @@ export class Hexagon extends VElement {
     }
 }
 
-export class StripesProgressBar extends VElement{
+export class StripedProgressBar extends VElement{
     private readonly hexagon: Hexagon
     private iconProvided: boolean
     private primaryColor: p5.Color
@@ -126,7 +126,7 @@ export class StripesProgressBar extends VElement{
         return this.primaryColor
     }
 
-    public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): StripesProgressBar{
+    public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): StripedProgressBar{
         this.primaryColor = primaryColor
         this.secondaryColor = secondaryColor
         return this

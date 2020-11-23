@@ -6,7 +6,7 @@ export * from "./gauge/stripedGauge"
 export * from "./gauge/biColorGauge"
 
 export * from "./progressbar/biColorProgressBar"
-export * from "./progressbar/stripesProgressBar"
+export * from "./progressbar/stripedProgressBar"
 
 export * from "./signal/signal"
 export * from "./signal/signalBars"

@@ -1,11 +1,11 @@
-import {icons, projection, style} from "../app"
+import {projection, style} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
 import {Card, Icons} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {BiColorProgressBar, StripesProgressBar} from "../incubator" 
+import {BiColorProgressBar, StripedProgressBar} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewProgressBar implements View {
@@ -25,9 +25,9 @@ export class DemoViewProgressBar implements View {
                     .withLeftColor(style.color.a)
                     .withRightColor(style.color.c))
                 .beginRow()
-                .addElement(new StripesProgressBar("-1", pxSize2, 0))
-                .addElement(new StripesProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c))
-                .addElement(new StripesProgressBar("-1", pxSize2, 100).withIcon(Icons.getIcon("data")))
+                .addElement(new StripedProgressBar("-1", pxSize2, 0))
+                .addElement(new StripedProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c))
+                .addElement(new StripedProgressBar("-1", pxSize2, 100).withIcon(Icons.getIcon("data")))
                 .build()
             ]
     }
