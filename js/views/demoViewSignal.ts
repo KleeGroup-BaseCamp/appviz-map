@@ -15,7 +15,7 @@ export class DemoViewSignal implements View {
         const pxSize2 = new PxSize(100, 50) // For testing bounding boxes
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "Démo Signal"))
+                .addElement(new Card("demo_main", projection.getPxSize(), "elements/signal"))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new Signal("-1", pxSize, 0))
@@ -24,17 +24,8 @@ export class DemoViewSignal implements View {
                 .addElement(new Signal("-1", pxSize, 3))
                 .addElement(new Signal("-1", pxSize, 4))
                 .addElement(new Signal("-1", pxSize, 5))
-                .beginRow()
-                .addElement(new Caption("-1", new PxSize(850, 50), "Signal"))
-                .beginRow()
-                .addElement(new Signal("-1", pxSize2, 0))
-                .addElement(new Signal("-1", pxSize2, 1))
-                .addElement(new Signal("-1", pxSize2, 2))
-                .addElement(new Signal("-1", pxSize2, 3))
-                .addElement(new Signal("-1", pxSize2, 4))
-                .addElement(new Signal("-1", pxSize2, 5))
-                .beginRow()
-                .addElement(new Caption("-1", new PxSize(850, 50), "Signal"))
+                .beginRow(10)
+                .addElement(new Caption("-1", new PxSize(850, 35), "Signal"))
                 .beginRow()
                 .addElement(new SignalBars("-1", pxSize, 0))
                 .addElement(new SignalBars("-1", pxSize, 1))
@@ -42,8 +33,8 @@ export class DemoViewSignal implements View {
                 .addElement(new SignalBars("-1", pxSize, 3))
                 .addElement(new SignalBars("-1", pxSize, 4))
                 .addElement(new SignalBars("-1", pxSize, 5))
-                .beginRow()
-                .addElement(new Caption("-1", new PxSize(850, 50), "SignalBars"))
+                .beginRow(10)
+                .addElement(new Caption("-1", new PxSize(850, 35), "SignalBars"))
                 .build()
         ]
     }
