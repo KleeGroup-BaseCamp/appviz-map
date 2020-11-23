@@ -14,7 +14,8 @@ export class BlackHole4 extends VElement{
     private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly rays: Ray[] = []
-    private readonly light: Halo
+    private readonly light: OpacityOutCircle
+    private readonly hole: OpacityOutCircle
     
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
@@ -25,11 +26,11 @@ export class BlackHole4 extends VElement{
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
-            )
-        this.light = new Halo(this.radius)
+        )
+        this.light = new OpacityOutCircle(color(255, 225, 0), 0, this.radius * percent / 100, 70, 100)
+        this.hole = new OpacityOutCircle(color(0), this.radius, 0, 20, 100)
         const numOfRays = 200 // TODO: = f(percent)
         for(let i = 0; i < numOfRays; i++){
-            const angle = random(TWO_PI)
             this.rays.push(new Ray(this.radius))
         }
         const duration = 3000 /*ms*/
@@ -38,6 +39,7 @@ export class BlackHole4 extends VElement{
             100, 
             duration, 
             (s:number) => {
+                this.hole.update(s)
                 this.light.update(s)
                 this.rays.forEach(ray=>ray.update(s))
             },
@@ -70,14 +72,7 @@ export class BlackHole4 extends VElement{
             ray.render(this.secondaryColor)
         }
 
-        // Black Hole
-        const numOfBlackHoleCircles = 20
-        noStroke()
-        for (let i = 0; i < numOfBlackHoleCircles; i++){
-            const ratio = i / numOfBlackHoleCircles
-            fill(0, 100 * (1 - ratio))
-            circle(0, 0, 2 * this.radius * ratio)
-        }
+        this.hole.render()
         this.light.render()
         pop()
 
@@ -85,26 +80,40 @@ export class BlackHole4 extends VElement{
     }    
 }
 
-class Halo { // Rename --> Light ?
-    private readonly maxRadius: number
-    private readonly color: p5.Color = color(255, 225, 0)
+/**
+ * Cicle with color opacity decreasing linearly from 255 at center to 0 at radius
+ */
+class OpacityOutCircle { 
+    private readonly color: p5.Color
+    private readonly startRadius: number
+    private readonly endRadius: number
+    private readonly startAnimPercent: number
+    private readonly endAnimPercent: number
     private radius: number = 0
 
-    constructor(radius: number){
-        this.maxRadius = radius
+    constructor(color: p5.Color, startRadius: number, endRadius: number, startAnimPercent: number, endAnimPercent: number){
+        this.color = color
+        this.startRadius = startRadius
+        this.endRadius = endRadius
+        this.startAnimPercent = startAnimPercent
+        this.endAnimPercent = endAnimPercent
     }
 
     public update(progressPercent: number){
-        this.radius = this.maxRadius * max(progressPercent - 70, 0) / (100 - 70)
+        const diffRadius = this.endRadius - this.startRadius
+        const diffAnimation = this.endAnimPercent - this.startAnimPercent
+        const animationRatio = min(max(progressPercent - this.startAnimPercent, 0) / (diffAnimation), 1)
+        this.radius = this.startRadius + diffRadius * animationRatio
     }
 
     public render(){
+        noStroke()
         const numOfCircles = 30
         for (let i = 0; i < numOfCircles; i++){
             const ratio = i / numOfCircles
             this.color.setAlpha(255 * (1 - ratio))
             fill(this.color)
-            circle(0,0, this.radius * ratio)
+            circle(0,0, 2 * this.radius * ratio)
         }
     }
 }
@@ -124,8 +133,8 @@ class Ray {
     }
 
     public update (progressPercent: number){
-        this.z= progressPercent > 60 || this.z < this.zMax  
-        ? this.z + 0.05 
+        this.z= progressPercent > 40 || this.z < this.zMax  
+        ? this.z + 0.1 
         : 1
     }
 
