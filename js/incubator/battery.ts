@@ -27,7 +27,7 @@ export class Battery extends VElement{
         this.topMargin = 10 // Margin for hat
         const barWidth = pxSize.getWidth() - 2 * this.padding
         const barHeight = pxSize.getHeight() - this.padding - this.topMargin
-        const numOfBubbles = 5 
+        const numOfBubbles = 1 
         for(let i = 0; i < numOfBubbles; i++){
             this.bubbles.push(new Bubble(0, barWidth, barHeight, 0, this.secondaryColor))
         }
@@ -137,7 +137,7 @@ class Bubble{
     }
 
     update(percent: number): void{
-        this.y = this.yStart + (this.yEnd - this.yStart) * percent / 100
+        this.y = this.yStart + (this.yEnd - this.yStart) * percent / 100 - this.radius
         this.radius = this.maxRadius * (1 - percent / 100)
         this.color = lerpColor(this.primaryColor, this.secondaryColor, percent / 100)
     }
