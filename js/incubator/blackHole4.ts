@@ -14,6 +14,7 @@ export class BlackHole4 extends VElement{
     private readonly weight: number
     private readonly centerPosition: PxPosition
     private readonly rays: Ray[] = []
+    private readonly light: Halo
     
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
@@ -25,6 +26,7 @@ export class BlackHole4 extends VElement{
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
             )
+        this.light = new Halo(this.radius)
         const numOfRays = 200 // TODO: = f(percent)
         for(let i = 0; i < numOfRays; i++){
             const angle = random(TWO_PI)
@@ -35,7 +37,10 @@ export class BlackHole4 extends VElement{
             0, 
             100, 
             duration, 
-            (s:number) => this.rays.forEach(ray=>ray.update(s)),
+            (s:number) => {
+                this.light.update(s)
+                this.rays.forEach(ray=>ray.update(s))
+            },
             new Easings().linear
         ) 
     }
@@ -73,12 +78,35 @@ export class BlackHole4 extends VElement{
             fill(0, 100 * (1 - ratio))
             circle(0, 0, 2 * this.radius * ratio)
         }
+        this.light.render()
         pop()
 
         this.gauge.render()
+    }    
+}
+
+class Halo { // Rename --> Light ?
+    private readonly maxRadius: number
+    private readonly color: p5.Color = color(255, 225, 0)
+    private radius: number = 0
+
+    constructor(radius: number){
+        this.maxRadius = radius
     }
 
-      
+    public update(progressPercent: number){
+        this.radius = this.maxRadius * max(progressPercent - 70, 0) / (100 - 70)
+    }
+
+    public render(){
+        const numOfCircles = 30
+        for (let i = 0; i < numOfCircles; i++){
+            const ratio = i / numOfCircles
+            this.color.setAlpha(255 * (1 - ratio))
+            fill(this.color)
+            circle(0,0, this.radius * ratio)
+        }
+    }
 }
 
 
