@@ -4,13 +4,6 @@ import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import {style} from "../app"
 
-type Bubble = {
-    id : number,
-    size: number,
-    position: PxPosition
-    color: p5.Color
-}
-
 export class Battery extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
@@ -36,56 +29,21 @@ export class Battery extends VElement{
         const barHeight = pxSize.getHeight() - this.padding - this.topMargin
         const numOfBubbles = 5 
         for(let i = 0; i < numOfBubbles; i++){
-            this.bubbles.push({
-                id : i,
-                size : 0,
-                position :  new PxPosition( barWidth / 4 + random(barWidth / 2), 0),
-                color: this.secondaryColor
-            })
+            this.bubbles.push(new Bubble(0, barWidth, barHeight, 0, this.secondaryColor))
         }
         const duration = 3000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
         AnimationUtils.animate(50, 0, duration * 10, (s:number) => this.maxAmplitude = s)
         AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
-        for(let bubble of this.bubbles){
-            // TO DO : Change size and color only once 
-            AnimationUtils.animate(0, 100, duration * 3, (s:number) => bubble.size = (1 - abs(50-s) / 50) * this.maxBubbleSize)
-            AnimationUtils.animate(
-                barHeight, 
-                0, 
-                duration * 3, 
-                (s:number) => {
-                    const coneWidth = barWidth * (barHeight - s) / barHeight
-                    // Bubble tends to be around this position
-                    const xLimit = (barWidth - coneWidth) / 2 + coneWidth * bubble.id / (numOfBubbles - 1) 
-                    const x = min(
-                        max(
-                            bubble.position.getX() + sin(s / (5 + bubble.id)) + (xLimit - bubble.position.getX()) * random(0.1),
-                            bubble.size
-                        ), 
-                        barWidth - bubble.size
-                    ) // Bubble boundaries 
-                    bubble.position = new PxPosition(x, s)
-                }
-            )
-            AnimationUtils.animate(
-                0, 
-                100, 
-                duration * 3, 
-                (s:number) => bubble.color = lerpColor(this.secondaryColor, 
-                color(255), 
-                s / 100)
-            )
-        }
+        AnimationUtils.animate(0, 100, duration, s => this.bubbles.forEach(bubble => bubble.update(s)))
     }
 
     public render() : void {
         push()
         translate(this.padding, this.padding + this.topMargin)
         this.renderWaves()
-        this.renderBubbles()
+        this.bubbles.forEach(bubble => bubble.render())        
         pop()
-
         this.renderContainer()
     }
 
@@ -151,16 +109,46 @@ export class Battery extends VElement{
         vertex(0, barHeight)
         endShape(CLOSE)
     }
+}
 
-    private renderBubbles(): void {
+class Bubble{
+    private readonly xMin: number
+    private readonly xMax: number
+    private readonly yStart: number
+    private readonly yEnd: number
+    private readonly maxRadius = 5
+    private readonly primaryColor: p5.Color
+    private readonly secondaryColor: p5.Color = color(255)
+
+    private x: number
+    private y: number = 0
+    private radius: number = this.maxRadius
+    private color: p5.Color
+
+    constructor(xMin: number, xMax: number, yStart: number, yEnd: number, primaryColor: p5.Color){
+        this.xMin = xMin
+        this.xMax = xMax
+        this.yStart = yStart
+        this.yEnd = yEnd
+        const width = xMax - xMin
+        this.x = xMin + width / 2 + random(width / 2) - width / 4
+        this.primaryColor = primaryColor
+        this.color = primaryColor
+    }
+
+    update(percent: number): void{
+        this.y = this.yStart + (this.yEnd - this.yStart) * percent / 100
+        this.radius = this.maxRadius * (1 - percent / 100)
+        this.color = lerpColor(this.primaryColor, this.secondaryColor, percent / 100)
+    }
+
+    render(): void{
         noStroke()
-        fill(this.bubbles[0].color)
-        for(let bubble of this.bubbles){
-            circle(
-                bubble.position.getX(),
-                bubble.position.getY(),
-                bubble.size
-            )
-        }
+        fill(this.color)
+        circle(
+            this.x,
+            this.y,
+            2 * this.radius
+        )
     }
 }
