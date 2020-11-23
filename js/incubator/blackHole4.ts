@@ -3,7 +3,7 @@ import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import * as p5 from "p5"
 import {Easings} from "../utils/easings"
-import {BiColorGauge} from "./gauge/biColorGauge"
+import {BiColorGauge} from "./gauge/gauge"
 
 export class BlackHole4 extends VElement{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")

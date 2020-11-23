@@ -1,9 +1,9 @@
 export * from "./light"
 export * from "./battery"
 
-export * from "./gauge/gauge"
+export * from "./gauge/arrowGauge"
 export * from "./gauge/stripedGauge"
-export * from "./gauge/biColorGauge"
+export * from "./gauge/gauge"
 
 export * from "./progressbar/biColorProgressBar"
 export * from "./progressbar/stripedProgressBar"
