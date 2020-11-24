@@ -1,1 +1,3 @@
-export * from "./graph"
+export * from "./lineChart"
+export * from "./xLinearAxis"
+export * from "./yLinearAxis"

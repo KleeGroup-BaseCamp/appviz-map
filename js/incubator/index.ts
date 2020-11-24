@@ -28,4 +28,4 @@ export * from "./blackHole4"
 
 export * from "./caption"
 
-export * from "./graph"
+export * from "./chart"
