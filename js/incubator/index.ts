@@ -22,7 +22,6 @@ export * from "./radar/smoothRadar"
 export * from "./radar2/sharpRadar2"
 export * from "./radar2/smoothRadar2"
 
-export * from "./blackHole"
 export * from "./blackHole2"
 export * from "./blackHole3"
 export * from "./blackHole4"

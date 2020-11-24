@@ -3,12 +3,12 @@ import {PxPosition, PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import * as p5 from "p5"
 import {Easings} from "../utils/easings"
-import {BiColorGauge} from "./gauge/gauge"
+import {Gauge} from "./gauge/gauge"
 
 export class BlackHole4 extends VElement{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")
     private readonly secondaryColor: p5.Color = color("HotPink")
-    private readonly gauge: BiColorGauge
+    private readonly gauge: Gauge
 
     private readonly radius: number
     private readonly weight: number
@@ -19,7 +19,7 @@ export class BlackHole4 extends VElement{
     
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
-        this.gauge = new BiColorGauge("-1", pxSize, percent)
+        this.gauge = new Gauge("-1", pxSize, percent)
         this.weight = 5
         const margin = 10
         this.radius = (min(pxSize.getHeight(), pxSize.getWidth()) - this.weight - this.gauge.weight - margin) / 2

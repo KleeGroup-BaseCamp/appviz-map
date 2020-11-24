@@ -92,7 +92,7 @@ export class Gauge extends VElement{
         this.vtext.render()
     }
 
-    public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): BiColorGauge{
+    public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): Gauge{
         this.primaryColor = primaryColor
         this.secondaryColor = secondaryColor
         return this
