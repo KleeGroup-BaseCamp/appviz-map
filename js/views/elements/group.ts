@@ -1,7 +1,8 @@
 import * as p5 from "p5"
 import {style} from "../../app"
 import {VElement, State} from "../../core"
-import {Button, Header, ProgressBar, VText} from "../../components"
+import {Button, Header, VText} from "../../components"
+import {BiColorProgressBar} from "../../incubator"
 import {PxSize} from "../../layout"
 import {ItemTypeName, ItemTypeFrequencies} from "../../types"
 import {Icons} from "./icons"
@@ -10,7 +11,7 @@ export class Group extends VElement {
     private readonly itemTypeFrequencies: ItemTypeFrequencies
     private readonly maxValue: number
     private readonly header: Header
-    private readonly progressBars: ProgressBar[]
+    private readonly progressBars: BiColorProgressBar[]
     private readonly color: p5.Color
     private readonly button : Button
 
@@ -23,7 +24,14 @@ export class Group extends VElement {
 
         this.progressBars = []
         Object.keys(this.itemTypeFrequencies).forEach(item => {
-            this.progressBars.push(new ProgressBar(this.itemTypeFrequencies[item as ItemTypeName] ?? 0, this.maxValue, this.getWidth() - 90))
+            this.progressBars.push(
+                new BiColorProgressBar(
+                    "-1", 
+                    new PxSize(this.getWidth() - 90, 30), 
+                    (this.itemTypeFrequencies[item as ItemTypeName] ?? 0) * 100 / maxValue
+                )
+            )
+            console.log((this.itemTypeFrequencies[item as ItemTypeName] ?? 0) / maxValue)
         })
         this.button = new Button(this.getWidth()/2, this.getHeight()/2, style.color.undefined, 50)
     }
@@ -71,9 +79,12 @@ export class Group extends VElement {
         }
         Object.keys(this.itemTypeFrequencies).forEach((itemPrefix, index) => {
             push()
-            translate(25, positions[index] + 8)
+            translate(10, positions[index] - 20)
+            push()
+            textAlign(LEFT, TOP)
             new VText(Icons.getIcon(itemPrefix as ItemTypeName), style.icon.font, style.icon.size.xl).render()
-            translate(35, -8)
+            pop()
+            translate(50, 0)
             this.progressBars[index].render()
             pop()
         })
