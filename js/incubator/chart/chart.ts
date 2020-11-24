@@ -2,7 +2,7 @@ import { VElement } from "../../core";
 import { PxSize } from "../../layout";
 import { XAxis } from "./xAxis";
 
-export class Graph extends VElement{
+export class Chart extends VElement{
     private readonly xAxis: XAxis
 
 
