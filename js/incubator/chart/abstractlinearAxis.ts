@@ -1,7 +1,7 @@
 import { style } from "../../app"
 import { VText } from "../../components"
 
-export abstract class LinearAxis{
+export abstract class AbstractLinearAxis{
     protected readonly min: number
     protected readonly max: number
     protected readonly labels: VText[] = []
@@ -15,10 +15,6 @@ export abstract class LinearAxis{
             const text = (min + Math.floor(diff * i / this.numOfTicks)).toString()
             this.labels.push(new VText(text, style.text.font, style.text.size.xs, style.text.color.secondary))
         }
-    }
-
-    public getNumOfTicks(){
-        return this.numOfTicks
     }
 
     public abstract render(): void
