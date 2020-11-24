@@ -7,6 +7,7 @@ export type lineChartData = {x: number, y: number}[]
 export class LineChart extends VElement{
     private readonly xAxis: XLinearAxis
     private readonly yAxis: YLinearAxis
+    // TO DO: Add this.chartHeight = this.getHeight() - this.bottomPadding (same for with) 
     private readonly leftPadding: number = 20
     private readonly bottomPadding: number = 20
     private readonly data: lineChartData
@@ -27,6 +28,7 @@ export class LineChart extends VElement{
         this.xAxis.render()
         this.yAxis.render()
         this.renderChart()
+        this.renderGrid()
         pop()
     }
 
@@ -45,7 +47,7 @@ export class LineChart extends VElement{
                 5
             )
             if (prevPointPos){
-                line(
+                line( // --> TO DO: use shape to handle fill case
                     position.getX(), 
                     position.getY(), 
                     prevPointPos.getX(), 
@@ -53,6 +55,21 @@ export class LineChart extends VElement{
                 )
             } 
             prevPointPos = position
+        }
+    }
+
+    private renderGrid(){
+        stroke(style.color.front)
+        strokeWeight(0.3)
+        const xNumOfTicks = this.xAxis.getNumOfTicks()
+        const yNumOfTicks = this.yAxis.getNumOfTicks()
+        for(let i = 0; i < xNumOfTicks; i++){
+            const x = (i / xNumOfTicks) * (this.getWidth() - this.leftPadding)
+            line(x, 0, x, - this.getHeight() + this.bottomPadding)
+        }
+        for(let j = 0; j < yNumOfTicks; j++){
+            const y = -(j / yNumOfTicks) * (this.getHeight() - this.bottomPadding)
+            line(0, y, this.getWidth() - this.leftPadding, y)
         }
     }
 }
