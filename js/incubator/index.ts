@@ -27,3 +27,5 @@ export * from "./blackHole3"
 export * from "./blackHole4"
 
 export * from "./caption"
+
+export * from "./graph"
