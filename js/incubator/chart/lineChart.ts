@@ -1,5 +1,5 @@
 import { VElement } from "../../core";
-import { PxSize } from "../../layout";
+import { PxPosition, PxSize } from "../../layout";
 import { XLinearAxis, YLinearAxis } from ".";
 import { style } from "../../app";
 
@@ -31,14 +31,28 @@ export class LineChart extends VElement{
     }
 
     private renderChart(){
-        noStroke()
+        stroke(style.color.a)
         fill(style.color.a)
+        let prevPointPos: PxPosition | null = null
         for (let point of this.data){
-            circle(
+            const position = new PxPosition(
                 this.xAxis.getCoorForValue(point.x), 
-                this.yAxis.getCoorForValue(point.y), 
+                this.yAxis.getCoorForValue(point.y)
+                )
+            circle(
+                position.getX(), 
+                position.getY(), 
                 5
             )
+            if (prevPointPos){
+                line(
+                    position.getX(), 
+                    position.getY(), 
+                    prevPointPos.getX(), 
+                    prevPointPos.getY()
+                )
+            } 
+            prevPointPos = position
         }
     }
 }
