@@ -31,4 +31,8 @@ export class YLinearAxis extends LinearAxis{
         }
         pop()
     }
+
+    public getCoorForValue(value: number){
+        return - (value - this.min)/ (this.max - this.min) * (this.height)
+    }
 }

@@ -30,4 +30,8 @@ export class XLinearAxis extends LinearAxis{
         }
         pop()
     }
+
+    public getCoorForValue(value: number){
+        return (value - this.min)/ (this.max - this.min) * (this.width)
+    }
 }
