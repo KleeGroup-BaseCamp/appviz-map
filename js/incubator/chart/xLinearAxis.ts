@@ -1,8 +1,7 @@
-import { style } from "../../app"
-import { VText } from "../../components"
-import { LinearAxis } from "./linearAxis"
+import {style} from "../../app"
+import {AbstractLinearAxis} from "./abstractlinearAxis"
 
-export class XLinearAxis extends LinearAxis{
+export class XLinearAxis extends AbstractLinearAxis{
     private readonly width: number
 
     constructor(xMin: number, xMax: number, width: number){

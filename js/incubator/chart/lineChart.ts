@@ -1,7 +1,7 @@
-import { VElement } from "../../core";
-import { PxPosition, PxSize } from "../../layout";
-import { XLinearAxis, YLinearAxis } from ".";
-import { style } from "../../app";
+import {VElement} from "../../core"
+import {PxPosition, PxSize} from "../../layout"
+import {XLinearAxis, YLinearAxis} from "."
+import {style} from "../../app"
 
 export type lineChartData = {x: number, y: number}[]
 export class LineChart extends VElement{

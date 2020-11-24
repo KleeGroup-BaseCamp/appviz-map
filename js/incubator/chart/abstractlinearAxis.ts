@@ -1,5 +1,5 @@
-import { style } from "../../app"
-import { VText } from "../../components"
+import {style} from "../../app"
+import {VText} from "../../components"
 
 export abstract class AbstractLinearAxis{
     protected readonly min: number

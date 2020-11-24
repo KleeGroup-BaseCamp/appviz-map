@@ -1,8 +1,8 @@
 import * as p5 from "p5"
-import { style } from "../app"
-import {VElement} from "../core"
-import {PxPosition, PxSize} from "../layout"
-import {AnimationUtils} from "../utils"
+import {style} from "../../app"
+import {VElement} from "../../core"
+import {PxPosition, PxSize} from "../../layout"
+import {AnimationUtils} from "../../utils"
 
 export class Light extends VElement{
     private readonly color : p5.Color
