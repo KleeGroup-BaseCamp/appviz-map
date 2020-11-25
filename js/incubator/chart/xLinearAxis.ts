@@ -1,5 +1,4 @@
 import { style } from "../../app"
-import { VText } from "../../components"
 import { LinearAxis } from "./linearAxis"
 
 export class XLinearAxis extends LinearAxis{
@@ -32,6 +31,6 @@ export class XLinearAxis extends LinearAxis{
     }
 
     public getCoorForValue(value: number){
-        return (value - this.min)/ (this.max - this.min) * (this.width)
+        return (value - this.min) / (this.max - this.min) * (this.width)
     }
 }

@@ -7,7 +7,8 @@ export type lineChartData = {x: number, y: number}[]
 export class LineChart extends VElement{
     private readonly xAxis: XLinearAxis
     private readonly yAxis: YLinearAxis
-    // TO DO: Add this.chartHeight = this.getHeight() - this.bottomPadding (same for with) 
+    private readonly chartHeight: number 
+    private readonly chartWidth: number 
     private readonly leftPadding: number = 20
     private readonly bottomPadding: number = 20
     private readonly data: lineChartData
@@ -20,11 +21,13 @@ export class LineChart extends VElement{
         this.xAxis = new XLinearAxis(min(xValues), max(xValues), pxSize.getWidth() - this.leftPadding)
         this.yAxis = new YLinearAxis(min(yValues), max(yValues), pxSize.getHeight() - this.bottomPadding)
         this.data = data
+        this.chartHeight = this.getHeight() - this.bottomPadding
+        this.chartWidth = this.getWidth() - this.leftPadding
     }
 
     public render(){
         push()
-        translate(this.leftPadding, this.getHeight() - this.bottomPadding)
+        translate(this.leftPadding, this.chartHeight)
         this.xAxis.render()
         this.yAxis.render()
         this.renderChart()
@@ -64,12 +67,12 @@ export class LineChart extends VElement{
         const xNumOfTicks = this.xAxis.getNumOfTicks()
         const yNumOfTicks = this.yAxis.getNumOfTicks()
         for(let i = 0; i < xNumOfTicks; i++){
-            const x = (i / xNumOfTicks) * (this.getWidth() - this.leftPadding)
-            line(x, 0, x, - this.getHeight() + this.bottomPadding)
+            const x = (i / xNumOfTicks) * this.chartWidth
+            line(x, 0, x, - this.chartHeight)
         }
         for(let j = 0; j < yNumOfTicks; j++){
-            const y = -(j / yNumOfTicks) * (this.getHeight() - this.bottomPadding)
-            line(0, y, this.getWidth() - this.leftPadding, y)
+            const y = -(j / yNumOfTicks) * this.chartHeight
+            line(0, y, this.chartWidth, y)
         }
     }
 }

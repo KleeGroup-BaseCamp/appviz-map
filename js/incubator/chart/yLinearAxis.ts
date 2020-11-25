@@ -1,5 +1,4 @@
 import { style } from "../../app"
-import { VText } from "../../components"
 import { LinearAxis } from "./linearAxis"
 
 export class YLinearAxis extends LinearAxis{
@@ -25,6 +24,7 @@ export class YLinearAxis extends LinearAxis{
         for(let i = 0; i < this.numOfTicks; i++){
             line(-tickHeight / 2, 0, tickHeight / 2, 0)
             push()
+            translate(0, -3) // Numbers in style.text.font are not perfectly centered vertically
             this.labels[i].render()
             pop()
             translate(0, - this.height / this.numOfTicks)
@@ -33,6 +33,6 @@ export class YLinearAxis extends LinearAxis{
     }
 
     public getCoorForValue(value: number){
-        return - (value - this.min)/ (this.max - this.min) * (this.height)
+        return - (value - this.min) / (this.max - this.min) * (this.height)
     }
 }
