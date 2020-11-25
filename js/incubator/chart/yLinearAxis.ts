@@ -1,5 +1,5 @@
 import {style} from "../../app"
-import {AbstractLinearAxis} from "./abstractlinearAxis"
+import {AbstractLinearAxis} from "./abstractLinearAxis"
 
 export class YLinearAxis extends AbstractLinearAxis{
     private readonly height: number

@@ -1,5 +1,5 @@
-export * from "./light"
-export * from "./battery"
+export * from "./energy/light"
+export * from "./energy/battery"
 
 export * from "./gauge/arrowGauge"
 export * from "./gauge/stripedGauge"

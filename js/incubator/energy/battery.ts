@@ -2,6 +2,7 @@ import * as p5 from "p5"
 import {VElement} from "../../core"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../app"
+import {PxSize} from "../../layout"
 
 export class Battery extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
