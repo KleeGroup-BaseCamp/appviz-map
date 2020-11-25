@@ -14,7 +14,7 @@ export class DemoViewBattery implements View {
         const pxSize = new PxSize(100, 150)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/battery"))
+                .addElement(new Card("demo_main", projection.getPxSize(), "elements/energy"))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new Battery("-1", pxSize, 15))
