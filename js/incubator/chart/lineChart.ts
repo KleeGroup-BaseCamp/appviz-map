@@ -1,57 +1,35 @@
-import {VElement} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
-import {LinearAxis} from "."
+import {LinearAxis} from "./linearAxis"
 import {style} from "../../app"
+import {Chart, ChartData} from "./chart"
 
-export type lineChartData = {x: number, y: number}[]
-export class LineChart extends VElement{
+export class LineChart extends Chart{
     private readonly xAxis: LinearAxis
-    private readonly yAxis: LinearAxis
-    private readonly chartHeight: number 
-    private readonly chartWidth: number 
-    private readonly leftPadding: number = 20
-    private readonly bottomPadding: number = 20
-    private readonly data: lineChartData
-    private readonly numOfXTicks = 5
-    private readonly numOfYTicks = 5
+    private readonly data: ChartData<number>
 
-
-    constructor(id: any, pxSize: PxSize, data: lineChartData){
-        super(id, pxSize, false)
-        const xValues = data.map(point => point.x)
-        const yValues = data.map(point => point.y)
+    constructor(id: any, pxSize: PxSize, data: ChartData<number>){
+        super(id, pxSize, data)
+        const xValues = data.map(entry => entry.x)
         this.xAxis = new LinearAxis("x", min(xValues), max(xValues), 5, pxSize.getWidth() - this.leftPadding)
-        this.yAxis = new LinearAxis("y", min(yValues), max(yValues), 5, pxSize.getHeight() - this.bottomPadding)
         this.data = data
-        this.chartHeight = this.getHeight() - this.bottomPadding
-        this.chartWidth = this.getWidth() - this.leftPadding
     }
 
-    public render(){
-        push()
-        translate(this.leftPadding, this.chartHeight)
-        this.renderGrid()
+    protected renderAxes(){
         this.xAxis.render()
         this.yAxis.render()
-        this.renderChart()
-        pop()
     }
 
-    private renderChart(){
+    protected renderChart(){
         stroke(style.color.a)
         fill(style.color.a)
         strokeWeight(1)
         let prevPointPos: PxPosition | null = null
-        for (let point of this.data){
+        for (let entry of this.data){
             const position = new PxPosition(
-                this.xAxis.getCoorForValue(point.x), 
-                this.yAxis.getCoorForValue(point.y)
+                this.xAxis.getCoorForValue(entry.x), 
+                this.yAxis.getCoorForValue(entry.y)
                 )
-            circle(
-                position.getX(), 
-                position.getY(), 
-                5
-            )
+            circle(position.getX(), position.getY(), 5)
             if (prevPointPos){
                 line( // --> TO DO: use shape to handle fill case
                     position.getX(), 
@@ -61,19 +39,6 @@ export class LineChart extends VElement{
                 )
             } 
             prevPointPos = position
-        }
-    }
-
-    private renderGrid(){
-        stroke(style.color.front)
-        strokeWeight(0.3)
-        for(let i = 0; i < this.numOfXTicks; i++){
-            const x = (i / this.numOfXTicks) * this.chartWidth
-            line(x, 0, x, - this.chartHeight)
-        }
-        for(let j = 0; j < this.numOfYTicks; j++){
-            const y = -(j / this.numOfYTicks) * this.chartHeight
-            line(0, y, this.chartWidth, y)
         }
     }
 }
