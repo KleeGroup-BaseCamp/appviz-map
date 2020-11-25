@@ -24,8 +24,8 @@ export class DemoViewGauge2 implements View {
                 .addElement(new BlackHole2("-1", pxSize, 66))
                 .addElement(new BlackHole3("-1", pxSize, 66))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(200, 50), "BlackHole 2"))
-                .addElement(new Caption("-1", new PxSize(200, 50), "BlackHole 3"))
+                .addElement(new Caption("-1", new PxSize(200, 35), "BlackHole 2"))
+                .addElement(new Caption("-1", new PxSize(200, 35), "BlackHole 3"))
                 .build()
             ]
     }

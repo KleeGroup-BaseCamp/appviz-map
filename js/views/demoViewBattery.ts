@@ -22,14 +22,14 @@ export class DemoViewBattery implements View {
                 .addElement(new Battery("-1", pxSize, 75))
                 .addElement(new Battery("-1", pxSize, 100))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(550, 50), "Battery"))
+                .addElement(new Caption("-1", new PxSize(550, 35), "Battery"))
                 .beginRow(10)
                 .addElement(new Light("-1", pxSize, color(255, 225, 0), 25))
                 .addElement(new Light("-1", pxSize, color(255, 225, 0), 50))
                 .addElement(new Light("-1", pxSize, color(255, 225, 0), 75))
                 .addElement(new Light("-1", pxSize, color(255, 225, 0), 100))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(550, 50), "Light"))
+                .addElement(new Caption("-1", new PxSize(550, 35), "Light"))
                 .build()
         ]
     }

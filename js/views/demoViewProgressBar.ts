@@ -25,13 +25,13 @@ export class DemoViewProgressBar implements View {
                     .withLeftColor(style.color.a)
                     .withRightColor(style.color.c))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(1000, 50), "BiColorProgressBar"))
+                .addElement(new Caption("-1", new PxSize(1000, 35), "BiColorProgressBar"))
                 .beginRow(10)
                 .addElement(new StripedProgressBar("-1", pxSize2, 0))
                 .addElement(new StripedProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c))
                 .addElement(new StripedProgressBar("-1", pxSize2, 100).withIcon(Icons.getIcon("data")))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(1300, 50), "StripedProgressBar"))
+                .addElement(new Caption("-1", new PxSize(1300, 35), "StripedProgressBar"))
                 .build()
             ]
     }
