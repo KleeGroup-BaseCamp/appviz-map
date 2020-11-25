@@ -3,12 +3,11 @@ import {} from "p5/global"
 
 import {projection} from "./app"
 import {Detail} from "./detail"
-import {HomeView, TechZoneView, TechGroupView, DemoViewBattery, DemoViewGauge, DemoViewGauge2, DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, View, Group, Item, Background} from "./views"
+import {HomeView, TechZoneView, TechGroupView, DemoViewBattery, DemoViewGauge, DemoViewGauge2,  DemoViewChart, DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, View, Group, Item, Background} from "./views"
 import {State, MapBuilder, LayerBuilder, Map, VElement, VEvent} from "./core"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
-import { DemoViewGraph } from "./views/demoViewGraph"
 
 export class Sketch {
   private readonly state: State = new State()
@@ -118,8 +117,8 @@ export class Sketch {
         return new DemoViewProgressBar()
       case "demoRadar":
         return new DemoViewRadar()
-      case "demoGraph":
-        return new DemoViewGraph()
+      case "demoChart":
+        return new DemoViewChart()
       case "techZone":
         return new TechZoneView()
       case "techGroup":
