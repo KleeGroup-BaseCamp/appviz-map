@@ -5,9 +5,8 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {Caption, LineChart} from "../incubator" 
+import {Caption, LineChart, BarChart} from "../incubator" 
 import {PxSize} from "../layout"
-import { BarChart } from "../incubator/chart/barChart"
 
 export class DemoViewChart implements View {
 
