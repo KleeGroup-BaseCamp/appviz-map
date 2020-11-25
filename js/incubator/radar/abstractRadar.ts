@@ -41,7 +41,6 @@ export abstract class AbstractRadar extends VElement{
 
         this.popUp = new PopUp("-1", new PxSize(250, 250), data) // TO DO: change harcoded value
         textSize(this.textSize)
-        textAlign(LEFT, CENTER)
         textFont(style.text.font)
         const keys = Object.keys(data)
         const longestLabelWidth = Math.max(...keys.map(label => textWidth(label)))
