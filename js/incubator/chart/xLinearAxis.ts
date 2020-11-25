@@ -1,5 +1,9 @@
 import {style} from "../../app"
+<<<<<<< HEAD
 import {AbstractLinearAxis} from "./abstractLinearAxis"
+=======
+import {AbstractLinearAxis} from "./abstractlinearAxis"
+>>>>>>> origin/master
 
 export class XLinearAxis extends AbstractLinearAxis{
     private readonly width: number
