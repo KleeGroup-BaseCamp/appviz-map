@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {LineChart} from "../incubator" 
+import {Caption, LineChart} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewGraph implements View {
@@ -15,10 +15,12 @@ export class DemoViewGraph implements View {
         const data = [{x: 0, y: 0}, {x: 20, y: 40}, {x:40, y: 80}, {x: 100, y: 100}]
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "Demo Gauge"))
+                .addElement(new Card("demo_main", projection.getPxSize(), "elements/graph"))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new LineChart("-1", pxSize, data))
+                .beginRow(10)
+                .addElement(new Caption("-1", new PxSize(200, 35), "Line chart"))
                 .build()
             ]
     }
