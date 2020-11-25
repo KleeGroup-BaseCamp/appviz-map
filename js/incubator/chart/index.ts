@@ -1,4 +1,5 @@
 export * from "./lineChart"
 export * from "./barChart"
+export * from "./doughnutChart"
 export * from "./linearAxis"
 export * from "./categoryAxis"
