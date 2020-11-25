@@ -1,7 +1,7 @@
-import { VElement } from "../../core";
-import { PxPosition, PxSize } from "../../layout";
-import { XLinearAxis, YLinearAxis } from ".";
-import { style } from "../../app";
+import {VElement} from "../../core"
+import {PxPosition, PxSize} from "../../layout"
+import {XLinearAxis, YLinearAxis} from "."
+import {style} from "../../app"
 
 export type lineChartData = {x: number, y: number}[]
 export class LineChart extends VElement{
@@ -12,14 +12,16 @@ export class LineChart extends VElement{
     private readonly leftPadding: number = 20
     private readonly bottomPadding: number = 20
     private readonly data: lineChartData
+    private readonly numOfXTicks = 5
+    private readonly numOfYTicks = 5
 
 
     constructor(id: any, pxSize: PxSize, data: lineChartData){
         super(id, pxSize, false)
         const xValues = data.map(point => point.x)
         const yValues = data.map(point => point.y)
-        this.xAxis = new XLinearAxis(min(xValues), max(xValues), pxSize.getWidth() - this.leftPadding)
-        this.yAxis = new YLinearAxis(min(yValues), max(yValues), pxSize.getHeight() - this.bottomPadding)
+        this.xAxis = new XLinearAxis(min(xValues), max(xValues), 5, pxSize.getWidth() - this.leftPadding)
+        this.yAxis = new YLinearAxis(min(yValues), max(yValues), 5, pxSize.getHeight() - this.bottomPadding)
         this.data = data
         this.chartHeight = this.getHeight() - this.bottomPadding
         this.chartWidth = this.getWidth() - this.leftPadding
@@ -64,14 +66,12 @@ export class LineChart extends VElement{
     private renderGrid(){
         stroke(style.color.front)
         strokeWeight(0.3)
-        const xNumOfTicks = this.xAxis.getNumOfTicks()
-        const yNumOfTicks = this.yAxis.getNumOfTicks()
-        for(let i = 0; i < xNumOfTicks; i++){
-            const x = (i / xNumOfTicks) * this.chartWidth
+        for(let i = 0; i < this.numOfXTicks; i++){
+            const x = (i / this.numOfXTicks) * this.chartWidth
             line(x, 0, x, - this.chartHeight)
         }
-        for(let j = 0; j < yNumOfTicks; j++){
-            const y = -(j / yNumOfTicks) * this.chartHeight
+        for(let j = 0; j < this.numOfYTicks; j++){
+            const y = -(j / this.numOfYTicks) * this.chartHeight
             line(0, y, this.chartWidth, y)
         }
     }

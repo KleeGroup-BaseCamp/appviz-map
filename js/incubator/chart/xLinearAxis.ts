@@ -1,11 +1,11 @@
-import { style } from "../../app"
-import { LinearAxis } from "./linearAxis"
+import {style} from "../../app"
+import {AbstractLinearAxis} from "./abstractLinearAxis"
 
-export class XLinearAxis extends LinearAxis{
+export class XLinearAxis extends AbstractLinearAxis{
     private readonly width: number
 
-    constructor(xMin: number, xMax: number, width: number){
-        super(xMin, xMax)
+    constructor(xMin: number, xMax: number, numOfTicks: number, width: number){
+        super(xMin, xMax, numOfTicks)
         this.width = width
     }
 

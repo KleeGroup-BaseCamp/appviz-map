@@ -1,12 +1,11 @@
-import { style } from "../../app"
-import { LinearAxis } from "./linearAxis"
+import {style} from "../../app"
+import {AbstractLinearAxis} from "./abstractlinearAxis"
 
-export class YLinearAxis extends LinearAxis{
-
+export class YLinearAxis extends AbstractLinearAxis{
     private readonly height: number
 
-    constructor(yMin: number, yMax: number, height: number){
-        super(yMin,yMax)
+    constructor(yMin: number, yMax: number, numOfTicks: number, height: number){
+        super(yMin,yMax, numOfTicks)
         this.height = height
     }
 
