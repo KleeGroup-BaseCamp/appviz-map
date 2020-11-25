@@ -55,7 +55,6 @@ export class DoughnutChart extends VElement{
         const rectPos = new PxPosition(0, (this.topPadding - rectSize.getHeight()) / 2)
         this.labels.forEach((label, index) => {
             fill(this.colors[index])
-
             rect(rectPos.getX(), rectPos.getY(), rectSize.getWidth(), rectSize.getHeight())
             push()
             translate(rectSize.getWidth(), this.topPadding / 2)
