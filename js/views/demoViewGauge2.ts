@@ -14,13 +14,13 @@ export class DemoViewGauge2 implements View {
         const pxSize = new PxSize(200, 200)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "Demo Gauge"))
+                .addElement(new Card("demo_main", projection.getPxSize(), "elements/gauge 2"))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new BlackHole4("-1", pxSize, 66))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(200, 50), "BlackHole 4"))
-                .beginRow(10)
+                .addElement(new Caption("-1", new PxSize(200, 35), "BlackHole 4"))
+                .beginRow()
                 .addElement(new BlackHole2("-1", pxSize, 66))
                 .addElement(new BlackHole3("-1", pxSize, 66))
                 .beginRow(10)

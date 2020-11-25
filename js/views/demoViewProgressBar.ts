@@ -15,7 +15,7 @@ export class DemoViewProgressBar implements View {
         const pxSize2 = new PxSize(400, 100)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "Demo Gauge"))
+                .addElement(new Card("demo_main", projection.getPxSize(), "elements/progress bar"))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new BiColorProgressBar("-1", pxSize, 0))
@@ -26,7 +26,7 @@ export class DemoViewProgressBar implements View {
                     .withRightColor(style.color.c))
                 .beginRow(10)
                 .addElement(new Caption("-1", new PxSize(1000, 35), "BiColorProgressBar"))
-                .beginRow(10)
+                .beginRow()
                 .addElement(new StripedProgressBar("-1", pxSize2, 0))
                 .addElement(new StripedProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c))
                 .addElement(new StripedProgressBar("-1", pxSize2, 100).withIcon(Icons.getIcon("data")))

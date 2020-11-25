@@ -14,7 +14,7 @@ export class DemoViewBattery implements View {
         const pxSize = new PxSize(100, 150)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "Demo Battery"))
+                .addElement(new Card("demo_main", projection.getPxSize(), "elements/battery"))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new Battery("-1", pxSize, 15))
@@ -23,7 +23,7 @@ export class DemoViewBattery implements View {
                 .addElement(new Battery("-1", pxSize, 100))
                 .beginRow(10)
                 .addElement(new Caption("-1", new PxSize(550, 35), "Battery"))
-                .beginRow(10)
+                .beginRow()
                 .addElement(new Light("-1", pxSize, color(255, 225, 0), 25))
                 .addElement(new Light("-1", pxSize, color(255, 225, 0), 50))
                 .addElement(new Light("-1", pxSize, color(255, 225, 0), 75))
