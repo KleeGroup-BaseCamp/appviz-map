@@ -1,12 +1,12 @@
 import {VElement} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
-import {XLinearAxis, YLinearAxis} from "."
+import {LinearAxis} from "."
 import {style} from "../../app"
 
 export type lineChartData = {x: number, y: number}[]
 export class LineChart extends VElement{
-    private readonly xAxis: XLinearAxis
-    private readonly yAxis: YLinearAxis
+    private readonly xAxis: LinearAxis
+    private readonly yAxis: LinearAxis
     private readonly chartHeight: number 
     private readonly chartWidth: number 
     private readonly leftPadding: number = 20
@@ -20,8 +20,8 @@ export class LineChart extends VElement{
         super(id, pxSize, false)
         const xValues = data.map(point => point.x)
         const yValues = data.map(point => point.y)
-        this.xAxis = new XLinearAxis(min(xValues), max(xValues), 5, pxSize.getWidth() - this.leftPadding)
-        this.yAxis = new YLinearAxis(min(yValues), max(yValues), 5, pxSize.getHeight() - this.bottomPadding)
+        this.xAxis = new LinearAxis("x", min(xValues), max(xValues), 5, pxSize.getWidth() - this.leftPadding)
+        this.yAxis = new LinearAxis("y", min(yValues), max(yValues), 5, pxSize.getHeight() - this.bottomPadding)
         this.data = data
         this.chartHeight = this.getHeight() - this.bottomPadding
         this.chartWidth = this.getWidth() - this.leftPadding
@@ -30,16 +30,17 @@ export class LineChart extends VElement{
     public render(){
         push()
         translate(this.leftPadding, this.chartHeight)
+        this.renderGrid()
         this.xAxis.render()
         this.yAxis.render()
         this.renderChart()
-        this.renderGrid()
         pop()
     }
 
     private renderChart(){
         stroke(style.color.a)
         fill(style.color.a)
+        strokeWeight(1)
         let prevPointPos: PxPosition | null = null
         for (let point of this.data){
             const position = new PxPosition(
