@@ -29,3 +29,5 @@ export * from "./blackHole4"
 export * from "./caption"
 
 export * from "./chart"
+
+export * from "./neonCircles"

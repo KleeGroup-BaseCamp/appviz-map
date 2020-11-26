@@ -8,6 +8,7 @@ import {State, MapBuilder, LayerBuilder, Map, VElement, VEvent} from "./core"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
 import {ViewParams} from "./types"
+import { DemoViewNeon } from "./views/demoViewNeon"
 
 export class Sketch {
   private readonly state: State = new State()
@@ -119,6 +120,8 @@ export class Sketch {
         return new DemoViewRadar()
       case "demoChart":
         return new DemoViewChart()
+      case "demoNeon":
+        return new DemoViewNeon()
       case "techZone":
         return new TechZoneView()
       case "techGroup":
