@@ -6,15 +6,12 @@ import {LinearAxis} from "./linearAxis"
 
 export class BarChart extends Chart{
     private readonly xAxis: CategoryAxis
-    private readonly yAxis: LinearAxis
     private readonly data: ChartData<string>
 
     constructor(id: any, pxSize: PxSize, data: ChartData<string>){
-        super(id, pxSize, 0, 0)
+        super(id, pxSize, data, 0, 0)
         const labels = data.map(entry => entry.x)
-        const values = data.map(entry => entry.y)
         this.xAxis = new CategoryAxis(labels, this.chartWidth)
-        this.yAxis = new LinearAxis("y", min(values), max(values), 5, this.chartHeight)
         this.data = data
     }
 

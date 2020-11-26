@@ -8,16 +8,19 @@ export type ChartData<T extends string | number> = {x: T, y: number}[]
 export abstract class Chart extends VElement{
     protected readonly chartHeight: number 
     protected readonly chartWidth: number 
+    protected readonly yAxis: LinearAxis
     private readonly leftPadding: number = 20
     private readonly bottomPadding: number = 20
     private readonly numOfXTicks = 5
     private readonly numOfYTicks = 5
 
 
-    constructor(id: any, pxSize: PxSize, rightPadding: number, topPadding: number){
+    constructor(id: any, pxSize: PxSize, data: ChartData<number> | ChartData<string>, rightPadding: number, topPadding: number, ){
         super(id, pxSize, false)
         this.chartWidth = this.getWidth() - this.leftPadding - rightPadding
         this.chartHeight = this.getHeight() - this.bottomPadding - topPadding
+        const values = (data as ChartData<string | number>).map(entry => entry.y) // ChartData<Union> because map is a generic function
+        this.yAxis = new LinearAxis("y", min(values), max(values), 5, this.chartHeight)
     }
 
     public render(){

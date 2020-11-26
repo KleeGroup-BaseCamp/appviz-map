@@ -6,20 +6,17 @@ import { ColorUtils } from "../../utils"
 
 export class LineChart extends Chart{
     private readonly xAxis: LinearAxis
-    private readonly yAxis: LinearAxis
     private readonly data: ChartData<number>
     private readonly pointRadius: number
     private fill: boolean
 
     constructor(id: any, pxSize: PxSize, data: ChartData<number>){
         const pointRadius = 5
-        super(id, pxSize, pointRadius, pointRadius)
+        super(id, pxSize, data, pointRadius, pointRadius)
         this.pointRadius = pointRadius
         this.fill = false
         const xValues = data.map(entry => entry.x)
-        const yValues = data.map(entry => entry.y)
         this.xAxis = new LinearAxis("x", min(xValues), max(xValues), 5, this.chartWidth)
-        this.yAxis = new LinearAxis("y", min(yValues), max(yValues), 5, this.chartHeight)
         this.data = data
     }
 
