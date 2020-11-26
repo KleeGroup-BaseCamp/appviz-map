@@ -8,7 +8,7 @@ import {Layout} from "../types"
 import {Battery, Caption, Light} from "../incubator" 
 import {PxSize} from "../layout"
 
-export class DemoViewBattery implements View {
+export class DemoViewEnergy implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(100, 150)
