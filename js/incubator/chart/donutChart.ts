@@ -4,15 +4,15 @@ import {VText} from "../../components"
 import {VElement} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
 
-type DoughnutData = {label: string, value: number}[]
+type DonutData = {label: string, value: number}[]
 
-export class DoughnutChart extends VElement{
+export class DonutChart extends VElement{
     private readonly colors: p5.Color[] = [style.color.a, style.color.b, style.color.c, style.color.d]
-    private readonly data: DoughnutData
+    private readonly data: DonutData
     private readonly labels: VText[] = []
     private readonly topPadding: number = 20
 
-    constructor(id: any, pxSize: PxSize, data: DoughnutData){
+    constructor(id: any, pxSize: PxSize, data: DonutData){
         super(id, pxSize, false)
         this.data = data
         this.data.map(
@@ -25,12 +25,12 @@ export class DoughnutChart extends VElement{
     public render(): void{
         push()
         translate(this.getWidth() / 2, (this.getHeight() + this.topPadding) / 2)
-        this.renderDoughnut()
+        this.renderDonut()
         pop()
         this.renderLegend() 
     }
 
-    private renderDoughnut(): void{
+    private renderDonut(): void{
         noStroke()
         const values = this.data.map(entry => entry.value)
         const sumValues = values.reduce((a, b) => a + b)
