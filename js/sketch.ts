@@ -125,7 +125,10 @@ export class Sketch {
       case "techZone":
         return new TechZoneView()
       case "techGroup":
-          return new TechGroupView(viewParams)
+        if (! viewParams){
+          throw "No viewParams were passed to the function selectView"
+        }
+        return new TechGroupView(viewParams)
       default:
         return new HomeView()
     }
