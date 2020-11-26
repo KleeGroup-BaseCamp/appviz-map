@@ -35,16 +35,4 @@ export class CategoryAxis{
         }
         pop()
     }
-
-    // /**
-    //  * Get the coordinate of label
-    //  * @param index label index 
-    //  */
-    // public getCoorForIndex(index: number): number{
-    //     const numOfTicks = this.labels.length
-    //     if(numOfTicks == 0){
-    //         throw Error("No labels were provided to category axi<s")
-    //     }
-    //     return this.length * index  / numOfTicks
-    // }
 }

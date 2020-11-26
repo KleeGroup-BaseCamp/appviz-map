@@ -6,26 +6,23 @@ import {style} from "../../app"
 export type ChartData<T extends string | number> = {x: T, y: number}[]
 
 export abstract class Chart extends VElement{
-    protected readonly yAxis: LinearAxis
-    protected readonly leftPadding: number = 20
+    protected readonly chartHeight: number 
+    protected readonly chartWidth: number 
+    private readonly leftPadding: number = 20
     private readonly bottomPadding: number = 20
-    private readonly chartHeight: number 
-    private readonly chartWidth: number 
     private readonly numOfXTicks = 5
     private readonly numOfYTicks = 5
 
 
-    constructor(id: any, pxSize: PxSize, data: ChartData<number> | ChartData<string>){
+    constructor(id: any, pxSize: PxSize, rightPadding: number, topPadding: number){
         super(id, pxSize, false)
-        const values = (data as ChartData<string | number>).map(entry => entry.y) // ChartData<Union> because map is a generic function
-        this.yAxis = new LinearAxis("y", min(values), max(values), 5, pxSize.getHeight() - this.bottomPadding)
-        this.chartHeight = this.getHeight() - this.bottomPadding
-        this.chartWidth = this.getWidth() - this.leftPadding
+        this.chartWidth = this.getWidth() - this.leftPadding - rightPadding
+        this.chartHeight = this.getHeight() - this.bottomPadding - topPadding
     }
 
     public render(){
         push()
-        translate(this.leftPadding, this.chartHeight)
+        translate(this.leftPadding, this.getHeight() - this.bottomPadding)
         this.renderGrid()
         this.renderAxes()
         this.renderChart()

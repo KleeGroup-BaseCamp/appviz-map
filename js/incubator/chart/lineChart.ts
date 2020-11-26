@@ -6,13 +6,20 @@ import { ColorUtils } from "../../utils"
 
 export class LineChart extends Chart{
     private readonly xAxis: LinearAxis
+    private readonly yAxis: LinearAxis
     private readonly data: ChartData<number>
-    private fill: boolean = false
+    private readonly pointRadius: number
+    private fill: boolean
 
     constructor(id: any, pxSize: PxSize, data: ChartData<number>){
-        super(id, pxSize, data)
+        const pointRadius = 5
+        super(id, pxSize, pointRadius, pointRadius)
+        this.pointRadius = pointRadius
+        this.fill = false
         const xValues = data.map(entry => entry.x)
-        this.xAxis = new LinearAxis("x", min(xValues), max(xValues), 5, pxSize.getWidth() - this.leftPadding)
+        const yValues = data.map(entry => entry.y)
+        this.xAxis = new LinearAxis("x", min(xValues), max(xValues), 5, this.chartWidth)
+        this.yAxis = new LinearAxis("y", min(yValues), max(yValues), 5, this.chartHeight)
         this.data = data
     }
 
@@ -39,7 +46,7 @@ export class LineChart extends Chart{
                 this.xAxis.getCoorForValue(entry.x), 
                 this.yAxis.getCoorForValue(entry.y)
                 )
-                circle(position.getX(), position.getY(), 5)
+                circle(position.getX(), position.getY(), this.pointRadius)
                 vertex(position.getX(), position.getY())
             }
         noFill() // Because of the fill for the circles
@@ -48,7 +55,7 @@ export class LineChart extends Chart{
             noStroke()
             color.setAlpha(50)
             fill(color)
-            vertex(this.getHeight() - this.leftPadding, 0)
+            vertex(this.chartWidth, 0)
             endShape()
         }
     }
