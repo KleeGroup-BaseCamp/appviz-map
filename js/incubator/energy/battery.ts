@@ -10,20 +10,11 @@ export class Battery extends VElement{
 
     private readonly padding: number
     private readonly topMargin: number
-    private readonly maxBubbleSize : number
     private readonly bubbles : Bubble[] = []
     private readonly waves : Wave[] = []
 
-    private percent: number
-    private maxAmplitude: number
-    private time: number 
-
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
-        this.percent = percent
-        this.maxAmplitude = 0 
-        this.time = 0
-        this.maxBubbleSize = 8
         this.padding = 5
         this.topMargin = 10 // Margin for hat
         const barWidth = pxSize.getWidth() - 2 * this.padding
@@ -32,8 +23,10 @@ export class Battery extends VElement{
         for(let i = 0; i < numOfBubbles; i++){
             this.bubbles.push(new Bubble(0, barWidth, barHeight, 0, this.secondaryColor))
         }
-        this.waves.push(new Wave(barHeight, barWidth, -QUARTER_PI, this.primaryColor, percent))
-        this.waves.push(new Wave(barHeight, barWidth, QUARTER_PI, this.secondaryColor, percent))
+        const period = 15
+        const maxAmplitude = 50
+        this.waves.push(new Wave(barWidth, barHeight, -QUARTER_PI, this.primaryColor, period * 2, maxAmplitude / 2, percent))
+        this.waves.push(new Wave(barWidth, barHeight, QUARTER_PI, this.secondaryColor, period, maxAmplitude, percent))
         const duration = 3000 /*ms*/
         AnimationUtils.animate(0, 100, duration * 10, s => this.waves.forEach(wave => wave.update(s)))
         AnimationUtils.animate(0, 100, duration, s => this.bubbles.forEach(bubble => bubble.update(s)))
@@ -119,24 +112,27 @@ class Wave{
     private readonly barWidth: number
     private readonly omega: number
     private readonly color: p5.Color
+    private readonly period: number
     private readonly percent: number
-    private maxAmplitude: number = 0
+    private readonly maxAmplitude: number
+    private amplitude: number = 0
     private time: number = 0 // TO DO: Use better name
     private yFill: number = 0
 
 
-    constructor(barHeight: number, barWidth: number, omega: number, color: p5.Color, percent: number){
-        this.barHeight = barHeight
+    constructor(barWidth: number, barHeight: number, omega: number, color: p5.Color, period: number, maxAmplitude: number, percent: number){
         this.barWidth = barWidth
+        this.barHeight = barHeight
         this.omega = omega
         this.color = color
+        this.period = period
+        this.maxAmplitude = maxAmplitude
         this.percent = percent
     }
 
     render(): void{
-        const period = 15
         const fillHeight = this.barHeight - this.yFill 
-        const amplitude = min(min(this.maxAmplitude, fillHeight), this.yFill) // bounding box constraints
+        const amplitude = min(min(this.amplitude, fillHeight), this.yFill) // bounding box constraints
         noStroke()
         fill(this.color)
         blendMode(LIGHTEST)
@@ -144,22 +140,29 @@ class Wave{
         vertex(0, this.yFill)
         bezierVertex(
             this.barWidth / 3, 
-            this.yFill- amplitude * sin(TWO_PI * this.time / period + QUARTER_PI + this.omega), 
+            this.yFill- amplitude * sin(TWO_PI * this.time / this.period + QUARTER_PI + this.omega), 
             this.barWidth * 2 / 3, 
-            this.yFill- amplitude * sin(TWO_PI * this.time / period + QUARTER_PI - this.omega), 
+            this.yFill- amplitude * sin(TWO_PI * this.time / this.period + QUARTER_PI - this.omega), 
             this.barWidth, 
             this.yFill
         )
         vertex(this.barWidth, this.barHeight)
         vertex(0, this.barHeight)
         endShape(CLOSE)
-
     }
 
     update(s: number): void{
+        /*
+        Filling animation is faster than wave animation -> Filling animation stops suddenly (reaches limit 
+            before s = 100 -> no easeOutSine)
+        Fixes: 
+            - Filling animation duration = wave animation duration (not generally what we want:
+                 filling fast and wave animation lasting)
+            - Two separate animations with different durations & 2 separate update functions
+        */
         const fillSpeedRatio = 3 // ration between fill animation speed and wave animation speed
         this.yFill = this.barHeight * (100 - min(s * fillSpeedRatio, this.percent)) / 100 // y coordinate of "liquid" surface
+        this.amplitude = this.maxAmplitude * (100 - s) / 100
         this.time = s
-        this.maxAmplitude = (100 - s) / 2
     }
 }
