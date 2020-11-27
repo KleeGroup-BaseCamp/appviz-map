@@ -11,24 +11,25 @@ export class ArcToCircle extends VElement{
     private endColor: p5.Color = style.color.c
     private color: p5.Color = style.color.a
     private blur: number = 0
+    private radius: number = 0
+    private vStrokeWeight: number = 0
     private startAngle: number = 0
     private endAngle: number = 0
 
     constructor(id: any, pxSize: PxSize){
         super(id, pxSize, false)
-        AnimationUtils.animate(0, 100, 3000, (s) => {this.update(s)})
+        AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})
     }
 
     public render(): void{
-        const radius = min(this.getWidth(), this.getHeight()) / 2 * 0.8
         noFill()
         stroke(this.color)
-        strokeWeight(3)
+        strokeWeight(this.vStrokeWeight)
         push()
         translate(this.getWidth() / 2, this.getHeight() / 2)
         drawingContext.shadowColor = this.color.toString();
         drawingContext.shadowBlur = this.blur 
-        arc(0, 0, radius * 2, radius * 2, this.startAngle, this.endAngle)
+        arc(0, 0, this.radius * 2, this.radius * 2, this.startAngle, this.endAngle)
         pop()
     }
 
@@ -45,6 +46,12 @@ export class ArcToCircle extends VElement{
         this.blur = ratio <= blurPeak 
             ? (ratio / blurPeak) * maxBlur
             : ((1 - ratio) / (1 - blurPeak)) * maxBlur
+        
+        const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.9 // TO DO: estimate space taken by neon
+        this.radius = ratio * maxRadius 
+
+        const maxStrokeWeight = 4
+        this.vStrokeWeight = ratio * maxStrokeWeight
     }
 
     public withColors(startColor: p5.Color, endColor: p5.Color): ArcToCircle{
