@@ -13,12 +13,17 @@ export class NeonCircles extends VElement{
 
     constructor(id: any, pxSize: PxSize){
         super(id, pxSize, false)
-        NeonCircle.primaryColor = this.primaryColor
-        NeonCircle.secondaryColor = this.secondaryColor
-        NeonCircle.maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.8 // TO DO: estimate space taken by neon
         const numOfCircles = 5
+        const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.8 // TO DO: estimate space taken by neon
         for(let i = 0; i < numOfCircles; i++){
-            this.circles.push(new NeonCircle((i + 1) / numOfCircles * NeonCircle.maxRadius))
+            this.circles.push(
+                new NeonCircle(
+                    (i + 1) / numOfCircles * maxRadius, 
+                    maxRadius, 
+                    this.primaryColor, 
+                    this.secondaryColor
+                )
+            )
         }
         AnimationUtils.animate(
             0, 
@@ -43,29 +48,24 @@ export class NeonCircles extends VElement{
         )
         pop()
     }
-
-    private renderNeonCircle(radius: number, color: p5.Color): void{
-        push()
-        stroke(color)
-        drawingContext.shadowColor = color.toString();
-        drawingContext.shadowBlur = 10 // TO DO: try different values for best visual
-        circle(0, 0, 2 * radius)
-        pop()
-    }
 }
 
 class NeonCircle{
-    static primaryColor: p5.Color // TO DO: éviter de changer les fields static pour chaque NeonCircles composant
-    static secondaryColor: p5.Color
-    static maxRadius: number
+    private readonly primaryColor: p5.Color
+    private readonly secondaryColor: p5.Color
+    private readonly maxRadius: number
     private readonly startRadius: number
-    private color: p5.Color = NeonCircle.primaryColor
+    private color: p5.Color
     private radius: number
     private blur: number = 0
 
-    constructor(radius: number){
-        this.startRadius = radius
-        this.radius = radius
+    constructor(startRadius: number, maxRadius: number, primaryColor: p5.Color, secondaryColor: p5.Color){
+        this.startRadius = startRadius
+        this.radius = startRadius
+        this.maxRadius = maxRadius
+        this.primaryColor = primaryColor
+        this.secondaryColor = secondaryColor
+        this.color = primaryColor
     }
 
     public render(): void{
@@ -84,10 +84,10 @@ class NeonCircle{
         const maxBlur = 10 // TO DO: try different values for best visual
         if(percent < firstAnimEnd){
             // 0 -> firstAnimEnd: converge radius & increase opacity
-            const finalRadius = NeonCircle.maxRadius / 2
+            const finalRadius = this.maxRadius / 2
             const ratio = percent / firstAnimEnd
             this.radius = this.startRadius + ratio * (finalRadius - this.startRadius)
-            this.color = lerpColor(NeonCircle.primaryColor, NeonCircle.secondaryColor, this.radius / NeonCircle.maxRadius)
+            this.color = lerpColor(this.primaryColor, this.secondaryColor, this.radius / this.maxRadius)
             this.color.setAlpha(ratio * 255)
         } 
         if (percent >= secondAnimStart && percent < secondAnimEnd){
