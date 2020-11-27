@@ -14,17 +14,14 @@ export class PointsToCircle extends VElement{
         for(let i = 0; i < numOfPoints; i++){
             this.points.push(new NeonPoint(maxRadius, random(TWO_PI), random(maxRadius)))
         }
-        AnimationUtils.animate(
-            0, 
-            100, 
-            5000, 
-            (s) => {
-                this.points.forEach(
-                    point => point.update(s)
-                )
-            },
-        )
+        AnimationUtils.animate(0, 100, 5000, s=>this.update(s))
     }
+
+    private update(percent :number): void{
+        this.points.forEach(
+            point => point.update(percent)
+        )
+    }    
 
     public render(): void{
         push()
