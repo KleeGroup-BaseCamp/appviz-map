@@ -79,7 +79,7 @@ class NeonCircle{
 
     public update(percent: number): void{
         const firstAnimEnd = 90
-        const secondAnimStart = 70
+        const secondAnimStart = 80
         const secondAnimEnd = 85
         const maxBlur = 10 // TO DO: try different values for best visual
         if(percent < firstAnimEnd){
