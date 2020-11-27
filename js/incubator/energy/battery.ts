@@ -27,9 +27,13 @@ export class Battery extends VElement{
         const maxAmplitude = 50
         this.waves.push(new Wave(barWidth, barHeight, -QUARTER_PI, this.primaryColor, period * 2, maxAmplitude / 2, percent))
         this.waves.push(new Wave(barWidth, barHeight, QUARTER_PI, this.secondaryColor, period, maxAmplitude, percent))
-        const duration = 3000 /*ms*/
-        AnimationUtils.animate(0, 100, duration * 10, s => this.waves.forEach(wave => wave.update(s)))
-        AnimationUtils.animate(0, 100, duration, s => this.bubbles.forEach(bubble => bubble.update(s)))
+        const duration = 8000 /*ms*/
+        AnimationUtils.animate(0, 100, duration, s => this.update(s))
+    }
+
+    private update (progressPercent : number){
+        this.waves.forEach(wave => wave.update(progressPercent))
+        this.bubbles.forEach(bubble => bubble.update(progressPercent))
     }
 
     public render() : void {
@@ -65,8 +69,6 @@ export class Battery extends VElement{
 }
 
 class Bubble{
-    private readonly xMin: number
-    private readonly xMax: number
     private readonly yStart: number
     private readonly yEnd: number
     private readonly maxRadius = 5
@@ -79,8 +81,6 @@ class Bubble{
     private color: p5.Color
 
     constructor(xMin: number, xMax: number, yStart: number, yEnd: number, primaryColor: p5.Color){
-        this.xMin = xMin
-        this.xMax = xMax
         this.yStart = yStart
         this.yEnd = yEnd
         const width = xMax - xMin
@@ -89,7 +89,7 @@ class Bubble{
         this.color = primaryColor
     }
 
-    update(percent: number): void{
+    public update(percent: number): void{
         this.y = this.yStart + (this.yEnd - this.yStart) * percent / 100 - this.radius
         this.radius = this.maxRadius * (1 - percent / 100)
         this.color = lerpColor(this.primaryColor, this.secondaryColor, percent / 100)
@@ -115,6 +115,7 @@ class Wave{
     private readonly period: number
     private readonly percent: number
     private readonly maxAmplitude: number
+
     private amplitude: number = 0
     private time: number = 0 // TO DO: Use better name
     private yFill: number = 0
@@ -130,7 +131,7 @@ class Wave{
         this.percent = percent
     }
 
-    render(): void{
+    public render(): void{
         const fillHeight = this.barHeight - this.yFill 
         const amplitude = min(min(this.amplitude, fillHeight), this.yFill) // bounding box constraints
         noStroke()
@@ -151,7 +152,7 @@ class Wave{
         endShape(CLOSE)
     }
 
-    update(s: number): void{
+    public update(s: number): void{
         /*
         Filling animation is faster than wave animation -> Filling animation stops suddenly (reaches limit 
             before s = 100 -> no easeOutSine)
