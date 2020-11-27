@@ -1,8 +1,8 @@
-import * as p5 from "p5";
-import { style } from "../app";
-import { VElement } from "../core";
-import { PxSize } from "../layout";
-import { AnimationUtils } from "../utils";
+import * as p5 from "p5"
+import {style} from "../../app"
+import {VElement} from "../../core"
+import {PxSize} from "../../layout"
+import {AnimationUtils} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
@@ -34,13 +34,12 @@ export class ArcToCircle extends VElement{
     }
 
     public update(s: number): void{
-        const numOfLaps = 10
         const ratio = s / 100
-        this.startAngle = ratio * numOfLaps * TWO_PI
+        this.startAngle = ratio * s * TWO_PI / 3
         this.endAngle = this.startAngle + ratio * TWO_PI
         this.color = lerpColor(this.startColor, this.endColor, ratio)
 
-        const blurPeak = 0.8
+        const blurPeak = 0.9
         const maxBlur = 15
         // 0 -> blurPeak: Increase blur --- blurPeak -> 100: Decrease blur
         this.blur = ratio <= blurPeak 
@@ -60,3 +59,4 @@ export class ArcToCircle extends VElement{
         return this
     }
 }
+

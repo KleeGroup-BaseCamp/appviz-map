@@ -5,7 +5,7 @@ import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {ArcToCircle, Caption, NeonCircles,} from "../incubator" 
+import {ArcToCircle, Caption, NeonCircles, PointsToCircle} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewNeon implements View {
@@ -19,9 +19,11 @@ export class DemoViewNeon implements View {
             new GridLayerBuilder()
                 .addElement(new NeonCircles("-1", pxSize))
                 .addElement(new ArcToCircle("-1", pxSize))
+                .addElement(new PointsToCircle("-1", pxSize))
                 .beginRow(10)
                 .addElement(new Caption("-1", new PxSize(200, 35), "Neon circles"))
                 .addElement(new Caption("-1", new PxSize(200, 35), "Arc to circle"))
+                .addElement(new Caption("-1", new PxSize(200, 35), "Points to circle"))
                 .build()
             ]
     }
