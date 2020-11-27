@@ -3,7 +3,7 @@ import {} from "p5/global"
 
 import {projection} from "./app"
 import {Detail} from "./detail"
-import {HomeView, TechZoneView, TechGroupView, DemoViewBattery, DemoViewGauge, DemoViewGauge2,  DemoViewChart, DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, View, Group, Item, Background} from "./views"
+import {HomeView, TechZoneView, TechGroupView, DemoViewEnergy, DemoViewGauge, DemoViewGauge2,  DemoViewChart, DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, View, Group, Item, Background} from "./views"
 import {State, MapBuilder, LayerBuilder, Map, VElement, VEvent} from "./core"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "./layout"
@@ -108,8 +108,8 @@ export class Sketch {
         return new DemoViewSignal()
       case "demoRating":
         return new DemoViewRating()
-      case "demoBattery":
-        return new DemoViewBattery()
+      case "demoEnergy":
+        return new DemoViewEnergy()
       case "demoGauge":
         return new DemoViewGauge()
       case "demoGauge2":
@@ -125,11 +125,10 @@ export class Sketch {
       case "techZone":
         return new TechZoneView()
       case "techGroup":
-        if (viewParams){
-          return new TechGroupView(viewParams)
-        } else{
-          console.error("No viewParams were passed to the function selectView")
+        if (! viewParams){
+          throw "No viewParams were passed to the function selectView"
         }
+        return new TechGroupView(viewParams)
       default:
         return new HomeView()
     }

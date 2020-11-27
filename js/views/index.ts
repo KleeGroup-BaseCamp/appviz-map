@@ -1,6 +1,6 @@
 export * from "./demoViewSignal"
 export * from "./demoViewRating"
-export * from "./demoViewBattery"
+export * from "./demoViewEnergy"
 export * from "./demoViewGauge"
 export * from "./demoViewGauge2"
 export * from "./demoViewProgressBar"
