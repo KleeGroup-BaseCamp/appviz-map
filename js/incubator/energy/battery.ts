@@ -12,10 +12,11 @@ export class Battery extends VElement{
     private readonly topMargin: number
     private readonly maxBubbleSize : number
     private readonly bubbles : Bubble[] = []
+    private readonly waves : Wave[] = []
 
     private percent: number
     private maxAmplitude: number
-    private time: number // TO DO: Use better name
+    private time: number 
 
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
@@ -26,23 +27,23 @@ export class Battery extends VElement{
         this.padding = 5
         this.topMargin = 10 // Margin for hat
         const barWidth = pxSize.getWidth() - 2 * this.padding
-        const barHeight = pxSize.getHeight() - this.padding - this.topMargin
+        const barHeight = pxSize.getHeight() - 2 * this.padding - this.topMargin
         const numOfBubbles = 1 
         for(let i = 0; i < numOfBubbles; i++){
             this.bubbles.push(new Bubble(0, barWidth, barHeight, 0, this.secondaryColor))
         }
+        this.waves.push(new Wave(barHeight, barWidth, -QUARTER_PI, this.primaryColor, percent))
+        this.waves.push(new Wave(barHeight, barWidth, QUARTER_PI, this.secondaryColor, percent))
         const duration = 3000 /*ms*/
-        AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
-        AnimationUtils.animate(50, 0, duration * 10, (s:number) => this.maxAmplitude = s)
-        AnimationUtils.animate(0, 100, duration * 10, (s:number) => this.time = s)
+        AnimationUtils.animate(0, 100, duration * 10, s => this.waves.forEach(wave => wave.update(s)))
         AnimationUtils.animate(0, 100, duration, s => this.bubbles.forEach(bubble => bubble.update(s)))
     }
 
     public render() : void {
         push()
         translate(this.padding, this.padding + this.topMargin)
-        this.renderWaves()
-        this.bubbles.forEach(bubble => bubble.render())        
+        this.waves.forEach(wave => wave.render())
+        this.bubbles.forEach(bubble => bubble.render())     
         pop()
         this.renderContainer()
     }
@@ -67,47 +68,6 @@ export class Battery extends VElement{
         const hatWidth = 30
         fill(style.text.color.primary)
         rect((this.getPxSize().getWidth() - hatWidth) / 2, 0, hatWidth, this.topMargin - this.padding, 20, 20, 0, 0)
-    }
-
-    /**
-     * @param yFill y coordinate of "liquid" surface
-     * @param barWidth With of bar/container
-     */
-    private renderWaves(): void{
-        const barHeight = this.getPxSize().getHeight() - this.padding * 2 - this.topMargin
-        const barWidth = this.getPxSize().getWidth() - this.padding * 2
-        const yFill = barHeight * (1 - this.percent / 100) // y coordinate of "liquid" surface
-
-        const period = 15
-        const fillHeight = barHeight - yFill 
-        const amplitude = min(min(this.maxAmplitude, fillHeight), yFill) // bounding box constraints
-
-        noStroke()
-        // First wave
-        fill(this.secondaryColor)
-        blendMode(LIGHTEST);
-        this.renderWave(yFill, barWidth, barHeight, amplitude, period, QUARTER_PI) 
-
-        // Second wave
-        fill(this.primaryColor)
-        this.renderWave(yFill, barWidth, barHeight, amplitude/2, period*2, -QUARTER_PI) 
-    }
-
-    private renderWave(yFill: number, barWidth:number, barHeight:number, 
-        amplitude: number, period: number, omega: number):void{
-        beginShape()
-        vertex(0, yFill)
-        bezierVertex(
-            barWidth / 3, 
-            yFill- amplitude * sin(TWO_PI * this.time / period + QUARTER_PI + omega), 
-            barWidth * 2 / 3, 
-            yFill- amplitude * sin(TWO_PI * this.time / period + QUARTER_PI - omega), 
-            barWidth, 
-            yFill
-        )
-        vertex(barWidth, barHeight)
-        vertex(0, barHeight)
-        endShape(CLOSE)
     }
 }
 
@@ -150,5 +110,56 @@ class Bubble{
             this.y,
             2 * this.radius
         )
+    }
+}
+
+
+class Wave{
+    private readonly barHeight: number
+    private readonly barWidth: number
+    private readonly omega: number
+    private readonly color: p5.Color
+    private readonly percent: number
+    private maxAmplitude: number = 0
+    private time: number = 0 // TO DO: Use better name
+    private yFill: number = 0
+
+
+    constructor(barHeight: number, barWidth: number, omega: number, color: p5.Color, percent: number){
+        this.barHeight = barHeight
+        this.barWidth = barWidth
+        this.omega = omega
+        this.color = color
+        this.percent = percent
+    }
+
+    render(): void{
+        const period = 15
+        const fillHeight = this.barHeight - this.yFill 
+        const amplitude = min(min(this.maxAmplitude, fillHeight), this.yFill) // bounding box constraints
+        noStroke()
+        fill(this.color)
+        blendMode(LIGHTEST)
+        beginShape()
+        vertex(0, this.yFill)
+        bezierVertex(
+            this.barWidth / 3, 
+            this.yFill- amplitude * sin(TWO_PI * this.time / period + QUARTER_PI + this.omega), 
+            this.barWidth * 2 / 3, 
+            this.yFill- amplitude * sin(TWO_PI * this.time / period + QUARTER_PI - this.omega), 
+            this.barWidth, 
+            this.yFill
+        )
+        vertex(this.barWidth, this.barHeight)
+        vertex(0, this.barHeight)
+        endShape(CLOSE)
+
+    }
+
+    update(s: number): void{
+        const fillSpeedRatio = 3 // ration between fill animation speed and wave animation speed
+        this.yFill = this.barHeight * (100 - min(s * fillSpeedRatio, this.percent)) / 100 // y coordinate of "liquid" surface
+        this.time = s
+        this.maxAmplitude = (100 - s) / 2
     }
 }
