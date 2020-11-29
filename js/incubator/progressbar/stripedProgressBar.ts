@@ -5,42 +5,6 @@ import {VElement} from "../../core"
 import { PxPosition, PxSize } from "../../layout"
 import { style } from "../../app"
 
-export class Hexagon extends VElement {
-    private readonly circumCenter: PxPosition
-    private readonly circumRadius: number
-    private readonly weight: number
-
-    constructor(id: any, pxSize: PxSize) {
-        super(id, pxSize, false)
-        const width = this.getPxSize().getWidth()
-        const height = this.getPxSize().getHeight()
-        this.weight = 4
-        this.circumCenter = new PxPosition(width / 2, height / 2)
-        this.circumRadius = (min(height / sin(radians(60)), width) - this.weight) / 2
-    }
-
-    render() {
-        noFill()
-        strokeWeight(this.weight)
-        stroke(style.color.front)
-        push()
-        translate(this.circumCenter.getX(), this.circumCenter.getY())
-        beginShape()
-        for (let i = 0; i < 6; i++) {
-            vertex(
-                this.circumRadius * cos(radians(60 * i)),
-                - this.circumRadius * sin(radians(60 * i))
-            )
-        }
-        endShape(CLOSE)
-        pop()
-    }
-
-    public getCircumRadius(): number{
-        return this.circumRadius
-    }
-}
-
 export class StripedProgressBar extends VElement{
     private readonly hexagon: Hexagon
     private iconProvided: boolean
@@ -136,5 +100,40 @@ export class StripedProgressBar extends VElement{
         this.iconProvided = true
         this.vText = new VText(icon, style.icon.font, style.text.size.xxl)
         return this
+    }
+}
+export class Hexagon extends VElement {
+    private readonly circumCenter: PxPosition
+    private readonly circumRadius: number
+    private readonly weight: number
+
+    constructor(id: any, pxSize: PxSize) {
+        super(id, pxSize, false)
+        const width = this.getPxSize().getWidth()
+        const height = this.getPxSize().getHeight()
+        this.weight = 4
+        this.circumCenter = new PxPosition(width / 2, height / 2)
+        this.circumRadius = (min(height / sin(radians(60)), width) - this.weight) / 2
+    }
+
+    render() {
+        noFill()
+        strokeWeight(this.weight)
+        stroke(style.color.front)
+        push()
+        translate(this.circumCenter.getX(), this.circumCenter.getY())
+        beginShape()
+        for (let i = 0; i < 6; i++) {
+            vertex(
+                this.circumRadius * cos(radians(60 * i)),
+                - this.circumRadius * sin(radians(60 * i))
+            )
+        }
+        endShape(CLOSE)
+        pop()
+    }
+
+    public getCircumRadius(): number{
+        return this.circumRadius
     }
 }
