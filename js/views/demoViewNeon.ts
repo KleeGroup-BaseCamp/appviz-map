@@ -11,7 +11,7 @@ import {PxSize} from "../layout"
 export class DemoViewNeon implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const pxSize = new PxSize(200, 200)
+        const pxSize = new PxSize(200)
         return  [
             new LayerBuilder()
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/neon"))

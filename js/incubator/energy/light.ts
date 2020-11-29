@@ -5,15 +5,14 @@ import {PxPosition, PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 
 export class Light extends VElement{
-    private readonly color : p5.Color
     private readonly radius: number
     private readonly centerPosition: PxPosition
     
+    private color : p5.Color = color('gold')
     private value: number
 
-    constructor(id: any, pxSize: PxSize, color: p5.Color, value: number){
+    constructor(id: any, pxSize: PxSize, value: number){
         super(id, pxSize, false)
-        this.color = color
         this.value = value
         this.radius = min(pxSize.getHeight(), pxSize.getWidth())
         this.centerPosition = new PxPosition(
@@ -22,6 +21,11 @@ export class Light extends VElement{
         )
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
+    }
+
+    public withColor(color : p5.Color): Light{
+        this.color = color
+        return this
     }
 
     public render() : void {
