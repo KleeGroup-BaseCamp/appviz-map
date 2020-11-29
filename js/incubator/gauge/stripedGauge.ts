@@ -53,26 +53,24 @@ export class StripedGauge extends VElement{
         const angleStep = (TWO_PI - margin * numOfGraduations) / numOfGraduations
         noStroke()
         
-        const numOfColoredGraduations = Math.floor(numOfGraduations * this.percent / 100)
-        fill(this.firstColor)
-        for (let i = 0; i < numOfColoredGraduations; i++){
-            
-            this.renderArc(angleStep, margin, i)
-        }
-        fill(this.secondColor)
-        for (let i = numOfColoredGraduations; i < numOfGraduations; i++){
+        for (let i = 0; i < numOfGraduations; i++){
+            const color =  (i< (numOfGraduations * this.percent / 100))
+            ? this.firstColor
+            : this.secondColor 
+            fill(color)
             this.renderArc(angleStep, margin, i)
         }
     }
 
     private renderArc(angleStep: number, margin: number, index: number): void{
+        const alpha = (angleStep + margin) * index - HALF_PI 
         arc(
                 0, 
                 0, 
                 2 * this.radius,
                 2 * this.radius, 
-                (angleStep + margin) * index - HALF_PI , 
-                (angleStep + margin) * index + angleStep - HALF_PI
+                alpha, 
+                alpha  + angleStep
             )
     }
 
