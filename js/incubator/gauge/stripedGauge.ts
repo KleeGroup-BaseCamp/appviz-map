@@ -56,6 +56,7 @@ export class StripedGauge extends VElement{
         const numOfColoredGraduations = Math.floor(numOfGraduations * this.percent / 100)
         fill(this.firstColor)
         for (let i = 0; i < numOfColoredGraduations; i++){
+            
             this.renderArc(angleStep, margin, i)
         }
         fill(this.secondColor)

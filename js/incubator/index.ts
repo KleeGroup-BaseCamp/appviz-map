@@ -8,14 +8,17 @@ export * from "./gauge/gauge"
 export * from "./progressbar/ProgressBar"
 export * from "./progressbar/stripedProgressBar"
 
+export * from "./neon/arcToCircle"
+export * from "./neon/neonCircles"
+export * from "./neon/pointsToCircle"
+
 export * from "./signal/signal"
 export * from "./signal/signalBars"
 
-// TO DO: Use better naming & (maybe) a subfolder for rating implementations
 export * from "./rating/squareRating"
-export * from "./rating/ImageRating" // PNG
-export * from "./rating/heartRating" // Vertices (simple)
-export * from "./rating/starRating" // Vertices (simple)
+export * from "./rating/ImageRating"
+export * from "./rating/heartRating"
+export * from "./rating/starRating"
 
 export * from "./radar/sharpRadar"
 export * from "./radar/smoothRadar"
@@ -28,6 +31,8 @@ export * from "./blackHole4"
 
 export * from "./caption"
 
-export * from "./chart"
-
-export * from "./neon"
+export * from "./chart/lineChart"
+export * from "./chart/barChart"
+export * from "./chart/donutChart"
+export * from "./chart/linearAxis"
+export * from "./chart/categoryAxis"

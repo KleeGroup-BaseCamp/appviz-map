@@ -1,6 +1,6 @@
 import {VElement} from "../../core"
 import {PxSize} from "../../layout"
-import {LinearAxis} from "."
+import {LinearAxis} from "./linearAxis"
 import {style} from "../../app"
 
 export type ChartData<T extends string | number> = {x: T, y: number}[]

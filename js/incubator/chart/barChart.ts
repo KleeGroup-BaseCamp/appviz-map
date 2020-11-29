@@ -1,8 +1,7 @@
 import {PxSize} from "../../layout"
-import {CategoryAxis} from "."
+import {CategoryAxis} from "./categoryAxis"
 import {style} from "../../app"
 import {Chart, ChartData} from "./chart"
-import {LinearAxis} from "./linearAxis"
 
 export class BarChart extends Chart{
     private readonly xAxis: CategoryAxis

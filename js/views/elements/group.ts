@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import {style} from "../../app"
 import {VElement, State} from "../../core"
 import {Button, Header, VText} from "../../components"
-import {BiColorProgressBar} from "../../incubator"
+import {ProgressBar} from "../../incubator"
 import {PxSize} from "../../layout"
 import {ItemTypeName, ItemTypeFrequencies} from "../../types"
 import {Icons} from "./icons"
@@ -11,7 +11,7 @@ export class Group extends VElement {
     private readonly itemTypeFrequencies: ItemTypeFrequencies
     private readonly maxValue: number
     private readonly header: Header
-    private readonly progressBars: BiColorProgressBar[]
+    private readonly progressBars: ProgressBar[]
     private readonly color: p5.Color
     private readonly button : Button
 
@@ -25,7 +25,7 @@ export class Group extends VElement {
         this.progressBars = []
         Object.keys(this.itemTypeFrequencies).forEach(item => {
             this.progressBars.push(
-                new BiColorProgressBar(
+                new ProgressBar(
                     "-1", 
                     new PxSize(this.getWidth() - 90, 30), 
                     (this.itemTypeFrequencies[item as ItemTypeName] ?? 0) * 100 / maxValue
