@@ -66,10 +66,9 @@ class NeonPoint{
     }
 
     update(s: number){
-        const ratio = s / 100
-        this.distance = this.startDistance + (this.maxDistance - this.startDistance) * ratio
+        this.distance = map(s, 0, 100, this.startDistance, this.maxDistance) 
 
         const maxNumOfLaps = 30
-        this.angle = this.startAngle + random(maxNumOfLaps * TWO_PI * ratio)
+        this.angle = this.startAngle + random(maxNumOfLaps * TWO_PI * s/100)
     }
 }

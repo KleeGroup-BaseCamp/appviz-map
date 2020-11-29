@@ -93,7 +93,7 @@ class Bubble{
     constructor(barWidth: number, barHeight: number){
         this.pos = createVector(random(barWidth), barHeight) 
         this.vel = createVector(0, 0) 
-        this.vel = createVector(0, -random(barHeight)/frameRate()) 
+        this.acc = createVector(0, -random(barHeight)/frameRate()/100) 
         this.radius = 1
     }
 
