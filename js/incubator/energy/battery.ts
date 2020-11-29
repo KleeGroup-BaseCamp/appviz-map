@@ -7,9 +7,12 @@ import {PxSize} from "../../layout"
 export class Battery extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
+    private readonly barWidth : number
+    private readonly barHeight : number
 
     private readonly padding: number
     private readonly topMargin: number
+    private readonly numOfBubbles : number = 15
     private readonly bubbles : Bubble[] = []
     private readonly waves : Wave[] = []
 
@@ -17,23 +20,32 @@ export class Battery extends VElement{
         super(id, pxSize, false)
         this.padding = 5
         this.topMargin = 10 // Margin for hat
-        const barWidth = pxSize.getWidth() - 2 * this.padding
-        const barHeight = pxSize.getHeight() - 2 * this.padding - this.topMargin
-        const numOfBubbles = 1 
-        for(let i = 0; i < numOfBubbles; i++){
-            this.bubbles.push(new Bubble(0, barWidth, barHeight, 0, this.secondaryColor))
+        this.barWidth = pxSize.getWidth() - 2 * this.padding
+        this.barHeight = pxSize.getHeight() - 2 * this.padding - this.topMargin
+        for(let i = 0; i < this.numOfBubbles; i++){
+            this.bubbles[i]= this.createBubble()
         }
         const period = 15
         const maxAmplitude = 50
-        this.waves.push(new Wave(barWidth, barHeight, -QUARTER_PI, this.primaryColor, period * 2, maxAmplitude / 2, percent))
-        this.waves.push(new Wave(barWidth, barHeight, QUARTER_PI, this.secondaryColor, period, maxAmplitude, percent))
+        this.waves.push(new Wave(this.barWidth, this.barHeight, -QUARTER_PI, this.primaryColor, period * 2, maxAmplitude / 2, percent))
+        this.waves.push(new Wave(this.barWidth, this.barHeight, QUARTER_PI, this.secondaryColor, period, maxAmplitude, percent))
         const duration = 8000 /*ms*/
         AnimationUtils.animate(0, 100, duration, s => this.update(s))
     }
 
+    private createBubble(): Bubble {
+        return new Bubble(this.barWidth, this.barHeight)
+    }
+
     private update (progressPercent : number){
         this.waves.forEach(wave => wave.update(progressPercent))
-        this.bubbles.forEach(bubble => bubble.update(progressPercent))
+        for(let i = 0; i < this.bubbles.length; i++){
+            const bubble = this.bubbles[i]
+            bubble.update(progressPercent)
+            if (! bubble.isAlive()){
+                this.bubbles[i] = this.createBubble()
+            }
+        }
     }
 
     public render() : void {
@@ -69,38 +81,41 @@ export class Battery extends VElement{
 }
 
 class Bubble{
-    private readonly yStart: number
-    private readonly yEnd: number
-    private readonly maxRadius = 5
-    private readonly primaryColor: p5.Color
-    private readonly secondaryColor: p5.Color = color(255)
+    private readonly maxRadius = 7
 
-    private x: number
-    private y: number = 0
-    private radius: number = this.maxRadius
-    private color: p5.Color
+    private pos: p5.Vector
+    private vel: p5.Vector
+    private acc: p5.Vector
+    private radius : number
+    private color: p5.Color = color("#52ED52")
+    private alive : boolean = true
 
-    constructor(xMin: number, xMax: number, yStart: number, yEnd: number, primaryColor: p5.Color){
-        this.yStart = yStart
-        this.yEnd = yEnd
-        const width = xMax - xMin
-        this.x = xMin + width / 2 + random(width / 2) - width / 4
-        this.primaryColor = primaryColor
-        this.color = primaryColor
+    constructor(barWidth: number, barHeight: number){
+        this.pos = createVector(random(barWidth), barHeight) 
+        this.vel = createVector(0, 0) 
+        this.vel = createVector(0, -random(barHeight)/frameRate()) 
+        this.radius = 1
     }
 
-    public update(percent: number): void{
-        this.y = this.yStart + (this.yEnd - this.yStart) * percent / 100 - this.radius
-        this.radius = this.maxRadius * (1 - percent / 100)
-        this.color = lerpColor(this.primaryColor, this.secondaryColor, percent / 100)
+    public update(progressPercent:number): void{
+        this.vel.add(this.acc)
+        this.pos.add(this.vel)
+        this.radius = min(this.maxRadius, this.radius + random (this.maxRadius/frameRate()))
+        //this.color = lerpColor(this.primaryColor, this.secondaryColor, 1- pos.y / this;ba)
+        this.alive = this.pos.y> (0 + this.radius) && progressPercent<100    
     }
 
-    render(): void{
+    public isAlive():boolean {
+        return this.alive
+    }
+
+    public render(): void{
+        if (! this.alive) return
         noStroke()
         fill(this.color)
         circle(
-            this.x,
-            this.y,
+            this.pos.x,
+            this.pos.y,
             2 * this.radius
         )
     }
