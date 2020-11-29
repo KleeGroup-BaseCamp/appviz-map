@@ -76,13 +76,14 @@ export class Gauge extends VElement{
      * @param angleDiff = Arc angle = end angle - start angle
      */
     private renderArc(start: number, angleDiff: number): void{
+        const alpha = - HALF_PI + start 
         arc(
                 0, 
                 0, 
                 2 * this.radius,
                 2 * this.radius, 
-                - HALF_PI + start, 
-                - HALF_PI + start + angleDiff 
+                alpha, 
+                alpha + angleDiff 
             )
     }
 
