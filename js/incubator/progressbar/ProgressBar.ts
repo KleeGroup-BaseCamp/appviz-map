@@ -5,7 +5,7 @@ import {AnimationUtils} from "../../utils"
 import { VElement } from "../../core"
 import { PxSize } from "../../layout"
 
-export class BiColorProgressBar extends VElement{
+export class ProgressBar extends VElement{
     private readonly vtext: VText
     private readonly size: number
 
@@ -23,11 +23,11 @@ export class BiColorProgressBar extends VElement{
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
     
-    public withFirstColor(firstColor: p5.Color): BiColorProgressBar{
+    public withFirstColor(firstColor: p5.Color): ProgressBar{
         this.firstColor = firstColor
         return this
     }
-    public withSecondColor(secondColor: p5.Color): BiColorProgressBar{
+    public withSecondColor(secondColor: p5.Color): ProgressBar{
         this.secondColor = secondColor
         return this
     }

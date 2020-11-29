@@ -5,7 +5,7 @@ import {Card, Icons} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {BiColorProgressBar, StripedProgressBar, Caption} from "../incubator" 
+import {ProgressBar, StripedProgressBar, Caption} from "../incubator" 
 import {PxSize} from "../layout"
 
 export class DemoViewProgressBar implements View {
@@ -18,14 +18,14 @@ export class DemoViewProgressBar implements View {
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/progress bar"))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new BiColorProgressBar("-1", pxSize, 0))
-                .addElement(new BiColorProgressBar("-1", pxSize, 50)
+                .addElement(new ProgressBar("-1", pxSize, 0))
+                .addElement(new ProgressBar("-1", pxSize, 50)
                     .withFirstColor(style.color.b))
-                .addElement(new BiColorProgressBar("-1", pxSize, 100)
+                .addElement(new ProgressBar("-1", pxSize, 100)
                     .withFirstColor(style.color.a)
                     .withSecondColor(style.color.c))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(1000, 35), "BiColorProgressBar"))
+                .addElement(new Caption("-1", new PxSize(1000, 35), "ProgressBar"))
                 .beginRow()
                 .addElement(new StripedProgressBar("-1", pxSize2, 0))
                 .addElement(new StripedProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c))
