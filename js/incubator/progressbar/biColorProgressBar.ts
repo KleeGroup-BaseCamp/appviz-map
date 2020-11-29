@@ -9,8 +9,8 @@ export class BiColorProgressBar extends VElement{
     private readonly vtext: VText
     private readonly size: number
 
-    private leftColor: p5.Color = style.color.a
-    private rightColor? : p5.Color
+    private firstColor: p5.Color = style.color.a
+    private secondColor? : p5.Color
 
     private percent: number
 
@@ -23,12 +23,12 @@ export class BiColorProgressBar extends VElement{
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
     
-    public withLeftColor(leftColor: p5.Color): BiColorProgressBar{
-        this.leftColor = leftColor
+    public withFirstColor(firstColor: p5.Color): BiColorProgressBar{
+        this.firstColor = firstColor
         return this
     }
-    public withRightColor(rightColor: p5.Color): BiColorProgressBar{
-        this.rightColor = rightColor
+    public withSecondColor(secondColor: p5.Color): BiColorProgressBar{
+        this.secondColor = secondColor
         return this
     }
 
@@ -60,18 +60,18 @@ export class BiColorProgressBar extends VElement{
         line(0, 0, barWidth, 0)
         
         //There is always a color on the left 
-        stroke(this.leftColor)
+        stroke(this.firstColor)
         line(0, 0, filledWidth, 0)
     
         //If there is a color on the right 
-        if( this.rightColor){
+        if( this.secondColor){
             const transitionRatio = 1 / 5
             const transitionWidth = filledWidth * transitionRatio
             const transitionStart = (filledWidth - transitionWidth) / 2
             const numOfLines = 10
             
             for (let i = 0; i < numOfLines; i++){
-                stroke(lerpColor(this.rightColor, this.leftColor, i / numOfLines))
+                stroke(lerpColor(this.secondColor, this.firstColor, i / numOfLines))
                 line(
                     transitionStart + transitionWidth * i / numOfLines, 
                     0, 
@@ -80,7 +80,7 @@ export class BiColorProgressBar extends VElement{
                 )
             }
             // Fill beginning last to have primaryColor when percent = 0
-            stroke(this.rightColor)
+            stroke(this.secondColor)
             line(0, 0, transitionStart , 0)
         }
     }

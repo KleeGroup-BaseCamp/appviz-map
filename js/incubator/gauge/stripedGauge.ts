@@ -6,8 +6,8 @@ import {AnimationUtils} from "../../utils"
 import {style} from "../../app"
 
 export class StripedGauge extends VElement{
-    private readonly primaryColor: p5.Color = style.color.a
-    private readonly secondaryColor: p5.Color = color(0)
+    private readonly firstColor: p5.Color = style.color.a
+    private readonly secondColor: p5.Color = color(0)
     private readonly tertiaryColor: p5.Color = color("#323e52")
 
     private readonly radius: number
@@ -54,11 +54,11 @@ export class StripedGauge extends VElement{
         noStroke()
         
         const numOfColoredGraduations = Math.floor(numOfGraduations * this.percent / 100)
-        fill(this.primaryColor)
+        fill(this.firstColor)
         for (let i = 0; i < numOfColoredGraduations; i++){
             this.renderArc(angleStep, margin, i)
         }
-        fill(this.secondaryColor)
+        fill(this.secondColor)
         for (let i = numOfColoredGraduations; i < numOfGraduations; i++){
             this.renderArc(angleStep, margin, i)
         }

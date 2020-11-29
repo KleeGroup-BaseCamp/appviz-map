@@ -6,8 +6,8 @@ import {style} from "../../app"
 import * as p5 from "p5"
 
 export class Gauge extends VElement{
-    private primaryColor: p5.Color = style.color.a
-    private secondaryColor?: p5.Color
+    private firstColor: p5.Color = style.color.a
+    private secondColor?: p5.Color
 
     private readonly radius: number
     private readonly centerPosition: PxPosition
@@ -56,15 +56,15 @@ export class Gauge extends VElement{
         const transitionStartAngle = totalAngle * (1 - transitionRatio) / 2
         const angleStep = (totalAngle * transitionRatio) / numOfArcs
 
-        stroke(this.primaryColor)
+        stroke(this.firstColor)
         this.renderArc(0, totalAngle)
 
-        if(this.secondaryColor){
-            stroke(this.secondaryColor)
+        if(this.secondColor){
+            stroke(this.secondColor)
             this.renderArc(transitionStartAngle + totalAngle * transitionRatio, transitionStartAngle)
     
             for(let i = 0; i < numOfArcs; i++){
-                stroke(lerpColor(this.primaryColor, this.secondaryColor, i / numOfArcs))
+                stroke(lerpColor(this.firstColor, this.secondColor, i / numOfArcs))
                 this.renderArc(transitionStartAngle + i * angleStep, angleStep)
             }
         }
@@ -92,9 +92,13 @@ export class Gauge extends VElement{
         this.vtext.render()
     }
 
-    public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): Gauge{
-        this.primaryColor = primaryColor
-        this.secondaryColor = secondaryColor
+    public withFirstColor(firstColor: p5.Color): Gauge{
+        this.firstColor = firstColor
+        return this
+    }
+
+    public withSecondColor(secondColor: p5.Color): Gauge{
+        this.secondColor = secondColor
         return this
     }
 }
