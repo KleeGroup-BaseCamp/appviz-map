@@ -4,9 +4,9 @@ import {AnimationUtils} from "../utils"
 import * as p5 from "p5"
 
 class Bolt {
-    pos: p5.Vector
-    vel: p5.Vector
-    radius : number
+    private pos: p5.Vector
+    private vel: p5.Vector
+    private radius : number
 
     constructor(radius : number){
         this.radius = radius
@@ -24,7 +24,7 @@ class Bolt {
         return  createVector(x, y)
     }       
 
-    public tick():void {
+    public update():void {
         this.pos.add(this.vel)
     
         //let rotation = random(TWO_PI);
@@ -82,7 +82,7 @@ export class BlackHole3 extends VElement{
 //        stroke(frameCount% 255, 255, 255);
         for (let bolt of this.bolts)  {
             bolt.render()
-            bolt.tick()
+            bolt.update()
         }
         pop()
     }    
