@@ -3,6 +3,8 @@ import {VElement} from "../../core"
 import { PxSize } from "../../layout";
 import { AnimationUtils } from "../../utils";
 
+
+declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 export class SparkCircle extends VElement{
     private angle = 0
     private sparks: Spark[] = []
@@ -22,18 +24,16 @@ export class SparkCircle extends VElement{
     }
 
     private update(): void {
-        const angleRate = 10
+        const angleStep = 10
         const radius = min(this.getWidth(), this.getHeight()) / 4
         const lastPos = this.computePos(radius)
-        this.angle += angleRate
+        this.angle += angleStep
         const pos = this.computePos(radius)
 
         const vel = createVector(pos.x, pos.y)
         vel.sub(lastPos.x, lastPos.y)
 
-        for(let i = 0; i < 1; i++){
-            this.sparks.push(new Spark(pos, vel))
-        }
+        this.sparks.push(new Spark(pos, vel))
         this.sparks.forEach(
             spark => {
                 spark.update()
@@ -57,23 +57,30 @@ class Spark{
     private pos: p5.Vector
     private vel: p5.Vector
     private lastPos: p5.Vector
+    private strokeWeight: number = 2
+    private readonly airDrag = random(0.8, 0.85) // TO DO : Proper handling of boundaries = f(angleStep, radius)
 
     constructor(pos: p5.Vector, vel: p5.Vector){
         this.lastPos = pos
         this.pos = pos
         this.vel = vel
+        this.vel.rotate(radians(random(-30, 30)));
     }
 
     public render(): void{
         // TO DO: add blur ?
         stroke(255)
+        strokeWeight(this.strokeWeight)
+        drawingContext.shadowColor = 'white' // TO DO: withColor
+        drawingContext.shadowBlur = 15
         line(this.lastPos.x, this.lastPos.y, this.pos.x, this.pos.y)
     }
 
     public update(): void{
-        this.vel.mult(0.85)
-        this.lastPos = this.pos
+        this.vel.mult(this.airDrag)
+        this.lastPos = this.pos.copy()
         this.pos.add(this.vel)
+        this.strokeWeight *= 0.9
     }
 
     public isStopped(): boolean{
