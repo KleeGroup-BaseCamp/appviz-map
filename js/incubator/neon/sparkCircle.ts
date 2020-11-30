@@ -7,11 +7,12 @@ import { AnimationUtils } from "../../utils";
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 export class SparkCircle extends VElement{
-    private angle = 0
-    private particles: (Spark | LineParticle)[] = []
     private readonly neonArc: NeonArc
     private readonly radius: number
     private readonly angleStep: number
+
+    private angle = 0
+    private particles: (Spark | LineParticle)[] = []
 
     constructor(id: any, pxSize: PxSize){
         super(id, pxSize, false)
@@ -32,9 +33,9 @@ export class SparkCircle extends VElement{
     }
 
     private update(progressPercent: number): void {
-        const lastPos = this.computePos(this.radius)
+        const lastPos = this.buildPos(this.radius)
         this.angle += this.angleStep
-        const pos = this.computePos(this.radius)
+        const pos = this.buildPos(this.radius)
 
         const vel = createVector(pos.x, pos.y)
         vel.sub(lastPos.x, lastPos.y)
@@ -45,9 +46,7 @@ export class SparkCircle extends VElement{
         }
 
         this.particles.forEach(
-            particle => {
-                particle.update()
-            }
+            particle => particle.update()
         )
         this.neonArc.update(progressPercent)
         for (let i = this.particles.length - 1; i > -1; i--){
@@ -56,19 +55,19 @@ export class SparkCircle extends VElement{
         }
     }
 
-    private computePos(radius: number): p5.Vector{
-        const vect = createVector(radius, 0)
-        vect.rotate(radians(this.angle))
-        return vect
+    private buildPos(radius: number): p5.Vector{
+        return createVector(radius, 0)
+            .rotate(radians(this.angle))
     }
 }
 
 class Spark{
+    private readonly airDrag = random(0.8, 0.85) // TO DO : Proper handling of boundaries = f(angleStep, radius) 
+
     private pos: p5.Vector
     private vel: p5.Vector
     private lastPos: p5.Vector
     private strokeWeight: number = 3
-    private readonly airDrag = random(0.8, 0.85) // TO DO : Proper handling of boundaries = f(angleStep, radius) 
 
     constructor(pos: p5.Vector, vel: p5.Vector){
         this.lastPos = pos
@@ -102,8 +101,9 @@ class Spark{
 class LineParticle{
     private readonly startPos: p5.Vector
     private readonly vel: p5.Vector
-    private pos: p5.Vector
     private readonly airDrag = 0.85 // TO DO : Proper handling of boundaries = f(angleStep, radius) 
+
+    private pos: p5.Vector
 
     constructor(startPos: p5.Vector, vel: p5.Vector){
         this.startPos = startPos.copy()
