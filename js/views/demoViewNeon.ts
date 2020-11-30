@@ -20,12 +20,12 @@ export class DemoViewNeon implements View {
                 .addElement(new NeonCircles("-1", pxSize))
                 .addElement(new ArcToCircle("-1", pxSize))
                 .addElement(new PointsToCircle("-1", pxSize))
-                .addElement(new SparkCircle("-1", new PxSize(400)))
+                .addElement(new SparkCircle("-1", pxSize))
                 .beginRow(10)
                 .addElement(new Caption("-1", new PxSize(200, 35), "Neon circles"))
                 .addElement(new Caption("-1", new PxSize(200, 35), "Arc to circle"))
                 .addElement(new Caption("-1", new PxSize(200, 35), "Points to circle"))
-                .addElement(new Caption("-1", new PxSize(400, 35), "Spark circle"))
+                .addElement(new Caption("-1", new PxSize(200, 35), "Spark circle"))
                 .build()
             ]
     }
