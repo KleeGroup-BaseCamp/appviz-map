@@ -1,7 +1,7 @@
 import {style} from "../../app";
 import {VElement} from "../../core";
 import {PxSize} from "../../layout";
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, PushPop} from "../../utils"
 
 export abstract class AbstractRating extends VElement{
     //How many icons are displayed ?
@@ -16,18 +16,17 @@ export abstract class AbstractRating extends VElement{
         AnimationUtils.animate(0, this.icons, duration, (s:number) => this.rate = min(s,rate) )
     }
 
+    @PushPop
     public render(){
         const margin = 3
         const size = min(this.getPxSize().getHeight(), this.getPxSize().getWidth() / this.icons - margin)
         let v = this.rate
-        push()
         for(let i = 0; i < this.icons; i++){
             // square(0,0, size)
             this.renderRatingIcon(size, min(v, 1))
             v = max(v - 1, 0)
             translate(size + margin, 0)
         }
-        pop()
     }
 
     /**

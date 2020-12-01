@@ -1,8 +1,10 @@
+import { PushPop } from "../../utils"
 import {AbstractRating} from "./abstractRating"
 
 export class StarRating extends AbstractRating{
     private readonly corners: number = 5
-    
+
+    @PushPop
     public renderIcon(size: number, active: boolean, ratio: number): void{
         if (ratio<0.5) return
         if (active){
@@ -12,7 +14,6 @@ export class StarRating extends AbstractRating{
         const externalRadius = size / 2
         const internalRadius = externalRadius / 2.5
 
-        push()
         rotate(-PI / 2)
         translate(- externalRadius, externalRadius)
  
@@ -34,6 +35,5 @@ export class StarRating extends AbstractRating{
             vertex(x, y)
         }
         endShape(CLOSE)
-        pop()
     }
 }
