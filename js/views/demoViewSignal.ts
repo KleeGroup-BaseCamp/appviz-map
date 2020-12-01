@@ -11,7 +11,7 @@ import {PxSize} from "../layout"
 export class DemoViewSignal implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const pxSize = new PxSize(100, 100)
+        const pxSize = new PxSize(100)
         const pxSize2 = new PxSize(100, 50) // For testing bounding boxes
         return  [
             new LayerBuilder()

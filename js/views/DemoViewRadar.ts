@@ -11,7 +11,7 @@ import {PxPosition, PxSize} from "../layout"
 export class DemoViewRadar implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const pxSize = new PxSize(250, 250)
+        const pxSize = new PxSize(250)
         const values = Array.from({length: 2}, v => Array.from({length: 8}, v => random() * 100))
         const labels = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"]
         const data: any = [{}, {}]
