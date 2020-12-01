@@ -49,7 +49,7 @@ export abstract class AbstractRadar2 extends VElement{
         this.centerPosition = new PxPosition(
             pxSize.getWidth() / 2, 
             pxSize.getHeight() / 2
-            )
+        )
         
         this.radarDataSystem = new RadarDataSystem2(radarData, this.radius)
 

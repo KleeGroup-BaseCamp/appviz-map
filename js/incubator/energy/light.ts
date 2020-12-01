@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import {style} from "../../app"
 import {VElement} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, PushPop} from "../../utils"
 
 export class Light extends VElement{
     private readonly radius: number
@@ -28,34 +28,25 @@ export class Light extends VElement{
         return this
     }
 
+    @PushPop
     public render() : void {
+        translate(this.centerPosition.getX(), this.centerPosition.getY()) 
+
         noFill()
         const maxOpacity = this.value * 255 / 100
         for(let r = 0; r < this.radius; r++){
-            const opacity = Math.round(maxOpacity* (1 - r / this.radius))
+            const opacity = maxOpacity* (1 - r / this.radius)
             this.color.setAlpha(opacity)
             stroke(this.color)
-            circle(
-                this.centerPosition.getX(), 
-                this.centerPosition.getY(), 
-                r
-            ) 
+            circle(0, 0, r)
         }
         smooth()
         const weight =2
         strokeWeight(4*weight)
         stroke(style.color.back)
-        circle(
-            this.centerPosition.getX(), 
-            this.centerPosition.getY(), 
-            this.radius - weight 
-        ) 
+        circle(0, 0,  this.radius - weight) 
         strokeWeight(2)
         stroke(style.text.color.primary)
-        circle(
-            this.centerPosition.getX(), 
-            this.centerPosition.getY(), 
-            this.radius
-        ) 
-}
+        circle(0, 0,  this.radius) 
+    }
 }
