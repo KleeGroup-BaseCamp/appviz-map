@@ -2,7 +2,7 @@ import * as p5 from "p5";
 import { style } from "../../app";
 import { VElement } from "../../core";
 import { PxSize } from "../../layout";
-import { ColorUtils } from "../../utils";
+import { AnimationUtils, ColorUtils } from "../../utils";
 
 export class NeonTrails extends VElement{
     private readonly trails: Trail[] = []
@@ -12,6 +12,12 @@ export class NeonTrails extends VElement{
     constructor(id: any, pxSize: PxSize){
         super(id, pxSize, false)
         this.trails.push(new Trail())
+        AnimationUtils.animate(
+            0, 
+            100, 
+            2000, 
+            (s) => this.trails.forEach(trail => trail.update(s))
+        )
     }
 
     public render(): void{
@@ -33,7 +39,12 @@ class Trail{
     private history: p5.Vector[] = []
 
     constructor(){
-        this.history = [createVector(-30,0), createVector(-15,-15), createVector(0,-30), createVector(15,-45)]
+        this.history = [ // Test history (to generate randomly)
+            createVector(-30,0), 
+            createVector(-15,-15), 
+            createVector(0,-30), 
+            createVector(15,-45)
+        ] 
     }
 
     public render(): void{
@@ -69,7 +80,15 @@ class Trail{
     }
 
     public update(progressPercent: number): void{
-
+        const historyLength = 4
+        
+        const pos = this.history[historyLength - 1].copy()
+        const vel = pos
+            .copy()
+            .sub(this.history[historyLength - 2])
+            .rotate(radians(random(-10,10)))
+        this.history.push(pos.add(vel))
+        this.history.shift()
     }
 
     public withColor(color: p5.Color): Trail{
