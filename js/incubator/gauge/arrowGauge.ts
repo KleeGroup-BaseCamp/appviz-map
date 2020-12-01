@@ -1,7 +1,7 @@
 import {VText} from "../../components"
 import {VElement} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, PushPop} from "../../utils"
 import {style} from "../../app"
 
 export class ArrowGauge extends VElement{
@@ -24,7 +24,9 @@ export class ArrowGauge extends VElement{
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
 
+    @PushPop
     public render() : void {
+        translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.renderArc()
         noStroke()
         this.renderPointer()
@@ -37,18 +39,14 @@ export class ArrowGauge extends VElement{
         strokeCap(ROUND)
         strokeWeight(weight)
         stroke(style.color.front)
-        arc(
-            this.centerPosition.getX(), 
-            this.centerPosition.getY(),
+        arc(0, 0, 
             this.radius * 2 - weight,
             this.radius * 2 - weight,
             -PI,
             0
         )
         stroke(style.text.color.primary)
-        arc(
-            this.centerPosition.getX(), 
-            this.centerPosition.getY(),
+        arc(0, 0,
             this.radius * 2 - weight,
             this.radius * 2 - weight,
             -PI,
@@ -56,11 +54,11 @@ export class ArrowGauge extends VElement{
         )
     }
 
+    @PushPop
     private renderPointer(): void{
-        fill(style.color.front)
-        push()
-        translate(this.centerPosition.getX(), this.centerPosition.getY())
         rotate(this.percent  * PI / 100)
+
+        fill(style.color.front)
         triangle(
             - this.radius /2,
             0,
@@ -79,16 +77,14 @@ export class ArrowGauge extends VElement{
         )
         fill('blue')
         circle(0,0,6)
-        pop()
     }
 
+    @PushPop    
     private renderValueText(): void{
         const textPadding = min(30, this.getPxSize().getHeight() / 2)
-        push()
+        translate(0, textPadding)
         textAlign(CENTER)
-        translate(this.centerPosition.getX(), this.centerPosition.getY() + textPadding)
         this.vtext.setText(Math.round(this.percent).toString())
         this.vtext.render()
-        pop()
     }
 }
