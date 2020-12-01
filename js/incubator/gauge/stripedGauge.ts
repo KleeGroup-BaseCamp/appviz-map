@@ -11,7 +11,6 @@ export class StripedGauge extends VElement{
     private readonly tertiaryColor: p5.Color = color("#323e52")
 
     private readonly radius: number
-    private readonly centerPosition: PxPosition
     private readonly vtext: VText
 
     private percent: number
@@ -21,10 +20,6 @@ export class StripedGauge extends VElement{
         this.percent = percent
         this.vtext = new VText("", style.text.font, style.text.size.xs)
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
-        this.centerPosition = new PxPosition(
-            pxSize.getWidth() / 2, 
-            pxSize.getHeight() / 2
-            )
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }

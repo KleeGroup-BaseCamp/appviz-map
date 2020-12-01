@@ -1,14 +1,13 @@
 import {VText} from "../../components"
 import {State, VElement} from "../../core"
 import {PxPosition, PxSize } from "../../layout"
-import {AnimationUtils, ColorUtils} from "../../utils"
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {style} from "../../app"
 import {PopUp2} from "./popup2"
 import {RadarData2, RadarDataSystem2} from "./radarData2"
 
 
 export abstract class AbstractRadar2 extends VElement{
-    private readonly centerPosition: PxPosition
     private readonly popUp: PopUp2
     private readonly labels: VText[] = []
     private readonly scales: VText[] = []
@@ -46,10 +45,6 @@ export abstract class AbstractRadar2 extends VElement{
         const longestLabelWidth = Math.max(...keys.map(label => textWidth(label)))
         this.textMargin = (textAscent() + textDescent()) / 2
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - longestLabelWidth - this.textMargin
-        this.centerPosition = new PxPosition(
-            pxSize.getWidth() / 2, 
-            pxSize.getHeight() / 2
-        )
         
         this.radarDataSystem = new RadarDataSystem2(radarData, this.radius)
 

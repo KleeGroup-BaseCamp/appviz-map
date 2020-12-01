@@ -6,7 +6,6 @@ import {AnimationUtils, PushPop} from "../../utils"
 
 export class Light extends VElement{
     private readonly radius: number
-    private readonly centerPosition: PxPosition
     
     private color : p5.Color = color('gold')
     private value: number
@@ -15,10 +14,6 @@ export class Light extends VElement{
         super(id, pxSize, false)
         this.value = value
         this.radius = min(pxSize.getHeight(), pxSize.getWidth())
-        this.centerPosition = new PxPosition(
-            pxSize.getWidth() / 2, 
-            pxSize.getHeight() / 2
-        )
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }

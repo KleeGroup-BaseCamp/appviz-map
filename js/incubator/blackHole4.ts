@@ -1,5 +1,5 @@
 import {VElement} from "../core"
-import {PxPosition, PxSize} from "../layout"
+import {PxSize} from "../layout"
 import {AnimationUtils} from "../utils"
 import * as p5 from "p5"
 import {Easings} from "../utils/easings"
@@ -12,7 +12,6 @@ export class BlackHole4 extends VElement{
 
     private readonly radius: number
     private readonly weight: number
-    private readonly centerPosition: PxPosition
     private readonly rays: Ray[] = []
     private readonly light: OpacityOutCircle
     private readonly hole: OpacityOutCircle
@@ -23,10 +22,6 @@ export class BlackHole4 extends VElement{
         this.weight = 5
         const margin = 10
         this.radius = (min(pxSize.getHeight(), pxSize.getWidth()) - this.weight - this.gauge.weight - margin) / 2
-        this.centerPosition = new PxPosition(
-            pxSize.getWidth() / 2, 
-            pxSize.getHeight() / 2
-        )
         this.light = new OpacityOutCircle(color(255, 225, 0), 0, this.radius * percent / 100, 70, 100)
         this.hole = new OpacityOutCircle(color(0), this.radius, 0, 20, 100)
         const numOfRays = 200 // TODO: = f(percent)
@@ -81,7 +76,7 @@ export class BlackHole4 extends VElement{
 }
 
 /**
- * Cicle with color opacity decreasing linearly from 255 at center to 0 at radius
+ * Circle with color opacity decreasing linearly from 255 at center to 0 at radius
  */
 class OpacityOutCircle { 
     private readonly color: p5.Color

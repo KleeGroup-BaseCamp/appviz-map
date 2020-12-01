@@ -8,7 +8,6 @@ import {PopUp} from "./popup"
 export type RadarData = {[label: string]: number}
 
 export abstract class AbstractRadar extends VElement{
-    private readonly centerPosition: PxPosition
     private readonly popUp: PopUp
     private readonly labels: VText[] = []
     private readonly scales: VText[] = []
@@ -46,10 +45,6 @@ export abstract class AbstractRadar extends VElement{
         const longestLabelWidth = Math.max(...keys.map(label => textWidth(label)))
         this.textMargin = (textAscent() + textDescent()) / 2
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - longestLabelWidth - this.textMargin
-        this.centerPosition = new PxPosition(
-            pxSize.getWidth() / 2, 
-            pxSize.getHeight() / 2
-            )
         const duration = 1000 /*ms*/
         AnimationUtils.animate(
             0, 

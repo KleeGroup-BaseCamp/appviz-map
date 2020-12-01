@@ -10,7 +10,6 @@ export class Gauge extends VElement{
     private secondColor?: p5.Color
 
     private readonly radius: number
-    private readonly centerPosition: PxPosition
     private readonly vtext: VText
     
     private percent: number
@@ -22,10 +21,6 @@ export class Gauge extends VElement{
         this.vtext = new VText("", style.text.font, style.text.size.xs)
         this.weight = 5
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - this.weight / 2
-        this.centerPosition = new PxPosition(
-            pxSize.getWidth() / 2, 
-            pxSize.getHeight() / 2
-            )
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
