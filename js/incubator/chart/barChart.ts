@@ -23,7 +23,6 @@ export class BarChart extends Chart{
     protected renderChart(){
         const values = this.data.map(entry => entry.y)
         if (values.length == 0) return
-        // stroke(color(255))
         noStroke()
         const color = ColorUtils.clone(style.color.a)
         color.setAlpha(150)

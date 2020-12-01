@@ -55,7 +55,7 @@ class NeonPoint{
         this.startDistance = startDistance
     }
 
-    render(){
+    public render(){
         noFill()
         const vColor = color("DeepSkyBlue")
         fill(vColor)
@@ -72,7 +72,7 @@ class NeonPoint{
         pop()
     }
 
-    update(s: number){
+    public update(s: number){
         this.distance = map(s, 0, 100, this.startDistance, this.maxDistance) 
 
         const maxNumOfLaps = 30

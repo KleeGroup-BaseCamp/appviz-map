@@ -12,6 +12,7 @@ export * from "./neon/arcToCircle"
 export * from "./neon/neonCircles"
 export * from "./neon/pointsToCircle"
 export * from "./neon/sparkCircle"
+export * from "./neon/neonTrails"
 
 export * from "./signal/signal"
 export * from "./signal/signalBars"
