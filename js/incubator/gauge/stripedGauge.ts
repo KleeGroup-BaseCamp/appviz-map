@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import {VText} from "../../components"
 import {VElement} from "../../core"
 import {PxPosition, PxSize } from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, PushPop} from "../../utils"
 import {style} from "../../app"
 
 export class StripedGauge extends VElement{
@@ -29,8 +29,8 @@ export class StripedGauge extends VElement{
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
 
+    @PushPop
     public render() : void {
-        push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.renderArcs()
         
@@ -44,7 +44,6 @@ export class StripedGauge extends VElement{
         const margin = 3
         this.renderDottedCircle(innerRadius - margin)
         this.renderDottedCircle(textWidth("100%") / 2 + margin) // Max text width = textWidth("100%")
-        pop()
     }
 
     private renderArcs(): void{
@@ -64,9 +63,7 @@ export class StripedGauge extends VElement{
 
     private renderArc(angleStep: number, margin: number, index: number): void{
         const alpha = (angleStep + margin) * index - HALF_PI 
-        arc(
-                0, 
-                0, 
+        arc(0, 0, 
                 2 * this.radius,
                 2 * this.radius, 
                 alpha, 
