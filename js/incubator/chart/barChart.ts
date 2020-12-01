@@ -2,6 +2,7 @@ import {PxSize} from "../../layout"
 import {CategoryAxis} from "./categoryAxis"
 import {style} from "../../app"
 import {Chart, ChartData} from "./chart"
+import {ColorUtils} from "../../utils"
 
 export class BarChart extends Chart{
     private readonly xAxis: CategoryAxis
@@ -22,14 +23,20 @@ export class BarChart extends Chart{
     protected renderChart(){
         const values = this.data.map(entry => entry.y)
         if (values.length == 0) return
-        stroke(color(255))
-        fill(style.color.a)
+        // stroke(color(255))
+        noStroke()
+        const color = ColorUtils.clone(style.color.a)
+        color.setAlpha(150)
+        fill(color)
         strokeWeight(1)
-        const barWidth =  this.chartWidth / values.length
+        const barWidthRatio = 0.8
+        const labelWidth =  this.chartWidth / values.length
+        const barWidth = labelWidth * barWidthRatio
         push()
+        translate(barWidth * (1 - barWidthRatio), 0)
         values.forEach(value => {
             rect(0, 0, barWidth, this.yAxis.getCoorForValue(value))
-            translate(barWidth, 0)
+            translate(labelWidth, 0)
         })
         pop()
     }

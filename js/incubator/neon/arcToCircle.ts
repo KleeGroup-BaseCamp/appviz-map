@@ -2,14 +2,14 @@ import * as p5 from "p5"
 import {style} from "../../app"
 import {VElement} from "../../core"
 import {PxSize} from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, ColorUtils} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
 export class ArcToCircle extends VElement{
-    private startColor: p5.Color = style.color.a
-    private endColor: p5.Color = style.color.c
-    private color: p5.Color = style.color.a
+    private startColor: p5.Color = ColorUtils.clone(style.color.a)
+    private endColor: p5.Color = ColorUtils.clone(style.color.c)
+    private color: p5.Color = ColorUtils.clone(style.color.a)
     private blur: number = 0
     private radius: number = 0
     private vStrokeWeight: number = 0
