@@ -1,8 +1,8 @@
-import * as p5 from "p5";
-import { style } from "../../app";
+import * as p5 from "p5"
+import { style } from "../../app"
 import {VElement} from "../../core"
-import { PxSize } from "../../layout";
-import { AnimationUtils } from "../../utils";
+import { PxSize } from "../../layout"
+import { AnimationUtils } from "../../utils"
 
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
@@ -10,7 +10,8 @@ export class SparkCircle extends VElement{
     private readonly neonArc: NeonArc
     private readonly radius: number
     private readonly angleStep: number
-
+    
+    private color: p5.Color = color(255)
     private angle = 0
     private particles: (Spark | LineParticle)[] = []
 
@@ -24,11 +25,11 @@ export class SparkCircle extends VElement{
 
     public render(): void{
         push()
-        blendMode(SCREEN);
+        blendMode(DODGE)
         translate(this.getWidth() / 2, this.getHeight() / 2)
         stroke(255)
-        this.neonArc.render()
         this.particles.forEach(particle => particle.render())
+        this.neonArc.render()
         pop()
     }
 
@@ -40,9 +41,9 @@ export class SparkCircle extends VElement{
         const vel = createVector(pos.x, pos.y)
         vel.sub(lastPos.x, lastPos.y)
 
-        if(progressPercent < 90){
+        if(progressPercent < 95){
+            this.particles.push(new LineParticle(pos, vel).withColor(this.color))
             this.particles.push(new Spark(pos, vel))
-            this.particles.push(new LineParticle(pos, vel))
         }
 
         this.particles.forEach(
@@ -59,10 +60,16 @@ export class SparkCircle extends VElement{
         return createVector(radius, 0)
             .rotate(radians(this.angle))
     }
+
+    public withColor(color: p5.Color): SparkCircle{
+        this.color = color
+        this.neonArc.withColor(color)
+        return this
+    }
 }
 
 class Spark{
-    private readonly airDrag = random(0.8, 0.85) // TO DO : Proper handling of boundaries = f(angleStep, radius) 
+    private readonly airDrag = 0.85 // TO DO : Proper handling of boundaries = f(angleStep, radius) 
 
     private pos: p5.Vector
     private vel: p5.Vector
@@ -73,7 +80,7 @@ class Spark{
         this.lastPos = pos
         this.pos = pos
         this.vel = vel
-        this.vel.rotate(radians(random(-30, 30)));
+        this.vel.rotate(radians(random(-30, 30)))
     }
 
     public render(): void{
@@ -102,42 +109,47 @@ class LineParticle{
     private readonly startPos: p5.Vector
     private readonly vel: p5.Vector
     private readonly airDrag = 0.85 // TO DO : Proper handling of boundaries = f(angleStep, radius) 
-
+    private color: p5.Color = color(255)
     private pos: p5.Vector
 
     constructor(startPos: p5.Vector, vel: p5.Vector){
         this.startPos = startPos.copy()
         this.pos = startPos.copy()
         this.vel = vel
-        this.vel.rotate(radians(random(-20, 20)));
+        this.vel.rotate(radians(random(-20, 20)))
     }
     
     public render(): void{
         const mass = this.vel.mag() * 3
-        strokeWeight(mass);
+        strokeWeight(mass)
         stroke(style.color.back)
         push()
-		drawingContext.shadowColor = 'white';
-		drawingContext.shadowBlur = 15;
-        line(this.startPos.x, this.startPos.y, this.pos.x, this.pos.y);
+		drawingContext.shadowColor = this.color.toString()
+		drawingContext.shadowBlur = 10
+        line(this.startPos.x, this.startPos.y, this.pos.x, this.pos.y)
         pop()
     }
     
     public update(): void{
         this.vel.mult(this.airDrag)
-        // this.pos.add(this.vel)
+        this.pos.add(this.vel)
     }
 
     public isStopped(): boolean{
         return this.vel.mag() < 0.2
     }
+
+    public withColor(color: p5.Color): LineParticle{
+        this.color = color
+        return this
+    }
 }
 
 export class NeonArc{
     private readonly radius: number 
-    private readonly color: p5.Color
     private readonly strokeWeight: number
     private readonly angleStep: number
+    private color: p5.Color
     private startAngle: number = 0 // Duplicate of angle in SparkCircle
     private endAngle: number = 0
 
@@ -165,5 +177,10 @@ export class NeonArc{
         this.endAngle += radians(this.angleStep)
         const diff = map(s, 0, 100, 0, TWO_PI)
         this.startAngle = this.endAngle - diff
+    }
+
+    public withColor(color: p5.Color): NeonArc{
+        this.color = color
+        return this
     }
 }

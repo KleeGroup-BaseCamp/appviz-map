@@ -46,7 +46,7 @@ export class ArcToCircle extends VElement{
             ? (ratio / blurPeak) * maxBlur
             : ((1 - ratio) / (1 - blurPeak)) * maxBlur
         
-        const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.9 // TO DO: estimate space taken by neon
+        const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.85 // TO DO: estimate space taken by neon
         this.radius = ratio * maxRadius 
 
         const maxStrokeWeight = 4

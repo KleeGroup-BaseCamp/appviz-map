@@ -13,7 +13,7 @@ export class PointsToCircle extends VElement{
     constructor(id: any, pxSize: PxSize){
         super(id, pxSize, false)
         const numOfPoints = 30
-        const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.8 // TO DO: estimate space taken by neon
+        const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.75 // TO DO: estimate space taken by neon
         for(let i = 0; i < numOfPoints; i++){
             this.points.push(new NeonPoint(maxRadius, random(TWO_PI), random(maxRadius/2, maxRadius)))
         }

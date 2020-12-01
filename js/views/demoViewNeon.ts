@@ -1,4 +1,4 @@
-import {projection} from "../app"
+import {projection, style} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
 import {Card} from "./elements"
@@ -20,7 +20,7 @@ export class DemoViewNeon implements View {
                 .addElement(new NeonCircles("-1", pxSize))
                 .addElement(new ArcToCircle("-1", pxSize))
                 .addElement(new PointsToCircle("-1", pxSize))
-                .addElement(new SparkCircle("-1", pxSize))
+                .addElement(new SparkCircle("-1", pxSize).withColor(style.color.a))
                 .beginRow(10)
                 .addElement(new Caption("-1", new PxSize(200, 35), "Neon circles"))
                 .addElement(new Caption("-1", new PxSize(200, 35), "Arc to circle"))
