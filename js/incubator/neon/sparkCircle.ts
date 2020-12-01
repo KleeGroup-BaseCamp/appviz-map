@@ -25,7 +25,7 @@ export class SparkCircle extends VElement{
 
     public render(): void{
         push()
-        blendMode(SCREEN)
+        blendMode(DODGE)
         translate(this.getWidth() / 2, this.getHeight() / 2)
         stroke(255)
         this.particles.forEach(particle => particle.render())
@@ -41,7 +41,7 @@ export class SparkCircle extends VElement{
         const vel = createVector(pos.x, pos.y)
         vel.sub(lastPos.x, lastPos.y)
 
-        if(progressPercent < 90){
+        if(progressPercent < 95){
             this.particles.push(new LineParticle(pos, vel).withColor(this.color))
             this.particles.push(new Spark(pos, vel))
         }
