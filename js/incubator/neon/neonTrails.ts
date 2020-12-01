@@ -81,12 +81,16 @@ class Trail{
 
     public update(progressPercent: number): void{
         const historyLength = 4
-        
         const pos = this.history[historyLength - 1].copy()
         const vel = pos
             .copy()
             .sub(this.history[historyLength - 2])
-            .rotate(radians(random(-10,10)))
+        // Rotate velocity to converge towards center (to change later to a moving target)
+        const angle = pos
+            .copy()
+            .mult(-1)
+            .angleBetween(vel)
+        vel.rotate(-angle * 0.3) 
         this.history.push(pos.add(vel))
         this.history.shift()
     }
