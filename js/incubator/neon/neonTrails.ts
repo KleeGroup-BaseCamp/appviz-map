@@ -46,12 +46,7 @@ class Trail{
     private targetAngle: number = random(0, TWO_PI)
 
     constructor(radius: number){
-        // this.history = [
-        //     createVector(-30,0), 
-        //     createVector(-15,-15), 
-        //     createVector(0,-30), 
-        //     createVector(15,-45)
-        // ] 
+
         const origin = createVector(0, 0)
         this.history = [
             origin, 
@@ -70,60 +65,62 @@ class Trail{
         // Compute vertices
         for (let i = 1; i < this.history.length - 1; i++){
             const normal = this.history[i]
-            .copy()
-            .sub(this.history[i - 1])
-            .rotate(HALF_PI)
-            .normalize()
-            .mult(i * 2)
+                .copy()
+                .sub(this.history[i - 1])
+                .rotate(HALF_PI)
+                .normalize()
+                .mult(i * 2)
             vertices.splice(
                 i + 1, 
                 0, 
                 this.history[i]
-                .copy()
-                .add(normal),
+                    .copy()
+                    .add(normal),
                 this.history[i]
-                .copy()
-                .sub(normal) 
-                )
-            }
-            vertices.splice(this.history.length, 0, head)
-            vertices.push(tail)
-            vertices.push(tail)
-            beginShape()
-            vertices.forEach(vertex => curveVertex(vertex.x, vertex.y))
-            endShape()
-
-
-            const target = createVector(
-                this.radius * cos(this.targetAngle),
-                this.radius * sin(this.targetAngle)
+                    .copy()
+                    .sub(normal) 
             )
-            push()
-            stroke(255)
-            strokeWeight(4)
-            point(target.x, target.y)
-            pop()
         }
+        vertices.splice(this.history.length, 0, head)
+        vertices.push(tail)
+        vertices.push(tail)
+        beginShape()
+        vertices.forEach(vertex => curveVertex(vertex.x, vertex.y))
+        endShape()
+
+        // Drawing targets for debugging (duplicate var in update) (TO DO: remove or make better visual)
+        const target = createVector(
+            this.radius * cos(this.targetAngle),
+            this.radius * sin(this.targetAngle)
+        )
+        push()
+        stroke(255)
+        strokeWeight(4)
+        point(target.x, target.y)
+        pop()
+    }
         
-        public update(progressPercent: number): void{
-            const historyLength = 4
-            const pos = this.history[historyLength - 1].copy()
-            const angleStep = radians(10)
-            this.targetAngle += angleStep
-            const target = createVector(
-                this.radius * cos(this.targetAngle),
-                this.radius * sin(this.targetAngle)
-            )
-            const vel = pos
+    public update(progressPercent: number): void{
+        const historyLength = 4
+        const pos = this.history[historyLength - 1].copy()
+        const angleStep = radians(10)
+        this.targetAngle += angleStep
+        const target = createVector(
+            this.radius * cos(this.targetAngle),
+            this.radius * sin(this.targetAngle)
+        )
+        const vel = pos
             .copy()
             .sub(this.history[historyLength - 2])
-            // Rotate velocity to converge towards target
-            const angle = target
+        // Rotate velocity to converge towards target
+        const angle = target
             .copy()
             .sub(pos)
             .angleBetween(vel)
-        vel.rotate(-angle * 0.3) 
-        this.history.push(pos.add(vel.normalize().mult(10)))
+        vel.rotate(-angle * 0.3)
+            .normalize()
+            .mult(10)
+        this.history.push(pos.add(vel))
         this.history.shift()
     }
 
