@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import { style } from "../../app"
 import {VElement} from "../../core"
 import { PxSize } from "../../layout"
-import { AnimationUtils } from "../../utils"
+import { AnimationUtils, ColorUtils } from "../../utils"
 
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
@@ -19,13 +19,14 @@ export class SparkCircle extends VElement{
         super(id, pxSize, false)
         this.radius = min(this.getWidth(), this.getHeight()) / 4
         this.angleStep = 10
-        this.neonArc = new NeonArc(this.radius, this.angleStep, color(255), 2)
+        this.neonArc = new NeonArc(this.radius, this.angleStep, 2)
         AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})
     }
 
     public render(): void{
         push()
-        blendMode(DODGE)
+        // Warning: Color displayed may vary a little than the one passed in withColor
+        blendMode(DODGE) 
         translate(this.getWidth() / 2, this.getHeight() / 2)
         stroke(255)
         this.particles.forEach(particle => particle.render())
@@ -149,13 +150,12 @@ export class NeonArc{
     private readonly radius: number 
     private readonly strokeWeight: number
     private readonly angleStep: number
-    private color: p5.Color // passed to constructor and set with withColor (to correct)
+    private color: p5.Color = ColorUtils.clone(style.color.a)
     private startAngle: number = 0 // Duplicate of angle in SparkCircle
     private endAngle: number = 0
 
-    constructor(radius: number, angleStep: number, color: p5.Color, strokeWeight: number){
+    constructor(radius: number, angleStep: number, strokeWeight: number){
         this.radius = radius
-        this.color = color
         this.angleStep = angleStep
         this.strokeWeight = strokeWeight
     }

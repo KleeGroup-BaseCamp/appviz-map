@@ -1,15 +1,13 @@
 import * as p5 from "p5";
-import { style } from "../../app";
-import { VElement } from "../../core";
-import { PxSize } from "../../layout";
-import { AnimationUtils, ColorUtils } from "../../utils";
+import {style} from "../../app";
+import {VElement} from "../../core";
+import {PxSize} from "../../layout";
+import {AnimationUtils, ColorUtils} from "../../utils";
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (all of neon files)
 export class NeonTrails extends VElement{
     private readonly trails: Trail[] = []
     private readonly neonArc: NeonArc
-
-    private color: p5.Color = ColorUtils.clone(style.color.a)
     
     constructor(id: any, pxSize: PxSize){
         super(id, pxSize, false)
@@ -33,14 +31,13 @@ export class NeonTrails extends VElement{
 
     public render(): void{
         push()
-        translate(this.getWidth() / 2, this.getHeight() /2)
+        translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.trails.forEach(trail => trail.render())
         this.neonArc.render()
         pop()
     }
 
     public withColor(color: p5.Color): NeonTrails{ // TO DO: extract theme from color ?
-        this.color = color
         this.trails.forEach(trail => trail.withColor(color))
         this.neonArc.withColor(color)
         return this
@@ -157,7 +154,7 @@ class NeonArc{  // Duplicate (spark circle)
     private readonly radius: number 
     private readonly strokeWeight: number
     private readonly angleStep: number
-    private color: p5.Color = style.color.a
+    private color: p5.Color = ColorUtils.clone(style.color.a)
     private startAngle: number = 0
     private endAngle: number = 0
 
