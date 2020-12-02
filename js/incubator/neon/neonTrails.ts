@@ -95,9 +95,13 @@ class Trail{
         vertices.splice(this.history.length, 0, head)
         vertices.push(tail)
         vertices.push(tail)
+        push()
+        drawingContext.shadowColor = this.color.toString()
+        drawingContext.shadowBlur = 15
         beginShape()
         vertices.forEach(vertex => curveVertex(vertex.x, vertex.y))
         endShape()
+        pop()
     }
         
     public update(progressPercent: number): void{
