@@ -149,7 +149,7 @@ export class NeonArc{
     private readonly radius: number 
     private readonly strokeWeight: number
     private readonly angleStep: number
-    private color: p5.Color
+    private color: p5.Color // passed to constructor and set with withColor (to correct)
     private startAngle: number = 0 // Duplicate of angle in SparkCircle
     private endAngle: number = 0
 
