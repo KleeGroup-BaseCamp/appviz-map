@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {style} from "../../app"
 import {VText} from "../../components"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, PushPop} from "../../utils"
 import { VElement } from "../../core"
 import { PxSize } from "../../layout"
 
@@ -32,20 +32,18 @@ export class ProgressBar extends VElement{
         return this
     }
 
+    @PushPop
     public render(): void {
-        push()
         translate(0, this.getPxSize().getHeight() / 2)
         textAlign(LEFT, CENTER)
         this.vtext.setText(`${Math.floor(this.percent).toString()}%`)
-        push()
+        this.renderBar();
         const textVerticalPadding = 3 // Text is not perfectly centered vertically
         translate(0, -textVerticalPadding)
         this.vtext.render() 
-        pop()
-        this.renderBar();
-        pop()
     }
     
+    @PushPop
     private renderBar(): void{
         const padding = 7
         const weight = 8

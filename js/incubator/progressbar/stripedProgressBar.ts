@@ -1,6 +1,6 @@
 import * as p5 from "p5"
 import { VText } from "../../components";
-import { AnimationUtils } from "../../utils";
+import { AnimationUtils, ColorUtils, PushPop } from "../../utils";
 import {VElement} from "../../core"
 import { PxPosition, PxSize } from "../../layout"
 import { style } from "../../app"
@@ -26,27 +26,34 @@ export class StripedProgressBar extends VElement{
     
     public render(): void {
         const hexagonRadius = this.hexagon.getCircumRadius()
-        push()
+        this.renderHexagon(hexagonRadius)
+        this.renderText(hexagonRadius)
+        this.renderBar()
+    }
+    
+    @PushPop
+    private renderHexagon(hexagonRadius: number): void{
         translate(- this.getPxSize().getWidth() / 2 + hexagonRadius, 0)
         this.hexagon.render()
-        pop()
+    }
 
+    @PushPop
+    private renderText(hexagonRadius: number): void{
         textAlign(CENTER, CENTER)
         const verticalTextPadding = 5 // Text is not perfectly centered vertically
-        push()
         translate(hexagonRadius, hexagonRadius - verticalTextPadding)
         if(!this.iconProvided){
             this.vText.setText(`${Math.floor(this.percent)}%`)
         }
         this.vText.render() 
-        pop()
+    }
 
-        const rightPadding = 20 // 
-        push()
+    @PushPop
+    private renderBar(): void{
+        const rightPadding = 20
         translate(0, this.getHeight() / 2)
         this.renderStroke(rightPadding)
         this.renderStripes(rightPadding)
-        pop()
     }
 
     private renderStroke(rightPadding: number): void{
@@ -91,8 +98,8 @@ export class StripedProgressBar extends VElement{
     }
 
     public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): StripedProgressBar{
-        this.primaryColor = primaryColor
-        this.secondaryColor = secondaryColor
+        this.primaryColor = ColorUtils.clone(primaryColor)
+        this.secondaryColor = secondaryColor ? ColorUtils.clone(secondaryColor) : secondaryColor
         return this
     }
 
@@ -116,11 +123,11 @@ export class Hexagon extends VElement {
         this.circumRadius = (min(height / sin(radians(60)), width) - this.weight) / 2
     }
 
-    render() {
+    @PushPop
+    public render() {
         noFill()
         strokeWeight(this.weight)
         stroke(style.color.front)
-        push()
         translate(this.circumCenter.getX(), this.circumCenter.getY())
         beginShape()
         for (let i = 0; i < 6; i++) {
@@ -130,7 +137,6 @@ export class Hexagon extends VElement {
             )
         }
         endShape(CLOSE)
-        pop()
     }
 
     public getCircumRadius(): number{

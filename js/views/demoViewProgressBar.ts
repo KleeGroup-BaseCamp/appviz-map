@@ -12,7 +12,7 @@ export class DemoViewProgressBar implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(300, 100)
-        const pxSize2 = new PxSize(400, 100)
+        const pxSize2 = new PxSize(350, 100)
         return  [
             new LayerBuilder()
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/progress bar"))

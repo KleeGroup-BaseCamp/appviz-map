@@ -1,8 +1,8 @@
 import * as p5 from "p5"
-import { style } from "../../app"
+import {style} from "../../app"
 import {VElement} from "../../core"
-import { PxSize } from "../../layout"
-import { AnimationUtils, ColorUtils } from "../../utils"
+import {PxSize} from "../../layout"
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
@@ -23,15 +23,14 @@ export class SparkCircle extends VElement{
         AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})
     }
 
+    @PushPop
     public render(): void{
-        push()
         // Warning: Color displayed may vary a little than the one passed in withColor
         blendMode(DODGE) 
         translate(this.getWidth() / 2, this.getHeight() / 2)
         stroke(255)
         this.particles.forEach(particle => particle.render())
         this.neonArc.render()
-        pop()
     }
 
     private update(progressPercent: number): void {
@@ -42,7 +41,7 @@ export class SparkCircle extends VElement{
         const vel = createVector(pos.x, pos.y)
         vel.sub(lastPos.x, lastPos.y)
 
-        if(progressPercent < 95){
+        if(progressPercent < 98){
             this.particles.push(new LineParticle(pos, vel).withColor(this.color))
             this.particles.push(new Spark(pos, vel))
         }
@@ -63,8 +62,8 @@ export class SparkCircle extends VElement{
     }
 
     public withColor(color: p5.Color): SparkCircle{
-        this.color = color
-        this.neonArc.withColor(color)
+        this.color = ColorUtils.clone(color)
+        this.neonArc.withColor(ColorUtils.clone(color))
         return this
     }
 }
@@ -84,14 +83,13 @@ class Spark{
         this.vel.rotate(radians(random(-30, 30)))
     }
 
+    @PushPop
     public render(): void{
         stroke(255)
         strokeWeight(this.strokeWeight)
-        push()
-        drawingContext.shadowColor = 'white' // TO DO: withColor
+        drawingContext.shadowColor = 'white'
         drawingContext.shadowBlur = 15
         line(this.lastPos.x, this.lastPos.y, this.pos.x, this.pos.y)
-        pop()
     }
 
     public update(): void{
@@ -119,16 +117,15 @@ class LineParticle{
         this.vel = vel
         this.vel.rotate(radians(random(-20, 20)))
     }
-    
+
+    @PushPop
     public render(): void{
         const mass = this.vel.mag() * 3
         strokeWeight(mass)
         stroke(style.color.back)
-        push()
 		drawingContext.shadowColor = this.color.toString()
 		drawingContext.shadowBlur = 10
         line(this.startPos.x, this.startPos.y, this.pos.x, this.pos.y)
-        pop()
     }
     
     public update(): void{
@@ -141,12 +138,12 @@ class LineParticle{
     }
 
     public withColor(color: p5.Color): LineParticle{
-        this.color = color
+        this.color = ColorUtils.clone(color)
         return this
     }
 }
 
-export class NeonArc{
+class NeonArc{
     private readonly radius: number 
     private readonly strokeWeight: number
     private readonly angleStep: number
@@ -159,16 +156,14 @@ export class NeonArc{
         this.angleStep = angleStep
         this.strokeWeight = strokeWeight
     }
-
+    @PushPop
     public render(): void{
         noFill()
         stroke(this.color)
         strokeWeight(this.strokeWeight)
-        push()
         drawingContext.shadowColor = this.color.toString()
         drawingContext.shadowBlur = 15
         arc(0, 0, this.radius * 2, this.radius * 2, this.startAngle, this.endAngle)
-        pop()
     }
 
     public update(s: number): void{
@@ -180,7 +175,7 @@ export class NeonArc{
     }
 
     public withColor(color: p5.Color): NeonArc{
-        this.color = color
+        this.color = ColorUtils.clone(color)
         return this
     }
 }

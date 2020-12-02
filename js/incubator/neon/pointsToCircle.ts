@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import {VElement} from "../../core"
 import {PxSize} from "../../layout"
 import {Easings} from "../../utils/easings"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, PushPop} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
@@ -27,15 +27,13 @@ export class PointsToCircle extends VElement{
             point => point.update(percent)
         )
     }    
-
+    @PushPop
     public render(): void{
-        push()
         translate(this.getWidth() / 2, this.getHeight() / 2)
         this.points.forEach(
             point => point.render()
         )
         this.neonCircle.render()
-        pop()
     }
 }
 
@@ -54,14 +52,13 @@ class NeonPoint{
         this.startAngle = startAngle
         this.startDistance = startDistance
     }
-
+    @PushPop
     public render(){
         noFill()
         const vColor = color("DeepSkyBlue")
         fill(vColor)
         strokeWeight(2)
         stroke(vColor)
-        push()
         drawingContext.shadowColor = vColor.toString();
         drawingContext.shadowBlur = 15
         circle( // Filled circle renders better than point
@@ -69,7 +66,6 @@ class NeonPoint{
             this.distance * sin(this.angle),
             this.radius
         ) 
-        pop()
     }
 
     public update(s: number){
@@ -95,16 +91,15 @@ export class NeonCircle{
         this.strokeWeight = strokeWeight
         this.blur = blur
     }
-
+    
+    @PushPop
     public render(): void{
         noFill()
         stroke(this.color)
         strokeWeight(this.strokeWeight)
-        push()
         drawingContext.shadowColor = this.color.toString()
         drawingContext.shadowBlur = this.blur 
         circle(0, 0, this.radius * 2)
-        pop()
     }
 
     public update(s: number): void{

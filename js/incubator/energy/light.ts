@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import {style} from "../../app"
 import {VElement} from "../../core"
 import {PxSize} from "../../layout"
-import {AnimationUtils, PushPop} from "../../utils"
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
 export class Light extends VElement{
     private readonly radius: number
@@ -19,7 +19,7 @@ export class Light extends VElement{
     }
 
     public withColor(color : p5.Color): Light{
-        this.color = color
+        this.color = ColorUtils.clone(color)
         return this
     }
 

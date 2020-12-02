@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import {style} from "../../app"
 import {VElement} from "../../core"
 import {PxSize} from "../../layout"
-import {AnimationUtils, ColorUtils} from "../../utils"
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
@@ -20,17 +20,15 @@ export class ArcToCircle extends VElement{
         super(id, pxSize, false)
         AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})
     }
-
+    @PushPop
     public render(): void{
         noFill()
         stroke(this.color)
         strokeWeight(this.vStrokeWeight)
-        push()
         translate(this.getWidth() / 2, this.getHeight() / 2)
         drawingContext.shadowColor = this.color.toString();
         drawingContext.shadowBlur = this.blur 
         arc(0, 0, this.radius * 2, this.radius * 2, this.startAngle, this.endAngle)
-        pop()
     }
 
     public update(s: number): void{
@@ -54,8 +52,8 @@ export class ArcToCircle extends VElement{
     }
 
     public withColors(startColor: p5.Color, endColor: p5.Color): ArcToCircle{
-        this.startColor = startColor
-        this.endColor = endColor
+        this.startColor = ColorUtils.clone(startColor)
+        this.endColor = ColorUtils.clone(endColor)
         return this
     }
 }

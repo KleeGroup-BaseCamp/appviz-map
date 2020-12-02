@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {VElement} from "../../core"
 import {PxSize} from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, PushPop} from "../../utils"
 import {Easings} from "../../utils/easings"
 
 declare let drawingContext: CanvasRenderingContext2D
@@ -37,16 +37,14 @@ export class NeonCircles extends VElement{
             new Easings().linear
         )
     }
-
+    @PushPop
     public render(): void{
         noFill()
         strokeWeight(2)
-        push()
         translate(this.getWidth() / 2, this.getHeight() / 2)
         this.circles.forEach(
             circle => circle.render()
         )
-        pop()
     }
 }
 

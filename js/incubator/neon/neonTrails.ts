@@ -2,7 +2,7 @@ import * as p5 from "p5";
 import {style} from "../../app";
 import {VElement} from "../../core";
 import {PxSize} from "../../layout";
-import {AnimationUtils, ColorUtils} from "../../utils";
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils";
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (all of neon files)
 export class NeonTrails extends VElement{
@@ -28,18 +28,16 @@ export class NeonTrails extends VElement{
             }
         )
     }
-
+    @PushPop
     public render(): void{
-        push()
         translate(this.centerPosition.getX(), this.centerPosition.getY())
         this.trails.forEach(trail => trail.render())
         this.neonArc.render()
-        pop()
     }
 
     public withColor(color: p5.Color): NeonTrails{ // TO DO: extract theme from color ?
-        this.trails.forEach(trail => trail.withColor(color))
-        this.neonArc.withColor(color)
+        this.trails.forEach(trail => trail.withColor(ColorUtils.clone(color)))
+        this.neonArc.withColor(ColorUtils.clone(color))
         return this
     }
 }
@@ -64,7 +62,7 @@ class Trail{
         this.angleStep = angleStep
         this.targetAngle = trailIndex / numOfTrails * TWO_PI
     }
-
+    @PushPop
     public render(): void{
         fill(this.color)
         const tail = this.history[0]
@@ -92,13 +90,11 @@ class Trail{
         vertices.splice(this.history.length, 0, head)
         vertices.push(tail)
         vertices.push(tail)
-        push()
         drawingContext.shadowColor = this.color.toString()
         drawingContext.shadowBlur = 15
         beginShape()
         vertices.forEach(vertex => curveVertex(vertex.x, vertex.y))
         endShape()
-        pop()
     }
         
     public update(progressPercent: number): void{
@@ -144,7 +140,7 @@ class Trail{
     }
 
     public withColor(color: p5.Color): Trail{
-        this.color = color
+        this.color = ColorUtils.clone(color)
         return this
     }
 }
@@ -163,18 +159,16 @@ class NeonArc{  // Duplicate (spark circle)
         this.angleStep = angleStep
         this.strokeWeight = strokeWeight
     }
-
+    @PushPop
     public render(): void{
         noFill()
         stroke(this.color)
         strokeWeight(this.strokeWeight)
-        push()
         drawingContext.shadowColor = this.color.toString()
         drawingContext.shadowBlur = 15
         // Temporary solution, duplicating gives better neon effect
         arc(0, 0, this.radius * 2, this.radius * 2, this.startAngle, this.endAngle)
         arc(0, 0, this.radius * 2, this.radius * 2, this.startAngle, this.endAngle)
-        pop()
     }
 
     public update(s: number): void{
@@ -187,7 +181,7 @@ class NeonArc{  // Duplicate (spark circle)
     }
 
     public withColor(color: p5.Color): NeonArc{
-        this.color = color
+        this.color = ColorUtils.clone(color)
         return this
     }
 }
