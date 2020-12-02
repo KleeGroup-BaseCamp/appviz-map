@@ -1,5 +1,5 @@
-import {PxSize} from "../layout"
-import {State} from "../core"
+import {PxSize, PxPosition} from "../layout"
+import {State, VEvent} from "."
 
 /**
  * VElement displayed on the map.
@@ -22,10 +22,14 @@ import {State} from "../core"
  *  - define a specific 'contains' method to handle a specific shape
  */
 
+//export type VEventHandler = (event : VEvent) =>{}
+
 export abstract class VElement {
-  private readonly id: any;
-  private readonly pxSize: PxSize;
-  private readonly selectable: boolean;
+  private readonly id: any
+  private readonly pxSize: PxSize
+  private readonly selectable: boolean
+//  private eventHandler? : VEventHandler
+  protected readonly centerPosition: PxPosition
 
   /**
    * @constructor
@@ -35,43 +39,51 @@ export abstract class VElement {
    * @param {boolean} selectable
    */
   constructor(id: any, pxSize: PxSize, selectable: boolean) {
-    this.id = id;
-    this.pxSize = pxSize;
-    this.selectable = selectable;
+    this.id = id
+    this.pxSize = pxSize
+    this.selectable = selectable
+    this.centerPosition = new PxPosition(
+      pxSize.getWidth() / 2, 
+      pxSize.getHeight() / 2
+    )
   }
+
+  //public withEventHandler(eventHandler : VEventHandler){
+  //  this.eventHandler = eventHandler
+  //}
 
   /**
    * @return {*} id
    */
   public getId(): any {
-    return this.id;
+    return this.id
   }
 
   /**
   * @return {number} width
   */
   public getWidth(): number {
-    return this.pxSize.getWidth();
+    return this.pxSize.getWidth()
   }
 
   /**
    * @return {number} height
    */
   public getHeight(): number {
-    return this.pxSize.getHeight();
+    return this.pxSize.getHeight()
   }
 
   /**
    * @return {PxSize} pxsize
    */
   public getPxSize(): PxSize {
-    return this.pxSize;
+    return this.pxSize
   }
   /**
  * @returns {boolean} if the element is selectable
  */
   public isSelectable(): boolean {
-    return this.selectable;
+    return this.selectable
   }
 
   /**
@@ -91,8 +103,15 @@ export abstract class VElement {
     return x > 0
       && x < this.pxSize.getWidth()
       && y > 0
-      && y < this.pxSize.getHeight();
+      && y < this.pxSize.getHeight()
   }
+
+ //public onEvent(event : VEvent): void {
+ //   if (! this.eventHandler){
+ //     throw 'no eventHandler registered'
+ //   }
+ //   this.eventHandler(event)
+ // }
 
   public needsClear():boolean{
     return true

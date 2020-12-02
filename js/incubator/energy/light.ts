@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {style} from "../../app"
 import {VElement} from "../../core"
-import {PxPosition, PxSize} from "../../layout"
+import {PxSize} from "../../layout"
 import {AnimationUtils, PushPop} from "../../utils"
 
 export class Light extends VElement{
