@@ -11,11 +11,15 @@ export class NeonTrails extends VElement{
     
     constructor(id: any, pxSize: PxSize){
         super(id, pxSize, false)
-        this.trails.push(new Trail())
+        const radius = min(this.getWidth(), this.getHeight()) / 2
+        const numOfTrails = 5
+        for(let i = 0; i < numOfTrails; i++){
+            this.trails.push(new Trail(radius * 0.5))
+        }
         AnimationUtils.animate(
             0, 
             100, 
-            2000, 
+            8000, 
             (s) => this.trails.forEach(trail => trail.update(s))
         )
     }
@@ -35,16 +39,27 @@ export class NeonTrails extends VElement{
 }
 
 class Trail{
+    private readonly radius: number
+
     private color: p5.Color = ColorUtils.clone(style.color.a)
     private history: p5.Vector[] = []
+    private targetAngle: number = random(0, TWO_PI)
 
-    constructor(){
-        this.history = [ // Test history (to generate randomly)
-            createVector(-30,0), 
-            createVector(-15,-15), 
-            createVector(0,-30), 
-            createVector(15,-45)
-        ] 
+    constructor(radius: number){
+        // this.history = [
+        //     createVector(-30,0), 
+        //     createVector(-15,-15), 
+        //     createVector(0,-30), 
+        //     createVector(15,-45)
+        // ] 
+        const origin = createVector(0, 0)
+        this.history = [
+            origin, 
+            origin, 
+            origin, 
+            createVector(10, 0)
+        ]
+        this.radius = radius
     }
 
     public render(): void{
@@ -55,43 +70,60 @@ class Trail{
         // Compute vertices
         for (let i = 1; i < this.history.length - 1; i++){
             const normal = this.history[i]
-                .copy()
-                .sub(this.history[i - 1])
-                .rotate(HALF_PI)
-                .normalize()
-                .mult(i * 2)
+            .copy()
+            .sub(this.history[i - 1])
+            .rotate(HALF_PI)
+            .normalize()
+            .mult(i * 2)
             vertices.splice(
                 i + 1, 
                 0, 
                 this.history[i]
-                    .copy()
-                    .add(normal),
+                .copy()
+                .add(normal),
                 this.history[i]
-                    .copy()
-                    .sub(normal) 
+                .copy()
+                .sub(normal) 
                 )
-        }
-        vertices.splice(this.history.length, 0, head)
-        vertices.push(tail)
-        vertices.push(tail)
-        beginShape()
-        vertices.forEach(vertex => curveVertex(vertex.x, vertex.y))
-        endShape()
-    }
+            }
+            vertices.splice(this.history.length, 0, head)
+            vertices.push(tail)
+            vertices.push(tail)
+            beginShape()
+            vertices.forEach(vertex => curveVertex(vertex.x, vertex.y))
+            endShape()
 
-    public update(progressPercent: number): void{
-        const historyLength = 4
-        const pos = this.history[historyLength - 1].copy()
-        const vel = pos
+
+            const target = createVector(
+                this.radius * cos(this.targetAngle),
+                this.radius * sin(this.targetAngle)
+            )
+            push()
+            stroke(255)
+            strokeWeight(4)
+            point(target.x, target.y)
+            pop()
+        }
+        
+        public update(progressPercent: number): void{
+            const historyLength = 4
+            const pos = this.history[historyLength - 1].copy()
+            const angleStep = radians(10)
+            this.targetAngle += angleStep
+            const target = createVector(
+                this.radius * cos(this.targetAngle),
+                this.radius * sin(this.targetAngle)
+            )
+            const vel = pos
             .copy()
             .sub(this.history[historyLength - 2])
-        // Rotate velocity to converge towards center (to change later to a moving target)
-        const angle = pos
+            // Rotate velocity to converge towards target
+            const angle = target
             .copy()
-            .mult(-1)
+            .sub(pos)
             .angleBetween(vel)
         vel.rotate(-angle * 0.3) 
-        this.history.push(pos.add(vel))
+        this.history.push(pos.add(vel.normalize().mult(10)))
         this.history.shift()
     }
 
