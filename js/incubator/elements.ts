@@ -22,6 +22,53 @@ type ElementsSizes = {
 
 type Size = "s" | "m" | "l"
 
+export type ElementProps = {
+    id? : Image,
+    size? : Size,
+}
+
+export type WifiSignalProps = {
+    id? : Image,
+    size? : Size,
+}
+export type BarsSignalProps = {
+    id? : Image,
+    size? : Size,
+}
+export type HeartRatingProps = {
+    id? : Image,
+    size? : Size,
+}
+export type StarRatingProps = {
+    id? : Image,
+    size? : Size,
+}
+export type ImageRatingProps = {
+        id? : Image,
+        size? : Size,
+        img? : Image
+}
+export type ArrowGaugeProps = {
+    id? : Image,
+    size? : Size,
+}
+export type GaugeProps = {
+    id? : Image,
+    size? : Size,
+}
+export type StripedGaugeProps = {
+    id? : Image,
+    size? : Size,
+}
+export type ProgressBarProps = {
+    id? : Image,
+    size? : Size,
+}
+export type StripedProgressBarProps = {
+    id? : Image,
+    size? : Size,
+}
+
 export class Elements{
     private static readonly pxSizes: ElementsSizes = { // make keys type (elementNames) ?
         wifiSignal: {
@@ -66,79 +113,83 @@ export class Elements{
         },
     }
 
-    public static createWifiSignal(id: any = this.generateId(), size: Size | PxSize = "m", rate: number): WifiSignal{
-        return new WifiSignal(id, this.getSize(size ?? "m", "wifiSignal"), rate)
+    public static createWifiSignal(rate: number, props: WifiSignalProps): WifiSignal{
+        return new WifiSignal(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "wifiSignal"),
+            rate) 
     }
 
-    public static createBarsSignal(id: any = this.generateId(), size: Size | PxSize = "m", rate: number): BarsSignal{
-        return new BarsSignal(id, this.getSize(size ?? "m", "barsSignal"), rate)
+    public static createBarsSignal(rate: number, props: WifiSignalProps): WifiSignal{
+        return new WifiSignal(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "barsSignal"),
+            rate) 
     }
 
-    public static createHeartRating(id: any = this.generateId(), size: Size | PxSize = "m", rate: number): HeartRating{
-        return new HeartRating(id, this.getSize(size ?? "m", "rating"), rate)
+    public static createHeartRating (rate: number, props:HeartRatingProps): HeartRating{
+        return new HeartRating(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "rating"),
+            rate) 
     }
 
-    public static createStarRating(): StarRatingBuilder{
-        return new StarRatingBuilder()
+    public static createStarRating(rate : number, props : StarRatingProps): StarRating{
+        return new StarRating(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "rating"),
+            rate) 
     }
 
-    // Leave image optional with possibility of method throwing error ?
-    public static createImageRating(id: any = this.generateId(), size: Size | PxSize = "m", rate: number, image: Image): ImageRating{
-        return new ImageRating(id, this.getSize(size ?? "m", "rating"), rate).withImage(image)
+    public static createImageRating(rate : number, props : ImageRatingProps): ImageRating{
+        return new ImageRating(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "rating"),
+            rate) 
+            .withImage(props.img)
+    
     }
 
-    public static createArrowGauge(id: any = this.generateId(), size: Size | PxSize = "m", percent: number): ArrowGauge{
-        return new ArrowGauge(id, this.getSize(size ?? "m", "arrowGauge"), percent)
+    public static createArrowGauge(percent: number, props:ArrowGaugeProps): ArrowGauge{
+        return new ArrowGauge(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "arrowGauge"),
+            percent) 
     }
 
-    public static createGauge(id: any = this.generateId(), size: Size | PxSize = "m", percent: number): Gauge{
-        return new Gauge(id, this.getSize(size ?? "m", "gauge"), percent)
+    public static createGauge(percent: number, props:ArrowGaugeProps): Gauge{
+        return new Gauge(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "gauge"),
+            percent) 
     }
 
-    public static createStripedGauge(id: any = this.generateId(), size: Size | PxSize = "m", percent: number): StripedGauge{
-        return new StripedGauge(id, this.getSize(size ?? "m", "stripedGauge"), percent)
+    public static createStripedGauge(percent: number, props : StripedGaugeProps){
+        return new StripedGauge(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "stripedGauge"),
+            percent) 
     }
 
-    public static createProgressBar(id: any = this.generateId(), size: Size | PxSize = "m", percent: number): ProgressBar{
-        return new ProgressBar(id, this.getSize(size ?? "m", "progressBar"), percent)
+    public static createProgressBar(percent: number, props : ProgressBarProps): ProgressBar{
+        return new ProgressBar(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "progressBar"),
+            percent) 
     }
 
-    public static createStripedProgressBar(id: any = this.generateId(), size: Size | PxSize = "m", percent: number): StripedProgressBar{
-        return new StripedProgressBar(id, this.getSize(size ?? "m", "stripedProgressBar"), percent)
+    public static createStripedProgressBar(percent: number, props:StripedProgressBarProps): StripedProgressBar{
+        return new StripedProgressBar(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "stripedProgressBar"),
+            percent) 
     }
 
     private static generateId(/* Determine signature later*/): any{
         return "-1"
     }
 
-    public static getSize(size: Size | PxSize, elementName: string): PxSize{
-        return size instanceof PxSize 
-        ? size
-        : this.pxSizes[elementName][size]
+    public static getSize(size: Size, elementName: string): PxSize{
+        return this.pxSizes[elementName][size]
     }
 }
-
-
-abstract class AbstractElementBuilder<E extends VElement, V>{
-    protected id? :any
-    protected size? : PxSize
-
-    public withId(id : any){
-        this.id = id
-    }
-
-    public withSize(size : PxSize){
-        this.size = size
-    }
-
-    public abstract withValue(v : V):E
-} 
-
-export class StarRatingBuilder extends AbstractElementBuilder<StarRating, number> {
-    public withValue(rate : number): StarRating{
-        return new StarRating(
-            this.id?? -1, 
-            Elements.getSize(this.size ?? "m", "rating"), 
-            rate) 
-    }
-} 

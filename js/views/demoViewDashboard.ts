@@ -24,17 +24,17 @@ export class DemoViewDashboard implements View {
 
     private AddAllElements(gridLayerBuilder: GridLayerBuilder, size: "s" | "m" | "l"): GridLayerBuilder{
         return gridLayerBuilder
-        .addElement(Elements.createWifiSignal(undefined, size, 4))
-        .addElement(Elements.createBarsSignal(undefined, size, 3))
-        .addElement(Elements.createArrowGauge(undefined, size, 50))
-        .addElement(Elements.createGauge(undefined, size, 50))
-        .addElement(Elements.createStripedGauge(undefined, size, 50))
+        .addElement(Elements.createWifiSignal(4, {}))
+        .addElement(Elements.createBarsSignal(3, {}))
+        .addElement(Elements.createArrowGauge(50, {}))
+        .addElement(Elements.createGauge(50, {}))
+        .addElement(Elements.createStripedGauge(50, {}))
         .beginRow(10)
-        .addElement(Elements.createProgressBar(undefined, size, 50))
-        .addElement(Elements.createStripedProgressBar(undefined, size, 50))
-        .addElement(Elements.createHeartRating(undefined, size, 3))
-        .addElement(Elements.createStarRating().withValue(3))
-        .addElement(Elements.createImageRating(undefined, size, 3, icons.star))
+        .addElement(Elements.createProgressBar(50, {}))
+        .addElement(Elements.createStripedProgressBar(50, {}))
+        .addElement(Elements.createHeartRating(3, {}))
+        .addElement(Elements.createStarRating(3, {}))
+        .addElement(Elements.createImageRating(3, {img:icons.star}))
         .beginRow(10)
         .addElement(new Caption("-1", new PxSize(800, 35), `Size ${size}`))
     }
