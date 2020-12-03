@@ -1,8 +1,8 @@
 import * as p5 from "p5"
 import {style} from "../../app"
-import {VText} from "../../components"
-import {VElement} from "../../core"
-import {PxPosition, PxSize} from "../../layout"
+import {VText} from "../../neon/components"
+import {VElement} from "../../neon/core"
+import {PxPosition, PxSize} from "../../neon/layout"
 
 type DonutData = {label: string, value: number}[]
 

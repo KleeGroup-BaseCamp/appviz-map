@@ -1,7 +1,7 @@
 import {style} from "../../app";
-import {VElement} from "../../core";
-import {PxSize} from "../../layout";
-import {AnimationUtils, PushPop} from "../../utils"
+import {VElement} from "../../neon/core";
+import {PxSize} from "../../neon/layout";
+import {AnimationUtils, PushPop} from "../../neon/utils"
 
 export abstract class AbstractRating extends VElement{
     //How many icons are displayed ?

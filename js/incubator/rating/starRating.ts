@@ -1,4 +1,4 @@
-import { PushPop } from "../../utils"
+import { PushPop } from "../../neon/utils"
 import {AbstractRating} from "./abstractRating"
 
 export class StarRating extends AbstractRating{

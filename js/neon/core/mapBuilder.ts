@@ -1,4 +1,4 @@
-import {Map, Layer} from "../core"
+import {Map, Layer} from "."
 
 export class MapBuilder {
   private readonly layers: Layer[] = []

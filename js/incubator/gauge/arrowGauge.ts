@@ -1,7 +1,7 @@
-import {VText} from "../../components"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
-import {AnimationUtils, PushPop} from "../../utils"
+import {VText} from "../../neon/components"
+import {VElement} from "../../neon/core"
+import {PxSize} from "../../neon/layout"
+import {AnimationUtils, PushPop} from "../../neon/utils"
 import {style} from "../../app"
 
 export class ArrowGauge extends VElement{

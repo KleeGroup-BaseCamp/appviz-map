@@ -1,7 +1,7 @@
-import {VElement, State} from "../core"
+import {VElement, State} from "."
 import {PxPosition} from "../layout"
 import {AnimationUtils} from "../utils"
-import {debug, style} from "../app"
+import {debug, style} from "../../app"
 
 export type PositionedElement = {pxPosition: PxPosition, element: VElement}
 

@@ -1,7 +1,7 @@
 import {style} from "../../app"
-import {VElement, State} from "../../core"
-import {TextUtils}  from "../../utils"
-import {PxSize} from "../../layout"
+import {VElement, State} from "../../neon/core"
+import {TextUtils}  from "../../neon/utils"
+import {PxSize} from "../../neon/layout"
 
 export class Item extends VElement {
      private readonly title: string

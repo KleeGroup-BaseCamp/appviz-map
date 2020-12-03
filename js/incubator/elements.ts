@@ -1,6 +1,6 @@
 import * as p5 from "p5"
-import {PxSize} from "../layout"
-import {VElement} from "../core"
+import {PxSize} from "../neon/layout"
+import {VElement} from "../neon/core"
 import {HeartRating} from "./rating/heartRating"
 import {StarRating} from "./rating/starRating"
 import {ImageRating} from "./rating/ImageRating"

@@ -1,5 +1,5 @@
 import {style} from "../../app"
-import {VText} from "../../components"
+import {VText} from "../../neon/components"
 
 /**
  * Horizontal category axis

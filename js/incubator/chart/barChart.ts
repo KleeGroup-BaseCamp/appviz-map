@@ -1,8 +1,8 @@
-import {PxSize} from "../../layout"
+import {PxSize} from "../../neon/layout"
 import {CategoryAxis} from "./categoryAxis"
 import {style} from "../../app"
 import {Chart, ChartData} from "./chart"
-import {ColorUtils} from "../../utils"
+import {ColorUtils} from "../../neon/utils"
 
 export class BarChart extends Chart{
     private readonly xAxis: CategoryAxis

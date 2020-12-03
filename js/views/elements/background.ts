@@ -1,5 +1,5 @@
-import {PxSize } from "../../layout"
-import {VElement, State} from "../../core"
+import {PxSize } from "../../neon/layout"
+import {VElement, State} from "../../neon/core"
 
 export class Background extends VElement {
   private drawn = false

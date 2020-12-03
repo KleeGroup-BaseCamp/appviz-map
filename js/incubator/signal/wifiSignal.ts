@@ -1,7 +1,7 @@
 import * as p5 from "p5"
-import {VElement} from "../../core"
-import {PxPosition, PxSize} from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {VElement} from "../../neon/core"
+import {PxPosition, PxSize} from "../../neon/layout"
+import {AnimationUtils} from "../../neon/utils"
 import {style} from "../../app"
 
 /** 

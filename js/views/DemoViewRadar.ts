@@ -1,12 +1,12 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../neon/core"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {SharpRadar, SmoothRadar, SharpRadar2, SmoothRadar2, Caption} from "../incubator" 
-import {PxPosition, PxSize} from "../layout"
+import {PxPosition, PxSize} from "../neon/layout"
 
 export class DemoViewRadar implements View {
 

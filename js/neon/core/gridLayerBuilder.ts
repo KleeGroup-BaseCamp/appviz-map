@@ -1,4 +1,4 @@
-import {PositionedElement, VElement, Layer} from "../core"
+import {PositionedElement, VElement, Layer} from "."
 import {PxPosition} from "../layout"
 
 type Gap = {

@@ -1,10 +1,10 @@
-import {VText} from "../../components"
-import {VElement} from "../../core"
-import {PxSize } from "../../layout"
+import {VText} from "../../neon/components"
+import {VElement} from "../../neon/core"
+import {PxSize } from "../../neon/layout"
 import {style} from "../../app"
 import {AbstractRating } from "../rating/abstractRating"
 import {StarRating } from "../rating/starRating"
-import {ColorUtils} from "../../utils"
+import {ColorUtils} from "../../neon/utils"
 import {RadarData2} from "./RadarData2"
 
 export class PopUp2 extends VElement{

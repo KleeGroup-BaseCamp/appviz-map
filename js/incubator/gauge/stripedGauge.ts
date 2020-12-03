@@ -1,8 +1,8 @@
 import * as p5 from "p5"
-import {VText} from "../../components"
-import {VElement} from "../../core"
-import {PxPosition, PxSize } from "../../layout"
-import {AnimationUtils, PushPop} from "../../utils"
+import {VText} from "../../neon/components"
+import {VElement} from "../../neon/core"
+import {PxPosition, PxSize } from "../../neon/layout"
+import {AnimationUtils, PushPop} from "../../neon/utils"
 import {style} from "../../app"
 
 export class StripedGauge extends VElement{

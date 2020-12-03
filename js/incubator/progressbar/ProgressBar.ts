@@ -1,9 +1,9 @@
 import * as p5 from "p5"
 import {style} from "../../app"
-import {VText} from "../../components"
-import {AnimationUtils, PushPop} from "../../utils"
-import { VElement } from "../../core"
-import { PxSize } from "../../layout"
+import {VText} from "../../neon/components"
+import {AnimationUtils, PushPop} from "../../neon/utils"
+import { VElement } from "../../neon/core"
+import { PxSize } from "../../neon/layout"
 
 export class ProgressBar extends VElement{
     private readonly vtext: VText

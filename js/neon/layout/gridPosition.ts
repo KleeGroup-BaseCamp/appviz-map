@@ -1,4 +1,4 @@
-import {GridVector} from "../layout"
+import {GridVector} from "."
 
 export class GridPosition extends GridVector{
 

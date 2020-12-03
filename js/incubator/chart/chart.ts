@@ -1,5 +1,5 @@
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
+import {VElement} from "../../neon/core"
+import {PxSize} from "../../neon/layout"
 import {LinearAxis} from "./linearAxis"
 import {style} from "../../app"
 

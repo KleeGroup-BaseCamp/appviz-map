@@ -2,10 +2,10 @@ import {View} from "./view"
 import {projection} from "../app"
 import {Card, Item, ItemTypeDetail, Icons} from "./elements"
 import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
-import {Layer, LayerBuilder} from "../core"
+import {Layer, LayerBuilder} from "../neon/core"
 import {ModelRepository, GroupModel} from "../model"
-import {PxPosition, GridPosition, PxSize, GridSize} from "../layout"
-import {TextUtils}  from "../utils"
+import {PxPosition, GridPosition, PxSize, GridSize} from "../neon/layout"
+import {TextUtils}  from "../neon/utils"
 
 export class TechGroupView implements View {
 

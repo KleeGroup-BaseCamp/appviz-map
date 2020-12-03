@@ -1,8 +1,8 @@
-import {PxPosition, PxSize} from "../../layout"
+import {PxPosition, PxSize} from "../../neon/layout"
 import {LinearAxis} from "./linearAxis"
 import {style} from "../../app"
 import {Chart, ChartData} from "./chart"
-import { ColorUtils } from "../../utils"
+import { ColorUtils } from "../../neon/utils"
 
 export class LineChart extends Chart{
     private readonly xAxis: LinearAxis

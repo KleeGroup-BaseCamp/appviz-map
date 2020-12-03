@@ -1,12 +1,12 @@
 import {projection, style} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../neon/core"
 import {Card, Icons} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {ProgressBar, StripedProgressBar, Caption} from "../incubator" 
-import {PxSize} from "../layout"
+import {PxSize} from "../neon/layout"
 
 export class DemoViewProgressBar implements View {
 

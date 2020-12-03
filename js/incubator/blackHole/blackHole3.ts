@@ -1,6 +1,6 @@
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
-import {AnimationUtils} from "../../utils"
+import {VElement} from "../../neon/core"
+import {PxSize} from "../../neon/layout"
+import {AnimationUtils} from "../../neon/utils"
 import * as p5 from "p5"
 
 class Bolt {

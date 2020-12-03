@@ -1,7 +1,7 @@
 import {style} from "../../app"
-import {VElement, State}  from "../../core"
-import {AnimationUtils}  from "../../utils"
-import {PxSize} from "../../layout"
+import {VElement, State}  from "../../neon/core"
+import {AnimationUtils}  from "../../neon/utils"
+import {PxSize} from "../../neon/layout"
 
 export class Grid extends VElement {
   private readonly columns: number

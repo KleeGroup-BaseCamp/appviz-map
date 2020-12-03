@@ -1,6 +1,6 @@
 import {AbstractRating} from "./abstractRating"
 import {Image} from "p5"
-import { ImageUtils } from "../../utils"
+import { ImageUtils } from "../../neon/utils"
 
 export class ImageRating extends AbstractRating{
     private img? : Image

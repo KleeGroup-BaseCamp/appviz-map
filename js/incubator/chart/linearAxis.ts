@@ -1,5 +1,5 @@
 import {style} from "../../app"
-import {VText} from "../../components"
+import {VText} from "../../neon/components"
 
 type ChartType = "x" | "y"
 export class LinearAxis{

@@ -1,8 +1,8 @@
 import * as p5 from "p5"
 import {style} from "../../app"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
-import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
+import {VElement} from "../../neon/core"
+import {PxSize} from "../../neon/layout"
+import {AnimationUtils, ColorUtils, PushPop} from "../../neon/utils"
 
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally

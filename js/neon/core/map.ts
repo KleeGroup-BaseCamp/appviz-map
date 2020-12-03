@@ -1,4 +1,4 @@
-import { VElement, Layer, State } from "../core"
+import { VElement, Layer, State } from "."
 
 export class Map {
   private readonly layers: Layer[]

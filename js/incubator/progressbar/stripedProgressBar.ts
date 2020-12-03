@@ -1,8 +1,8 @@
 import * as p5 from "p5"
-import { VText } from "../../components";
-import { AnimationUtils, ColorUtils, PushPop } from "../../utils";
-import {VElement} from "../../core"
-import { PxPosition, PxSize } from "../../layout"
+import { VText } from "../../neon/components";
+import { AnimationUtils, ColorUtils, PushPop } from "../../neon/utils";
+import {VElement} from "../../neon/core"
+import { PxPosition, PxSize } from "../../neon/layout"
 import { style } from "../../app"
 
 export class StripedProgressBar extends VElement{

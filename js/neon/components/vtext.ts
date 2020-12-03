@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {style} from "../app"
+import {style} from "../../app"
 import {Component}  from "./component"
 
 export class VText implements Component{

@@ -1,12 +1,12 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../neon/core"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {Battery, Caption, Light} from "../incubator" 
-import {PxSize} from "../layout"
+import {PxSize} from "../neon/layout"
 
 export class DemoViewEnergy implements View {
 

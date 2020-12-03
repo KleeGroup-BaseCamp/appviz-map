@@ -1,8 +1,8 @@
 import * as p5 from "p5"
 import { style } from "../app"
-import { VText } from "../components"
-import {VElement, State} from "../core"
-import {PxSize} from "../layout"
+import { VText } from "../neon/components"
+import {VElement, State} from "../neon/core"
+import {PxSize} from "../neon/layout"
 
 export class Caption extends VElement{
     private readonly vText : VText

@@ -3,9 +3,9 @@
  */
 import * as p5 from "p5"
 import {style} from "../../app"
-import {VElement, State, Style} from "../../core"
-import {Header, Corner} from "../../components"
-import {PxSize} from "../../layout"
+import {VElement, State, Style} from "../../neon/core"
+import {Header, Corner} from "../../neon/components"
+import {PxSize} from "../../neon/layout"
 
 export class Zone extends VElement {
     private readonly header: Header

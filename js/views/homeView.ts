@@ -1,6 +1,6 @@
 import {sketch, projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder} from "../core"
+import {Layer, LayerBuilder} from "../neon/core"
 import {Card, Grid} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"

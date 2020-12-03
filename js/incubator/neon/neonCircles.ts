@@ -1,8 +1,8 @@
 import * as p5 from "p5"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
-import {AnimationUtils, PushPop} from "../../utils"
-import {Easings} from "../../utils/easings"
+import {VElement} from "../../neon/core"
+import {PxSize} from "../../neon/layout"
+import {AnimationUtils, PushPop} from "../../neon/utils"
+import {Easings} from "../../neon/utils/easings"
 
 declare let drawingContext: CanvasRenderingContext2D
 

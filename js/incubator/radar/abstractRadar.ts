@@ -1,7 +1,7 @@
-import {VText} from "../../components"
-import {State, VElement} from "../../core"
-import {PxPosition, PxSize } from "../../layout"
-import {AnimationUtils, ColorUtils} from "../../utils"
+import {VText} from "../../neon/components"
+import {State, VElement} from "../../neon/core"
+import {PxPosition, PxSize } from "../../neon/layout"
+import {AnimationUtils, ColorUtils} from "../../neon/utils"
 import {style} from "../../app"
 import {PopUp} from "./popup"
 
