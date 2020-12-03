@@ -106,7 +106,6 @@ export class Elements{
         return new StripedProgressBar(id, this.getSize(size ?? "m", "stripedProgressBar"), percent)
     }
 
-    // Make static ?
     private static generateId(/* Determine signature later*/): any{
         return "-1"
     }

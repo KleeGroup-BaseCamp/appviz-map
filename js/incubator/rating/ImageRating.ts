@@ -1,11 +1,12 @@
 import {AbstractRating} from "./abstractRating"
 import {Image} from "p5"
+import { ImageUtils } from "../../utils"
 
 export class ImageRating extends AbstractRating{
     private img? : Image
 
     withImage(img : Image) : ImageRating{
-        this.img = img
+        this.img = ImageUtils.clone(img)
         return this
     }
     

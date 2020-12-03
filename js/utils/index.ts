@@ -1,5 +1,6 @@
 export * from "./animationUtils"
 export * from "./textUtils"
 export * from "./colorUtils"
+export * from "./imageUtils"
 export * from "./easings"
 export * from "./decorators"
