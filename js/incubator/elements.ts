@@ -8,7 +8,7 @@ import {Gauge} from "./gauge/gauge"
 import {StripedGauge} from "./gauge/stripedGauge"
 import {ProgressBar} from "./progressbar/progressBar"
 import {StripedProgressBar} from "./progressbar/stripedProgressBar"
-import {WifiSignal} from "./signal/signal"
+import {WifiSignal} from "./signal/wifiSignal"
 import {BarsSignal} from "./signal/barsSignal"
 
 type ElementsSizes = {

@@ -17,7 +17,7 @@ export class WifiSignal extends VElement{
     constructor(id: any, pxSize: PxSize, rate: number){
         super(id, pxSize, false)
         this.rate = rate
-        this.weight = 6
+        this.weight = min(pxSize.getHeight(), pxSize.getWidth()) / 15
         this.circleCenterPosition = new PxPosition(
             pxSize.getWidth() / 2,
             pxSize.getHeight() - this.weight

@@ -14,7 +14,7 @@ export * from "./neon/pointsToCircle"
 export * from "./neon/sparkCircle"
 export * from "./neon/neonTrails"
 
-export * from "./signal/signal"
+export * from "./signal/wifiSignal"
 export * from "./signal/barsSignal"
 
 export * from "./rating/squareRating"
