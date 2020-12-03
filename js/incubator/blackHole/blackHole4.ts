@@ -1,9 +1,9 @@
-import {VElement} from "../core"
-import {PxSize} from "../layout"
-import {AnimationUtils} from "../utils"
+import {VElement} from "../../core"
+import {PxSize} from "../../layout"
+import {AnimationUtils} from "../../utils"
 import * as p5 from "p5"
-import {Easings} from "../utils/easings"
-import {Gauge} from "./gauge/gauge"
+import {Easings} from "../../utils/easings"
+import {Gauge} from "../gauge/gauge"
 
 export class BlackHole4 extends VElement{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")

@@ -5,7 +5,7 @@ export * from "./gauge/arrowGauge"
 export * from "./gauge/stripedGauge"
 export * from "./gauge/gauge"
 
-export * from "./progressbar/ProgressBar"
+export * from "./progressbar/progressBar"
 export * from "./progressbar/stripedProgressBar"
 
 export * from "./neon/arcToCircle"
@@ -15,7 +15,7 @@ export * from "./neon/sparkCircle"
 export * from "./neon/neonTrails"
 
 export * from "./signal/signal"
-export * from "./signal/signalBars"
+export * from "./signal/barsSignal"
 
 export * from "./rating/squareRating"
 export * from "./rating/ImageRating"
@@ -27,9 +27,9 @@ export * from "./radar/smoothRadar"
 export * from "./radar2/sharpRadar2"
 export * from "./radar2/smoothRadar2"
 
-export * from "./blackHole2"
-export * from "./blackHole3"
-export * from "./blackHole4"
+export * from "./blackHole/blackHole2"
+export * from "./blackHole/blackHole3"
+export * from "./blackHole/blackHole4"
 
 export * from "./caption"
 
@@ -38,3 +38,5 @@ export * from "./chart/barChart"
 export * from "./chart/donutChart"
 export * from "./chart/linearAxis"
 export * from "./chart/categoryAxis"
+
+export * from "./elements"

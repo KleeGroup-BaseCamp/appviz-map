@@ -8,7 +8,7 @@ import {Layout} from "../types"
 import {BlackHole2, BlackHole3, BlackHole4, Caption} from "../incubator" 
 import {PxSize} from "../layout"
 
-export class DemoViewGauge2 implements View {
+export class DemoViewBlackHole implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(200, 200)

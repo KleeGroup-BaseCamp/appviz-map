@@ -4,7 +4,10 @@ import {PxPosition, PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../app"
 
-export class Signal extends VElement{
+/** 
+ * Class name is not Signal to avoid conflict with p5's Signal class
+**/
+export class WifiSignal extends VElement{
     private readonly radius: number
     private readonly circleCenterPosition: PxPosition
     private readonly weight: number

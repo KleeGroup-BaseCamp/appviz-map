@@ -4,7 +4,7 @@ import {PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../app"
 
-export class SignalBars extends VElement{
+export class BarsSignal extends VElement{
 
     private rate: number
 

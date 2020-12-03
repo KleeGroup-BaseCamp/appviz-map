@@ -11,7 +11,7 @@ import {PxSize} from "../layout"
 export class DemoViewGauge implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const pxSize = new PxSize(150, 150)
+        const pxSize = new PxSize(150)
         const captionpxSize = new PxSize(950, 35)
         return  [
             new LayerBuilder()

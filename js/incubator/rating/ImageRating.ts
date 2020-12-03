@@ -10,7 +10,10 @@ export class ImageRating extends AbstractRating{
     }
     
     public renderIcon(size: number, active: boolean, ratio: number): void{
-        if (!this.img) {
+        /* Proposition: make default image instead of throwing error like for
+        colors (withColor) because it's not clear/visible that image is needed
+        from constructor */ 
+        if (!this.img) { 
             throw 'You must define an image.'
         }
         const imgRatio = size / max(this.img.height, this.img.width)
