@@ -35,13 +35,16 @@ export interface StarRatingProps extends ElementProps {}
 export interface ImageRatingProps extends ElementProps {
         img? : p5.Image
 }
-export interface ArrowGaugeProps extends ElementProps {
+export interface ArrowGaugeProps extends ElementProps {}
+export interface GaugeProps extends ElementProps {
     firstColor?: p5.Color,
     secondColor?: p5.Color
 }
-export interface GaugeProps extends ElementProps {}
 export interface StripedGaugeProps extends ElementProps {}
-export interface ProgressBarProps extends ElementProps {}
+export interface ProgressBarProps extends ElementProps {
+    firstColor?: p5.Color,
+    secondColor? : p5.Color
+}
 export interface StripedProgressBarProps extends ElementProps {}
 
 export class Elements{
@@ -134,7 +137,7 @@ export class Elements{
             percent) 
     }
 
-    public static createGauge(percent: number, props:ArrowGaugeProps): Gauge{
+    public static createGauge(percent: number, props:GaugeProps): Gauge{
         const element =  new Gauge(
             props.id?? -1,
             Elements.getSize(props.size?? "m", "gauge"),
@@ -156,11 +159,18 @@ export class Elements{
     }
 
     public static createProgressBar(percent: number, props : ProgressBarProps): ProgressBar{
-        return new ProgressBar(
+        const element =  new ProgressBar(
             props.id?? -1,
             Elements.getSize(props.size?? "m", "progressBar"),
             percent) 
-    }
+            if (props.firstColor){    
+                element.withFirstColor(props.firstColor)
+            }
+            if (props.secondColor){
+                element.withSecondColor(props.secondColor)
+            } 
+            return element
+        }
 
     public static createStripedProgressBar(percent: number, props:StripedProgressBarProps): StripedProgressBar{
         return new StripedProgressBar(
