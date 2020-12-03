@@ -33,7 +33,7 @@ export class DemoViewDashboard implements View {
         .addElement(Elements.createProgressBar(undefined, size, 50))
         .addElement(Elements.createStripedProgressBar(undefined, size, 50))
         .addElement(Elements.createHeartRating(undefined, size, 3))
-        .addElement(Elements.createStarRating(undefined, size, 3))
+        .addElement(Elements.createStarRating().withValue(3))
         .addElement(Elements.createImageRating(undefined, size, 3, icons.star))
         .beginRow(10)
         .addElement(new Caption("-1", new PxSize(800, 35), `Size ${size}`))

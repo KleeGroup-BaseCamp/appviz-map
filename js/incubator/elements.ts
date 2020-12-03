@@ -1,5 +1,6 @@
 import {Image} from "p5"
 import {PxSize} from "../layout"
+import {VElement} from "../core"
 import {HeartRating} from "./rating/heartRating"
 import {StarRating} from "./rating/starRating"
 import {ImageRating} from "./rating/ImageRating"
@@ -77,8 +78,8 @@ export class Elements{
         return new HeartRating(id, this.getSize(size ?? "m", "rating"), rate)
     }
 
-    public static createStarRating(id: any = this.generateId(), size: Size | PxSize = "m", rate: number): StarRating{
-        return new StarRating(id, this.getSize(size ?? "m", "rating"), rate)
+    public static createStarRating(): StarRatingBuilder{
+        return new StarRatingBuilder()
     }
 
     // Leave image optional with possibility of method throwing error ?
@@ -110,8 +111,34 @@ export class Elements{
         return "-1"
     }
 
-    private static getSize(size: Size | PxSize, elementName: string): PxSize{
-        if (size instanceof PxSize) return size
-        else return this.pxSizes[elementName][size]
+    public static getSize(size: Size | PxSize, elementName: string): PxSize{
+        return size instanceof PxSize 
+        ? size
+        : this.pxSizes[elementName][size]
     }
 }
+
+
+abstract class AbstractElementBuilder<E extends VElement, V>{
+    protected id? :any
+    protected size? : PxSize
+
+    public withId(id : any){
+        this.id = id
+    }
+
+    public withSize(size : PxSize){
+        this.size = size
+    }
+
+    public abstract withValue(v : V):E
+} 
+
+export class StarRatingBuilder extends AbstractElementBuilder<StarRating, number> {
+    public withValue(rate : number): StarRating{
+        return new StarRating(
+            this.id?? -1, 
+            Elements.getSize(this.size ?? "m", "rating"), 
+            rate) 
+    }
+} 
