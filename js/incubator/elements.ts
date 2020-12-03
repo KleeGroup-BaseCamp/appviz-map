@@ -28,7 +28,7 @@ export class Elements{
             m: new PxSize(60), 
             l: new PxSize(90)
         },
-        barsSignal: { // merge with signal ?
+        barsSignal: { // same size --> merge with wifiSignal ?
             s: new PxSize(30), 
             m: new PxSize(60), 
             l: new PxSize(90)
@@ -38,8 +38,8 @@ export class Elements{
             m: new PxSize(120, 30), 
             l: new PxSize(160, 40)
         },
-        arrowGauge: {
-            s: new PxSize(50), // Change strokeWeight
+        arrowGauge: { // merge with gauge ?
+            s: new PxSize(50),
             m: new PxSize(100), 
             l: new PxSize(150) // Change radius (space wasted on bottom)
         },
@@ -48,8 +48,8 @@ export class Elements{
             m: new PxSize(100), 
             l: new PxSize(150)
         },
-        stripedGauge: { // Merge with gauge
-            s: new PxSize(50), // Change number of stripes with size
+        stripedGauge: { // Merge with gauge ?
+            s: new PxSize(50),
             m: new PxSize(100), 
             l: new PxSize(150)
         },

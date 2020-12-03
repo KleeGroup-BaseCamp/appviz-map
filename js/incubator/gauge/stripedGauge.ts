@@ -18,8 +18,8 @@ export class StripedGauge extends VElement{
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
         this.percent = percent
-        this.vtext = new VText("", style.text.font, style.text.size.xs)
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
+        this.vtext = new VText("", style.text.font, this.getTextSize())
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
@@ -37,13 +37,16 @@ export class StripedGauge extends VElement{
         this.renderValueText(text)
 
         const margin = 3
+        textSize(this.getTextSize())
         this.renderDottedCircle(innerRadius - margin)
-        this.renderDottedCircle(textWidth("100%") / 2 + margin) // Max text width = textWidth("100%")
+        if(this.radius >= 40){
+            this.renderDottedCircle(textWidth("100%") / 2 + margin) // Max text width = textWidth("100%")
+        }
     }
 
     private renderArcs(): void{
         const margin = radians(3)
-        const numOfGraduations = 60
+        const numOfGraduations = max(35, Math.ceil(this.radius * 3 / 4))
         const angleStep = (TWO_PI - margin * numOfGraduations) / numOfGraduations
         noStroke()
         
@@ -81,5 +84,15 @@ export class StripedGauge extends VElement{
         textAlign(CENTER, CENTER)
         this.vtext.setText(text)
         this.vtext.render()
+    }
+
+    private getTextSize(): number{ // Make into util function or use abstract gauge class
+        if (this.radius <= 25) return style.text.size.xxs
+        if (this.radius <= 50) return style.text.size.xs
+        if (this.radius <= 75) return style.text.size.s
+        if (this.radius <= 100) return style.text.size.m
+        if (this.radius <= 125) return style.text.size.l
+        if (this.radius <= 150) return style.text.size.xl
+        return style.text.size.xxl
     }
 }

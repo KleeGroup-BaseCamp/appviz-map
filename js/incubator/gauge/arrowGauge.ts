@@ -1,6 +1,6 @@
 import {VText} from "../../components"
 import {VElement} from "../../core"
-import {PxPosition, PxSize} from "../../layout"
+import {PxSize} from "../../layout"
 import {AnimationUtils, PushPop} from "../../utils"
 import {style} from "../../app"
 
@@ -13,8 +13,8 @@ export class ArrowGauge extends VElement{
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
         this.percent = percent
-        this.vtext = new VText("", style.text.font, style.text.size.s)
         this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
+        this.vtext = new VText("", style.text.font, this.getTextSize())
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
@@ -29,7 +29,7 @@ export class ArrowGauge extends VElement{
     }
 
     private renderArc() : void {
-        const weight: number = 8
+        const weight = this.radius / 5
         noFill()
         strokeCap(ROUND)
         strokeWeight(weight)
@@ -71,15 +71,25 @@ export class ArrowGauge extends VElement{
             PI / 2
         )
         fill('blue')
-        circle(0,0,6)
+        circle(0,0,this.radius / 8)
     }
 
     @PushPop    
     private renderValueText(): void{
-        const textPadding = min(30, this.getPxSize().getHeight() / 2)
+        const textPadding = this.radius / 3
         translate(0, textPadding)
-        textAlign(CENTER)
+        textAlign(CENTER, TOP)
         this.vtext.setText(Math.round(this.percent).toString())
         this.vtext.render()
+    }
+
+    private getTextSize(): number{ // Make into util function or use abstract gauge class 
+        if (this.radius <= 25) return style.text.size.xxs
+        if (this.radius <= 50) return style.text.size.xs
+        if (this.radius <= 75) return style.text.size.s
+        if (this.radius <= 100) return style.text.size.m
+        if (this.radius <= 125) return style.text.size.l
+        if (this.radius <= 150) return style.text.size.xl
+        return style.text.size.xxl
     }
 }

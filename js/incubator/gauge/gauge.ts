@@ -18,9 +18,10 @@ export class Gauge extends VElement{
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
         this.percent = percent
-        this.vtext = new VText("", style.text.font, style.text.size.xs)
-        this.weight = 5
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - this.weight / 2
+        const minDim = min(pxSize.getHeight(), pxSize.getWidth())
+        this.weight = min(minDim / 15, 10)
+        this.radius = minDim / 2 - this.weight / 2
+        this.vtext = new VText("", style.text.font, this.getTextSize())
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
@@ -95,5 +96,15 @@ export class Gauge extends VElement{
     public withSecondColor(secondColor: p5.Color): Gauge{
         this.secondColor = secondColor
         return this
+    }
+
+    private getTextSize(): number{ // Make into util function or use abstract gauge class
+        if (this.radius <= 25) return style.text.size.xxs
+        if (this.radius <= 50) return style.text.size.xs
+        if (this.radius <= 75) return style.text.size.s
+        if (this.radius <= 100) return style.text.size.m
+        if (this.radius <= 125) return style.text.size.l
+        if (this.radius <= 150) return style.text.size.xl
+        return style.text.size.xxl
     }
 }
