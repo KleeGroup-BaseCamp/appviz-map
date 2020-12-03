@@ -22,56 +22,27 @@ type ElementsSizes = {
 
 type Size = "s" | "m" | "l"
 
-export type ElementProps = {
+export interface ElementProps {
     id? : any,
     size? : Size,
 }
 
-export type WifiSignalProps = {
-    id? : any,
-    size? : Size,
-}
-export type BarsSignalProps = {
-    id? : any,
-    size? : Size,
-}
-export type HeartRatingProps = {
-    id? : any,
-    size? : Size,
-}
-export type StarRatingProps = {
-    id? : any,
-    size? : Size,
-}
-export type ImageRatingProps = {
-        id? : any,
-        size? : Size,
-        //---
+export interface WifiSignalProps extends ElementProps {}
+
+export interface BarsSignalProps extends ElementProps {}
+export interface HeartRatingProps extends ElementProps {}
+export interface StarRatingProps extends ElementProps {}
+export interface ImageRatingProps extends ElementProps {
         img? : p5.Image
 }
-export type ArrowGaugeProps = {
-    id? : any,
-    size? : Size,
-    //---
+export interface ArrowGaugeProps extends ElementProps {
     firstColor?: p5.Color,
     secondColor?: p5.Color
 }
-export type GaugeProps = {
-    id? : any,
-    size? : Size,
-}
-export type StripedGaugeProps = {
-    id? : any,
-    size? : Size,
-}
-export type ProgressBarProps = {
-    id? : any,
-    size? : Size,
-}
-export type StripedProgressBarProps = {
-    id? : any,
-    size? : Size,
-}
+export interface GaugeProps extends ElementProps {}
+export interface StripedGaugeProps extends ElementProps {}
+export interface ProgressBarProps extends ElementProps {}
+export interface StripedProgressBarProps extends ElementProps {}
 
 export class Elements{
     private static readonly pxSizes: ElementsSizes = { // make keys type (elementNames) ?

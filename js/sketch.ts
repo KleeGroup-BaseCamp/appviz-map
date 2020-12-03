@@ -144,3 +144,19 @@ export class Sketch {
       .build()
   }
 }
+
+/*
+export type VEventHandler = (event : VEvent) =>{}
+export type VEventDispatcher = {[topic:string]:VEventHandler}
+  private readonly eventDispatcher : VEventDispatcher = {}
+public registerEventHandler(eventHandler : VEventHandler){
+  this.eventHandler = eventHandler
+}
+
+public onEvent(event : VEvent): void {
+  if (! this.eventHandler){
+    throw 'no eventHandler registered'
+  }
+  this.eventHandler(event)
+}
+*/
