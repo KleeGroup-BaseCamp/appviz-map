@@ -1,4 +1,4 @@
-import {Image} from "p5"
+import * as p5 from "p5"
 import {PxSize} from "../layout"
 import {VElement} from "../core"
 import {HeartRating} from "./rating/heartRating"
@@ -23,49 +23,53 @@ type ElementsSizes = {
 type Size = "s" | "m" | "l"
 
 export type ElementProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 
 export type WifiSignalProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 export type BarsSignalProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 export type HeartRatingProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 export type StarRatingProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 export type ImageRatingProps = {
-        id? : Image,
+        id? : any,
         size? : Size,
-        img? : Image
+        //---
+        img? : p5.Image
 }
 export type ArrowGaugeProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
+    //---
+    firstColor?: p5.Color,
+    secondColor?: p5.Color
 }
 export type GaugeProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 export type StripedGaugeProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 export type ProgressBarProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 export type StripedProgressBarProps = {
-    id? : Image,
+    id? : any,
     size? : Size,
 }
 
@@ -142,12 +146,14 @@ export class Elements{
     }
 
     public static createImageRating(rate : number, props : ImageRatingProps): ImageRating{
-        return new ImageRating(
+        const element =  new ImageRating(
             props.id?? -1,
             Elements.getSize(props.size?? "m", "rating"),
             rate) 
-            .withImage(props.img)
-    
+        if (props.img){    
+            element.withImage(props.img)
+        }
+        return element    
     }
 
     public static createArrowGauge(percent: number, props:ArrowGaugeProps): ArrowGauge{
@@ -158,10 +164,17 @@ export class Elements{
     }
 
     public static createGauge(percent: number, props:ArrowGaugeProps): Gauge{
-        return new Gauge(
+        const element =  new Gauge(
             props.id?? -1,
             Elements.getSize(props.size?? "m", "gauge"),
-            percent) 
+            percent)
+        if (props.firstColor){    
+            element.withFirstColor(props.firstColor)
+        }
+        if (props.secondColor){
+            element.withSecondColor(props.secondColor)
+        } 
+        return element
     }
 
     public static createStripedGauge(percent: number, props : StripedGaugeProps){

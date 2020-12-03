@@ -5,7 +5,6 @@ import {AnimationUtils} from "../../utils"
 import {style} from "../../app"
 
 export class BarsSignal extends VElement{
-
     private rate: number
 
     constructor(id: any, pxSize: PxSize, rate: number){
