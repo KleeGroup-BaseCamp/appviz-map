@@ -1,35 +1,33 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
 import {VText} from "../../components"
-import {AnimationUtils, PushPop} from "../../utils"
-import { VElement } from "../../core"
-import { PxSize } from "../../layout"
+import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
+import {VElement2, VElementProps} from "../../core"
 
-export class ProgressBar extends VElement{
+export interface ProgressBarProps extends VElementProps {
+    firstColor?: p5.Color,
+    secondColor?: p5.Color
+}
+
+export class ProgressBar extends VElement2 {
     private readonly vtext: VText
     private readonly size: number
 
-    private firstColor: p5.Color = style.color.a
-    private secondColor? : p5.Color
+    private readonly firstColor: p5.Color
+    private readonly secondColor? : p5.Color
 
     private percent: number
 
-    constructor(id: any, pxSize: PxSize, percent: number) {
-        super(id, pxSize, false)
+    constructor(percent: number, props : ProgressBarProps) {
+        super(props)
+        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
+        this.secondColor = props.secondColor
+
         this.percent  = percent
         this.size = this.getTextSize()
         this.vtext = new VText("", style.text.font, this.size)
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
-    }
-    
-    public withFirstColor(firstColor: p5.Color): ProgressBar{
-        this.firstColor = firstColor
-        return this
-    }
-    public withSecondColor(secondColor: p5.Color): ProgressBar{
-        this.secondColor = secondColor
-        return this
     }
 
     @PushPop

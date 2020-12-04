@@ -5,11 +5,9 @@ import {StarRating} from "./rating/starRating"
 import {ImageRating} from "./rating/ImageRating"
 import {ArrowGauge} from "./gauge/arrowGauge"
 import {StripedGauge} from "./gauge/stripedGauge"
-import {ProgressBar} from "./progressbar/progressBar"
 import {StripedProgressBar} from "./progressbar/stripedProgressBar"
 import {WifiSignal} from "./signal/wifiSignal"
 import {BarsSignal} from "./signal/barsSignal"
-
 
 import { SharpRadar } from "./radar/sharpRadar"
 import { RadarData } from "./radar/abstractRadar"
@@ -45,15 +43,8 @@ export interface ImageRatingProps extends ElementProps {
         img? : p5.Image
 }
 export interface ArrowGaugeProps extends ElementProps {}
-
-
 export interface StripedGaugeProps extends ElementProps {}
-export interface ProgressBarProps extends ElementProps {
-    firstColor?: p5.Color,
-    secondColor? : p5.Color
-}
 export interface StripedProgressBarProps extends ElementProps {}
-
 export interface RadarProps extends ElementProps {}
 
 export class Elements{
@@ -157,20 +148,6 @@ export class Elements{
             Elements.getSize(props.size?? "m", "stripedGauge"),
             percent) 
     }
-
-    public static createProgressBar(percent: number, props : ProgressBarProps): ProgressBar{
-        const element =  new ProgressBar(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "progressBar"),
-            percent) 
-            if (props.firstColor){    
-                element.withFirstColor(props.firstColor)
-            }
-            if (props.secondColor){
-                element.withSecondColor(props.secondColor)
-            } 
-            return element
-        }
 
     public static createStripedProgressBar(percent: number, props:StripedProgressBarProps): StripedProgressBar{
         return new StripedProgressBar(

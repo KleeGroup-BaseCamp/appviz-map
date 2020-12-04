@@ -1,6 +1,5 @@
 import {VText} from "../../components"
 import {VElement2, VElementProps} from "../../core"
-import {PxSize} from "../../layout"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
 import {style} from "../../../app"
 import * as p5 from "p5"
@@ -11,25 +10,25 @@ export interface GaugeProps extends VElementProps {
 }
 
 export class Gauge extends VElement2{
-    private firstColor: p5.Color
-    private secondColor?: p5.Color
-
+    private readonly firstColor: p5.Color
+    private readonly secondColor?: p5.Color
     private readonly radius: number
     private readonly vtext: VText
+    public readonly weight: number
     
     private percent: number
-    public readonly weight: number
     
     constructor(percent: number, props: GaugeProps){
         super(props)
+        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
+        this.secondColor = props.secondColor
+
         this.percent = percent
 
         const minDim = min(this.getHeight(), this.getWidth())
         this.weight = min(minDim / 15, 10)
         this.radius = minDim / 2 - this.weight / 2
         this.vtext = new VText("", style.text.font, this.getTextSize())
-        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
-        this.secondColor = props.secondColor
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
@@ -94,16 +93,6 @@ export class Gauge extends VElement2{
         textAlign(CENTER, CENTER)
         this.vtext.setText(text)
         this.vtext.render()
-    }
-
-    public withFirstColor(firstColor: p5.Color): Gauge{
-        this.firstColor = firstColor
-        return this
-    }
-
-    public withSecondColor(secondColor: p5.Color): Gauge{
-        this.secondColor = secondColor
-        return this
     }
 
     private getTextSize(): number{ // Make into util function or use abstract gauge class

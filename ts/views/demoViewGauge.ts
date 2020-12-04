@@ -34,12 +34,14 @@ export class DemoViewGauge implements View {
                 .beginRow(10)
                 .addElement(new Caption("-1", captionpxSize, "StripedGauge"))
                 .beginRow()
-                .addElement(new Gauge(  0, {size:pxSize}))
-                .addElement(new Gauge(33, {size:pxSize})
-                    .withFirstColor(style.color.b))
-                .addElement(new Gauge(50, {size:pxSize})
-                    .withFirstColor(style.color.a)
-                    .withSecondColor(style.color.c))
+                .addElement(new Gauge(0, {size:pxSize}))
+                .addElement(new Gauge(33, {
+                        size: pxSize, 
+                        firstColor : style.color.b}))
+                .addElement(new Gauge(50, {
+                        size:pxSize, 
+                        firstColor : style.color.a,
+                        secondColor : style.color.c}))
                 .addElement(new Gauge(66, {size:pxSize}))
                 .addElement(new Gauge(100, {size:pxSize}))
                 .beginRow(10)

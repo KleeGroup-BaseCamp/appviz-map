@@ -18,12 +18,14 @@ export class DemoViewProgressBar implements View {
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/progress bar"))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new ProgressBar("-1", pxSize, 0))
-                .addElement(new ProgressBar("-1", pxSize, 50)
-                    .withFirstColor(style.color.b))
-                .addElement(new ProgressBar("-1", pxSize, 100)
-                    .withFirstColor(style.color.a)
-                    .withSecondColor(style.color.c))
+                .addElement(new ProgressBar(0, {size:pxSize}))
+                .addElement(new ProgressBar(50, {
+                        size:pxSize,
+                        firstColor : style.color.b}))
+                .addElement(new ProgressBar(100,{
+                    size:pxSize,
+                    firstColor : style.color.a,
+                    secondColor : style.color.c}))
                 .beginRow(10)
                 .addElement(new Caption("-1", new PxSize(1000, 35), "ProgressBar"))
                 .beginRow()
