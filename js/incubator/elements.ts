@@ -80,9 +80,9 @@ export class Elements{
             l: new PxSize(150)
         },
         progressBar: {
-            s: new PxSize(100, 20), // font size: xxs
-            m: new PxSize(150, 30), // font size: s
-            l: new PxSize(200, 40) // font size: m
+            s: new PxSize(100, 20),
+            m: new PxSize(150, 30),
+            l: new PxSize(200, 40)
         },
         stripedProgressBar: {
             s: new PxSize(150, 50), // Change font size and paddings 
@@ -123,7 +123,7 @@ export class Elements{
         const element =  new ImageRating(
             props.id?? -1,
             Elements.getSize(props.size?? "m", "rating"),
-            rate) 
+            rate)        
         if (props.img){    
             element.withImage(props.img)
         }

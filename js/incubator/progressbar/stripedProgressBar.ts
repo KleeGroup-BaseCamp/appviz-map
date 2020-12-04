@@ -18,7 +18,7 @@ export class StripedProgressBar extends VElement{
         this.percent  = percent
         this.hexagon = new Hexagon("-1", pxSize)
         this.iconProvided = false
-        this.vText = new VText("", style.text.font, style.text.size.l) // Fallback if no icon provided with 'withIcon'
+        this.vText = new VText("", style.text.font, this.getTextSize()) // Fallback if no icon provided with 'withIcon'
         this.primaryColor = style.color.a
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
@@ -72,16 +72,17 @@ export class StripedProgressBar extends VElement{
     }
     
     private renderStripes(rightPadding: number): void{
-        const numOfStripes = 20
-        const verticalPadding = 10 // Padding (top, bottom) to stroke
-        const horizontalPadding = 5 // Space between stripes
+        const numOfStripes = Math.ceil(this.getWidth() / 10)
+        const verticalPadding = this.getHeight() / 10 // Padding (top, bottom) to stroke
         const totalWidth =  this.getPxSize().getWidth() - this.hexagon.getCircumRadius() * 2 - rightPadding
+        const horizontalPadding = totalWidth/ numOfStripes * 0.4 // Space between stripes
         const stripeWidth = totalWidth/ numOfStripes - horizontalPadding
         strokeWeight(stripeWidth)
+        const leftPadding = stripeWidth // should be hexagonStrokeWeight + stripeWidth / 2 + smth
         for (let i = 0; i < numOfStripes; i++){
             const ratio = i / numOfStripes
             stroke(this.pickStripeColor(ratio))
-            const x = this.hexagon.getCircumRadius() * 2 + stripeWidth / 2 + ratio * totalWidth + horizontalPadding
+            const x = this.hexagon.getCircumRadius() * 2 + leftPadding + ratio * totalWidth + horizontalPadding
             const y = this.getPxSize().getHeight() / 4 - verticalPadding - stripeWidth / 2
             line(x, -y, x, y)
         }
@@ -107,6 +108,13 @@ export class StripedProgressBar extends VElement{
         this.iconProvided = true
         this.vText = new VText(icon, style.icon.font, style.text.size.xxl)
         return this
+    }
+
+    private getTextSize(): number{ // Make into util function
+        const width = this.getWidth()
+        if (width <= 150) return style.text.size.xxs
+        if (width <= 250) return style.text.size.xs
+        return style.text.size.m
     }
 }
 export class Hexagon extends VElement {
