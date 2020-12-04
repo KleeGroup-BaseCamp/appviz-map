@@ -100,11 +100,7 @@ export class Gauge extends VElement{
 
     private getTextSize(): number{ // Make into util function or use abstract gauge class
         if (this.radius <= 25) return style.text.size.xxs
-        if (this.radius <= 50) return style.text.size.xs
-        if (this.radius <= 75) return style.text.size.s
         if (this.radius <= 100) return style.text.size.m
-        if (this.radius <= 125) return style.text.size.l
-        if (this.radius <= 150) return style.text.size.xl
         return style.text.size.xxl
     }
 }
