@@ -177,7 +177,6 @@ class NeonArc{  // Duplicate (spark circle)
         this.endAngle += this.angleStep
         const diff = map(s, 0, 100, 0, TWO_PI)
         this.startAngle = this.endAngle - diff
-        console.log(this.startAngle, this.endAngle)
     }
 
     public withColor(color: p5.Color): NeonArc{

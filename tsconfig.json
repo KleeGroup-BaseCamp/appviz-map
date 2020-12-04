@@ -7,6 +7,5 @@
     "strict": true,
     "moduleResolution": "node"
   },
-  "include": ["js"],
-  "exclude": ["js/attic"]
+  "include": ["ts"],
 }

@@ -28,7 +28,7 @@ let icons : {[iconName: string]: p5.Image} = {}
 
 window.preload = () => {
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
-  layout = loadJSON("/js/views/layout.json")
+  layout = loadJSON("/ts/views/layout.json")
   styleBuilder.load()
   projection = Projection.buildProjection()
   icons.heart = loadImage('icons/heart.png')
