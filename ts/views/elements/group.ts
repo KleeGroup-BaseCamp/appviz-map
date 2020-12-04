@@ -28,7 +28,7 @@ export class Group extends VElement {
                 new ProgressBar(
                     (this.itemTypeFrequencies[item as ItemTypeName] ?? 0) * 100 / maxValue, 
                     {size:new PxSize(this.getWidth() - 90, 30)}
-                )
+                )   
             )
         })
         this.button = new Button(this.getWidth()/2, this.getHeight()/2, style.color.undefined, 50)

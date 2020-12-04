@@ -6,7 +6,6 @@ import {ImageRating} from "./rating/ImageRating"
 import {ArrowGauge} from "./gauge/arrowGauge"
 import {StripedGauge} from "./gauge/stripedGauge"
 import {StripedProgressBar} from "./progressbar/stripedProgressBar"
-import {WifiSignal} from "./signal/wifiSignal"
 import {BarsSignal} from "./signal/barsSignal"
 
 import { SharpRadar } from "./radar/sharpRadar"
@@ -36,7 +35,6 @@ export interface StarRatingProps extends ElementProps {}
 export interface ImageRatingProps extends ElementProps {
         img? : p5.Image
 }
-export interface ArrowGaugeProps extends ElementProps {}
 export interface StripedGaugeProps extends ElementProps {}
 export interface StripedProgressBarProps extends ElementProps {}
 export interface RadarProps extends ElementProps {}
@@ -120,13 +118,6 @@ export class Elements{
             element.withImage(props.img)
         }
         return element    
-    }
-
-    public static createArrowGauge(percent: number, props:ArrowGaugeProps): ArrowGauge{
-        return new ArrowGauge(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "arrowGauge"),
-            percent) 
     }
 
     public static createStripedGauge(percent: number, props : StripedGaugeProps){
