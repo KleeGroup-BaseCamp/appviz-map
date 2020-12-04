@@ -1,12 +1,12 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../neon/core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../neon"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {Caption, LineChart, BarChart, DonutChart} from "../incubator" 
-import {PxSize} from "../neon/layout"
+import {Caption, LineChart, BarChart, DonutChart} from "../neon" 
+import {PxSize} from "../neon"
 
 export class DemoViewChart implements View {
 

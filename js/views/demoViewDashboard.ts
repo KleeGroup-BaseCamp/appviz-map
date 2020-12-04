@@ -1,12 +1,12 @@
 import {projection, icons} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../neon/core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../neon"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {Caption, Elements} from "../incubator" 
-import {PxSize} from "../neon/layout"
+import {Caption, Elements} from "../neon" 
+import {PxSize} from "../neon"
 
 export class DemoViewDashboard implements View {
 

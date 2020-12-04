@@ -1,12 +1,12 @@
 import {projection, style} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../neon/core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../neon"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {StripedGauge, ArrowGauge, Gauge, Caption} from "../incubator" 
-import {PxSize} from "../neon/layout"
+import {StripedGauge, ArrowGauge, Gauge, Caption} from "../neon" 
+import {PxSize} from "../neon"
 
 export class DemoViewGauge implements View {
 

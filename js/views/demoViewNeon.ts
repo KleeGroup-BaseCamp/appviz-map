@@ -1,12 +1,12 @@
 import {projection, style} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../neon/core"
+import {Layer, LayerBuilder, GridLayerBuilder} from "../neon"
 import {Card} from "./elements"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
-import {ArcToCircle, Caption, NeonCircles, NeonTrails, PointsToCircle, SparkCircle} from "../incubator" 
-import {PxSize} from "../neon/layout"
+import {ArcToCircle, Caption, NeonCircles, NeonTrails, PointsToCircle, SparkCircle} from "../neon" 
+import {PxSize} from "../neon"
 
 export class DemoViewNeon implements View {
 

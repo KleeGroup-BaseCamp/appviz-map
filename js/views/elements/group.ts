@@ -1,9 +1,9 @@
 import * as p5 from "p5"
 import {style} from "../../app"
-import {VElement, State} from "../../neon/core"
-import {Button, Header, VText} from "../../neon/components"
-import {ProgressBar} from "../../incubator"
-import {PxSize} from "../../neon/layout"
+import {VElement, State} from "../../neon"
+import {Button, Header, VText} from "../../neon"
+import {ProgressBar} from "../../neon"
+import {PxSize} from "../../neon"
 import {ItemTypeName, ItemTypeFrequencies} from "../../types"
 import {Icons} from "./icons"
 
