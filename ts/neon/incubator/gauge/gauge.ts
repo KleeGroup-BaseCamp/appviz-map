@@ -1,12 +1,17 @@
 import {VText} from "../../components"
-import {VElement} from "../../core"
+import {VElement2, VElementProps} from "../../core"
 import {PxSize} from "../../layout"
-import {AnimationUtils, PushPop} from "../../utils"
+import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
 import {style} from "../../../app"
 import * as p5 from "p5"
 
-export class Gauge extends VElement{
-    private firstColor: p5.Color = style.color.a
+export interface GaugeProps extends VElementProps {
+    firstColor?: p5.Color,
+    secondColor?: p5.Color
+}
+
+export class Gauge extends VElement2{
+    private firstColor: p5.Color
     private secondColor?: p5.Color
 
     private readonly radius: number
@@ -15,13 +20,16 @@ export class Gauge extends VElement{
     private percent: number
     public readonly weight: number
     
-    constructor(id: any, pxSize: PxSize, percent: number){
-        super(id, pxSize, false)
+    constructor(percent: number, props: GaugeProps){
+        super(props)
         this.percent = percent
-        const minDim = min(pxSize.getHeight(), pxSize.getWidth())
+
+        const minDim = min(this.getHeight(), this.getWidth())
         this.weight = min(minDim / 15, 10)
         this.radius = minDim / 2 - this.weight / 2
         this.vtext = new VText("", style.text.font, this.getTextSize())
+        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
+        this.secondColor = props.secondColor
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }

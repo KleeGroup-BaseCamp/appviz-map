@@ -1,38 +1,15 @@
-import {PxSize, PxPosition} from "../layout"
-import {State, VEvent} from "."
+import {PxSize} from "../layout"
 import { VElement } from "./velement"
 
-/**
- * VElement displayed on the map.
- *
- * An element is
- *  - displayed in a layer by the 'render' method.
- *  - a bounding box
- *  - selectable -or not-
- *
- * An element has
- * - an id
- * - a width
- * - a height
- *
- * An element must
- * - define a rendering method
- * - not depend each other
- *
- * An element can
- *  - define a specific 'contains' method to handle a specific shape
- */
-
-//export type VEventHandler = (event : VEvent) =>{}
+type Size = "s" | "m" | "l"
 
 export interface VElementProps {
-    id: any,
-    pxSize: PxSize,
+    id?: any,
+    size? : Size|PxSize,
     selectable?: boolean
 }
 
 export abstract class VElement2 extends VElement {
-//  private eventHandler? : VEventHandler
 
   /**
    * @constructor
@@ -42,6 +19,23 @@ export abstract class VElement2 extends VElement {
    * @param {boolean} selectable
    */
   constructor(props : VElementProps) {
-    super(props.id, props.pxSize, props.selectable ?? false)
+    super(
+      props.id??VElement2.generateId(), 
+      VElement2.buildPxSize(props.size), 
+      props.selectable 
+      ?? false)
+  }
+
+  private static buildPxSize(size? : Size|PxSize): PxSize {
+    if (size instanceof PxSize){
+      return size
+    } else if (size){
+//      return 
+    }
+    return new PxSize(666) //undefined
+  }
+
+  private static generateId():number {
+    return -1
   }
 }

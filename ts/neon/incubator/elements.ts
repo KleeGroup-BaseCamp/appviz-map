@@ -4,7 +4,6 @@ import {HeartRating} from "./rating/heartRating"
 import {StarRating} from "./rating/starRating"
 import {ImageRating} from "./rating/ImageRating"
 import {ArrowGauge} from "./gauge/arrowGauge"
-import {Gauge} from "./gauge/gauge"
 import {StripedGauge} from "./gauge/stripedGauge"
 import {ProgressBar} from "./progressbar/progressBar"
 import {StripedProgressBar} from "./progressbar/stripedProgressBar"
@@ -12,7 +11,6 @@ import {WifiSignal} from "./signal/wifiSignal"
 import {BarsSignal} from "./signal/barsSignal"
 
 
-import { Gauge2 } from "./gauge/gauge2"
 import { SharpRadar } from "./radar/sharpRadar"
 import { RadarData } from "./radar/abstractRadar"
 import { SmoothRadar } from "./radar/smoothRadar"
@@ -47,10 +45,6 @@ export interface ImageRatingProps extends ElementProps {
         img? : p5.Image
 }
 export interface ArrowGaugeProps extends ElementProps {}
-export interface GaugeProps extends ElementProps {
-    firstColor?: p5.Color,
-    secondColor?: p5.Color
-}
 
 
 export interface StripedGaugeProps extends ElementProps {}
@@ -155,32 +149,6 @@ export class Elements{
             props.id?? -1,
             Elements.getSize(props.size?? "m", "arrowGauge"),
             percent) 
-    }
-
-    public static createGauge(percent: number, props:GaugeProps): Gauge{
-        const element =  new Gauge(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "gauge"),
-            percent)
-        if (props.firstColor){    
-            element.withFirstColor(props.firstColor)
-        }
-        if (props.secondColor){
-            element.withSecondColor(props.secondColor)
-        } 
-        return element
-    }
-
-    public static createGauge2(percent: number, props: FactoryGaugeProps): Gauge2{
-        return new Gauge2(
-            percent, 
-            {
-                id: props.id?? "-1", 
-                pxSize: Elements.getSize(props.size?? "m", "gauge"),
-                firstColor: props.firstColor,
-                secondColor: props.secondColor
-            }
-        )
     }
 
     public static createStripedGauge(percent: number, props : StripedGaugeProps){

@@ -18,7 +18,7 @@ export class BlackHole4 extends VElement{
     
     constructor(id: any, pxSize: PxSize, percent: number){
         super(id, pxSize, false)
-        this.gauge = new Gauge("-1", pxSize, percent)
+        this.gauge = new Gauge(percent,{size:pxSize})
         this.weight = 5
         const margin = 10
         this.radius = (min(pxSize.getHeight(), pxSize.getWidth()) - this.weight - this.gauge.weight - margin) / 2

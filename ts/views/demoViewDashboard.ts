@@ -6,7 +6,7 @@ import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {Caption, Elements} from "../neon" 
-import {PxSize} from "../neon"
+import {PxSize, Gauge} from "../neon"
 
 export class DemoViewDashboard implements View {
 
@@ -27,8 +27,8 @@ export class DemoViewDashboard implements View {
         .addElement(Elements.createWifiSignal(4, {size}))
         .addElement(Elements.createBarsSignal(3, {size}))
         .addElement(Elements.createArrowGauge(50, {size}))
-        .addElement(Elements.createGauge(50, {size}))
-        .addElement(Elements.createGauge2(50, {size}))
+        .addElement(new Gauge(50, {size}))
+        .addElement(new Gauge(50, {size}))
         .addElement(Elements.createStripedGauge(50, {size}))
         .beginRow(10)
         .addElement(Elements.createProgressBar(50, {size}))
