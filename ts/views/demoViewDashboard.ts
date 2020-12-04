@@ -6,7 +6,7 @@ import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {Caption, Elements} from "../neon" 
-import {PxSize, Gauge, ProgressBar} from "../neon"
+import {PxSize, Gauge, ProgressBar, WifiSignal} from "../neon"
 
 export class DemoViewDashboard implements View {
 
@@ -24,7 +24,7 @@ export class DemoViewDashboard implements View {
 
     private AddAllElements(gridLayerBuilder: GridLayerBuilder, size: "s" | "m" | "l"): GridLayerBuilder{
         return gridLayerBuilder
-        .addElement(Elements.createWifiSignal(4, {size}))
+        .addElement( new WifiSignal(4, {size}))
         .addElement(Elements.createBarsSignal(3, {size}))
         .addElement(Elements.createArrowGauge(50, {size}))
         .addElement(new Gauge(50, {size}))

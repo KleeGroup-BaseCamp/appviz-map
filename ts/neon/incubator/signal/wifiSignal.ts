@@ -1,30 +1,29 @@
 import * as p5 from "p5"
-import {VElement} from "../../core"
+import {VElement2, VElementProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../../app"
 
-/** 
- * Class name is not Signal to avoid conflict with p5's Signal class
-**/
-export class WifiSignal extends VElement{
+export interface WifiSignalProps extends VElementProps {}
+
+export class WifiSignal extends VElement2{
     private readonly radius: number
     private readonly circleCenterPosition: PxPosition
     private readonly weight: number
 
     private rate: number
 
-    constructor(id: any, pxSize: PxSize, rate: number){
-        super(id, pxSize, false)
+    constructor(rate: number, props : WifiSignalProps){
+        super(props)
         this.rate = rate
-        this.weight = min(pxSize.getHeight(), pxSize.getWidth()) / 15
+        this.weight = min(this.getHeight(), this.getWidth()) / 15
         this.circleCenterPosition = new PxPosition(
-            pxSize.getWidth() / 2,
-            pxSize.getHeight() - this.weight
+            this.getWidth() / 2,
+            this.getHeight() - this.weight
         )
         this.radius = min(
-            pxSize.getHeight() - 2 * this.weight, 
-            (pxSize.getWidth() - 2 * this.weight) / sqrt(2)
+            this.getHeight() - 2 * this.weight, 
+            (this.getWidth() - 2 * this.weight) / sqrt(2)
         )
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, rate, duration, (s:number) => this.rate = s)

@@ -29,12 +29,6 @@ export interface ElementProps { // rename to FactoryProps to avoid confusion wit
     id? : any,
     size? : Size,
 }
-export interface FactoryGaugeProps extends ElementProps { // factoory props are different than gauge props
-    firstColor?: p5.Color,
-    secondColor?: p5.Color
-}
-
-export interface WifiSignalProps extends ElementProps {}
 
 export interface BarsSignalProps extends ElementProps {}
 export interface HeartRatingProps extends ElementProps {}
@@ -96,14 +90,7 @@ export class Elements{
         },
     }
 
-    public static createWifiSignal(rate: number, props: WifiSignalProps): WifiSignal{
-        return new WifiSignal(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "wifiSignal"),
-            rate) 
-    }
-
-    public static createBarsSignal(rate: number, props: WifiSignalProps): BarsSignal{
+    public static createBarsSignal(rate: number, props: BarsSignalProps): BarsSignal{
         return new BarsSignal(
             props.id?? -1,
             Elements.getSize(props.size?? "m", "barsSignal"),

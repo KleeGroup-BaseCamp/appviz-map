@@ -26,9 +26,8 @@ export class Group extends VElement {
         Object.keys(this.itemTypeFrequencies).forEach(item => {
             this.progressBars.push(
                 new ProgressBar(
-                    "-1", 
-                    new PxSize(this.getWidth() - 90, 30), 
-                    (this.itemTypeFrequencies[item as ItemTypeName] ?? 0) * 100 / maxValue
+                    (this.itemTypeFrequencies[item as ItemTypeName] ?? 0) * 100 / maxValue, 
+                    {size:new PxSize(this.getWidth() - 90, 30)}
                 )
             )
         })
