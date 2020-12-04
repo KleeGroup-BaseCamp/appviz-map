@@ -21,7 +21,7 @@ export abstract class AbstractRadar extends VElement{
         super(id, pxSize, true)
         this.values = new Array(Object.keys(data).length)
 
-        this.textSize = style.text.size.xxs
+        this.textSize = this.getTextSize()
         for(let label in data){
             this.labels.push(new VText(label, style.text.font, this.textSize, style.text.color.secondary))
         }
@@ -129,4 +129,12 @@ export abstract class AbstractRadar extends VElement{
     }
 
     abstract renderGraph(state: State): void
+
+    private getTextSize(): number{ // Make into util function
+        // Improvement: make text size depend on longuest label
+        const width = this.getWidth()
+        if (width <= 250) return style.text.size.xxs
+        if (width <= 350) return style.text.size.xs
+        return style.text.size.s
+    }
 }

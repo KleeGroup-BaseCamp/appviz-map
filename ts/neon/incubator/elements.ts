@@ -12,8 +12,10 @@ import {WifiSignal} from "./signal/wifiSignal"
 import {BarsSignal} from "./signal/barsSignal"
 
 
-import {Gauge2Props} from "." // temp
 import { Gauge2 } from "./gauge/gauge2"
+import { SharpRadar } from "./radar/sharpRadar"
+import { RadarData } from "./radar/abstractRadar"
+import { SmoothRadar } from "./radar/smoothRadar"
 
 type ElementsSizes = {
     [elementName: string]: {
@@ -23,11 +25,17 @@ type ElementsSizes = {
     }
 }
 
+const su = 10 /* Size Unit */
+
 type Size = "s" | "m" | "l"
 
 export interface ElementProps { // rename to FactoryProps to avoid confusion with VElement props
     id? : any,
     size? : Size,
+}
+export interface FactoryGaugeProps extends ElementProps { // factoory props are different than gauge props
+    firstColor?: p5.Color,
+    secondColor?: p5.Color
 }
 
 export interface WifiSignalProps extends ElementProps {}
@@ -44,10 +52,7 @@ export interface GaugeProps extends ElementProps {
     secondColor?: p5.Color
 }
 
-export interface FactoryGaugeProps extends ElementProps { // factoory props are different than gauge props
-    firstColor?: p5.Color,
-    secondColor?: p5.Color
-}
+
 export interface StripedGaugeProps extends ElementProps {}
 export interface ProgressBarProps extends ElementProps {
     firstColor?: p5.Color,
@@ -55,47 +60,54 @@ export interface ProgressBarProps extends ElementProps {
 }
 export interface StripedProgressBarProps extends ElementProps {}
 
+export interface RadarProps extends ElementProps {}
+
 export class Elements{
     private static readonly pxSizes: ElementsSizes = { // make keys type (elementNames) ?
         wifiSignal: {
-            s: new PxSize(30), // change strokeWeight
-            m: new PxSize(60), 
-            l: new PxSize(90)
+            s: new PxSize(3 * su), // change strokeWeight
+            m: new PxSize(6 * su), 
+            l: new PxSize(9 * su)
         },
         barsSignal: { // same size --> merge with wifiSignal ?
-            s: new PxSize(30), 
-            m: new PxSize(60), 
-            l: new PxSize(90)
+            s: new PxSize(3 * su), 
+            m: new PxSize(6 * su), 
+            l: new PxSize(9 * su)
         },
         rating: { // All ratings (Abstract rating)
-            s: new PxSize(80, 20), // TO DO: fix aliasing problems
-            m: new PxSize(120, 30), 
-            l: new PxSize(160, 40)
+            s: new PxSize(8 * su, 2 * su), // TO DO: fix aliasing problems
+            m: new PxSize(12 * su, 3 * su), 
+            l: new PxSize(16 * su, 4 * su)
         },
         arrowGauge: { // merge with gauge ?
-            s: new PxSize(50),
-            m: new PxSize(100), 
-            l: new PxSize(150) // Change radius (space wasted on bottom)
+            s: new PxSize(5 * su),
+            m: new PxSize(10 * su), 
+            l: new PxSize(15 * su) // Change radius (space wasted on bottom)
         },
         gauge: { 
-            s: new PxSize(50), 
-            m: new PxSize(100), 
-            l: new PxSize(150)
+            s: new PxSize(5 * su), 
+            m: new PxSize(10 * su), 
+            l: new PxSize(15 * su)
         },
         stripedGauge: { // Merge with gauge ?
-            s: new PxSize(50),
-            m: new PxSize(100), 
-            l: new PxSize(150)
+            s: new PxSize(5 * su),
+            m: new PxSize(10 * su), 
+            l: new PxSize(15 * su)
         },
         progressBar: {
-            s: new PxSize(100, 20),
-            m: new PxSize(150, 30),
-            l: new PxSize(200, 40)
+            s: new PxSize(10 * su, 2 * su),
+            m: new PxSize(15 * su, 3 * su),
+            l: new PxSize(20 * su, 4 * su)
         },
         stripedProgressBar: {
-            s: new PxSize(150, 50), // Change font size and paddings 
-            m: new PxSize(200, 60), 
-            l: new PxSize(300, 80)
+            s: new PxSize(15 * su, 5 * su), // Change font size and paddings 
+            m: new PxSize(20 * su, 6 * su), 
+            l: new PxSize(30 * su, 8 * su)
+        },
+        radar: {
+            s: new PxSize(25 * su), // Change font size
+            m: new PxSize(35 * su), 
+            l: new PxSize(45 * su)
         },
     }
 
@@ -197,6 +209,22 @@ export class Elements{
             props.id?? -1,
             Elements.getSize(props.size?? "m", "stripedProgressBar"),
             percent) 
+    }
+
+    public static createSharpRadar(data: RadarData, props:RadarProps): SharpRadar{
+        return new SharpRadar(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "radar"),
+            data
+        )
+    }
+
+    public static createSmoothRadar(data: RadarData, props:RadarProps): SmoothRadar{
+        return new SmoothRadar(
+            props.id?? -1,
+            Elements.getSize(props.size?? "m", "radar"),
+            data
+        )
     }
 
     public static getSize(size: Size, elementName: string): PxSize{
