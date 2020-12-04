@@ -2,7 +2,7 @@ import {Style, StyleBuilder} from "./neon"
 import {Projection} from "./neon"
 import {ViewParams} from "./types"
 import {Sketch} from "./sketch"
-import { ModelRepositoryBuilder } from "./model"
+import {ModelRepositoryBuilder} from "./model"
 import * as p5 from "p5"
 
 // Add methods to Window interface

@@ -28,6 +28,7 @@ export class DemoViewDashboard implements View {
         .addElement(Elements.createBarsSignal(3, {size}))
         .addElement(Elements.createArrowGauge(50, {size}))
         .addElement(Elements.createGauge(50, {size}))
+        .addElement(Elements.createGauge2(50, {size}))
         .addElement(Elements.createStripedGauge(50, {size}))
         .beginRow(10)
         .addElement(Elements.createProgressBar(50, {size}))

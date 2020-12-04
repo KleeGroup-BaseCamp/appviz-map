@@ -11,6 +11,10 @@ import {StripedProgressBar} from "./progressbar/stripedProgressBar"
 import {WifiSignal} from "./signal/wifiSignal"
 import {BarsSignal} from "./signal/barsSignal"
 
+
+import {Gauge2Props} from "." // temp
+import { Gauge2 } from "./gauge/gauge2"
+
 type ElementsSizes = {
     [elementName: string]: {
         s: PxSize, 
@@ -21,7 +25,7 @@ type ElementsSizes = {
 
 type Size = "s" | "m" | "l"
 
-export interface ElementProps {
+export interface ElementProps { // rename to FactoryProps to avoid confusion with VElement props
     id? : any,
     size? : Size,
 }
@@ -36,6 +40,11 @@ export interface ImageRatingProps extends ElementProps {
 }
 export interface ArrowGaugeProps extends ElementProps {}
 export interface GaugeProps extends ElementProps {
+    firstColor?: p5.Color,
+    secondColor?: p5.Color
+}
+
+export interface FactoryGaugeProps extends ElementProps { // factoory props are different than gauge props
     firstColor?: p5.Color,
     secondColor?: p5.Color
 }
@@ -148,6 +157,18 @@ export class Elements{
             element.withSecondColor(props.secondColor)
         } 
         return element
+    }
+
+    public static createGauge2(percent: number, props: FactoryGaugeProps): Gauge2{
+        return new Gauge2(
+            percent, 
+            {
+                id: props.id?? "-1", 
+                pxSize: Elements.getSize(props.size?? "m", "gauge"),
+                firstColor: props.firstColor,
+                secondColor: props.secondColor
+            }
+        )
     }
 
     public static createStripedGauge(percent: number, props : StripedGaugeProps){

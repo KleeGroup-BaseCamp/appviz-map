@@ -4,6 +4,7 @@ export * from "./energy/battery"
 export * from "./gauge/arrowGauge"
 export * from "./gauge/stripedGauge"
 export * from "./gauge/gauge"
+export * from "./gauge/gauge2"
 
 export * from "./progressbar/progressBar"
 export * from "./progressbar/stripedProgressBar"

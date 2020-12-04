@@ -1,11 +1,15 @@
 import {VText} from "../../components"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
-import {AnimationUtils, PushPop} from "../../utils"
+import {VElement2, VElementProps} from "../../core"
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {style} from "../../../app"
 import * as p5 from "p5"
 
-export class Gauge extends VElement{
+export interface Gauge2Props extends VElementProps {
+    firstColor?: p5.Color,
+    secondColor?: p5.Color
+}
+
+export class Gauge2 extends VElement2{
     private firstColor: p5.Color = style.color.a
     private secondColor?: p5.Color
 
@@ -15,13 +19,15 @@ export class Gauge extends VElement{
     private percent: number
     public readonly weight: number
     
-    constructor(id: any, pxSize: PxSize, percent: number){
-        super(id, pxSize, false)
+    constructor(percent: number, props: Gauge2Props){
+        super(props)
         this.percent = percent
-        const minDim = min(pxSize.getHeight(), pxSize.getWidth())
+        const minDim = min(props.pxSize.getHeight(), props.pxSize.getWidth())
         this.weight = min(minDim / 15, 10)
         this.radius = minDim / 2 - this.weight / 2
         this.vtext = new VText("", style.text.font, this.getTextSize())
+        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
+        this.secondColor = props.secondColor
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
@@ -40,7 +46,7 @@ export class Gauge extends VElement{
         // Circular progress Bar
         this.renderArcs()
 
-        const text = Math.round(this.percent).toString() + "%" 
+        const text = Math.round(this.percent).toString() + "%"
         this.renderValueText(text)
     }
 
@@ -86,16 +92,6 @@ export class Gauge extends VElement{
         textAlign(CENTER, CENTER)
         this.vtext.setText(text)
         this.vtext.render()
-    }
-
-    public withFirstColor(firstColor: p5.Color): Gauge{
-        this.firstColor = firstColor
-        return this
-    }
-
-    public withSecondColor(secondColor: p5.Color): Gauge{
-        this.secondColor = secondColor
-        return this
     }
 
     private getTextSize(): number{ // Make into util function or use abstract gauge class
