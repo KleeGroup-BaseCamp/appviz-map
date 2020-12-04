@@ -1,5 +1,5 @@
-import {Style, StyleBuilder} from "./neon/core"
-import {Projection} from "./neon/layout"
+import {Style, StyleBuilder} from "./neon"
+import {Projection} from "./neon"
 import {ViewParams} from "./types"
 import {Sketch} from "./sketch"
 import { ModelRepositoryBuilder } from "./model"
