@@ -1,11 +1,14 @@
 import * as p5 from "p5"
 import { VText } from "../../components";
 import { AnimationUtils, ColorUtils, PushPop } from "../../utils";
-import {VElement} from "../../core"
+import {VElement2, VElement ,VElementProps} from "../../core"
 import { PxPosition, PxSize } from "../../layout"
 import { style } from "../../../app"
+import { StripedGaugeProps } from "../gauge/stripedGauge";
 
-export class StripedProgressBar extends VElement{
+export interface StripedProgressBarProps extends VElementProps {}
+
+export class StripedProgressBar extends VElement2{
     private readonly hexagon: Hexagon
     private iconProvided: boolean
     private primaryColor: p5.Color
@@ -13,10 +16,10 @@ export class StripedProgressBar extends VElement{
     private vText: VText 
     private percent: number
 
-    constructor(id: any, pxSize: PxSize, percent: number) {
-        super(id, pxSize, false)
+    constructor(percent: number, props : StripedProgressBarProps) {
+        super(props, false)
         this.percent  = percent
-        this.hexagon = new Hexagon("-1", pxSize)
+        this.hexagon = new Hexagon("-1", this.getPxSize())
         this.iconProvided = false
         this.vText = new VText("", style.text.font, this.getTextSize()) // Fallback if no icon provided with 'withIcon'
         this.primaryColor = style.color.a

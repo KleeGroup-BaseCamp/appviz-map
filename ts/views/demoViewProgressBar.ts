@@ -29,7 +29,7 @@ export class DemoViewProgressBar implements View {
                 .beginRow(10)
                 .addElement(new Caption("-1", new PxSize(1000, 35), "ProgressBar"))
                 .beginRow()
-                .addElement(new StripedProgressBar("-1", pxSize2, 0))
+                .addElement(new StripedProgressBar(0,{size:pxSize}))
                 .addElement(new StripedProgressBar("-1", pxSize2, 75).withColors(style.color.b, style.color.c))
                 .addElement(new StripedProgressBar("-1", pxSize2, 100).withIcon(Icons.getIcon("data")))
                 .beginRow(10)

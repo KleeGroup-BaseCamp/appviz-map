@@ -25,7 +25,6 @@ export interface ElementProps { // rename to FactoryProps to avoid confusion wit
     size? : Size,
 }
 
-export interface StripedProgressBarProps extends ElementProps {}
 export interface RadarProps extends ElementProps {}
 
 export class Elements{
@@ -76,14 +75,7 @@ export class Elements{
             l: new PxSize(45 * su)
         },
     }
-
-    public static createStripedProgressBar(percent: number, props:StripedProgressBarProps): StripedProgressBar{
-        return new StripedProgressBar(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "stripedProgressBar"),
-            percent) 
-    }
-
+    
     public static createSharpRadar(data: RadarData, props:RadarProps): SharpRadar{
         return new SharpRadar(
             props.id?? -1,
