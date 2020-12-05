@@ -1,28 +1,39 @@
 import * as p5 from "p5"
-import { VText } from "../../components";
-import { AnimationUtils, ColorUtils, PushPop } from "../../utils";
+import {VText} from "../../components"
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {VElement2, VElement ,VElementProps} from "../../core"
-import { PxPosition, PxSize } from "../../layout"
-import { style } from "../../../app"
-import { StripedGaugeProps } from "../gauge/stripedGauge";
+import {PxPosition, PxSize} from "../../layout"
+import {style} from "../../../app"
 
-export interface StripedProgressBarProps extends VElementProps {}
+export interface StripedProgressBarProps extends VElementProps {
+    firstColor?: p5.Color,
+    secondColor?: p5.Color, 
+    icon?: string
+}
 
 export class StripedProgressBar extends VElement2{
     private readonly hexagon: Hexagon
-    private iconProvided: boolean
-    private primaryColor: p5.Color
-    private secondaryColor: p5.Color | undefined
-    private vText: VText 
+    private readonly iconProvided: boolean
+    private readonly firstColor: p5.Color
+    private readonly secondColor? : p5.Color  
+    private readonly vText: VText 
+
     private percent: number
 
     constructor(percent: number, props : StripedProgressBarProps) {
         super(props, false)
+        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
+        this.secondColor = props.secondColor ? ColorUtils.clone(props.secondColor) : undefined
+
         this.percent  = percent
         this.hexagon = new Hexagon("-1", this.getPxSize())
-        this.iconProvided = false
-        this.vText = new VText("", style.text.font, this.getTextSize()) // Fallback if no icon provided with 'withIcon'
-        this.primaryColor = style.color.a
+        if (props.icon){          
+            this.iconProvided = true
+            this.vText = new VText(props.icon, style.icon.font, style.text.size.xxl)
+        } else {
+            this.iconProvided = false
+            this.vText = new VText("", style.text.font, this.getTextSize()) // Fallback if no icon provided with 'withIcon'
+        }    
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
@@ -94,23 +105,10 @@ export class StripedProgressBar extends VElement2{
     private pickStripeColor(ratio: number): p5.Color{
         if(ratio >= this.percent / 100){
             return style.color.front
+        } else if (this.secondColor){
+            return lerpColor(this.firstColor, this.secondColor, ratio)
         }
-        else if (this.secondaryColor){
-            return lerpColor(this.primaryColor, this.secondaryColor, ratio)
-        }
-        return this.primaryColor
-    }
-
-    public withColors(primaryColor: p5.Color, secondaryColor?: p5.Color): StripedProgressBar{
-        this.primaryColor = ColorUtils.clone(primaryColor)
-        this.secondaryColor = secondaryColor ? ColorUtils.clone(secondaryColor) : secondaryColor
-        return this
-    }
-
-    public withIcon(icon: string){
-        this.iconProvided = true
-        this.vText = new VText(icon, style.icon.font, style.text.size.xxl)
-        return this
+        return this.firstColor
     }
 
     private getTextSize(): number{ // Make into util function
