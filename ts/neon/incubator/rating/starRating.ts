@@ -1,8 +1,15 @@
 import { PushPop } from "../../utils"
 import {AbstractRating} from "./abstractRating"
+import {VElementProps} from "../../core";
+
+export interface StarRatingProps extends VElementProps {}
 
 export class StarRating extends AbstractRating{
     private readonly corners: number = 5
+
+    constructor(rate : number, props : StarRatingProps){
+        super(rate, props)
+    } 
 
     @PushPop
     public renderIcon(size: number, active: boolean, ratio: number): void{

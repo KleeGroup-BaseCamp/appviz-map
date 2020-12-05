@@ -1,16 +1,15 @@
 import {style} from "../../../app";
-import {VElement} from "../../core";
-import {PxSize} from "../../layout";
+import {VElement2, VElementProps} from "../../core";
 import {AnimationUtils, PushPop} from "../../utils"
 
-export abstract class AbstractRating extends VElement{
+export abstract class AbstractRating extends VElement2{
     //How many icons are displayed ?
     private readonly icons: number  = 5
 
     protected rate: number
 
-    constructor(id: any, pxSize: PxSize, rate: number){
-        super(id, pxSize, false)
+    constructor(rate: number, props :VElementProps){
+        super(props)
         this.rate = rate
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, this.icons, duration, (s:number) => this.rate = min(s,rate) )

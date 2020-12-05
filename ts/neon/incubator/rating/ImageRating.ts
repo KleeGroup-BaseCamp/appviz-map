@@ -1,22 +1,21 @@
 import {AbstractRating} from "./abstractRating"
-import {Image} from "p5"
-import { ImageUtils } from "../../utils"
+import * as p5 from "p5"
+import {ImageUtils} from "../../utils"
+import {VElementProps} from "../../core";
+
+export interface ImageRatingProps extends VElementProps {
+    img : p5.Image
+}
 
 export class ImageRating extends AbstractRating{
-    private img? : Image
+    private readonly img : p5.Image
 
-    withImage(img : Image) : ImageRating{
-        this.img = ImageUtils.clone(img)
-        return this
+    constructor(rate : number, props :ImageRatingProps){
+        super(rate, props)
+        this.img = ImageUtils.clone(props.img)
     }
-    
+        
     public renderIcon(size: number, active: boolean, ratio: number): void{
-        /* Proposition: make default image instead of throwing error like for
-        colors (withColor) because it's not clear/visible that image is needed
-        from constructor */ 
-        if (!this.img) { 
-            throw 'You must define an image.'
-        }
         const imgRatio = size / max(this.img.height, this.img.width)
         this.img.resize(this.img.width * imgRatio, this.img.height * imgRatio)
         if (active){

@@ -1,7 +1,14 @@
 import {PushPop} from "../../utils"
 import {AbstractRating} from "./abstractRating"
+import {VElementProps} from "../../core";
+
+export interface HeartRatingProps extends VElementProps {}
 
 export class HeartRating extends AbstractRating{
+    
+    constructor(rate : number, props : HeartRatingProps){
+        super(rate, props)
+    }    
     
     @PushPop
     public renderIcon(size : number, active : boolean, ratio : number):void {

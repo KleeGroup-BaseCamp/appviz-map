@@ -1,5 +1,5 @@
-import { PxPosition} from "../../layout"
-import { AbstractRadar } from "./abstractRadar"
+import {PxPosition} from "../../layout"
+import {AbstractRadar} from "./abstractRadar"
 
 export class SmoothRadar extends AbstractRadar{
 

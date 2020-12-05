@@ -6,7 +6,7 @@ import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {Caption, Elements} from "../neon" 
-import {PxSize, Gauge, ArrowGauge, ProgressBar, WifiSignal} from "../neon"
+import {PxSize, Gauge, ArrowGauge, ProgressBar, WifiSignal, StarRating, ImageRating, HeartRating} from "../neon"
 
 export class DemoViewDashboard implements View {
 
@@ -32,10 +32,10 @@ export class DemoViewDashboard implements View {
         .addElement(Elements.createStripedGauge(50, {size}))
         .beginRow(10)
         .addElement(new ProgressBar(50, {size}))
-        .addElement(Elements.createStripedProgressBar(50, {size}))
-        .addElement(Elements.createHeartRating(3, {size}))
-        .addElement(Elements.createStarRating(3, {size}))
-        .addElement(Elements.createImageRating(3, {img:icons.star, size}))
+        .addElement(new ProgressBar(50, {size}))
+        .addElement(new HeartRating(3, {size}))
+        .addElement(new StarRating(3, {size}))
+        .addElement(new ImageRating(3, {img:icons.star, size}))
         .beginRow(10)
         .addElement(new Caption("-1", new PxSize(800, 35), `Size ${size}`))
     }

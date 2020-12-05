@@ -22,12 +22,12 @@ export class PopUp extends VElement{
             const text = `${label}:`
             const width = textWidth(text)
             this.labels.push(new VText(text, style.text.font, this.size))
+            const size = new PxSize(pxSize.getWidth() - 3 * this.padding - width, textAscent() + textDescent())  
             this.ratings.push(
                 new StarRating(
-                    "-1", 
-                    new PxSize(pxSize.getWidth() - 3 * this.padding - width, textAscent() + textDescent()), // TO DO: proper use of padding
-                    value[label] / 20 // -> [0, 5]
-                )
+                    value[label] / 20,  // -> [0, 5]
+                    {size, }
+                    )
             )
         }
     }

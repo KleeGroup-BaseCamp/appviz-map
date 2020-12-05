@@ -1,9 +1,5 @@
 import * as p5 from "p5"
 import {PxSize} from "../layout"
-import {HeartRating} from "./rating/heartRating"
-import {StarRating} from "./rating/starRating"
-import {ImageRating} from "./rating/ImageRating"
-import {ArrowGauge} from "./gauge/arrowGauge"
 import {StripedGauge} from "./gauge/stripedGauge"
 import {StripedProgressBar} from "./progressbar/stripedProgressBar"
 import {BarsSignal} from "./signal/barsSignal"
@@ -30,11 +26,7 @@ export interface ElementProps { // rename to FactoryProps to avoid confusion wit
 }
 
 export interface BarsSignalProps extends ElementProps {}
-export interface HeartRatingProps extends ElementProps {}
-export interface StarRatingProps extends ElementProps {}
-export interface ImageRatingProps extends ElementProps {
-        img? : p5.Image
-}
+
 export interface StripedGaugeProps extends ElementProps {}
 export interface StripedProgressBarProps extends ElementProps {}
 export interface RadarProps extends ElementProps {}
@@ -93,31 +85,6 @@ export class Elements{
             props.id?? -1,
             Elements.getSize(props.size?? "m", "barsSignal"),
             rate) 
-    }
-
-    public static createHeartRating (rate: number, props:HeartRatingProps): HeartRating{
-        return new HeartRating(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "rating"),
-            rate) 
-    }
-
-    public static createStarRating(rate : number, props : StarRatingProps): StarRating{
-        return new StarRating(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "rating"),
-            rate) 
-    }
-
-    public static createImageRating(rate : number, props : ImageRatingProps): ImageRating{
-        const element =  new ImageRating(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "rating"),
-            rate)        
-        if (props.img){    
-            element.withImage(props.img)
-        }
-        return element    
     }
 
     public static createStripedGauge(percent: number, props : StripedGaugeProps){
