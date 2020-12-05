@@ -14,7 +14,7 @@ export class WifiSignal extends VElement2{
     private rate: number
 
     constructor(rate: number, props : WifiSignalProps){
-        super(props)
+        super(props, false)
         this.rate = rate
         this.weight = min(this.getHeight(), this.getWidth()) / 15
         this.circleCenterPosition = new PxPosition(

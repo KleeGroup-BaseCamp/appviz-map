@@ -5,8 +5,7 @@ type Size = "s" | "m" | "l"
 
 export interface VElementProps {
     id?: any,
-    size? : Size|PxSize,
-    selectable?: boolean
+    size? : Size|PxSize
 }
 
 export abstract class VElement2 extends VElement {
@@ -18,12 +17,8 @@ export abstract class VElement2 extends VElement {
    * @param {PxSize} pxSize
    * @param {boolean} selectable
    */
-  constructor(props : VElementProps) {
-    super(
-      props.id??VElement2.generateId(), 
-      VElement2.buildPxSize(props.size), 
-      props.selectable 
-      ?? false)
+  constructor(props : VElementProps, selectable:boolean) {
+    super(props.id??VElement2.generateId(), VElement2.buildPxSize(props.size), selectable)
   }
 
   private static buildPxSize(size? : Size|PxSize): PxSize {

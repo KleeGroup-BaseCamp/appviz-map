@@ -25,9 +25,6 @@ export interface ElementProps { // rename to FactoryProps to avoid confusion wit
     size? : Size,
 }
 
-export interface BarsSignalProps extends ElementProps {}
-
-export interface StripedGaugeProps extends ElementProps {}
 export interface StripedProgressBarProps extends ElementProps {}
 export interface RadarProps extends ElementProps {}
 
@@ -78,20 +75,6 @@ export class Elements{
             m: new PxSize(35 * su), 
             l: new PxSize(45 * su)
         },
-    }
-
-    public static createBarsSignal(rate: number, props: BarsSignalProps): BarsSignal{
-        return new BarsSignal(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "barsSignal"),
-            rate) 
-    }
-
-    public static createStripedGauge(percent: number, props : StripedGaugeProps){
-        return new StripedGauge(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "stripedGauge"),
-            percent) 
     }
 
     public static createStripedProgressBar(percent: number, props:StripedProgressBarProps): StripedProgressBar{

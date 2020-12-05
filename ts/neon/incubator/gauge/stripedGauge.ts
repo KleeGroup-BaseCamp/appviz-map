@@ -1,11 +1,13 @@
 import * as p5 from "p5"
 import {VText} from "../../components"
-import {VElement} from "../../core"
+import {VElement2, VElementProps} from "../../core"
 import {PxPosition, PxSize } from "../../layout"
 import {AnimationUtils, PushPop} from "../../utils"
 import {style} from "../../../app"
 
-export class StripedGauge extends VElement{
+export interface StripedGaugeProps extends VElementProps {}
+
+export class StripedGauge extends VElement2{
     private readonly firstColor: p5.Color = style.color.a
     private readonly secondColor: p5.Color = color(0)
     private readonly tertiaryColor: p5.Color = color("#323e52")
@@ -15,10 +17,10 @@ export class StripedGauge extends VElement{
 
     private percent: number
 
-    constructor(id: any, pxSize: PxSize, percent: number){
-        super(id, pxSize, false)
+    constructor(percent: number, props : StripedGaugeProps){
+        super(props, false)
         this.percent = percent
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2
+        this.radius = min(this.getHeight(), this.getWidth()) / 2
         this.vtext = new VText("", style.text.font, this.getTextSize())
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)

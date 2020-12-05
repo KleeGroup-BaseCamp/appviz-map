@@ -19,7 +19,7 @@ export class ProgressBar extends VElement2 {
     private percent: number
 
     constructor(percent: number, props : ProgressBarProps) {
-        super(props)
+        super(props, false)
         this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
         this.secondColor = props.secondColor
 

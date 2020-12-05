@@ -13,7 +13,7 @@ export class ArrowGauge extends VElement2{
     private percent: number
 
     constructor(percent: number, props:ArrowGaugeProps){
-        super(props)
+        super(props, false)
         this.percent = percent
         this.radius = min(this.getHeight(), this.getWidth()) / 2
         this.vtext = new VText("", style.text.font, this.getTextSize())

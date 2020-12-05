@@ -1,14 +1,16 @@
 import * as p5 from "p5"
-import {VElement} from "../../core"
+import {VElement2, VElementProps} from "../../core"
 import {PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../../app"
 
-export class BarsSignal extends VElement{
+export interface BarsSignalProps extends VElementProps {}
+
+export class BarsSignal extends VElement2{
     private rate: number
 
-    constructor(id: any, pxSize: PxSize, rate: number){
-        super(id, pxSize, false)
+    constructor(rate: number, props:BarsSignalProps){
+        super(props, false)
         this.rate = rate
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, rate, duration, (s:number) => this.rate = s)
