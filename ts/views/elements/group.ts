@@ -1,6 +1,6 @@
 import * as p5 from "p5"
 import {style} from "../../app"
-import {VElement, State} from "../../neon"
+import {VElement, State, PushPop} from "../../neon"
 import {Button, Header, VText} from "../../neon"
 import {ProgressBar} from "../../neon"
 import {PxSize} from "../../neon"
@@ -31,7 +31,7 @@ export class Group extends VElement {
                 )   
             )
         })
-        this.button = new Button(this.getWidth()/2, this.getHeight()/2, style.color.undefined, 50)
+        this.button = new Button(style.color.undefined, 50)
     }
 
     /**
@@ -51,10 +51,16 @@ export class Group extends VElement {
         this.renderItems()
         //--button
         if (state.isHovered(this)){
-            this.button.render()
+            this.renderButton()
         }
     }
 
+    @PushPop
+    private renderButton(): void{
+        translate(this.getWidth()/2, this.getHeight()/2) 
+        this.button.render()
+    }
+    
     private renderBackground(state : State): void {
         fill(state.isHovered(this) 
             ? style.color.front
