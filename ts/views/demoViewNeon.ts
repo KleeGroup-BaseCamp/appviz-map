@@ -24,11 +24,11 @@ export class DemoViewNeon implements View {
                 .addElement(new SparkCircle("-1", pxSize).withColor(style.color.a))
                 .addElement(new NeonTrails("-1", pxSize))
                 .beginRow(10)
-                .addElement(new Caption({text: "Neon circles", size: captionSize}))
-                .addElement(new Caption({text: "Arc to circle", size: captionSize}))
-                .addElement(new Caption({text: "Points to circle", size: captionSize}))
-                .addElement(new Caption({text: "Spark circle", size: captionSize}))
-                .addElement(new Caption({text: "Neon trails", size: captionSize}))
+                .addElement(new Caption("Neon circles", {size: captionSize}))
+                .addElement(new Caption("Arc to circle", {size: captionSize}))
+                .addElement(new Caption("Points to circle", {size: captionSize}))
+                .addElement(new Caption("Spark circle", {size: captionSize}))
+                .addElement(new Caption("Neon trails", {size: captionSize}))
                 .build()
             ]
     }

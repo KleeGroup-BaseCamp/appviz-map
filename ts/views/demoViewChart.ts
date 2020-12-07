@@ -26,10 +26,10 @@ export class DemoViewChart implements View {
                 .addElement(new BarChart(barData, {size: pxSize}))
                 .addElement(new DonutChart(donutData, {size: pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "Line chart", size: captionSize}))
-                .addElement(new Caption({text: "Filled line chart", size: captionSize}))
-                .addElement(new Caption({text: "Bar chart", size: captionSize}))
-                .addElement(new Caption({text: "Donut chart", size: captionSize}))
+                .addElement(new Caption("Line chart", {size: captionSize}))
+                .addElement(new Caption("Filled line chart", {size: captionSize}))
+                .addElement(new Caption("Bar chart", {size: captionSize}))
+                .addElement(new Caption("Donut chart", {size: captionSize}))
                 .build()
             ]
     }

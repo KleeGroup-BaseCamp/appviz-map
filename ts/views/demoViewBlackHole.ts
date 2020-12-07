@@ -20,13 +20,13 @@ export class DemoViewBlackHole implements View {
             new GridLayerBuilder()
                 .addElement(new BlackHole4(66, {size: pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "BlackHole 4", size: captionSize}))
+                .addElement(new Caption("BlackHole 4", {size: captionSize}))
                 .beginRow()
                 .addElement(new BlackHole2(66, {size: pxSize}))
                 .addElement(new BlackHole3(66, {size: pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "BlackHole 2", size: captionSize}))
-                .addElement(new Caption({text: "BlackHole 3", size: captionSize}))
+                .addElement(new Caption("BlackHole 2", {size: captionSize}))
+                .addElement(new Caption("BlackHole 3", {size: captionSize}))
                 .build()
             ]
     }

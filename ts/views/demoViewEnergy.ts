@@ -23,14 +23,14 @@ export class DemoViewEnergy implements View {
                 .addElement(new Battery(75, {size: pxSize}))
                 .addElement(new Battery(100, {size: pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "Battery", size: captionSize}))
+                .addElement(new Caption("Battery", {size: captionSize}))
                 .beginRow()
                 .addElement(new Light(25, {size: pxSize}))
                 .addElement(new Light(50, {size: pxSize}))
                 .addElement(new Light(75, {size: pxSize, color: color('cyan')}))
                 .addElement(new Light(100, {size: pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "Light", size: captionSize}))
+                .addElement(new Caption("Light", {size: captionSize}))
                 .build()
         ]
     }

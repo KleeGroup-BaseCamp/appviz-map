@@ -6,7 +6,7 @@ import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
 import {SharpRadar, SmoothRadar, SharpRadar2, SmoothRadar2, Caption} from "../neon" 
-import {PxPosition, PxSize} from "../neon"
+import {PxSize} from "../neon"
 
 export class DemoViewRadar implements View {
 
@@ -28,14 +28,14 @@ export class DemoViewRadar implements View {
             .addElement(new SharpRadar("-1", pxSize, data[0]))
             .addElement(new SharpRadar2("-1", pxSize, data[0]))
             .beginRow(10)
-            .addElement(new Caption({text: "SharpRadar", size: captionSize}))
-            .addElement(new Caption({text: "SharpRadar2", size: captionSize}))
+            .addElement(new Caption("SharpRadar", {size: captionSize}))
+            .addElement(new Caption("SharpRadar2", {size: captionSize}))
             .beginRow()
             .addElement(new SmoothRadar("-1", pxSize, data[0]))
             .addElement(new SmoothRadar2("-1", pxSize, data[0]))
             .beginRow(10)
-            .addElement(new Caption({text: "SmoothRadar", size: captionSize}))
-            .addElement(new Caption({text: "SmoothRadar2", size: captionSize}))
+            .addElement(new Caption("SmoothRadar", {size: captionSize}))
+            .addElement(new Caption("SmoothRadar2", {size: captionSize}))
 
             .build()
         ]

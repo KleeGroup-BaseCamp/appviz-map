@@ -27,7 +27,7 @@ export class DemoViewProgressBar implements View {
                     firstColor : style.color.a,
                     secondColor : style.color.c}))
                 .beginRow(10)
-                .addElement(new Caption({text: "ProgressBar", size: captionSize}))
+                .addElement(new Caption("ProgressBar", {size: captionSize}))
                 .beginRow()
                 .addElement(new StripedProgressBar(0,{size:pxSize}))
                 .addElement(new StripedProgressBar(75, {size:pxSize, 
@@ -35,7 +35,7 @@ export class DemoViewProgressBar implements View {
                     secondColor :style.color.c}))
                 .addElement(new StripedProgressBar(100,{size:pxSize, icon:Icons.getIcon("data") }))
                 .beginRow(10)
-                .addElement(new Caption({text: "StripedProgressBar", size: captionSize}))
+                .addElement(new Caption("StripedProgressBar", {size: captionSize}))
                 .build()
             ]
     }

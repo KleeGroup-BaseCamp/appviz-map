@@ -25,7 +25,7 @@ export class DemoViewSignal implements View {
                 .addElement(new WifiSignal(4, {size:pxSize}))
                 .addElement(new WifiSignal(5, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "WifiSignal", size: captionSize}))
+                .addElement(new Caption("WifiSignal", {size: captionSize}))
                 .beginRow()
                 .addElement(new BarsSignal(0, {size:pxSize}))
                 .addElement(new BarsSignal(1, {size:pxSize}))
@@ -34,7 +34,7 @@ export class DemoViewSignal implements View {
                 .addElement(new BarsSignal(4, {size:pxSize}))
                 .addElement(new BarsSignal(5, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "BarsSignal", size: captionSize}))
+                .addElement(new Caption("BarsSignal", {size: captionSize}))
                 .build()
         ]
     }

@@ -24,7 +24,7 @@ export class DemoViewGauge implements View {
                 .addElement(new ArrowGauge(66, {size:pxSize}))
                 .addElement(new ArrowGauge(100, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "ArrowGauge", size: captionSize}))
+                .addElement(new Caption("ArrowGauge", {size: captionSize}))
                 .beginRow()
                 .addElement(new StripedGauge(0, {size:pxSize}))
                 .addElement(new StripedGauge(33, {size:pxSize}))
@@ -32,7 +32,7 @@ export class DemoViewGauge implements View {
                 .addElement(new StripedGauge(66, {size:pxSize}))
                 .addElement(new StripedGauge(100, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "StripedGauge", size: captionSize}))
+                .addElement(new Caption("StripedGauge", {size: captionSize}))
                 .beginRow()
                 .addElement(new Gauge(0, {size:pxSize}))
                 .addElement(new Gauge(33, {
@@ -45,7 +45,7 @@ export class DemoViewGauge implements View {
                 .addElement(new Gauge(66, {size:pxSize}))
                 .addElement(new Gauge(100, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption({text: "Gauge", size: captionSize}))
+                .addElement(new Caption("Gauge", {size: captionSize}))
                 .build()
             ]
     }

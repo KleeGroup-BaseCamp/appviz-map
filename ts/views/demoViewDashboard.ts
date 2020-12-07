@@ -37,7 +37,7 @@ export class DemoViewDashboard implements View {
         .addElement(new StarRating(3, {size}))
         .addElement(new ImageRating(3, {img:icons.star, size}))
         .beginRow(10)
-        .addElement(new Caption({text: `Size ${size}`, size: new PxSize(800, 35)}))
+        .addElement(new Caption(`Size ${size}`, {size: new PxSize(800, 35)}))
     }
 
     private getGridLayerBuilder(): GridLayerBuilder{
