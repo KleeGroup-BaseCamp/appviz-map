@@ -1,4 +1,4 @@
-import {VElement} from "../../core"
+import {VElement, VElement2, VElementProps} from "../../core"
 import {PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import * as p5 from "p5"
@@ -49,15 +49,15 @@ class Bolt {
     }
 }
 
-export class BlackHole3 extends VElement{
+export class BlackHole3 extends VElement2{
     //Inspiration : https://www.openprocessing.org/sketch/1015571
     private readonly radius: number
     private readonly bolts : Bolt[]
  
-    constructor(id: any, pxSize: PxSize, percent: number){
-        super(id, pxSize, false)
+    constructor(percent: number, props: VElementProps){
+        super(props, false)
         const duration = 10000 /*ms*/
-        this.radius = min (pxSize.getWidth(), pxSize.getHeight())/2
+        this.radius = min (this.getWidth(), this.getHeight())/2
         this.bolts = BlackHole3.createBolts(250, this.radius)
         AnimationUtils.animate(0, 1000, duration, (i)=> {})
     }

@@ -1,11 +1,11 @@
 import * as p5 from "p5"
-import {VElement} from "../../core"
+import {VElement, VElement2, VElementProps} from "../../core"
 import {PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {Easings} from "../../utils/easings"
 import {Gauge} from "../gauge/gauge"
 
-export class BlackHole4 extends VElement{
+export class BlackHole4 extends VElement2{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")
     private readonly secondaryColor: p5.Color = color("HotPink")
     private readonly gauge: Gauge
@@ -16,12 +16,12 @@ export class BlackHole4 extends VElement{
     private readonly light: OpacityOutCircle
     private readonly hole: OpacityOutCircle
     
-    constructor(id: any, pxSize: PxSize, percent: number){
-        super(id, pxSize, false)
-        this.gauge = new Gauge(percent,{size:pxSize})
+    constructor(percent: number, props: VElementProps){
+        super(props, false)
+        this.gauge = new Gauge(percent,{size: this.getPxSize()})
         this.weight = 5
         const margin = 10
-        this.radius = (min(pxSize.getHeight(), pxSize.getWidth()) - this.weight - this.gauge.weight - margin) / 2
+        this.radius = (min(this.getHeight(), this.getWidth()) - this.weight - this.gauge.weight - margin) / 2
         this.light = new OpacityOutCircle(color(255, 225, 0), 0, this.radius * percent / 100, 70, 100)
         this.hole = new OpacityOutCircle(color(0), this.radius, 0, 20, 100)
         const numOfRays = 200 // TODO: = f(percent)
