@@ -7,7 +7,7 @@ export class Caption extends VElement{
 
     constructor(text: string, props: VElementProps){
         super(props, false)
-        this.vText = new VText(text, style.text.font, style.text.size.m)
+        this.vText = new VText(text, {fontSize: style.text.size.m})
     }
 
     public render() : void {

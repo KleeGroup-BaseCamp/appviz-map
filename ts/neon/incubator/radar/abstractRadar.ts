@@ -23,7 +23,15 @@ export abstract class AbstractRadar extends VElement{
 
         this.textSize = this.getTextSize()
         for(let label in data){
-            this.labels.push(new VText(label, style.text.font, this.textSize, style.text.color.secondary))
+            this.labels.push(
+                new VText(
+                    label, 
+                    {
+                        fontSize: this.textSize, 
+                        fontColor: style.text.color.secondary
+                    }
+                )
+            )
         }
 
         const numOfCircles = 4
@@ -31,9 +39,10 @@ export abstract class AbstractRadar extends VElement{
             this.scales.push(
                 new VText(
                     (100 * (i + 1) / numOfCircles).toString(), 
-                    style.text.font, 
-                    this.textSize, 
-                    style.text.color.secondary
+                    {
+                        fontSize: this.textSize, 
+                        fontColor: style.text.color.secondary
+                    }
                 )
             )
         }

@@ -23,7 +23,13 @@ export class Group extends VElement {
     constructor(title: string, itemTypeFrequencies: ItemTypeFrequencies, props: GroupProps) {
         super(props, true)
         this.color = ColorUtils.clone(props.color ?? style.color.a)
-        this.header = new Header( title, this.getWidth(), 50, style.text.size.m)
+        this.header = new Header(
+            title, 
+            {
+                size: new PxSize(this.getWidth(), 50), 
+                fontSize: style.text.size.m
+            }
+        )
         this.itemTypeFrequencies = itemTypeFrequencies
         this.maxValue = props.maxValue ?? 20
 
@@ -36,7 +42,7 @@ export class Group extends VElement {
                 )   
             )
         })
-        this.button = new Button(style.color.undefined, 50)
+        this.button = new Button({size: new PxSize(50), color: style.color.undefined})
     }
 
     /**
@@ -91,7 +97,7 @@ export class Group extends VElement {
             translate(10, positions[index] - 20)
             push()
             textAlign(LEFT, TOP)
-            new VText(Icons.getIcon(itemPrefix as ItemTypeName), style.icon.font, style.icon.size.xl).render()
+            new VText(Icons.getIcon(itemPrefix as ItemTypeName), {font: style.icon.font, fontSize: style.icon.size.xl}).render()
             pop()
             translate(50, 0)
             this.progressBars[index].render()

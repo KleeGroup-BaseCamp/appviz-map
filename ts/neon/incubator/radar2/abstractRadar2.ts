@@ -23,17 +23,26 @@ export abstract class AbstractRadar2 extends VElement{
         super(props, true)
 
         for(let label in radarData){
-            this.labels.push(new VText(label, style.text.font, this.textSize, style.text.color.secondary))
+            this.labels.push(
+                new VText(
+                    label, 
+                    {
+                        fontSize: this.textSize, 
+                        fontColor: style.text.color.secondary
+                    }
+                )
+            )
         }
 
         const numOfCircles = 4
         for (let i = 0; i < numOfCircles; i++){
             this.scales.push(
                 new VText(
-                    (100 * (i + 1) / numOfCircles).toString(), 
-                    style.text.font, 
-                    this.textSize, 
-                    style.text.color.secondary
+                    (100 * (i + 1) / numOfCircles).toString(),
+                    {
+                        fontSize: this.textSize,
+                        fontColor: style.text.color.secondary
+                    } 
                 )
             )
         }

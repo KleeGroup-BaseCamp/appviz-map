@@ -1,5 +1,5 @@
 import {style} from "../../app"
-import {VElement, State, VElementProps} from "../../neon"
+import {VElement, State, VElementProps, PxSize} from "../../neon"
 import {Header} from "../../neon"
 
 export class ItemTypeDetail extends VElement {
@@ -9,11 +9,12 @@ export class ItemTypeDetail extends VElement {
         super(props, false)
         this.header = new Header(
             title, 
-            this.getWidth(), 
-            60, 
-            style.text.size.xl, 
-            style.icon.font
-            )
+            {
+                size: new PxSize(this.getWidth(), 60),
+                fontSize: style.text.size.xl,
+                font: style.icon.font
+            }
+        )
     }
 
     public render(state : State): void {

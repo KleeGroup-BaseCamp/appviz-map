@@ -1,22 +1,18 @@
 import * as p5 from "p5"
-import {Component}  from "./component"
+import {style} from "../../app"
+import {VElement, VElementProps} from "../core"
+import {ColorUtils} from "../utils"
 
-export class Corner implements Component{
-    private readonly width: number
-    private readonly height: number
+
+export interface CornerProps extends VElementProps{
+    color?: p5.Color
+}
+export class Corner extends VElement{
     private readonly color : p5.Color
 
-    /**
-     * @constructor
-     * 
-     * @param {number} width 
-     * @param {number} height 
-     * @param {p5.Color} color 
-     */
-    constructor(width: number, height: number, color: p5.Color) {
-        this.width = width,
-        this.height = height
-        this.color = color
+    constructor(props: CornerProps) {
+        super(props, false)
+        this.color = ColorUtils.clone(props.color ?? style.color.a)
     }
 
     public render(): void {
@@ -25,8 +21,8 @@ export class Corner implements Component{
 
         beginShape();
         vertex(0, 0);
-        vertex(this.width, 0);
-        vertex(0, this.height);
+        vertex(this.getWidth(), 0);
+        vertex(0, this.getHeight());
         endShape(CLOSE);
     }
 }

@@ -1,5 +1,5 @@
 import {style} from "../../app"
-import {VElement, State, VElementProps} from "../../neon"
+import {VElement, State, VElementProps, PxSize} from "../../neon"
 import {Header} from "../../neon"
 
 export class Card extends VElement {
@@ -8,8 +8,14 @@ export class Card extends VElement {
 
     constructor(title: string, props: VElementProps) {
         super(props, false)
-        this.header = new Header(title, this.getWidth(), 100, style.text.size.xxl)
- //       this.paper = new Paper(this.getWidth(), this.getHeight(), 50) 
+        this.header = new Header(
+            title, 
+            {
+                size: new PxSize(this.getWidth(), 100), 
+                fontSize: style.text.size.xxl
+            }
+        )
+        //this.paper = new Paper(this.getWidth(), this.getHeight(), 50) 
     }
 
     /**

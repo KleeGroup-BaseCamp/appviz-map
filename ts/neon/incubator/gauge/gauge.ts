@@ -28,7 +28,7 @@ export class Gauge extends VElement{
         const minDim = min(this.getHeight(), this.getWidth())
         this.weight = min(minDim / 15, 10)
         this.radius = minDim / 2 - this.weight / 2
-        this.vtext = new VText("", style.text.font, this.getTextSize())
+        this.vtext = new VText("", {fontSize: this.getTextSize()})
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }

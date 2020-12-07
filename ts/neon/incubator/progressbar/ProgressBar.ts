@@ -25,7 +25,7 @@ export class ProgressBar extends VElement {
 
         this.percent  = percent
         this.size = this.getTextSize()
-        this.vtext = new VText("", style.text.font, this.size)
+        this.vtext = new VText("", {fontSize: this.size})
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }

@@ -20,7 +20,15 @@ export class LinearAxis{
         const diff = max - min
         for(let i = 0; i < this.numOfTicks; i++){
             const text = (min + Math.floor(diff * i / this.numOfTicks)).toString()
-            this.labels.push(new VText(text, style.text.font, style.text.size.xs, style.text.color.secondary))
+            this.labels.push(
+                new VText(
+                    text, 
+                    {
+                        fontSize: style.text.size.xs, 
+                        fontColor: style.text.color.secondary
+                    }
+                )
+            )
         }
     }
 

@@ -1,21 +1,22 @@
 import * as p5 from "p5"
 import {style} from "../../app"
-import {Component}  from "./component"
 import {TextUtils} from "../utils"
+import {VElement, VElementProps} from "../core"
 
-export class Header implements Component{
+export interface HeaderProps extends VElementProps{
+    fontSize?: number
+    font?: p5.Font
+}
+export class Header extends VElement{
     private readonly title: string
-    private readonly width: number
-    private readonly height: number
     private readonly fontSize: number
     private readonly font: p5.Font
 
-    constructor(title: string, width: number, height: number, fontSize: number, font: p5.Font = style.text.font) {
-        this.title = title ? TextUtils.buildDisplayableTitle(title, width, fontSize) : "No title"
-        this.width = width
-        this.height = height
-        this.fontSize = fontSize
-        this.font = font
+    constructor(title: string, props: HeaderProps) {
+        super(props, false)
+        this.fontSize = props.fontSize ?? style.text.size.s
+        this.font = props.font ?? style.text.font
+        this.title = title ? TextUtils.buildDisplayableTitle(title, width, this.fontSize) : "No title"
     }
 
     public render(): void {
@@ -26,7 +27,7 @@ export class Header implements Component{
     private renderBackground(): void {
         noStroke()
         fill(style.color.front)
-        rect (0, 0, this.width, this.height)
+        rect (0, 0, this.getWidth(), this.getHeight())
     }
 
     private renderTitle(): void {
@@ -35,6 +36,6 @@ export class Header implements Component{
         textSize(this.fontSize)
         textFont(this.font)
         textAlign(CENTER)
-        text(this.title, 0, textAscent() + 15, this.width)
+        text(this.title, 0, textAscent() + 15, this.getWidth())
     }
 }

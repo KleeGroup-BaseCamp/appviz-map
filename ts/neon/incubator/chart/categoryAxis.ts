@@ -10,7 +10,15 @@ export class CategoryAxis{
 
     constructor(labels: string[], length: number){
         this.length = length
-        this.labels = labels.map(label => new VText(label, style.text.font, style.text.size.xs, style.text.color.secondary))
+        this.labels = labels.map(
+            label => new VText(
+                label, 
+                {
+                    fontSize: style.text.size.xs, 
+                    fontColor: style.text.color.secondary
+                }
+            )
+        )
     }
 
     public render(): void{

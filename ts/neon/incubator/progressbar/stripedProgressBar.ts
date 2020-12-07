@@ -29,10 +29,10 @@ export class StripedProgressBar extends VElement{
         this.hexagon = new Hexagon({size: this.getPxSize()})
         if (props.icon){          
             this.iconProvided = true
-            this.vText = new VText(props.icon, style.icon.font, style.text.size.xxl)
+            this.vText = new VText(props.icon, {font: style.icon.font, fontSize: this.getTextSize()}) 
         } else {
             this.iconProvided = false
-            this.vText = new VText("", style.text.font, this.getTextSize()) // Fallback if no icon provided with 'withIcon'
+            this.vText = new VText("", {fontSize: this.getTextSize()}) // Fallback if no icon provided with 'withIcon'
         }    
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
@@ -111,7 +111,7 @@ export class StripedProgressBar extends VElement{
         return this.firstColor
     }
 
-    private getTextSize(): number{ // Make into util function
+    private getTextSize(): number{ // Make into util function and adap to font.icon
         const width = this.getWidth()
         if (width <= 150) return style.text.size.xxs
         if (width <= 250) return style.text.size.xs

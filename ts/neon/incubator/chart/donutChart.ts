@@ -17,7 +17,12 @@ export class DonutChart extends VElement{
         this.data = data
         this.data.map(
             entry => this.labels.push(
-                new VText(entry.label, style.text.font, style.text.size.xs)
+                new VText(
+                    entry.label, 
+                    {
+                        fontSize: style.text.size.xs
+                    }
+                )
             )
         )
     }

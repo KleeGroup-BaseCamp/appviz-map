@@ -1,19 +1,26 @@
 import * as p5 from "p5"
 import {style} from "../../app"
-import {Component}  from "./component"
+import {VElement, VElementProps} from "../core"
+import {ColorUtils} from "../utils"
 
-export class VText implements Component{
+export interface VTextProps extends VElementProps{
+    fontSize?: number
+    fontColor?: p5.Color
+    font?: p5.Font
+}
+export class VText extends VElement{
     private readonly font: p5.Font
     private readonly fontSize: number
     private readonly color: p5.Color
 
     private text: string
 
-    constructor(text: string, font: p5.Font, fontSize: number, color: p5.Color = style.text.color.primary) {
+    constructor(text: string, props: VTextProps) {
+        super(props, false)
         this.text = text
-        this.font = font
-        this.fontSize = fontSize
-        this.color = color
+        this.fontSize = props.fontSize ?? style.text.size.s
+        this.font = props.font ?? style.text.font
+        this.color = ColorUtils.clone(props.fontColor ?? style.text.color.primary)
     }
 
     public render(): void {

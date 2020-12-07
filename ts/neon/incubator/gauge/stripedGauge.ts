@@ -20,7 +20,7 @@ export class StripedGauge extends VElement{
         super(props, false)
         this.percent = percent
         this.radius = min(this.getHeight(), this.getWidth()) / 2
-        this.vtext = new VText("", style.text.font, this.getTextSize())
+        this.vtext = new VText("", {fontSize: this.getTextSize()})
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
