@@ -15,7 +15,7 @@ export class DemoViewBlackHole implements View {
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/gauge 2"))
+                .addElement(new Card("elements/gauge 2", {size: projection.getPxSize()} ))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new BlackHole4(66, {size: pxSize}))

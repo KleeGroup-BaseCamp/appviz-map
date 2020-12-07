@@ -1,8 +1,8 @@
 import {style} from "../../../app";
-import {VElement2, VElementProps} from "../../core";
+import {VElement, VElementProps} from "../../core";
 import {AnimationUtils, PushPop} from "../../utils"
 
-export abstract class AbstractRating extends VElement2{
+export abstract class AbstractRating extends VElement{
     //How many icons are displayed ?
     private readonly icons: number  = 5
 

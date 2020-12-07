@@ -1,13 +1,12 @@
 import {style} from "../../app"
-import {VElement, State} from "../../neon"
+import {VElement, State, VElementProps} from "../../neon"
 import {TextUtils}  from "../../neon"
-import {PxSize} from "../../neon"
 
 export class Item extends VElement {
      private readonly title: string
 
-    constructor(id: any, pxSize: PxSize, title: string) {
-        super(id, pxSize, true)
+    constructor(title: string, props: VElementProps) {
+        super(props, true)
         this.title = title ? TextUtils.buildDisplayableTitle(title, this.getWidth(), style.text.size.s) : "No title"
     }
 

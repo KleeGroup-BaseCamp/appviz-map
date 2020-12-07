@@ -1,12 +1,12 @@
 import * as p5 from "p5"
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../../app"
 
 export interface BarsSignalProps extends VElementProps {}
 
-export class BarsSignal extends VElement2{
+export class BarsSignal extends VElement{
     private rate: number
 
     constructor(rate: number, props:BarsSignalProps){

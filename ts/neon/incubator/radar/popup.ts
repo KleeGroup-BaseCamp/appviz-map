@@ -1,5 +1,5 @@
 import {VText} from "../../components"
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {PxSize } from "../../layout"
 import {style} from "../../../app"
 import {AbstractRating } from "../rating/abstractRating"
@@ -7,7 +7,7 @@ import {StarRating } from "../rating/starRating"
 import {ColorUtils} from "../../utils"
 import {RadarData} from "./abstractRadar"
 
-export class PopUp extends VElement2{
+export class PopUp extends VElement{
     private readonly ratings: AbstractRating[] = []
     private readonly labels: VText[] = []
     private readonly size: number

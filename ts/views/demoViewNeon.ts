@@ -15,7 +15,7 @@ export class DemoViewNeon implements View {
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/neon"))
+                .addElement(new Card("elements/neon", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new NeonCircles({size: pxSize}))

@@ -1,12 +1,17 @@
 import * as p5 from "p5"
 import {style} from "../../app"
-import {VElement, State, PushPop} from "../../neon"
+import {VElement, State, PushPop, VElementProps, ColorUtils} from "../../neon"
 import {Button, Header, VText} from "../../neon"
 import {ProgressBar} from "../../neon"
 import {PxSize} from "../../neon"
 import {ItemTypeName, ItemTypeFrequencies} from "../../types"
 import {Icons} from "./icons"
 
+
+export interface GroupProps extends VElementProps{
+    color?: p5.Color,
+    maxValue?: number
+}
 export class Group extends VElement {
     private readonly itemTypeFrequencies: ItemTypeFrequencies
     private readonly maxValue: number
@@ -15,18 +20,18 @@ export class Group extends VElement {
     private readonly color: p5.Color
     private readonly button : Button
 
-    constructor(id: any, pxSize: PxSize, title: string, itemTypeFrequencies: ItemTypeFrequencies, color: p5.Color, maxValue = 20) {
-        super(id, pxSize, true)
-        this.color = color
+    constructor(title: string, itemTypeFrequencies: ItemTypeFrequencies, props: GroupProps) {
+        super(props, true)
+        this.color = ColorUtils.clone(props.color ?? style.color.a)
         this.header = new Header( title, this.getWidth(), 50, style.text.size.m)
         this.itemTypeFrequencies = itemTypeFrequencies
-        this.maxValue = maxValue
+        this.maxValue = props.maxValue ?? 20
 
         this.progressBars = []
         Object.keys(this.itemTypeFrequencies).forEach(item => {
             this.progressBars.push(
                 new ProgressBar(
-                    (this.itemTypeFrequencies[item as ItemTypeName] ?? 0) * 100 / maxValue, 
+                    (this.itemTypeFrequencies[item as ItemTypeName] ?? 0) * 100 / this.maxValue, 
                     {size:new PxSize(this.getWidth() - 90, 30)}
                 )   
             )

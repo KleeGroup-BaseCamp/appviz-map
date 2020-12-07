@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {Easings} from "../../utils/easings"
 
@@ -10,7 +10,7 @@ export interface NeonCirclesProps extends VElementProps{
     secondColor?: p5.Color
 }
 
-export class NeonCircles extends VElement2{
+export class NeonCircles extends VElement{
     private readonly firstColor
     private readonly secondColor
     private readonly circles: NeonCircle[] = []

@@ -22,7 +22,7 @@ export class DemoViewRadar implements View {
         const captionSize = new PxSize(250, 35)
         return  [
             new LayerBuilder()
-            .addElement(new Card("demo_main", projection.getPxSize(), "elements/radar"))
+            .addElement(new Card("elements/radar", {size: projection.getPxSize()}))
             .build(),
             new GridLayerBuilder()
             .addElement(new SharpRadar(data[0], {size: pxSize}))

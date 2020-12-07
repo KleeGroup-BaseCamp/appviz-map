@@ -71,7 +71,7 @@ export class Sketch {
   private updateDetail(element: VElement): void {
     if (element instanceof Group || element instanceof Item) {
       const type = element instanceof Group ? 'group' : 'item'
-      this.detail.update(type, element.getId())
+      this.detail.update(type, element.getId()) // TODO: Update to title instead of Id
     }
   }
  
@@ -139,7 +139,7 @@ export class Sketch {
 
   private generateMapFromView(viewInstance: View): Map {
     return new MapBuilder()
-      .addLayer(new LayerBuilder().addElement(new Background("background", new PxSize(width,height))).build())
+      .addLayer(new LayerBuilder().addElement(new Background({size: new PxSize(width,height)})).build())
       .addLayers(viewInstance.provideLayers(this.modelRepository, this.layout))
       //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
       .build()

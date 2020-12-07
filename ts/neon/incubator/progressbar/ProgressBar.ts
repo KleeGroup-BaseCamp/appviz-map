@@ -2,14 +2,14 @@ import * as p5 from "p5"
 import {style} from "../../../app"
 import {VText} from "../../components"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 
 export interface ProgressBarProps extends VElementProps {
     firstColor?: p5.Color,
     secondColor?: p5.Color
 }
 
-export class ProgressBar extends VElement2 {
+export class ProgressBar extends VElement {
     private readonly vtext: VText
     private readonly size: number
 

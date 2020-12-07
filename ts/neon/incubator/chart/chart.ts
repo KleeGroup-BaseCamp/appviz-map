@@ -1,4 +1,4 @@
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
 import {style} from "../../../app"
 
@@ -9,7 +9,7 @@ export interface ChartProps extends VElementProps {
     topPadding?: number
 }
 
-export abstract class Chart extends VElement2{
+export abstract class Chart extends VElement{
     protected readonly chartHeight: number 
     protected readonly chartWidth: number 
     protected readonly yAxis: LinearAxis

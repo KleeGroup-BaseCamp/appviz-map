@@ -1,5 +1,5 @@
 import {VText} from "../../components"
-import {State, VElement2, VElementProps} from "../../core"
+import {State, VElement, VElementProps} from "../../core"
 import {PxSize } from "../../layout"
 import {AnimationUtils, ColorUtils} from "../../utils"
 import {style} from "../../../app"
@@ -7,7 +7,7 @@ import {PopUp2} from "./popup2"
 import {RadarData2, RadarDataSystem2} from "./radarData2"
 
 
-export abstract class AbstractRadar2 extends VElement2{
+export abstract class AbstractRadar2 extends VElement{
     private readonly popUp: PopUp2
     private readonly labels: VText[] = []
     private readonly scales: VText[] = []

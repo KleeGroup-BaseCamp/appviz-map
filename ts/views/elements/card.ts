@@ -1,14 +1,13 @@
 import {style} from "../../app"
-import {VElement, State} from "../../neon"
+import {VElement, State, VElementProps} from "../../neon"
 import {Header} from "../../neon"
-import {PxSize} from "../../neon"
 
 export class Card extends VElement {
     private readonly header: Header
  //   private readonly paper: Paper
 
-    constructor(id: any, pxSize: PxSize, title: string) {
-        super(id, pxSize, false)
+    constructor(title: string, props: VElementProps) {
+        super(props, false)
         this.header = new Header(title, this.getWidth(), 100, style.text.size.xxl)
  //       this.paper = new Paper(this.getWidth(), this.getHeight(), 50) 
     }

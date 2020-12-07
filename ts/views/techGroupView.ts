@@ -33,9 +33,11 @@ export class TechGroupView implements View {
         return new LayerBuilder()
             .addElement(
                 new Card(
-                    groupModel.getId(), 
-                    projection.getPxSize(), 
-                    TextUtils.firstCharUpperCase(groupModel.getTitle())
+                    TextUtils.firstCharUpperCase(groupModel.getTitle()),
+                    {
+                        id: groupModel.getId(), 
+                        size: projection.getPxSize(), 
+                    }
                 )
             )
             .build()
@@ -62,9 +64,8 @@ export class TechGroupView implements View {
             const typeName = this.types[typePrefix as ItemNamePrefix]
             itemTypesLayerBuilder.addElement(
                 new ItemTypeDetail(
-                    typeName,
-                    itemTypePxSize,
-                    (TextUtils.firstCharUpperCase(typeName)) + "s " + Icons.getIcon(typeName)
+                    (TextUtils.firstCharUpperCase(typeName)) + "s " + Icons.getIcon(typeName),
+                    {size: itemTypePxSize}
                 ),
                 itemTypePxPosition
             )
@@ -73,9 +74,11 @@ export class TechGroupView implements View {
                 const {itemPxPosition, itemPxSize} = this.getItemPx(itemModelIndex, 4, itemTypePxSize, itemTypePxPosition)
                 itemsLayerBuilder.addElement(
                     new Item(
-                        itemModel.getId(), 
-                        itemPxSize, 
-                        itemModel.getTitle()
+                        itemModel.getTitle(),
+                        {
+                            id: itemModel.getId(), 
+                            size: itemPxSize
+                        }
                     ), 
                     itemPxPosition
                 )

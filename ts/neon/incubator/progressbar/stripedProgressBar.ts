@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {VText} from "../../components"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
-import {VElement2, VElement ,VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
 import {style} from "../../../app"
 
@@ -11,7 +11,7 @@ export interface StripedProgressBarProps extends VElementProps {
     icon?: string
 }
 
-export class StripedProgressBar extends VElement2{
+export class StripedProgressBar extends VElement{
     private readonly hexagon: Hexagon
     private readonly iconProvided: boolean
     private readonly firstColor: p5.Color
@@ -26,7 +26,7 @@ export class StripedProgressBar extends VElement2{
         this.secondColor = props.secondColor ? ColorUtils.clone(props.secondColor) : undefined
 
         this.percent  = percent
-        this.hexagon = new Hexagon("-1", this.getPxSize())
+        this.hexagon = new Hexagon({size: this.getPxSize()})
         if (props.icon){          
             this.iconProvided = true
             this.vText = new VText(props.icon, style.icon.font, style.text.size.xxl)
@@ -123,8 +123,8 @@ export class Hexagon extends VElement {
     private readonly circumRadius: number
     private readonly weight: number
 
-    constructor(id: any, pxSize: PxSize) {
-        super(id, pxSize, false)
+    constructor(props: VElementProps) {
+        super(props, false)
         const width = this.getPxSize().getWidth()
         const height = this.getPxSize().getHeight()
         this.weight = 4

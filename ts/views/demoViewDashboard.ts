@@ -14,7 +14,7 @@ export class DemoViewDashboard implements View {
         const pxSize = new PxSize(20) // For testing purposes
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "Dashboard"))
+                .addElement(new Card("Dashboard", {size: projection.getPxSize()}))
                 .build(),
             // To fill later with "real word" information
                 this.getGridLayerBuilder()

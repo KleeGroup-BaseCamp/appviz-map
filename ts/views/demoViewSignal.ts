@@ -15,7 +15,7 @@ export class DemoViewSignal implements View {
         const captionSize = new PxSize(850, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/signal"))
+                .addElement(new Card("elements/signal", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new WifiSignal(0, {size:pxSize}))

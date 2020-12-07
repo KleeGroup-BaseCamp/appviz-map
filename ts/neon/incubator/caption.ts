@@ -1,8 +1,8 @@
 import {style} from "../../app"
 import {VText} from "../components"
-import {VElement2, VElementProps} from "../core"
+import {VElement, VElementProps} from "../core"
 
-export class Caption extends VElement2{
+export class Caption extends VElement{
     private readonly vText : VText
 
     constructor(text: string, props: VElementProps){

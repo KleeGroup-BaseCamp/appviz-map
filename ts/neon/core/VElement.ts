@@ -1,6 +1,13 @@
 import {PxSize, PxPosition} from "../layout"
 import {State, VEvent} from "."
 
+type Size = "s" | "m" | "l"
+
+export interface VElementProps {
+    id?: any,
+    size? : Size|PxSize
+}
+
 /**
  * VElement displayed on the map.
  *
@@ -31,20 +38,14 @@ export abstract class VElement {
 //  private eventHandler? : VEventHandler
   protected readonly centerPosition: PxPosition
 
-  /**
-   * @constructor
-   *
-   * @param {*} id
-   * @param {PxSize} pxSize
-   * @param {boolean} selectable
-   */
-  constructor(id: any, pxSize: PxSize, selectable: boolean) {
-    this.id = id
-    this.pxSize = pxSize
+  
+  constructor(props: VElementProps, selectable: boolean) {
+    this.id = props.id ?? VElement.generateId()
+    this.pxSize = VElement.buildPxSize(props.size)
     this.selectable = selectable
     this.centerPosition = new PxPosition(
-      pxSize.getWidth() / 2, 
-      pxSize.getHeight() / 2
+      this.pxSize.getWidth() / 2, 
+      this.pxSize.getHeight() / 2
     )
   }
 
@@ -115,5 +116,18 @@ export abstract class VElement {
 
   public needsClear():boolean{
     return true
+  }
+
+  private static generateId():number {
+    return -1
+  }
+
+  private static buildPxSize(size? : Size|PxSize): PxSize {
+    if (size instanceof PxSize){
+      return size
+    } else if (size){
+      // return 
+    }
+    return new PxSize(666) //undefined
   }
 }

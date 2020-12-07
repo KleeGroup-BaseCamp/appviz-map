@@ -15,7 +15,7 @@ export class DemoViewEnergy implements View {
         const captionSize = new PxSize(550, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/energy"))
+                .addElement(new Card("elements/energy", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new Battery(15, {size: pxSize}))

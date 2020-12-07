@@ -1,6 +1,6 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
 
@@ -9,7 +9,7 @@ declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) 
 export interface SparkCircleProps extends VElementProps{
     color?: p5.Color
 }
-export class SparkCircle extends VElement2{
+export class SparkCircle extends VElement{
     private readonly neonArc: NeonArc
     private readonly radius: number
     private readonly angleStep: number

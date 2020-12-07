@@ -15,7 +15,7 @@ export class DemoViewProgressBar implements View {
         const captionSize = new PxSize(1000, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/progress bar"))
+                .addElement(new Card("elements/progress bar", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new ProgressBar(0, {size:pxSize}))

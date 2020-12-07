@@ -33,10 +33,11 @@ export class TechZoneView implements View {
             const zonePxPosition = projection.gridToPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
             zonesLayerBuilder.addElement(
                 new Zone(
-                    zoneName,
-                    zonePxSize,
                     TextUtils.firstCharUpperCase(zoneName),
-                    this.getZoneColor(zoneName)
+                    {
+                        size: zonePxSize,
+                        color: this.getZoneColor(zoneName)
+                    }
                 ),
                 zonePxPosition
             )
@@ -62,12 +63,15 @@ export class TechZoneView implements View {
                 const paddedGroupPxPosition = new PxPosition(groupPxPosition.getX() + padding.left, groupPxPosition.getY() + padding.top)
                 groupsLayerBuilder.addElement(
                     new Group(
-                        groupModel.getId(),
-                        new PxSize ( groupPxSize.getWidth() - padding.right - padding.left,
-                        groupPxSize.getHeight() - padding.top - padding.bottom),
                         TextUtils.firstCharUpperCase(groupName),
                         itemTypeFrequencies,
-                        this.getZoneColor(groupModel.getType())
+                        {
+                            size: new PxSize (
+                                groupPxSize.getWidth() - padding.right - padding.left,
+                                groupPxSize.getHeight() - padding.top - padding.bottom
+                            ),
+                            color: this.getZoneColor(groupModel.getType())
+                        }
                     ),
                     paddedGroupPxPosition
                 )

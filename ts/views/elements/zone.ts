@@ -3,30 +3,26 @@
  */
 import * as p5 from "p5"
 import {style} from "../../app"
-import {VElement, State, Style} from "../../neon"
+import {VElement, State, VElementProps, ColorUtils} from "../../neon"
 import {Header, Corner} from "../../neon"
-import {PxSize} from "../../neon"
+
+export interface ZoneProps extends VElementProps{
+    color?: p5.Color
+}
 
 export class Zone extends VElement {
     private readonly header: Header
     private readonly corner: Corner
 
-    /**
-     * 
-     * @param {*} id 
-     * @param {Pxsize} pxSize 
-     * @param {string} title 
-     * @param {Color} color 
-     */
-    constructor(id: any, pxSize: PxSize, title: string, color: p5.Color) {
-        super(id, pxSize, false)
+    constructor(title: string, props: ZoneProps) {
+        super(props, false)
         this.header = new Header(
             title, 
             this.getWidth(), 
             50,
             style.text.size.l 
             )
-        this.corner = new Corner(30, 30, color)
+        this.corner = new Corner(30, 30, ColorUtils.clone(props.color ?? style.color.a))
     }
 
     /**

@@ -1,13 +1,12 @@
 import {style} from "../../app"
-import {VElement, State} from "../../neon"
+import {VElement, State, VElementProps} from "../../neon"
 import {Header} from "../../neon"
-import {PxSize} from "../../neon"
 
 export class ItemTypeDetail extends VElement {
     private readonly header: Header
 
-    constructor(id: any, pxSize: PxSize, title: string) {
-        super(id, pxSize, false)
+    constructor(title: string, props: VElementProps) {
+        super(props, false)
         this.header = new Header(
             title, 
             this.getWidth(), 

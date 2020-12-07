@@ -1,11 +1,11 @@
 import * as p5 from "p5"
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {Easings} from "../../utils/easings"
 import {AnimationUtils, PushPop} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
-export class PointsToCircle extends VElement2{
+export class PointsToCircle extends VElement{
     private readonly points: NeonPoint[] = []
     private readonly neonCircle: NeonCircle
 

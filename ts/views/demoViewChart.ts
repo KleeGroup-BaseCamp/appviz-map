@@ -18,7 +18,7 @@ export class DemoViewChart implements View {
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/chart"))
+                .addElement(new Card("elements/chart", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new LineChart(lineData, {size: pxSize}))

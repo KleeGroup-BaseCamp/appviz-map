@@ -15,7 +15,7 @@ export class DemoViewGauge implements View {
         const captionSize = new PxSize(950, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/gauge"))
+                .addElement(new Card("elements/gauge", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new ArrowGauge(0, {size:pxSize}))

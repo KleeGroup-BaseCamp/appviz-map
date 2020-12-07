@@ -1,8 +1,8 @@
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import * as p5 from "p5"
 
-export class BlackHole3 extends VElement2{
+export class BlackHole3 extends VElement{
     //Inspiration : https://www.openprocessing.org/sketch/1015571
     private readonly radius: number
     private readonly bolts : Bolt[]

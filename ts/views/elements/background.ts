@@ -1,11 +1,11 @@
-import {PxSize} from "../../neon"
+import {VElementProps} from "../../neon"
 import {VElement, State} from "../../neon"
 
 export class Background extends VElement {
   private drawn = false
  
-  constructor(id: any, pxSize: PxSize) {
-    super(id, pxSize, false)
+  constructor(props: VElementProps) {
+    super(props, false)
   }
 
   /**

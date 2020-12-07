@@ -1,5 +1,4 @@
-export * from "./velement"
-export * from "./velement2"
+export * from "./vElement"
 export * from "./layer"
 export * from "./layerBuilder"
 export * from "./gridLayerBuilder"

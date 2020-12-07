@@ -1,9 +1,9 @@
 import * as p5 from "p5"
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../../app"
 
-export class Battery extends VElement2{
+export class Battery extends VElement{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
     private readonly barWidth : number

@@ -1,7 +1,6 @@
 import {style} from "../../app"
-import {VElement, State}  from "../../neon"
+import {VElement, State, VElementProps}  from "../../neon"
 import {AnimationUtils}  from "../../neon"
-import {PxSize} from "../../neon"
 
 export class Grid extends VElement {
   private readonly columns: number
@@ -15,8 +14,8 @@ export class Grid extends VElement {
    * @param {number} columns 
    * @param {number} rows 
    */
-  constructor(id: any, pxSize: PxSize, columns: number, rows: number) {
-    super(id, pxSize, false)
+  constructor(columns: number, rows: number, props: VElementProps) {
+    super(props, false)
     this.columns = columns
     this.rows = rows
     AnimationUtils.animate(150, 0, 1000, (a:number) => this.alpha = a)

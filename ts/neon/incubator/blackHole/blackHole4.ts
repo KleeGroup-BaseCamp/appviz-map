@@ -1,10 +1,10 @@
 import * as p5 from "p5"
-import {VElement2, VElementProps} from "../../core"
+import {VElement, VElementProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import {Easings} from "../../utils/easings"
 import {Gauge} from "../gauge/gauge"
 
-export class BlackHole4 extends VElement2{
+export class BlackHole4 extends VElement{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")
     private readonly secondaryColor: p5.Color = color("HotPink")
     private readonly gauge: Gauge

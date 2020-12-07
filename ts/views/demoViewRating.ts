@@ -15,7 +15,7 @@ export class DemoViewRating implements View {
         const captionSize = new PxSize(850, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("demo_main", projection.getPxSize(), "elements/rating"))
+                .addElement(new Card("elements/rating", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addElement(new SquareRating(0, {size:pxSize}))
