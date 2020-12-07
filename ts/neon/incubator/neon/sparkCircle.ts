@@ -15,9 +15,10 @@ export class SparkCircle extends VElement2{
     private readonly angleStep: number
     
     private readonly color: p5.Color = color(255)
-    private angle = 0
-    private particles: (Spark | LineParticle)[] = []
-
+    private readonly particles: (Spark | LineParticle)[] = []
+  
+    private angle:number = 0
+  
     constructor(props: SparkCircleProps){
         super(props, false)
         this.color = ColorUtils.clone(props.color ?? color(255))

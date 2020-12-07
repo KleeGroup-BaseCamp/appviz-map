@@ -6,6 +6,7 @@ import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 export interface LightProps extends VElementProps{
     color?: p5.Color
 }
+
 export class Light extends VElement2{
     private readonly radius: number
     private readonly color : p5.Color

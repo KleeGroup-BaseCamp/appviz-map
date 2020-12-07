@@ -9,6 +9,7 @@ export interface ArcToCircleProps extends VElementProps{
     startColor?: p5.Color,
     endColor?: p5.Color
 }
+
 export class ArcToCircle extends VElement2{
     private readonly startColor: p5.Color
     private readonly endColor: p5.Color

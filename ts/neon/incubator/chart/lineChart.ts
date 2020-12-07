@@ -8,6 +8,7 @@ import { ColorUtils } from "../../utils"
 export interface LineChartProps extends VElementProps {
     fill?: boolean
 }
+
 export class LineChart extends Chart{
     private readonly xAxis: LinearAxis
     private readonly data: ChartData<number>
