@@ -43,8 +43,9 @@ export class BlackHole3 extends VElement2{
     public needsClear(): boolean {
         return true
     }
-      
-}class Bolt {
+}
+
+class Bolt {
     private pos: p5.Vector
     private vel: p5.Vector
     private radius : number

@@ -1,4 +1,4 @@
-import { AbstractRadar } from "./abstractRadar"
+import {AbstractRadar} from "./abstractRadar"
 
 export class SharpRadar extends AbstractRadar{
     renderGraph(): void{

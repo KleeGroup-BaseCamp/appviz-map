@@ -1,6 +1,6 @@
 import {VText} from "../../components"
 import {State, VElement} from "../../core"
-import {PxPosition, PxSize } from "../../layout"
+import {PxSize } from "../../layout"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {style} from "../../../app"
 import {PopUp2} from "./popup2"
