@@ -1,13 +1,13 @@
 import {VText} from "../../components"
-import {State, VElement} from "../../core"
+import {State, VElement2, VElementProps} from "../../core"
 import {PxSize } from "../../layout"
-import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
+import {AnimationUtils, ColorUtils} from "../../utils"
 import {style} from "../../../app"
 import {PopUp2} from "./popup2"
 import {RadarData2, RadarDataSystem2} from "./radarData2"
 
 
-export abstract class AbstractRadar2 extends VElement{
+export abstract class AbstractRadar2 extends VElement2{
     private readonly popUp: PopUp2
     private readonly labels: VText[] = []
     private readonly scales: VText[] = []
@@ -19,8 +19,8 @@ export abstract class AbstractRadar2 extends VElement{
 
     protected progressRatio : number = 0
 
-    constructor(id: any, pxSize: PxSize, radarData: RadarData2){
-        super(id, pxSize, true)
+    constructor(radarData: RadarData2, props: VElementProps){
+        super(props, true)
 
         for(let label in radarData){
             this.labels.push(new VText(label, style.text.font, this.textSize, style.text.color.secondary))
@@ -38,13 +38,13 @@ export abstract class AbstractRadar2 extends VElement{
             )
         }
 
-        this.popUp = new PopUp2("-1", new PxSize(250, 250), radarData) // TO DO: change harcoded value
+        this.popUp = new PopUp2(radarData, {size: new PxSize(250, 250)}) // TO DO: change harcoded value
         textSize(this.textSize)
         textFont(style.text.font)
         const keys = Object.keys(radarData)
         const longestLabelWidth = Math.max(...keys.map(label => textWidth(label)))
         this.textMargin = (textAscent() + textDescent()) / 2
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth()) / 2 - longestLabelWidth - this.textMargin
+        this.radius = min(this.getHeight(), this.getWidth()) / 2 - longestLabelWidth - this.textMargin
         
         this.radarDataSystem = new RadarDataSystem2(radarData, this.radius)
 

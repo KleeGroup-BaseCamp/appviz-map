@@ -1,5 +1,5 @@
 import {VText} from "../../components"
-import {VElement} from "../../core"
+import {VElement2, VElementProps} from "../../core"
 import {PxSize } from "../../layout"
 import {style} from "../../../app"
 import {AbstractRating } from "../rating/abstractRating"
@@ -7,14 +7,14 @@ import {StarRating } from "../rating/starRating"
 import {ColorUtils} from "../../utils"
 import {RadarData2} from "./RadarData2"
 
-export class PopUp2 extends VElement{
+export class PopUp2 extends VElement2{
     private readonly ratings: AbstractRating[] = []
     private readonly labels: VText[] = []
     private readonly size: number
     private readonly padding: number
 
-    constructor(id: any, pxSize: PxSize, value: RadarData2){
-        super(id, pxSize, false)
+    constructor(value: RadarData2, props: VElementProps){
+        super(props, false)
         this.padding = 10
         this.size = style.text.size.xs
         textSize(this.size)
@@ -22,7 +22,7 @@ export class PopUp2 extends VElement{
             const text = `${label}:`
             const width = textWidth(text)
             this.labels.push(new VText(text, style.text.font, this.size))
-            const size = new PxSize(pxSize.getWidth() - 3 * this.padding - width, textAscent() + textDescent())  
+            const size = new PxSize(this.getWidth() - 3 * this.padding - width, textAscent() + textDescent())  
             this.ratings.push(
                 new StarRating(
                     value[label] / 20,  // -> [0, 5]
