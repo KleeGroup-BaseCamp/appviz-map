@@ -1,11 +1,11 @@
 import {style} from "../../../app"
-import {VElement, State, VElementProps, PxSize} from "../.."
+import {Component, State, ComponentProps, PxSize} from "../.."
 import {Header} from "../.."
 
-export class ItemTypeDetail extends VElement {
+export class ItemTypeDetail extends Component {
     private readonly header: Header
 
-    constructor(title: string, props: VElementProps) {
+    constructor(title: string, props: ComponentProps) {
         super(props, false)
         this.header = new Header(
             title, 

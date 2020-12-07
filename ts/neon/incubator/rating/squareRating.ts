@@ -1,8 +1,8 @@
 import {AbstractRating} from "./abstractRating"
 import {style } from "../../../app"
-import {VElementProps} from "../../core";
+import {ComponentProps} from "../../core";
 
-export interface SquareRatingProps extends VElementProps {}
+export interface SquareRatingProps extends ComponentProps {}
 
 export class SquareRating extends AbstractRating{
     

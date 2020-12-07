@@ -1,9 +1,9 @@
 import * as p5 from "p5"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../../app"
 
-export class Battery extends VElement{
+export class Battery extends Component{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
     private readonly barWidth : number
@@ -15,7 +15,7 @@ export class Battery extends VElement{
     private readonly bubbles : Bubble[] = []
     private readonly waves : Wave[] = []
 
-    constructor(percent: number, props: VElementProps){
+    constructor(percent: number, props: ComponentProps){
         super(props, false)
         this.padding = 5
         this.topMargin = 10 // Margin for hat

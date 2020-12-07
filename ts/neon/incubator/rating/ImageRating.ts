@@ -1,9 +1,9 @@
 import {AbstractRating} from "./abstractRating"
 import * as p5 from "p5"
 import {ImageUtils} from "../../utils"
-import {VElementProps} from "../../core";
+import {ComponentProps} from "../../core";
 
-export interface ImageRatingProps extends VElementProps {
+export interface ImageRatingProps extends ComponentProps {
     img : p5.Image
 }
 

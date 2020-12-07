@@ -1,16 +1,16 @@
 import * as p5 from "p5"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {Easings} from "../../utils/easings"
 
 declare let drawingContext: CanvasRenderingContext2D
 
-export interface NeonCirclesProps extends VElementProps{
+export interface NeonCirclesProps extends ComponentProps{
     firstColor?: p5.Color,
     secondColor?: p5.Color
 }
 
-export class NeonCircles extends VElement{
+export class NeonCircles extends Component{
     private readonly firstColor
     private readonly secondColor
     private readonly circles: NeonCircle[] = []

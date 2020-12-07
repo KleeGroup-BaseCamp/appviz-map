@@ -1,13 +1,13 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
-export interface LightProps extends VElementProps{
+export interface LightProps extends ComponentProps{
     color?: p5.Color
 }
 
-export class Light extends VElement{
+export class Light extends Component{
     private readonly radius: number
     private readonly color : p5.Color
 

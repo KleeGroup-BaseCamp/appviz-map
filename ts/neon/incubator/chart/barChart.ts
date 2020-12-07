@@ -2,13 +2,13 @@ import {CategoryAxis} from "./categoryAxis"
 import {style} from "../../../app"
 import {Chart, ChartData} from "./chart"
 import {ColorUtils} from "../../utils"
-import { VElementProps } from "../../core"
+import { ComponentProps } from "../../core"
 
 export class BarChart extends Chart{
     private readonly xAxis: CategoryAxis
     private readonly data: ChartData<string>
 
-    constructor(data: ChartData<string>, props: VElementProps){
+    constructor(data: ChartData<string>, props: ComponentProps){
         super(data, {
             ...props, 
             rightPadding: 0,

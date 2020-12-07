@@ -1,14 +1,14 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {ColorUtils} from "../../utils"
 
-export interface VTextProps extends VElementProps{
+export interface VTextProps extends ComponentProps{
     fontSize?: number
     fontColor?: p5.Color
     font?: p5.Font
 }
-export class VText extends VElement{
+export class VText extends Component{
     private readonly font: p5.Font
     private readonly fontSize: number
     private readonly color: p5.Color

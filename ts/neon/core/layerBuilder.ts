@@ -1,17 +1,17 @@
-import {PositionedElement, VElement, Layer} from "."
+import {PositionedComponent, Component, Layer} from "."
 import {PxPosition} from "../layout"
 
 export class LayerBuilder {
-  private readonly positionedElements: PositionedElement[] = []
+  private readonly positionedComponents: PositionedComponent[] = []
 
   /**
-   * Adds an element 
+   * Adds a component 
    * 
-   * @param {VElement} element 
+   * @param {Component} component 
    * @param {PxPosition} pxPosition
    */
-  public addElement(element: VElement, pxPosition: PxPosition = new PxPosition(0, 0)): LayerBuilder  {
-    this.positionedElements.push({ element, pxPosition})
+  public addComponent(component: Component, pxPosition: PxPosition = new PxPosition(0, 0)): LayerBuilder  {
+    this.positionedComponents.push({ component, pxPosition})
     return this
   }
 
@@ -21,6 +21,6 @@ export class LayerBuilder {
    * @returns {Layer} layer
    */
   public build(): Layer {
-    return new Layer(this.positionedElements)
+    return new Layer(this.positionedComponents)
   }
 }

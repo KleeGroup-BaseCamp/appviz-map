@@ -1,7 +1,7 @@
-import { VElement } from "."
+import { Component } from "."
 
 export interface VEvent {
-    readonly sourceElement: VElement
+    readonly sourceComponent: Component
     readonly action: string
     readonly payload? : any
 }

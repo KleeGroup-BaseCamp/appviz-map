@@ -1,16 +1,16 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
-export interface ArcToCircleProps extends VElementProps{
+export interface ArcToCircleProps extends ComponentProps{
     startColor?: p5.Color,
     endColor?: p5.Color
 }
 
-export class ArcToCircle extends VElement{
+export class ArcToCircle extends Component{
     private readonly startColor: p5.Color
     private readonly endColor: p5.Color
 

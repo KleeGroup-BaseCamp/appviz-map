@@ -1,11 +1,11 @@
 import {PxPosition} from "../../layout"
-import {VElementProps} from "../../core"
+import {ComponentProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
 import {style} from "../../../app"
 import {Chart, ChartData} from "./chart"
 import { ColorUtils } from "../../utils"
 
-export interface LineChartProps extends VElementProps {
+export interface LineChartProps extends ComponentProps {
     fill?: boolean
 }
 

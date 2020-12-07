@@ -1,8 +1,8 @@
 import {style} from "../../../app"
-import {VElement, State, VElementProps}  from "../.."
+import {Component, State, ComponentProps}  from "../.."
 import {AnimationUtils}  from "../.."
 
-export class Grid extends VElement {
+export class Grid extends Component {
   private readonly columns: number
   private readonly rows: number
   private  alpha? : number
@@ -14,7 +14,7 @@ export class Grid extends VElement {
    * @param {number} columns 
    * @param {number} rows 
    */
-  constructor(columns: number, rows: number, props: VElementProps) {
+  constructor(columns: number, rows: number, props: ComponentProps) {
     super(props, false)
     this.columns = columns
     this.rows = rows

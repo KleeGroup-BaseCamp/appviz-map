@@ -13,18 +13,18 @@ export class DemoViewChart implements View {
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("elements/chart", {size: projection.getPxSize()}))
+                .addComponent(new Card("components/chart", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new LineChart(lineData, {size: pxSize}))
-                .addElement(new LineChart(lineData, {size: pxSize, fill: true}))
-                .addElement(new BarChart(barData, {size: pxSize}))
-                .addElement(new DonutChart(donutData, {size: pxSize}))
+                .addComponent(new LineChart(lineData, {size: pxSize}))
+                .addComponent(new LineChart(lineData, {size: pxSize, fill: true}))
+                .addComponent(new BarChart(barData, {size: pxSize}))
+                .addComponent(new DonutChart(donutData, {size: pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("Line chart", {size: captionSize}))
-                .addElement(new Caption("Filled line chart", {size: captionSize}))
-                .addElement(new Caption("Bar chart", {size: captionSize}))
-                .addElement(new Caption("Donut chart", {size: captionSize}))
+                .addComponent(new Caption("Line chart", {size: captionSize}))
+                .addComponent(new Caption("Filled line chart", {size: captionSize}))
+                .addComponent(new Caption("Bar chart", {size: captionSize}))
+                .addComponent(new Caption("Donut chart", {size: captionSize}))
                 .build()
             ]
     }

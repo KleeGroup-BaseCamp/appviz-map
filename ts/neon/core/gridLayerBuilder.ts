@@ -1,4 +1,4 @@
-import {PositionedElement, VElement, Layer} from "."
+import {PositionedComponent, Component, Layer} from "."
 import {PxPosition} from "../layout"
 
 type Gap = {
@@ -7,7 +7,7 @@ type Gap = {
 }
 
 export class GridLayerBuilder {
-  private readonly positionedElements: PositionedElement[] = []
+  private readonly positionedComponents: PositionedComponent[] = []
   private readonly gap: Gap
   private x : number = 150
   private y : number = 150
@@ -22,16 +22,16 @@ export class GridLayerBuilder {
 
 
   /**
-   * Adds an element 
+   * Adds a component 
    * 
-   * @param {VElement} element 
+   * @param {Component} component 
    */
-  public addElement(element: VElement): GridLayerBuilder  {
+  public addComponent(component: Component): GridLayerBuilder  {
     const pxPosition: PxPosition = new PxPosition (this.x, this.y) 
-    this.positionedElements.push({element, pxPosition})
+    this.positionedComponents.push({component, pxPosition})
 
-    this.x =  this.x +  this.gap.column + element.getWidth()
-    this.rowHeight = max(this.rowHeight, element.getHeight())
+    this.x =  this.x +  this.gap.column + component.getWidth()
+    this.rowHeight = max(this.rowHeight, component.getHeight())
     return this
   }
 
@@ -52,6 +52,6 @@ export class GridLayerBuilder {
    * @returns {Layer} layer
    */
   public build(): Layer {
-    return new Layer(this.positionedElements)
+    return new Layer(this.positionedComponents)
   }
 }

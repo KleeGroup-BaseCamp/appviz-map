@@ -3,14 +3,14 @@
  */
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement, State, VElementProps, ColorUtils, PxSize} from "../.."
+import {Component, State, ComponentProps, ColorUtils, PxSize} from "../.."
 import {Header, Corner} from "../.."
 
-export interface ZoneProps extends VElementProps{
+export interface ZoneProps extends ComponentProps{
     color?: p5.Color
 }
 
-export class Zone extends VElement {
+export class Zone extends Component {
     private readonly header: Header
     private readonly corner: Corner
 

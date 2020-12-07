@@ -3,35 +3,35 @@ import {State, VEvent} from "."
 
 type Size = "s" | "m" | "l"
 
-export interface VElementProps {
+export interface ComponentProps {
     id?: any,
     size? : Size|PxSize
 }
 
 /**
- * VElement displayed on the map.
+ * Component displayed on the map.
  *
- * An element is
+ * An component is
  *  - displayed in a layer by the 'render' method.
  *  - a bounding box
  *  - selectable -or not-
  *
- * An element has
+ * An component has
  * - an id
  * - a width
  * - a height
  *
- * An element must
+ * An component must
  * - define a rendering method
  * - not depend each other
  *
- * An element can
+ * An component can
  *  - define a specific 'contains' method to handle a specific shape
  */
 
 //export type VEventHandler = (event : VEvent) =>{}
 
-export abstract class VElement {
+export abstract class Component {
   private readonly id: any
   private readonly pxSize: PxSize
   private readonly selectable: boolean
@@ -39,9 +39,9 @@ export abstract class VElement {
   protected readonly centerPosition: PxPosition
 
   
-  constructor(props: VElementProps, selectable: boolean) {
-    this.id = props.id ?? VElement.generateId()
-    this.pxSize = VElement.buildPxSize(props.size)
+  constructor(props: ComponentProps, selectable: boolean) {
+    this.id = props.id ?? Component.generateId()
+    this.pxSize = Component.buildPxSize(props.size)
     this.selectable = selectable
     this.centerPosition = new PxPosition(
       this.pxSize.getWidth() / 2, 
@@ -81,7 +81,7 @@ export abstract class VElement {
     return this.pxSize
   }
   /**
- * @returns {boolean} if the element is selectable
+ * @returns {boolean} if the component is selectable
  */
   public isSelectable(): boolean {
     return this.selectable
@@ -98,7 +98,7 @@ export abstract class VElement {
    *
    * @param {number} x
    * @param {number} y
-   * @return {boolean} if the element contains the point (x, y)
+   * @return {boolean} if the component contains the point (x, y)
    */
   public contains(x: number, y: number): boolean {
     return x > 0

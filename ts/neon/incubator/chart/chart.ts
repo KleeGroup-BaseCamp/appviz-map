@@ -1,15 +1,15 @@
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
 import {style} from "../../../app"
 
 export type ChartData<T extends string | number> = {x: T, y: number}[]
 
-export interface ChartProps extends VElementProps {
+export interface ChartProps extends ComponentProps {
     rightPadding?: number, // Merge into padding object ?
     topPadding?: number
 }
 
-export abstract class Chart extends VElement{
+export abstract class Chart extends Component{
     protected readonly chartHeight: number 
     protected readonly chartWidth: number 
     protected readonly yAxis: LinearAxis

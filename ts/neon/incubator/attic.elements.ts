@@ -8,8 +8,8 @@ import { SharpRadar } from "./radar/sharpRadar"
 import { RadarData } from "./radar/abstractRadar"
 import { SmoothRadar } from "./radar/smoothRadar"
 
-type ElementsSizes = {
-    [elementName: string]: {
+type ComponentsSizes = {
+    [componentName: string]: {
         s: PxSize, 
         m: PxSize, 
         l: PxSize
@@ -20,15 +20,15 @@ const su = 10 /* Size Unit */
 
 type Size = "s" | "m" | "l"
 
-export interface ElementProps { // rename to FactoryProps to avoid confusion with VElement props
+export interface ComponentProps { // rename to FactoryProps to avoid confusion with Component props
     id? : any,
     size? : Size,
 }
 
-export interface RadarProps extends ElementProps {}
+export interface RadarProps extends ComponentProps {}
 
-export class Elements{
-    private static readonly pxSizes: ElementsSizes = { // make keys type (elementNames) ?
+export class Components{
+    private static readonly pxSizes: ComponentsSizes = { // make keys type (componentNames) ?
         wifiSignal: {
             s: new PxSize(5 * su), // change strokeWeight
             m: new PxSize(10 * su), 
@@ -76,7 +76,7 @@ export class Elements{
         },
     }
 
-    public static getSize(size: Size, elementName: string): PxSize{
-        return this.pxSizes[elementName][size]
+    public static getSize(size: Size, componentName: string): PxSize{
+        return this.pxSizes[componentName][size]
     }
 }

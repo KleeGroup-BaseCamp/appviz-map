@@ -1,14 +1,14 @@
 import {AnimationUtils} from "../utils"
-import { VElement } from "."
+import { Component } from "."
 
 export class State {
-    private hoveredElement: VElement | null
-    private selectedElement: VElement | null
+    private hoveredComponent: Component | null
+    private selectedComponent: Component | null
     private dirty: boolean
 
     constructor() {
-        this.hoveredElement = null
-        this.selectedElement = null
+        this.hoveredComponent = null
+        this.selectedComponent = null
         this.dirty = true
     }
 
@@ -34,55 +34,55 @@ export class State {
     }
 
     /**
-     * Marks an element as Hovered
+     * Marks a component as Hovered
      * 
-     * @param {VElement} element 
+     * @param {Component} component 
      */
-    public hover(element: VElement | null): void  {
-        if (this.hoveredElement !== element) {
-            this.hoveredElement = element
+    public hover(component: Component | null): void  {
+        if (this.hoveredComponent !== component) {
+            this.hoveredComponent = component
             this.marksAsDirty()
         }
     }
 
     /**
-     * Is the provided element in Hovered state
+     * Is the provided component in Hovered state
      * 
-     * @param {VElement} element 
+     * @param {Component} component 
      * @returns {boolean}
      */
-    public isHovered(element: VElement): boolean {
-        return element === this.hoveredElement
+    public isHovered(component: Component): boolean {
+        return component === this.hoveredComponent
     }
 
     /**
-     * Marks an element as Selected
+     * Marks a component as Selected
      * 
-     * @param {VElement} element 
+     * @param {Component} component 
      */
-    public select(element: VElement): void  {
-        if (this.selectedElement !== element) {
-            this.selectedElement = element
+    public select(component: Component): void  {
+        if (this.selectedComponent !== component) {
+            this.selectedComponent = component
             this.marksAsDirty()
         }
     }
 
     /**
-     * Is the provided element currently selected
+     * Is the provided component currently selected
      * 
-     * @param {VElement} element 
+     * @param {Component} component 
      * @returns {boolean}
      */
-    public isSelected(element: VElement): boolean {
-        return element === this.selectedElement
+    public isSelected(component: Component): boolean {
+        return component === this.selectedComponent
     }
 
     /**
      * Completly reset the state
      */
     public reset(): void {
-        this.hoveredElement = null
-        this.selectedElement = null
+        this.hoveredComponent = null
+        this.selectedComponent = null
         this.marksAsDirty()
     }
 

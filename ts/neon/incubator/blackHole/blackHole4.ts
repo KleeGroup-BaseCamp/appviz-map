@@ -1,10 +1,10 @@
 import * as p5 from "p5"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import {Easings} from "../../utils/easings"
 import {Gauge} from "../gauge/gauge"
 
-export class BlackHole4 extends VElement{
+export class BlackHole4 extends Component{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")
     private readonly secondaryColor: p5.Color = color("HotPink")
     private readonly gauge: Gauge
@@ -15,7 +15,7 @@ export class BlackHole4 extends VElement{
     private readonly light: OpacityOutCircle
     private readonly hole: OpacityOutCircle
     
-    constructor(percent: number, props: VElementProps){
+    constructor(percent: number, props: ComponentProps){
         super(props, false)
         this.gauge = new Gauge(percent,{size: this.getPxSize()})
         this.weight = 5

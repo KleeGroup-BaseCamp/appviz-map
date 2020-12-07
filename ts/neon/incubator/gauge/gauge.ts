@@ -1,15 +1,15 @@
 import {VText} from "../basics"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
 import {style} from "../../../app"
 import * as p5 from "p5"
 
-export interface GaugeProps extends VElementProps {
+export interface GaugeProps extends ComponentProps {
     firstColor?: p5.Color,
     secondColor?: p5.Color
 }
 
-export class Gauge extends VElement{
+export class Gauge extends Component{
     private readonly firstColor: p5.Color
     private readonly secondColor?: p5.Color
     private readonly radius: number

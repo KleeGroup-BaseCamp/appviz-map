@@ -3,7 +3,7 @@
  */
 import {style, projection} from "../app"
 import {View} from "./view"
-import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ElementLayout} from "../types"
+import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ComponentLayout} from "../types"
 import {Layer, LayerBuilder, PxPosition, GridPosition, PxSize, GridSize, Zone, Group, TextUtils} from "../neon"
 import {ModelRepository, ItemModel} from "../model"
 
@@ -28,7 +28,7 @@ export class TechZoneView implements View {
             const zoneLayout = layout.zones[zoneName]
             const zonePxSize = projection.gridToPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
             const zonePxPosition = projection.gridToPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
-            zonesLayerBuilder.addElement(
+            zonesLayerBuilder.addComponent(
                 new Zone(
                     TextUtils.firstCharUpperCase(zoneName),
                     {
@@ -58,7 +58,7 @@ export class TechZoneView implements View {
                 const groupPxSize = projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
                 const groupPxPosition = projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
                 const paddedGroupPxPosition = new PxPosition(groupPxPosition.getX() + padding.left, groupPxPosition.getY() + padding.top)
-                groupsLayerBuilder.addElement(
+                groupsLayerBuilder.addComponent(
                     new Group(
                         TextUtils.firstCharUpperCase(groupName),
                         itemTypeFrequencies,
@@ -79,7 +79,7 @@ export class TechZoneView implements View {
         return groupsLayerBuilder.build();
     }
 
-    private getGroupPadding(group: ElementLayout, zone: ElementLayout):{ // TO DO : Rename to groupLayout and zoneLayout ?
+    private getGroupPadding(group: ComponentLayout, zone: ComponentLayout):{ // TO DO : Rename to groupLayout and zoneLayout ?
         left: number,
         top: number,
         right: number,

@@ -11,37 +11,37 @@ export class DemoViewGauge implements View {
         const captionSize = new PxSize(950, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("elements/gauge", {size: projection.getPxSize()}))
+                .addComponent(new Card("components/gauge", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new ArrowGauge(0, {size:pxSize}))
-                .addElement(new ArrowGauge(33, {size:pxSize}))
-                .addElement(new ArrowGauge(50, {size:pxSize}))
-                .addElement(new ArrowGauge(66, {size:pxSize}))
-                .addElement(new ArrowGauge(100, {size:pxSize}))
+                .addComponent(new ArrowGauge(0, {size:pxSize}))
+                .addComponent(new ArrowGauge(33, {size:pxSize}))
+                .addComponent(new ArrowGauge(50, {size:pxSize}))
+                .addComponent(new ArrowGauge(66, {size:pxSize}))
+                .addComponent(new ArrowGauge(100, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("ArrowGauge", {size: captionSize}))
+                .addComponent(new Caption("ArrowGauge", {size: captionSize}))
                 .beginRow()
-                .addElement(new StripedGauge(0, {size:pxSize}))
-                .addElement(new StripedGauge(33, {size:pxSize}))
-                .addElement(new StripedGauge(50, {size:pxSize}))
-                .addElement(new StripedGauge(66, {size:pxSize}))
-                .addElement(new StripedGauge(100, {size:pxSize}))
+                .addComponent(new StripedGauge(0, {size:pxSize}))
+                .addComponent(new StripedGauge(33, {size:pxSize}))
+                .addComponent(new StripedGauge(50, {size:pxSize}))
+                .addComponent(new StripedGauge(66, {size:pxSize}))
+                .addComponent(new StripedGauge(100, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("StripedGauge", {size: captionSize}))
+                .addComponent(new Caption("StripedGauge", {size: captionSize}))
                 .beginRow()
-                .addElement(new Gauge(0, {size:pxSize}))
-                .addElement(new Gauge(33, {
+                .addComponent(new Gauge(0, {size:pxSize}))
+                .addComponent(new Gauge(33, {
                         size: pxSize, 
                         firstColor : style.color.b}))
-                .addElement(new Gauge(50, {
+                .addComponent(new Gauge(50, {
                         size:pxSize, 
                         firstColor : style.color.a,
                         secondColor : style.color.c}))
-                .addElement(new Gauge(66, {size:pxSize}))
-                .addElement(new Gauge(100, {size:pxSize}))
+                .addComponent(new Gauge(66, {size:pxSize}))
+                .addComponent(new Gauge(100, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("Gauge", {size: captionSize}))
+                .addComponent(new Caption("Gauge", {size: captionSize}))
                 .build()
             ]
     }

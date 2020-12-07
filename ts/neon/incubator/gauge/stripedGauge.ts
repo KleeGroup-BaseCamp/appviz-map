@@ -1,12 +1,12 @@
 import * as p5 from "p5"
 import {VText} from "../basics"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop} from "../../utils"
 import {style} from "../../../app"
 
-export interface StripedGaugeProps extends VElementProps {}
+export interface StripedGaugeProps extends ComponentProps {}
 
-export class StripedGauge extends VElement{
+export class StripedGauge extends Component{
     private readonly firstColor: p5.Color = style.color.a
     private readonly secondColor: p5.Color = color(0)
     private readonly tertiaryColor: p5.Color = color("#323e52")

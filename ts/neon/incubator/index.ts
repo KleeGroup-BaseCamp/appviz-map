@@ -32,8 +32,6 @@ export * from "./blackHole/blackHole2"
 export * from "./blackHole/blackHole3"
 export * from "./blackHole/blackHole4"
 
-export * from "./caption"
-
 export * from "./chart/lineChart"
 export * from "./chart/barChart"
 export * from "./chart/donutChart"

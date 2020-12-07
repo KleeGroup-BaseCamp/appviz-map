@@ -1,15 +1,15 @@
 import * as p5 from "p5"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {Easings} from "../../utils/easings"
 import {AnimationUtils, PushPop} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
-export class PointsToCircle extends VElement{
+export class PointsToCircle extends Component{
     private readonly points: NeonPoint[] = []
     private readonly neonCircle: NeonCircle
 
-    constructor(props: VElementProps){
+    constructor(props: ComponentProps){
         super(props, false)
         const numOfPoints = 30
         const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.75 // TO DO: estimate space taken by neon

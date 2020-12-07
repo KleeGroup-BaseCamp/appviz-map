@@ -1,14 +1,14 @@
 import {style} from "../../../app";
-import {VElement, VElementProps} from "../../core";
+import {Component, ComponentProps} from "../../core";
 import {AnimationUtils, PushPop} from "../../utils"
 
-export abstract class AbstractRating extends VElement{
+export abstract class AbstractRating extends Component{
     //How many icons are displayed ?
     private readonly icons: number  = 5
 
     protected rate: number
 
-    constructor(rate: number, props :VElementProps){
+    constructor(rate: number, props :ComponentProps){
         super(props, false)
         this.rate = rate
         const duration = 1000 /*ms*/

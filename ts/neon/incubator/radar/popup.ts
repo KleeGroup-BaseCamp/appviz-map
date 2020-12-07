@@ -1,5 +1,5 @@
 import {VText} from "../basics"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {PxSize } from "../../layout"
 import {style} from "../../../app"
 import {AbstractRating } from "../rating/abstractRating"
@@ -7,13 +7,13 @@ import {StarRating } from "../rating/starRating"
 import {ColorUtils} from "../../utils"
 import {RadarData} from "./abstractRadar"
 
-export class PopUp extends VElement{
+export class PopUp extends Component{
     private readonly ratings: AbstractRating[] = []
     private readonly labels: VText[] = []
     private readonly size: number
     private readonly padding: number
 
-    constructor(data: RadarData, props: VElementProps){
+    constructor(data: RadarData, props: ComponentProps){
         super(props, false)
         this.padding = 10
         this.size = style.text.size.xs

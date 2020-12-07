@@ -1,5 +1,5 @@
 import {VText} from "../basics"
-import {State, VElement, VElementProps} from "../../core"
+import {State, Component, ComponentProps} from "../../core"
 import {PxSize} from "../../layout"
 import {AnimationUtils, ColorUtils} from "../../utils"
 import {style} from "../../../app"
@@ -7,7 +7,7 @@ import {PopUp} from "./popup"
 
 export type RadarData = {[label: string]: number}
 
-export abstract class AbstractRadar extends VElement{
+export abstract class AbstractRadar extends Component{
     private readonly popUp: PopUp
     private readonly labels: VText[] = []
     private readonly scales: VText[] = []
@@ -17,7 +17,7 @@ export abstract class AbstractRadar extends VElement{
     protected readonly radius: number
     protected readonly values: number[] 
 
-    constructor(data: RadarData, props: VElementProps){
+    constructor(data: RadarData, props: ComponentProps){
         super(props, true)
         this.values = new Array(Object.keys(data).length)
 

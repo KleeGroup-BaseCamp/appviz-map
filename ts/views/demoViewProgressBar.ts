@@ -11,27 +11,27 @@ export class DemoViewProgressBar implements View {
         const captionSize = new PxSize(1000, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("elements/progress bar", {size: projection.getPxSize()}))
+                .addComponent(new Card("components/progress bar", {size: projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new ProgressBar(0, {size:pxSize}))
-                .addElement(new ProgressBar(50, {
+                .addComponent(new ProgressBar(0, {size:pxSize}))
+                .addComponent(new ProgressBar(50, {
                         size:pxSize,
                         firstColor : style.color.b}))
-                .addElement(new ProgressBar(100,{
+                .addComponent(new ProgressBar(100,{
                     size:pxSize,
                     firstColor : style.color.a,
                     secondColor : style.color.c}))
                 .beginRow(10)
-                .addElement(new Caption("ProgressBar", {size: captionSize}))
+                .addComponent(new Caption("ProgressBar", {size: captionSize}))
                 .beginRow()
-                .addElement(new StripedProgressBar(0,{size:pxSize}))
-                .addElement(new StripedProgressBar(75, {size:pxSize, 
+                .addComponent(new StripedProgressBar(0,{size:pxSize}))
+                .addComponent(new StripedProgressBar(75, {size:pxSize, 
                     firstColor : style.color.b,
                     secondColor :style.color.c}))
-                .addElement(new StripedProgressBar(100,{size:pxSize, icon:Icons.getIcon("data") }))
+                .addComponent(new StripedProgressBar(100,{size:pxSize, icon:Icons.getIcon("data") }))
                 .beginRow(10)
-                .addElement(new Caption("StripedProgressBar", {size: captionSize}))
+                .addComponent(new Caption("StripedProgressBar", {size: captionSize}))
                 .build()
             ]
     }

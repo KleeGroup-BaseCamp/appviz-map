@@ -1,12 +1,12 @@
 import {style} from "../../../app"
-import {VElement, State, VElementProps, PxSize} from "../.."
+import {Component, State, ComponentProps, PxSize} from "../.."
 import {Header} from "../.."
 
-export class Card extends VElement {
+export class Card extends Component {
     private readonly header: Header
  //   private readonly paper: Paper
 
-    constructor(title: string, props: VElementProps) {
+    constructor(title: string, props: ComponentProps) {
         super(props, false)
         this.header = new Header(
             title, 

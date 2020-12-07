@@ -1,12 +1,12 @@
 import * as p5 from "p5"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../../app"
 
-export interface WifiSignalProps extends VElementProps {}
+export interface WifiSignalProps extends ComponentProps {}
 
-export class WifiSignal extends VElement{
+export class WifiSignal extends Component{
     private readonly radius: number
     private readonly circleCenterPosition: PxPosition
     private readonly weight: number

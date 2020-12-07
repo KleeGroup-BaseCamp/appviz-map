@@ -1,8 +1,8 @@
 import {PushPop} from "../../utils"
 import {AbstractRating} from "./abstractRating"
-import {VElementProps} from "../../core";
+import {ComponentProps} from "../../core";
 
-export interface HeartRatingProps extends VElementProps {}
+export interface HeartRatingProps extends ComponentProps {}
 
 export class HeartRating extends AbstractRating{
     

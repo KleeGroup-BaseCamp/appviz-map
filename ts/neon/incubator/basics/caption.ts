@@ -1,11 +1,11 @@
-import {style} from "../../app"
-import {VText} from "./basics"
-import {VElement, VElementProps} from "../core"
+import {style} from "../../../app"
+import {VText} from "."
+import {Component, ComponentProps} from "../../core"
 
-export class Caption extends VElement{
+export class Caption extends Component{
     private readonly vText : VText
 
-    constructor(text: string, props: VElementProps){
+    constructor(text: string, props: ComponentProps){
         super(props, false)
         this.vText = new VText(text, {fontSize: style.text.size.m})
     }

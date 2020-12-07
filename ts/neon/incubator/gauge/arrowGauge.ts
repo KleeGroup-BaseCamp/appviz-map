@@ -1,11 +1,11 @@
 import {VText} from "../basics"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop} from "../../utils"
 import {style} from "../../../app"
 
-export interface ArrowGaugeProps extends VElementProps {}
+export interface ArrowGaugeProps extends ComponentProps {}
 
-export class ArrowGauge extends VElement{
+export class ArrowGauge extends Component{
     private readonly radius: number
     private readonly vtext: VText
 

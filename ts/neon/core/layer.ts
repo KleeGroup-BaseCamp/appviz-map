@@ -1,15 +1,15 @@
-import {VElement, State} from "."
+import {Component, State} from "."
 import {PxPosition} from "../layout"
 import {AnimationUtils} from "../utils"
 import {debug, style} from "../../app"
 
-export type PositionedElement = {pxPosition: PxPosition, element: VElement}
+export type PositionedComponent = {pxPosition: PxPosition, component: Component}
 
 export class Layer {
-  private readonly positionedElements: PositionedElement[]
+  private readonly positionedComponents: PositionedComponent[]
 
-  constructor(positionedElements: PositionedElement[]) {
-    this.positionedElements = positionedElements
+  constructor(positionedComponents: PositionedComponent[]) {
+    this.positionedComponents = positionedComponents
   }
 
   public render(state : State) : void  {
@@ -20,22 +20,22 @@ export class Layer {
       text("Animations : " + AnimationUtils.count(), 50 , 50); 
     }  
 
-    for (let positionedElement of this.positionedElements) {
+    for (let positionedComponent of this.positionedComponents) {
       push()
-      translate(positionedElement.pxPosition.getX(), positionedElement.pxPosition.getY())
+      translate(positionedComponent.pxPosition.getX(), positionedComponent.pxPosition.getY())
 
-      if (positionedElement.element.needsClear()){
+      if (positionedComponent.component.needsClear()){
         noStroke()
         fill(style.color.back)
-        rect(0, 0, positionedElement.element.getWidth(), positionedElement.element.getHeight())
+        rect(0, 0, positionedComponent.component.getWidth(), positionedComponent.component.getHeight())
       }  
-      positionedElement.element.render(state)
+      positionedComponent.component.render(state)
       if (debug){
-        //-- Green border to check if en element is inside its bounding box
+        //-- Green border to check if en component is inside its bounding box
         noFill()
         stroke('green')
         strokeWeight(2)
-        rect(0, 0, positionedElement.element.getWidth(), positionedElement.element.getHeight())
+        rect(0, 0, positionedComponent.component.getWidth(), positionedComponent.component.getHeight())
         //--
       }
       pop()
@@ -43,18 +43,18 @@ export class Layer {
   }
 
   /**
-   * Finds the element positionned in (x, y)
+   * Finds the component positionned in (x, y)
    * 
    * @param {number} x 
    * @param {number} y 
-   * @returns {?VElement} element 
+   * @returns {?Component} component 
    */
-  public findElement(x: number, y: number): VElement | null {
-    for (let positionedElement of this.positionedElements) {
-      const lx = x - positionedElement.pxPosition.getX()
-      const ly = y - positionedElement.pxPosition.getY()
-      if (positionedElement.element.isSelectable() && positionedElement.element.contains(lx, ly))
-        return positionedElement.element
+  public findComponent(x: number, y: number): Component | null {
+    for (let positionedComponent of this.positionedComponents) {
+      const lx = x - positionedComponent.pxPosition.getX()
+      const ly = y - positionedComponent.pxPosition.getY()
+      if (positionedComponent.component.isSelectable() && positionedComponent.component.contains(lx, ly))
+        return positionedComponent.component
     }
     return null
   }

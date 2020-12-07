@@ -29,7 +29,7 @@ export class TechGroupView implements View {
 
     private createGroupLayer(groupModel: GroupModel): Layer{
         return new LayerBuilder()
-            .addElement(
+            .addComponent(
                 new Card(
                     TextUtils.firstCharUpperCase(groupModel.getTitle()),
                     {
@@ -60,7 +60,7 @@ export class TechGroupView implements View {
             const itemTypePxSize = projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
             const itemTypePxPosition = projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
             const typeName = this.types[typePrefix as ItemNamePrefix]
-            itemTypesLayerBuilder.addElement(
+            itemTypesLayerBuilder.addComponent(
                 new ItemTypeDetail(
                     (TextUtils.firstCharUpperCase(typeName)) + "s " + Icons.getIcon(typeName),
                     {size: itemTypePxSize}
@@ -70,7 +70,7 @@ export class TechGroupView implements View {
             const typeItemModels = itemModels.filter((itemModel) => itemModel.getType() === typeName)
             typeItemModels.forEach((itemModel, itemModelIndex) => {
                 const {itemPxPosition, itemPxSize} = this.getItemPx(itemModelIndex, 4, itemTypePxSize, itemTypePxPosition)
-                itemsLayerBuilder.addElement(
+                itemsLayerBuilder.addComponent(
                     new Item(
                         itemModel.getTitle(),
                         {

@@ -11,18 +11,18 @@ export class DemoViewBlackHole implements View {
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addElement(new Card("elements/gauge 2", {size: projection.getPxSize()} ))
+                .addComponent(new Card("components/gauge 2", {size: projection.getPxSize()} ))
                 .build(),
             new GridLayerBuilder()
-                .addElement(new BlackHole4(66, {size: pxSize}))
+                .addComponent(new BlackHole4(66, {size: pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("BlackHole 4", {size: captionSize}))
+                .addComponent(new Caption("BlackHole 4", {size: captionSize}))
                 .beginRow()
-                .addElement(new BlackHole2(66, {size: pxSize}))
-                .addElement(new BlackHole3(66, {size: pxSize}))
+                .addComponent(new BlackHole2(66, {size: pxSize}))
+                .addComponent(new BlackHole3(66, {size: pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("BlackHole 2", {size: captionSize}))
-                .addElement(new Caption("BlackHole 3", {size: captionSize}))
+                .addComponent(new Caption("BlackHole 2", {size: captionSize}))
+                .addComponent(new Caption("BlackHole 3", {size: captionSize}))
                 .build()
             ]
     }

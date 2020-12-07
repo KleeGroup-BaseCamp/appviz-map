@@ -1,13 +1,13 @@
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import * as p5 from "p5"
 
-export class BlackHole3 extends VElement{
+export class BlackHole3 extends Component{
     //Inspiration : https://www.openprocessing.org/sketch/1015571
     private readonly radius: number
     private readonly bolts : Bolt[]
  
-    constructor(percent: number, props: VElementProps){
+    constructor(percent: number, props: ComponentProps){
         super(props, false)
         const duration = 10000 /*ms*/
         this.radius = min (this.getWidth(), this.getHeight())/2

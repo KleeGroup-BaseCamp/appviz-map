@@ -1,4 +1,4 @@
-export * from "./vElement"
+export * from "./component"
 export * from "./layer"
 export * from "./layerBuilder"
 export * from "./gridLayerBuilder"

@@ -1,6 +1,6 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement, State, PushPop, VElementProps, ColorUtils} from "../.."
+import {Component, State, PushPop, ComponentProps, ColorUtils} from "../.."
 import {Button, Header, VText} from "../.."
 import {ProgressBar} from "../.."
 import {PxSize} from "../.."
@@ -8,11 +8,11 @@ import {ItemTypeName, ItemTypeFrequencies} from "../../../types"
 import {Icons} from "./icons"
 
 
-export interface GroupProps extends VElementProps{
+export interface GroupProps extends ComponentProps{
     color?: p5.Color,
     maxValue?: number
 }
-export class Group extends VElement {
+export class Group extends Component {
     private readonly itemTypeFrequencies: ItemTypeFrequencies
     private readonly maxValue: number
     private readonly header: Header

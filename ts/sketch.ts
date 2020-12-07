@@ -4,7 +4,7 @@ import {} from "p5/global"
 import {projection} from "./app"
 import {Detail} from "./detail"
 import {HomeView, TechZoneView, TechGroupView, DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard} from "./views"
-import {State, MapBuilder, LayerBuilder, Map, VElement, VEvent, Group, Item, Background} from "./neon"
+import {State, MapBuilder, LayerBuilder, Map, Component, VEvent, Group, Item, Background} from "./neon"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "./neon"
 import {ViewParams} from "./types"
@@ -32,25 +32,25 @@ export class Sketch {
     if (!this.vizMap){
       throw 'vizMap must be defined'
     }  
-    const element = this.vizMap.findElement(mouseX, mouseY)
-    this.state.hover(element)
-    cursor(element != null ? "pointer" : "default")
+    const component = this.vizMap.findComponent(mouseX, mouseY)
+    this.state.hover(component)
+    cursor(component != null ? "pointer" : "default")
     if (this.state.isActive()) {
       this.vizMap.render(this.state)
     }
   }
   
   private emit(event : VEvent): void{
-    this.state.select(event.sourceElement)
-    this.updateDetail(event.sourceElement)
+    this.state.select(event.sourceComponent)
+    this.updateDetail(event.sourceComponent)
   }
 
   public mouseClicked(x: number, y:number): void  {
     if (this.vizMap){
-      const element = this.vizMap.findElement(x, y)
-      if (element) {
+      const component = this.vizMap.findComponent(x, y)
+      if (component) {
         const event : VEvent = {
-          sourceElement : element,
+          sourceComponent : component,
           action : 'click'        
         }  
         this.emit (event)
@@ -64,14 +64,14 @@ export class Sketch {
   }
 
   /**
-   * @param {?VElement} element
+   * @param {?Component} component
    * 
    * Update the detail Panel  
    */
-  private updateDetail(element: VElement): void {
-    if (element instanceof Group || element instanceof Item) {
-      const type = element instanceof Group ? 'group' : 'item'
-      this.detail.update(type, element.getId()) // TODO: Update to title instead of Id
+  private updateDetail(component: Component): void {
+    if (component instanceof Group || component instanceof Item) {
+      const type = component instanceof Group ? 'group' : 'item'
+      this.detail.update(type, component.getId()) // TODO: Update to title instead of Id
     }
   }
  
@@ -139,9 +139,9 @@ export class Sketch {
 
   private generateMapFromView(viewInstance: View): Map {
     return new MapBuilder()
-      .addLayer(new LayerBuilder().addElement(new Background({size: new PxSize(width,height)})).build())
+      .addLayer(new LayerBuilder().addComponent(new Background({size: new PxSize(width,height)})).build())
       .addLayers(viewInstance.provideLayers(this.modelRepository, this.layout))
-      //.addLayers(new LayerBuilder().addElement(new Grid(-1, projection.getPxSize(), "12", "12")).build())
+      //.addLayers(new LayerBuilder().addComponent(new Grid(-1, projection.getPxSize(), "12", "12")).build())
       .build()
   }
 }

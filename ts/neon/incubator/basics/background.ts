@@ -1,10 +1,10 @@
-import {VElementProps} from "../.."
-import {VElement, State} from "../.."
+import {ComponentProps} from "../.."
+import {Component, State} from "../.."
 
-export class Background extends VElement {
+export class Background extends Component {
   private drawn = false
  
-  constructor(props: VElementProps) {
+  constructor(props: ComponentProps) {
     super(props, false)
   }
 

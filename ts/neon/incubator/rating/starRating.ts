@@ -1,8 +1,8 @@
 import { PushPop } from "../../utils"
 import {AbstractRating} from "./abstractRating"
-import {VElementProps} from "../../core";
+import {ComponentProps} from "../../core";
 
-export interface StarRatingProps extends VElementProps {}
+export interface StarRatingProps extends ComponentProps {}
 
 export class StarRating extends AbstractRating{
     private readonly corners: number = 5

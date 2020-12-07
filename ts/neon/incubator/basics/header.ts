@@ -1,13 +1,13 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
 import {TextUtils} from "../../utils"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 
-export interface HeaderProps extends VElementProps{
+export interface HeaderProps extends ComponentProps{
     fontSize?: number
     font?: p5.Font
 }
-export class Header extends VElement{
+export class Header extends Component{
     private readonly title: string
     private readonly fontSize: number
     private readonly font: p5.Font

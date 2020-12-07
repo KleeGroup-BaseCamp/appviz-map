@@ -1,18 +1,18 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
 import {VText} from "../basics"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
 
 type DonutData = {label: string, value: number}[]
 
-export class DonutChart extends VElement{
+export class DonutChart extends Component{
     private readonly colors: p5.Color[] = [style.color.a, style.color.b, style.color.c, style.color.d]
     private readonly data: DonutData
     private readonly labels: VText[] = []
     private readonly topPadding: number = 20
 
-    constructor(data: DonutData, props: VElementProps){
+    constructor(data: DonutData, props: ComponentProps){
         super(props, false)
         this.data = data
         this.data.map(

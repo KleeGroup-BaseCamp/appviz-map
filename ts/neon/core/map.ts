@@ -1,4 +1,4 @@
-import { VElement, Layer, State } from "."
+import { Component, Layer, State } from "."
 
 export class Map {
   private readonly layers: Layer[]
@@ -20,17 +20,17 @@ export class Map {
   }
 
   /**
-   * Finds the element positionned in (x, y)
+   * Finds the component positionned in (x, y)
    * 
    * @param {number} x 
    * @param {number} y 
-   * @returns {?VElement} element 
+   * @returns {?Component} component 
    */
-  public findElement(x: number, y: number): (VElement | null) {
+  public findComponent(x: number, y: number): (Component | null) {
     for (const layer of this.layers.slice().reverse()) {
-      const element = layer.findElement(x, y)
-      if (element) {
-        return element
+      const component = layer.findComponent(x, y)
+      if (component) {
+        return component
       }
     }
     return null

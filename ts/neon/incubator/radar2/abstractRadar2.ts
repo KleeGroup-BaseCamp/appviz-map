@@ -1,5 +1,5 @@
 import {VText} from "../basics"
-import {State, VElement, VElementProps} from "../../core"
+import {State, Component, ComponentProps} from "../../core"
 import {PxSize } from "../../layout"
 import {AnimationUtils, ColorUtils} from "../../utils"
 import {style} from "../../../app"
@@ -7,7 +7,7 @@ import {PopUp2} from "./popup2"
 import {RadarData2, RadarDataSystem2} from "./radarData2"
 
 
-export abstract class AbstractRadar2 extends VElement{
+export abstract class AbstractRadar2 extends Component{
     private readonly popUp: PopUp2
     private readonly labels: VText[] = []
     private readonly scales: VText[] = []
@@ -19,7 +19,7 @@ export abstract class AbstractRadar2 extends VElement{
 
     protected progressRatio : number = 0
 
-    constructor(radarData: RadarData2, props: VElementProps){
+    constructor(radarData: RadarData2, props: ComponentProps){
         super(props, true)
 
         for(let label in radarData){

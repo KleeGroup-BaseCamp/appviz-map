@@ -1,12 +1,12 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {ColorUtils} from "../../utils"
 
-export interface ButtonProps extends VElementProps{
+export interface ButtonProps extends ComponentProps{
     color?: p5.Color
 }
-export class Button extends VElement{
+export class Button extends Component{
     private readonly color : p5.Color
     /**
      * @constructor

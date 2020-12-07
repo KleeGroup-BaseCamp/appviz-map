@@ -1,13 +1,13 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement, VElementProps} from "../../core"
+import {Component, ComponentProps} from "../../core"
 import {ColorUtils} from "../../utils"
 
 
-export interface CornerProps extends VElementProps{
+export interface CornerProps extends ComponentProps{
     color?: p5.Color
 }
-export class Corner extends VElement{
+export class Corner extends Component{
     private readonly color : p5.Color
 
     constructor(props: CornerProps) {
