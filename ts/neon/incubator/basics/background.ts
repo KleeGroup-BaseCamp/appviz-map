@@ -1,5 +1,5 @@
-import {VElementProps} from "../../neon"
-import {VElement, State} from "../../neon"
+import {VElementProps} from "../.."
+import {VElement, State} from "../.."
 
 export class Background extends VElement {
   private drawn = false

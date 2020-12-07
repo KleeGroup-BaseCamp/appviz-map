@@ -1,6 +1,6 @@
-import {style} from "../../app"
-import {VElement, State, VElementProps} from "../../neon"
-import {TextUtils}  from "../../neon"
+import {style} from "../../../app"
+import {VElement, State, VElementProps} from "../.."
+import {TextUtils}  from "../.."
 
 export class Item extends VElement {
      private readonly title: string

@@ -2,9 +2,9 @@
  * View of a zone.
  */
 import * as p5 from "p5"
-import {style} from "../../app"
-import {VElement, State, VElementProps, ColorUtils, PxSize} from "../../neon"
-import {Header, Corner} from "../../neon"
+import {style} from "../../../app"
+import {VElement, State, VElementProps, ColorUtils, PxSize} from "../.."
+import {Header, Corner} from "../.."
 
 export interface ZoneProps extends VElementProps{
     color?: p5.Color

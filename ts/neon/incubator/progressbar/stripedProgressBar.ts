@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {VText} from "../../components"
+import {VText} from "../basics"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {VElement, VElementProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"

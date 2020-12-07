@@ -1,12 +1,9 @@
 import {projection, icons} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../neon"
-import {Card} from "./elements"
+import {Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, ArrowGauge, StripedGauge,
+     ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating, Caption, Card} from "../neon"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
-
-import {Caption} from "../neon" 
-import {PxSize, Gauge, ArrowGauge, StripedGauge, ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating} from "../neon"
 
 export class DemoViewDashboard implements View {
 

@@ -1,7 +1,7 @@
 import * as p5 from "p5"
-import {style} from "../../app"
-import {TextUtils} from "../utils"
-import {VElement, VElementProps} from "../core"
+import {style} from "../../../app"
+import {TextUtils} from "../../utils"
+import {VElement, VElementProps} from "../../core"
 
 export interface HeaderProps extends VElementProps{
     fontSize?: number

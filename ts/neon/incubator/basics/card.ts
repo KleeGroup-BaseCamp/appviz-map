@@ -1,6 +1,6 @@
-import {style} from "../../app"
-import {VElement, State, VElementProps, PxSize} from "../../neon"
-import {Header} from "../../neon"
+import {style} from "../../../app"
+import {VElement, State, VElementProps, PxSize} from "../.."
+import {Header} from "../.."
 
 export class Card extends VElement {
     private readonly header: Header

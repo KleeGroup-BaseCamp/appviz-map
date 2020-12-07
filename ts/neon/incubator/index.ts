@@ -1,3 +1,4 @@
+
 export * from "./energy/light"
 export * from "./energy/battery"
 
@@ -32,10 +33,11 @@ export * from "./blackHole/blackHole3"
 export * from "./blackHole/blackHole4"
 
 export * from "./caption"
-export * from "./elements"
 
 export * from "./chart/lineChart"
 export * from "./chart/barChart"
 export * from "./chart/donutChart"
 export * from "./chart/linearAxis"
 export * from "./chart/categoryAxis"
+
+export * from "./basics"

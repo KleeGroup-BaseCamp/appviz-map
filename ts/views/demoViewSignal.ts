@@ -1,12 +1,8 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../neon"
-import {Card} from "./elements"
+import {Layer, LayerBuilder, GridLayerBuilder, WifiSignal, BarsSignal, Caption, Card, PxSize} from "../neon"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
-
-import {WifiSignal, BarsSignal, Caption} from "../neon" 
-import {PxSize} from "../neon"
 
 export class DemoViewSignal implements View {
 

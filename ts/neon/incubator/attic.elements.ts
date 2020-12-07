@@ -30,18 +30,18 @@ export interface RadarProps extends ElementProps {}
 export class Elements{
     private static readonly pxSizes: ElementsSizes = { // make keys type (elementNames) ?
         wifiSignal: {
-            s: new PxSize(3 * su), // change strokeWeight
-            m: new PxSize(6 * su), 
-            l: new PxSize(9 * su)
+            s: new PxSize(5 * su), // change strokeWeight
+            m: new PxSize(10 * su), 
+            l: new PxSize(15 * su)
         },
         barsSignal: { // same size --> merge with wifiSignal ?
-            s: new PxSize(3 * su), 
-            m: new PxSize(6 * su), 
-            l: new PxSize(9 * su)
+            s: new PxSize(5 * su), 
+            m: new PxSize(10 * su), 
+            l: new PxSize(15 * su)
         },
         rating: { // All ratings (Abstract rating)
             s: new PxSize(8 * su, 2 * su), // TO DO: fix aliasing problems
-            m: new PxSize(12 * su, 3 * su), 
+            m: new PxSize(12 * su, 3 * su),
             l: new PxSize(16 * su, 4 * su)
         },
         arrowGauge: { // merge with gauge ?

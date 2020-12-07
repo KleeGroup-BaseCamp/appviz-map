@@ -1,4 +1,4 @@
-import {VText} from "../../components"
+import {VText} from "../basics"
 import {VElement, VElementProps} from "../../core"
 import {PxSize } from "../../layout"
 import {style} from "../../../app"

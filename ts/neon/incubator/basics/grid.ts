@@ -1,6 +1,6 @@
-import {style} from "../../app"
-import {VElement, State, VElementProps}  from "../../neon"
-import {AnimationUtils}  from "../../neon"
+import {style} from "../../../app"
+import {VElement, State, VElementProps}  from "../.."
+import {AnimationUtils}  from "../.."
 
 export class Grid extends VElement {
   private readonly columns: number

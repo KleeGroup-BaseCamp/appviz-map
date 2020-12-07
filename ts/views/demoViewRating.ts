@@ -1,12 +1,8 @@
 import {projection, icons} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder} from "../neon"
-import {Card} from "./elements"
+import {Layer, LayerBuilder, GridLayerBuilder, SquareRating, HeartRating, StarRating, ImageRating, Caption, Card, PxSize} from "../neon"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
-
-import {SquareRating, HeartRating, StarRating, ImageRating, Caption} from "../neon" 
-import {PxSize} from "../neon"
 
 export class DemoViewRating implements View {
 

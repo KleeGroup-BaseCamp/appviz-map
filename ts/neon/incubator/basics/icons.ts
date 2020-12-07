@@ -1,4 +1,4 @@
-import {ItemTypeName} from "../../types"
+import {ItemTypeName} from "../../../types"
 
 export class Icons {
     private static icons = {

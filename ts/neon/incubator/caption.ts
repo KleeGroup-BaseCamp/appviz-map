@@ -1,5 +1,5 @@
 import {style} from "../../app"
-import {VText} from "../components"
+import {VText} from "./basics"
 import {VElement, VElementProps} from "../core"
 
 export class Caption extends VElement{

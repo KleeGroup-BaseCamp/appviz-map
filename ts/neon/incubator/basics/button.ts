@@ -1,7 +1,7 @@
 import * as p5 from "p5"
-import {style} from "../../app"
-import {VElement, VElementProps} from "../core"
-import {ColorUtils} from "../utils"
+import {style} from "../../../app"
+import {VElement, VElementProps} from "../../core"
+import {ColorUtils} from "../../utils"
 
 export interface ButtonProps extends VElementProps{
     color?: p5.Color

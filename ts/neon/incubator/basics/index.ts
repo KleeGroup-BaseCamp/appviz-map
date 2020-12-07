@@ -6,4 +6,7 @@ export * from "./item"
 export * from "./itemTypeDetail"
 export * from "./zone"
 export * from "./icons"
-
+export * from "./corner"
+export * from "./header"
+export * from "./vtext"
+export * from "./button"
