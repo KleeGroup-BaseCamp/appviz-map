@@ -1,12 +1,4 @@
-import * as p5 from "p5"
 import {PxSize} from "../layout"
-import {StripedGauge} from "./gauge/stripedGauge"
-import {StripedProgressBar} from "./progressbar/stripedProgressBar"
-import {BarsSignal} from "./signal/barsSignal"
-
-import { SharpRadar } from "./radar/sharpRadar"
-import { RadarData } from "./radar/abstractRadar"
-import { SmoothRadar } from "./radar/smoothRadar"
 
 type ComponentsSizes = {
     [componentName: string]: {
