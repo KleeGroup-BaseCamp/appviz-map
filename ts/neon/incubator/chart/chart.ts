@@ -8,6 +8,7 @@ export interface ChartProps extends VElementProps {
     rightPadding?: number, // Merge into padding object ?
     topPadding?: number
 }
+
 export abstract class Chart extends VElement2{
     protected readonly chartHeight: number 
     protected readonly chartWidth: number 
