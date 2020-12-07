@@ -75,22 +75,6 @@ export class Elements{
             l: new PxSize(45 * su)
         },
     }
-    
-    public static createSharpRadar(data: RadarData, props:RadarProps): SharpRadar{
-        return new SharpRadar(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "radar"),
-            data
-        )
-    }
-
-    public static createSmoothRadar(data: RadarData, props:RadarProps): SmoothRadar{
-        return new SmoothRadar(
-            props.id?? -1,
-            Elements.getSize(props.size?? "m", "radar"),
-            data
-        )
-    }
 
     public static getSize(size: Size, elementName: string): PxSize{
         return this.pxSizes[elementName][size]
