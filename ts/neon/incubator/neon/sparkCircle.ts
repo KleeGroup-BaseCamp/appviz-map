@@ -1,25 +1,30 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
+import {VElement2, VElementProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
-export class SparkCircle extends VElement{
+
+export interface SparkCircleProps extends VElementProps{
+    color?: p5.Color
+}
+export class SparkCircle extends VElement2{
     private readonly neonArc: NeonArc
     private readonly radius: number
     private readonly angleStep: number
     
-    private color: p5.Color = color(255)
+    private readonly color: p5.Color = color(255)
     private angle = 0
     private particles: (Spark | LineParticle)[] = []
 
-    constructor(id: any, pxSize: PxSize){
-        super(id, pxSize, false)
+    constructor(props: SparkCircleProps){
+        super(props, false)
+        this.color = ColorUtils.clone(props.color ?? color(255))
         this.radius = min(this.getWidth(), this.getHeight()) / 4
         this.angleStep = 10
         this.neonArc = new NeonArc(this.radius, this.angleStep, 2)
+        this.neonArc.withColor(ColorUtils.clone(this.color))
         AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})
     }
 
@@ -59,12 +64,6 @@ export class SparkCircle extends VElement{
     private buildPos(radius: number): p5.Vector{
         return createVector(radius, 0)
             .rotate(radians(this.angle))
-    }
-
-    public withColor(color: p5.Color): SparkCircle{
-        this.color = ColorUtils.clone(color)
-        this.neonArc.withColor(ColorUtils.clone(color))
-        return this
     }
 }
 

@@ -1,18 +1,24 @@
 import * as p5 from "p5"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
-import {AnimationUtils, PushPop} from "../../utils"
+import {VElement2, VElementProps} from "../../core"
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {Easings} from "../../utils/easings"
 
 declare let drawingContext: CanvasRenderingContext2D
 
-export class NeonCircles extends VElement{
-    private readonly primaryColor = color("Violet")
-    private readonly secondaryColor = color("DeepSkyBlue")
+export interface NeonCirclesProps extends VElementProps{
+    firstColor?: p5.Color,
+    secondColor?: p5.Color
+}
+
+export class NeonCircles extends VElement2{
+    private readonly firstColor
+    private readonly secondColor
     private readonly circles: NeonCircle[] = []
 
-    constructor(id: any, pxSize: PxSize){
-        super(id, pxSize, false)
+    constructor(props: NeonCirclesProps){
+        super(props, false)
+        this.firstColor = ColorUtils.clone(props.firstColor ?? color("Violet"))
+        this.secondColor = ColorUtils.clone(props.secondColor ?? color("DeepSkyBlue"))
         const numOfCircles = 5
         const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.8 // TO DO: estimate space taken by neon
         for(let i = 0; i < numOfCircles; i++){
@@ -20,8 +26,8 @@ export class NeonCircles extends VElement{
                 new NeonCircle(
                     (i + 1) / numOfCircles * maxRadius, 
                     maxRadius, 
-                    this.primaryColor, 
-                    this.secondaryColor
+                    this.firstColor, 
+                    this.secondColor
                 )
             )
         }
@@ -49,21 +55,21 @@ export class NeonCircles extends VElement{
 }
 
 class NeonCircle{
-    private readonly primaryColor: p5.Color
-    private readonly secondaryColor: p5.Color
+    private readonly firstColor: p5.Color
+    private readonly secondColor: p5.Color
     private readonly maxRadius: number
     private readonly startRadius: number
     private color: p5.Color
     private radius: number
     private blur: number = 0
 
-    constructor(startRadius: number, maxRadius: number, primaryColor: p5.Color, secondaryColor: p5.Color){
+    constructor(startRadius: number, maxRadius: number, firstColor: p5.Color, secondColor: p5.Color){
         this.startRadius = startRadius
         this.radius = startRadius
         this.maxRadius = maxRadius
-        this.primaryColor = primaryColor
-        this.secondaryColor = secondaryColor
-        this.color = primaryColor
+        this.firstColor = firstColor
+        this.secondColor = secondColor
+        this.color = firstColor
     }
 
     public render(): void{
@@ -85,7 +91,7 @@ class NeonCircle{
             const finalRadius = this.maxRadius / 2
             const ratio = percent / firstAnimEnd
             this.radius = this.startRadius + ratio * (finalRadius - this.startRadius)
-            this.color = lerpColor(this.primaryColor, this.secondaryColor, this.radius / this.maxRadius)
+            this.color = lerpColor(this.firstColor, this.secondColor, this.radius / this.maxRadius)
             this.color.setAlpha(ratio * 255)
         } 
         if (percent >= secondAnimStart && percent < secondAnimEnd){

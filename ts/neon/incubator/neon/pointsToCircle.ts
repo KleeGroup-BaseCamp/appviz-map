@@ -1,17 +1,16 @@
 import * as p5 from "p5"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
+import {VElement2, VElementProps} from "../../core"
 import {Easings} from "../../utils/easings"
 import {AnimationUtils, PushPop} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
-export class PointsToCircle extends VElement{
+export class PointsToCircle extends VElement2{
     private readonly points: NeonPoint[] = []
     private readonly neonCircle: NeonCircle
 
-    constructor(id: any, pxSize: PxSize){
-        super(id, pxSize, false)
+    constructor(props: VElementProps){
+        super(props, false)
         const numOfPoints = 30
         const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.75 // TO DO: estimate space taken by neon
         for(let i = 0; i < numOfPoints; i++){
@@ -55,7 +54,7 @@ class NeonPoint{
     @PushPop
     public render(){
         noFill()
-        const vColor = color("DeepSkyBlue")
+        const vColor = color("DeepSkyBlue") // TODO: Pass color as prop/arg
         fill(vColor)
         strokeWeight(2)
         stroke(vColor)

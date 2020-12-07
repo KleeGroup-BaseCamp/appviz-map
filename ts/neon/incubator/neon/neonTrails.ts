@@ -1,16 +1,15 @@
 import * as p5 from "p5";
 import {style} from "../../../app";
-import {VElement} from "../../core";
-import {PxSize} from "../../layout";
+import {VElement2, VElementProps} from "../../core";
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils";
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (all of neon files)
-export class NeonTrails extends VElement{
+export class NeonTrails extends VElement2{
     private readonly trails: Trail[] = []
     private readonly neonArc: NeonArc
     
-    constructor(id: any, pxSize: PxSize){
-        super(id, pxSize, false)
+    constructor(props: VElementProps){
+        super(props, false)
         const radius = min(this.getWidth(), this.getHeight()) / 4
         const numOfTrails = 10
         const angleStep = radians(10)

@@ -1,14 +1,18 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
+import {VElement2, VElementProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally
 
-export class ArcToCircle extends VElement{
-    private startColor: p5.Color = ColorUtils.clone(style.color.a)
-    private endColor: p5.Color = ColorUtils.clone(style.color.c)
+export interface ArcToCircleProps extends VElementProps{
+    startColor?: p5.Color,
+    endColor?: p5.Color
+}
+export class ArcToCircle extends VElement2{
+    private readonly startColor: p5.Color
+    private readonly endColor: p5.Color
+
     private color: p5.Color = ColorUtils.clone(style.color.a)
     private blur: number = 0
     private radius: number = 0
@@ -16,8 +20,10 @@ export class ArcToCircle extends VElement{
     private startAngle: number = 0
     private endAngle: number = 0
 
-    constructor(id: any, pxSize: PxSize){
-        super(id, pxSize, false)
+    constructor(props: ArcToCircleProps){
+        super(props, false)
+        this.startColor = ColorUtils.clone(props.startColor ?? style.color.a)
+        this.endColor = ColorUtils.clone(props.endColor ?? props.startColor ?? style.color.a)
         AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})
     }
     @PushPop
@@ -49,12 +55,6 @@ export class ArcToCircle extends VElement{
 
         const maxStrokeWeight = 4
         this.vStrokeWeight = ratio * maxStrokeWeight
-    }
-
-    public withColors(startColor: p5.Color, endColor: p5.Color): ArcToCircle{
-        this.startColor = ColorUtils.clone(startColor)
-        this.endColor = ColorUtils.clone(endColor)
-        return this
     }
 }
 
