@@ -3,23 +3,22 @@ import {style} from "../../../app"
 import {VElement2, VElementProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
+export interface LightProps extends VElementProps{
+    color?: p5.Color
+}
 export class Light extends VElement2{
     private readonly radius: number
-    
-    private color : p5.Color = color('gold')
+    private readonly color : p5.Color
+
     private value: number
 
-    constructor(value: number, props: VElementProps){
+    constructor(value: number, props: LightProps){
         super(props, false)
         this.value = value
+        this.color = ColorUtils.clone(props.color ?? color('gold'))
         this.radius = min(this.getHeight(), this.getWidth())
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
-    }
-
-    public withColor(color : p5.Color): Light{
-        this.color = ColorUtils.clone(color)
-        return this
     }
 
     @PushPop

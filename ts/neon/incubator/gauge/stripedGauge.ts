@@ -1,7 +1,6 @@
 import * as p5 from "p5"
 import {VText} from "../../components"
 import {VElement2, VElementProps} from "../../core"
-import {PxPosition, PxSize } from "../../layout"
 import {AnimationUtils, PushPop} from "../../utils"
 import {style} from "../../../app"
 
