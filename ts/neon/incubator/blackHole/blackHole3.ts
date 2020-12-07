@@ -1,5 +1,4 @@
-import {VElement, VElement2, VElementProps} from "../../core"
-import {PxSize} from "../../layout"
+import {VElement2, VElementProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import * as p5 from "p5"
 

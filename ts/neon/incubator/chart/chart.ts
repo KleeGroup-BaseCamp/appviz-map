@@ -1,11 +1,14 @@
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
+import {VElement2, VElementProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
 import {style} from "../../../app"
 
 export type ChartData<T extends string | number> = {x: T, y: number}[]
 
-export abstract class Chart extends VElement{
+export interface ChartProps extends VElementProps {
+    rightPadding?: number, // Merge into padding object ?
+    topPadding?: number
+}
+export abstract class Chart extends VElement2{
     protected readonly chartHeight: number 
     protected readonly chartWidth: number 
     protected readonly yAxis: LinearAxis
@@ -15,10 +18,10 @@ export abstract class Chart extends VElement{
     private readonly numOfYTicks = 5
 
 
-    constructor(id: any, pxSize: PxSize, data: ChartData<number> | ChartData<string>, rightPadding: number, topPadding: number, ){
-        super(id, pxSize, false)
-        this.chartWidth = this.getWidth() - this.leftPadding - rightPadding
-        this.chartHeight = this.getHeight() - this.bottomPadding - topPadding
+    constructor(data: ChartData<number> | ChartData<string>, props: ChartProps){
+        super(props, false)
+        this.chartWidth = this.getWidth() - this.leftPadding - (props.rightPadding ?? 0)
+        this.chartHeight = this.getHeight() - this.bottomPadding - (props.topPadding ?? 0)
         const values = (data as ChartData<string | number>).map(entry => entry.y) // ChartData<Union> because map is a generic function
         this.yAxis = new LinearAxis("y", min(values), max(values), 5, this.chartHeight)
     }

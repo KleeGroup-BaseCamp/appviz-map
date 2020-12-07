@@ -1,15 +1,19 @@
-import {PxSize} from "../../layout"
 import {CategoryAxis} from "./categoryAxis"
 import {style} from "../../../app"
 import {Chart, ChartData} from "./chart"
 import {ColorUtils} from "../../utils"
+import { VElementProps } from "../../core"
 
 export class BarChart extends Chart{
     private readonly xAxis: CategoryAxis
     private readonly data: ChartData<string>
 
-    constructor(id: any, pxSize: PxSize, data: ChartData<string>){
-        super(id, pxSize, data, 0, 0)
+    constructor(data: ChartData<string>, props: VElementProps){
+        super(data, {
+            ...props, 
+            rightPadding: 0,
+            topPadding: 0
+        })
         const labels = data.map(entry => entry.x)
         this.xAxis = new CategoryAxis(labels, this.chartWidth)
         this.data = data

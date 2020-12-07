@@ -1,6 +1,5 @@
 import * as p5 from "p5"
-import {VElement, VElement2, VElementProps} from "../../core"
-import {PxSize} from "../../layout"
+import {VElement2, VElementProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import {Easings} from "../../utils/easings"
 import {Gauge} from "../gauge/gauge"

@@ -1,20 +1,28 @@
-import {PxPosition, PxSize} from "../../layout"
+import {PxPosition} from "../../layout"
+import {VElementProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
 import {style} from "../../../app"
 import {Chart, ChartData} from "./chart"
 import { ColorUtils } from "../../utils"
 
+export interface LineChartProps extends VElementProps {
+    fill?: boolean
+}
 export class LineChart extends Chart{
     private readonly xAxis: LinearAxis
     private readonly data: ChartData<number>
     private readonly pointRadius: number
-    private fill: boolean
+    private readonly fill: boolean
 
-    constructor(id: any, pxSize: PxSize, data: ChartData<number>){
+    constructor(data: ChartData<number>, props: LineChartProps){
         const pointRadius = 5
-        super(id, pxSize, data, pointRadius, pointRadius)
+        super(data, {
+            ...props, 
+            rightPadding: pointRadius,
+            topPadding: pointRadius
+        })
         this.pointRadius = pointRadius
-        this.fill = false
+        this.fill = props.fill ?? false
         const xValues = data.map(entry => entry.x)
         this.xAxis = new LinearAxis("x", min(xValues), max(xValues), 5, this.chartWidth)
         this.data = data
@@ -55,14 +63,5 @@ export class LineChart extends Chart{
             vertex(this.chartWidth, 0)
             endShape()
         }
-    }
-
-    /**
-     * Pass all options as an object
-     * @param options 
-     */
-    public withOptions(options: {fill?: boolean}): LineChart{
-        if(options.fill) this.fill = options.fill
-        return this
     }
 }
