@@ -66,6 +66,7 @@ export class TechZoneView implements View {
                         TextUtils.firstCharUpperCase(groupName),
                         itemTypeFrequencies,
                         {
+                            id: groupModel.getId(),
                             size: new PxSize (
                                 groupPxSize.getWidth() - padding.right - padding.left,
                                 groupPxSize.getHeight() - padding.top - padding.bottom
