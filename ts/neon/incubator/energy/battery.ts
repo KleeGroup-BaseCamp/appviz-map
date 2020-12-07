@@ -1,10 +1,9 @@
 import * as p5 from "p5"
-import {VElement} from "../../core"
+import {VElement2, VElementProps} from "../../core"
 import {AnimationUtils} from "../../utils"
 import {style} from "../../../app"
-import {PxSize} from "../../layout"
 
-export class Battery extends VElement{
+export class Battery extends VElement2{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
     private readonly secondaryColor: p5.Color =color("#006400")// Dark green
     private readonly barWidth : number
@@ -16,12 +15,12 @@ export class Battery extends VElement{
     private readonly bubbles : Bubble[] = []
     private readonly waves : Wave[] = []
 
-    constructor(id: any, pxSize: PxSize, percent: number){
-        super(id, pxSize, false)
+    constructor(percent: number, props: VElementProps){
+        super(props, false)
         this.padding = 5
         this.topMargin = 10 // Margin for hat
-        this.barWidth = pxSize.getWidth() - 2 * this.padding
-        this.barHeight = pxSize.getHeight() - 2 * this.padding - this.topMargin
+        this.barWidth = this.getWidth() - 2 * this.padding
+        this.barHeight = this.getHeight() - 2 * this.padding - this.topMargin
         for(let i = 0; i < this.numOfBubbles; i++){
             this.bubbles[i]= this.createBubble()
         }

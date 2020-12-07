@@ -1,19 +1,18 @@
 import * as p5 from "p5"
 import {style} from "../../../app"
-import {VElement} from "../../core"
-import {PxSize} from "../../layout"
+import {VElement2, VElementProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
-export class Light extends VElement{
+export class Light extends VElement2{
     private readonly radius: number
     
     private color : p5.Color = color('gold')
     private value: number
 
-    constructor(id: any, pxSize: PxSize, value: number){
-        super(id, pxSize, false)
+    constructor(value: number, props: VElementProps){
+        super(props, false)
         this.value = value
-        this.radius = min(pxSize.getHeight(), pxSize.getWidth())
+        this.radius = min(this.getHeight(), this.getWidth())
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, value, duration, (s:number) => this.value = s)
     }
