@@ -12,7 +12,7 @@ export class DemoViewProgressBar implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(300, 100)
-        const pxSize2 = new PxSize(350, 100)
+        const captionSize = new PxSize(1000, 35)
         return  [
             new LayerBuilder()
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/progress bar"))
@@ -27,7 +27,7 @@ export class DemoViewProgressBar implements View {
                     firstColor : style.color.a,
                     secondColor : style.color.c}))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(1000, 35), "ProgressBar"))
+                .addElement(new Caption({text: "ProgressBar", size: captionSize}))
                 .beginRow()
                 .addElement(new StripedProgressBar(0,{size:pxSize}))
                 .addElement(new StripedProgressBar(75, {size:pxSize, 
@@ -35,7 +35,7 @@ export class DemoViewProgressBar implements View {
                     secondColor :style.color.c}))
                 .addElement(new StripedProgressBar(100,{size:pxSize, icon:Icons.getIcon("data") }))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(1300, 35), "StripedProgressBar"))
+                .addElement(new Caption({text: "StripedProgressBar", size: captionSize}))
                 .build()
             ]
     }

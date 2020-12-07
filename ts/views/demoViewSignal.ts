@@ -12,6 +12,7 @@ export class DemoViewSignal implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(100)
+        const captionSize = new PxSize(850, 35)
         return  [
             new LayerBuilder()
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/signal"))
@@ -24,7 +25,7 @@ export class DemoViewSignal implements View {
                 .addElement(new WifiSignal(4, {size:pxSize}))
                 .addElement(new WifiSignal(5, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(850, 35), "WifiSignal"))
+                .addElement(new Caption({text: "WifiSignal", size: captionSize}))
                 .beginRow()
                 .addElement(new BarsSignal(0, {size:pxSize}))
                 .addElement(new BarsSignal(1, {size:pxSize}))
@@ -33,7 +34,7 @@ export class DemoViewSignal implements View {
                 .addElement(new BarsSignal(4, {size:pxSize}))
                 .addElement(new BarsSignal(5, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(850, 35), "BarsSignal"))
+                .addElement(new Caption({text: "BarsSignal", size: captionSize}))
                 .build()
         ]
     }

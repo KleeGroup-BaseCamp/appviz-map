@@ -12,7 +12,7 @@ export class DemoViewRating implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(100, 30)
-        const captionpxSize = new PxSize(850, 35)
+        const captionSize = new PxSize(850, 35)
         return  [
             new LayerBuilder()
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/rating"))
@@ -25,7 +25,7 @@ export class DemoViewRating implements View {
                 .addElement(new SquareRating(4.2, {size:pxSize}))
                 .addElement(new SquareRating(5, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("-1", captionpxSize, "SquareRating"))
+                .addElement(new Caption({text: "SquareRating", size: captionSize}))
                 .beginRow()
                 .addElement(new HeartRating(0, {size:pxSize}))
                 .addElement(new HeartRating(1, {size:pxSize}))
@@ -34,7 +34,7 @@ export class DemoViewRating implements View {
                 .addElement(new HeartRating(4.2, {size:pxSize}))
                 .addElement(new HeartRating(5, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("-1", captionpxSize, "HeartRating"))
+                .addElement(new Caption({text: "HeartRating", size: captionSize}))
                 .beginRow()
                 .addElement(new StarRating(0, {size:pxSize}))
                 .addElement(new StarRating(1, {size:pxSize}))
@@ -43,7 +43,7 @@ export class DemoViewRating implements View {
                 .addElement(new StarRating(4.2, {size:pxSize}))
                 .addElement(new StarRating(5, {size:pxSize}))
                 .beginRow(10)
-                .addElement(new Caption("-1", captionpxSize, "StarRating"))
+                .addElement(new Caption({text: "StarRating", size: captionSize}))
                 .beginRow()
                 .addElement(new ImageRating(0, {size:pxSize, img:icons.star}))
                 .addElement(new ImageRating(1, {size:pxSize, img:icons.star}))
@@ -52,7 +52,7 @@ export class DemoViewRating implements View {
                 .addElement(new ImageRating(4.4, {size:pxSize, img:icons.star}))
                 .addElement(new ImageRating(5, {size:pxSize, img:icons.star}))
                 .beginRow(10)
-                .addElement(new Caption("-1", captionpxSize, "ImageRating"))
+                .addElement(new Caption({text: "ImageRating", size: captionSize}))
                 .build()
         ]
     }

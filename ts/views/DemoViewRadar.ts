@@ -19,6 +19,7 @@ export class DemoViewRadar implements View {
             data[0][labels[i]] = values[0][i]
             data[1][labels[i]] = values[1][i]
         }
+        const captionSize = new PxSize(250, 35)
         return  [
             new LayerBuilder()
             .addElement(new Card("demo_main", projection.getPxSize(), "elements/radar"))
@@ -27,14 +28,14 @@ export class DemoViewRadar implements View {
             .addElement(new SharpRadar("-1", pxSize, data[0]))
             .addElement(new SharpRadar2("-1", pxSize, data[0]))
             .beginRow(10)
-            .addElement(new Caption("-1", new PxSize(250, 35), "SharpRadar"))
-            .addElement(new Caption("-1", new PxSize(250, 35), "SharpRadar2"))
+            .addElement(new Caption({text: "SharpRadar", size: captionSize}))
+            .addElement(new Caption({text: "SharpRadar2", size: captionSize}))
             .beginRow()
             .addElement(new SmoothRadar("-1", pxSize, data[0]))
             .addElement(new SmoothRadar2("-1", pxSize, data[0]))
             .beginRow(10)
-            .addElement(new Caption("-1", new PxSize(250, 35), "SmoothRadar"))
-            .addElement(new Caption("-1", new PxSize(250, 35), "SmoothRadar2"))
+            .addElement(new Caption({text: "SmoothRadar", size: captionSize}))
+            .addElement(new Caption({text: "SmoothRadar2", size: captionSize}))
 
             .build()
         ]

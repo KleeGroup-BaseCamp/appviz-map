@@ -1,14 +1,16 @@
 import {style} from "../../app"
 import {VText} from "../components"
-import {VElement} from "../core"
-import {PxSize} from "../layout"
+import {VElement2, VElementProps} from "../core"
 
-export class Caption extends VElement{
+export interface CaptionProps extends VElementProps{
+    text: string
+}
+export class Caption extends VElement2{
     private readonly vText : VText
 
-    constructor(id: any, pxSize: PxSize, text: string){
-        super(id, pxSize, false)
-        this.vText = new VText(text, style.text.font, style.text.size.m)
+    constructor(props: CaptionProps){
+        super(props, false)
+        this.vText = new VText(props.text, style.text.font, style.text.size.m)
     }
 
     public render() : void {

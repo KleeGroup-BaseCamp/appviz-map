@@ -12,6 +12,7 @@ export class DemoViewBlackHole implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(200, 200)
+        const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/gauge 2"))
@@ -19,13 +20,13 @@ export class DemoViewBlackHole implements View {
             new GridLayerBuilder()
                 .addElement(new BlackHole4("-1", pxSize, 66))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(200, 35), "BlackHole 4"))
+                .addElement(new Caption({text: "BlackHole 4", size: captionSize}))
                 .beginRow()
                 .addElement(new BlackHole2("-1", pxSize, 66))
                 .addElement(new BlackHole3("-1", pxSize, 66))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(200, 35), "BlackHole 2"))
-                .addElement(new Caption("-1", new PxSize(200, 35), "BlackHole 3"))
+                .addElement(new Caption({text: "BlackHole 2", size: captionSize}))
+                .addElement(new Caption({text: "BlackHole 3", size: captionSize}))
                 .build()
             ]
     }

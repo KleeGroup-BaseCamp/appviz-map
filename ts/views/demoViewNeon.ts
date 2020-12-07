@@ -12,6 +12,7 @@ export class DemoViewNeon implements View {
 
     public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
         const pxSize = new PxSize(200)
+        const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
                 .addElement(new Card("demo_main", projection.getPxSize(), "elements/neon"))
@@ -23,11 +24,11 @@ export class DemoViewNeon implements View {
                 .addElement(new SparkCircle("-1", pxSize).withColor(style.color.a))
                 .addElement(new NeonTrails("-1", pxSize))
                 .beginRow(10)
-                .addElement(new Caption("-1", new PxSize(200, 35), "Neon circles"))
-                .addElement(new Caption("-1", new PxSize(200, 35), "Arc to circle"))
-                .addElement(new Caption("-1", new PxSize(200, 35), "Points to circle"))
-                .addElement(new Caption("-1", new PxSize(200, 35), "Spark circle"))
-                .addElement(new Caption("-1", new PxSize(200, 35), "Neon trails"))
+                .addElement(new Caption({text: "Neon circles", size: captionSize}))
+                .addElement(new Caption({text: "Arc to circle", size: captionSize}))
+                .addElement(new Caption({text: "Points to circle", size: captionSize}))
+                .addElement(new Caption({text: "Spark circle", size: captionSize}))
+                .addElement(new Caption({text: "Neon trails", size: captionSize}))
                 .build()
             ]
     }
