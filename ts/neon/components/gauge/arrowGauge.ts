@@ -2,7 +2,6 @@ import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop} from "../../utils"
 import {neon} from "../../../app"
-import { PxSize } from "../../layout"
 
 export interface ArrowGaugeProps extends ComponentProps {}
 
@@ -13,14 +12,7 @@ export class ArrowGauge extends Component{
     private percent: number
 
     constructor(percent: number, props:ArrowGaugeProps){
-        // super(
-        //     {
-        //         ...props, 
-        //         size: ArrowGauge.buildPxSize(props.size)
-        //     }, 
-        // false
-        // )
-        super(props, false)
+        super({...props, name: "ArrowGauge"}, false)
         this.percent = percent
         this.radius = min(this.getHeight(), this.getWidth()) / 2
         this.vtext = new VText("", {fontSize: this.getTextSize()})
@@ -28,12 +20,6 @@ export class ArrowGauge extends Component{
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, percent, duration, (s:number) => this.percent = s)
     }
-
-    // private static buildPxSize(size : ArrowGaugeProps["size"]): PxSize{
-    //     return size instanceof PxSize
-    //         ? size 
-    //         : neon.getStyle().pxSizes.arrowGauge[(size ?? "m")]
-    // }
 
     @PushPop
     public render() : void {

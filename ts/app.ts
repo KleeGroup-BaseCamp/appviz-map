@@ -17,7 +17,6 @@ declare global {
 }
 
 const styleBuilder : StyleBuilder = new StyleBuilder()   
-let debug : boolean = true
 let sketch : Sketch
 let neon  : Neon
 let projection : Projection
@@ -49,6 +48,9 @@ window.windowResized = ()=> {
   sketch.windowResized()
 }
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
-window.switchDebug = () => {debug = !debug; sketch.drawView()}
+window.switchDebug = () => {
+  neon.setDebug(!neon.getDebug()) // toggleDebug method ?
+  sketch.drawView()
+}
 
-export {sketch, neon, projection, icons, debug}
+export {sketch, neon, projection, icons}

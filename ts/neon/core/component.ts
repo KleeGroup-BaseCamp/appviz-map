@@ -1,11 +1,13 @@
 import {PxSize, PxPosition} from "../layout"
 import {State, VEvent} from "."
+import {neon} from "../../app"
 
 type Size = "s" | "m" | "l"
 
 export interface ComponentProps {
     id?: any,
     size? : Size|PxSize
+    name?: string
 }
 
 /**
@@ -41,7 +43,7 @@ export abstract class Component {
   
   constructor(props: ComponentProps, selectable: boolean) {
     this.id = props.id ?? Component.generateId()
-    this.pxSize = Component.buildPxSize(props.size)
+    this.pxSize = Component.buildPxSize(props.size, props.name)
     // this.pxSize = props.size as PxSize
     this.selectable = selectable
     this.centerPosition = new PxPosition(
@@ -123,12 +125,27 @@ export abstract class Component {
     return -1
   }
 
-  private static buildPxSize(size? : Size|PxSize): PxSize {
-    if (size instanceof PxSize){
-      return size
-    } else if (size){
-      // return 
-    }
-    return new PxSize(666) //undefined
+  // private static buildPxSize(size? : Size|PxSize): PxSize {
+  //   if (size instanceof PxSize){
+  //     return size
+  //   } else if (size){
+  //     // return 
+  //   }
+  //   return new PxSize(666) //undefined
+  // }
+
+  protected static buildPxSize(size? : Size | PxSize, name?: string): PxSize{
+    console.log(neon.getStyle().pxSizes, name)
+    if (size) {
+      if(size instanceof PxSize) return size
+      else if (name){
+        return neon.getStyle().pxSizes[name][(size ?? "m")]
+      }
+    } 
+    return new PxSize(404)
   }
+
+  // protected static protectedMethod(){
+  //   console.log(this.name)
+  // }
 }

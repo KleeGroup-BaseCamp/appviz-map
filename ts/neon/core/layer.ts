@@ -1,7 +1,7 @@
 import {Component, State} from "."
 import {PxPosition} from "../layout"
 import {AnimationUtils} from "../utils"
-import {debug, neon} from "../../app"
+import {neon} from "../../app"
 
 export type PositionedComponent = {pxPosition: PxPosition, component: Component}
 
@@ -13,7 +13,7 @@ export class Layer {
   }
 
   public render(state : State) : void  {
-    if (debug){
+    if (neon.getDebug()){
       fill('green'); 
       textSize(30)
       text("Frame rate : " + frameRate(), 50 , 30); 
@@ -30,7 +30,7 @@ export class Layer {
         rect(0, 0, positionedComponent.component.getWidth(), positionedComponent.component.getHeight())
       }  
       positionedComponent.component.render(state)
-      if (debug){
+      if (neon.getDebug()){
         //-- Green border to check if en component is inside its bounding box
         noFill()
         stroke('green')

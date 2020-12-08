@@ -10,7 +10,7 @@ export class BarsSignal extends Component{
     private rate: number
 
     constructor(rate: number, props:BarsSignalProps){
-        super(props, false)
+        super({...props, name: "BarsSignal"}, false)
         this.rate = rate
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, rate, duration, (s:number) => this.rate = s)

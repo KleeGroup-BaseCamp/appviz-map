@@ -18,7 +18,7 @@ export abstract class AbstractRadar extends Component{
     protected readonly values: number[] 
 
     constructor(data: RadarData, props: ComponentProps){
-        super(props, true)
+        super({...props, name: "Radar"}, false)
         this.values = new Array(Object.keys(data).length)
 
         this.textSize = this.getTextSize()

@@ -1,5 +1,5 @@
 { 
-    "wifiSignal": {
+    "WifiSignal": {
         "s": {
             "width" : 5
         },
@@ -10,7 +10,7 @@
             "width" : 15
         }
     },
-    "barsSignal": {
+    "BarsSignal": {
         "s": {
             "width" : 5
         }, 
@@ -21,54 +21,54 @@
             "width" : 15
         }
     },
-    "rating": { 
+    "ArrowGauge": {
         "s": {
-            "width" : 8,
+            "width" : 5
+        },
+        "m": {
+            "width" : 10
+        }, 
+        "l": {
+            "width" : 15
+        }
+    },
+    "Gauge": { 
+        "s": {
+            "width" : 5
+        }, 
+        "m": {
+            "width" : 10
+        }, 
+        "l": {
+            "width" : 15
+        }
+    },
+    "StripedGauge": {
+        "s": {
+            "width" : 5
+        },
+        "m": {
+            "width" : 10
+        }, 
+        "l": {
+            "width" : 15
+        }
+    },
+    "Rating": { 
+        "s": {
+            "width" : 10,
             "height": 2
         }, 
         "m": {
-            "width" : 12,
+            "width" : 15,
             "height": 3
         },
         "l": {
-            "width" : 16,
+            "width" : 20,
             "height": 4
         }
     },
-    "arrowGauge": {
-        "s": {
-            "width" : 5
-        },
-        "m": {
-            "width" : 10
-        }, 
-        "l": {
-            "width" : 15
-        }
-    },
-    "gauge": { 
-        "s": {
-            "width" : 5
-        }, 
-        "m": {
-            "width" : 10
-        }, 
-        "l": {
-            "width" : 15
-        }
-    },
-    "stripedGauge": {
-        "s": {
-            "width" : 5
-        },
-        "m": {
-            "width" : 10
-        }, 
-        "l": {
-            "width" : 15
-        }
-    },
-    "progressBar": {
+    "ProgressBar": {
         "s": {
             "width" : 10,
             "height": 2
@@ -82,7 +82,7 @@
             "height": 4
         }
     },
-    "stripedProgressBar": {
+    "StripedProgressBar": {
         "s": {
             "width" : 15,
             "height": 5
@@ -96,7 +96,7 @@
             "height": 8
         }
     },
-    "radar": {
+    "Radar": {
         "s": {
             "width" : 25
         },

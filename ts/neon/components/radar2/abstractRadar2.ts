@@ -20,7 +20,7 @@ export abstract class AbstractRadar2 extends Component{
     protected progressRatio : number = 0
 
     constructor(radarData: RadarData2, props: ComponentProps){
-        super(props, true)
+        super({...props, name: "Radar"}, false)
 
         for(let label in radarData){
             this.labels.push(

@@ -1,7 +1,7 @@
 import {projection, icons} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, ArrowGauge, StripedGauge,
-     ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating, Caption, Card} from "../neon"
+     ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating, Caption, Card, StripedProgressBar} from "../neon"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
@@ -25,10 +25,9 @@ export class DemoViewDashboard implements View {
         .addComponent(new BarsSignal(3, {size}))
         .addComponent(new ArrowGauge(50, {size}))
         .addComponent(new Gauge(50, {size}))
-        .addComponent(new Gauge(50, {size}))
+        .addComponent(new Gauge(50, {size, secondColor: color("pink")}))
         .addComponent(new StripedGauge(50, {size}))
         .beginRow(10)
-        .addComponent(new ProgressBar(50, {size}))
         .addComponent(new ProgressBar(50, {size}))
         .addComponent(new HeartRating(3, {size}))
         .addComponent(new StarRating(3, {size}))
