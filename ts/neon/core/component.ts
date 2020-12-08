@@ -7,7 +7,6 @@ type Size = "s" | "m" | "l"
 export interface ComponentProps {
     id?: any,
     size? : Size|PxSize
-    name?: string
 }
 
 /**
@@ -41,9 +40,9 @@ export abstract class Component {
   protected readonly centerPosition: PxPosition
 
   
-  constructor(props: ComponentProps, selectable: boolean) {
+  constructor(props: ComponentProps, name : string, selectable: boolean) {
     this.id = props.id ?? Component.generateId()
-    this.pxSize = Component.buildPxSize(props.size, props.name)
+    this.pxSize = Component.buildPxSize(props.size, name)
     // this.pxSize = props.size as PxSize
     this.selectable = selectable
     this.centerPosition = new PxPosition(
