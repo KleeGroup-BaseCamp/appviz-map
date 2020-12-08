@@ -9,7 +9,7 @@ export abstract class AbstractRating extends Component{
     protected rate: number
 
     constructor(rate: number, props :ComponentProps){
-        super({...props, name: "Rating"}, false)
+        super(props, "Rating", false)
         this.rate = rate
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, this.icons, duration, (s:number) => this.rate = min(s,rate) )

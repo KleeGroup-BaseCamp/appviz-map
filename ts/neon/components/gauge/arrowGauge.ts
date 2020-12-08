@@ -12,7 +12,7 @@ export class ArrowGauge extends Component{
     private percent: number
 
     constructor(percent: number, props:ArrowGaugeProps){
-        super({...props, name: "ArrowGauge"}, false)
+        super(props, "ArrowGauge", false)
         this.percent = percent
         this.radius = min(this.getHeight(), this.getWidth()) / 2
         this.vtext = new VText("", {fontSize: this.getTextSize()})

@@ -17,7 +17,7 @@ export class StripedGauge extends Component{
     private percent: number
 
     constructor(percent: number, props : StripedGaugeProps){
-        super({...props, name: "StripedGauge"}, false)
+        super(props, "StripedGauge", false)
         this.percent = percent
         this.radius = min(this.getHeight(), this.getWidth()) / 2
         this.vtext = new VText("", {fontSize: this.getTextSize()})

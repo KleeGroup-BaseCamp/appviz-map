@@ -21,7 +21,7 @@ export class StripedProgressBar extends Component{
     private percent: number
 
     constructor(percent: number, props : StripedProgressBarProps) {
-        super({...props, name: "StripedProgressBar"}, false)
+        super(props, "StripedProgressBar", false)
         this.firstColor = props.firstColor ?? ColorUtils.clone(neon.getStyle().color.a)
         this.secondColor = props.secondColor ? ColorUtils.clone(props.secondColor) : undefined
 

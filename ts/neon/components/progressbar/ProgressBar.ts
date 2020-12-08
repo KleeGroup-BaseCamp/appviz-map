@@ -19,7 +19,7 @@ export class ProgressBar extends Component {
     private percent: number
 
     constructor(percent: number, props : ProgressBarProps) {
-        super({...props, name: "ProgressBar"}, false)
+        super(props, "ProgressBar", false)
         this.firstColor = props.firstColor ?? ColorUtils.clone(neon.getStyle().color.a)
         this.secondColor = props.secondColor ? ColorUtils.clone(props.secondColor) : undefined
 
