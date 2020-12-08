@@ -3,7 +3,7 @@ import {VText} from "../basics"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {Component, ComponentProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 
 export interface StripedProgressBarProps extends ComponentProps {
     firstColor?: p5.Color,
@@ -22,14 +22,14 @@ export class StripedProgressBar extends Component{
 
     constructor(percent: number, props : StripedProgressBarProps) {
         super(props, false)
-        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
+        this.firstColor = props.firstColor ?? ColorUtils.clone(neon.getStyle().color.a)
         this.secondColor = props.secondColor ? ColorUtils.clone(props.secondColor) : undefined
 
         this.percent  = percent
         this.hexagon = new Hexagon({size: this.getPxSize()})
         if (props.icon){          
             this.iconProvided = true
-            this.vText = new VText(props.icon, {font: style.icon.font, fontSize: this.getTextSize()}) 
+            this.vText = new VText(props.icon, {font: neon.getStyle().icon.font, fontSize: this.getTextSize()}) 
         } else {
             this.iconProvided = false
             this.vText = new VText("", {fontSize: this.getTextSize()}) // Fallback if no icon provided with 'withIcon'
@@ -74,7 +74,7 @@ export class StripedProgressBar extends Component{
         const xInter = this.hexagon.getCircumRadius() * (2 - cos(radians(60)) / 2)// xCoor of intersection with hexagon
         const yInter = this.getPxSize().getHeight() / 4
         noFill()
-        stroke(style.color.front)
+        stroke(neon.getStyle().color.front)
         strokeWeight(2)
         beginShape()
         vertex(xInter, -yInter)
@@ -104,7 +104,7 @@ export class StripedProgressBar extends Component{
 
     private pickStripeColor(ratio: number): p5.Color{
         if(ratio >= this.percent / 100){
-            return style.color.front
+            return neon.getStyle().color.front
         } else if (this.secondColor){
             return lerpColor(this.firstColor, this.secondColor, ratio)
         }
@@ -113,9 +113,9 @@ export class StripedProgressBar extends Component{
 
     private getTextSize(): number{ // Make into util function and adap to font.icon
         const width = this.getWidth()
-        if (width <= 150) return style.text.size.xxs
-        if (width <= 250) return style.text.size.xs
-        return style.text.size.m
+        if (width <= 150) return neon.getStyle().text.size.xxs
+        if (width <= 250) return neon.getStyle().text.size.xs
+        return neon.getStyle().text.size.m
     }
 }
 export class Hexagon extends Component {
@@ -136,7 +136,7 @@ export class Hexagon extends Component {
     public render() {
         noFill()
         strokeWeight(this.weight)
-        stroke(style.color.front)
+        stroke(neon.getStyle().color.front)
         translate(this.circumCenter.getX(), this.circumCenter.getY())
         beginShape()
         for (let i = 0; i < 6; i++) {

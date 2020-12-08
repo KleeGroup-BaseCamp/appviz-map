@@ -1,4 +1,4 @@
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, State, ComponentProps, PxSize} from "../.."
 import {Header} from "../.."
 
@@ -12,7 +12,7 @@ export class Card extends Component {
             title, 
             {
                 size: new PxSize(this.getWidth(), 100), 
-                fontSize: style.text.size.xxl
+                fontSize: neon.getStyle().text.size.xxl
             }
         )
         //this.paper = new Paper(this.getWidth(), this.getHeight(), 50) 
@@ -47,7 +47,7 @@ export class Card extends Component {
         this.canvas = createGraphics(paperWidth, paperHeight)
 //        colorMode(HSB, 100, 100, 100);
         this.canvas.noStroke()
-        const backColor = ColorUtils.clone(style.color.middle)
+        const backColor = ColorUtils.clone(neon.getStyle().color.middle)
         for (var i = 0; i < paperWidth - 1; i += 2) {
             for (var j = 0; j < paperHeight - 1; j += 2) {
                 backColor.setAlpha(random(arg))

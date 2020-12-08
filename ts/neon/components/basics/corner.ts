@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, ComponentProps} from "../../core"
 import {ColorUtils} from "../../utils"
 
@@ -12,7 +12,7 @@ export class Corner extends Component{
 
     constructor(props: CornerProps) {
         super(props, false)
-        this.color = ColorUtils.clone(props.color ?? style.color.a)
+        this.color = ColorUtils.clone(props.color ?? neon.getStyle().color.a)
     }
 
     public render(): void {

@@ -1,4 +1,4 @@
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {VText} from "../basics"
 
 type ChartType = "x" | "y"
@@ -24,8 +24,8 @@ export class LinearAxis{
                 new VText(
                     text, 
                     {
-                        fontSize: style.text.size.xs, 
-                        fontColor: style.text.color.secondary
+                        fontSize: neon.getStyle().text.size.xs, 
+                        fontColor: neon.getStyle().text.color.secondary
                     }
                 )
             )
@@ -33,7 +33,7 @@ export class LinearAxis{
     }
 
     public render(): void{
-        stroke(style.color.front)
+        stroke(neon.getStyle().color.front)
         this.chartType == "x" 
             ? line(0, 0, this.length, 0) 
             : line(0, 0, 0, -this.length)
@@ -42,7 +42,7 @@ export class LinearAxis{
 
     private renderTicks(){
         const tickLength = 5
-        stroke(style.color.front)
+        stroke(neon.getStyle().color.front)
         push()
         if (this.chartType == "x" ){
             textAlign(CENTER, TOP)
@@ -58,7 +58,7 @@ export class LinearAxis{
             for(let i = 0; i < this.numOfTicks; i++){
                 line(-tickLength / 2, 0, tickLength / 2, 0)
                 push()
-                translate(0, -3) // Numbers in style.text.font are not perfectly centered vertically
+                translate(0, -3) // Numbers in neon.getStyle().text.font are not perfectly centered vertically
                 this.labels[i].render()
                 pop()
                 translate(0, - this.length / this.numOfTicks)

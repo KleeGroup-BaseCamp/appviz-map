@@ -1,7 +1,7 @@
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop} from "../../utils"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import { PxSize } from "../../layout"
 
 export interface ArrowGaugeProps extends ComponentProps {}
@@ -32,7 +32,7 @@ export class ArrowGauge extends Component{
     // private static buildPxSize(size : ArrowGaugeProps["size"]): PxSize{
     //     return size instanceof PxSize
     //         ? size 
-    //         : style.pxSizes.arrowGauge[(size ?? "m")]
+    //         : neon.getStyle().pxSizes.arrowGauge[(size ?? "m")]
     // }
 
     @PushPop
@@ -49,14 +49,14 @@ export class ArrowGauge extends Component{
         noFill()
         strokeCap(ROUND)
         strokeWeight(weight)
-        stroke(style.color.front)
+        stroke(neon.getStyle().color.front)
         arc(0, 0, 
             this.radius * 2 - weight,
             this.radius * 2 - weight,
             -PI,
             0
         )
-        stroke(style.text.color.primary)
+        stroke(neon.getStyle().text.color.primary)
         arc(0, 0,
             this.radius * 2 - weight,
             this.radius * 2 - weight,
@@ -69,7 +69,7 @@ export class ArrowGauge extends Component{
     private renderPointer(): void{
         rotate(this.percent  * PI / 100)
 
-        fill(style.color.front)
+        fill(neon.getStyle().color.front)
         triangle(
             - this.radius /2,
             0,
@@ -100,8 +100,8 @@ export class ArrowGauge extends Component{
     }
 
     private getTextSize(): number{ // Make into util function or use abstract gauge class 
-        if (this.radius <= 25) return style.text.size.xxs
-        if (this.radius <= 100) return style.text.size.m
-        return style.text.size.xxl
+        if (this.radius <= 25) return neon.getStyle().text.size.xxs
+        if (this.radius <= 100) return neon.getStyle().text.size.m
+        return neon.getStyle().text.size.xxl
     }
 }

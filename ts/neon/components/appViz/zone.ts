@@ -2,7 +2,7 @@
  * View of a zone.
  */
 import * as p5 from "p5"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, State, ComponentProps, ColorUtils, PxSize} from "../.."
 import {Header, Corner} from "../.."
 
@@ -20,13 +20,13 @@ export class Zone extends Component {
             title, 
             {
                 size: new PxSize(this.getWidth(), 50),
-                fontSize: style.text.size.l 
+                fontSize: neon.getStyle().text.size.l 
             }
         )
         this.corner = new Corner(
             {
                 size: new PxSize(30, 30),
-                color: ColorUtils.clone(props.color ?? style.color.a)
+                color: ColorUtils.clone(props.color ?? neon.getStyle().color.a)
             }
         )
     }

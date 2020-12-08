@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
@@ -14,7 +14,7 @@ export class ArcToCircle extends Component{
     private readonly startColor: p5.Color
     private readonly endColor: p5.Color
 
-    private color: p5.Color = ColorUtils.clone(style.color.a)
+    private color: p5.Color = ColorUtils.clone(neon.getStyle().color.a)
     private blur: number = 0
     private radius: number = 0
     private vStrokeWeight: number = 0
@@ -23,8 +23,8 @@ export class ArcToCircle extends Component{
 
     constructor(props: ArcToCircleProps){
         super(props, false)
-        this.startColor = ColorUtils.clone(props.startColor ?? style.color.a)
-        this.endColor = ColorUtils.clone(props.endColor ?? props.startColor ?? style.color.a)
+        this.startColor = ColorUtils.clone(props.startColor ?? neon.getStyle().color.a)
+        this.endColor = ColorUtils.clone(props.endColor ?? props.startColor ?? neon.getStyle().color.a)
         AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})
     }
     @PushPop

@@ -1,5 +1,5 @@
 import {CategoryAxis} from "./categoryAxis"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Chart, ChartData} from "./chart"
 import {ColorUtils} from "../../utils"
 import { ComponentProps } from "../../core"
@@ -28,7 +28,7 @@ export class BarChart extends Chart{
         const values = this.data.map(entry => entry.y)
         if (values.length == 0) return
         noStroke()
-        const color = ColorUtils.clone(style.color.a)
+        const color = ColorUtils.clone(neon.getStyle().color.a)
         color.setAlpha(150)
         fill(color)
         strokeWeight(1)

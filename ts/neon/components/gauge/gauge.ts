@@ -1,7 +1,7 @@
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import * as p5 from "p5"
 
 export interface GaugeProps extends ComponentProps {
@@ -20,7 +20,7 @@ export class Gauge extends Component{
     
     constructor(percent: number, props: GaugeProps){
         super(props, false)
-        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
+        this.firstColor = props.firstColor ?? ColorUtils.clone(neon.getStyle().color.a)
         this.secondColor = props.secondColor
 
         this.percent = percent
@@ -41,7 +41,7 @@ export class Gauge extends Component{
         strokeWeight(this.weight)
         
         // Background Arc
-        stroke(style.color.front)
+        stroke(neon.getStyle().color.front)
         this.renderArc(0, TWO_PI)
 
         // Circular progress Bar
@@ -96,8 +96,8 @@ export class Gauge extends Component{
     }
 
     private getTextSize(): number{ // Make into util function or use abstract gauge class
-        if (this.radius <= 25) return style.text.size.xxs
-        if (this.radius <= 100) return style.text.size.m
-        return style.text.size.xxl
+        if (this.radius <= 25) return neon.getStyle().text.size.xxs
+        if (this.radius <= 100) return neon.getStyle().text.size.m
+        return neon.getStyle().text.size.xxl
     }
 }

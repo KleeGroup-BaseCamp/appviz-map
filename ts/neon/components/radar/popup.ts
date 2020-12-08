@@ -1,7 +1,7 @@
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {PxSize } from "../../layout"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {AbstractRating } from "../rating/abstractRating"
 import {StarRating } from "../rating/starRating"
 import {ColorUtils} from "../../utils"
@@ -16,7 +16,7 @@ export class PopUp extends Component{
     constructor(data: RadarData, props: ComponentProps){
         super(props, false)
         this.padding = 10
-        this.size = style.text.size.xs
+        this.size = neon.getStyle().text.size.xs
         textSize(this.size)
         for(let label in data){
             const text = `${label}:`
@@ -39,7 +39,7 @@ export class PopUp extends Component{
  
     renderPopUp(): void{
         noStroke()
-        const c = ColorUtils.clone(style.color.a)
+        const c = ColorUtils.clone(neon.getStyle().color.a)
         c.setAlpha(150)
         fill(c)
         rect(0, 0, this.getPxSize().getWidth(), this.getPxSize().getHeight())
@@ -47,7 +47,7 @@ export class PopUp extends Component{
  
     renderContent(): void{        
         noStroke()
-        fill(style.text.color.primary)
+        fill(neon.getStyle().text.color.primary)
         textSize(this.size)
         textAlign(LEFT, TOP)
         const maxLabelwidth = Math.max(...this.labels.map(label => textWidth(label.getText()))) // CC constructor --> Make utils method ?

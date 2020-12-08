@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, ComponentProps} from "../../core"
 import {ColorUtils} from "../../utils"
 
@@ -18,9 +18,9 @@ export class VText extends Component{
     constructor(text: string, props: VTextProps) {
         super(props, false)
         this.text = text
-        this.fontSize = props.fontSize ?? style.text.size.s
-        this.font = props.font ?? style.text.font
-        this.color = ColorUtils.clone(props.fontColor ?? style.text.color.primary)
+        this.fontSize = props.fontSize ?? neon.getStyle().text.size.s
+        this.font = props.font ?? neon.getStyle().text.font
+        this.color = ColorUtils.clone(props.fontColor ?? neon.getStyle().text.color.primary)
     }
 
     public render(): void {

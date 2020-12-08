@@ -1,6 +1,6 @@
 import {Component, ComponentProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 
 export type ChartData<T extends string | number> = {x: T, y: number}[]
 
@@ -40,7 +40,7 @@ export abstract class Chart extends Component{
     protected abstract renderChart(): void
 
     private renderGrid(){
-        stroke(style.color.front)
+        stroke(neon.getStyle().color.front)
         strokeWeight(0.3)
         for(let i = 0; i < this.numOfXTicks; i++){
             const x = (i / this.numOfXTicks) * this.chartWidth

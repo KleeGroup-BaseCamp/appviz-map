@@ -1,4 +1,4 @@
-import {projection, style} from "../app"
+import {projection, neon} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, StripedGauge, ArrowGauge, Gauge, Caption, Card, PxSize} from "../neon"
 import {ModelRepository} from "../model"
@@ -33,11 +33,11 @@ export class DemoViewGauge implements View {
                 .addComponent(new Gauge(0, {size:pxSize}))
                 .addComponent(new Gauge(33, {
                         size: pxSize, 
-                        firstColor : style.color.b}))
+                        firstColor : neon.getStyle().color.b}))
                 .addComponent(new Gauge(50, {
                         size:pxSize, 
-                        firstColor : style.color.a,
-                        secondColor : style.color.c}))
+                        firstColor : neon.getStyle().color.a,
+                        secondColor : neon.getStyle().color.c}))
                 .addComponent(new Gauge(66, {size:pxSize}))
                 .addComponent(new Gauge(100, {size:pxSize}))
                 .beginRow(10)

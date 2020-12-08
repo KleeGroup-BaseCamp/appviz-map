@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {TextUtils} from "../../utils"
 import {Component, ComponentProps} from "../../core"
 
@@ -14,8 +14,8 @@ export class Header extends Component{
 
     constructor(title: string, props: HeaderProps) {
         super(props, false)
-        this.fontSize = props.fontSize ?? style.text.size.s
-        this.font = props.font ?? style.text.font
+        this.fontSize = props.fontSize ?? neon.getStyle().text.size.s
+        this.font = props.font ?? neon.getStyle().text.font
         this.title = title ? TextUtils.buildDisplayableTitle(title, width, this.fontSize) : "No title"
     }
 
@@ -26,13 +26,13 @@ export class Header extends Component{
 
     private renderBackground(): void {
         noStroke()
-        fill(style.color.front)
+        fill(neon.getStyle().color.front)
         rect (0, 0, this.getWidth(), this.getHeight())
     }
 
     private renderTitle(): void {
         noStroke()
-        fill(style.text.color.primary)
+        fill(neon.getStyle().text.color.primary)
         textSize(this.fontSize)
         textFont(this.font)
         textAlign(CENTER)

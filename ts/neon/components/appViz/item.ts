@@ -1,4 +1,4 @@
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, State, ComponentProps} from "../.."
 import {TextUtils}  from "../.."
 
@@ -7,19 +7,19 @@ export class Item extends Component {
 
     constructor(title: string, props: ComponentProps) {
         super(props, true)
-        this.title = title ? TextUtils.buildDisplayableTitle(title, this.getWidth(), style.text.size.s) : "No title"
+        this.title = title ? TextUtils.buildDisplayableTitle(title, this.getWidth(), neon.getStyle().text.size.s) : "No title"
     }
 
     public render(state : State): void {
         fill(state.isHovered(this) 
-            ? style.color.front
-            : style.color.middle)
+            ? neon.getStyle().color.front
+            : neon.getStyle().color.middle)
         stroke(255)
         rect(0, 0, this.getWidth(), this.getHeight())
         noStroke()
-        fill(style.text.color.primary)
-        textSize(style.text.size.s)
-        textFont(style.text.font)
+        fill(neon.getStyle().text.color.primary)
+        textSize(neon.getStyle().text.size.s)
+        textFont(neon.getStyle().text.font)
         textAlign(CENTER, CENTER)
         text(this.title, 0, 0, this.getWidth(), this.getHeight())
     }

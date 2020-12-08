@@ -1,7 +1,7 @@
 import {Component, State} from "."
 import {PxPosition} from "../layout"
 import {AnimationUtils} from "../utils"
-import {debug, style} from "../../app"
+import {debug, neon} from "../../app"
 
 export type PositionedComponent = {pxPosition: PxPosition, component: Component}
 
@@ -26,7 +26,7 @@ export class Layer {
 
       if (positionedComponent.component.needsClear()){
         noStroke()
-        fill(style.color.back)
+        fill(neon.getStyle().color.back)
         rect(0, 0, positionedComponent.component.getWidth(), positionedComponent.component.getHeight())
       }  
       positionedComponent.component.render(state)

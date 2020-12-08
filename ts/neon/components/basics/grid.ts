@@ -1,4 +1,4 @@
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, State, ComponentProps}  from "../.."
 import {AnimationUtils}  from "../.."
 
@@ -25,7 +25,7 @@ export class Grid extends Component {
    * @override 
    */
   public render(state : State) : void{
-    let color = style.text.color.secondary
+    let color = neon.getStyle().text.color.secondary
     if (this.alpha) {
 //      color.setAlpha(this.alpha)  //TODO
     }

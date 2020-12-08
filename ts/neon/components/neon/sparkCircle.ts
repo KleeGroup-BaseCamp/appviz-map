@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
@@ -122,7 +122,7 @@ class LineParticle{
     public render(): void{
         const mass = this.vel.mag() * 3
         strokeWeight(mass)
-        stroke(style.color.back)
+        stroke(neon.getStyle().color.back)
 		drawingContext.shadowColor = this.color.toString()
 		drawingContext.shadowBlur = 10
         line(this.startPos.x, this.startPos.y, this.pos.x, this.pos.y)
@@ -147,7 +147,7 @@ class NeonArc{
     private readonly radius: number 
     private readonly strokeWeight: number
     private readonly angleStep: number
-    private color: p5.Color = ColorUtils.clone(style.color.a)
+    private color: p5.Color = ColorUtils.clone(neon.getStyle().color.a)
     private startAngle: number = 0 // Duplicate of angle in SparkCircle
     private endAngle: number = 0
 

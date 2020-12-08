@@ -42,3 +42,4 @@ export * from "./basics"
 export * from "./appViz"
 
 export * from "./style"
+export * from "./styleBuilder"

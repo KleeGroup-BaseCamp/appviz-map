@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
@@ -7,7 +7,7 @@ import {PxPosition, PxSize} from "../../layout"
 type DonutData = {label: string, value: number}[]
 
 export class DonutChart extends Component{
-    private readonly colors: p5.Color[] = [style.color.a, style.color.b, style.color.c, style.color.d]
+    private readonly colors: p5.Color[] = [neon.getStyle().color.a, neon.getStyle().color.b, neon.getStyle().color.c, neon.getStyle().color.d]
     private readonly data: DonutData
     private readonly labels: VText[] = []
     private readonly topPadding: number = 20
@@ -20,7 +20,7 @@ export class DonutChart extends Component{
                 new VText(
                     entry.label, 
                     {
-                        fontSize: style.text.size.xs
+                        fontSize: neon.getStyle().text.size.xs
                     }
                 )
             )
@@ -47,7 +47,7 @@ export class DonutChart extends Component{
             arc(0, 0, radius * 2, radius * 2, currAngle, currAngle + angle)
             currAngle += angle
         })
-        fill(style.color.back)
+        fill(neon.getStyle().color.back)
         const cutOutPercentage = 0.5
         circle(0, 0, radius * 2 * cutOutPercentage) 
     }

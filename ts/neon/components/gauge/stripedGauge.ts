@@ -2,12 +2,12 @@ import * as p5 from "p5"
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop} from "../../utils"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 
 export interface StripedGaugeProps extends ComponentProps {}
 
 export class StripedGauge extends Component{
-    private readonly firstColor: p5.Color = style.color.a
+    private readonly firstColor: p5.Color = neon.getStyle().color.a
     private readonly secondColor: p5.Color = color(0)
     private readonly tertiaryColor: p5.Color = color("#323e52")
 
@@ -31,7 +31,7 @@ export class StripedGauge extends Component{
         this.renderArcs()
         
         const innerRadius = this.radius * 0.8
-        fill(style.color.back)
+        fill(neon.getStyle().color.back)
         circle(0, 0, innerRadius * 2)
 
         const text = Math.round(this.percent).toString() + "%" 
@@ -88,8 +88,8 @@ export class StripedGauge extends Component{
     }
 
     private getTextSize(): number{ // Make into util function or use abstract gauge class
-        if (this.radius <= 25) return style.text.size.xxs
-        if (this.radius <= 100) return style.text.size.m
-        return style.text.size.xxl
+        if (this.radius <= 25) return neon.getStyle().text.size.xxs
+        if (this.radius <= 100) return neon.getStyle().text.size.m
+        return neon.getStyle().text.size.xxl
     }
 }

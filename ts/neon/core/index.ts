@@ -5,7 +5,5 @@ export * from "./gridLayerBuilder"
 export * from "./map"
 export * from "./mapBuilder"
 export * from "./state"
-export * from "../components/style"
-export * from "../components/styleBuilder"
 export * from "./vevent"
 

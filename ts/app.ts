@@ -1,4 +1,4 @@
-import {Style, StyleBuilder} from "./neon"
+import {Neon, StyleBuilder} from "./neon"
 import {Projection} from "./neon"
 import {ViewParams} from "./types"
 import {Sketch} from "./sketch"
@@ -19,7 +19,7 @@ declare global {
 const styleBuilder : StyleBuilder = new StyleBuilder()   
 let debug : boolean = true
 let sketch : Sketch
-let style  : Style 
+let neon  : Neon
 let projection : Projection
 let modelRepositoryBuilder : ModelRepositoryBuilder 
 let layout : any
@@ -36,7 +36,7 @@ window.preload = () => {
 }
 
 window.setup = ()=> {
-  style = styleBuilder.build()
+  neon = new Neon(styleBuilder.build()) // StyleBuilder in Neon 
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
   // go to home
   sketch.switchView("home")
@@ -51,4 +51,4 @@ window.windowResized = ()=> {
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
 window.switchDebug = () => {debug = !debug; sketch.drawView()}
 
-export {sketch, style, projection, icons, debug}
+export {sketch, neon, projection, icons, debug}

@@ -1,4 +1,4 @@
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {Component, State, ComponentProps, PxSize} from "../.."
 import {Header} from "../.."
 
@@ -11,8 +11,8 @@ export class ItemTypeDetail extends Component {
             title, 
             {
                 size: new PxSize(this.getWidth(), 60),
-                fontSize: style.text.size.xl,
-                font: style.icon.font
+                fontSize: neon.getStyle().text.size.xl,
+                font: neon.getStyle().icon.font
             }
         )
     }
@@ -25,7 +25,7 @@ export class ItemTypeDetail extends Component {
     private renderBackground(): void {
         strokeWeight(1)
         stroke(255)
-        fill(style.color.middle)
+        fill(neon.getStyle().color.middle)
         rect(0, 0, this.getWidth(), this.getHeight())
     }
 }

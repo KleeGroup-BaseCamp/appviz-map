@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 import {VText} from "../basics"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
 import {Component, ComponentProps} from "../../core"
@@ -20,7 +20,7 @@ export class ProgressBar extends Component {
 
     constructor(percent: number, props : ProgressBarProps) {
         super(props, false)
-        this.firstColor = props.firstColor ?? ColorUtils.clone(style.color.a)
+        this.firstColor = props.firstColor ?? ColorUtils.clone(neon.getStyle().color.a)
         this.secondColor = props.secondColor ? ColorUtils.clone(props.secondColor) : undefined
 
         this.percent  = percent
@@ -52,7 +52,7 @@ export class ProgressBar extends Component {
         translate(vTextWidth + padding, 0)
         strokeWeight(weight)
         strokeJoin(ROUND)
-        stroke(style.color.front)
+        stroke(neon.getStyle().color.front)
         line(0, 0, barWidth, 0)
         
         //There is always a color on the left 
@@ -83,8 +83,8 @@ export class ProgressBar extends Component {
 
     private getTextSize(): number{ // Make into util function
         const width = this.getWidth()
-        if (width <= 100) return style.text.size.xs
-        if (width <= 200) return style.text.size.s
-        return style.text.size.m
+        if (width <= 100) return neon.getStyle().text.size.xs
+        if (width <= 200) return neon.getStyle().text.size.s
+        return neon.getStyle().text.size.m
     }
 }

@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils} from "../../utils"
-import {style} from "../../../app"
+import {neon} from "../../../app"
 
 export class Battery extends Component{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green
@@ -60,7 +60,7 @@ export class Battery extends Component{
         noFill()
         const weight = 2
         strokeWeight(this.padding)
-        stroke(style.color.back)
+        stroke(neon.getStyle().color.back)
         rect(
             this.padding / 2, 
             this.padding / 2 + this.topMargin, 
@@ -70,11 +70,11 @@ export class Battery extends Component{
         )
 
         strokeWeight(weight)
-        stroke(style.text.color.primary)
+        stroke(neon.getStyle().text.color.primary)
         rect(0, this.topMargin, this.getPxSize().getWidth(), this.getPxSize().getHeight() - this.topMargin, 15)
 
         const hatWidth = 30
-        fill(style.text.color.primary)
+        fill(neon.getStyle().text.color.primary)
         rect((this.getPxSize().getWidth() - hatWidth) / 2, 0, hatWidth, this.topMargin - this.padding, 20, 20, 0, 0)
     }
 }
