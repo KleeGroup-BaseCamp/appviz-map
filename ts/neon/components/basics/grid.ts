@@ -1,6 +1,6 @@
-import {neon} from "../../../app"
-import {Component, State, ComponentProps}  from "../.."
-import {AnimationUtils}  from "../.."
+import {neon} from "../../../appViz/app"
+import {Component, State, ComponentProps}  from "../../core"
+import {AnimationUtils}  from "../../utils"
 
 export class Grid extends Component {
   private readonly columns: number

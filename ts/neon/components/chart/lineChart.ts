@@ -1,7 +1,7 @@
 import {PxPosition} from "../../layout"
 import {ComponentProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 import {Chart, ChartData} from "./chart"
 import { ColorUtils } from "../../utils"
 

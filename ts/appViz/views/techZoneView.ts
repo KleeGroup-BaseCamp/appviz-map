@@ -4,8 +4,9 @@
 import {neon, projection} from "../app"
 import {View} from "./view"
 import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ComponentLayout} from "../types"
-import {Layer, LayerBuilder, PxPosition, GridPosition, PxSize, GridSize, Zone, Group, TextUtils} from "../neon"
+import {Layer, LayerBuilder, PxPosition, GridPosition, PxSize, GridSize, TextUtils} from "../../neon"
 import {ModelRepository, ItemModel} from "../model"
+import {Zone, Group} from "../components"
 
 export class TechZoneView implements View {
 

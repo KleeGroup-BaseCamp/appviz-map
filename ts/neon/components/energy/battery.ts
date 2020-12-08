@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils} from "../../utils"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 
 export class Battery extends Component{
     private readonly primaryColor: p5.Color =color("#32CD32")// Light green

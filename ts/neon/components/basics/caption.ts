@@ -1,5 +1,5 @@
-import {neon} from "../../../app"
-import {VText} from "."
+import {neon} from "../../../appViz/app"
+import {VText} from "./vtext"
 import {Component, ComponentProps} from "../../core"
 
 export class Caption extends Component{

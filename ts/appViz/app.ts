@@ -1,5 +1,4 @@
-import {Neon, StyleBuilder} from "./neon"
-import {Projection} from "./neon"
+import {Neon, StyleBuilder,Projection} from "../neon"
 import {ViewParams} from "./types"
 import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
@@ -27,7 +26,7 @@ let icons : {[iconName: string]: p5.Image} = {}
 
 window.preload = () => {
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
-  layout = loadJSON("/ts/views/layout.json")
+  layout = loadJSON("/ts/appViz/views/layout.json")
   styleBuilder.load()
   projection = Projection.buildProjection()
   icons.heart = loadImage('icons/heart.png')

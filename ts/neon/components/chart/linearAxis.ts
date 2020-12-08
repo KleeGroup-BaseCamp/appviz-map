@@ -1,4 +1,4 @@
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 import {VText} from "../basics"
 
 type ChartType = "x" | "y"

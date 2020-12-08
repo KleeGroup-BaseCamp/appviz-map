@@ -1,5 +1,5 @@
 import {CategoryAxis} from "./categoryAxis"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 import {Chart, ChartData} from "./chart"
 import {ColorUtils} from "../../utils"
 import { ComponentProps } from "../../core"

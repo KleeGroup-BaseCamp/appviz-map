@@ -1,6 +1,6 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, Card, PxSize, BlackHole2, BlackHole3, BlackHole4, Caption} from "../neon"
+import {Layer, LayerBuilder, GridLayerBuilder, Card, PxSize, BlackHole2, BlackHole3, BlackHole4, Caption} from "../../neon"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 

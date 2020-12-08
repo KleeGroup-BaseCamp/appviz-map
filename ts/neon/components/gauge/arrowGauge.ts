@@ -1,7 +1,7 @@
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop} from "../../utils"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 
 export interface ArrowGaugeProps extends ComponentProps {}
 

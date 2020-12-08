@@ -1,6 +1,6 @@
 import {Component, ComponentProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 
 export type ChartData<T extends string | number> = {x: T, y: number}[]
 

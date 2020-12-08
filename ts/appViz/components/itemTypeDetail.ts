@@ -1,6 +1,5 @@
-import {neon} from "../../../app"
-import {Component, State, ComponentProps, PxSize} from "../.."
-import {Header} from "../.."
+import {neon} from "../app"
+import {Component, State, ComponentProps, PxSize, Header} from "../../neon"
 
 export class ItemTypeDetail extends Component {
     private readonly header: Header

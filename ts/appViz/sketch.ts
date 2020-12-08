@@ -3,13 +3,14 @@ import {} from "p5/global"
 
 import {projection} from "./app"
 import {Detail} from "./detail"
-import {HomeView, TechZoneView, TechGroupView, DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard} from "./views"
-import {State, MapBuilder, LayerBuilder, Map, Component, VEvent, Group, Item, Background} from "./neon"
+import {HomeView, TechZoneView, TechGroupView, DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
+  DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, View, DemoViewNeon} from "./views"
+import {State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background} from "../neon"
+import {Group, Item} from "./components"
 import {ModelRepository} from "./model"
-import {Projection, PxSize} from "./neon"
+import {Projection, PxSize} from "../neon"
 import {ViewParams} from "./types"
-import {View } from "./views/View"
-import {DemoViewNeon } from "./views/demoViewNeon"
+import {} from "./views"
 
 export class Sketch {
   private readonly state: State = new State()

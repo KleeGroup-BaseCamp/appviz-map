@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import {Component, ComponentProps} from "../../core"
 import {PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 
 export interface BarsSignalProps extends ComponentProps {}
 

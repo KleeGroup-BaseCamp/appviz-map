@@ -3,7 +3,7 @@ import {VText} from "../basics"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {Component, ComponentProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 
 export interface StripedProgressBarProps extends ComponentProps {
     firstColor?: p5.Color,

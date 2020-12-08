@@ -1,7 +1,7 @@
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 import * as p5 from "p5"
 
 export interface GaugeProps extends ComponentProps {

@@ -2,7 +2,7 @@ import {VText} from "../basics"
 import {State, Component, ComponentProps} from "../../core"
 import {PxSize } from "../../layout"
 import {AnimationUtils, ColorUtils} from "../../utils"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 import {PopUp2} from "./popup2"
 import {RadarData2, RadarDataSystem2} from "./radarData2"
 

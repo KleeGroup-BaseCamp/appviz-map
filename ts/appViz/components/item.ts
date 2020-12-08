@@ -1,6 +1,5 @@
-import {neon} from "../../../app"
-import {Component, State, ComponentProps} from "../.."
-import {TextUtils}  from "../.."
+import {neon} from "../app"
+import {Component, State, ComponentProps, TextUtils} from "../../neon"
 
 export class Item extends Component {
      private readonly title: string

@@ -2,9 +2,8 @@
  * View of a zone.
  */
 import * as p5 from "p5"
-import {neon} from "../../../app"
-import {Component, State, ComponentProps, ColorUtils, PxSize} from "../.."
-import {Header, Corner} from "../.."
+import {neon} from "../app"
+import {Component, State, ComponentProps, ColorUtils, PxSize, Header, Corner} from "../../neon"
 
 export interface ZoneProps extends ComponentProps{
     color?: p5.Color

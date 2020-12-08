@@ -1,7 +1,7 @@
 import {Component, State} from "."
 import {PxPosition} from "../layout"
 import {AnimationUtils} from "../utils"
-import {neon} from "../../app"
+import {neon} from "../../appViz/app"
 
 export type PositionedComponent = {pxPosition: PxPosition, component: Component}
 

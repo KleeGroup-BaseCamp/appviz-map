@@ -1,4 +1,4 @@
-import {neon} from "../../../app";
+import {neon} from "../../../appViz/app";
 import {Component, ComponentProps} from "../../core";
 import {AnimationUtils, PushPop} from "../../utils"
 

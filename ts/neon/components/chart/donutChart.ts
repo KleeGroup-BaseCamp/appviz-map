@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {neon} from "../../../app"
+import {neon} from "../../../appViz/app"
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {PxPosition, PxSize} from "../../layout"

@@ -2,9 +2,9 @@ import {View} from "./view"
 import {projection} from "../app"
 import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
 import {Layer, LayerBuilder, PxPosition, GridPosition, PxSize, GridSize, TextUtils, 
-    Card, Item, ItemTypeDetail, Icons} from "../neon"
+    Card} from "../../neon"
 import {ModelRepository, GroupModel} from "../model"
-
+import {Item, ItemTypeDetail, Icons} from "../components"
 export class TechGroupView implements View {
 
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {

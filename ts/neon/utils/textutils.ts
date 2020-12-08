@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {neon} from "../../app"
+import {neon} from "../../appViz/app"
 
 export class TextUtils {
     private static maxCharacters(text: string, width: number): number {

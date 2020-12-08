@@ -1,5 +1,5 @@
 import {ModelRepository} from "../model";
-import {Layer} from "../neon"
+import {Layer} from "../../neon"
 import {Layout} from "../types"
 
 export interface View {

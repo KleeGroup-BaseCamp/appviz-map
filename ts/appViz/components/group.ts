@@ -1,10 +1,7 @@
 import * as p5 from "p5"
-import {neon} from "../../../app"
-import {Component, State, PushPop, ComponentProps, ColorUtils} from "../.."
-import {Button, Header, VText} from "../.."
-import {ProgressBar} from "../.."
-import {PxSize} from "../.."
-import {ItemTypeName, ItemTypeFrequencies} from "../../../types"
+import {neon} from "../app"
+import {Component, State, PushPop, ComponentProps, ColorUtils, Button, Header, VText, ProgressBar, PxSize} from "../../neon"
+import {ItemTypeName, ItemTypeFrequencies} from "../types"
 import {Icons} from "./icons"
 
 

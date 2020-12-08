@@ -1,5 +1,4 @@
-import {ComponentProps} from "../.."
-import {Component, State} from "../.."
+import {ComponentProps, Component, State} from "../../core"
 
 export class Background extends Component {
   private drawn = false

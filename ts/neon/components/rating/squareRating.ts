@@ -1,5 +1,5 @@
 import {AbstractRating} from "./abstractRating"
-import {neon } from "../../../app"
+import {neon } from "../../../appViz/app"
 import {ComponentProps} from "../../core";
 
 export interface SquareRatingProps extends ComponentProps {}

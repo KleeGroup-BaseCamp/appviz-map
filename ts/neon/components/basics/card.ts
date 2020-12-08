@@ -1,6 +1,7 @@
-import {neon} from "../../../app"
-import {Component, State, ComponentProps, PxSize} from "../.."
-import {Header} from "../.."
+import {neon} from "../../../appViz/app"
+import {Component, State, ComponentProps} from "../../core"
+import {PxSize} from "../../layout"
+import {Header} from "./header"
 
 export class Card extends Component {
     private readonly header: Header

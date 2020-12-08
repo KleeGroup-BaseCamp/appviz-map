@@ -1,6 +1,6 @@
 import {PxSize, PxPosition} from "../layout"
 import {State, VEvent} from "."
-import {neon} from "../../app"
+import {neon} from "../../appViz/app"
 
 type Size = "s" | "m" | "l"
 

@@ -1,6 +1,6 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, WifiSignal, BarsSignal, Caption, Card, PxSize} from "../neon"
+import {Layer, LayerBuilder, GridLayerBuilder, WifiSignal, BarsSignal, Caption, Card, PxSize} from "../../neon"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 
