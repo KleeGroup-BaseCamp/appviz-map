@@ -1,30 +1,24 @@
 { 
     "wifiSignal": {
         "s": {
-            "width" : 5,
-            "height": 5
+            "width" : 5
         },
         "m": {
-            "width" : 10,
-            "height": 10
+            "width" : 10
         },
         "l": {
-            "width" : 15,
-            "height": 15
+            "width" : 15
         }
     },
     "barsSignal": {
         "s": {
-            "width" : 5,
-            "height": 5
+            "width" : 5
         }, 
         "m": {
-            "width" : 10,
-            "height": 10
+            "width" : 10
         },
         "l": {
-            "width" : 15,
-            "height": 15
+            "width" : 15
         }
     },
     "rating": { 
@@ -43,44 +37,35 @@
     },
     "arrowGauge": {
         "s": {
-            "width" : 5,
-            "height": 5
+            "width" : 5
         },
         "m": {
-            "width" : 10,
-            "height": 10
+            "width" : 10
         }, 
         "l": {
-            "width" : 15,
-            "height": 15
+            "width" : 15
         }
     },
     "gauge": { 
         "s": {
-            "width" : 5,
-            "height":5
+            "width" : 5
         }, 
         "m": {
-            "width" : 10,
-            "height": 10
+            "width" : 10
         }, 
         "l": {
-            "width" : 15,
-            "height": 15
+            "width" : 15
         }
     },
     "stripedGauge": {
         "s": {
-            "width" : 5,
-            "height": 5
+            "width" : 5
         },
         "m": {
-            "width" : 10,
-            "height": 10
+            "width" : 10
         }, 
         "l": {
-            "width" : 15,
-            "height": 15
+            "width" : 15
         }
     },
     "progressBar": {
@@ -113,16 +98,13 @@
     },
     "radar": {
         "s": {
-            "width" : 25,
-            "height": 25
+            "width" : 25
         },
         "m": {
-            "width" : 35,
-            "height": 35
+            "width" : 35
         }, 
         "l": {
-            "width" : 45,
-            "height": 45
+            "width" : 45
         }
     }
 }

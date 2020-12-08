@@ -42,6 +42,7 @@ export abstract class Component {
   constructor(props: ComponentProps, selectable: boolean) {
     this.id = props.id ?? Component.generateId()
     this.pxSize = Component.buildPxSize(props.size)
+    // this.pxSize = props.size as PxSize
     this.selectable = selectable
     this.centerPosition = new PxPosition(
       this.pxSize.getWidth() / 2, 

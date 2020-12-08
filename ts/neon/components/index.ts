@@ -39,5 +39,6 @@ export * from "./chart/linearAxis"
 export * from "./chart/categoryAxis"
 
 export * from "./basics"
+export * from "./appViz"
 
 export * from "./style"

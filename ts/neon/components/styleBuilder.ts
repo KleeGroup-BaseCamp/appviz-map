@@ -36,21 +36,27 @@ export class StyleBuilder {
         this.iconFont = loadFont("fonts/material-design-outlined.ttf")
     }
 
+    private buildPxSize(size: {width: number, height?: number}): PxSize{
+        return new PxSize(
+            size.width* su, 
+            (size.height ?? size.width) * su
+        )
+    }
+
     private buildPxSizes(): ComponentsSizes{
         const componentsSizes: ComponentsSizes = {}
         for (let componentName in this.pxSizes){
-            const size = this.pxSizes[componentName]
+            const sizes = this.pxSizes[componentName]
             componentsSizes[componentName] = {
-                s: new PxSize(size.s.width, size.s.height ?? size.s.width),
-                m: new PxSize(size.m.width, size.m.height ?? size.m.width),
-                l: new PxSize(size.l.width, size.l.height ?? size.l.width)
+                s: this.buildPxSize(sizes.s),
+                m: this.buildPxSize(sizes.m),
+                l: this.buildPxSize(sizes.l),
             }
         }
         return componentsSizes
     }
 
     public build(): Style {
-        this.buildPxSizes()
         /* DarkTheme */
         return  {
              icon: {
@@ -93,7 +99,7 @@ export class StyleBuilder {
         
                 undefined : color("#fff700"),  /* lemon*/
             },
-            pxSizes: this.buildPxSizes() // make keys type (componentNames) ?
+            pxSizes: this.buildPxSizes() 
         }
     } 
 }
