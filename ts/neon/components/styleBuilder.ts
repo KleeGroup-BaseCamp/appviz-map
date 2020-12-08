@@ -1,9 +1,20 @@
 import * as p5 from "p5"
-import {Style} from "./style"
+import {ComponentsSizes, Style} from "."
+import {PxSize} from "../layout"
 
+const su = 10 // Size Unit
+
+interface sizesJson {
+    [componentName: string]: {
+        s: {width: number, height?: number},
+        m: {width: number, height?: number},
+        l: {width: number, height?: number}
+    }
+}
 export class StyleBuilder {
     private textFont?: p5.Font
     private iconFont? : p5.Font
+    private pxSizes?: sizesJson
 
     constructor() {
     }
@@ -15,13 +26,31 @@ export class StyleBuilder {
         throw 'value must not be null'
     } 
     public load(): StyleBuilder {
-        this.textFont = loadFont("fonts/Montserrat-Regular.ttf")
-        this.iconFont = loadFont("fonts/material-design-outlined.ttf")
+        this.loadFonts()
+        this.pxSizes = loadJSON("/ts/neon/data/sizes.json") as sizesJson // Use relative path ?
         return this
     }
 
+    private loadFonts(): void {
+        this.textFont = loadFont("fonts/Montserrat-Regular.ttf")
+        this.iconFont = loadFont("fonts/material-design-outlined.ttf")
+    }
+
+    private buildPxSizes(): ComponentsSizes{
+        const componentsSizes: ComponentsSizes = {}
+        for (let componentName in this.pxSizes){
+            const size = this.pxSizes[componentName]
+            componentsSizes[componentName] = {
+                s: new PxSize(size.s.width, size.s.height ?? size.s.width),
+                m: new PxSize(size.m.width, size.m.height ?? size.m.width),
+                l: new PxSize(size.l.width, size.l.height ?? size.l.width)
+            }
+        }
+        return componentsSizes
+    }
+
     public build(): Style {
-        
+        this.buildPxSizes()
         /* DarkTheme */
         return  {
              icon: {
@@ -63,8 +92,9 @@ export class StyleBuilder {
                 front : color("#505464"),  /* light dark */
         
                 undefined : color("#fff700"),  /* lemon*/
-            }
-       }
+            },
+            pxSizes: this.buildPxSizes() // make keys type (componentNames) ?
+        }
     } 
 }
 //        /* LightTheme */

@@ -1,4 +1,13 @@
 import * as p5 from "p5"
+import { PxSize } from "../layout";
+
+export type ComponentsSizes = {
+    [componentName: string]: {
+        s: PxSize, 
+        m: PxSize, 
+        l: PxSize
+    }
+}
 
 export interface Style {
     readonly icon:  {  
@@ -41,4 +50,6 @@ export interface Style {
 
         readonly undefined :  p5.Color
     }
+
+    readonly pxSizes: ComponentsSizes
 }
