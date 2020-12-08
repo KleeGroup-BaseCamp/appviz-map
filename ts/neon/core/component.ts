@@ -42,7 +42,7 @@ export abstract class Component {
   
   constructor(props: ComponentProps, name : string, selectable: boolean) {
     this.id = props.id ?? Component.generateId()
-    this.pxSize = Component.buildPxSize(props.size, name)
+    this.pxSize = Component.buildPxSize(name, props.size)
     // this.pxSize = props.size as PxSize
     this.selectable = selectable
     this.centerPosition = new PxPosition(
@@ -124,27 +124,10 @@ export abstract class Component {
     return -1
   }
 
-  // private static buildPxSize(size? : Size|PxSize): PxSize {
-  //   if (size instanceof PxSize){
-  //     return size
-  //   } else if (size){
-  //     // return 
-  //   }
-  //   return new PxSize(666) //undefined
-  // }
-
-  protected static buildPxSize(size? : Size | PxSize, name?: string): PxSize{
-    console.log(neon.getStyle().pxSizes, name)
-    if (size) {
-      if(size instanceof PxSize) return size
-      else if (name){
-        return neon.getStyle().pxSizes[name][(size ?? "m")]
-      }
+  private static buildPxSize(name : string, size? : Size | PxSize): PxSize{
+    if(size instanceof PxSize) {
+      return size
     } 
-    return new PxSize(404)
+    return neon.getStyle().pxSizes[name][(size ?? "m")]
   }
-
-  // protected static protectedMethod(){
-  //   console.log(this.name)
-  // }
 }
