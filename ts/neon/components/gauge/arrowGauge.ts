@@ -34,14 +34,14 @@ export class ArrowGauge extends Component{
         noFill()
         strokeCap(ROUND)
         strokeWeight(weight)
-        stroke(neon.getStyle().color.front)
+        stroke(this.style.color.front)
         arc(0, 0, 
             this.radius * 2 - weight,
             this.radius * 2 - weight,
             -PI,
             0
         )
-        stroke(neon.getStyle().text.color.primary)
+        stroke(this.style.text.color.primary)
         arc(0, 0,
             this.radius * 2 - weight,
             this.radius * 2 - weight,
@@ -54,7 +54,7 @@ export class ArrowGauge extends Component{
     private renderPointer(): void{
         rotate(this.percent  * PI / 100)
 
-        fill(neon.getStyle().color.front)
+        fill(this.style.color.front)
         triangle(
             - this.radius /2,
             0,
@@ -85,8 +85,8 @@ export class ArrowGauge extends Component{
     }
 
     private getTextSize(): number{ // Make into util function or use abstract gauge class 
-        if (this.radius <= 25) return neon.getStyle().text.size.xxs
-        if (this.radius <= 100) return neon.getStyle().text.size.m
-        return neon.getStyle().text.size.xxl
+        if (this.radius <= 25) return this.style.text.size.xxs
+        if (this.radius <= 100) return this.style.text.size.m
+        return this.style.text.size.xxl
     }
 }

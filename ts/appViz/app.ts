@@ -1,4 +1,4 @@
-import {Neon, StyleBuilder,Projection} from "../neon"
+import {n3on, Neon, StyleBuilder,Projection} from "../neon"
 import {ViewParams} from "./types"
 import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
@@ -17,7 +17,6 @@ declare global {
 }
 
 let sketch : Sketch
-let neon  : Neon
 let projection : Projection
 let modelRepositoryBuilder : ModelRepositoryBuilder 
 let layout : any
@@ -27,14 +26,13 @@ let icons : {[iconName: string]: p5.Image} = {}
 window.preload = () => {
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
   layout = loadJSON("/ts/appViz/views/layout.json")
-  neon.load()
+  n3on.load()
   projection = Projection.buildProjection()
   icons.heart = loadImage('icons/heart.png')
   icons.star = loadImage('icons/star.png')
 }
 
 window.setup = ()=> {
-  neon = new Neon()
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
   // go to home
   sketch.switchView("home")
@@ -49,8 +47,8 @@ window.windowResized = ()=> {
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
 window.switchTheme = (themeName: string) => {sketch.switchTheme(themeName)}
 window.switchDebug = () => {
-  neon.setDebug(!neon.getDebug()) // toggleDebug method ?
+  n3on.setDebug(!n3on.getDebug()) // toggleDebug method ?
   sketch.drawView()
 }
 
-export {sketch, neon, projection, icons}
+export {sketch, projection, icons}

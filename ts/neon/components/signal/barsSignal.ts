@@ -1,7 +1,6 @@
 import * as p5 from "p5"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils} from "../../utils"
-import {neon} from "../../../appViz/app"
 
 export interface BarsSignalProps extends ComponentProps {}
 
@@ -34,6 +33,8 @@ export class BarsSignal extends Component{
 
 
     private pickColor(i:number): p5.Color{
-        return this.rate > i ? neon.getStyle().text.color.primary : neon.getStyle().color.front
+        return this.rate > i 
+        ? this.style.text.color.primary 
+        : this.style.color.front
     }
 }

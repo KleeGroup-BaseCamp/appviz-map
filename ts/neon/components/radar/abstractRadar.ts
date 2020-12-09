@@ -2,7 +2,6 @@ import {VText} from "../basics"
 import {State, Component, ComponentProps} from "../../core"
 import {PxSize} from "../../layout"
 import {AnimationUtils, ColorUtils} from "../../utils"
-import {neon} from "../../../appViz/app"
 import {PopUp} from "./popup"
 
 export type RadarData = {[label: string]: number}
@@ -28,7 +27,7 @@ export abstract class AbstractRadar extends Component{
                     label, 
                     {
                         fontSize: this.textSize, 
-                        fontColor: neon.getStyle().text.color.secondary
+                        fontColor: this.style.text.color.secondary
                     }
                 )
             )
@@ -41,7 +40,7 @@ export abstract class AbstractRadar extends Component{
                     (100 * (i + 1) / numOfCircles).toString(), 
                     {
                         fontSize: this.textSize, 
-                        fontColor: neon.getStyle().text.color.secondary
+                        fontColor: this.style.text.color.secondary
                     }
                 )
             )
@@ -49,7 +48,7 @@ export abstract class AbstractRadar extends Component{
 
         this.popUp = new PopUp(data, {size: new PxSize(250, 250)}) // TO DO: change harcoded value
         textSize(this.textSize)
-        textFont(neon.getStyle().text.font)
+        textFont(this.style.text.font)
         const keys = Object.keys(data)
         const longestLabelWidth = Math.max(...keys.map(label => textWidth(label)))
         this.textMargin = (textAscent() + textDescent()) / 2
@@ -93,7 +92,7 @@ export abstract class AbstractRadar extends Component{
     private renderRadar(): void{
         const numOfCircles = this.scales.length
         noFill()
-        stroke(neon.getStyle().color.front)
+        stroke(this.style.color.front)
         textAlign(CENTER, TOP)
 
         // Outer circle
@@ -130,7 +129,7 @@ export abstract class AbstractRadar extends Component{
 
     doRenderGraph(state: State): void {
         strokeWeight(2)
-        const c = ColorUtils.clone(neon.getStyle().color.a)
+        const c = ColorUtils.clone(this.style.color.a)
         stroke(c)
         c.setAlpha(50)
         fill(c) 
@@ -142,8 +141,8 @@ export abstract class AbstractRadar extends Component{
     private getTextSize(): number{ // Make into util function
         // Improvement: make text size depend on longuest label
         const width = this.getWidth()
-        if (width <= 250) return neon.getStyle().text.size.xxs
-        if (width <= 350) return neon.getStyle().text.size.xs
-        return neon.getStyle().text.size.s
+        if (width <= 250) return this.style.text.size.xxs
+        if (width <= 350) return this.style.text.size.xs
+        return this.style.text.size.s
     }
 }

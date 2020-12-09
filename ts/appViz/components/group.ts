@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {neon} from "../app"
+import {n3on} from "../../neon"
 import {Component, State, PushPop, ComponentProps, ColorUtils, Button, Header, VText, ProgressBar, PxSize} from "../../neon"
 import {ItemTypeName, ItemTypeFrequencies} from "../types"
 import {Icons} from "./icons"
@@ -19,12 +19,12 @@ export class Group extends Component {
 
     constructor(title: string, itemTypeFrequencies: ItemTypeFrequencies, props: GroupProps) {
         super(props, "Group", true)
-        this.color = ColorUtils.clone(props.color ?? neon.getStyle().color.a)
+        this.color = ColorUtils.clone(props.color ?? n3on.getStyle().color.a)
         this.header = new Header(
             title, 
             {
                 size: new PxSize(this.getWidth(), 50), 
-                fontSize: neon.getStyle().text.size.m
+                fontSize: n3on.getStyle().text.size.m
             }
         )
         this.itemTypeFrequencies = itemTypeFrequencies
@@ -39,7 +39,7 @@ export class Group extends Component {
                 )   
             )
         })
-        this.button = new Button({size: new PxSize(50), color: neon.getStyle().color.undefined})
+        this.button = new Button({size: new PxSize(50), color: n3on.getStyle().color.undefined})
     }
 
     /**
@@ -71,8 +71,8 @@ export class Group extends Component {
     
     private renderBackground(state : State): void {
         fill(state.isHovered(this) 
-            ? neon.getStyle().color.front
-            : neon.getStyle().color.middle)
+            ? n3on.getStyle().color.front
+            : n3on.getStyle().color.middle)
         noStroke()
         rect(0, 0, this.getWidth(), this.getHeight())
     }
@@ -97,8 +97,8 @@ export class Group extends Component {
             new VText(
                 Icons.getIcon(itemPrefix as ItemTypeName), 
                 {
-                    font: neon.getStyle().icon.font, 
-                    fontSize: neon.getStyle().icon.size.xl
+                    font: n3on.getStyle().icon.font, 
+                    fontSize: n3on.getStyle().icon.size.xl
                 }
             ).render()
             pop()

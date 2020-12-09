@@ -2,7 +2,6 @@ import {VText} from "../basics"
 import {State, Component, ComponentProps} from "../../core"
 import {PxSize } from "../../layout"
 import {AnimationUtils, ColorUtils} from "../../utils"
-import {neon} from "../../../appViz/app"
 import {PopUp2} from "./popup2"
 import {RadarData2, RadarDataSystem2} from "./radarData2"
 
@@ -11,7 +10,7 @@ export abstract class AbstractRadar2 extends Component{
     private readonly popUp: PopUp2
     private readonly labels: VText[] = []
     private readonly scales: VText[] = []
-    private readonly textSize: number= neon.getStyle().text.size.xxs
+    private readonly textSize: number= this.style.text.size.xxs
     private readonly textMargin: number
     private readonly radius: number
     
@@ -28,7 +27,7 @@ export abstract class AbstractRadar2 extends Component{
                     label, 
                     {
                         fontSize: this.textSize, 
-                        fontColor: neon.getStyle().text.color.secondary
+                        fontColor: this.style.text.color.secondary
                     }
                 )
             )
@@ -41,7 +40,7 @@ export abstract class AbstractRadar2 extends Component{
                     (100 * (i + 1) / numOfCircles).toString(),
                     {
                         fontSize: this.textSize,
-                        fontColor: neon.getStyle().text.color.secondary
+                        fontColor: this.style.text.color.secondary
                     } 
                 )
             )
@@ -49,7 +48,7 @@ export abstract class AbstractRadar2 extends Component{
 
         this.popUp = new PopUp2(radarData, {size: new PxSize(250, 250)}) // TO DO: change harcoded value
         textSize(this.textSize)
-        textFont(neon.getStyle().text.font)
+        textFont(this.style.text.font)
         const keys = Object.keys(radarData)
         const longestLabelWidth = Math.max(...keys.map(label => textWidth(label)))
         this.textMargin = (textAscent() + textDescent()) / 2
@@ -86,7 +85,7 @@ export abstract class AbstractRadar2 extends Component{
     private renderRadar(): void{
         const numOfCircles = this.scales.length
         noFill()
-        stroke(neon.getStyle().color.front)
+        stroke(this.style.color.front)
         textAlign(CENTER, TOP)
 
         // Outer circle
@@ -123,7 +122,7 @@ export abstract class AbstractRadar2 extends Component{
 
     doRenderGraph(state: State): void {
         strokeWeight(2)
-        const c = ColorUtils.clone(neon.getStyle().color.undefined)
+        const c = ColorUtils.clone(this.style.color.undefined)
         stroke(c)
         c.setAlpha(50)
         fill(c) 

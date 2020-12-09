@@ -1,8 +1,7 @@
 import * as p5 from "p5"
 import {Component, ComponentProps} from "../../core"
-import {PxPosition, PxSize} from "../../layout"
+import {PxPosition} from "../../layout"
 import {AnimationUtils} from "../../utils"
-import {neon} from "../../../appViz/app"
 
 export interface WifiSignalProps extends ComponentProps {}
 
@@ -58,7 +57,9 @@ export class WifiSignal extends Component{
     }
 
     private pickColor(i:number): p5.Color{
-        return this.rate > i ? neon.getStyle().text.color.primary : neon.getStyle().color.front
+        return this.rate > i 
+        ? this.style.text.color.primary 
+        : this.style.color.front
     }
 
     private renderCircle(circleRadius: number): void{

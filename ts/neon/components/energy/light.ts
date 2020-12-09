@@ -1,5 +1,4 @@
 import * as p5 from "p5"
-import {neon} from "../../../appViz/app"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
@@ -37,10 +36,10 @@ export class Light extends Component{
         smooth()
         const weight =2
         strokeWeight(4*weight)
-        stroke(neon.getStyle().color.back)
+        stroke(this.style.color.back)
         circle(0, 0,  this.radius - weight) 
         strokeWeight(2)
-        stroke(neon.getStyle().text.color.primary)
+        stroke(this.style.text.color.primary)
         circle(0, 0,  this.radius) 
     }
 }

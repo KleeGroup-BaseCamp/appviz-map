@@ -1,4 +1,3 @@
-import {neon} from "../../../appViz/app";
 import {Component, ComponentProps} from "../../core";
 import {AnimationUtils, PushPop} from "../../utils"
 
@@ -38,7 +37,7 @@ export abstract class AbstractRating extends Component{
         //1. Dispay a full grey icon 
         if (ratio !==1){
             noStroke()
-            fill(neon.getStyle().color.front)
+            fill(this.style.color.front)
             this.renderIcon(size, false, 1)
         }
 

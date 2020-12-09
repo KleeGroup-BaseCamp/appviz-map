@@ -1,4 +1,4 @@
-import {neon} from "../../../appViz/app"
+import {n3on} from "../.."
 import {VText} from "../basics"
 
 /**
@@ -14,15 +14,15 @@ export class CategoryAxis{
             label => new VText(
                 label, 
                 {
-                    fontSize: neon.getStyle().text.size.xs, 
-                    fontColor: neon.getStyle().text.color.secondary
+                    fontSize: n3on.getStyle().text.size.xs, 
+                    fontColor: n3on.getStyle().text.color.secondary
                 }
             )
         )
     }
 
     public render(): void{
-        stroke(neon.getStyle().color.front)
+        stroke(n3on.getStyle().color.front)
         line(0, 0, this.length, 0) 
         this.renderTicks()
     }
@@ -30,7 +30,7 @@ export class CategoryAxis{
     private renderTicks(){
         const tickLength = 5
         const numOfTicks = this.labels.length
-        stroke(neon.getStyle().color.front)
+        stroke(n3on.getStyle().color.front)
         push()
         textAlign(CENTER, TOP)
         for(let i = 0; i < numOfTicks; i++){

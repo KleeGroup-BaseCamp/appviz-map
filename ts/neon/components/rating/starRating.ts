@@ -1,4 +1,4 @@
-import { PushPop } from "../../utils"
+import {PushPop} from "../../utils"
 import {AbstractRating} from "./abstractRating"
 import {ComponentProps} from "../../core";
 

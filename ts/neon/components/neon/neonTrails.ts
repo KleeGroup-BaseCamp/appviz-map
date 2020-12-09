@@ -1,6 +1,6 @@
-import * as p5 from "p5";
-import {Component, ComponentProps} from "../../core";
-import {AnimationUtils, ColorUtils, PushPop} from "../../utils";
+import * as p5 from "p5"
+import {Component, ComponentProps} from "../../core"
+import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (all of neon files)
 

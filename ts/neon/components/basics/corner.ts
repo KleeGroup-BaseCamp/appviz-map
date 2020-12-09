@@ -11,7 +11,7 @@ export class Corner extends Component{
 
     constructor(props: CornerProps) {
         super(props, "Corner", false)
-        this.color = ColorUtils.clone(props.color ?? neon.getStyle().color.a)
+        this.color = ColorUtils.clone(props.color ?? this.style.color.a)
     }
 
     public render(): void {

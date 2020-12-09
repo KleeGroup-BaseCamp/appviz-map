@@ -1,5 +1,4 @@
 import * as p5 from "p5"
-import {neon} from "../../../appViz/app"
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
@@ -122,7 +121,7 @@ class LineParticle{
     public render(): void{
         const mass = this.vel.mag() * 3
         strokeWeight(mass)
-        stroke(neon.getStyle().color.back)
+        stroke(this.style.color.back)
 		drawingContext.shadowColor = this.color.toString()
 		drawingContext.shadowBlur = 10
         line(this.startPos.x, this.startPos.y, this.pos.x, this.pos.y)

@@ -1,4 +1,4 @@
-import {neon} from "../../../appViz/app"
+import {n3on} from "../.."
 import {VText} from "../basics"
 
 type ChartType = "x" | "y"
@@ -24,8 +24,8 @@ export class LinearAxis{
                 new VText(
                     text, 
                     {
-                        fontSize: neon.getStyle().text.size.xs, 
-                        fontColor: neon.getStyle().text.color.secondary
+                        fontSize: n3on.getStyle().text.size.xs, 
+                        fontColor: n3on.getStyle().text.color.secondary
                     }
                 )
             )
@@ -33,7 +33,7 @@ export class LinearAxis{
     }
 
     public render(): void{
-        stroke(neon.getStyle().color.front)
+        stroke(n3on.getStyle().color.front)
         this.chartType == "x" 
             ? line(0, 0, this.length, 0) 
             : line(0, 0, 0, -this.length)
@@ -42,7 +42,7 @@ export class LinearAxis{
 
     private renderTicks(){
         const tickLength = 5
-        stroke(neon.getStyle().color.front)
+        stroke(n3on.getStyle().color.front)
         push()
         if (this.chartType == "x" ){
             textAlign(CENTER, TOP)

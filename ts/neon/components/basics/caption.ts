@@ -1,4 +1,3 @@
-import {neon} from "../../../appViz/app"
 import {VText} from "./vtext"
 import {Component, ComponentProps} from "../../core"
 
@@ -7,7 +6,7 @@ export class Caption extends Component{
 
     constructor(text: string, props: ComponentProps){
         super(props, "Caption", false)
-        this.vText = new VText(text, {fontSize: neon.getStyle().text.size.m})
+        this.vText = new VText(text, {fontSize: this.style.text.size.m})
     }
 
     public render() : void {

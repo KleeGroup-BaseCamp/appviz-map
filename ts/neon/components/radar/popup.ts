@@ -15,7 +15,7 @@ export class PopUp extends Component{
     constructor(data: RadarData, props: ComponentProps){
         super(props, "PopUp", false)
         this.padding = 10
-        this.size = neon.getStyle().text.size.xs
+        this.size = this.style.text.size.xs
         textSize(this.size)
         for(let label in data){
             const text = `${label}:`
@@ -38,7 +38,7 @@ export class PopUp extends Component{
  
     renderPopUp(): void{
         noStroke()
-        const c = ColorUtils.clone(neon.getStyle().color.a)
+        const c = ColorUtils.clone(this.style.color.a)
         c.setAlpha(150)
         fill(c)
         rect(0, 0, this.getPxSize().getWidth(), this.getPxSize().getHeight())
@@ -46,7 +46,7 @@ export class PopUp extends Component{
  
     renderContent(): void{        
         noStroke()
-        fill(neon.getStyle().text.color.primary)
+        fill(this.style.text.color.primary)
         textSize(this.size)
         textAlign(LEFT, TOP)
         const maxLabelwidth = Math.max(...this.labels.map(label => textWidth(label.getText()))) // CC constructor --> Make utils method ?

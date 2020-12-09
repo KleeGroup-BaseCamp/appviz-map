@@ -13,7 +13,7 @@ export class ArcToCircle extends Component{
     private readonly startColor: p5.Color
     private readonly endColor: p5.Color
 
-    private color: p5.Color = ColorUtils.clone(neon.getStyle().color.a)
+    private color: p5.Color = ColorUtils.clone(this.style.color.a)
     private blur: number = 0
     private radius: number = 0
     private vStrokeWeight: number = 0
@@ -22,8 +22,8 @@ export class ArcToCircle extends Component{
 
     constructor(props: ArcToCircleProps){
         super(props, "ArcToCircle", false)
-        this.startColor = ColorUtils.clone(props.startColor ?? neon.getStyle().color.a)
-        this.endColor = ColorUtils.clone(props.endColor ?? props.startColor ?? neon.getStyle().color.a)
+        this.startColor = ColorUtils.clone(props.startColor ?? this.style.color.a)
+        this.endColor = ColorUtils.clone(props.endColor ?? props.startColor ?? this.style.color.a)
         AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})
     }
     @PushPop

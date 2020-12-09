@@ -24,7 +24,7 @@ export class Grid extends Component {
    * @override 
    */
   public render(state : State) : void{
-    let color = neon.getStyle().text.color.secondary
+    let color = this.style.text.color.secondary
     if (this.alpha) {
 //      color.setAlpha(this.alpha)  //TODO
     }

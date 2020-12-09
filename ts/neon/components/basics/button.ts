@@ -1,5 +1,4 @@
 import * as p5 from "p5"
-import {neon} from "../../../appViz/app"
 import {Component, ComponentProps} from "../../core"
 import {ColorUtils} from "../../utils"
 
@@ -11,7 +10,7 @@ export class Button extends Component{
 
     constructor(props: ButtonProps) {
         super(props, "Button", false)
-        this.color = ColorUtils.clone(props.color ?? neon.getStyle().color.a)
+        this.color = ColorUtils.clone(props.color ?? this.style.color.a)
     }
 
     public render(): void {

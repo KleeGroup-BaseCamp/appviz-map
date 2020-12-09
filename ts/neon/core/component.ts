@@ -1,6 +1,7 @@
 import {PxSize, PxPosition} from "../layout"
 import {State, VEvent} from "."
 import {neon} from "../../appViz/app"
+import { n3on } from ".."
 
 type Size = "s" | "m" | "l"
 
@@ -38,8 +39,8 @@ export abstract class Component {
   private readonly selectable: boolean
 //  private eventHandler? : VEventHandler
   protected readonly centerPosition: PxPosition
+  protected readonly style = n3on.getStyle()
 
-  
   constructor(props: ComponentProps, name : string, selectable: boolean) {
     this.id = props.id ?? Component.generateId()
     this.pxSize = Component.buildPxSize(name, props.size)

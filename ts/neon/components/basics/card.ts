@@ -1,4 +1,3 @@
-import {neon} from "../../../appViz/app"
 import {Component, State, ComponentProps} from "../../core"
 import {PxSize} from "../../layout"
 import {Header} from "./header"
@@ -13,7 +12,7 @@ export class Card extends Component {
             title, 
             {
                 size: new PxSize(this.getWidth(), 100), 
-                fontSize: neon.getStyle().text.size.xxl
+                fontSize: this.style.text.size.xxl
             }
         )
         //this.paper = new Paper(this.getWidth(), this.getHeight(), 50) 

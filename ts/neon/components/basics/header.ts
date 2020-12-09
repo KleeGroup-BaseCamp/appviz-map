@@ -13,8 +13,8 @@ export class Header extends Component{
 
     constructor(title: string, props: HeaderProps) {
         super(props, "Header", false)
-        this.fontSize = props.fontSize ?? neon.getStyle().text.size.s
-        this.font = props.font ?? neon.getStyle().text.font
+        this.fontSize = props.fontSize ?? this.style.text.size.s
+        this.font = props.font ?? this.style.text.font
         this.title = title ? TextUtils.buildDisplayableTitle(title, width, this.fontSize) : "No title"
     }
 
@@ -25,13 +25,13 @@ export class Header extends Component{
 
     private renderBackground(): void {
         noStroke()
-        fill(neon.getStyle().color.front)
+        fill(n3on.getStyle().color.front)
         rect (0, 0, this.getWidth(), this.getHeight())
     }
 
     private renderTitle(): void {
         noStroke()
-        fill(neon.getStyle().text.color.primary)
+        fill(n3on.getStyle().text.color.primary)
         textSize(this.fontSize)
         textFont(this.font)
         textAlign(CENTER)

@@ -1,7 +1,6 @@
 import {PxPosition} from "../../layout"
 import {ComponentProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
-import {neon} from "../../../appViz/app"
 import {Chart, ChartData} from "./chart"
 import { ColorUtils } from "../../utils"
 
@@ -35,7 +34,7 @@ export class LineChart extends Chart{
     }
 
     protected renderChart(){
-        const color = ColorUtils.clone(neon.getStyle().color.a)
+        const color = ColorUtils.clone(this.style.color.a)
         strokeWeight(1)
         noFill()
         stroke(color)
@@ -45,7 +44,7 @@ export class LineChart extends Chart{
             beginShape()
             vertex(0, 0)
         }
-        fill(neon.getStyle().color.a) // Fill for the circles
+        fill(this.style.color.a) // Fill for the circles
         beginShape()
         for (let entry of this.data){
             const position = new PxPosition(
