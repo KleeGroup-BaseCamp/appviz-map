@@ -1,7 +1,8 @@
 /**
  * View of a zone.
  */
-import {neon, projection} from "../app"
+import {n3on} from "../../neon"
+import {projection} from "../app"
 import {View} from "./view"
 import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ComponentLayout} from "../types"
 import {Layer, LayerBuilder, PxPosition, GridPosition, PxSize, GridSize, TextUtils} from "../../neon"
@@ -121,13 +122,13 @@ export class TechZoneView implements View {
     private getZoneColor(zone: string){
         switch (zone) {
             case "pilotage":
-                return neon.getStyle().color.b
+                return n3on.getStyle().color.b
             case "operationnel":
-                return neon.getStyle().color.a
+                return n3on.getStyle().color.a
             case "referentiel":
-                return neon.getStyle().color.c
+                return n3on.getStyle().color.c
             default:
-                return neon.getStyle().color.undefined
+                return n3on.getStyle().color.undefined
         }
     }
 

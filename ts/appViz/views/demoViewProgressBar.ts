@@ -1,4 +1,5 @@
-import {projection, neon} from "../app"
+import {projection} from "../app"
+import {n3on} from "../../neon"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, ProgressBar, StripedProgressBar, Caption, Card, PxSize} from "../../neon"
 import {ModelRepository} from "../model"
@@ -18,18 +19,18 @@ export class DemoViewProgressBar implements View {
                 .addComponent(new ProgressBar(0, {size:pxSize}))
                 .addComponent(new ProgressBar(50, {
                         size:pxSize,
-                        firstColor : neon.getStyle().color.b}))
+                        firstColor : n3on.getStyle().color.b}))
                 .addComponent(new ProgressBar(100,{
                     size:pxSize,
-                    firstColor : neon.getStyle().color.a,
-                    secondColor : neon.getStyle().color.c}))
+                    firstColor : n3on.getStyle().color.a,
+                    secondColor : n3on.getStyle().color.c}))
                 .beginRow(10)
                 .addComponent(new Caption("ProgressBar", {size: captionSize}))
                 .beginRow()
                 .addComponent(new StripedProgressBar(0,{size:pxSize}))
                 .addComponent(new StripedProgressBar(75, {size:pxSize, 
-                    firstColor : neon.getStyle().color.b,
-                    secondColor :neon.getStyle().color.c}))
+                    firstColor : n3on.getStyle().color.b,
+                    secondColor :n3on.getStyle().color.c}))
                 .addComponent(new StripedProgressBar(100,{size:pxSize, icon:Icons.getIcon("data") }))
                 .beginRow(10)
                 .addComponent(new Caption("StripedProgressBar", {size: captionSize}))

@@ -1,7 +1,6 @@
 import {PxSize, PxPosition} from "../layout"
 import {State, VEvent} from "."
-import {neon} from "../../appViz/app"
-import { n3on } from ".."
+import {n3on} from ".."
 
 type Size = "s" | "m" | "l"
 
@@ -129,8 +128,8 @@ export abstract class Component {
     if(size instanceof PxSize) {
       return size
     } 
-    return neon.getStyle().pxSizes[name] // VText passes no PxSize and has no standard size
-      ? neon.getStyle().pxSizes[name][(size ?? "m")]
+    return n3on.getStyle().pxSizes[name] // VText passes no PxSize and has no standard size
+      ? n3on.getStyle().pxSizes[name][(size ?? "m")]
       : new PxSize(404)
     // return neon.getStyle().pxSizes[name][(size ?? "m")]
   }

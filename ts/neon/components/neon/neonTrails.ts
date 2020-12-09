@@ -1,4 +1,5 @@
 import * as p5 from "p5"
+import {n3on} from "../.."
 import {Component, ComponentProps} from "../../core"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 
@@ -45,7 +46,7 @@ class Trail{
     private readonly radius: number
     private readonly angleStep: number
 
-    private color: p5.Color = ColorUtils.clone(neon.getStyle().color.a)
+    private color: p5.Color = ColorUtils.clone(n3on.getStyle().color.a)
     private history: p5.Vector[] = []
     private targetAngle: number
 
@@ -149,7 +150,7 @@ class NeonArc{  // Duplicate (spark circle)
     private readonly radius: number 
     private readonly strokeWeight: number
     private readonly angleStep: number
-    private color: p5.Color = ColorUtils.clone(neon.getStyle().color.a)
+    private color: p5.Color = ColorUtils.clone(n3on.getStyle().color.a)
     private startAngle: number = 0
     private endAngle: number = 0
 

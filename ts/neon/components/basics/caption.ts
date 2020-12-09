@@ -12,7 +12,7 @@ export class Caption extends Component{
     public render() : void {
         const width = this.getPxSize().getWidth()
         const height = this.getPxSize().getHeight()
-        fill(neon.getStyle().color.front)
+        fill(this.style.color.front)
         rect(0, 0, width, height)
         push()
         translate(width / 2, height / 2)

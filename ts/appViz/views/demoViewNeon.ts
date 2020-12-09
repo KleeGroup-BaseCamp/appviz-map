@@ -1,4 +1,5 @@
-import {projection, neon} from "../app"
+import {projection} from "../app"
+import {n3on} from "../../neon"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, ArcToCircle, Caption, NeonCircles, 
     NeonTrails, PointsToCircle, SparkCircle, Card, PxSize} from "../../neon"
@@ -18,7 +19,7 @@ export class DemoViewNeon implements View {
                 .addComponent(new NeonCircles({size: pxSize}))
                 .addComponent(new ArcToCircle({size: pxSize}))
                 .addComponent(new PointsToCircle({size: pxSize}))
-                .addComponent(new SparkCircle({size: pxSize, color: neon.getStyle().color.a}))
+                .addComponent(new SparkCircle({size: pxSize, color: n3on.getStyle().color.a}))
                 .addComponent(new NeonTrails({size: pxSize}))
                 .beginRow(10)
                 .addComponent(new Caption("Neon circles", {size: captionSize}))

@@ -25,13 +25,13 @@ export class Header extends Component{
 
     private renderBackground(): void {
         noStroke()
-        fill(n3on.getStyle().color.front)
+        fill(this.style.color.front)
         rect (0, 0, this.getWidth(), this.getHeight())
     }
 
     private renderTitle(): void {
         noStroke()
-        fill(n3on.getStyle().text.color.primary)
+        fill(this.style.text.color.primary)
         textSize(this.fontSize)
         textFont(this.font)
         textAlign(CENTER)
