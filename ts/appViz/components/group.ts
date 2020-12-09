@@ -94,7 +94,13 @@ export class Group extends Component {
             translate(10, positions[index] - 20)
             push()
             textAlign(LEFT, TOP)
-            new VText(Icons.getIcon(itemPrefix as ItemTypeName), {font: neon.getStyle().icon.font, fontSize: neon.getStyle().icon.size.xl}).render()
+            new VText(
+                Icons.getIcon(itemPrefix as ItemTypeName), 
+                {
+                    font: neon.getStyle().icon.font, 
+                    fontSize: neon.getStyle().icon.size.xl
+                }
+            ).render()
             pop()
             translate(50, 0)
             this.progressBars[index].render()

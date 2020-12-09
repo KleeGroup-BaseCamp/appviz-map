@@ -4,36 +4,60 @@ import {PxSize} from "../layout"
 
 const su = 10 // Size Unit
 
-interface sizesJson {
+interface SizesJson {
     [componentName: string]: {
         s: {width: number, height?: number},
         m: {width: number, height?: number},
         l: {width: number, height?: number}
     }
 }
+
+interface Theme{
+    a: string,
+    b: string,
+    c: string, 
+    d: string, 
+    back: string, 
+    middle: string,  
+    front: string, 
+    undefined: string,
+    text:{
+        primary: string,
+        secondary: string
+    }
+}
 export class StyleBuilder {
     private textFont?: p5.Font
     private iconFont? : p5.Font
-    private pxSizes?: sizesJson
+    private pxSizes?: SizesJson
+    private darkTheme?: Theme
+    private lightTheme?: Theme
 
     constructor() {
     }
 
-    private notNull( font? : p5.Font ):p5.Font {
+    private notNull(font? : p5.Font):p5.Font {
         if(font){
             return font
         }
         throw 'value must not be null'
     } 
+
     public load(): StyleBuilder {
         this.loadFonts()
-        this.pxSizes = loadJSON("/ts/neon/data/sizes.json") as sizesJson // Use relative path ?
+        this.loadThemes()
+        this.pxSizes = loadJSON("ts/neon/data/sizes.json") as SizesJson
         return this
     }
 
     private loadFonts(): void {
         this.textFont = loadFont("fonts/Montserrat-Regular.ttf")
         this.iconFont = loadFont("fonts/material-design-outlined.ttf")
+    }
+
+    private loadThemes(): void{
+        this.darkTheme = loadJSON("ts/neon/data/dark.json") as Theme
+        this.lightTheme = loadJSON("ts/neon/data/light.json") as Theme
     }
 
     private buildPxSize(size: {width: number, height?: number}): PxSize{
@@ -56,8 +80,12 @@ export class StyleBuilder {
         return componentsSizes
     }
 
-    public build(): Style {
-        /* DarkTheme */
+    public build(isThemeDark: boolean): Style {
+        const theme = isThemeDark ? this.darkTheme : this.lightTheme
+        if (!theme){
+            throw `${isThemeDark ? 'Dark' : 'Light'} theme not defined`
+        }
+        console.log(theme)
         return  {
              icon: {
                 font : this.notNull(this.iconFont), 
@@ -82,22 +110,22 @@ export class StyleBuilder {
                 },
                 color: {
                     /* text */
-                    primary : color("#FFFFF"), /* white */ 
-                    secondary : color("#9EA3B4"),  /* light grey */
+                    primary : color(theme.text.primary), /* white */ 
+                    secondary : color(theme.text.secondary),  /* light grey */
                 }    
             },
             color : {
-                a : color("#2196F3"), /* blue */
-                b : color( "#4CAF50"), /* green */
-                c : color("#F44336"), /* red */
-                d : color("#7881A9"), /* grey */
+                a : color(theme.a), /* blue */
+                b : color(theme.b), /* green */
+                c : color(theme.c), /* red */
+                d : color(theme.d), /* grey */
         
                 /* back to front colors */
-                back : color("#2a2c3b"),  /* deep dark */
-                middle : color("#3A3E52"),  /* dark */
-                front : color("#505464"),  /* light dark */
+                back : color(theme.back),  /* deep dark */
+                middle : color(theme.middle),  /* dark */
+                front : color(theme.front),  /* light dark */
         
-                undefined : color("#fff700"),  /* lemon*/
+                undefined : color(theme.undefined),  /* lemon*/
             },
             pxSizes: this.buildPxSizes() 
         }

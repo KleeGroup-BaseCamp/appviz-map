@@ -1,0 +1,17 @@
+{
+    "a" : "#2196F3", 
+    "b" :  "#4CAF50", 
+    "c" : "#F44336", 
+    "d" : "#7881A9", 
+
+    "back" : "#F6F6F4", 
+    "middle" : "#EFEFEF",  
+    "front" : "#DDDDDD", 
+
+    "undefined" : "#0008ff",
+
+    "text" : {
+        "primary": "#000000",
+        "secondary": "#615c4b"
+    }
+}

@@ -6,7 +6,7 @@ type Size = "s" | "m" | "l"
 
 export interface ComponentProps {
     id?: any,
-    size? : Size|PxSize
+    size?: Size|PxSize
 }
 
 /**
@@ -128,8 +128,9 @@ export abstract class Component {
     if(size instanceof PxSize) {
       return size
     } 
-    return name // VText passes no PxSize and has no standard size
+    return neon.getStyle().pxSizes[name] // VText passes no PxSize and has no standard size
       ? neon.getStyle().pxSizes[name][(size ?? "m")]
       : new PxSize(404)
+    // return neon.getStyle().pxSizes[name][(size ?? "m")]
   }
 }

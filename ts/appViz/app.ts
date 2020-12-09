@@ -34,7 +34,8 @@ window.preload = () => {
 }
 
 window.setup = ()=> {
-  neon = new Neon(styleBuilder.build()) // StyleBuilder in Neon 
+  const isThemeDark = true // Start theme
+  neon = new Neon(styleBuilder.build(isThemeDark), isThemeDark)
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
   // go to home
   sketch.switchView("home")
