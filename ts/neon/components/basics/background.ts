@@ -15,6 +15,6 @@ export class Background extends Component {
   }
 
   public needsClear(){
-    return ! this.  drawn
+    return ! this.drawn
   }
 }

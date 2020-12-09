@@ -1,5 +1,4 @@
 import * as p5 from "p5"
-import {neon} from "../../../appViz/app"
 import {TextUtils} from "../../utils"
 import {Component, ComponentProps} from "../../core"
 

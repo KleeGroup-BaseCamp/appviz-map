@@ -8,10 +8,7 @@ export interface ButtonProps extends ComponentProps{
 }
 export class Button extends Component{
     private readonly color : p5.Color
-    /**
-     * @constructor
-     * 
-     */
+
     constructor(props: ButtonProps) {
         super(props, "Button", false)
         this.color = ColorUtils.clone(props.color ?? neon.getStyle().color.a)

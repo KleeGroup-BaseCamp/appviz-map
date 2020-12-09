@@ -1,7 +1,6 @@
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
 import {PxSize } from "../../layout"
-import {neon} from "../../../appViz/app"
 import {AbstractRating } from "../rating/abstractRating"
 import {StarRating } from "../rating/starRating"
 import {ColorUtils} from "../../utils"
