@@ -5,7 +5,7 @@ import {projection} from "./app"
 import {Detail} from "./detail"
 import {HomeView, TechZoneView, TechGroupView, DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
   DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, View, DemoViewNeon} from "./views"
-import {State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background} from "../neon"
+import {State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils} from "../neon"
 import {Group, Item} from "./components"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "../neon"
@@ -84,6 +84,7 @@ export class Sketch {
     //--
     if (hasChanged) {
       this.drawView()
+      AnimationUtils.clearAll()
     }
   }
   public drawView():void{

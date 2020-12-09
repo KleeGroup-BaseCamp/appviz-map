@@ -2,25 +2,33 @@ import {Easings} from "./easings"
 
 type Ease = (r:number) => number
 export class AnimationUtils {
-    private static animations:number = 0;
+    private static readonly animationsIds : any[] = []
     private static readonly easings = new Easings()
 
     public static isActive ():  boolean{
-        return AnimationUtils.animations > 0
+        return AnimationUtils.animationsIds.length > 0
     }    
 
     public static count ():  number{
-        return AnimationUtils.animations
+        return AnimationUtils.animationsIds.length
     }    
 
     private static setInterval(fun: (...args: any[]) => void, interval: number) : any{
-        AnimationUtils.animations ++
-        return setInterval(fun, interval)
+        const id = setInterval(fun, interval)
+        AnimationUtils.animationsIds.push(id)
+        return id
     }
     
     private static clearInterval(id: any): void{
-        AnimationUtils.animations --
         clearInterval(id)
+        const index = this.animationsIds.indexOf(id)
+        if (index > -1){
+            this.animationsIds.splice(index, 1)
+        }
+    }
+
+    public static clearAll(){
+        this.animationsIds.forEach(id => this.clearInterval(id))
     }
     
     /**
@@ -33,7 +41,7 @@ export class AnimationUtils {
      */
     public static animate(from: number, to: number, duration: number, callBack: (v:number) => void, ease?: Ease): void  {
         callBack(from)
-        if (from ===to) return //When from===to there is no animaation
+        if (from ===to) return //When from===to there is no animation
 
         const interval = 20 /*ms*/
         const id = AnimationUtils.setInterval(animate, interval)
@@ -53,7 +61,7 @@ export class AnimationUtils {
                 value = to
             }else{
                 value = from + (to-from)* e(r)
-            }    
+            }
             callBack(value)
         }
       }
