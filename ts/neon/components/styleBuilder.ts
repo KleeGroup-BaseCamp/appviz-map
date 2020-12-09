@@ -12,7 +12,7 @@ interface SizesJson {
     }
 }
 
-export interface Theme{
+interface Theme{
     a: string,
     b: string,
     c: string, 
@@ -27,7 +27,11 @@ export interface Theme{
     }
 }
 
-export type ThemeName = "dark" | "light" // blue ...
+const themeNames = ["dark", "light"] as const
+export type ThemeName = typeof themeNames[number]
+export const isThemeName = (name: string): name is ThemeName => 
+    themeNames.includes(name as ThemeName)
+
 export class StyleBuilder {
     private textFont?: p5.Font
     private iconFont? : p5.Font

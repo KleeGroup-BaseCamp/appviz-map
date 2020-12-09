@@ -1,4 +1,4 @@
-import {Neon, StyleBuilder,Projection, ThemeName} from "../neon"
+import {Neon, StyleBuilder,Projection} from "../neon"
 import {ViewParams} from "./types"
 import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
@@ -48,10 +48,7 @@ window.windowResized = ()=> {
   sketch.windowResized()
 }
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
-window.switchTheme = (themeName: string) => {
-  neon.switchTheme(themeName as ThemeName)
-  sketch.drawView()
-}
+window.switchTheme = (themeName: string) => {sketch.switchTheme(themeName)}
 window.switchDebug = () => {
   neon.setDebug(!neon.getDebug()) // toggleDebug method ?
   sketch.drawView()
