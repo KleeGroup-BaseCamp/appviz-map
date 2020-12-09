@@ -1,14 +1,11 @@
 import {Style, StyleBuilder, ThemeName} from "./components"
 
 export class Neon{
-    private readonly styleBuilder: StyleBuilder
-
     private style : Style
     private debug: boolean = true
 
-    constructor(styleBuilder: StyleBuilder){
-        this.styleBuilder = styleBuilder
-        this.style = this.styleBuilder.build('dark')
+    constructor(){
+        this.style = new StyleBuilder().build()
     }
 
     public getStyle(): Style{
@@ -23,8 +20,10 @@ export class Neon{
         this.debug = value
     }
 
-    public switchTheme(themeName: ThemeName): void{
-        this.style = this.styleBuilder.build(themeName)
+    public setTheme(themeName: ThemeName): void{
+        this.style = new styleBuilder()
+            .withTheme(themeName)
+            .build()
     }
 
 }

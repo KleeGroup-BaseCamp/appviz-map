@@ -85,7 +85,7 @@ export class StyleBuilder {
         return componentsSizes
     }
 
-    public build(themeName: ThemeName): Style {
+    public build(): Style {
         const theme = this.themes[themeName]
         if (!theme){
             throw `Theme ${themeName} is undefined`

@@ -16,9 +16,8 @@ declare global {
      }
 }
 
-const styleBuilder : StyleBuilder = new StyleBuilder()   
 let sketch : Sketch
-let neon  : Neon
+const neon : Neon = new Neon()
 let projection : Projection
 let modelRepositoryBuilder : ModelRepositoryBuilder 
 let layout : any
@@ -28,18 +27,17 @@ let icons : {[iconName: string]: p5.Image} = {}
 window.preload = () => {
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
   layout = loadJSON("/ts/appViz/views/layout.json")
-  styleBuilder.load()
+  neon.load()
   projection = Projection.buildProjection()
   icons.heart = loadImage('icons/heart.png')
   icons.star = loadImage('icons/star.png')
 }
 
 window.setup = ()=> {
-  neon = new Neon(styleBuilder)
+  neon = new Neon()
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
   // go to home
   sketch.switchView("home")
-
 }
 window.draw = ()=> {sketch.draw()}
 window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
