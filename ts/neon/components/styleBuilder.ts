@@ -12,7 +12,7 @@ interface SizesJson {
     }
 }
 
-interface Theme{
+export interface Theme{
     a: string,
     b: string,
     c: string, 
@@ -26,12 +26,13 @@ interface Theme{
         secondary: string
     }
 }
+
+export type ThemeName = "dark" | "light" // blue ...
 export class StyleBuilder {
     private textFont?: p5.Font
     private iconFont? : p5.Font
     private pxSizes?: SizesJson
-    private darkTheme?: Theme
-    private lightTheme?: Theme
+    private themes: {[themeName in ThemeName]?: Theme} = {}
 
     constructor() {
     }
@@ -56,8 +57,8 @@ export class StyleBuilder {
     }
 
     private loadThemes(): void{
-        this.darkTheme = loadJSON("ts/neon/data/dark.json") as Theme
-        this.lightTheme = loadJSON("ts/neon/data/light.json") as Theme
+        this.themes.dark = loadJSON("ts/neon/data/dark.json") as Theme
+        this.themes.light = loadJSON("ts/neon/data/light.json") as Theme
     }
 
     private buildPxSize(size: {width: number, height?: number}): PxSize{
@@ -80,12 +81,11 @@ export class StyleBuilder {
         return componentsSizes
     }
 
-    public build(isThemeDark: boolean): Style {
-        const theme = isThemeDark ? this.darkTheme : this.lightTheme
+    public build(themeName: ThemeName): Style {
+        const theme = this.themes[themeName]
         if (!theme){
-            throw `${isThemeDark ? 'Dark' : 'Light'} theme not defined`
+            throw `Theme ${themeName} is undefined`
         }
-        console.log(theme)
         return  {
              icon: {
                 font : this.notNull(this.iconFont), 

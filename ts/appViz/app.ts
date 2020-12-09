@@ -1,4 +1,4 @@
-import {Neon, StyleBuilder,Projection} from "../neon"
+import {Neon, StyleBuilder,Projection, ThemeName} from "../neon"
 import {ViewParams} from "./types"
 import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
@@ -35,8 +35,7 @@ window.preload = () => {
 }
 
 window.setup = ()=> {
-  const isThemeDark = true // Start theme
-  neon = new Neon(styleBuilder, isThemeDark)
+  neon = new Neon(styleBuilder)
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
   // go to home
   sketch.switchView("home")
@@ -49,8 +48,8 @@ window.windowResized = ()=> {
   sketch.windowResized()
 }
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
-window.switchTheme = () => {
-  neon.switchTheme()
+window.switchTheme = (themeName: string) => {
+  neon.switchTheme(themeName as ThemeName)
   sketch.drawView()
 }
 window.switchDebug = () => {

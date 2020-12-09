@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/bulma-switch.min.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/css/bulma-switch.min.css" /> -->
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
   </head>
   
@@ -75,14 +75,6 @@
             </div>
           </div>
           <div class="tile is-parent">
-            <div class="tile is-child menu-item" id = "toggleTheme">
-                <div class="field">
-                  <input id="switchExample" type="checkbox" name="switchExample" class="switch is-rounded is-info is-small" onchange="switchTheme()">
-                  <label for="switchExample"></label>
-                </div>
-            </div>
-          </div>
-          <div class="tile is-parent">
             <div class="tile is-child menu-item" id = "debug" onclick="switchDebug()">
               <i class="material-icons md-36">code</i>
             </div>
@@ -95,6 +87,16 @@
       <h1 class="title is-1 has-text-centered mt-1" id="detail-title">Detail</h1>
       <div class="content" id = "detail-content">
         <p>Some general detail about all zones might go here later !</p>
+        <div class="has-text-centered">
+          <div class="title">Theme</div> 
+          <div class="select is-rounded">
+            <select onchange="switchTheme(this.value)">
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
+            </select>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
