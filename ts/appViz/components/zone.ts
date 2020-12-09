@@ -14,7 +14,7 @@ export class Zone extends Component {
     private readonly corner: Corner
 
     constructor(title: string, props: ZoneProps) {
-        super(props, false)
+        super(props, "", false)
         this.header = new Header(
             title, 
             {

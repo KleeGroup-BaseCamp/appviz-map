@@ -6,7 +6,8 @@ export class Caption extends Component{
     private readonly vText : VText
 
     constructor(text: string, props: ComponentProps){
-        super(props, false)
+        super(props, "", false)
+        console.log(props.size)
         this.vText = new VText(text, {fontSize: neon.getStyle().text.size.m})
     }
 

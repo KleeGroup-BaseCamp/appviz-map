@@ -8,7 +8,7 @@ export class Card extends Component {
  //   private readonly paper: Paper
 
     constructor(title: string, props: ComponentProps) {
-        super(props, false)
+        super(props, "", false)
         this.header = new Header(
             title, 
             {

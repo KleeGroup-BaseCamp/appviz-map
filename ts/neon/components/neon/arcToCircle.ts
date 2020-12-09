@@ -22,7 +22,7 @@ export class ArcToCircle extends Component{
     private endAngle: number = 0
 
     constructor(props: ArcToCircleProps){
-        super(props, false)
+        super(props, "", false)
         this.startColor = ColorUtils.clone(props.startColor ?? neon.getStyle().color.a)
         this.endColor = ColorUtils.clone(props.endColor ?? props.startColor ?? neon.getStyle().color.a)
         AnimationUtils.animate(0, 100, 5000, (s) => {this.update(s)})

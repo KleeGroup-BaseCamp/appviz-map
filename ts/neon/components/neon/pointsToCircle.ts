@@ -10,7 +10,7 @@ export class PointsToCircle extends Component{
     private readonly neonCircle: NeonCircle
 
     constructor(props: ComponentProps){
-        super(props, false)
+        super(props, "", false)
         const numOfPoints = 30
         const maxRadius = min(this.getWidth(), this.getHeight()) / 2 * 0.75 // TO DO: estimate space taken by neon
         for(let i = 0; i < numOfPoints; i++){

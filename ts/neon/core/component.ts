@@ -128,6 +128,8 @@ export abstract class Component {
     if(size instanceof PxSize) {
       return size
     } 
-    return neon.getStyle().pxSizes[name][(size ?? "m")]
+    return name // VText passes no PxSize and has no standard size
+      ? neon.getStyle().pxSizes[name][(size ?? "m")]
+      : new PxSize(404)
   }
 }

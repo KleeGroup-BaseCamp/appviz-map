@@ -4,7 +4,7 @@ export class Background extends Component {
   private drawn = false
  
   constructor(props: ComponentProps) {
-    super(props, false)
+    super(props, "", false)
   }
 
   /**

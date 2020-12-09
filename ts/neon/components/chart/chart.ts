@@ -20,7 +20,7 @@ export abstract class Chart extends Component{
 
 
     constructor(data: ChartData<number> | ChartData<string>, props: ChartProps){
-        super(props, false)
+        super(props, "", false)
         this.chartWidth = this.getWidth() - this.leftPadding - (props.rightPadding ?? 0)
         this.chartHeight = this.getHeight() - this.bottomPadding - (props.topPadding ?? 0)
         const values = (data as ChartData<string | number>).map(entry => entry.y) // ChartData<Union> because map is a generic function

@@ -16,7 +16,7 @@ export class VText extends Component{
     private text: string
 
     constructor(text: string, props: VTextProps) {
-        super(props, false)
+        super(props, "", false)
         this.text = text
         this.fontSize = props.fontSize ?? neon.getStyle().text.size.s
         this.font = props.font ?? neon.getStyle().text.font

@@ -14,7 +14,7 @@ export class PopUp2 extends Component{
     private readonly padding: number
 
     constructor(value: RadarData2, props: ComponentProps){
-        super(props, false)
+        super(props, "", false)
         this.padding = 10
         this.size = neon.getStyle().text.size.xs
         textSize(this.size)

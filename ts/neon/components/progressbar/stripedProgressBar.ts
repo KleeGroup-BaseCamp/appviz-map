@@ -124,7 +124,7 @@ export class Hexagon extends Component {
     private readonly weight: number
 
     constructor(props: ComponentProps) {
-        super(props, false)
+        super(props, "", false)
         const width = this.getPxSize().getWidth()
         const height = this.getPxSize().getHeight()
         this.weight = 4

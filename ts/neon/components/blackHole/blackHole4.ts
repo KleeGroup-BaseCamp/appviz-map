@@ -16,7 +16,7 @@ export class BlackHole4 extends Component{
     private readonly hole: OpacityOutCircle
     
     constructor(percent: number, props: ComponentProps){
-        super(props, false)
+        super(props, "", false)
         this.gauge = new Gauge(percent,{size: this.getPxSize()})
         this.weight = 5
         const margin = 10

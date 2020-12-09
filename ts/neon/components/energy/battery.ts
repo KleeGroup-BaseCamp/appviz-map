@@ -16,7 +16,7 @@ export class Battery extends Component{
     private readonly waves : Wave[] = []
 
     constructor(percent: number, props: ComponentProps){
-        super(props, false)
+        super(props, "", false)
         this.padding = 5
         this.topMargin = 10 // Margin for hat
         this.barWidth = this.getWidth() - 2 * this.padding

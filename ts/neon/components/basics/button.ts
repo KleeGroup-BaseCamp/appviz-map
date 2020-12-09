@@ -13,7 +13,7 @@ export class Button extends Component{
      * 
      */
     constructor(props: ButtonProps) {
-        super(props, false)
+        super(props, "", false)
         this.color = ColorUtils.clone(props.color ?? neon.getStyle().color.a)
     }
 

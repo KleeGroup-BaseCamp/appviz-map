@@ -20,7 +20,7 @@ export class SparkCircle extends Component{
     private angle:number = 0
   
     constructor(props: SparkCircleProps){
-        super(props, false)
+        super(props, "", false)
         this.color = ColorUtils.clone(props.color ?? color(255))
         this.radius = min(this.getWidth(), this.getHeight()) / 4
         this.angleStep = 10

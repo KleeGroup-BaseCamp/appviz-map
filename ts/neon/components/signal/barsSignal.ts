@@ -1,6 +1,5 @@
 import * as p5 from "p5"
 import {Component, ComponentProps} from "../../core"
-import {PxSize} from "../../layout"
 import {AnimationUtils} from "../../utils"
 import {neon} from "../../../appViz/app"
 
@@ -10,7 +9,7 @@ export class BarsSignal extends Component{
     private rate: number
 
     constructor(rate: number, props:BarsSignalProps){
-        super({...props, name: "BarsSignal"}, false)
+        super(props, "BarsSignal", false)
         this.rate = rate
         const duration = 1000 /*ms*/
         AnimationUtils.animate(0, rate, duration, (s:number) => this.rate = s)

@@ -14,7 +14,7 @@ export class Light extends Component{
     private value: number
 
     constructor(value: number, props: LightProps){
-        super(props, false)
+        super(props, "", false)
         this.value = value
         this.color = ColorUtils.clone(props.color ?? color('gold'))
         this.radius = min(this.getHeight(), this.getWidth())

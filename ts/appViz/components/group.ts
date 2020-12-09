@@ -18,7 +18,7 @@ export class Group extends Component {
     private readonly button : Button
 
     constructor(title: string, itemTypeFrequencies: ItemTypeFrequencies, props: GroupProps) {
-        super(props, true)
+        super(props, "", true)
         this.color = ColorUtils.clone(props.color ?? neon.getStyle().color.a)
         this.header = new Header(
             title, 
