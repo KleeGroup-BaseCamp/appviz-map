@@ -16,7 +16,7 @@ export class NeonCircles extends Component{
     private readonly circles: NeonCircle[] = []
 
     constructor(props: NeonCirclesProps){
-        super(props, "", false)
+        super(props, "NeonCircles", false)
         this.firstColor = ColorUtils.clone(props.firstColor ?? color("Violet"))
         this.secondColor = ColorUtils.clone(props.secondColor ?? color("DeepSkyBlue"))
         const numOfCircles = 5

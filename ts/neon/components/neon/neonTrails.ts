@@ -10,7 +10,7 @@ export class NeonTrails extends Component{
     private readonly neonArc: NeonArc
     
     constructor(props: ComponentProps){
-        super(props, "", false)
+        super(props, "NeonTrails", false)
         const radius = min(this.getWidth(), this.getHeight()) / 4
         const numOfTrails = 10
         const angleStep = radians(10)

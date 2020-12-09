@@ -11,7 +11,7 @@ export class Corner extends Component{
     private readonly color : p5.Color
 
     constructor(props: CornerProps) {
-        super(props, "", false)
+        super(props, "Corner", false)
         this.color = ColorUtils.clone(props.color ?? neon.getStyle().color.a)
     }
 

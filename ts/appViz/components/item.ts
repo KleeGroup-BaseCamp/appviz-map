@@ -5,7 +5,7 @@ export class Item extends Component {
      private readonly title: string
 
     constructor(title: string, props: ComponentProps) {
-        super(props, "", true)
+        super(props, "Item", true)
         this.title = title ? TextUtils.buildDisplayableTitle(title, this.getWidth(), neon.getStyle().text.size.s) : "No title"
     }
 

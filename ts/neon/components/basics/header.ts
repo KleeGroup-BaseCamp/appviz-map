@@ -13,7 +13,7 @@ export class Header extends Component{
     private readonly font: p5.Font
 
     constructor(title: string, props: HeaderProps) {
-        super(props, "", false)
+        super(props, "Header", false)
         this.fontSize = props.fontSize ?? neon.getStyle().text.size.s
         this.font = props.font ?? neon.getStyle().text.font
         this.title = title ? TextUtils.buildDisplayableTitle(title, width, this.fontSize) : "No title"

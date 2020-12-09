@@ -5,7 +5,7 @@ export class ItemTypeDetail extends Component {
     private readonly header: Header
 
     constructor(title: string, props: ComponentProps) {
-        super(props, "", false)
+        super(props, "ItemTypeDetail", false)
         this.header = new Header(
             title, 
             {

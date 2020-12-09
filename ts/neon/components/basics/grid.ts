@@ -15,7 +15,7 @@ export class Grid extends Component {
    * @param {number} rows 
    */
   constructor(columns: number, rows: number, props: ComponentProps) {
-    super(props, "", false)
+    super(props, "Grid", false)
     this.columns = columns
     this.rows = rows
     AnimationUtils.animate(150, 0, 1000, (a:number) => this.alpha = a)

@@ -8,7 +8,7 @@ export class BlackHole3 extends Component{
     private readonly bolts : Bolt[]
  
     constructor(percent: number, props: ComponentProps){
-        super(props, "", false)
+        super(props, "BlackHole3", false)
         const duration = 10000 /*ms*/
         this.radius = min (this.getWidth(), this.getHeight())/2
         this.bolts = BlackHole3.createBolts(250, this.radius)
