@@ -8,6 +8,10 @@ export class Neon{
         this.style = new StyleBuilder().build()
     }
 
+    public load(){
+      //  this.style.load()
+    }
+
     public getStyle(): Style{
         return this.style
     }
@@ -21,7 +25,7 @@ export class Neon{
     }
 
     public setTheme(themeName: ThemeName): void{
-        this.style = new styleBuilder()
+        this.style = new StyleBuilder()
             .withTheme(themeName)
             .build()
     }

@@ -17,7 +17,7 @@ declare global {
 }
 
 let sketch : Sketch
-const neon : Neon = new Neon()
+let neon  : Neon
 let projection : Projection
 let modelRepositoryBuilder : ModelRepositoryBuilder 
 let layout : any
@@ -38,6 +38,7 @@ window.setup = ()=> {
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
   // go to home
   sketch.switchView("home")
+
 }
 window.draw = ()=> {sketch.draw()}
 window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
