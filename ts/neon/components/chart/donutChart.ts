@@ -13,7 +13,7 @@ export class DonutChart extends Component{
     private readonly topPadding: number = 20
 
     constructor(data: DonutData, props: ComponentProps){
-        super(props, "", false)
+        super(props, "DonutChart", false)
         this.data = data
         this.data.map(
             entry => this.labels.push(

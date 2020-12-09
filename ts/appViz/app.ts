@@ -11,6 +11,7 @@ declare global {
       setup: any,
       draw: any,
       switchView: any
+      switchTheme: any
       switchDebug: ()=> void
      }
 }
@@ -35,7 +36,7 @@ window.preload = () => {
 
 window.setup = ()=> {
   const isThemeDark = true // Start theme
-  neon = new Neon(styleBuilder.build(isThemeDark), isThemeDark)
+  neon = new Neon(styleBuilder, isThemeDark)
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
   // go to home
   sketch.switchView("home")
@@ -48,6 +49,10 @@ window.windowResized = ()=> {
   sketch.windowResized()
 }
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
+window.switchTheme = () => {
+  neon.switchTheme()
+  sketch.drawView()
+}
 window.switchDebug = () => {
   neon.setDebug(!neon.getDebug()) // toggleDebug method ?
   sketch.drawView()

@@ -1,13 +1,16 @@
-import {Style} from "./components"
+import {Style, StyleBuilder} from "./components"
 
 export class Neon{
-    private readonly style : Style
+    private readonly styleBuilder: StyleBuilder
+
+    private style : Style
     private isThemeDark: boolean
     private debug: boolean = true
 
-    constructor(style: Style, isThemeDark: boolean){
-        this.style = style
+    constructor(styleBuilder: StyleBuilder, isThemeDark: boolean){
+        this.styleBuilder = styleBuilder
         this.isThemeDark = isThemeDark
+        this.style = this.styleBuilder.build(this.isThemeDark)
     }
 
     public getStyle(): Style{
@@ -26,8 +29,9 @@ export class Neon{
         return this.isThemeDark
     }
 
-    public toggleTheme(): void{
+    public switchTheme(): void{
         this.isThemeDark = !this.isThemeDark
+        this.style = this.styleBuilder.build(this.isThemeDark)
     }
 
 }

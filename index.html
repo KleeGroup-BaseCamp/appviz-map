@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bulma-switch.min.css" />
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
   </head>
   
@@ -71,6 +72,14 @@
           <div class="tile is-parent">
             <div class="tile is-child menu-item" id = "demoDashboard" onclick="switchView('demoDashboard')">
               <i class="material-icons md-36">dashboard</i>
+            </div>
+          </div>
+          <div class="tile is-parent">
+            <div class="tile is-child menu-item" id = "toggleTheme">
+                <div class="field">
+                  <input id="switchExample" type="checkbox" name="switchExample" class="switch is-rounded is-info is-small" onchange="switchTheme()">
+                  <label for="switchExample"></label>
+                </div>
             </div>
           </div>
           <div class="tile is-parent">
