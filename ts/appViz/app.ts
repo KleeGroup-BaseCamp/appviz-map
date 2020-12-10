@@ -36,7 +36,6 @@ window.preload = () => {
 window.setup = ()=> {
   console.log("setup")
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
-  n3on.buildStyle()
   // go to home
   sketch.switchView("home")
 
