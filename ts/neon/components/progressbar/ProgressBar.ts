@@ -43,8 +43,8 @@ export class ProgressBar extends Component {
     
     @PushPop
     private renderBar(): void{
+        const weight = this.getStrokeWeight()
         const padding = 7
-        const weight = 8
         textSize(this.size)
         const vTextWidth = textWidth("100%")
         const barWidth = this.getPxSize().getWidth() - vTextWidth - padding - weight / 2
@@ -79,6 +79,13 @@ export class ProgressBar extends Component {
             stroke(this.secondColor)
             line(0, 0, transitionStart , 0)
         }
+    }
+
+    private getStrokeWeight(): number{
+        const width = this.getWidth()
+        if (width <= 100) return 6
+        if (width <= 150) return 8
+        return 10
     }
 
     private getTextSize(): number{ // Make into util function
