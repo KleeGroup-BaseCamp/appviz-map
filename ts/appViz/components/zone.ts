@@ -1,13 +1,13 @@
-/**
- * View of a zone.
- */
 import * as p5 from "p5"
-import {Component, State, ComponentProps, ColorUtils, PxSize, Header, Corner, n3on} from "../../neon"
+import {Component, State, ComponentProps, ColorUtils, PxSize, Header, Corner} from "../../neon"
 
 export interface ZoneProps extends ComponentProps{
     color?: p5.Color
 }
 
+/**
+ * View of a zone.
+ */
 export class Zone extends Component {
     private readonly header: Header
     private readonly corner: Corner
@@ -18,13 +18,13 @@ export class Zone extends Component {
             title, 
             {
                 size: new PxSize(this.getWidth(), 50),
-                fontSize: n3on.getStyle().text.size.l 
+                fontSize: this.style.text.size.l 
             }
         )
         this.corner = new Corner(
             {
                 size: new PxSize(30, 30),
-                color: ColorUtils.clone(props.color ?? n3on.getStyle().color.a)
+                color: ColorUtils.clone(props.color ?? this.style.color.a)
             }
         )
     }
