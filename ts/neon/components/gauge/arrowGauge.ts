@@ -22,11 +22,15 @@ export class ArrowGauge extends Component{
 
     @PushPop
     public render() : void {
-        translate(this.centerPosition.getX(), this.centerPosition.getY())
+        const displayText = this.radius > this.style.pxSizes.ArrowGauge.s.getWidth() / 2
+        translate(
+            this.centerPosition.getX(), 
+            this.centerPosition.getY() + (!displayText ? this.radius / 4 : 0)
+        )
         this.renderArc()
         noStroke()
         this.renderPointer()
-        if (this.radius > this.style.pxSizes.ArrowGauge.s.getWidth() / 2){
+        if (displayText){
             this.renderValueText() // Render value as VText under pointer
         }
     }
