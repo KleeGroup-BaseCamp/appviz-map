@@ -2,7 +2,7 @@ import * as p5 from "p5"
 import {VText} from "../basics"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
 import {Component, ComponentProps} from "../../core"
-import { n3on } from "../.."
+import {n3on} from "../.."
 
 export interface ProgressBarProps extends ComponentProps {
     firstColor?: p5.Color,
@@ -32,24 +32,29 @@ export class ProgressBar extends Component {
 
     @PushPop
     public render(): void {
+        const displayText = this.getWidth() > this.style.pxSizes.ProgressBar.s.getWidth()
         translate(0, this.getPxSize().getHeight() / 2)
         textAlign(LEFT, CENTER)
         this.vtext.setText(`${Math.floor(this.percent).toString()}%`)
-        this.renderBar();
-        const textVerticalPadding = 4 // Text is not perfectly centered vertically
-        translate(0, -textVerticalPadding)
-        this.vtext.render() 
+        this.renderBar(displayText);
+        if (displayText){
+            const textVerticalPadding = 4 // Text is not perfectly centered vertically
+            translate(0, -textVerticalPadding)
+            this.vtext.render() 
+        }
     }
     
     @PushPop
-    private renderBar(): void{
+    private renderBar(displayText: boolean): void{
         const weight = this.getStrokeWeight()
         const padding = 7
         textSize(this.size)
         const vTextWidth = textWidth("100%")
-        const barWidth = this.getPxSize().getWidth() - vTextWidth - padding - weight / 2
+        const barWidth = displayText 
+            ? this.getWidth() - vTextWidth - padding - weight
+            : this.getWidth() - weight
         const filledWidth = barWidth * this.percent / 100
-        translate(vTextWidth + padding, 0)
+        translate(displayText ? vTextWidth + padding : weight / 2, 0)
         strokeWeight(weight)
         strokeJoin(ROUND)
         stroke(n3on.getStyle().color.front)
