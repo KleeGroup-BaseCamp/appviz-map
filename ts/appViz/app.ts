@@ -4,7 +4,6 @@ import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
 import * as p5 from "p5"
 
-console.log("start")
 // Add methods to Window interface
 declare global {
     interface Window { 
@@ -24,7 +23,6 @@ let icons : {[iconName: string]: p5.Image} = {}
 
 
 window.preload = () => {
-  console.log("got here")
   modelRepositoryBuilder = new ModelRepositoryBuilder("/data/notebook.json", "/data/config.json")
   layout = loadJSON("/ts/appViz/views/layout.json")
   n3on.load()
@@ -34,7 +32,6 @@ window.preload = () => {
 }
 
 window.setup = ()=> {
-  console.log("setup")
   sketch = new Sketch(modelRepositoryBuilder.build(), projection, layout)
   // go to home
   sketch.switchView("home")

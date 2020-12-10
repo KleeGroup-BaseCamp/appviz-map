@@ -30,9 +30,9 @@ export class Neon{
     }
 
     public setTheme(themeName: ThemeName): void{
-        this.style = new StyleBuilder()
+        this.styleBuilder = this.styleBuilder
             .withTheme(themeName)
-            .build()
+        this.style = this.styleBuilder.build()
     }
 }
 
