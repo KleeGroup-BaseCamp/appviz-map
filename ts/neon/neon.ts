@@ -1,7 +1,7 @@
 import {Style, StyleBuilder, ThemeName} from "./components"
 
 export class Neon{
-    private style? : Style // Have a default style ?
+    private style? : Style
     private styleBuilder : StyleBuilder
     private debug: boolean = true
 
@@ -13,13 +13,10 @@ export class Neon{
         this.styleBuilder.load()
     }
 
-    public buildStyle(){
-      this.style = this.styleBuilder.build()
-    }
-
     public getStyle(): Style{
         if (!this.style){
-            throw "style is undefined"
+            //Lazy loading
+            this.style = this.styleBuilder.build()
         }
         return this.style
     }
