@@ -26,7 +26,9 @@ export class ArrowGauge extends Component{
         this.renderArc()
         noStroke()
         this.renderPointer()
-        this.renderValueText() // Render value as VText under pointer
+        if (this.radius > this.style.pxSizes.ArrowGauge.s.getWidth() / 2){
+            this.renderValueText() // Render value as VText under pointer
+        }
     }
 
     private renderArc() : void {

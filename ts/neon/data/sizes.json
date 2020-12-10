@@ -1,24 +1,24 @@
 { 
     "WifiSignal": {
         "s": {
-            "width" : 5
+            "width" : 3
         },
         "m": {
-            "width" : 10
+            "width" : 6
         },
         "l": {
-            "width" : 15
+            "width" : 9
         }
     },
     "BarsSignal": {
         "s": {
-            "width" : 5
+            "width" : 3
         }, 
         "m": {
-            "width" : 10
+            "width" : 6
         },
         "l": {
-            "width" : 15
+            "width" : 9
         }
     },
     "ArrowGauge": {

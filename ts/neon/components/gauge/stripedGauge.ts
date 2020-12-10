@@ -33,14 +33,16 @@ export class StripedGauge extends Component{
         fill(this.style.color.back)
         circle(0, 0, innerRadius * 2)
 
-        const text = Math.round(this.percent).toString() + "%" 
-        this.renderValueText(text)
+        if (this.radius > this.style.pxSizes.StripedGauge.s.getWidth() / 2){
+            const text = Math.round(this.percent).toString() + "%" 
+            this.renderValueText(text)
 
-        const margin = 3
-        textSize(this.getTextSize())
-        this.renderDottedCircle(innerRadius - margin)
-        if(this.radius >= 40){
-            this.renderDottedCircle(textWidth("100%") / 2 + margin) // Max text width = textWidth("100%")
+            const margin = 3
+            textSize(this.getTextSize())
+            this.renderDottedCircle(innerRadius - margin)
+            if(this.radius >= 40){
+                this.renderDottedCircle(textWidth("100%") / 2 + margin) // Max text width = textWidth("100%")
+            }
         }
     }
 

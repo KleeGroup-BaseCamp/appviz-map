@@ -84,7 +84,7 @@ export class ProgressBar extends Component {
     private getTextSize(): number{ // Make into util function
         const width = this.getWidth()
         if (width <= 100) return n3on.getStyle().text.size.xs
-        if (width <= 200) return n3on.getStyle().text.size.s
+        if (width <= 150) return n3on.getStyle().text.size.s
         return n3on.getStyle().text.size.m
     }
 }

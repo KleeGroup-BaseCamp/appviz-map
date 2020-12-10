@@ -8,7 +8,7 @@ export interface GaugeProps extends ComponentProps {
     secondColor?: p5.Color
 }
 
-export class Gauge extends Component{
+export class Gauge extends Component {
     private readonly firstColor: p5.Color
     private readonly secondColor?: p5.Color
     private readonly radius: number
@@ -45,9 +45,11 @@ export class Gauge extends Component{
 
         // Circular progress Bar
         this.renderArcs()
-
-        const text = Math.round(this.percent).toString() + "%" 
-        this.renderValueText(text)
+        
+        if (this.radius > this.style.pxSizes.Gauge.s.getWidth() / 2){
+            const text = Math.round(this.percent).toString() + "%" 
+            this.renderValueText(text)
+        }
     }
 
     private renderArcs(): void{
