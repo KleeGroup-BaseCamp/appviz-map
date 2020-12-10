@@ -28,7 +28,7 @@ export class BarChart extends Chart{
         const values = this.data.map(entry => entry.y)
         if (values.length == 0) return
         noStroke()
-        const color = ColorUtils.clone(n3on.getStyle().color.a)
+        const color = ColorUtils.clone(this.style.color.a)
         color.setAlpha(150)
         fill(color)
         strokeWeight(1)

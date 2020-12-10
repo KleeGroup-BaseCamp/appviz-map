@@ -1,8 +1,8 @@
 import * as p5 from "p5"
-import {neon} from "../../../appViz/app"
 import {VText} from "../basics"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
 import {Component, ComponentProps} from "../../core"
+import { n3on } from "../.."
 
 export interface ProgressBarProps extends ComponentProps {
     firstColor?: p5.Color,
@@ -20,7 +20,7 @@ export class ProgressBar extends Component {
 
     constructor(percent: number, props : ProgressBarProps) {
         super(props, "ProgressBar", false)
-        this.firstColor = props.firstColor ?? ColorUtils.clone(neon.getStyle().color.a)
+        this.firstColor = props.firstColor ?? ColorUtils.clone(n3on.getStyle().color.a)
         this.secondColor = props.secondColor ? ColorUtils.clone(props.secondColor) : undefined
 
         this.percent  = percent
@@ -52,7 +52,7 @@ export class ProgressBar extends Component {
         translate(vTextWidth + padding, 0)
         strokeWeight(weight)
         strokeJoin(ROUND)
-        stroke(neon.getStyle().color.front)
+        stroke(n3on.getStyle().color.front)
         line(0, 0, barWidth, 0)
         
         //There is always a color on the left 
@@ -83,8 +83,8 @@ export class ProgressBar extends Component {
 
     private getTextSize(): number{ // Make into util function
         const width = this.getWidth()
-        if (width <= 100) return neon.getStyle().text.size.xs
-        if (width <= 200) return neon.getStyle().text.size.s
-        return neon.getStyle().text.size.m
+        if (width <= 100) return n3on.getStyle().text.size.xs
+        if (width <= 200) return n3on.getStyle().text.size.s
+        return n3on.getStyle().text.size.m
     }
 }

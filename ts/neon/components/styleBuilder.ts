@@ -33,7 +33,7 @@ export const isThemeName = (name: string): name is ThemeName =>
     themeNames.includes(name as ThemeName)
 
 export class StyleBuilder {
-    private themeName : string = 'dark'
+    private themeName : ThemeName = 'dark'
     private textFont?: p5.Font
     private iconFont? : p5.Font
     private pxSizes?: SizesJson
@@ -42,7 +42,7 @@ export class StyleBuilder {
     constructor() {
     }
 
-    public withTheme(themeName :string){
+    public withTheme(themeName : ThemeName){
         this.themeName = themeName
         return this
     }
@@ -94,7 +94,7 @@ export class StyleBuilder {
     public build(): Style {
         const theme = this.themes[this.themeName]
         if (!theme){
-            throw `Theme ${themeName} is undefined`
+            throw `Theme ${this.themeName} is undefined`
         }
         return  {
              icon: {

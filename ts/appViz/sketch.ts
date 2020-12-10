@@ -1,16 +1,14 @@
 import "p5"
 import {} from "p5/global"
-
-import {neon, projection} from "./app"
+import {projection} from "./app"
 import {Detail} from "./detail"
 import {HomeView, TechZoneView, TechGroupView, DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
   DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, View, DemoViewNeon} from "./views"
-import {State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils, isThemeName} from "../neon"
+import {State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
 import {Group, Item} from "./components"
 import {ModelRepository} from "./model"
 import {Projection, PxSize} from "../neon"
 import {ViewParams} from "./types"
-import {} from "./views"
 
 export class Sketch {
   private readonly state: State = new State()
@@ -90,7 +88,7 @@ export class Sketch {
 
   public switchTheme(themeName: string){
     if (isThemeName(themeName)){
-      neon.switchTheme(themeName)
+      n3on.setTheme(themeName)
       this.drawView()
     } else{
       throw `${themeName} not known as a theme name`

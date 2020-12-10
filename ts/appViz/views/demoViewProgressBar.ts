@@ -30,7 +30,7 @@ export class DemoViewProgressBar implements View {
                 .addComponent(new StripedProgressBar(0,{size:pxSize}))
                 .addComponent(new StripedProgressBar(75, {size:pxSize, 
                     firstColor : n3on.getStyle().color.b,
-                    secondColor :n3on.getStyle().color.c}))
+                    secondColor: n3on.getStyle().color.c}))
                 .addComponent(new StripedProgressBar(100,{size:pxSize, icon:Icons.getIcon("data") }))
                 .beginRow(10)
                 .addComponent(new Caption("StripedProgressBar", {size: captionSize}))

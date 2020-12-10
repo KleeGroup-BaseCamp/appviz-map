@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {neon} from "../../appViz/app"
+import {n3on} from ".."
 
 export class TextUtils {
     private static maxCharacters(text: string, width: number): number {
@@ -12,7 +12,7 @@ export class TextUtils {
     }
 
     public static buildDisplayableTitle(text: string, width: number, fontSize: number): string {
-        const font : p5.Font = neon.getStyle().text.font
+        const font : p5.Font = n3on.getStyle().text.font
         push() // This function should not alter textSize
         textSize(fontSize)
         textFont(font)

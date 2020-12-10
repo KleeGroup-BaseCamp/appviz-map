@@ -42,7 +42,7 @@ export abstract class Component {
 
   constructor(props: ComponentProps, name : string, selectable: boolean) {
     this.id = props.id ?? Component.generateId()
-    this.pxSize = Component.buildPxSize(name, props.size)
+    this.pxSize = this.buildPxSize(name, props.size)
     // this.pxSize = props.size as PxSize
     this.selectable = selectable
     this.centerPosition = new PxPosition(
@@ -124,12 +124,12 @@ export abstract class Component {
     return -1
   }
 
-  private static buildPxSize(name : string, size? : Size | PxSize): PxSize{
+  private buildPxSize(name : string, size? : Size | PxSize): PxSize{
     if(size instanceof PxSize) {
       return size
     } 
-    return n3on.getStyle().pxSizes[name] // VText passes no PxSize and has no standard size
-      ? n3on.getStyle().pxSizes[name][(size ?? "m")]
+    return this.style.pxSizes[name] // VText passes no PxSize and has no standard size
+      ? this.style.pxSizes[name][(size ?? "m")]
       : new PxSize(404)
     // return neon.getStyle().pxSizes[name][(size ?? "m")]
   }
