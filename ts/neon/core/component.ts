@@ -2,7 +2,7 @@ import {PxSize, PxPosition} from "../layout"
 import {State, VEvent} from "."
 import {n3on} from ".."
 
-type Size = "s" | "m" | "l"
+export type Size = "s" | "m" | "l"
 
 export interface ComponentProps {
     id?: any,
@@ -42,7 +42,7 @@ export abstract class Component {
 
   constructor(props: ComponentProps, name : string, selectable: boolean) {
     this.id = props.id ?? Component.generateId()
-    this.pxSize = this.buildPxSize(name, props.size)
+    this.pxSize = this.style.buildPxSize(name, props.size)
     // this.pxSize = props.size as PxSize
     this.selectable = selectable
     this.centerPosition = new PxPosition(
@@ -122,15 +122,5 @@ export abstract class Component {
 
   private static generateId():number {
     return -1
-  }
-
-  private buildPxSize(name : string, size? : Size | PxSize): PxSize{
-    if(size instanceof PxSize) {
-      return size
-    } 
-    return this.style.pxSizes[name] // VText passes no PxSize and has no standard size
-      ? this.style.pxSizes[name][(size ?? "m")]
-      : new PxSize(404)
-    // return neon.getStyle().pxSizes[name][(size ?? "m")]
   }
 }

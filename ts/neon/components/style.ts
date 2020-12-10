@@ -1,5 +1,6 @@
 import * as p5 from "p5"
-import { PxSize } from "../layout";
+import {PxSize} from "../layout";
+import {Size} from "../core"
 
 export type ComponentsSizes = {
     [componentName: string]: {
@@ -62,5 +63,14 @@ export class Style {
         this.text = textStyle
         this.color = colorStyle
         this.pxSizes = pxSizes
+    }
+
+    public buildPxSize(name : string, size? : Size | PxSize): PxSize{
+        if(size instanceof PxSize) {
+            return size
+        } 
+        return this.pxSizes[name] // VText passes no PxSize and has no standard size
+            ? this.pxSizes[name][(size ?? "m")]
+            : new PxSize(404)
     }
 }
