@@ -1,5 +1,4 @@
 import {PositionedComponent, Component, Layer} from "."
-import {PxPosition} from "../layout"
 
 type Gap = {
   column : number,
@@ -27,7 +26,7 @@ export class GridLayerBuilder {
    * @param {Component} component 
    */
   public addComponent(component: Component): GridLayerBuilder  {
-    const pxPosition: PxPosition = new PxPosition (this.x, this.y) 
+    const pxPosition = createVector (this.x, this.y) 
     this.positionedComponents.push({component, pxPosition})
 
     this.x =  this.x +  this.gap.column + component.getWidth()

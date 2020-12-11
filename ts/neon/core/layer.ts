@@ -1,9 +1,9 @@
 import {Component, State} from "."
-import {PxPosition} from "../layout"
 import {AnimationUtils} from "../utils"
 import {n3on} from "../../neon"
+import * as p5 from "p5"
 
-export type PositionedComponent = {pxPosition: PxPosition, component: Component}
+export type PositionedComponent = {pxPosition: p5.Vector, component: Component}
 
 export class Layer {
   private readonly positionedComponents: PositionedComponent[]
@@ -22,7 +22,7 @@ export class Layer {
 
     for (let positionedComponent of this.positionedComponents) {
       push()
-      translate(positionedComponent.pxPosition.getX(), positionedComponent.pxPosition.getY())
+      translate(positionedComponent.pxPosition.x, positionedComponent.pxPosition.y)
 
       if (positionedComponent.component.needsClear()){
         noStroke()
@@ -51,8 +51,8 @@ export class Layer {
    */
   public findComponent(x: number, y: number): Component | null {
     for (let positionedComponent of this.positionedComponents) {
-      const lx = x - positionedComponent.pxPosition.getX()
-      const ly = y - positionedComponent.pxPosition.getY()
+      const lx = x - positionedComponent.pxPosition.x
+      const ly = y - positionedComponent.pxPosition.y
       if (positionedComponent.component.isSelectable() && positionedComponent.component.contains(lx, ly))
         return positionedComponent.component
     }

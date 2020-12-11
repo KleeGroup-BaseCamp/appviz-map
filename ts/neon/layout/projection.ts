@@ -1,4 +1,5 @@
-import {PxPosition, PxSize, GridPosition, GridSize} from "."
+import * as p5 from "p5"
+import {PxSize, GridPosition, GridSize} from "."
 
 export class Projection {
     private readonly pxSize: PxSize
@@ -21,7 +22,7 @@ export class Projection {
      * @param {GridPosition} gridPosition
      * @returns {PxPosition}
      */
-    public gridToPxPosition(gridPosition: GridPosition): PxPosition{
+    public gridToPxPosition(gridPosition: GridPosition): p5.Vector{
         let x = 0
         let y = 0
         let gridColumns = this.gridColumns
@@ -35,7 +36,7 @@ export class Projection {
             gridColumns *= this.gridColumns
             gridRows *= this.gridRows
         }
-        return new PxPosition(x, y)
+        return createVector (x, y)
     } 
 
     /**
@@ -64,11 +65,11 @@ export class Projection {
      * @param {number} level
      * @returns {GridPosition}
      */
-    public pxToGridPosition(pxPos: PxPosition, level: number): GridPosition{
+    public pxToGridPosition(pxPos: p5.Vector, level: number): GridPosition{
         const columns = []
         const rows = []
-        let x = pxPos.getX()
-        let y = pxPos.getY()
+        let x = pxPos.x
+        let y = pxPos.y
         let gridColumns = this.gridColumns
         let gridRows = this.gridRows
         for(let i = 0; i < level; i++){

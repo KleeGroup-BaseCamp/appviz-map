@@ -34,7 +34,7 @@ export class Gauge extends Component {
 
     @PushPop
     public render() : void {
-        translate(this.centerPosition.getX(), this.centerPosition.getY())
+        translate(this.centerPosition.x, this.centerPosition.y)
 
         noFill()
         strokeWeight(this.weight)

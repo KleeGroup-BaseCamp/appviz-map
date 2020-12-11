@@ -43,7 +43,7 @@ export class BlackHole4 extends Component{
                 
     public render() : void {
         push()
-        translate(this.centerPosition.getX(), this.centerPosition.getY())
+        translate(this.centerPosition.x, this.centerPosition.y)
         fill(this.primaryColor)
         strokeWeight(2)
         stroke(this.secondaryColor)

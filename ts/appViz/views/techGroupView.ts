@@ -1,10 +1,11 @@
 import {View} from "./view"
 import {projection} from "../app"
 import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
-import {Layer, LayerBuilder, PxPosition, GridPosition, PxSize, GridSize, TextUtils, 
+import {Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, 
     Card} from "../../neon"
 import {ModelRepository, GroupModel} from "../model"
 import {Item, ItemTypeDetail, Icons} from "../components"
+import * as p5 from "p5"
 export class TechGroupView implements View {
 
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
@@ -87,23 +88,22 @@ export class TechGroupView implements View {
         
     }
 
-
     private getItemPx(
         itemIndex: number, 
         itemsPerRow: number, 
         itemTypePxSize: PxSize, 
-        itemTypePxPosition: PxPosition
-        ): {itemPxPosition: PxPosition, itemPxSize: PxSize} {
+        itemTypePxPosition: p5.Vector
+        ): {itemPxPosition: p5.Vector, itemPxSize: PxSize} {
         const padding = 10
 
-        const itemTypeX = itemTypePxPosition.getX()
-        const itemTypeY = itemTypePxPosition.getY()
+        const itemTypeX = itemTypePxPosition.x
+        const itemTypeY = itemTypePxPosition.y
         const itemTypeWidth = itemTypePxSize.getWidth()
         const itemWidth = ((itemTypeWidth - padding) / itemsPerRow) - padding
         const itemHeight = 40
          
         return {
-            itemPxPosition: new PxPosition(
+            itemPxPosition: createVector(
                 itemTypeX + padding + (itemIndex % itemsPerRow) * (itemWidth + padding), 
                 itemTypeY + 80 + Math.floor(itemIndex / itemsPerRow) * (itemHeight + padding)
                 ),

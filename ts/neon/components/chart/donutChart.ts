@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {VText} from "../basics"
 import {Component, ComponentProps} from "../../core"
-import {PxPosition, PxSize} from "../../layout"
+import {PxSize} from "../../layout"
 
 type DonutData = {label: string, value: number}[]
 
@@ -56,10 +56,10 @@ export class DonutChart extends Component{
         textAlign(LEFT, CENTER)
         const spacePerLabel = this.getWidth() / this.labels.length
         const rectSize = new PxSize(20, min(10, this.topPadding))
-        const rectPos = new PxPosition(0, (this.topPadding - rectSize.getHeight()) / 2)
+        const rectPos = createVector(0, (this.topPadding - rectSize.getHeight()) / 2)
         this.labels.forEach((label, index) => {
             fill(this.colors[index])
-            rect(rectPos.getX(), rectPos.getY(), rectSize.getWidth(), rectSize.getHeight())
+            rect(rectPos.x, rectPos.y, rectSize.getWidth(), rectSize.getHeight())
             push()
             translate(rectSize.getWidth(), this.topPadding / 2)
             label.render()

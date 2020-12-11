@@ -1,4 +1,4 @@
-import {PxPosition} from "../../layout"
+import * as p5 from "p5"
 import {AbstractRadar} from "./abstractRadar"
 
 export class SmoothRadar extends AbstractRadar{
@@ -26,11 +26,11 @@ export class SmoothRadar extends AbstractRadar{
 
             bezierVertex(
                 // Value point i 2nd control point
-                r1 * cos(alpha1) + position1.getX(), 
-                r1 * sin(alpha1) + position1.getY(),
+                r1 * cos(alpha1) + position1.x, 
+                r1 * sin(alpha1) + position1.y,
                 // Value point i+1 1st control point
-                r2 * cos(alpha2) - position2.getX(), 
-                r2 * sin(alpha2) - position2.getY(),
+                r2 * cos(alpha2) - position2.y, 
+                r2 * sin(alpha2) - position2.y,
                 // Value point i+1
                 r2 * cos(alpha2), 
                 r2 * sin(alpha2)
@@ -53,13 +53,13 @@ export class SmoothRadar extends AbstractRadar{
      * @param dimension Number of values/labels
      * @param angleStep Angle between two consecutive values/labels
      */
-    private getControlPointPosition(index: number, dimension: number, angleStep: number): PxPosition{
+    private getControlPointPosition(index: number, dimension: number, angleStep: number): p5.Vector{
         const dx = (angleStep * (index % dimension) - HALF_PI) % PI !== 0 
         ? min(abs((this.values[index % dimension] / 100) * this.radius * tan(angleStep) * cos(angleStep * (index % dimension)) / 2), this.radius * cos(asin(this.values[index % dimension] / 100))) * cos(angleStep * (index % dimension)) / abs(cos(angleStep * (index % dimension))) 
         : 0
         const dy = (angleStep * (index % dimension)) % PI !== 0 
         ? min(abs((this.values[index % dimension] / 100) * this.radius * tan(angleStep) * sin(angleStep * (index % dimension)) / 2), this.radius * cos(asin(this.values[index % dimension] / 100))) * sin(angleStep * (index % dimension)) / abs(sin(angleStep * (index % dimension))) 
         : 0  
-        return new PxPosition(dx, dy)
+        return createVector(dx, dy)
     }
 } 

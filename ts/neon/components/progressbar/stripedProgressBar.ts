@@ -2,7 +2,6 @@ import * as p5 from "p5"
 import {VText} from "../basics"
 import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
 import {Component, ComponentProps} from "../../core"
-import {PxPosition, PxSize} from "../../layout"
 
 export interface StripedProgressBarProps extends ComponentProps {
     firstColor?: p5.Color,
@@ -118,7 +117,7 @@ export class StripedProgressBar extends Component{
     }
 }
 export class Hexagon extends Component {
-    private readonly circumCenter: PxPosition
+    private readonly circumCenter: p5.Vector
     private readonly circumRadius: number
     private readonly weight: number
 
@@ -127,7 +126,7 @@ export class Hexagon extends Component {
         const width = this.getPxSize().getWidth()
         const height = this.getPxSize().getHeight()
         this.weight = 4
-        this.circumCenter = new PxPosition(width / 2, height / 2)
+        this.circumCenter = createVector(width / 2, height / 2)
         this.circumRadius = (min(height / sin(radians(60)), width) - this.weight) / 2
     }
 
@@ -136,7 +135,7 @@ export class Hexagon extends Component {
         noFill()
         strokeWeight(this.weight)
         stroke(this.style.color.front)
-        translate(this.circumCenter.getX(), this.circumCenter.getY())
+        translate(this.circumCenter.x, this.circumCenter.y)
         beginShape()
         for (let i = 0; i < 6; i++) {
             vertex(

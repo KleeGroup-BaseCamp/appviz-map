@@ -1,6 +1,7 @@
-import {PxSize, PxPosition} from "../layout"
+import {PxSize} from "../layout"
 import {State, VEvent} from "."
 import {n3on} from ".."
+import * as p5 from "p5"
 
 export type Size = "s" | "m" | "l"
 
@@ -37,7 +38,7 @@ export abstract class Component {
   private readonly pxSize: PxSize
   private readonly selectable: boolean
 //  private eventHandler? : VEventHandler
-  protected readonly centerPosition: PxPosition
+  protected readonly centerPosition: p5.Vector
   protected readonly style = n3on.getStyle()
 
   constructor(props: ComponentProps, name : string, selectable: boolean) {
@@ -45,7 +46,7 @@ export abstract class Component {
     this.pxSize = this.style.buildPxSize(name, props.size)
     // this.pxSize = props.size as PxSize
     this.selectable = selectable
-    this.centerPosition = new PxPosition(
+    this.centerPosition = createVector(
       this.pxSize.getWidth() / 2, 
       this.pxSize.getHeight() / 2
     )

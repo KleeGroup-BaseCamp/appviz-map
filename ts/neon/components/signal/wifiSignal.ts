@@ -1,13 +1,12 @@
 import * as p5 from "p5"
 import {Component, ComponentProps} from "../../core"
-import {PxPosition} from "../../layout"
 import {AnimationUtils} from "../../utils"
 
 export interface WifiSignalProps extends ComponentProps {}
 
 export class WifiSignal extends Component{
     private readonly radius: number
-    private readonly circleCenterPosition: PxPosition
+    private readonly circleCenterPosition: p5.Vector
     private readonly weight: number
 
     private rate: number
@@ -16,7 +15,7 @@ export class WifiSignal extends Component{
         super(props, "Signal", false)
         this.rate = rate
         this.weight = min(this.getHeight(), this.getWidth()) / 15
-        this.circleCenterPosition = new PxPosition(
+        this.circleCenterPosition = createVector(
             this.getWidth() / 2,
             this.getHeight() - this.weight
         )
@@ -46,8 +45,8 @@ export class WifiSignal extends Component{
         for (let i = 0; i < stripes; i ++){
             stroke(this.pickColor(i + 1))
             arc(
-                this.circleCenterPosition.getX(), 
-                this.circleCenterPosition.getY(),
+                this.circleCenterPosition.x, 
+                this.circleCenterPosition.y,
                 this.radius * 2 * (i + 1) / stripes,
                 this.radius * 2 * (i + 1) / stripes,
                 PI + QUARTER_PI,
@@ -66,8 +65,8 @@ export class WifiSignal extends Component{
         fill(this.pickColor(0))
         noStroke()
         circle(
-            this.circleCenterPosition.getX(), 
-            this.circleCenterPosition.getY(),
+            this.circleCenterPosition.x, 
+            this.circleCenterPosition.y,
             circleRadius
         )
     }

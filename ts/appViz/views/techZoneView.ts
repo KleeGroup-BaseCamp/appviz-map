@@ -5,7 +5,7 @@ import {n3on} from "../../neon"
 import {projection} from "../app"
 import {View} from "./view"
 import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ComponentLayout} from "../types"
-import {Layer, LayerBuilder, PxPosition, GridPosition, PxSize, GridSize, TextUtils} from "../../neon"
+import {Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils} from "../../neon"
 import {ModelRepository, ItemModel} from "../model"
 import {Zone, Group} from "../components"
 
@@ -59,7 +59,7 @@ export class TechZoneView implements View {
                 const itemTypeFrequencies = this.getItemTypeFrequencies(groupModel.getItemModels())
                 const groupPxSize = projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
                 const groupPxPosition = projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
-                const paddedGroupPxPosition = new PxPosition(groupPxPosition.getX() + padding.left, groupPxPosition.getY() + padding.top)
+                const paddedGroupPxPosition = createVector(groupPxPosition.x + padding.left, groupPxPosition.y + padding.top)
                 groupsLayerBuilder.addComponent(
                     new Group(
                         TextUtils.firstCharUpperCase(groupName),

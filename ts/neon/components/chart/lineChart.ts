@@ -1,4 +1,3 @@
-import {PxPosition} from "../../layout"
 import {ComponentProps} from "../../core"
 import {LinearAxis} from "./linearAxis"
 import {Chart, ChartData} from "./chart"
@@ -47,12 +46,12 @@ export class LineChart extends Chart{
         fill(this.style.color.a) // Fill for the circles
         beginShape()
         for (let entry of this.data){
-            const position = new PxPosition(
+            const position = createVector(
                 this.xAxis.getCoorForValue(entry.x), 
                 this.yAxis.getCoorForValue(entry.y)
                 )
-                circle(position.getX(), position.getY(), this.pointRadius)
-                vertex(position.getX(), position.getY())
+                circle(position.x, position.y, this.pointRadius)
+                vertex(position.x, position.y)
             }
         noFill() // Because of the fill for the circles
         endShape()

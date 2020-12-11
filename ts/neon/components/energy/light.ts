@@ -23,7 +23,7 @@ export class Light extends Component{
 
     @PushPop
     public render() : void {
-        translate(this.centerPosition.getX(), this.centerPosition.getY()) 
+        translate(this.centerPosition.x, this.centerPosition.y) 
 
         noFill()
         const maxOpacity = this.value * 255 / 100

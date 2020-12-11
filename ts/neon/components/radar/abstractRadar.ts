@@ -69,7 +69,7 @@ export abstract class AbstractRadar extends Component{
 
     public render(state: State) : void {
         push()
-        translate(this.centerPosition.getX(), this.centerPosition.getY())
+        translate(this.centerPosition.x, this.centerPosition.y)
         this.renderRadar()
         this.doRenderGraph(state)
         pop()

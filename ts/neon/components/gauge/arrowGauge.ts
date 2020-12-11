@@ -24,8 +24,8 @@ export class ArrowGauge extends Component{
     public render() : void {
         const displayText = this.radius > this.style.pxSizes.Gauge.s.getWidth() / 2
         translate(
-            this.centerPosition.getX(), 
-            this.centerPosition.getY() + (!displayText ? this.radius / 4 : 0)
+            this.centerPosition.x, 
+            this.centerPosition.y + (!displayText ? this.radius / 4 : 0)
         )
         this.renderArc()
         noStroke()

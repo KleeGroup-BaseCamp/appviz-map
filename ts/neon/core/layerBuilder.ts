@@ -1,5 +1,5 @@
+import * as p5 from "p5"
 import {PositionedComponent, Component, Layer} from "."
-import {PxPosition} from "../layout"
 
 export class LayerBuilder {
   private readonly positionedComponents: PositionedComponent[] = []
@@ -10,7 +10,7 @@ export class LayerBuilder {
    * @param {Component} component 
    * @param {PxPosition} pxPosition
    */
-  public addComponent(component: Component, pxPosition: PxPosition = new PxPosition(0, 0)): LayerBuilder  {
+  public addComponent(component: Component, pxPosition: p5.Vector = createVector(0, 0)): LayerBuilder  {
     this.positionedComponents.push({ component, pxPosition})
     return this
   }
