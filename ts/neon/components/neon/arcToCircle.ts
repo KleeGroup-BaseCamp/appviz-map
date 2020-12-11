@@ -31,7 +31,7 @@ export class ArcToCircle extends Component{
         noFill()
         stroke(this.color)
         strokeWeight(this.vStrokeWeight)
-        translate(this.getWidth() / 2, this.getHeight() / 2)
+        translate(this.centerPosition) 
         drawingContext.shadowColor = this.color.toString();
         drawingContext.shadowBlur = this.blur 
         arc(0, 0, this.radius * 2, this.radius * 2, this.startAngle, this.endAngle)

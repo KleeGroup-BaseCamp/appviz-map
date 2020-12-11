@@ -64,7 +64,7 @@ export class Group extends Component {
 
     @PushPop
     private renderButton(): void{
-        translate(this.getWidth()/2, this.getHeight()/2) 
+        translate(this.centerPosition) 
         this.button.render()
     }
     

@@ -33,7 +33,7 @@ export class ProgressBar extends Component {
     @PushPop
     public render(): void {
         const displayText = this.getWidth() > this.style.pxSizes.ProgressBar.s.getWidth()
-        translate(0, this.getPxSize().getHeight() / 2)
+        translate(this.centerPosition) 
         textAlign(LEFT, CENTER)
         this.vtext.setText(`${Math.floor(this.percent).toString()}%`)
         this.renderBar(displayText);

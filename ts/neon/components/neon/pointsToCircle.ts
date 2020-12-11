@@ -28,7 +28,7 @@ export class PointsToCircle extends Component{
     }    
     @PushPop
     public render(): void{
-        translate(this.getWidth() / 2, this.getHeight() / 2)
+        translate(this.centerPosition) 
         this.points.forEach(
             point => point.render()
         )

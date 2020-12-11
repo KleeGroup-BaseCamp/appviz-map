@@ -135,7 +135,7 @@ export class Hexagon extends Component {
         noFill()
         strokeWeight(this.weight)
         stroke(this.style.color.front)
-        translate(this.circumCenter.x, this.circumCenter.y)
+        translate(this.circumCenter)
         beginShape()
         for (let i = 0; i < 6; i++) {
             vertex(

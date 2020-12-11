@@ -33,7 +33,7 @@ export class SparkCircle extends Component{
     public render(): void{
         // Warning: Color displayed may vary a little than the one passed in withColor
         blendMode(DODGE) 
-        translate(this.getWidth() / 2, this.getHeight() / 2)
+        translate(this.centerPosition) 
         stroke(255)
         this.particles.forEach(particle => particle.render())
         this.neonArc.render()

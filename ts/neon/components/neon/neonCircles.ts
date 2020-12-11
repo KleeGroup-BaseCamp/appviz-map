@@ -47,7 +47,7 @@ export class NeonCircles extends Component{
     public render(): void{
         noFill()
         strokeWeight(2)
-        translate(this.getWidth() / 2, this.getHeight() / 2)
+        translate(this.centerPosition)
         this.circles.forEach(
             circle => circle.render()
         )

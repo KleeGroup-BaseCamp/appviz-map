@@ -1,5 +1,5 @@
 import {Component,ComponentProps} from "../../core"
-import {AnimationUtils} from "../../utils"
+import {AnimationUtils, PushPop} from "../../utils"
 import * as p5 from "p5"
 
 export class BlackHole2 extends Component{
@@ -24,16 +24,15 @@ export class BlackHole2 extends Component{
         return _bolts
     }
     
+    @PushPop
     public render() : void {
-        push()
-        translate(this.getWidth()/2, this.getHeight()/2)
+        translate(this.centerPosition)
         colorMode(HSB);
         stroke(frameCount% 255, 255, 255);
         for (let bolt of this.bolts)  {
             bolt.update()
             bolt.render()
         }
-        pop()
     }    
 
     public needsClear(): boolean {

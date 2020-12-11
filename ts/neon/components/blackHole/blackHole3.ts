@@ -26,7 +26,7 @@ export class BlackHole3 extends Component{
     
     public render() : void {
         push()
-        translate(this.getWidth()/2, this.getHeight()/2)
+        translate(this.centerPosition) 
         strokeWeight(2)
         noFill()
         stroke('lemon')

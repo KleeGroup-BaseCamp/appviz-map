@@ -15,7 +15,7 @@ export class Caption extends Component{
         fill(this.style.color.front)
         rect(0, 0, width, height)
         push()
-        translate(width / 2, height / 2)
+        translate(this.centerPosition)
         textAlign(CENTER, CENTER)
         this.vText.render()
         pop()

@@ -30,7 +30,7 @@ export class NeonTrails extends Component{
     }
     @PushPop
     public render(): void{
-        translate(this.centerPosition.x, this.centerPosition.y)
+        translate(this.centerPosition)
         this.trails.forEach(trail => trail.render())
         this.neonArc.render()
     }

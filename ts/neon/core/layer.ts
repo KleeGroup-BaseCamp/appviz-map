@@ -22,7 +22,7 @@ export class Layer {
 
     for (let positionedComponent of this.positionedComponents) {
       push()
-      translate(positionedComponent.pxPosition.x, positionedComponent.pxPosition.y)
+      translate(positionedComponent.pxPosition)
 
       if (positionedComponent.component.needsClear()){
         noStroke()

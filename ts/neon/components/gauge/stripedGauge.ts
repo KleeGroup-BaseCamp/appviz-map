@@ -26,7 +26,7 @@ export class StripedGauge extends Component{
 
     @PushPop
     public render() : void {
-        translate(this.centerPosition.x, this.centerPosition.y)
+        translate(this.centerPosition)
         this.renderArcs()
         
         const innerRadius = this.radius * 0.8
