@@ -3,7 +3,7 @@ import {ComponentsSizes, Style} from "."
 import {PxSize} from "../layout"
 import { ColorStyle, IconStyle, TextStyle } from "./style"
 
-const su = 10 // Size Unit
+const su = 20 // Size Unit
 
 interface SizesJson {
     [componentName: string]: {

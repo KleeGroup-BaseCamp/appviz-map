@@ -13,7 +13,7 @@ export class WifiSignal extends Component{
     private rate: number
 
     constructor(rate: number, props : WifiSignalProps){
-        super(props, "WifiSignal", false)
+        super(props, "Signal", false)
         this.rate = rate
         this.weight = min(this.getHeight(), this.getWidth()) / 15
         this.circleCenterPosition = new PxPosition(

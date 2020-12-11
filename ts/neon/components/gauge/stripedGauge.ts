@@ -16,7 +16,7 @@ export class StripedGauge extends Component{
     private percent: number
 
     constructor(percent: number, props : StripedGaugeProps){
-        super(props, "StripedGauge", false)
+        super(props, "Gauge", false)
         this.percent = percent
         this.radius = min(this.getHeight(), this.getWidth()) / 2
         this.vtext = new VText("", {fontSize: this.getTextSize()})
@@ -33,7 +33,7 @@ export class StripedGauge extends Component{
         fill(this.style.color.back)
         circle(0, 0, innerRadius * 2)
 
-        if (this.radius > this.style.pxSizes.StripedGauge.s.getWidth() / 2){
+        if (this.radius > this.style.pxSizes.Gauge.s.getWidth() / 2){
             const text = Math.round(this.percent).toString() + "%" 
             this.renderValueText(text)
 

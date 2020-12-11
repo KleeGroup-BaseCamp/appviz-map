@@ -11,7 +11,7 @@ export class ArrowGauge extends Component{
     private percent: number
 
     constructor(percent: number, props:ArrowGaugeProps){
-        super(props, "ArrowGauge", false)
+        super(props, "Gauge", false)
         this.percent = percent
         this.radius = min(this.getHeight(), this.getWidth()) / 2
         this.vtext = new VText("", {fontSize: this.getTextSize()})
@@ -22,7 +22,7 @@ export class ArrowGauge extends Component{
 
     @PushPop
     public render() : void {
-        const displayText = this.radius > this.style.pxSizes.ArrowGauge.s.getWidth() / 2
+        const displayText = this.radius > this.style.pxSizes.Gauge.s.getWidth() / 2
         translate(
             this.centerPosition.getX(), 
             this.centerPosition.getY() + (!displayText ? this.radius / 4 : 0)
