@@ -117,16 +117,14 @@ export class StripedProgressBar extends Component{
     }
 }
 export class Hexagon extends Component {
-    private readonly circumCenter: p5.Vector
     private readonly circumRadius: number
     private readonly weight: number
 
     constructor(props: ComponentProps) {
         super(props, "Hexagon", false)
-        const width = this.getPxSize().getWidth()
-        const height = this.getPxSize().getHeight()
+        const width = this.getWidth()
+        const height = this.getHeight()
         this.weight = 4
-        this.circumCenter = createVector(width / 2, height / 2)
         this.circumRadius = (min(height / sin(radians(60)), width) - this.weight) / 2
     }
 
@@ -135,7 +133,7 @@ export class Hexagon extends Component {
         noFill()
         strokeWeight(this.weight)
         stroke(this.style.color.front)
-        translate(this.circumCenter)
+        translate(this.centerPosition)
         beginShape()
         for (let i = 0; i < 6; i++) {
             vertex(
