@@ -140,6 +140,8 @@ export class StyleBuilder {
 
     private buildColorStyle(theme: Theme): ColorStyle{
         return {
+            first : color(theme.a),
+            second : color(theme.b), 
             a : color(theme.a), /* blue */
             b : color(theme.b), /* green */
             c : color(theme.c), /* red */

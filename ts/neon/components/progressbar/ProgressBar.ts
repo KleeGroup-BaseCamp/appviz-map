@@ -2,7 +2,6 @@ import * as p5 from "p5"
 import {VText} from "../basics"
 import {AnimationUtils, PushPop, ColorUtils} from "../../utils"
 import {Component, ComponentProps} from "../../core"
-import {n3on} from "../.."
 
 export interface ProgressBarProps extends ComponentProps {
     firstColor?: p5.Color,
@@ -20,7 +19,7 @@ export class ProgressBar extends Component {
 
     constructor(percent: number, props : ProgressBarProps) {
         super(props, "ProgressBar", false)
-        this.firstColor = props.firstColor ?? ColorUtils.clone(n3on.getStyle().color.a)
+        this.firstColor = props.firstColor ?? ColorUtils.clone(this.style.color.first)
         this.secondColor = props.secondColor ? ColorUtils.clone(props.secondColor) : undefined
 
         this.percent  = percent
@@ -32,8 +31,8 @@ export class ProgressBar extends Component {
 
     @PushPop
     public render(): void {
-        const displayText = this.getWidth() > this.style.pxSizes.ProgressBar.s.getWidth()
         translate(this.centerPosition) 
+        const displayText = this.getWidth() > this.style.pxSizes.ProgressBar.s.getWidth()
         textAlign(LEFT, CENTER)
         this.vtext.setText(`${Math.floor(this.percent).toString()}%`)
         this.renderBar(displayText);
@@ -57,7 +56,7 @@ export class ProgressBar extends Component {
         translate(displayText ? vTextWidth + padding : weight / 2, 0)
         strokeWeight(weight)
         strokeJoin(ROUND)
-        stroke(n3on.getStyle().color.front)
+        stroke(this.style.color.front)
         line(0, 0, barWidth, 0)
         
         //There is always a color on the left 
@@ -95,8 +94,8 @@ export class ProgressBar extends Component {
 
     private getTextSize(): number{ // Make into util function
         const width = this.getWidth()
-        if (width <= 100) return n3on.getStyle().text.size.xs
-        if (width <= 150) return n3on.getStyle().text.size.s
-        return n3on.getStyle().text.size.m
+        if (width <= 100) return this.style.text.size.xs
+        if (width <= 150) return this.style.text.size.s
+        return this.style.text.size.m
     }
 }

@@ -39,6 +39,9 @@ export interface TextStyle {
 }
 
 export interface ColorStyle {
+    readonly first : p5.Color,
+    readonly second : p5.Color,
+
     readonly a : p5.Color,
     readonly b : p5.Color,
     readonly c : p5.Color,
