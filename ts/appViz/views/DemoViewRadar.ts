@@ -1,6 +1,6 @@
 import {projection} from "../app"
 import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, SharpRadar, SmoothRadar, SharpRadar2, SmoothRadar2, Caption, Card, PxSize} from "../../neon"
+import {Layer, LayerBuilder, GridLayerBuilder, SharpRadar2, SmoothRadar2, Caption, Card, PxSize} from "../../neon"
 import {ModelRepository} from "../model"
 import {Layout} from "../types"
 export class DemoViewRadar implements View {
@@ -20,19 +20,14 @@ export class DemoViewRadar implements View {
             .addComponent(new Card("components/radar", {size: projection.getPxSize()}))
             .build(),
             new GridLayerBuilder()
-            .addComponent(new SharpRadar(data[0], {size: pxSize}))
             .addComponent(new SharpRadar2(data[0], {size: pxSize}))
             .beginRow(10)
             .addComponent(new Caption("SharpRadar", {size: captionSize}))
-            .addComponent(new Caption("SharpRadar2", {size: captionSize}))
             .beginRow()
-            .addComponent(new SmoothRadar(data[0], {size: pxSize}))
             .addComponent(new SmoothRadar2(data[0], {size: pxSize}))
             .beginRow(10)
             .addComponent(new Caption("SmoothRadar", {size: captionSize}))
-            .addComponent(new Caption("SmoothRadar2", {size: captionSize}))
-
             .build()
         ]
     }
-}
+} 

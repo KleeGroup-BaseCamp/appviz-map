@@ -23,8 +23,6 @@ export * from "./rating/ImageRating"
 export * from "./rating/heartRating"
 export * from "./rating/starRating"
 
-export * from "./radar/sharpRadar"
-export * from "./radar/smoothRadar"
 export * from "./radar2/sharpRadar2"
 export * from "./radar2/smoothRadar2"
 
