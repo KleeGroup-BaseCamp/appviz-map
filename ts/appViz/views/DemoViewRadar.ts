@@ -1,11 +1,9 @@
 import {projection} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, SharpRadar2, SmoothRadar2, Caption, Card, PxSize} from "../../neon"
-import {ModelRepository} from "../model"
-import {Layout} from "../types"
 export class DemoViewRadar implements View {
 
-    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
+    public provideLayers(): Layer[] {
         const pxSize = new PxSize(250)
         const values = Array.from({length: 2}, v => Array.from({length: 8}, v => random() * 100))
         const labels = ["Weight", "Capacity", "Quality", "Power", "Popularity", "Size", "Density", "Intensity"]

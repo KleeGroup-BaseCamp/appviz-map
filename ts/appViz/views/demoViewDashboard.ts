@@ -2,12 +2,10 @@ import {projection, icons} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, ArrowGauge, StripedGauge,
      ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating, Caption, Card} from "../../neon"
-import {ModelRepository} from "../model"
-import {Layout} from "../types"
 
 export class DemoViewDashboard implements View {
 
-    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
+    public provideLayers(): Layer[] {
         const pxSize = new PxSize(20) // For testing purposes
         return  [
             new LayerBuilder()

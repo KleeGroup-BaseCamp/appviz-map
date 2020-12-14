@@ -1,12 +1,10 @@
 import {projection, icons} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, SquareRating, HeartRating, StarRating, ImageRating, Caption, Card, PxSize} from "../../neon"
-import {ModelRepository} from "../model"
-import {Layout} from "../types"
 
 export class DemoViewRating implements View {
 
-    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
+    public provideLayers(): Layer[] {
         const pxSize = new PxSize(100, 30)
         const captionSize = new PxSize(850, 35)
         return  [

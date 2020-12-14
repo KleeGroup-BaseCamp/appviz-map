@@ -7,22 +7,24 @@ import {ModelRepository, GroupModel} from "../model"
 import {Item, ItemTypeDetail, Icons} from "../components"
 import * as p5 from "p5"
 export class TechGroupView implements View {
-
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",
         tk: "task"
     }
+
+    private readonly modelRepository: ModelRepository
+    private readonly layout: Layout
     private groupId: any
 
-    /**
-     * @param {Object} params 
-     */
-    constructor(params: ViewParams) {
+
+    constructor(modelRepository: ModelRepository, layout: Layout, params: ViewParams){
+        this.modelRepository = modelRepository
+        this.layout = layout
         this.groupId = params.groupId;
     }
 
-    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
-        const groupModel = modelRepository.getGroupModelById(this.groupId)
+    public provideLayers(): Layer[] {
+        const groupModel = this.modelRepository.getGroupModelById(this.groupId)
         return groupModel 
             ? [this.createGroupLayer(groupModel), ...this.createItemTypesLayers(groupModel)]
             : []

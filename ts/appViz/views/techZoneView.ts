@@ -10,24 +10,30 @@ import {ModelRepository, ItemModel} from "../model"
 import {Zone, Group} from "../components"
 
 export class TechZoneView implements View {
+    private readonly modelRepository: ModelRepository
+    private readonly layout: Layout
 
+    constructor(modelRepository: ModelRepository, layout: Layout){
+        this.modelRepository = modelRepository
+        this.layout = layout
+    }
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",
         tk: "task"
     }
 
-    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
+    public provideLayers(): Layer[] {
         return [
-            this.createZoneLayer(layout),
-            this.createGroupLayer(modelRepository, layout)
+            this.createZoneLayer(),
+            this.createGroupLayer()
         ]
     }
 
-    private createZoneLayer(layout: Layout): Layer {
+    private createZoneLayer(): Layer {
         const zonesLayerBuilder = new LayerBuilder()
 
-        for (const zoneName in layout.zones) {
-            const zoneLayout = layout.zones[zoneName]
+        for (const zoneName in this.layout.zones) {
+            const zoneLayout = this.layout.zones[zoneName]
             const zonePxSize = projection.gridToPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
             const zonePxPosition = projection.gridToPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
             zonesLayerBuilder.addComponent(
@@ -46,16 +52,16 @@ export class TechZoneView implements View {
     }
 
 
-    private createGroupLayer(modelRepository: ModelRepository, layout: Layout): Layer {
+    private createGroupLayer(): Layer {
         const groupsLayerBuilder = new LayerBuilder()
 
-        for (const groupName in layout.groups) {
-            const groupModel = modelRepository.getGroupModels().find(groupModel => // TO DO: Use getGroupModelById instead
+        for (const groupName in this.layout.groups) {
+            const groupModel = this.modelRepository.getGroupModels().find(groupModel => // TO DO: Use getGroupModelById instead
                 groupModel.getTitle() === groupName
             ) 
             if (groupModel !== undefined){
-                const groupLayout = layout.groups[groupName]
-                const padding = this.getGroupPadding(groupLayout, layout.zones[groupModel.getType()])
+                const groupLayout = this.layout.groups[groupName]
+                const padding = this.getGroupPadding(groupLayout, this.layout.zones[groupModel.getType()])
                 const itemTypeFrequencies = this.getItemTypeFrequencies(groupModel.getItemModels())
                 const groupPxSize = projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
                 const groupPxPosition = projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))

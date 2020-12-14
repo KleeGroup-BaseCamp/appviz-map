@@ -135,12 +135,12 @@ export class Sketch {
       case "demoDashboard":
         return new DemoViewDashboard()
       case "techZone":
-        return new TechZoneView()
+        return new TechZoneView(this.modelRepository, this.layout)
       case "techGroup":
         if (! viewParams){
           throw "No viewParams were passed to the function selectView"
         }
-        return new TechGroupView(viewParams)
+        return new TechGroupView(this.modelRepository, this.layout, viewParams)
       default:
         return new HomeView()
     }
@@ -149,7 +149,7 @@ export class Sketch {
   private generateMapFromView(viewInstance: View): Map {
     return new MapBuilder()
       .addLayer(new LayerBuilder().addComponent(new Background({size: new PxSize(width,height)})).build())
-      .addLayers(viewInstance.provideLayers(this.modelRepository, this.layout))
+      .addLayers(viewInstance.provideLayers())
       //.addLayers(new LayerBuilder().addComponent(new Grid(-1, projection.getPxSize(), "12", "12")).build())
       .build()
   }

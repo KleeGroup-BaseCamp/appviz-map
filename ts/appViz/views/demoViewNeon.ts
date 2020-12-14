@@ -8,7 +8,7 @@ import {Layout} from "../types"
 
 export class DemoViewNeon implements View {
 
-    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
+    public provideLayers(): Layer[] {
         const pxSize = new PxSize(200)
         const captionSize = new PxSize(200, 35)
         return  [

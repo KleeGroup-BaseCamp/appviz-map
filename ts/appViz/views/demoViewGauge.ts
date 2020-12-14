@@ -2,12 +2,10 @@ import {projection} from "../app"
 import {n3on} from "../../neon"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, StripedGauge, ArrowGauge, Gauge, Caption, Card, PxSize} from "../../neon"
-import {ModelRepository} from "../model"
-import {Layout} from "../types"
 
 export class DemoViewGauge implements View {
 
-    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
+    public provideLayers(): Layer[] {
         const pxSize = new PxSize(150)
         const captionSize = new PxSize(950, 35)
         return  [

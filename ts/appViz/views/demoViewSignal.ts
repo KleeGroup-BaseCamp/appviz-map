@@ -1,12 +1,10 @@
 import {projection} from "../app"
 import {View} from "./view"
 import {Layer, LayerBuilder, GridLayerBuilder, WifiSignal, BarsSignal, Caption, Card, PxSize} from "../../neon"
-import {ModelRepository} from "../model"
-import {Layout} from "../types"
 
 export class DemoViewSignal implements View {
 
-    public provideLayers(modelRepository: ModelRepository, layout: Layout): Layer[] {
+    public provideLayers(): Layer[] {
         const pxSize = new PxSize(100)
         const captionSize = new PxSize(850, 35)
         return  [
