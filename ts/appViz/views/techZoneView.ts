@@ -3,9 +3,8 @@
  */
 import {n3on} from "../../neon"
 import {projection} from "../app"
-import {View} from "./view"
 import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ComponentLayout} from "../types"
-import {Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils} from "../../neon"
+import {View, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils} from "../../neon"
 import {ModelRepository, ItemModel} from "../model"
 import {Zone, Group} from "../components"
 

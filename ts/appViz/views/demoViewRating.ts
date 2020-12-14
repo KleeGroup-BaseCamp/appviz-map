@@ -1,6 +1,5 @@
 import {projection, icons} from "../app"
-import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, SquareRating, HeartRating, StarRating, ImageRating, Caption, Card, PxSize} from "../../neon"
+import {View, Layer, LayerBuilder, GridLayerBuilder, SquareRating, HeartRating, StarRating, ImageRating, Caption, Card, PxSize} from "../../neon"
 
 export class DemoViewRating implements View {
 

@@ -11,5 +11,4 @@ export * from "./demoViewDashboard"
 export * from "./homeView"
 export * from "./techGroupView"
 export * from "./techZoneView"
-export * from "./view"
 

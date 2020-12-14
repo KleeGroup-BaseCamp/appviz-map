@@ -1,6 +1,5 @@
 import {projection} from "../app"
-import {View} from "./view"
-import {Layer, LayerBuilder, Card, Grid} from "../../neon"
+import {View, Layer, LayerBuilder, Card, Grid} from "../../neon"
 
 export class HomeView implements View {
 

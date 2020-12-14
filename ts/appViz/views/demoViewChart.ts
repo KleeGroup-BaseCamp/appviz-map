@@ -1,6 +1,5 @@
 import {projection} from "../app"
-import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, Caption, LineChart, BarChart, DonutChart, Card, PxSize} from "../../neon"
+import {View, Layer, LayerBuilder, GridLayerBuilder, Caption, LineChart, BarChart, DonutChart, Card, PxSize} from "../../neon"
 export class DemoViewChart implements View {
 
     public provideLayers(): Layer[] {

@@ -1,6 +1,5 @@
 import {projection} from "../app"
-import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, Battery, Caption, Light, Card, PxSize} from "../../neon"
+import {View, Layer, LayerBuilder, GridLayerBuilder, Battery, Caption, Light, Card, PxSize} from "../../neon"
 
 export class DemoViewEnergy implements View {
 

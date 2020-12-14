@@ -1,6 +1,5 @@
 import {projection} from "../app"
-import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, SharpRadar2, SmoothRadar2, Caption, Card, PxSize} from "../../neon"
+import {View, Layer, LayerBuilder, GridLayerBuilder, SharpRadar2, SmoothRadar2, Caption, Card, PxSize} from "../../neon"
 export class DemoViewRadar implements View {
 
     public provideLayers(): Layer[] {

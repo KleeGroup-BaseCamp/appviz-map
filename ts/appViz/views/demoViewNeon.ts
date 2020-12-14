@@ -1,10 +1,7 @@
 import {projection} from "../app"
 import {n3on} from "../../neon"
-import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, ArcToCircle, Caption, NeonCircles, 
+import {View, Layer, LayerBuilder, GridLayerBuilder, ArcToCircle, Caption, NeonCircles, 
     NeonTrails, PointsToCircle, SparkCircle, Card, PxSize} from "../../neon"
-import {ModelRepository} from "../model"
-import {Layout} from "../types"
 
 export class DemoViewNeon implements View {
 

@@ -1,6 +1,5 @@
 import {projection, icons} from "../app"
-import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, ArrowGauge, StripedGauge,
+import {View, Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, ArrowGauge, StripedGauge,
      ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating, Caption, Card} from "../../neon"
 
 export class DemoViewDashboard implements View {

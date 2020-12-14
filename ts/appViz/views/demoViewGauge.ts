@@ -1,7 +1,6 @@
 import {projection} from "../app"
 import {n3on} from "../../neon"
-import {View} from "./view"
-import {Layer, LayerBuilder, GridLayerBuilder, StripedGauge, ArrowGauge, Gauge, Caption, Card, PxSize} from "../../neon"
+import {View, Layer, LayerBuilder, GridLayerBuilder, StripedGauge, ArrowGauge, Gauge, Caption, Card, PxSize} from "../../neon"
 
 export class DemoViewGauge implements View {
 

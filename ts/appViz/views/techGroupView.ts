@@ -1,7 +1,6 @@
-import {View} from "./view"
 import {projection} from "../app"
 import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
-import {Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, 
+import {View, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, 
     Card} from "../../neon"
 import {ModelRepository, GroupModel} from "../model"
 import {Item, ItemTypeDetail, Icons} from "../components"
