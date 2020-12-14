@@ -1,5 +1,6 @@
-import {projection} from "../app"
-import {View, Layer, LayerBuilder, GridLayerBuilder, Card, PxSize, BlackHole2, BlackHole3, BlackHole4, Caption} from "../../neon"
+import {projection} from "../../appViz/app"
+import {View, Layer, LayerBuilder, GridLayerBuilder, Card, PxSize, Caption} from "../../neon"
+import {BlackHole2, BlackHole3, BlackHole4} from "../../demo"
 
 export class DemoViewBlackHole implements View {
 

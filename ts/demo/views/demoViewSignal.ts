@@ -1,4 +1,4 @@
-import {projection} from "../app"
+import {projection} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, WifiSignal, BarsSignal, Caption, Card, PxSize} from "../../neon"
 
 export class DemoViewSignal implements View {

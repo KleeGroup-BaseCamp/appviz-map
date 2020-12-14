@@ -1,7 +1,7 @@
 import * as p5 from "p5"
-import {n3on} from "../.."
-import {Component, ComponentProps} from "../../core"
-import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
+import {n3on} from "../../../neon"
+import {Component, ComponentProps} from "../../../neon/core"
+import {AnimationUtils, ColorUtils, PushPop} from "../../../neon/utils"
 
 
 declare let drawingContext: CanvasRenderingContext2D // Duplicate (neonCircles) --> To declare globally

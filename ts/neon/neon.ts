@@ -1,4 +1,4 @@
-import {Style, StyleBuilder, ThemeName} from "./components"
+import {Style, StyleBuilder, ThemeName} from "./style"
 
 export class Neon{
     private style? : Style

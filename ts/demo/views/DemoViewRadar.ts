@@ -1,4 +1,4 @@
-import {projection} from "../app"
+import {projection} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, SharpRadar2, SmoothRadar2, Caption, Card, PxSize} from "../../neon"
 export class DemoViewRadar implements View {
 

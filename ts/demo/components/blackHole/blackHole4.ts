@@ -1,8 +1,8 @@
 import * as p5 from "p5"
-import {Component, ComponentProps} from "../../core"
-import {AnimationUtils} from "../../utils"
-import {Easings} from "../../utils/easings"
-import {Gauge} from "../gauge/gauge"
+import {Component, ComponentProps} from "../../../neon/core"
+import {AnimationUtils} from "../../../neon/utils"
+import {Easings} from "../../../neon/utils/easings"
+import {Gauge} from "../../../neon/components/gauge/gauge"
 
 export class BlackHole4 extends Component{
     private readonly primaryColor: p5.Color = color("RebeccaPurple")

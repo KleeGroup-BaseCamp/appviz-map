@@ -1,7 +1,7 @@
 import * as p5 from "p5"
-import {Component, ComponentProps} from "../../core"
-import {AnimationUtils, ColorUtils, PushPop} from "../../utils"
-import {Easings} from "../../utils/easings"
+import {Component, ComponentProps} from "../../../neon/core"
+import {AnimationUtils, ColorUtils, PushPop} from "../../../neon/utils"
+import {Easings} from "../../../neon/utils/easings"
 
 declare let drawingContext: CanvasRenderingContext2D
 

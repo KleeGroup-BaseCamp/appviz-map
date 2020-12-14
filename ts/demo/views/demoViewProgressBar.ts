@@ -1,7 +1,7 @@
-import {projection} from "../app"
+import {projection} from "../../appViz/app"
 import {n3on} from "../../neon"
 import {View, Layer, LayerBuilder, GridLayerBuilder, ProgressBar, StripedProgressBar, Caption, Card, PxSize} from "../../neon"
-import {Icons} from "../components"
+import {Icons} from "../../appViz/components"
 
 export class DemoViewProgressBar implements View {
 

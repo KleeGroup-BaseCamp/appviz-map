@@ -1,4 +1,4 @@
-import {projection} from "../app"
+import {projection} from "../../appViz/app"
 import {n3on} from "../../neon"
 import {View, Layer, LayerBuilder, GridLayerBuilder, StripedGauge, ArrowGauge, Gauge, Caption, Card, PxSize} from "../../neon"
 

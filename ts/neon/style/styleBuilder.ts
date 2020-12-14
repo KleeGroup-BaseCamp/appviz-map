@@ -1,5 +1,5 @@
 import * as p5 from "p5"
-import {ComponentsSizes, Style} from "."
+import {ComponentsSizes, Style} from "./style"
 import {PxSize} from "../layout"
 import { ColorStyle, IconStyle, TextStyle } from "./style"
 

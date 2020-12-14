@@ -1,5 +1,5 @@
-import {Component,ComponentProps} from "../../core"
-import {AnimationUtils, PushPop} from "../../utils"
+import {Component,ComponentProps} from "../../../neon/core"
+import {AnimationUtils, PushPop} from "../../../neon/utils"
 import * as p5 from "p5"
 
 export class BlackHole2 extends Component{

@@ -1,4 +1,4 @@
-import {projection} from "../app"
+import {projection} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, Battery, Caption, Light, Card, PxSize} from "../../neon"
 
 export class DemoViewEnergy implements View {

@@ -1,4 +1,4 @@
-import {Layer} from "../../neon"
+import {Layer} from ".."
 
 export interface View {
 

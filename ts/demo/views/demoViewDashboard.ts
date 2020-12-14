@@ -1,4 +1,4 @@
-import {projection, icons} from "../app"
+import {projection, icons} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, ArrowGauge, StripedGauge,
      ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating, Caption, Card} from "../../neon"
 

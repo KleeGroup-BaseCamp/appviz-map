@@ -1,8 +1,8 @@
-import {projection} from "../app"
+import {projection} from "../../appViz/app"
 import {n3on} from "../../neon"
-import {View, Layer, LayerBuilder, GridLayerBuilder, ArcToCircle, Caption, NeonCircles, 
-    NeonTrails, PointsToCircle, SparkCircle, Card, PxSize} from "../../neon"
-
+import {Caption, View, Layer, LayerBuilder, GridLayerBuilder, Card, PxSize} from "../../neon"
+import {NeonCircles, NeonTrails, ArcToCircle, PointsToCircle, SparkCircle, } from "../../demo"
+    
 export class DemoViewNeon implements View {
 
     public provideLayers(): Layer[] {
