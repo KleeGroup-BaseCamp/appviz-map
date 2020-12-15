@@ -4,20 +4,19 @@ import {Detail} from "./detail"
 import {HomeView, TechZoneView, TechGroupView} from "./views"
 import {DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
     DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, DemoViewNeon} from "../demo/views"
-import {Projection, PxSize, View, State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
+import {ViewParams, Projection, PxSize, View, State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
 import {Group, Item} from "./components"
 import {ModelRepository} from "./model"
-import {ViewParams} from "./types"
 
 export class Sketch {
   private readonly state: State = new State()
   private vizMap? : Map
-
-  private readonly detail: Detail = new Detail()
-
-  private readonly modelRepository : ModelRepository
   private currentViewName? : string
   private currentViewParams? : ViewParams
+
+  private readonly detail: Detail = new Detail()
+  private readonly modelRepository : ModelRepository
+
   private readonly layout : any
   public projection : Projection
 

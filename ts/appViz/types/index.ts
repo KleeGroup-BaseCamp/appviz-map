@@ -8,8 +8,6 @@ export type Layout = {
     groups: {[groupName: string]: ComponentLayout}
 }
 
-export type ViewParams = {groupId: any} // Will change later
-
 export type ComponentLayout = { // Better name ("Component" can be confusing)
     column: string, 
     row: string, 

@@ -1,5 +1,4 @@
-import {n3on, Projection} from "../neon"
-import {ViewParams} from "./types"
+import {ViewParams, n3on} from "../neon"
 import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
 import * as p5 from "p5"
@@ -33,13 +32,15 @@ window.setup = ()=> {
   sketch = new Sketch(modelRepositoryBuilder.build(), layout)
   // go to home
   sketch.switchView("home")
-
 }
+
 window.draw = ()=> {sketch.draw()}
-  window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
+
+window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
   window.windowResized = ()=> {
   sketch.windowResized()
 }
+
 window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
 window.switchTheme = (themeName: string) => {sketch.switchTheme(themeName)}
 window.switchDebug = () => {

@@ -1,6 +1,6 @@
 import {sketch} from "../app"
-import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
-import {View, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, 
+import {Layout, ItemNamePrefix, ItemTypeName} from "../types"
+import {View, ViewParams, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, 
     Card} from "../../neon"
 import {ModelRepository, GroupModel} from "../model"
 import {Item, ItemTypeDetail, Icons} from "../components"
