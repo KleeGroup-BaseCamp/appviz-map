@@ -1,4 +1,4 @@
-import {projection} from "../../appViz/app"
+import {sketch} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, WifiSignal, BarsSignal, Caption, Card, PxSize} from "../../neon"
 
 export class DemoViewSignal implements View {
@@ -8,7 +8,7 @@ export class DemoViewSignal implements View {
         const captionSize = new PxSize(850, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/signal", {size: projection.getPxSize()}))
+                .addComponent(new Card("components/signal", {size: sketch.projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new WifiSignal(0, {size:pxSize}))

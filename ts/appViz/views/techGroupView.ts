@@ -1,4 +1,4 @@
-import {projection} from "../app"
+import {sketch} from "../app"
 import {Layout, ViewParams, ItemNamePrefix, ItemTypeName} from "../types"
 import {View, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, 
     Card} from "../../neon"
@@ -36,7 +36,7 @@ export class TechGroupView implements View {
                     TextUtils.firstCharUpperCase(groupModel.getTitle()),
                     {
                         id: groupModel.getId(), 
-                        size: projection.getPxSize(), 
+                        size: sketch.projection.getPxSize(), 
                     }
                 )
             )
@@ -56,11 +56,11 @@ export class TechGroupView implements View {
                 row : (2 + typeIndex * 5).toString(),
                 column : "1",
                 numOfRows : "4",
-                numOfColumns : (projection.getGridColumns() - 2).toString()
+                numOfColumns : (sketch.projection.getGridColumns() - 2).toString()
             }
 
-            const itemTypePxSize = projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
-            const itemTypePxPosition = projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
+            const itemTypePxSize = sketch.projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
+            const itemTypePxPosition = sketch.projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
             const typeName = this.types[typePrefix as ItemNamePrefix]
             itemTypesLayerBuilder.addComponent(
                 new ItemTypeDetail(

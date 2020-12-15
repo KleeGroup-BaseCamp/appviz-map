@@ -1,4 +1,4 @@
-import {projection} from "../../appViz/app"
+import {sketch} from "../../appViz/app"
 import {n3on} from "../../neon"
 import {View, Layer, LayerBuilder, GridLayerBuilder, ProgressBar, StripedProgressBar, Caption, Card, PxSize} from "../../neon"
 import {Icons} from "../../appViz/components"
@@ -10,7 +10,7 @@ export class DemoViewProgressBar implements View {
         const captionSize = new PxSize(1000, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/progress bar", {size: projection.getPxSize()}))
+                .addComponent(new Card("components/progress bar", {size: sketch.projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new ProgressBar(0, {size:pxSize}))

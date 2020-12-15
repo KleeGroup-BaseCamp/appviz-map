@@ -1,6 +1,5 @@
 import "p5"
 import {} from "p5/global"
-import {projection} from "./app"
 import {Detail} from "./detail"
 import {HomeView, TechZoneView, TechGroupView} from "./views"
 import {DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
@@ -12,16 +11,19 @@ import {ViewParams} from "./types"
 
 export class Sketch {
   private readonly state: State = new State()
+  private vizMap? : Map
+
   private readonly detail: Detail = new Detail()
 
-  private vizMap? : Map
   private readonly modelRepository : ModelRepository
   private currentViewName? : string
   private currentViewParams? : ViewParams
   private readonly layout : any
+  public projection : Projection
 
-  constructor(modelRepository : ModelRepository, projection : Projection, layout : any){
-    let myCanvas = createCanvas(projection.getPxSize().getWidth(), projection.getPxSize().getHeight())
+  constructor(modelRepository : ModelRepository, layout : any){
+    this.projection = Projection.buildProjection()
+    let myCanvas = createCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
     myCanvas.parent('myContainer')
     this.layout = layout
     this.modelRepository = modelRepository
@@ -58,7 +60,8 @@ export class Sketch {
   }
 
   public windowResized(): void {
-    resizeCanvas(projection.getPxSize().getWidth(), projection.getPxSize().getHeight())
+    this.projection = Projection.buildProjection()
+    resizeCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
     this.drawView()
   }
 

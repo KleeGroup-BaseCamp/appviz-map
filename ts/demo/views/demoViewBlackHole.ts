@@ -1,4 +1,4 @@
-import {projection} from "../../appViz/app"
+import {sketch} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, Card, PxSize, Caption} from "../../neon"
 import {BlackHole2, BlackHole3, BlackHole4} from "../../demo"
 
@@ -9,7 +9,7 @@ export class DemoViewBlackHole implements View {
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/gauge 2", {size: projection.getPxSize()} ))
+                .addComponent(new Card("components/gauge 2", {size: sketch.projection.getPxSize()} ))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new BlackHole4(66, {size: pxSize}))

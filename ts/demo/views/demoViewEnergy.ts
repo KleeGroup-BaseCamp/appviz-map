@@ -1,4 +1,4 @@
-import {projection} from "../../appViz/app"
+import {sketch} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, Battery, Caption, Light, Card, PxSize} from "../../neon"
 
 export class DemoViewEnergy implements View {
@@ -8,7 +8,7 @@ export class DemoViewEnergy implements View {
         const captionSize = new PxSize(550, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/energy", {size: projection.getPxSize()}))
+                .addComponent(new Card("components/energy", {size: sketch.projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new Battery(15, {size: pxSize}))

@@ -1,4 +1,4 @@
-import {projection} from "../../appViz/app"
+import {sketch} from "../../appViz/app"
 import {n3on} from "../../neon"
 import {View, Layer, LayerBuilder, GridLayerBuilder, StripedGauge, ArrowGauge, Gauge, Caption, Card, PxSize} from "../../neon"
 
@@ -9,7 +9,7 @@ export class DemoViewGauge implements View {
         const captionSize = new PxSize(950, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/gauge", {size: projection.getPxSize()}))
+                .addComponent(new Card("components/gauge", {size: sketch.projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new ArrowGauge(0, {size:pxSize}))

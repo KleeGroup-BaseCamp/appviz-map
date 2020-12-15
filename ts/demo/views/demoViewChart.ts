@@ -1,4 +1,4 @@
-import {projection} from "../../appViz/app"
+import {sketch} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, Caption, LineChart, BarChart, DonutChart, Card, PxSize} from "../../neon"
 export class DemoViewChart implements View {
 
@@ -10,7 +10,7 @@ export class DemoViewChart implements View {
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/chart", {size: projection.getPxSize()}))
+                .addComponent(new Card("components/chart", {size: sketch.projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new LineChart(lineData, {size: pxSize}))

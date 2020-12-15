@@ -1,4 +1,4 @@
-import {projection} from "../../appViz/app"
+import {sketch} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, SharpRadar2, SmoothRadar2, Caption, Card, PxSize} from "../../neon"
 export class DemoViewRadar implements View {
 
@@ -14,7 +14,7 @@ export class DemoViewRadar implements View {
         const captionSize = new PxSize(250, 35)
         return  [
             new LayerBuilder()
-            .addComponent(new Card("components/radar", {size: projection.getPxSize()}))
+            .addComponent(new Card("components/radar", {size: sketch.projection.getPxSize()}))
             .build(),
             new GridLayerBuilder()
             .addComponent(new SharpRadar2(data[0], {size: pxSize}))
