@@ -2,9 +2,6 @@ import "p5"
 import {} from "p5/global"
 import {ViewParams, Projection, PxSize, View, State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
 
-import {Group, Item} from "./components"
-import {Detail} from "./detail"
-import {ModelRepository} from "./model"
 
 export class Sketch {
   private readonly state: State = new State()
@@ -12,15 +9,15 @@ export class Sketch {
   private currentViewName? : string
   private currentViewParams? : ViewParams
   private readonly viewDispatcher : (viewName: string, viewParams?: ViewParams)=> View
-
-  private readonly detail: Detail
+  private readonly viewHandler : (event : VEvent)=> void
 
   public projection : Projection
 
-  constructor(modelRepository : ModelRepository, layout : any){
-    this.detail = new Detail(modelRepository, layout)
+  constructor(viewHandler: (event : VEvent)=> void, 
+      viewDispatcher :(viewName: string, viewParams?: ViewParams)=> View){
+    this.viewDispatcher = viewDispatcher
+    this.viewHandler = viewHandler
     this.projection = Projection.buildProjection()
-    this.viewDispatcher = this.detail.selectView
     let myCanvas = createCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
     myCanvas.parent('myContainer')
   }
@@ -39,7 +36,7 @@ export class Sketch {
   
   private emit(event : VEvent): void{
     this.state.select(event.sourceComponent)
-    this.updateDetail(event.sourceComponent)
+    this.viewHandler(event)
   }
 
   public mouseClicked(x: number, y:number): void  {
@@ -59,18 +56,6 @@ export class Sketch {
     this.projection = Projection.buildProjection()
     resizeCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
     this.drawView()
-  }
-
-  /**
-   * @param {?Component} component
-   * 
-   * Update the detail Panel  
-   */
-  private updateDetail(component: Component): void {
-    if (component instanceof Group || component instanceof Item) {
-      const type = component instanceof Group ? 'group' : 'item'
-      this.detail.update(type, component.getId()) // TODO: Update to title instead of Id
-    }
   }
  
   public switchView(viewName: string, viewParams?: ViewParams): void {

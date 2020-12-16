@@ -2,7 +2,9 @@ import {ModelRepository} from "./model"
 import {HomeView, TechZoneView, TechGroupView} from "./views"
 import {DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
     DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, DemoViewNeon} from "../demo/views"
-import {ViewParams, View} from "../neon"
+import {ViewParams, View, VEvent} from "../neon"
+
+import {Group, Item} from "./components"
 
 
 export class Detail{
@@ -14,7 +16,7 @@ export class Detail{
         this.layout = layout
     }
 
-    public update(type: string, id: string): void{
+    private update(type: string, id: string): void{
         const detailTitle = document.querySelector("#detail-title")
         const detailContent = document.querySelector("#detail-content")
         if (detailTitle){
@@ -33,7 +35,7 @@ export class Detail{
         }
     }
 
-      /**
+  /**
    * @param {string} viewName 
    * @param {Object} viewParams 
    * @return {View}
@@ -73,6 +75,19 @@ export class Detail{
         return new TechGroupView(this.modelRepository, this.layout, viewParams)
       default:
         return new HomeView()
+    }
+  }
+
+    /**
+   * @param {?Component} component
+   * 
+   * Update the detail Panel  
+   */
+  public updateDetail(event : VEvent): void {
+    const component = event.sourceComponent
+    if (component instanceof Group || component instanceof Item) {
+      const type = component instanceof Group ? 'group' : 'item'
+      this.update(type, component.getId()) // TODO: Update to title instead of Id
     }
   }
 

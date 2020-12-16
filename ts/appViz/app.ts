@@ -2,6 +2,7 @@ import {ViewParams, n3on} from "../neon"
 import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
 import * as p5 from "p5"
+import { Detail } from "./detail"
 
 // Add methods to Window interface
 declare global {
@@ -29,7 +30,8 @@ window.preload = () => {
 }
 
 window.setup = ()=> {
-  sketch = new Sketch(modelRepositoryBuilder.build(), layout)
+  const detail = new Detail(modelRepositoryBuilder.build(), layout)
+  sketch = new Sketch(detail.updateDetail, detail.selectView)
   // go to home
   sketch.switchView("home")
 }
