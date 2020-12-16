@@ -1,6 +1,17 @@
-export class Detail{
+import {ModelRepository} from "./model"
+import {HomeView, TechZoneView, TechGroupView} from "./views"
+import {DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
+    DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, DemoViewNeon} from "../demo/views"
+import {ViewParams, View} from "../neon"
 
-    constructor(){
+
+export class Detail{
+    private readonly layout : any
+    private readonly modelRepository : ModelRepository
+
+    constructor(modelRepository : ModelRepository, layout : any){
+        this.modelRepository = modelRepository
+        this.layout = layout
     }
 
     public update(type: string, id: string): void{
@@ -21,4 +32,48 @@ export class Detail{
             return '';
         }
     }
+
+      /**
+   * @param {string} viewName 
+   * @param {Object} viewParams 
+   * @return {View}
+   */
+  public selectView(viewName: string, viewParams?: ViewParams): View {
+    // const clazzName = TextUtils.firstCharUpperCase(viewName)+'View'
+    // const jsonParams = JSON.stringify(viewParams)
+    // const expression = `new ${clazzName} (${jsonParams} )` 
+    // return  eval(expression);
+    switch(viewName){
+      case "demoSignal":
+        return new DemoViewSignal()
+      case "demoRating":
+        return new DemoViewRating()
+      case "demoEnergy":
+        return new DemoViewEnergy()
+      case "demoGauge":
+        return new DemoViewGauge()
+      case "demoBlackHole":
+        return new DemoViewBlackHole()
+      case "demoProgressBar":
+        return new DemoViewProgressBar()
+      case "demoRadar":
+        return new DemoViewRadar()
+      case "demoChart":
+        return new DemoViewChart()
+      case "demoNeon":
+        return new DemoViewNeon()
+      case "demoDashboard":
+        return new DemoViewDashboard()
+      case "techZone":
+        return new TechZoneView(this.modelRepository, this.layout)
+      case "techGroup":
+        if (! viewParams){
+          throw "No viewParams were passed to the function selectView"
+        }
+        return new TechGroupView(this.modelRepository, this.layout, viewParams)
+      default:
+        return new HomeView()
+    }
+  }
+
 }

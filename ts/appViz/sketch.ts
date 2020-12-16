@@ -1,11 +1,9 @@
 import "p5"
 import {} from "p5/global"
-import {Detail} from "./detail"
-import {HomeView, TechZoneView, TechGroupView} from "./views"
-import {DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
-    DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, DemoViewNeon} from "../demo/views"
 import {ViewParams, Projection, PxSize, View, State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
+
 import {Group, Item} from "./components"
+import {Detail} from "./detail"
 import {ModelRepository} from "./model"
 
 export class Sketch {
@@ -13,19 +11,18 @@ export class Sketch {
   private vizMap? : Map
   private currentViewName? : string
   private currentViewParams? : ViewParams
+  private readonly viewDispatcher : (viewName: string, viewParams?: ViewParams)=> View
 
-  private readonly detail: Detail = new Detail()
-  private readonly modelRepository : ModelRepository
+  private readonly detail: Detail
 
-  private readonly layout : any
   public projection : Projection
 
   constructor(modelRepository : ModelRepository, layout : any){
+    this.detail = new Detail(modelRepository, layout)
     this.projection = Projection.buildProjection()
+    this.viewDispatcher = this.detail.selectView
     let myCanvas = createCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
     myCanvas.parent('myContainer')
-    this.layout = layout
-    this.modelRepository = modelRepository
   }
 
   public draw():void  {
@@ -100,52 +97,9 @@ export class Sketch {
     if (!this.currentViewName){
       throw 'currentViewName must be defined'
     } 
-    const view = this.selectView(this.currentViewName, this.currentViewParams)
+    const view = this.viewDispatcher(this.currentViewName, this.currentViewParams)
     this.vizMap = this.generateMapFromView(view)
     this.state.reset()
-  }
-
-  /**
-   * @param {string} viewName 
-   * @param {Object} viewParams 
-   * @return {View}
-   */
-  private selectView(viewName: string, viewParams?: ViewParams): View {
-    // const clazzName = TextUtils.firstCharUpperCase(viewName)+'View'
-    // const jsonParams = JSON.stringify(viewParams)
-    // const expression = `new ${clazzName} (${jsonParams} )` 
-    // return  eval(expression);
-    switch(viewName){
-      case "demoSignal":
-        return new DemoViewSignal()
-      case "demoRating":
-        return new DemoViewRating()
-      case "demoEnergy":
-        return new DemoViewEnergy()
-      case "demoGauge":
-        return new DemoViewGauge()
-      case "demoBlackHole":
-        return new DemoViewBlackHole()
-      case "demoProgressBar":
-        return new DemoViewProgressBar()
-      case "demoRadar":
-        return new DemoViewRadar()
-      case "demoChart":
-        return new DemoViewChart()
-      case "demoNeon":
-        return new DemoViewNeon()
-      case "demoDashboard":
-        return new DemoViewDashboard()
-      case "techZone":
-        return new TechZoneView(this.modelRepository, this.layout)
-      case "techGroup":
-        if (! viewParams){
-          throw "No viewParams were passed to the function selectView"
-        }
-        return new TechGroupView(this.modelRepository, this.layout, viewParams)
-      default:
-        return new HomeView()
-    }
   }
 
   private generateMapFromView(viewInstance: View): Map {
