@@ -4,22 +4,24 @@ import {ViewParams, Projection, PxSize, View, State, MapBuilder, LayerBuilder, M
 
 
 export class Sketch {
+  private readonly viewDispatcher : (viewName: string, viewParams?: ViewParams)=> View
+  private readonly eventHandler : (event : VEvent)=> void
   private readonly state: State = new State()
   private vizMap? : Map
   private currentViewName? : string
   private currentViewParams? : ViewParams
-  private readonly viewDispatcher : (viewName: string, viewParams?: ViewParams)=> View
-  private readonly viewHandler : (event : VEvent)=> void
 
   public projection : Projection
 
-  constructor(viewHandler: (event : VEvent)=> void, 
+  constructor(
+      domId : string, 
+      eventHandler: (event : VEvent)=> void, 
       viewDispatcher :(viewName: string, viewParams?: ViewParams)=> View){
     this.viewDispatcher = viewDispatcher
-    this.viewHandler = viewHandler
+    this.eventHandler = eventHandler
     this.projection = Projection.buildProjection()
     let myCanvas = createCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
-    myCanvas.parent('myContainer')
+    myCanvas.parent(domId)
   }
 
   public draw():void  {
@@ -36,7 +38,7 @@ export class Sketch {
   
   private emit(event : VEvent): void{
     this.state.select(event.sourceComponent)
-    this.viewHandler(event)
+    this.eventHandler(event)
   }
 
   public mouseClicked(x: number, y:number): void  {
@@ -71,13 +73,18 @@ export class Sketch {
   }
 
   public switchTheme(themeName: string){
-    if (isThemeName(themeName)){
-      n3on.setTheme(themeName)
-      this.drawView()
-    } else{
+    if (! isThemeName(themeName)){
       throw `${themeName} not known as a theme name`
     }
+    n3on.setTheme(themeName)
+    this.drawView()
   }
+
+  public switchDebug(){
+    n3on.setDebug(!n3on.getDebug())
+    this.drawView()
+    }
+
   public drawView():void{
     if (!this.currentViewName){
       throw 'currentViewName must be defined'

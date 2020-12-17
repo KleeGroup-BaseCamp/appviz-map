@@ -1,8 +1,8 @@
-import {ViewParams, n3on} from "../neon"
+import * as p5 from "p5"
+import {ViewParams, n3on, VEvent} from "../neon"
 import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
-import * as p5 from "p5"
-import { Detail } from "./detail"
+import {Detail} from "./detail"
 
 // Add methods to Window interface
 declare global {
@@ -13,12 +13,12 @@ declare global {
       switchView: any
       switchTheme: any
       switchDebug: ()=> void
-     }
+    }
 }
 let sketch : Sketch
 let modelRepositoryBuilder : ModelRepositoryBuilder 
 let layout : any
-let icons : {[iconName: string]: p5.Image} = {} 
+let icons : {[iconName: string]: p5.Image} = {}
 
 
 window.preload = () => {
@@ -31,23 +31,40 @@ window.preload = () => {
 
 window.setup = ()=> {
   const detail = new Detail(modelRepositoryBuilder.build(), layout)
-  sketch = new Sketch(detail.updateDetail, detail.selectView)
-  // go to home
-  sketch.switchView("home")
+  
+  const selectView = (viewName: string, viewParams?: ViewParams)=> {
+    return detail.selectView(viewName, viewParams)
+  }
+  const updateView = (event : VEvent)=> {
+    detail.updateDetail(event)
+  }
+
+  sketch = new Sketch(
+    'myContainer' /* canvas id of the DOM parent (<DIV>) */,
+    updateView, 
+    selectView)
+    // go to home
+    sketch.switchView("home")
 }
 
 window.draw = ()=> {sketch.draw()}
 
 window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
-  window.windowResized = ()=> {
+
+window.windowResized = ()=> {
   sketch.windowResized()
 }
 
-window.switchView = (viewName: string, viewParams?: ViewParams): void => {sketch.switchView(viewName, viewParams)}
-window.switchTheme = (themeName: string) => {sketch.switchTheme(themeName)}
+window.switchView = (viewName: string, viewParams?: ViewParams): void => {
+  sketch.switchView(viewName, viewParams)
+}
+
+window.switchTheme = (themeName: string) => {
+  sketch.switchTheme(themeName)
+}
+
 window.switchDebug = () => {
-  n3on.setDebug(!n3on.getDebug()) // toggleDebug method ?
-  sketch.drawView()
+  sketch.switchDebug()
 }
 
 export {sketch, icons}
