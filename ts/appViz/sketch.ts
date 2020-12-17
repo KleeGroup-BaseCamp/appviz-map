@@ -2,7 +2,6 @@ import "p5"
 import {} from "p5/global"
 import {ViewParams, Projection, PxSize, View, State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
 
-
 export class Sketch {
   private readonly viewDispatcher : (viewName: string, viewParams?: ViewParams)=> View
   private readonly eventHandler : (event : VEvent)=> void
@@ -90,11 +89,11 @@ export class Sketch {
       throw 'currentViewName must be defined'
     } 
     const view = this.viewDispatcher(this.currentViewName, this.currentViewParams)
-    this.vizMap = this.generateMapFromView(view)
+    this.vizMap = this.buildMap(view)
     this.state.reset()
   }
 
-  private generateMapFromView(viewInstance: View): Map {
+  private buildMap(viewInstance: View): Map {
     return new MapBuilder()
       .addLayer(new LayerBuilder().addComponent(new Background({size: new PxSize(width,height)})).build())
       .addLayers(viewInstance.provideLayers())

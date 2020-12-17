@@ -35,6 +35,7 @@ window.setup = ()=> {
   const selectView = (viewName: string, viewParams?: ViewParams)=> {
     return detail.selectView(viewName, viewParams)
   }
+
   const updateView = (event : VEvent)=> {
     detail.updateDetail(event)
   }
@@ -47,9 +48,13 @@ window.setup = ()=> {
     sketch.switchView("home")
 }
 
-window.draw = ()=> {sketch.draw()}
+window.draw = ()=> {
+  sketch.draw()
+}
 
-window.mouseClicked = (e)=> {sketch.mouseClicked(mouseX, mouseY)}
+window.mouseClicked = (e)=> {
+  sketch.mouseClicked(mouseX, mouseY)
+}
 
 window.windowResized = ()=> {
   sketch.windowResized()

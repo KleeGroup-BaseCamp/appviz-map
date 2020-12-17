@@ -1,10 +1,10 @@
 import {sketch} from "../app"
 import {Layout, ItemNamePrefix, ItemTypeName} from "../types"
-import {View, ViewParams, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, 
-    Card} from "../../neon"
+import {View, ViewParams, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, Card} from "../../neon"
 import {ModelRepository, GroupModel} from "../model"
 import {Item, ItemTypeDetail, Icons} from "../components"
 import * as p5 from "p5"
+
 export class TechGroupView implements View {
     private types: {[itemNamePrefix in ItemNamePrefix]: ItemTypeName} = {
         dt: "data",
