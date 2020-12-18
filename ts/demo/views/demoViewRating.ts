@@ -1,14 +1,13 @@
-import {Projection, View, Layer, LayerBuilder, GridLayerBuilder, SquareRating, HeartRating, StarRating, ImageRating, Caption, Card, PxSize} from "../../neon"
+import {View, Layer, LayerBuilder, GridLayerBuilder, SquareRating, HeartRating, StarRating, ImageRating, Caption, Card, PxSize} from "../../neon"
 
 export class DemoViewRating implements View {
-    private projection : Projection = Projection.buildProjection ()
 
     public provideLayers(): Layer[] {
         const pxSize = new PxSize(100, 30)
         const captionSize = new PxSize(850, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/rating", {size: this.projection.getPxSize()}))
+                .addComponent(new Card("components/rating", {}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new SquareRating(0, {size:pxSize}))

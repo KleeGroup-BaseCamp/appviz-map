@@ -1,14 +1,13 @@
 import {View, Layer, LayerBuilder, GridLayerBuilder, WifiSignal, BarsSignal, Caption, Card, PxSize, Projection} from "../../neon"
 
 export class DemoViewSignal implements View {
-    private projection : Projection = Projection.buildProjection ()
 
     public provideLayers(): Layer[] {
         const pxSize = new PxSize(100)
         const captionSize = new PxSize(850, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/signal", {size: this.projection.getPxSize()}))
+                .addComponent(new Card("components/signal", {}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new WifiSignal(0, {size:pxSize}))

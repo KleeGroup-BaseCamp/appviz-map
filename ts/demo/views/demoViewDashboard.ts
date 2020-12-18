@@ -3,12 +3,10 @@ import {Projection, View, Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, 
      ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating, Caption, Card} from "../../neon"
 
 export class DemoViewDashboard implements View {
-    private projection : Projection = Projection.buildProjection ()
-
     public provideLayers(): Layer[] {
         return  [
             new LayerBuilder()
-                .addComponent(new Card("Dashboard", {size: this.projection.getPxSize()}))
+                .addComponent(new Card("Dashboard", {}))
                 .build(),
             // To fill later with "real word" information
                 this.getGridLayerBuilder()

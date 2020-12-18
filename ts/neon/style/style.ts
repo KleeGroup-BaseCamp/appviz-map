@@ -72,6 +72,9 @@ export class Style {
         if(size instanceof PxSize) {
             return size
         } 
+        if (name ==="Card"){
+            return new PxSize(width, height)
+        }
         return this.pxSizes[name] // VText passes no PxSize and has no standard size
             ? this.pxSizes[name][(size ?? "m")]
             : new PxSize(404)

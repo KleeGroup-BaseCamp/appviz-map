@@ -1,6 +1,5 @@
-import {Projection, View, Layer, LayerBuilder, GridLayerBuilder, Caption, LineChart, BarChart, DonutChart, Card, PxSize} from "../../neon"
+import {View, Layer, LayerBuilder, GridLayerBuilder, Caption, LineChart, BarChart, DonutChart, Card, PxSize} from "../../neon"
 export class DemoViewChart implements View {
-    private projection : Projection = Projection.buildProjection ()
 
     public provideLayers(): Layer[] {
         const pxSize = new PxSize(200, 200)
@@ -10,7 +9,7 @@ export class DemoViewChart implements View {
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/chart", {size: this.projection.getPxSize()}))
+                .addComponent(new Card("components/chart", {}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new LineChart(lineData, {size: pxSize}))
