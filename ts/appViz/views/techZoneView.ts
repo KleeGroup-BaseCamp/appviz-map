@@ -2,13 +2,13 @@
  * View of a zone.
  */
 import {n3on} from "../../neon"
-import {sketch} from "../app"
+import {Projection, View, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils} from "../../neon"
 import {Layout, ItemNamePrefix, ItemTypeName, ItemTypeFrequencies, ComponentLayout} from "../types"
-import {View, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils} from "../../neon"
 import {ModelRepository, ItemModel} from "../model"
 import {Zone, Group} from "../components"
 
 export class TechZoneView implements View {
+    private projection : Projection = Projection.buildProjection ()
     private readonly modelRepository: ModelRepository
     private readonly layout: Layout
 
@@ -33,8 +33,8 @@ export class TechZoneView implements View {
 
         for (const zoneName in this.layout.zones) {
             const zoneLayout = this.layout.zones[zoneName]
-            const zonePxSize = sketch.projection.gridToPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
-            const zonePxPosition = sketch.projection.gridToPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
+            const zonePxSize = this.projection.gridToPxSize(new GridSize(zoneLayout.numOfColumns, zoneLayout.numOfRows))
+            const zonePxPosition = this.projection.gridToPxPosition(new GridPosition(zoneLayout.column, zoneLayout.row))
             zonesLayerBuilder.addComponent(
                 new Zone(
                     TextUtils.firstCharUpperCase(zoneName),
@@ -62,8 +62,8 @@ export class TechZoneView implements View {
                 const groupLayout = this.layout.groups[groupName]
                 const padding = this.getGroupPadding(groupLayout, this.layout.zones[groupModel.getType()])
                 const itemTypeFrequencies = this.getItemTypeFrequencies(groupModel.getItemModels())
-                const groupPxSize = sketch.projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
-                const groupPxPosition = sketch.projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
+                const groupPxSize = this.projection.gridToPxSize(new GridSize(groupLayout.numOfColumns, groupLayout.numOfRows))
+                const groupPxPosition = this.projection.gridToPxPosition(new GridPosition(groupLayout.column, groupLayout.row))
                 const paddedGroupPxPosition = createVector(groupPxPosition.x + padding.left, groupPxPosition.y + padding.top)
                 groupsLayerBuilder.addComponent(
                     new Group(

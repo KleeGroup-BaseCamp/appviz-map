@@ -1,16 +1,16 @@
-import {sketch} from "../../appViz/app"
 import {n3on} from "../../neon"
-import {Caption, View, Layer, LayerBuilder, GridLayerBuilder, Card, PxSize} from "../../neon"
+import {Projection, Caption, View, Layer, LayerBuilder, GridLayerBuilder, Card, PxSize} from "../../neon"
 import {NeonCircles, NeonTrails, ArcToCircle, PointsToCircle, SparkCircle, } from "../../demo"
     
 export class DemoViewNeon implements View {
+    private projection : Projection = Projection.buildProjection ()
 
     public provideLayers(): Layer[] {
         const pxSize = new PxSize(200)
         const captionSize = new PxSize(200, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/neon", {size: sketch.projection.getPxSize()}))
+                .addComponent(new Card("components/neon", {size: this.projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new NeonCircles({size: pxSize}))

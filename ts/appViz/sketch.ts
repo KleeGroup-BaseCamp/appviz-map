@@ -1,6 +1,6 @@
 import "p5"
 import {} from "p5/global"
-import {ViewParams, Projection, PxSize, View, State, MapBuilder, LayerBuilder, Map, Component, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
+import {ViewParams, PxSize, View, State, MapBuilder, LayerBuilder, Map, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
 
 export class Sketch {
   private readonly viewDispatcher : (viewName: string, viewParams?: ViewParams)=> View
@@ -10,16 +10,16 @@ export class Sketch {
   private currentViewName? : string
   private currentViewParams? : ViewParams
 
-  public projection : Projection
-
   constructor(
       domId : string, 
       eventHandler: (event : VEvent)=> void, 
       viewDispatcher :(viewName: string, viewParams?: ViewParams)=> View){
     this.viewDispatcher = viewDispatcher
     this.eventHandler = eventHandler
-    this.projection = Projection.buildProjection()
-    let myCanvas = createCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
+
+    const canvasHeight = windowHeight
+    const canvasWidth = windowWidth * 0.75
+    let myCanvas = createCanvas(canvasWidth, canvasHeight)
     myCanvas.parent(domId)
   }
 
@@ -54,8 +54,9 @@ export class Sketch {
   }
 
   public windowResized(): void {
-    this.projection = Projection.buildProjection()
-    resizeCanvas(this.projection.getPxSize().getWidth(), this.projection.getPxSize().getHeight())
+    const canvasHeight = windowHeight
+    const canvasWidth = windowWidth * 0.75
+    resizeCanvas(canvasWidth, canvasHeight)
     this.drawView()
   }
  

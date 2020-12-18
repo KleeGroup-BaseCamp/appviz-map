@@ -1,14 +1,14 @@
-import {sketch} from "../../appViz/app"
-import {View, Layer, LayerBuilder, GridLayerBuilder, Battery, Caption, Light, Card, PxSize} from "../../neon"
+import {Projection, View, Layer, LayerBuilder, GridLayerBuilder, Battery, Caption, Light, Card, PxSize} from "../../neon"
 
 export class DemoViewEnergy implements View {
+    private projection : Projection = Projection.buildProjection ()
 
     public provideLayers(): Layer[] {
         const pxSize = new PxSize(100, 150)
         const captionSize = new PxSize(550, 35)
         return  [
             new LayerBuilder()
-                .addComponent(new Card("components/energy", {size: sketch.projection.getPxSize()}))
+                .addComponent(new Card("components/energy", {size: this.projection.getPxSize()}))
                 .build(),
             new GridLayerBuilder()
                 .addComponent(new Battery(15, {size: pxSize}))

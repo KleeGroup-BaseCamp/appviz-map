@@ -123,8 +123,6 @@ export class Projection {
     }
 
     public static buildProjection(): Projection{
-        const canvasHeight = windowHeight
-        const canvasWidth = windowWidth * 0.75
-        return  new Projection(new PxSize(canvasWidth, canvasHeight))
+        return  new Projection(new PxSize(width, height))
       }
 }

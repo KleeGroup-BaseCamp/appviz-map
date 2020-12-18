@@ -1,6 +1,5 @@
-import {sketch} from "../app"
 import {Layout, ItemNamePrefix, ItemTypeName} from "../types"
-import {View, ViewParams, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, Card} from "../../neon"
+import {Projection, View, ViewParams, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, Card} from "../../neon"
 import {ModelRepository, GroupModel} from "../model"
 import {Item, ItemTypeDetail, Icons} from "../components"
 import * as p5 from "p5"
@@ -11,6 +10,7 @@ export class TechGroupView implements View {
         tk: "task"
     }
 
+    private projection : Projection = Projection.buildProjection ()
     private readonly modelRepository: ModelRepository
     private readonly layout: Layout
     private groupId: any
@@ -36,7 +36,7 @@ export class TechGroupView implements View {
                     TextUtils.firstCharUpperCase(groupModel.getTitle()),
                     {
                         id: groupModel.getId(), 
-                        size: sketch.projection.getPxSize(), 
+                        size: this.projection.getPxSize(), 
                     }
                 )
             )
@@ -56,11 +56,11 @@ export class TechGroupView implements View {
                 row : (2 + typeIndex * 5).toString(),
                 column : "1",
                 numOfRows : "4",
-                numOfColumns : (sketch.projection.getGridColumns() - 2).toString()
+                numOfColumns : (this.projection.getGridColumns() - 2).toString()
             }
 
-            const itemTypePxSize = sketch.projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
-            const itemTypePxPosition = sketch.projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
+            const itemTypePxSize = this.projection.gridToPxSize(new GridSize(itemTypeLayout.numOfColumns, itemTypeLayout.numOfRows))
+            const itemTypePxPosition = this.projection.gridToPxPosition(new GridPosition(itemTypeLayout.column, itemTypeLayout.row))
             const typeName = this.types[typePrefix as ItemNamePrefix]
             itemTypesLayerBuilder.addComponent(
                 new ItemTypeDetail(
