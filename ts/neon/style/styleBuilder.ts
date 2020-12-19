@@ -1,6 +1,7 @@
 import * as p5 from "p5"
 import {ComponentsSizes, Style} from "./style"
 import {PxSize} from "../layout"
+import {Theme, ThemeName} from "./theme"
 import { ColorStyle, IconStyle, TextStyle } from "./style"
 
 const su = 20 // Size Unit
@@ -12,26 +13,6 @@ interface SizesJson {
         l: {width: number, height?: number}
     }
 }
-
-interface Theme{
-    a: string,
-    b: string,
-    c: string, 
-    d: string, 
-    back: string, 
-    middle: string,  
-    front: string, 
-    undefined: string,
-    text:{
-        primary: string,
-        secondary: string
-    }
-}
-
-const themeNames = ["dark", "light"] as const
-export type ThemeName = typeof themeNames[number]
-export const isThemeName = (name: string): name is ThemeName => 
-    themeNames.includes(name as ThemeName)
 
 export class StyleBuilder {
     private themeName : ThemeName = 'dark'

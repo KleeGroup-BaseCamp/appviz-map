@@ -1,5 +1,5 @@
 import {icons} from "../../appViz/app"
-import {Projection, View, Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, ArrowGauge, StripedGauge,
+import {View, Layer, LayerBuilder, GridLayerBuilder, PxSize, Gauge, ArrowGauge, StripedGauge,
      ProgressBar, WifiSignal, BarsSignal, StarRating, ImageRating, HeartRating, Caption, Card} from "../../neon"
 
 export class DemoViewDashboard implements View {

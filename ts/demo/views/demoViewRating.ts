@@ -1,3 +1,4 @@
+import {icons} from "../../appViz/app"
 import {View, Layer, LayerBuilder, GridLayerBuilder, SquareRating, HeartRating, StarRating, ImageRating, Caption, Card, PxSize} from "../../neon"
 
 export class DemoViewRating implements View {
