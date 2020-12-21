@@ -72,14 +72,14 @@ export class Sketch {
     }
   }
 
-  public switchTheme(themeName: string){
+/*  public switchTheme(themeName: string){
     if (! isThemeName(themeName)){
       throw `${themeName} not known as a theme name`
     }
     n3on.setTheme(themeName)
     this.drawView()
   }
-
+*/
   public switchDebug(){
     n3on.setDebug(!n3on.getDebug())
     this.drawView()

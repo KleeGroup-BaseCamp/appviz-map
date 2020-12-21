@@ -1,7 +1,7 @@
 import * as p5 from "p5"
 import {ComponentsSizes, Style} from "./style"
 import {PxSize} from "../layout"
-import {Theme, ThemeName} from "./theme"
+import {Theme} from "./theme"
 import { ColorStyle, IconStyle, TextStyle } from "./style"
 
 const su = 20 // Size Unit
@@ -15,17 +15,16 @@ interface SizesJson {
 }
 
 export class StyleBuilder {
-    private themeName : ThemeName = 'dark'
+    private theme? : Theme
     private textFont?: p5.Font
     private iconFont? : p5.Font
     private pxSizes?: SizesJson
-    private themes: {[themeName in ThemeName]?: Theme} = {}
 
     constructor() {
     }
 
-    public withTheme(themeName : ThemeName){
-        this.themeName = themeName
+    public withTheme(theme : Theme){
+        this.theme = theme
         return this
     }
 
@@ -38,7 +37,6 @@ export class StyleBuilder {
 
     public load(): StyleBuilder {
         this.loadFonts()
-        this.loadThemes()
         this.pxSizes = loadJSON("ts/neon/data/sizes.json") as SizesJson
         return this
     }
@@ -46,11 +44,6 @@ export class StyleBuilder {
     private loadFonts(): void {
         this.textFont = loadFont("fonts/Montserrat-Regular.ttf")
         this.iconFont = loadFont("fonts/material-design-outlined.ttf")
-    }
-
-    private loadThemes(): void{
-        this.themes.dark = loadJSON("ts/neon/data/dark.json") as Theme
-        this.themes.light = loadJSON("ts/neon/data/light.json") as Theme
     }
 
     private buildPxSize(size: {width: number, height?: number}): PxSize{
@@ -74,14 +67,13 @@ export class StyleBuilder {
     }
 
     public build(): Style {
-        const theme = this.themes[this.themeName]
-        if (!theme){
-            throw `Theme ${this.themeName} is undefined`
+        if (! this.theme){
+            throw 'a theme must be defined'
         }
         return  new Style(
             this.buildIconStyle(), 
-            this.buildTextStyle(theme), 
-            this.buildColorStyle(theme), 
+            this.buildTextStyle(this.theme), 
+            this.buildColorStyle(this.theme), 
             this.buildPxSizes()
         ) 
     } 

@@ -1,4 +1,4 @@
-import {Style, StyleBuilder, ThemeName} from "./style"
+import {Style, StyleBuilder, Theme, ThemeName} from "./style"
 
 export class Neon{
     private style? : Style
@@ -10,7 +10,10 @@ export class Neon{
     }
 
     public load(){
-        this.styleBuilder.load()
+        const theme = loadJSON("ts/neon/data/dark.json") as Theme
+        //this.theme = loadJSON("ts/neon/data/light.json") as Theme
+            this.styleBuilder.load()
+            this.styleBuilder.withTheme(theme)
     }
 
     public getStyle(): Style{
@@ -29,11 +32,11 @@ export class Neon{
         this.debug = value
     }
 
-    public setTheme(themeName: ThemeName): void{
+/*    public setTheme(themeName: ThemeName): void{
         this.style = this.styleBuilder
             .withTheme(themeName)
             .build()
-    }
+    }*/
 }
 
 export const n3on = new Neon()

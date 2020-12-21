@@ -11,7 +11,7 @@ declare global {
       setup: any,
       draw: any,
       switchView: any
-      switchTheme: any
+//      switchTheme: any
       switchDebug: ()=> void
     }
 }
@@ -64,9 +64,10 @@ window.switchView = (viewName: string, viewParams?: ViewParams): void => {
   sketch.switchView(viewName, viewParams)
 }
 
-window.switchTheme = (themeName: string) => {
+/*window.switchTheme = (themeName: string) => {
   sketch.switchTheme(themeName)
 }
+*/
 
 window.switchDebug = () => {
   sketch.switchDebug()
