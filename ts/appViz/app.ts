@@ -10,9 +10,7 @@ declare global {
       preload: any,
       setup: any,
       draw: any,
-      switchView: any
-//      switchTheme: any
-      switchDebug: ()=> void
+      execute:any
     }
 }
 let sketch : Sketch
@@ -45,7 +43,7 @@ window.setup = ()=> {
     updateView, 
     selectView)
     // go to home
-    sketch.switchView("home")
+    sketch.execute ("home", "view", {})
 }
 
 window.draw = ()=> {
@@ -60,17 +58,8 @@ window.windowResized = ()=> {
   sketch.windowResized()
 }
 
-window.switchView = (viewName: string, viewParams?: ViewParams): void => {
-  sketch.switchView(viewName, viewParams)
-}
-
-/*window.switchTheme = (themeName: string) => {
-  sketch.switchTheme(themeName)
-}
-*/
-
-window.switchDebug = () => {
-  sketch.switchDebug()
+window.execute = (route:string, action:string, params : {[name:string]: string|number|boolean}) => {
+  sketch.execute(route, action, params)
 }
 
 export {sketch, icons}

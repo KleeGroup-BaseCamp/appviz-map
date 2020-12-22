@@ -60,7 +60,7 @@ export class Sketch {
     this.drawView()
   }
  
-  public switchView(viewName: string, viewParams?: ViewParams): void {
+  private switchView(viewName: string, viewParams: ViewParams): void {
     const hasChanged = (this.currentViewName !== viewName) || (this.currentViewParams!==viewParams)
     //--
     this.currentViewName = viewName
@@ -80,7 +80,17 @@ export class Sketch {
     this.drawView()
   }
 */
-  public switchDebug(){
+  public execute (route:string, action:string, params : {[name:string]: string|number|boolean}){
+    if (action ==='debug'){
+      this.switchDebug()
+    } else if( action ==='view'){
+      const viewName = route
+      const viewParams = params
+      this.switchView(viewName, viewParams)
+    }
+  }
+
+  private switchDebug(){
     n3on.setDebug(!n3on.getDebug())
     this.drawView()
     }

@@ -29,7 +29,7 @@ export class Detail{
 
     private getContent(type: string, id: any){ 
         if (type === 'group') {
-            return `<div class='has-text-centered'><button class='button is-light' id='detail-button' onclick="switchView('techGroup', {'groupId': '${id}'})">Go to detail</button><p>Group detail goes here</p></div>`
+            return `<div class='has-text-centered'><button class='button is-light' id='detail-button' onclick="execute('techGroup','view', {'groupId': '${id}'})">Go to detail</button><p>Group detail goes here</p></div>`
         } else {
             return '';
         }
