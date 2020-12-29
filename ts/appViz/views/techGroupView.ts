@@ -1,4 +1,4 @@
-import {Layout, ItemNamePrefix, ItemTypeName} from "../types"
+import {ItemNamePrefix, ItemTypeName} from "../types"
 import {Projection, View, ViewParams, Layer, LayerBuilder, GridPosition, PxSize, GridSize, TextUtils, Card} from "../../neon"
 import {ModelRepository, GroupModel} from "../model"
 import {Item, ItemTypeDetail, Icons} from "../components"
@@ -12,13 +12,15 @@ export class TechGroupView implements View {
 
     private projection : Projection = Projection.buildProjection ()
     private readonly modelRepository: ModelRepository
-    private readonly layout: Layout
     private groupId: any
 
 
-    constructor(modelRepository: ModelRepository, layout: Layout, params: ViewParams){
+    constructor(modelRepository: ModelRepository, params?: ViewParams){
         this.modelRepository = modelRepository
-        this.layout = layout
+        if (! params){
+            throw "TechGroupView requires some params"
+        }
+ 
         this.groupId = params.groupId;
     }
 
