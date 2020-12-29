@@ -1,5 +1,9 @@
+import {HomeView, TechZoneView, TechGroupView} from "./views"
+import {DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
+    DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, DemoViewNeon} from "../demo/views"
+
 import * as p5 from "p5"
-import {ViewParams, n3on, VEvent} from "../neon"
+import {n3on, VEvent} from "../neon"
 import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
 import {Detail} from "./detail"
@@ -28,20 +32,31 @@ window.preload = () => {
 }
 
 window.setup = ()=> {
-  const detail = new Detail(modelRepositoryBuilder.build(), layout)
+  const detail = new Detail()
   
-  const selectView = (viewName: string, viewParams?: ViewParams)=> {
-    return detail.selectView(viewName, viewParams)
-  }
-
   const updateView = (event : VEvent)=> {
     detail.updateDetail(event)
   }
-
   sketch = new Sketch(
     'myContainer' /* canvas id of the DOM parent (<DIV>) */,
-    updateView, 
-    selectView)
+    updateView)
+    const modelRepository = modelRepositoryBuilder.build()
+
+    sketch.registerView( 'demoSignal', (_) => new DemoViewSignal())
+    sketch.registerView( 'demoRating', (_) => new DemoViewRating())
+    sketch.registerView( 'demoEnergy', (_) => new DemoViewEnergy())
+    sketch.registerView( 'demoGauge',  (_) => new DemoViewGauge())
+    sketch.registerView( 'demoBlackHole',  (_) => new DemoViewBlackHole())
+    sketch.registerView( 'demoProgressBar',  (_) => new DemoViewProgressBar())
+    sketch.registerView( 'demoRadar',  (_) => new DemoViewRadar())
+    sketch.registerView( 'demoChart',  (_) => new DemoViewChart())
+    sketch.registerView( 'demoNeon',  (_) => new DemoViewNeon())
+    sketch.registerView( 'demoDashboard',  (_) => new DemoViewDashboard())
+    sketch.registerView( 'home',  (_) => new HomeView())
+
+    sketch.registerView( 'techZone',  (_) => new TechZoneView(modelRepository,layout))
+    sketch.registerView( 'techGroup',  (viewParams) => new TechGroupView(modelRepository, viewParams))
+  
     // go to home
     sketch.execute ("home", "view", {})
 }

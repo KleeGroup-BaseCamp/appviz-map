@@ -1,9 +1,9 @@
 import "p5"
 import {} from "p5/global"
-import {ViewParams, PxSize, View, State, MapBuilder, LayerBuilder, Map, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
+import {ViewManager, ViewHandler, ViewParams, PxSize, View, State, MapBuilder, LayerBuilder, Map, VEvent, Background, AnimationUtils, isThemeName, n3on} from "../neon"
 
 export class Sketch {
-  private readonly viewDispatcher : (viewName: string, viewParams?: ViewParams)=> View
+  private readonly viewManager : ViewManager
   private readonly eventHandler : (event : VEvent)=> void
   private readonly state: State = new State()
   private vizMap? : Map
@@ -12,9 +12,8 @@ export class Sketch {
 
   constructor(
       domId : string, 
-      eventHandler: (event : VEvent)=> void, 
-      viewDispatcher :(viewName: string, viewParams?: ViewParams)=> View){
-    this.viewDispatcher = viewDispatcher
+      eventHandler: (event : VEvent)=> void){
+    this.viewManager = new ViewManager()
     this.eventHandler = eventHandler
 
     const canvasHeight = windowHeight
@@ -22,6 +21,10 @@ export class Sketch {
     let myCanvas = createCanvas(canvasWidth, canvasHeight)
     myCanvas.parent(domId)
   }
+
+  public registerView(viewName:string, viewHadler : ViewHandler):void  {
+    this.viewManager.register(viewName, viewHadler)
+  }  
 
   public draw():void  {
     if (!this.vizMap){
@@ -99,7 +102,7 @@ export class Sketch {
     if (!this.currentViewName){
       throw 'currentViewName must be defined'
     } 
-    const view = this.viewDispatcher(this.currentViewName, this.currentViewParams)
+    const view = this.viewManager.display(this.currentViewName, this.currentViewParams)
     this.vizMap = this.buildMap(view)
     this.state.reset()
   }
