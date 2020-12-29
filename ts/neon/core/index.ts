@@ -7,4 +7,6 @@ export * from "./mapBuilder"
 export * from "./state"
 export * from "./vevent"
 export * from "./view"
+export * from "./viewManager"
+
 

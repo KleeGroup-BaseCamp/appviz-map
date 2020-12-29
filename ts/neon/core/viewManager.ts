@@ -1,10 +1,11 @@
-import {View} from "../neon"
+import {View} from ".."
 
-/*
-ViewHandler is a function that builds a view from a set of params defined in a json object
+export type ViewParams = {[name:string]:string|number|boolean}
+
+/**
+* ViewHandler is a function that builds a view from a set of params defined in a json object
 */
-export type ViewHandler = (params? : {[name:string]: string|number|boolean})=> View
-
+export type ViewHandler = (params? : ViewParams)=> View
 
 export class ViewManager {
     private viewHandlers : {[viewName:string]:ViewHandler}= {}
@@ -15,7 +16,7 @@ export class ViewManager {
         this.viewHandlers[viewName]= viewHandler
     }
 
-    public display (viewName:string,  viewparams? : {[name:string]: string|number|boolean}):View{
+    public display (viewName:string,  viewparams? : ViewParams):View{
         const viewHandler = this.viewHandlers[viewName]
         if (! viewHandler) throw `no view registered for ${viewName}`
         return viewHandler(viewparams)

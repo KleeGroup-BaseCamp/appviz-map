@@ -2,10 +2,9 @@ import {ModelRepository} from "./model"
 import {HomeView, TechZoneView, TechGroupView} from "./views"
 import {DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart, 
     DemoViewRating, DemoViewSignal, DemoViewProgressBar, DemoViewRadar, DemoViewDashboard, DemoViewNeon} from "../demo/views"
-import {ViewParams, View, VEvent} from "../neon"
+import {ViewManager, ViewParams, View, VEvent} from "../neon"
 
 import {Group, Item} from "./components"
-import { ViewManager } from "./viewManager"
 
 
 export class Detail{
