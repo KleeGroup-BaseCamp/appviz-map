@@ -4,7 +4,6 @@ import {DemoViewEnergy, DemoViewGauge, DemoViewBlackHole,  DemoViewChart,
 
 import * as p5 from "p5"
 import {n3on, VEvent} from "../neon"
-import {Sketch} from "./sketch"
 import {ModelRepositoryBuilder} from "./model"
 import {Detail} from "./detail"
 
@@ -17,7 +16,6 @@ declare global {
       execute:any
     }
 }
-let sketch : Sketch
 let modelRepositoryBuilder : ModelRepositoryBuilder 
 let layout : any
 let icons : {[iconName: string]: p5.Image} = {}
@@ -37,44 +35,44 @@ window.setup = ()=> {
   const updateView = (event : VEvent)=> {
     detail.updateDetail(event)
   }
-  sketch = new Sketch(
+  n3on.buildCanvas(
     'myContainer' /* canvas id of the DOM parent (<DIV>) */,
     updateView)
     const modelRepository = modelRepositoryBuilder.build()
 
-    sketch.registerView( 'demoSignal', (_) => new DemoViewSignal())
-    sketch.registerView( 'demoRating', (_) => new DemoViewRating())
-    sketch.registerView( 'demoEnergy', (_) => new DemoViewEnergy())
-    sketch.registerView( 'demoGauge',  (_) => new DemoViewGauge())
-    sketch.registerView( 'demoBlackHole',  (_) => new DemoViewBlackHole())
-    sketch.registerView( 'demoProgressBar',  (_) => new DemoViewProgressBar())
-    sketch.registerView( 'demoRadar',  (_) => new DemoViewRadar())
-    sketch.registerView( 'demoChart',  (_) => new DemoViewChart())
-    sketch.registerView( 'demoNeon',  (_) => new DemoViewNeon())
-    sketch.registerView( 'demoDashboard',  (_) => new DemoViewDashboard())
-    sketch.registerView( 'home',  (_) => new HomeView())
+    n3on.registerView( 'demoSignal', (_) => new DemoViewSignal())
+    n3on.registerView( 'demoRating', (_) => new DemoViewRating())
+    n3on.registerView( 'demoEnergy', (_) => new DemoViewEnergy())
+    n3on.registerView( 'demoGauge',  (_) => new DemoViewGauge())
+    n3on.registerView( 'demoBlackHole',  (_) => new DemoViewBlackHole())
+    n3on.registerView( 'demoProgressBar',  (_) => new DemoViewProgressBar())
+    n3on.registerView( 'demoRadar',  (_) => new DemoViewRadar())
+    n3on.registerView( 'demoChart',  (_) => new DemoViewChart())
+    n3on.registerView( 'demoNeon',  (_) => new DemoViewNeon())
+    n3on.registerView( 'demoDashboard',  (_) => new DemoViewDashboard())
+    n3on.registerView( 'home',  (_) => new HomeView())
 
-    sketch.registerView( 'techZone',  (_) => new TechZoneView(modelRepository,layout))
-    sketch.registerView( 'techGroup',  (viewParams) => new TechGroupView(modelRepository, viewParams))
+    n3on.registerView( 'techZone',  (_) => new TechZoneView(modelRepository,layout))
+    n3on.registerView( 'techGroup',  (viewParams) => new TechGroupView(modelRepository, viewParams))
   
     // go to home
-    sketch.execute ("home", "view", {})
+    n3on.execute ("home", "view", {})
 }
 
 window.draw = ()=> {
-  sketch.draw()
+  n3on.draw()
 }
 
 window.mouseClicked = (e)=> {
-  sketch.mouseClicked(mouseX, mouseY)
+  n3on.mouseClicked(mouseX, mouseY)
 }
 
 window.windowResized = ()=> {
-  sketch.windowResized()
+  n3on.windowResized()
 }
 
 window.execute = (route:string, action:string, params : {[name:string]: string|number|boolean}) => {
-  sketch.execute(route, action, params)
+  n3on.execute(route, action, params)
 }
 
-export {sketch, icons}
+export {icons}
