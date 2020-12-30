@@ -107,10 +107,10 @@ export class Sketch {
     this.state.reset()
   }
 
-  private buildMap(viewInstance: View): Map {
+  private buildMap(view: View): Map {
     return new MapBuilder()
       .addLayer(new LayerBuilder().addComponent(new Background({size: new PxSize(width,height)})).build())
-      .addLayers(viewInstance.provideLayers())
+      .addLayers(view.provideLayers())
       //.addLayers(new LayerBuilder().addComponent(new Grid(-1, projection.getPxSize(), "12", "12")).build())
       .build()
   }
