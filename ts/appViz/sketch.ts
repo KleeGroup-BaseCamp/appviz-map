@@ -7,11 +7,12 @@ export class Sketch {
   private readonly eventHandler : (event : VEvent)=> void
   private readonly state: State = new State()
   private vizMap? : Map
+
   private currentViewName? : string
   private currentViewParams? : ViewParams
 
   constructor(
-      domId : string, 
+      domId : string,
       eventHandler: (event : VEvent)=> void){
     this.viewManager = new ViewManager()
     this.eventHandler = eventHandler
