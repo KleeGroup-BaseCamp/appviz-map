@@ -59,10 +59,6 @@ window.setup = ()=> {
     n3on.execute ("home", "view", {})
 }
 
-window.draw = ()=> {
-  n3on.draw()
-}
-
 window.execute = (route:string, action:string, params : {[name:string]: string|number|boolean}) => {
   n3on.execute(route, action, params)
 }

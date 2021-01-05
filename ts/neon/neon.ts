@@ -14,6 +14,9 @@ window.mouseClicked = (e)=> {
 window.windowResized = ()=> {
   n3on.windowResized()
 }
+window.draw = ()=> {
+  n3on.draw()
+}
 
 export class Neon{
     private readonly viewManager : ViewManager
