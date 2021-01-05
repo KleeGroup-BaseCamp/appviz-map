@@ -51,10 +51,13 @@ export class Layer {
    */
   public findComponent(x: number, y: number): Component | null {
     for (let positionedComponent of this.positionedComponents) {
-      const lx = x - positionedComponent.pxPosition.x
-      const ly = y - positionedComponent.pxPosition.y
-      if (positionedComponent.component.isSelectable() && positionedComponent.component.contains(lx, ly))
-        return positionedComponent.component
+      if (positionedComponent.component.isSelectable()) {
+        const lx = x - positionedComponent.pxPosition.x
+        const ly = y - positionedComponent.pxPosition.y
+        if (positionedComponent.component.contains(lx, ly)){
+          return positionedComponent.component
+        }  
+      }
     }
     return null
   }
