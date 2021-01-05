@@ -1,5 +1,5 @@
 import {View, Layer, LayerBuilder, GridLayerBuilder, Card, PxSize, Caption} from "../../neon"
-import {BlackHole2, BlackHole3, BlackHole4} from "../../demo"
+import {BlackHole2, BlackHole3, BlackHole4, HeatMap} from "../../demo"
 
 export class DemoViewBlackHole implements View {
 
@@ -20,7 +20,11 @@ export class DemoViewBlackHole implements View {
                 .beginRow(10)
                 .addComponent(new Caption("BlackHole 2", {size: captionSize}))
                 .addComponent(new Caption("BlackHole 3", {size: captionSize}))
-                .build()
+                .build(),
+            new LayerBuilder()
+                .addComponent(new HeatMap({}))
+                .build(),
+    
             ]
     }
 }
