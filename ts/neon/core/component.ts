@@ -5,6 +5,10 @@ import * as p5 from "p5"
 
 export type Size = "s" | "m" | "l"
 
+export interface ComponentMouseMoved {
+  onMouseMoved(x:number, y:number):void
+}  
+
 export interface ComponentProps {
     id?: any,
     size?: Size|PxSize

@@ -1,8 +1,19 @@
 import "p5"
 import {} from "p5/global"
 import {ViewManager, ViewHandler, ViewParams, PxSize, View, State, MapBuilder,
-    LayerBuilder, Map, VEvent, Background, AnimationUtils} from "../neon"
+    LayerBuilder, Map, VEvent, Background, AnimationUtils, ComponentMouseMoved} from "../neon"
 import {Style, StyleBuilder, Theme, ThemeName} from "./style"
+
+
+window.mouseMoved = (e)=> {
+  n3on.mouseMoved(mouseX, mouseY)
+}
+window.mouseClicked = (e)=> {
+  n3on.mouseClicked(mouseX, mouseY)
+}
+window.windowResized = ()=> {
+  n3on.windowResized()
+}
 
 export class Neon{
     private readonly viewManager : ViewManager
@@ -80,24 +91,35 @@ export class Neon{
     
     private emit(event : VEvent): void{
       if (this.eventHandler){
-        this.state.select(event.sourceComponent)
+        if (event.action==='click'){
+          this.state.select(event.sourceComponent)
+        }  
         this.eventHandler(event)
       }
     }
-  
+
+    public mouseMoved(x: number, y:number): void  {
+      if (this.vizMap){
+        const sourceComponent = this.vizMap.findComponent(x, y) 
+        if ((sourceComponent as unknown)as ComponentMouseMoved){
+          ((sourceComponent as unknown)as ComponentMouseMoved).onMouseMoved(x,y)
+        }
+      }
+    }  
+
     public mouseClicked(x: number, y:number): void  {
       if (this.vizMap){
-        const component = this.vizMap.findComponent(x, y)
-        if (component) {
+        const sourceComponent = this.vizMap.findComponent(x, y)
+        if (sourceComponent) {
           const event : VEvent = {
-            sourceComponent : component,
-            action : 'click'        
+            sourceComponent,
+            action :'click'        
           }  
           this.emit (event)
         }
       }
-    }
-  
+    }  
+    
     public windowResized(): void {
       const canvasHeight = windowHeight
       const canvasWidth = windowWidth * 0.75
