@@ -2,14 +2,15 @@ import {Component, State} from "."
 import {AnimationUtils} from "../utils"
 import {n3on} from "../../neon"
 import * as p5 from "p5"
+import { ComponentManager } from "./componentManager"
 
 export type PositionedComponent = {pxPosition: p5.Vector, component: Component}
 
 export class Layer {
-  private readonly positionedComponents: PositionedComponent[]
+  private readonly componentManager: ComponentManager
 
   constructor(positionedComponents: PositionedComponent[]) {
-    this.positionedComponents = positionedComponents
+    this.componentManager = new ComponentManager(positionedComponents)
   }
 
   public render(state : State) : void  {
@@ -20,7 +21,7 @@ export class Layer {
       text("Animations : " + AnimationUtils.count(), 50 , 50); 
     }  
 
-    for (let positionedComponent of this.positionedComponents) {
+    for (let positionedComponent of this.componentManager.getAllPositionedComponents()) {
       push()
       translate(positionedComponent.pxPosition)
 
@@ -50,15 +51,6 @@ export class Layer {
    * @returns {?Component} component 
    */
   public findComponent(x: number, y: number): Component | null {
-    for (let positionedComponent of this.positionedComponents) {
-      if (positionedComponent.component.isSelectable()) {
-        const lx = x - positionedComponent.pxPosition.x
-        const ly = y - positionedComponent.pxPosition.y
-        if (positionedComponent.component.contains(lx, ly)){
-          return positionedComponent.component
-        }  
-      }
-    }
-    return null
+    return this.componentManager.findComponent(x, y)
   }
 }
