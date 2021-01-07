@@ -1,10 +1,7 @@
 import {Component, State} from "."
 import {AnimationUtils} from "../utils"
 import {n3on} from "../../neon"
-import * as p5 from "p5"
-import { ComponentManager } from "./componentManager"
-
-export type PositionedComponent = {pxPosition: p5.Vector, component: Component}
+import { ComponentManager, PositionedComponent } from "./componentManager"
 
 export class Layer {
   private readonly componentManager: ComponentManager
