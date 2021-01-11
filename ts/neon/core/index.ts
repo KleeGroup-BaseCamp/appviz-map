@@ -1,4 +1,5 @@
 export * from "./component"
+export * from "./componentManager"
 export * from "./layer"
 export * from "./layerBuilder"
 export * from "./gridLayerBuilder"
